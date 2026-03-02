@@ -1,0 +1,688 @@
+[
+  {
+    "source": "jia_mu",
+    "target": "jia_she",
+    "type": "blood",
+    "label": "母子",
+    "description": "贾母是贾赦之母，贾赦为荣国府长子"
+  },
+  {
+    "source": "jia_mu",
+    "target": "jia_zheng",
+    "type": "blood",
+    "label": "母子",
+    "description": "贾母是贾政之母，贾政为荣国府次子"
+  },
+  {
+    "source": "jia_mu",
+    "target": "jia_min",
+    "type": "blood",
+    "label": "母女",
+    "description": "贾母是贾敏之母，贾敏是贾母最疼爱的小女儿"
+  },
+  {
+    "source": "jia_she",
+    "target": "jia_lian",
+    "type": "blood",
+    "label": "父子",
+    "description": "贾赦是贾琏之父"
+  },
+  {
+    "source": "jia_she",
+    "target": "jia_yingchun",
+    "type": "blood",
+    "label": "父女",
+    "description": "贾赦是迎春之父，迎春为庶出"
+  },
+  {
+    "source": "jia_zheng",
+    "target": "jia_baoyu",
+    "type": "blood",
+    "label": "父子",
+    "description": "贾政是宝玉之父，对宝玉管教严厉"
+  },
+  {
+    "source": "jia_zheng",
+    "target": "jia_yuanchun",
+    "type": "blood",
+    "label": "父女",
+    "description": "贾政是元春之父，元春为嫡长女"
+  },
+  {
+    "source": "jia_zheng",
+    "target": "jia_tanchun",
+    "type": "blood",
+    "label": "父女",
+    "description": "贾政是探春之父，探春为庶出（赵姨娘所生）"
+  },
+  {
+    "source": "jia_zheng",
+    "target": "jia_huan",
+    "type": "blood",
+    "label": "父子",
+    "description": "贾政是贾环之父，贾环为庶出（赵姨娘所生）"
+  },
+  {
+    "source": "li_wan",
+    "target": "jia_lan",
+    "type": "blood",
+    "label": "母子",
+    "description": "李纨是贾兰之母，贾珠早亡后独力教养贾兰"
+  },
+  {
+    "source": "jia_min",
+    "target": "lin_daiyu",
+    "type": "blood",
+    "label": "母女",
+    "description": "贾敏是黛玉之母，早逝导致黛玉入贾府"
+  },
+  {
+    "source": "lin_ruhai",
+    "target": "lin_daiyu",
+    "type": "blood",
+    "label": "父女",
+    "description": "林如海是黛玉之父，巡盐御史"
+  },
+  {
+    "source": "jia_jing",
+    "target": "jia_zhen",
+    "type": "blood",
+    "label": "父子",
+    "description": "贾敬是贾珍之父，弃家修道后将宁府事务交由贾珍"
+  },
+  {
+    "source": "jia_zhen",
+    "target": "jia_rong",
+    "type": "blood",
+    "label": "父子",
+    "description": "贾珍是贾蓉之父"
+  },
+  {
+    "source": "jia_jing",
+    "target": "jia_xichun",
+    "type": "blood",
+    "label": "父女",
+    "description": "贾敬是惜春之父，惜春自幼在荣府贾母膝下长大"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "jia_yuanchun",
+    "type": "blood",
+    "label": "姐弟",
+    "description": "元春是宝玉的亲姐姐，曾亲自教宝玉读书识字"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "jia_tanchun",
+    "type": "blood",
+    "label": "兄妹",
+    "description": "宝玉与探春为同父异母的兄妹"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "jia_huan",
+    "type": "blood",
+    "label": "兄弟",
+    "description": "宝玉与贾环为同父异母兄弟，贾环为庶出"
+  },
+  {
+    "source": "jia_yuanchun",
+    "target": "jia_tanchun",
+    "type": "blood",
+    "label": "姐妹",
+    "description": "元春与探春为同父异母的姐妹"
+  },
+  {
+    "source": "jia_yingchun",
+    "target": "jia_tanchun",
+    "type": "blood",
+    "label": "姐妹",
+    "description": "迎春与探春为贾府四春中的二姐三妹"
+  },
+  {
+    "source": "jia_tanchun",
+    "target": "jia_xichun",
+    "type": "blood",
+    "label": "姐妹",
+    "description": "探春与惜春为堂姐妹，分属荣宁二府"
+  },
+  {
+    "source": "xue_yima",
+    "target": "xue_baochai",
+    "type": "blood",
+    "label": "母女",
+    "description": "薛姨妈是宝钗之母"
+  },
+  {
+    "source": "xue_yima",
+    "target": "xue_pan",
+    "type": "blood",
+    "label": "母子",
+    "description": "薛姨妈是薛蟠之母，溺爱纵容"
+  },
+  {
+    "source": "xue_baochai",
+    "target": "xue_pan",
+    "type": "blood",
+    "label": "兄妹",
+    "description": "薛蟠是宝钗的哥哥"
+  },
+  {
+    "source": "wang_furen",
+    "target": "xue_yima",
+    "type": "blood",
+    "label": "姐妹",
+    "description": "王夫人与薛姨妈为同胞姐妹，同出金陵王家"
+  },
+  {
+    "source": "wang_furen",
+    "target": "wang_xifeng",
+    "type": "blood",
+    "label": "姑侄",
+    "description": "王熙凤是王夫人的侄女，同出王家"
+  },
+  {
+    "source": "wang_ziteng",
+    "target": "wang_xifeng",
+    "type": "blood",
+    "label": "父女",
+    "description": "王子腾是王熙凤之父"
+  },
+  {
+    "source": "xue_baoqin",
+    "target": "xue_ke",
+    "type": "blood",
+    "label": "兄妹",
+    "description": "薛蝌是薛宝琴的哥哥"
+  },
+  {
+    "source": "qin_keqing",
+    "target": "qin_zhong",
+    "type": "blood",
+    "label": "姐弟",
+    "description": "秦可卿与秦钟名为姐弟，秦可卿为养女"
+  },
+  {
+    "source": "qin_ye",
+    "target": "qin_zhong",
+    "type": "blood",
+    "label": "父子",
+    "description": "秦业是秦钟之父"
+  },
+  {
+    "source": "qin_ye",
+    "target": "qin_keqing",
+    "type": "blood",
+    "label": "父女",
+    "description": "秦业是秦可卿的养父，自养生堂抱养"
+  },
+  {
+    "source": "zhao_yiniang",
+    "target": "jia_tanchun",
+    "type": "blood",
+    "label": "母女",
+    "description": "赵姨娘是探春的生母，探春却以王夫人为嫡母"
+  },
+  {
+    "source": "zhao_yiniang",
+    "target": "jia_huan",
+    "type": "blood",
+    "label": "母子",
+    "description": "赵姨娘是贾环的生母"
+  },
+  {
+    "source": "shi_xiangyun",
+    "target": "jia_mu",
+    "type": "blood",
+    "label": "侄孙女",
+    "description": "史湘云是贾母娘家史侯的侄孙女"
+  },
+  {
+    "source": "you_erjie",
+    "target": "you_sanjie",
+    "type": "blood",
+    "label": "姐妹",
+    "description": "尤二姐与尤三姐为亲姐妹"
+  },
+  {
+    "source": "you_shi",
+    "target": "you_erjie",
+    "type": "blood",
+    "label": "姐妹",
+    "description": "尤氏与尤二姐为异母姐妹"
+  },
+  {
+    "source": "jia_she",
+    "target": "xing_furen",
+    "type": "marriage",
+    "label": "夫妻",
+    "description": "贾赦与邢夫人为夫妻，邢夫人为续弦"
+  },
+  {
+    "source": "jia_zheng",
+    "target": "wang_furen",
+    "type": "marriage",
+    "label": "夫妻",
+    "description": "贾政与王夫人为夫妻"
+  },
+  {
+    "source": "jia_zheng",
+    "target": "zhao_yiniang",
+    "type": "marriage",
+    "label": "妾室",
+    "description": "赵姨娘为贾政之妾"
+  },
+  {
+    "source": "jia_lian",
+    "target": "wang_xifeng",
+    "type": "marriage",
+    "label": "夫妻",
+    "description": "贾琏与王熙凤为夫妻"
+  },
+  {
+    "source": "jia_lian",
+    "target": "you_erjie",
+    "type": "marriage",
+    "label": "妾室",
+    "description": "贾琏瞒着凤姐偷娶尤二姐为二房"
+  },
+  {
+    "source": "jia_lian",
+    "target": "pinger",
+    "type": "marriage",
+    "label": "通房",
+    "description": "平儿是贾琏的通房大丫头，名义上的准妾"
+  },
+  {
+    "source": "jia_zhen",
+    "target": "you_shi",
+    "type": "marriage",
+    "label": "夫妻",
+    "description": "贾珍与尤氏为夫妻，尤氏为继室"
+  },
+  {
+    "source": "jia_rong",
+    "target": "qin_keqing",
+    "type": "marriage",
+    "label": "夫妻",
+    "description": "贾蓉与秦可卿为夫妻"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "xue_baochai",
+    "type": "marriage",
+    "label": "夫妻",
+    "description": "宝玉与宝钗后来成婚，金玉良缘"
+  },
+  {
+    "source": "lin_ruhai",
+    "target": "jia_min",
+    "type": "marriage",
+    "label": "夫妻",
+    "description": "林如海与贾敏为夫妻"
+  },
+  {
+    "source": "xue_pan",
+    "target": "xia_jingui",
+    "type": "marriage",
+    "label": "夫妻",
+    "description": "薛蟠娶夏金桂为妻"
+  },
+  {
+    "source": "xue_pan",
+    "target": "xiang_ling",
+    "type": "marriage",
+    "label": "妾室",
+    "description": "香菱为薛蟠之妾"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "xiren",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "袭人是宝玉贴身大丫鬟，第一得力之人"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "qingwen",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "晴雯是宝玉房中贴身丫鬟，容貌才巧出众"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "sheyue",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "麝月是宝玉房中丫鬟"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "qiuwen",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "秋纹是宝玉房中丫鬟"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "fangguan",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "芳官为戏子出身，散戏后分入怡红院为宝玉丫鬟"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "ming_yan",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "茗烟是宝玉贴身小厮"
+  },
+  {
+    "source": "lin_daiyu",
+    "target": "zijuan",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "紫鹃是黛玉贴身丫鬟，情同姐妹"
+  },
+  {
+    "source": "lin_daiyu",
+    "target": "chunyan",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "春燕为黛玉身边丫鬟"
+  },
+  {
+    "source": "xue_baochai",
+    "target": "yinger",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "莺儿是宝钗自幼带大的贴身丫鬟"
+  },
+  {
+    "source": "wang_xifeng",
+    "target": "pinger",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "平儿是王熙凤的贴身大丫鬟，亦为通房"
+  },
+  {
+    "source": "jia_mu",
+    "target": "yuanyang",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "鸳鸯是贾母身边首席大丫鬟"
+  },
+  {
+    "source": "jia_yingchun",
+    "target": "siqi",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "司棋是迎春的贴身大丫鬟"
+  },
+  {
+    "source": "jia_tanchun",
+    "target": "shishu",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "侍书是探春的贴身丫鬟"
+  },
+  {
+    "source": "jia_xichun",
+    "target": "ruhua",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "入画是惜春的贴身丫鬟"
+  },
+  {
+    "source": "shi_xiangyun",
+    "target": "cuilu",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "翠缕是湘云的贴身丫鬟"
+  },
+  {
+    "source": "wang_furen",
+    "target": "jinchuan",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "金钏是王夫人身边大丫鬟，后被逼投井"
+  },
+  {
+    "source": "wang_furen",
+    "target": "yuchuan",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "玉钏是王夫人身边丫鬟，金钏之妹"
+  },
+  {
+    "source": "wang_furen",
+    "target": "caiyun",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "彩云是王夫人身边丫鬟"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "xiaohong",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "小红为怡红院丫鬟，后被调至凤姐身边"
+  },
+  {
+    "source": "xue_pan",
+    "target": "xiang_ling",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "香菱被薛蟠强买为婢妾"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "lin_daiyu",
+    "type": "romance",
+    "label": "恋人",
+    "description": "木石前盟，前世绛珠仙草与神瑛侍者的还泪之缘"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "xiren",
+    "type": "romance",
+    "label": "暧昧",
+    "description": "宝玉与袭人初试云雨情"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "qingwen",
+    "type": "romance",
+    "label": "知己",
+    "description": "宝玉与晴雯情感深厚，晴为黛影"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "shi_xiangyun",
+    "type": "romance",
+    "label": "青梅竹马",
+    "description": "宝玉与湘云自幼一同在贾母身边长大"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "miaoyu",
+    "type": "romance",
+    "label": "敬慕",
+    "description": "宝玉对妙玉的清高气质心生敬慕"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "qin_zhong",
+    "type": "romance",
+    "label": "挚友",
+    "description": "宝玉与秦钟同窗密友，感情深厚"
+  },
+  {
+    "source": "jia_zhen",
+    "target": "qin_keqing",
+    "type": "romance",
+    "label": "暧昧",
+    "description": "公媳之间关系暧昧，爬灰丑闻"
+  },
+  {
+    "source": "jia_lian",
+    "target": "you_erjie",
+    "type": "romance",
+    "label": "情人",
+    "description": "贾琏偷娶尤二姐，情意绵绵"
+  },
+  {
+    "source": "liu_xianglian",
+    "target": "you_sanjie",
+    "type": "romance",
+    "label": "恋人",
+    "description": "尤三姐痴等柳湘莲，订婚后被退婚，三姐自刎"
+  },
+  {
+    "source": "jiang_yuhan",
+    "target": "xiren",
+    "type": "romance",
+    "label": "情缘",
+    "description": "蒋玉菡与袭人后来结为夫妻，互赠汗巾为伏笔"
+  },
+  {
+    "source": "jia_rong",
+    "target": "wang_xifeng",
+    "type": "romance",
+    "label": "暧昧",
+    "description": "书中暗示贾蓉与凤姐关系暧昧"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "bei_jing_wang",
+    "type": "social",
+    "label": "知交",
+    "description": "北静王赠宝玉鹡鸰香念珠，惺惺相惜"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "jiang_yuhan",
+    "type": "social",
+    "label": "知交",
+    "description": "宝玉与蒋玉菡互赠汗巾，引为知己"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "liu_xianglian",
+    "type": "social",
+    "label": "朋友",
+    "description": "宝玉与柳湘莲为朋友"
+  },
+  {
+    "source": "jia_mu",
+    "target": "liu_laolao",
+    "type": "social",
+    "label": "社交",
+    "description": "刘姥姥三进荣国府，贾母热情接待"
+  },
+  {
+    "source": "wang_xifeng",
+    "target": "liu_laolao",
+    "type": "social",
+    "label": "恩人",
+    "description": "凤姐曾接济刘姥姥，刘姥姥后搭救巧姐报恩"
+  },
+  {
+    "source": "liu_laolao",
+    "target": "jia_qiaojie",
+    "type": "social",
+    "label": "恩人",
+    "description": "刘姥姥在贾府败落后搭救巧姐免被卖入烟花之地"
+  },
+  {
+    "source": "jia_yucun",
+    "target": "zhen_shiyin",
+    "type": "social",
+    "label": "友人",
+    "description": "甄士隐资助贾雨村赶考上京"
+  },
+  {
+    "source": "jia_yucun",
+    "target": "jia_zheng",
+    "type": "social",
+    "label": "门生",
+    "description": "贾雨村与贾政有官场上的门生关系"
+  },
+  {
+    "source": "lai_tou_heshang",
+    "target": "bo_zu_daoren",
+    "type": "social",
+    "label": "同伴",
+    "description": "一僧一道，贯穿全书的度世仙人组合"
+  },
+  {
+    "source": "zhineng",
+    "target": "qin_zhong",
+    "type": "social",
+    "label": "相好",
+    "description": "智能儿与秦钟暗中私会，不守清规"
+  },
+  {
+    "source": "lin_daiyu",
+    "target": "xue_baochai",
+    "type": "rivalry",
+    "label": "情敌",
+    "description": "金玉良缘与木石前盟之争，二人暗中较量"
+  },
+  {
+    "source": "wang_xifeng",
+    "target": "you_erjie",
+    "type": "rivalry",
+    "label": "迫害",
+    "description": "凤姐设计将尤二姐赚入府中百般折磨，逼其吞金自尽"
+  },
+  {
+    "source": "wang_xifeng",
+    "target": "qin_keqing",
+    "type": "rivalry",
+    "label": "嫉妒/继承",
+    "description": "凤姐与秦可卿关系复杂，可卿死后托梦于她"
+  },
+  {
+    "source": "xia_jingui",
+    "target": "xiang_ling",
+    "type": "rivalry",
+    "label": "虐待",
+    "description": "夏金桂妒忌香菱，对其百般虐待"
+  },
+  {
+    "source": "zhao_yiniang",
+    "target": "wang_xifeng",
+    "type": "rivalry",
+    "label": "敌对",
+    "description": "赵姨娘暗中与王熙凤作对"
+  },
+  {
+    "source": "zhao_yiniang",
+    "target": "jia_baoyu",
+    "type": "rivalry",
+    "label": "敌对",
+    "description": "赵姨娘联合马道婆设法加害宝玉"
+  },
+  {
+    "source": "jia_huan",
+    "target": "jia_baoyu",
+    "type": "rivalry",
+    "label": "嫉妒",
+    "description": "贾环嫉妒宝玉受宠，嫡庶之争"
+  },
+  {
+    "source": "zhao_yiniang",
+    "target": "ma_daopo",
+    "type": "rivalry",
+    "label": "共谋",
+    "description": "赵姨娘与马道婆合谋用巫术害宝玉和凤姐"
+  },
+  {
+    "source": "jiao_da",
+    "target": "jia_zhen",
+    "type": "rivalry",
+    "label": "怒斥",
+    "description": "焦大醉骂宁府主子丑事，痛斥贾珍等人"
+  }
+]
