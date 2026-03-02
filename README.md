@@ -25,7 +25,7 @@
 ## 项目结构
 
 ```
-hongloumeng_1/
+honglou-graph/
 ├── index.html          # 主页面
 ├── css/
 │   └── style.css       # 样式文件（古典美学风格）
@@ -44,7 +44,7 @@ hongloumeng_1/
 ### 方法一：使用 Python 内置服务器
 
 ```bash
-cd hongloumeng_1
+cd honglou-graph
 python3 -m http.server 8080
 ```
 
