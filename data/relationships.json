@@ -217,6 +217,13 @@
     "description": "秦业是秦可卿的养父，自养生堂抱养"
   },
   {
+    "source": "jia_dairu",
+    "target": "jia_rui",
+    "type": "blood",
+    "label": "祖孙",
+    "description": "贾代儒是贾瑞的祖父，祖孙相依为命"
+  },
+  {
     "source": "zhao_yiniang",
     "target": "jia_tanchun",
     "type": "blood",
@@ -553,6 +560,27 @@
     "description": "书中暗示贾蓉与凤姐关系暧昧"
   },
   {
+    "source": "wang_xifeng",
+    "target": "jia_rui",
+    "type": "romance",
+    "label": "引诱/设局",
+    "description": "凤姐识破贾瑞淫心后将计就计设相思局戏弄惩治他"
+  },
+  {
+    "source": "jia_qiang",
+    "target": "lingguan",
+    "type": "romance",
+    "label": "恋人",
+    "description": "贾蔷与龄官两情相悦，彼此牵念"
+  },
+  {
+    "source": "jia_yun",
+    "target": "xiaohong",
+    "type": "romance",
+    "label": "恋人",
+    "description": "贾芸与小红以手帕传情，互生爱慕"
+  },
+  {
     "source": "jia_baoyu",
     "target": "bei_jing_wang",
     "type": "social",
@@ -607,6 +635,34 @@
     "type": "social",
     "label": "门生",
     "description": "贾雨村与贾政有官场上的门生关系"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "jia_dairu",
+    "type": "social",
+    "label": "师生",
+    "description": "贾代儒在贾府家塾中教导宝玉读书"
+  },
+  {
+    "source": "qin_zhong",
+    "target": "jia_dairu",
+    "type": "social",
+    "label": "师生",
+    "description": "秦钟入贾府家塾读书，受教于贾代儒"
+  },
+  {
+    "source": "jia_yun",
+    "target": "wang_xifeng",
+    "type": "social",
+    "label": "求助",
+    "description": "贾芸向凤姐钻营求差，得以在园中揽到事务"
+  },
+  {
+    "source": "jia_qiang",
+    "target": "jia_baoyu",
+    "type": "social",
+    "label": "族中来往",
+    "description": "贾蔷与宝玉同属贾府年轻一辈，在园中常有往来"
   },
   {
     "source": "lai_tou_heshang",
