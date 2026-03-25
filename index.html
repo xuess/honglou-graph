@@ -3,196 +3,182 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>红楼梦 · 人物关系图谱</title>
-  <meta name="description" content="交互式《红楼梦》人物关系图谱，完整收录贾史王薛四大家族人物关系">
-  
-  <!-- Favicon -->
+  <title>红楼梦 · 人物关系助手</title>
+  <meta name="description" content="更适合边读边查的《红楼梦》人物关系图谱，支持人物检索、局部关系、专题阅读与全图探索。">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏮</text></svg>">
-  
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css">
-  
-  <!-- D3.js -->
+  <link rel="stylesheet" href="css/style.css?v=20250916c">
   <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
-  
-  <!-- 加载动画 -->
   <div id="loading-overlay" class="loading-overlay">
     <div class="loading-title">红楼梦</div>
-    <div class="loading-subtitle">人物关系图谱加载中……</div>
+    <div class="loading-subtitle">正在整理人物脉络与关系线索……</div>
     <div class="loading-spinner"></div>
   </div>
-  
-  <!-- 顶部导航栏 -->
+
   <header class="header">
     <div class="header-left">
       <button id="sidebar-toggle" class="btn-sidebar-toggle" aria-label="切换侧边栏">☰</button>
       <div>
-        <div class="header-title">红楼梦 · 人物关系图谱</div>
-        <div class="header-subtitle">Dream of the Red Chamber</div>
+        <div class="header-title">红楼梦 · 人物关系助手</div>
+        <div class="header-subtitle">以图为中心，快速定位人物、关系、专题与阶段</div>
       </div>
     </div>
-    
+
     <div class="header-center">
       <div class="search-box">
         <span class="search-icon">🔍</span>
-        <input 
-          id="search-input" 
-          class="search-input" 
-          type="text" 
-          placeholder="搜索人物姓名、别名……（按 / 快速聚焦）" 
+        <input
+          id="search-input"
+          class="search-input"
+          type="text"
+          placeholder="搜索人物、关系或主题：如 林黛玉 / 宝黛 / 金玉良缘"
           autocomplete="off"
         >
         <div id="search-results" class="search-results"></div>
       </div>
     </div>
-    
+
     <div class="header-right">
-      <button id="btn-full-view" class="btn" title="全图模式">全图</button>
+      <button id="btn-mobile-search" class="btn btn-mobile-search" title="搜索" aria-label="搜索">🔍</button>
+      <button id="btn-back" class="btn btn-back hidden" title="返回上一视图">← 返回</button>
+      <button id="btn-full-view" class="btn" title="回到完整图谱">全图</button>
+      <button id="btn-header-fullscreen" class="btn" title="切换大图模式">大图模式</button>
     </div>
   </header>
-  
-  <!-- 主体 -->
+
   <div class="main-container">
-    
-    <!-- 侧边栏遮罩（移动端） -->
     <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
-    
-    <!-- 侧边栏 -->
+
     <aside id="sidebar" class="sidebar">
-      
-      <!-- 家族筛选 -->
-      <div class="sidebar-section">
-        <div class="sidebar-section-title">家族筛选</div>
-        <div id="family-filters" class="family-filter">
-          <!-- 由 JS 动态生成 -->
+      <section class="sidebar-section">
+        <div class="sidebar-section-title">快速搜索结果</div>
+        <div id="sidebar-search-results" class="quick-grid"></div>
+      </section>
+
+      <section class="sidebar-section sidebar-priority-block">
+        <div class="sidebar-section-title">推荐人物</div>
+        <div id="featured-characters" class="quick-grid"></div>
+      </section>
+
+      <section class="sidebar-section sidebar-priority-block">
+        <div class="sidebar-section-title">专题入口</div>
+        <div id="topic-list" class="topic-list"></div>
+      </section>
+
+      <section class="sidebar-section sidebar-priority-block">
+        <div class="sidebar-section-title">阅读阶段</div>
+        <div id="stage-list" class="topic-list"></div>
+      </section>
+
+      <details class="sidebar-section sidebar-more-tools" open>
+        <summary class="sidebar-more-summary">筛选与比较工具</summary>
+
+        <div class="sidebar-more-content">
+          <section class="sidebar-subsection">
+            <div class="sidebar-section-title">家族浏览</div>
+            <div id="family-browser" class="family-browser"></div>
+          </section>
+
+          <section class="sidebar-subsection">
+            <div class="sidebar-section-title">家族筛选</div>
+            <div id="family-filters" class="family-filter"></div>
+          </section>
+
+          <section class="sidebar-subsection">
+            <div class="sidebar-section-title">关系类型</div>
+            <div id="relation-filters" class="relation-filter"></div>
+          </section>
+
+          <section class="sidebar-subsection compact-legend">
+            <div class="sidebar-section-title">图例说明</div>
+            <div class="legend-section">
+              <div class="legend-item"><div class="legend-line" style="background:#4A90D9"></div><span>血缘关系</span></div>
+              <div class="legend-item"><div class="legend-line" style="background:#E74C3C"></div><span>婚姻关系</span></div>
+              <div class="legend-item"><div class="legend-line" style="background:#95A5A6"></div><span>主仆关系</span></div>
+              <div class="legend-item"><div class="legend-line legend-dashed" style="border-color:#E91E8C"></div><span>情感关系</span></div>
+              <div class="legend-item"><div class="legend-line legend-dashed" style="border-color:#F39C12"></div><span>社交关系</span></div>
+              <div class="legend-item"><div class="legend-line legend-dotted" style="border-color:#8E44AD"></div><span>敌对关系</span></div>
+            </div>
+          </section>
+
+          <section class="sidebar-subsection">
+            <div class="sidebar-section-title">人物对比</div>
+            <div class="compare-inputs compare-inputs-sidebar">
+              <select id="compare-left"></select>
+              <span class="compare-sep">↔</span>
+              <select id="compare-right"></select>
+              <button id="btn-run-compare" class="secondary-action">查看关系</button>
+            </div>
+            <button id="btn-compare-current" class="text-action sidebar-compare-current">用当前人物发起对比</button>
+          </section>
+
+          <section class="sidebar-subsection">
+            <div class="sidebar-section-title">数据统计</div>
+            <div id="stats-section" class="stats-section"></div>
+          </section>
         </div>
-      </div>
-      
-      <!-- 关系类型 -->
-      <div class="sidebar-section">
-        <div class="sidebar-section-title">关系类型</div>
-        <div id="relation-filters" class="relation-filter">
-          <!-- 由 JS 动态生成 -->
-        </div>
-      </div>
-      
-      <!-- 图例 -->
-      <div class="sidebar-section">
-        <div class="sidebar-section-title">连线图例</div>
-        <div class="legend-section">
-          <div class="legend-item">
-            <div class="legend-line" style="background: #4A90D9"></div>
-            <span>血缘关系（实线）</span>
-          </div>
-          <div class="legend-item">
-            <div class="legend-line" style="background: #E74C3C"></div>
-            <span>婚姻关系（实线）</span>
-          </div>
-          <div class="legend-item">
-            <div class="legend-line" style="background: #95A5A6"></div>
-            <span>主仆关系（实线）</span>
-          </div>
-          <div class="legend-item">
-            <div class="legend-line" style="background: #E91E8C; border-top: 2px dashed #E91E8C; height: 0"></div>
-            <span>情感关系（虚线）</span>
-          </div>
-          <div class="legend-item">
-            <div class="legend-line" style="background: #F39C12; border-top: 2px dashed #F39C12; height: 0"></div>
-            <span>社交关系（虚线）</span>
-          </div>
-          <div class="legend-item">
-            <div class="legend-line" style="background: #8E44AD; border-top: 2px dotted #8E44AD; height: 0"></div>
-            <span>敌对关系（点线）</span>
-          </div>
-        </div>
-      </div>
-      
-      <!-- 节点图例 -->
-      <div class="sidebar-section">
-        <div class="sidebar-section-title">节点颜色</div>
-        <div class="legend-section">
-          <div class="legend-item">
-            <div class="legend-node" style="background: #C0392B"></div>
-            <span>贾家</span>
-          </div>
-          <div class="legend-item">
-            <div class="legend-node" style="background: #2980B9"></div>
-            <span>史家</span>
-          </div>
-          <div class="legend-item">
-            <div class="legend-node" style="background: #27AE60"></div>
-            <span>王家</span>
-          </div>
-          <div class="legend-item">
-            <div class="legend-node" style="background: #8E44AD"></div>
-            <span>薛家</span>
-          </div>
-          <div class="legend-item">
-            <div class="legend-node" style="background: #16A085"></div>
-            <span>林家</span>
-          </div>
-          <div class="legend-item">
-            <div class="legend-node" style="background: #E67E22"></div>
-            <span>其他人物</span>
-          </div>
-        </div>
-      </div>
-      
-      <!-- 操作说明 -->
-      <div class="sidebar-section">
-        <div class="sidebar-section-title">操作说明</div>
-        <div class="legend-section" style="font-size: 0.8rem; line-height: 1.8; color: #5C4033;">
-          <div>🖱️ <strong>单击</strong>节点 → 查看人物详情</div>
-          <div>🖱️ <strong>双击</strong>节点 → 进入聚焦模式</div>
-          <div>✋ <strong>拖拽</strong>节点 → 调整位置</div>
-          <div>🔍 <strong>滚轮</strong> → 缩放画布</div>
-          <div>⌨️ <strong>按 /</strong> → 快速搜索</div>
-          <div>⌨️ <strong>按 Esc</strong> → 关闭/退出</div>
-        </div>
-      </div>
-      
-      <!-- 统计 -->
-      <div class="sidebar-section">
-        <div class="sidebar-section-title">数据统计</div>
-        <div id="stats-section" class="stats-section">
-          <!-- 由 JS 动态生成 -->
-        </div>
-      </div>
-      
+      </details>
     </aside>
-    
-    <!-- 图谱区域 -->
-    <div id="graph-container" class="graph-container">
-      
-      <!-- 模式指示器 -->
-      <div id="mode-indicator" class="mode-indicator">
-        <span id="mode-name">聚焦模式</span>
-        <button id="btn-exit-focus" class="exit-btn">退出聚焦</button>
-      </div>
-      
-      <!-- 浮动控制 -->
-      <div class="controls-panel">
-        <button id="btn-zoom-in" class="control-btn" title="放大">＋</button>
-        <button id="btn-zoom-out" class="control-btn" title="缩小">－</button>
-        <button id="btn-reset" class="control-btn" title="重置视图">⟲</button>
-        <button id="btn-toggle-labels" class="control-btn active" title="切换标签">字</button>
-      </div>
-      
-    </div>
+
+    <main class="content-area">
+      <section class="graph-stage">
+        <div id="graph-container" class="graph-container">
+          <div id="mode-indicator" class="mode-indicator">
+            <span id="mode-name">聚焦模式</span>
+            <button id="btn-exit-focus" class="exit-btn">退出聚焦</button>
+          </div>
+
+          <div class="controls-panel">
+            <button id="btn-zoom-in" class="control-btn" title="放大">＋</button>
+            <button id="btn-zoom-out" class="control-btn" title="缩小">－</button>
+            <button id="btn-reset" class="control-btn" title="重置视图">⟲</button>
+            <button id="btn-toggle-labels" class="control-btn active" title="切换标签">字</button>
+            <button id="btn-graph-fullscreen" class="control-btn" title="大图模式">⛶</button>
+          </div>
+
+          <div id="graph-floating-bar" class="graph-floating-bar">
+            <div id="fullscreen-view-label" class="graph-floating-label">默认概览</div>
+            <div class="graph-floating-actions">
+              <button id="btn-exit-fullscreen" class="control-btn hidden" title="退出大图模式">✕</button>
+            </div>
+          </div>
+        </div>
+
+        <aside id="detail-drawer" class="detail-drawer">
+          <div class="detail-drawer-header">
+            <div>
+              <div class="drawer-eyebrow">当前视图</div>
+              <div class="detail-drawer-title">关系摘要</div>
+            </div>
+            <button id="drawer-close" class="drawer-close" aria-label="关闭详情">✕</button>
+          </div>
+          <div id="drawer-content" class="detail-drawer-content"></div>
+        </aside>
+      </section>
+    </main>
   </div>
-  
-  <!-- 人物信息卡片 -->
+
   <div id="character-card-overlay" class="character-card-overlay">
-    <div id="card-content" class="character-card">
-      <!-- 由 JS 动态生成 -->
-    </div>
+    <div id="card-content" class="character-card"></div>
   </div>
-  
-  <!-- JS -->
-  <script src="js/graph.js"></script>
-  <script src="js/app.js"></script>
-  
+
+  <div id="mobile-search-overlay" class="mobile-search-overlay">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input
+        id="mobile-search-input"
+        class="search-input"
+        type="text"
+        placeholder="搜索人物、关系或主题"
+        autocomplete="off"
+      >
+      <div id="mobile-search-results" class="search-results"></div>
+    </div>
+    <button id="mobile-search-close" class="mobile-search-close" aria-label="关闭搜索">✕</button>
+  </div>
+
+  <script src="js/graph.js?v=20250916c"></script>
+  <script src="js/app.js?v=20250916c"></script>
 </body>
 </html>
