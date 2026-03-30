@@ -1,8 +1,12 @@
 class HongLouMengApp {
   constructor() {
     this.graph = null;
+    this.treeView = null;
+    this.listView = null;
+    this.knowledgeView = null;
     this.characters = [];
     this.relationships = [];
+    this.knowledge = [];
     this.characterMap = new Map();
     this.currentCharacterId = null;
     this.currentTopic = null;
@@ -10,10 +14,12 @@ class HongLouMengApp {
     this.currentRelationshipPair = null;
     this.currentFamily = null;
     this.currentView = { type: 'overview' };
+    this.activeView = 'graph';
     this.viewHistory = [];
     this.isFullscreen = false;
     this.isMobileSearchOpen = false;
     this.els = {};
+    this.viewInitialized = { graph: false, tree: false, list: false, knowledge: false };
 
     this.featuredCharacterIds = ['jia_baoyu', 'lin_daiyu', 'xue_baochai', 'wang_xifeng', 'jia_mu', 'shi_xiangyun'];
 
@@ -104,16 +110,24 @@ class HongLouMengApp {
   }
 
   async _init() {
+    this._initFontAndThemeControls();
     this._cacheDom();
     this._bindEvents();
 
     try {
       await this._loadData();
       this._initGraph();
+      this._initViews();
       this._buildSidebar();
       this._renderComparisonTools();
       this._renderStageList();
       this._showOverview();
+
+      const initialView = (location.hash || '').replace('#', '') || 'graph';
+      if (['graph', 'tree', 'list', 'knowledge'].includes(initialView)) {
+        this._switchView(initialView);
+      }
+
       this._hideLoading();
     } catch (err) {
       console.error('初始化失败:', err);
@@ -126,8 +140,13 @@ class HongLouMengApp {
       body: document.body,
       loading: document.getElementById('loading-overlay'),
       graphContainer: document.getElementById('graph-container'),
+      treeContainer: document.getElementById('tree-container'),
+      listContainer: document.getElementById('list-container'),
+      knowledgeContainer: document.getElementById('knowledge-container'),
       searchInput: document.getElementById('search-input'),
       searchResults: document.getElementById('search-results'),
+      graphSearchInput: document.getElementById('graph-search-input'),
+      graphSearchResults: document.getElementById('graph-search-results'),
       sidebarSearchResults: document.getElementById('sidebar-search-results'),
       sidebarToggle: document.getElementById('sidebar-toggle'),
       sidebar: document.getElementById('sidebar'),
@@ -167,7 +186,13 @@ class HongLouMengApp {
       mobileSearchOverlay: document.getElementById('mobile-search-overlay'),
       mobileSearchInput: document.getElementById('mobile-search-input'),
       mobileSearchResults: document.getElementById('mobile-search-results'),
-      mobileSearchClose: document.getElementById('mobile-search-close')
+      mobileSearchClose: document.getElementById('mobile-search-close'),
+      viewNav: document.getElementById('view-nav'),
+      viewPanels: document.querySelectorAll('.view-panel'),
+      viewGraph: document.getElementById('view-graph'),
+      viewTree: document.getElementById('view-tree'),
+      viewList: document.getElementById('view-list'),
+      viewKnowledge: document.getElementById('view-knowledge')
     };
   }
 
@@ -189,15 +214,17 @@ class HongLouMengApp {
       searchTimer = window.setTimeout(() => this._onSearch(value, resultsEl), 180);
     };
 
-    this.els.searchInput.addEventListener('input', (e) => handleSearch(e.target.value, this.els.searchResults));
-
-    this.els.searchInput.addEventListener('focus', () => {
-      if (this.els.searchInput.value.trim()) this.els.searchResults.classList.add('active');
-    });
+    if (this.els.graphSearchInput) {
+      this.els.graphSearchInput.addEventListener('input', (e) => handleSearch(e.target.value, this.els.graphSearchResults));
+      this.els.graphSearchInput.addEventListener('focus', () => {
+        if (this.els.graphSearchInput.value.trim()) this.els.graphSearchResults?.classList.add('active');
+      });
+    }
 
     document.addEventListener('click', (e) => {
-      if (!e.target.closest('.search-box')) {
-        this.els.searchResults.classList.remove('active');
+      if (!e.target.closest('.graph-search-box') && !e.target.closest('.search-box')) {
+        this.els.graphSearchResults?.classList.remove('active');
+        this.els.searchResults?.classList.remove('active');
         if (this.els.mobileSearchResults) this.els.mobileSearchResults.classList.remove('active');
       }
     });
@@ -237,7 +264,9 @@ class HongLouMengApp {
       this.els.btnToggleLabels.classList.toggle('active', visible);
     });
     this.els.btnExitFocus.addEventListener('click', () => this._exitFocusMode());
-    this.els.btnHeaderFullscreen.addEventListener('click', () => this._toggleFullscreen());
+    if (this.els.btnHeaderFullscreen) {
+      this.els.btnHeaderFullscreen.addEventListener('click', () => this._toggleFullscreen());
+    }
     this.els.btnGraphFullscreen.addEventListener('click', () => this._toggleFullscreen(true));
     this.els.btnExitFullscreen.addEventListener('click', () => this._toggleFullscreen(false));
 
@@ -301,21 +330,40 @@ class HongLouMengApp {
 
       if (e.key === '/' && !e.target.closest('input') && !e.target.closest('select') && !e.target.closest('textarea')) {
         e.preventDefault();
-        this.els.searchInput.focus();
+        (this.els.graphSearchInput || this.els.searchInput)?.focus();
+      }
+    });
+
+    if (this.els.viewNav) {
+      this.els.viewNav.addEventListener('click', (e) => {
+        const tab = e.target.closest('.view-nav-tab');
+        if (tab && tab.dataset.view) {
+          this._switchView(tab.dataset.view);
+        }
+      });
+    }
+
+    // Handle URL hash changes (browser navigation, direct links)
+    window.addEventListener('hashchange', () => {
+      const viewName = (location.hash || '').replace('#', '') || 'graph';
+      if (['graph', 'tree', 'list', 'knowledge'].includes(viewName)) {
+        this._switchView(viewName);
       }
     });
   }
 
   async _loadData() {
-    const [charRes, relRes] = await Promise.all([
+    const [charRes, relRes, knowledgeRes] = await Promise.all([
       fetch('data/characters.json'),
-      fetch('data/relationships.json')
+      fetch('data/relationships.json'),
+      fetch('data/knowledge.json')
     ]);
 
     if (!charRes.ok || !relRes.ok) throw new Error('无法加载数据文件');
 
     this.characters = await charRes.json();
     this.relationships = await relRes.json();
+    this.knowledge = knowledgeRes.ok ? await knowledgeRes.json() : [];
     this.characters.forEach((character) => {
       this.characterMap.set(character.id, character);
       this.aliasMap.set(character.name, character.id);
@@ -335,6 +383,80 @@ class HongLouMengApp {
     this.graph.onNodeDblClick = (character) => this._enterFocusMode(character);
     this.graph.onBackgroundClick = () => this._handleGraphBackgroundClick();
     this.graph.setData(this.characters, this.relationships);
+  }
+
+  _initViews() {
+    if (this.els.treeContainer) {
+      this.treeView = new TreeView(this.els.treeContainer);
+      this.treeView.setData(this.characters, this.relationships);
+      this.treeView.onCharacterClick = (character) => this._openCharacter(character.id, { focusNeighbors: true });
+    }
+
+    if (this.els.listContainer) {
+      this.listView = new ListView(this.els.listContainer);
+      this.listView.setData(this.characters, this.relationships);
+      this.listView.onCharacterClick = (character) => this._openCharacter(character.id, { focusNeighbors: true });
+    }
+
+    if (this.els.knowledgeContainer) {
+      this.knowledgeView = new KnowledgeView(this.els.knowledgeContainer);
+      this.knowledgeView.setData(this.knowledge, this.characters);
+      this.knowledgeView.onCharacterClick = (characterId) => this._openCharacter(characterId, { focusNeighbors: true });
+    }
+  }
+
+  _switchView(viewName) {
+    if (this.activeView === viewName) return;
+
+    this.activeView = viewName;
+
+    this.els.viewPanels.forEach(panel => {
+      panel.classList.remove('active');
+    });
+
+    const viewMap = {
+      graph: this.els.viewGraph,
+      tree: this.els.viewTree,
+      list: this.els.viewList,
+      knowledge: this.els.viewKnowledge
+    };
+
+    if (viewMap[viewName]) {
+      viewMap[viewName].classList.add('active');
+    }
+
+    this.els.viewNav?.querySelectorAll('.view-nav-tab').forEach(tab => {
+      tab.classList.toggle('active', tab.dataset.view === viewName);
+    });
+
+    // 更新body上的视图类名，用于CSS布局
+    this.els.body.classList.remove('view-graph', 'view-tree', 'view-list', 'view-knowledge');
+    this.els.body.classList.add(`view-${viewName}`);
+
+    // Sidebar只在图谱视图显示，其他视图有自己的控制栏
+    const sidebarEl = this.els.sidebar;
+    if (sidebarEl) {
+      sidebarEl.classList.toggle('hidden', viewName !== 'graph');
+    }
+    const sidebarBackdrop = this.els.sidebarBackdrop;
+    if (sidebarBackdrop) {
+      sidebarBackdrop.classList.toggle('hidden', viewName !== 'graph');
+    }
+
+    if (!this.viewInitialized[viewName]) {
+      if (viewName === 'tree' && this.treeView) {
+        this.treeView.render();
+        this.viewInitialized.tree = true;
+      } else if (viewName === 'list' && this.listView) {
+        this.listView.render();
+        this.viewInitialized.list = true;
+      } else if (viewName === 'knowledge' && this.knowledgeView) {
+        this.knowledgeView.render();
+        this.viewInitialized.knowledge = true;
+      }
+    }
+
+    location.hash = viewName;
   }
 
   _buildSidebar() {
@@ -477,6 +599,8 @@ class HongLouMengApp {
   }
 
   _renderFamilyBrowser(stats) {
+    if (!this.els.familyBrowser) return;
+    
     const orderedFamilies = ['贾家', '史家', '王家', '薛家', '林家', '其他'];
     this._setHtml(this.els.familyBrowser, orderedFamilies.map((family) => `
       <button class="family-browser-item" data-family="${family}">
@@ -509,6 +633,196 @@ class HongLouMengApp {
     this._updateFloatingContext('默认概览');
     this._updateActionStates();
     this._updateBackButton();
+  }
+  
+  _initFontAndThemeControls() {
+    const savedFont = localStorage.getItem('hlm-font-family') || 'serif';
+    const savedTheme = localStorage.getItem('hlm-theme') || 'red-gold';
+    
+    this._setFont(savedFont);
+    this._setTheme(savedTheme);
+    
+    this._createFontAndThemeControls();
+  }
+  
+  _resetSearchFilters(event) {
+    if (this.activeView === 'knowledge' && this.knowledgeView) {
+      this.knowledgeView.searchQuery = '';
+      this.knowledgeView.activeCategory = 'all';
+      this.knowledgeView.activeSubcategory = 'all';
+      this.knowledgeView.chapterFilter = 'all';
+      this.knowledgeView.sortBy = 'relevance';
+    }
+    const searchInput = this.els.graphSearchInput || this.els.searchInput;
+    if (searchInput) {
+      const searchValue = searchInput.value.trim();
+      if (searchValue) {
+        this._onSearch(searchValue, this.els.graphSearchResults || this.els.searchResults);
+      }
+    }
+  }
+  
+  _setFont(fontFamily) {
+    document.body.classList.remove('font-serif-sc', 'font-sans-sc', 'font-title', 'font-traditional');
+    
+    switch(fontFamily) {
+      case 'serif':
+        document.body.classList.add('font-serif-sc');
+        break;
+      case 'sans':
+        document.body.classList.add('font-sans-sc');
+        break;
+      case 'title':
+        document.body.classList.add('font-title');
+        break;
+      case 'traditional':
+        document.body.classList.add('font-traditional');
+        break;
+    }
+    
+    localStorage.setItem('hlm-font-family', fontFamily);
+  }
+  
+  _setTheme(themeName) {
+    document.body.classList.remove('theme-red-gold', 'theme-blue-green', 'theme-ink-wash', 'theme-purple-gold');
+    
+    switch(themeName) {
+      case 'red-gold':
+        document.body.classList.add('theme-red-gold');
+        break;
+      case 'blue-green':
+        document.body.classList.add('theme-blue-green');
+        break;
+      case 'ink-wash':
+        document.body.classList.add('theme-ink-wash');
+        break;
+      case 'purple-gold':
+        document.body.classList.add('theme-purple-gold');
+        break;
+    }
+    
+    localStorage.setItem('hlm-theme', themeName);
+  }
+  
+_createFontAndThemeControls() {
+    const savedFont = localStorage.getItem('hlm-font-family') || 'serif';
+    const savedTheme = localStorage.getItem('hlm-theme') || 'red-gold';
+    
+    this._setFont(savedFont);
+    this._setTheme(savedTheme);
+    
+    this._createThemeControlPanel();
+  }
+  
+  _createThemeControlPanel() {
+    const controlPanel = document.createElement('div');
+    controlPanel.className = 'theme-control-panel';
+    
+    const themeBtn = document.createElement('button');
+    themeBtn.className = 'theme-toggle-btn';
+    themeBtn.innerHTML = '🎨';
+    themeBtn.title = '切换主题';
+    
+    const fontBtn = document.createElement('button');
+    fontBtn.className = 'theme-toggle-btn';
+    fontBtn.innerHTML = '🆎';
+    fontBtn.title = '切换字体';
+    
+    const themeSelector = document.createElement('div');
+    themeSelector.className = 'theme-selector';
+    
+    const themes = [
+      { name: 'red-gold', tooltip: '红金主题', colors: ['#8B2500', '#D4A017'] },
+      { name: 'blue-green', tooltip: '青绿主题', colors: ['#006666', '#2E8B57'] },
+      { name: 'ink-wash', tooltip: '水墨主题', colors: ['#333333', '#8B7355'] },
+      { name: 'purple-gold', tooltip: '紫金主题', colors: ['#663399', '#FFD700'] }
+    ];
+    
+    themes.forEach(theme => {
+      const option = document.createElement('div');
+      option.className = 'theme-option';
+      option.dataset.theme = theme.name;
+      option.title = theme.tooltip;
+      
+      // Set background gradient for preview (not just when active)
+      option.style.background = `linear-gradient(135deg, ${theme.colors[0]}, ${theme.colors[1]})`;
+      
+      option.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this._setTheme(theme.name);
+        
+        themeSelector.querySelectorAll('.theme-option').forEach(opt => {
+          opt.classList.remove('active');
+        });
+        option.classList.add('active');
+      });
+      
+      themeSelector.appendChild(option);
+    });
+    
+    const fontSelector = document.createElement('div');
+    fontSelector.className = 'font-selector';
+    
+    const fonts = [
+      { name: 'serif', className: 'serif', label: '宋体', tooltip: '中文字体 (宋)' },
+      { name: 'sans', className: 'sans', label: '黑体', tooltip: '中文字体 (黑)' },
+      { name: 'title', className: 'title', label: '标题', tooltip: '标题字体' },
+      { name: 'traditional', className: 'traditional', label: '繁体', tooltip: '传统书法字体' }
+    ];
+    
+    fonts.forEach(font => {
+      const option = document.createElement('span');
+      option.className = `font-option ${font.className}`;
+      option.textContent = font.label;
+      option.title = font.tooltip;
+      
+      option.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this._setFont(font.name);
+        
+        fontSelector.querySelectorAll('.font-option').forEach(opt => {
+          opt.classList.remove('active');
+        });
+        option.classList.add('active');
+      });
+      
+      fontSelector.appendChild(option);
+    });
+    
+    themeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      fontSelector.classList.remove('active');
+      themeSelector.classList.toggle('active');
+    });
+    
+    fontBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      themeSelector.classList.remove('active');
+      fontSelector.classList.toggle('active');
+    });
+    
+    document.addEventListener('click', () => {
+      themeSelector.classList.remove('active');
+      fontSelector.classList.remove('active');
+    });
+    
+    controlPanel.appendChild(themeBtn);
+    controlPanel.appendChild(themeSelector);
+    controlPanel.appendChild(fontBtn);
+    controlPanel.appendChild(fontSelector);
+    
+    document.body.appendChild(controlPanel);
+    
+    const savedFont = localStorage.getItem('hlm-font-family') || 'serif';
+    const savedTheme = localStorage.getItem('hlm-theme') || 'red-gold';
+    
+    // Add 'active' class to font selector for the saved font
+    const activeFont = fontSelector.querySelector(`.font-option.${savedFont}`);
+    if (activeFont) activeFont.classList.add('active');
+    
+    // Add 'active' class to theme selector for the saved theme
+    const activeTheme = themeSelector.querySelector(`[data-theme="${savedTheme}"]`);
+    if (activeTheme) activeTheme.classList.add('active');
   }
 
   _showFullGraph(skipHistory) {
@@ -553,15 +867,17 @@ class HongLouMengApp {
     if (!options.keepRelationship) this.currentRelationshipPair = null;
     this.currentView = { type: 'character', characterId };
 
-    if (this.currentView.type !== 'fullgraph') this._setReadingGraphState();
-    if (options.focusNeighbors) this.graph.showNeighborhood(characterId, { center: true, includeSecondDegree: false });
-    else this.graph.focusOnNode(characterId);
+    const isGraphView = this.activeView === 'graph';
+    if (isGraphView) {
+      if (this.currentView.type !== 'fullgraph') this._setReadingGraphState();
+      if (options.focusNeighbors) this.graph.showNeighborhood(characterId, { center: true, includeSecondDegree: false });
+      else this.graph.focusOnNode(characterId);
+    }
 
-    this._renderCharacterDrawer(character);
-    this._updateFloatingContext(`人物：${character.name}`);
+    this._showCard(character);
     this._updateActionStates();
     this._updateBackButton();
-    this._toggleSidebar(false);
+    if (isGraphView) this._toggleSidebar(false);
   }
 
   _openTopic(topicId, skipHistory) {
@@ -785,7 +1101,7 @@ class HongLouMengApp {
     }
 
     this._renderSearchResultsDropdown(resultGroups, activeResultsEl);
-    this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以试试“宝玉和黛玉”“前二十回”。');
+this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以试试"宝玉和黛玉""前二十回"。');
   }
 
   _renderSearchResultsDropdown(groups, targetEl) {
@@ -846,8 +1162,10 @@ class HongLouMengApp {
         if (type === 'topic') this._openTopic(item.dataset.id);
         if (type === 'stage') this._openStage(item.dataset.id);
         if (type === 'relationship') this._openRelationshipView(item.dataset.left, item.dataset.right);
-        this.els.searchInput.value = '';
-        this.els.searchResults.classList.remove('active');
+        if (this.els.graphSearchInput) this.els.graphSearchInput.value = '';
+        if (this.els.searchInput) this.els.searchInput.value = '';
+        this.els.graphSearchResults?.classList.remove('active');
+        this.els.searchResults?.classList.remove('active');
         this._closeMobileSearch();
       });
     });

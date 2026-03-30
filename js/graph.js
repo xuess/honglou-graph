@@ -76,10 +76,10 @@ class RelationshipGraph {
     this._init();
   }
 
-  _init() {
+_init() {
     const rect = this.container.getBoundingClientRect();
-    this.width = rect.width;
-    this.height = rect.height;
+    this.width = rect.width || 800;
+    this.height = rect.height || 600;
 
     this.svg = d3.select(this.container)
       .append('svg')
@@ -90,7 +90,7 @@ class RelationshipGraph {
     const defs = this.svg.append('defs');
     const filter = defs.append('filter').attr('id', 'soft-glow');
     filter.append('feGaussianBlur').attr('stdDeviation', '2.5').attr('result', 'coloredBlur');
-    const merge = filter.append('feMerge');
+    const merge = defs.append('feMerge');
     merge.append('feMergeNode').attr('in', 'coloredBlur');
     merge.append('feMergeNode').attr('in', 'SourceGraphic');
 
@@ -119,6 +119,7 @@ class RelationshipGraph {
 
   _onResize() {
     const rect = this.container.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
     this.width = rect.width;
     this.height = rect.height;
     this.svg.attr('viewBox', `0 0 ${this.width} ${this.height}`);

@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>红楼梦 · 人物关系助手</title>
-  <meta name="description" content="更适合边读边查的《红楼梦》人物关系图谱，支持人物检索、局部关系、专题阅读与全图探索。">
+  <title>红楼梦 · 知识探索工具</title>
+  <meta name="description" content="红楼梦知识探索工具：关系图谱、家族谱系、人物名录与诗词典故知识库，边读边查。">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏮</text></svg>">
-  <link rel="stylesheet" href="css/style.css?v=20250916c">
+  <link rel="stylesheet" href="css/style.css?v=20250916d">
   <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
@@ -20,30 +20,18 @@
     <div class="header-left">
       <button id="sidebar-toggle" class="btn-sidebar-toggle" aria-label="切换侧边栏">☰</button>
       <div>
-        <div class="header-title">红楼梦 · 人物关系助手</div>
-        <div class="header-subtitle">以图为中心，快速定位人物、关系、专题与阶段</div>
+        <div class="header-title">红楼梦 · 知识探索工具</div>
+        <div class="header-subtitle">图谱 · 族谱 · 名录 · 知识库</div>
       </div>
     </div>
 
     <div class="header-center">
-      <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input
-          id="search-input"
-          class="search-input"
-          type="text"
-          placeholder="搜索人物、关系或主题：如 林黛玉 / 宝黛 / 金玉良缘"
-          autocomplete="off"
-        >
-        <div id="search-results" class="search-results"></div>
-      </div>
-    </div>
-
-    <div class="header-right">
-      <button id="btn-mobile-search" class="btn btn-mobile-search" title="搜索" aria-label="搜索">🔍</button>
-      <button id="btn-back" class="btn btn-back hidden" title="返回上一视图">← 返回</button>
-      <button id="btn-full-view" class="btn" title="回到完整图谱">全图</button>
-      <button id="btn-header-fullscreen" class="btn" title="切换大图模式">大图模式</button>
+      <nav class="view-nav" id="view-nav">
+        <button class="view-nav-tab active" data-view="graph"><span class="view-nav-icon">◉</span><span class="view-nav-label">关系图谱</span></button>
+        <button class="view-nav-tab" data-view="tree"><span class="view-nav-icon">🌳</span><span class="view-nav-label">家族谱系</span></button>
+        <button class="view-nav-tab" data-view="list"><span class="view-nav-icon">📋</span><span class="view-nav-label">人物名录</span></button>
+        <button class="view-nav-tab" data-view="knowledge"><span class="view-nav-icon">📖</span><span class="view-nav-label">知识库</span></button>
+      </nav>
     </div>
   </header>
 
@@ -51,11 +39,6 @@
     <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
 
     <aside id="sidebar" class="sidebar">
-      <section class="sidebar-section">
-        <div class="sidebar-section-title">快速搜索结果</div>
-        <div id="sidebar-search-results" class="quick-grid"></div>
-      </section>
-
       <section class="sidebar-section sidebar-priority-block">
         <div class="sidebar-section-title">推荐人物</div>
         <div id="featured-characters" class="quick-grid"></div>
@@ -71,15 +54,10 @@
         <div id="stage-list" class="topic-list"></div>
       </section>
 
-      <details class="sidebar-section sidebar-more-tools" open>
-        <summary class="sidebar-more-summary">筛选与比较工具</summary>
+      <details class="sidebar-section sidebar-more-tools">
+        <summary class="sidebar-more-summary">筛选与比较</summary>
 
         <div class="sidebar-more-content">
-          <section class="sidebar-subsection">
-            <div class="sidebar-section-title">家族浏览</div>
-            <div id="family-browser" class="family-browser"></div>
-          </section>
-
           <section class="sidebar-subsection">
             <div class="sidebar-section-title">家族筛选</div>
             <div id="family-filters" class="family-filter"></div>
@@ -88,18 +66,6 @@
           <section class="sidebar-subsection">
             <div class="sidebar-section-title">关系类型</div>
             <div id="relation-filters" class="relation-filter"></div>
-          </section>
-
-          <section class="sidebar-subsection compact-legend">
-            <div class="sidebar-section-title">图例说明</div>
-            <div class="legend-section">
-              <div class="legend-item"><div class="legend-line" style="background:#4A90D9"></div><span>血缘关系</span></div>
-              <div class="legend-item"><div class="legend-line" style="background:#E74C3C"></div><span>婚姻关系</span></div>
-              <div class="legend-item"><div class="legend-line" style="background:#95A5A6"></div><span>主仆关系</span></div>
-              <div class="legend-item"><div class="legend-line legend-dashed" style="border-color:#E91E8C"></div><span>情感关系</span></div>
-              <div class="legend-item"><div class="legend-line legend-dashed" style="border-color:#F39C12"></div><span>社交关系</span></div>
-              <div class="legend-item"><div class="legend-line legend-dotted" style="border-color:#8E44AD"></div><span>敌对关系</span></div>
-            </div>
           </section>
 
           <section class="sidebar-subsection">
@@ -113,16 +79,31 @@
             <button id="btn-compare-current" class="text-action sidebar-compare-current">用当前人物发起对比</button>
           </section>
 
+          <section class="sidebar-subsection compact-legend">
+            <div class="sidebar-section-title">图例</div>
+            <div class="legend-section">
+              <div class="legend-item"><div class="legend-line" style="background:#4A90D9"></div><span>血缘</span></div>
+              <div class="legend-item"><div class="legend-line" style="background:#E74C3C"></div><span>婚姻</span></div>
+              <div class="legend-item"><div class="legend-line" style="background:#95A5A6"></div><span>主仆</span></div>
+              <div class="legend-item"><div class="legend-line legend-dashed" style="border-color:#E91E8C"></div><span>情感</span></div>
+              <div class="legend-item"><div class="legend-line legend-dashed" style="border-color:#F39C12"></div><span>社交</span></div>
+              <div class="legend-item"><div class="legend-line legend-dotted" style="border-color:#8E44AD"></div><span>敌对</span></div>
+            </div>
+          </section>
+
           <section class="sidebar-subsection">
-            <div class="sidebar-section-title">数据统计</div>
+            <div class="sidebar-section-title">统计</div>
             <div id="stats-section" class="stats-section"></div>
           </section>
         </div>
       </details>
+
+      <div id="sidebar-search-results" class="sidebar-search-results"></div>
     </aside>
 
     <main class="content-area">
-      <section class="graph-stage">
+      <!-- Graph View (default) -->
+      <section class="graph-stage view-panel active" id="view-graph">
         <div id="graph-container" class="graph-container">
           <div id="mode-indicator" class="mode-indicator">
             <span id="mode-name">聚焦模式</span>
@@ -138,7 +119,24 @@
           </div>
 
           <div id="graph-floating-bar" class="graph-floating-bar">
-            <div id="fullscreen-view-label" class="graph-floating-label">默认概览</div>
+            <div class="graph-search-area">
+              <div class="graph-search-box">
+                <span class="graph-search-icon">🔍</span>
+                <input
+                  id="graph-search-input"
+                  class="graph-search-input"
+                  type="text"
+                  placeholder="搜索人物、关系或主题"
+                  autocomplete="off"
+                >
+                <div id="graph-search-results" class="graph-search-results"></div>
+              </div>
+              <button id="btn-back" class="graph-action-btn hidden" title="返回上一视图">← 返回</button>
+              <button id="btn-full-view" class="graph-action-btn" title="回到完整图谱">全图</button>
+            </div>
+            <div class="graph-floating-info">
+              <div id="fullscreen-view-label" class="graph-floating-label">默认概览</div>
+            </div>
             <div class="graph-floating-actions">
               <button id="btn-exit-fullscreen" class="control-btn hidden" title="退出大图模式">✕</button>
             </div>
@@ -156,29 +154,32 @@
           <div id="drawer-content" class="detail-drawer-content"></div>
         </aside>
       </section>
+
+      <!-- Tree View -->
+      <section class="view-panel" id="view-tree">
+        <div id="tree-container" class="tree-container"></div>
+      </section>
+
+      <!-- List View -->
+      <section class="view-panel" id="view-list">
+        <div id="list-container" class="list-container"></div>
+      </section>
+
+      <!-- Knowledge View -->
+      <section class="view-panel" id="view-knowledge">
+        <div id="knowledge-container" class="knowledge-container"></div>
+      </section>
     </main>
   </div>
 
-  <div id="character-card-overlay" class="character-card-overlay">
+<div id="character-card-overlay" class="character-card-overlay">
     <div id="card-content" class="character-card"></div>
   </div>
 
-  <div id="mobile-search-overlay" class="mobile-search-overlay">
-    <div class="search-box">
-      <span class="search-icon">🔍</span>
-      <input
-        id="mobile-search-input"
-        class="search-input"
-        type="text"
-        placeholder="搜索人物、关系或主题"
-        autocomplete="off"
-      >
-      <div id="mobile-search-results" class="search-results"></div>
-    </div>
-    <button id="mobile-search-close" class="mobile-search-close" aria-label="关闭搜索">✕</button>
-  </div>
-
-  <script src="js/graph.js?v=20250916c"></script>
-  <script src="js/app.js?v=20250916c"></script>
+  <script src="js/graph.js?v=20250916d"></script>
+  <script src="js/tree-view.js?v=20250916d"></script>
+  <script src="js/list-view.js?v=20250916d"></script>
+  <script src="js/knowledge-view.js?v=20250916d"></script>
+  <script src="js/app.js?v=20250916d"></script>
 </body>
 </html>

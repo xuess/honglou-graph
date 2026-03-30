@@ -58,7 +58,17 @@
         "title": "史太君寿终归地府 王凤姐力诎失人心",
         "summary": "贾母病逝，享尽荣华的一代老太君溘然长逝，贾府上下哀痛不已，其离世标志着贾府彻底失去精神支柱。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [
+      "jia_she",
+      "jia_zheng",
+      "jia_min"
+    ],
+    "spouseIds": [],
+    "generation": 1,
+    "isMainline": true,
+    "outcome": "寿终正寝，贾府衰败后病逝"
   },
   {
     "id": "jia_she",
@@ -100,7 +110,20 @@
         "title": "散余资贾母明大义 复世职政老沐天恩",
         "summary": "贾赦因交通外官、倚势凌弱等罪被革职查抄，受到严厉惩处。"
       }
-    ]
+    ],
+    "parentIds": [
+      "jia_mu"
+    ],
+    "childrenIds": [
+      "jia_lian",
+      "jia_yingchun"
+    ],
+    "spouseIds": [
+      "xing_furen"
+    ],
+    "generation": 2,
+    "isMainline": true,
+    "outcome": "因贪赃枉法被革职查抄，发配边疆"
   },
   {
     "id": "jia_zheng",
@@ -150,7 +173,23 @@
         "title": "散余资贾母明大义 复世职政老沐天恩",
         "summary": "贾府被抄后，贾政因平素为人端方而蒙圣恩宽免，得以复职。"
       }
-    ]
+    ],
+    "parentIds": [
+      "jia_mu"
+    ],
+    "childrenIds": [
+      "jia_baoyu",
+      "jia_yuanchun",
+      "jia_tanchun",
+      "jia_huan"
+    ],
+    "spouseIds": [
+      "wang_furen",
+      "zhao_yiniang"
+    ],
+    "generation": 2,
+    "isMainline": true,
+    "outcome": "蒙圣恩复职，晚年凄凉"
   },
   {
     "id": "xing_furen",
@@ -187,7 +226,15 @@
         "title": "嫌隙人有心生嫌隙 鸳鸯女无意遇鸳鸯",
         "summary": "邢夫人因对王熙凤不满，借故挑起矛盾，贾府内部嫌隙渐生。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [
+      "jia_she"
+    ],
+    "generation": 2,
+    "isMainline": true,
+    "outcome": "随贾赦获罪，处境凄凉"
   },
   {
     "id": "wang_furen",
@@ -237,7 +284,15 @@
         "title": "俏丫鬟抱屈夭风流 美优伶斩情归水月",
         "summary": "王夫人撵走晴雯、芳官等人，亲自查问处置，态度强硬决绝。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [
+      "jia_zheng"
+    ],
+    "generation": 2,
+    "isMainline": true,
+    "outcome": "晚年丧子出家，孤独终老"
   },
   {
     "id": "jia_jing",
@@ -270,7 +325,16 @@
         "title": "寿怡红群芳开夜宴 死金丹独艳理亲丧",
         "summary": "贾敬因吞食丹砂烧胀而死，尤氏等人操办丧事。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [
+      "jia_zhen",
+      "jia_xichun"
+    ],
+    "spouseIds": [],
+    "generation": 2,
+    "isMainline": true,
+    "outcome": "吞服丹砂中毒身亡"
   },
   {
     "id": "jia_min",
@@ -302,7 +366,19 @@
         "title": "贾雨村夤缘复旧职 林黛玉抛父进京都",
         "summary": "因贾敏亡故，贾母念及骨肉之情，派人去扬州接黛玉入京。"
       }
-    ]
+    ],
+    "parentIds": [
+      "jia_mu"
+    ],
+    "childrenIds": [
+      "lin_daiyu"
+    ],
+    "spouseIds": [
+      "lin_ruhai"
+    ],
+    "generation": 2,
+    "isMainline": true,
+    "outcome": "早年病逝于扬州"
   },
   {
     "id": "jia_baoyu",
@@ -369,7 +445,17 @@
         "title": "甄士隐详说太虚情 贾雨村归结红楼梦",
         "summary": "宝玉在贾政面前拜别后随僧道飘然而去，了却尘缘，归于大荒山青埂峰。"
       }
-    ]
+    ],
+    "parentIds": [
+      "jia_zheng"
+    ],
+    "childrenIds": [],
+    "spouseIds": [
+      "xue_baochai"
+    ],
+    "generation": 3,
+    "isMainline": true,
+    "outcome": "出家为僧，悬崖撒手，归于大荒山青埂峰"
   },
   {
     "id": "jia_zhen",
@@ -410,7 +496,19 @@
         "title": "寿怡红群芳开夜宴 死金丹独艳理亲丧",
         "summary": "贾敬暴死，贾珍从外赶回料理丧事，在丧期中仍与尤二姐尤三姐等人厮混。"
       }
-    ]
+    ],
+    "parentIds": [
+      "jia_jing"
+    ],
+    "childrenIds": [
+      "jia_rong"
+    ],
+    "spouseIds": [
+      "you_shi"
+    ],
+    "generation": 3,
+    "isMainline": true,
+    "outcome": "因罪被革职抄家"
   },
   {
     "id": "jia_lian",
@@ -459,7 +557,21 @@
         "title": "苦尤娘赚入大观园 酸凤姐大闹宁国府",
         "summary": "凤姐得知贾琏偷娶之事，用计赚尤二姐入大观园，又到宁国府大闹一场。"
       }
-    ]
+    ],
+    "parentIds": [
+      "jia_she"
+    ],
+    "childrenIds": [
+      "jia_qiaojie"
+    ],
+    "spouseIds": [
+      "wang_xifeng",
+      "you_erjie",
+      "pinger"
+    ],
+    "generation": 3,
+    "isMainline": true,
+    "outcome": "贾府败落后续弦平儿"
   },
   {
     "id": "jia_huan",
@@ -500,7 +612,16 @@
         "title": "茉莉粉替去蔷薇硝 玫瑰露引来茯苓霜",
         "summary": "贾环与彩霞等丫鬟厮混，又因玫瑰露之事牵连出一系列纠葛。"
       }
-    ]
+    ],
+    "parentIds": [
+      "jia_zheng",
+      "zhao_yiniang"
+    ],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 3,
+    "isMainline": true,
+    "outcome": "贾府败落后下落不明"
   },
   {
     "id": "jia_rong",
@@ -541,7 +662,17 @@
         "title": "秦可卿死封龙禁尉 王熙凤协理宁国府",
         "summary": "秦可卿去世，贾蓉得授龙禁尉之职以便出殡时风光体面。"
       }
-    ]
+    ],
+    "parentIds": [
+      "jia_zhen"
+    ],
+    "childrenIds": [],
+    "spouseIds": [
+      "qin_keqing"
+    ],
+    "generation": 4,
+    "isMainline": true,
+    "outcome": "随父获罪"
   },
   {
     "id": "jia_lan",
@@ -577,7 +708,16 @@
         "title": "老学士闲征姽婳词 痴公子杜撰芙蓉诔",
         "summary": "贾兰与宝玉一同奉贾政之命作《姽婳词》，展现其诗文功底。"
       }
-    ]
+    ],
+    "parentIds": [
+      "jia_zhu",
+      "li_wan"
+    ],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 4,
+    "isMainline": true,
+    "outcome": "发奋读书，后中举光复门楣"
   },
   {
     "id": "jia_yuanchun",
@@ -632,7 +772,15 @@
         "title": "因讹成实元妃薨逝 以假混真宝玉疯颠",
         "summary": "元春薨逝于宫中，贾府失去最大靠山，衰败之势已不可逆转。"
       }
-    ]
+    ],
+    "parentIds": [
+      "jia_zheng"
+    ],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 3,
+    "isMainline": true,
+    "outcome": "在宫中薨逝，死因成谜"
   },
   {
     "id": "jia_yingchun",
@@ -676,7 +824,15 @@
         "title": "美香菱屈受贪夫棒 王道士胡诌妒妇方",
         "summary": "迎春被孙绍祖虐待，回来向贾母等人哭诉，众人怜惜却无可奈何。"
       }
-    ]
+    ],
+    "parentIds": [
+      "jia_she"
+    ],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 3,
+    "isMainline": true,
+    "outcome": "嫁孙绍祖后被虐待致死"
   },
   {
     "id": "jia_tanchun",
@@ -728,7 +884,16 @@
         "title": "破好事香菱结深恨 悲远嫁宝玉感离情",
         "summary": "探春远嫁海疆，宝玉等人伤感不已，她的离去是贾府大厦将倾的又一征兆。"
       }
-    ]
+    ],
+    "parentIds": [
+      "jia_zheng",
+      "zhao_yiniang"
+    ],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 3,
+    "isMainline": true,
+    "outcome": "远嫁海疆，骨肉分离"
   },
   {
     "id": "jia_xichun",
@@ -772,7 +937,15 @@
         "title": "记微嫌舅兄欺弱女 惊谜语妻妾谏痴人",
         "summary": "惜春坚定出家之志，最终缁衣乞食，遁入空门。"
       }
-    ]
+    ],
+    "parentIds": [
+      "jia_jing"
+    ],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 3,
+    "isMainline": true,
+    "outcome": "看破红尘，出家为尼"
   },
   {
     "id": "wang_xifeng",
@@ -836,7 +1009,17 @@
         "title": "大观园月夜感幽魂 散花寺神签惊异兆",
         "summary": "凤姐在大观园夜遇秦可卿幽魂，在散花寺求签得警示，心神不安，身体每况愈下。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [
+      "jia_qiaojie"
+    ],
+    "spouseIds": [
+      "jia_lian"
+    ],
+    "generation": 3,
+    "isMainline": true,
+    "outcome": "机关算尽太聪明，反误了卿卿性命"
   },
   {
     "id": "li_wan",
@@ -880,7 +1063,15 @@
         "title": "芦雪广争联即景诗 暖香坞雅制春灯谜",
         "summary": "李纨主持芦雪广联句活动，评判诸人诗作。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [
+      "jia_lan"
+    ],
+    "spouseIds": [],
+    "generation": 3,
+    "isMainline": true,
+    "outcome": "贾兰中举后封诰命"
   },
   {
     "id": "you_shi",
@@ -915,7 +1106,15 @@
         "title": "惑奸谗抄检大观园 矢孤介杜绝宁国府",
         "summary": "惜春在抄检事件后与尤氏断绝往来，尤氏颇感委屈无奈。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [
+      "jia_zhen"
+    ],
+    "generation": 3,
+    "isMainline": true,
+    "outcome": "随贾珍获罪，处境艰难"
   },
   {
     "id": "qin_keqing",
@@ -960,7 +1159,17 @@
         "title": "秦可卿死封龙禁尉 王熙凤协理宁国府",
         "summary": "秦可卿病亡（原稿为自缢），临终托梦凤姐，嘱咐\"三春去后诸芳尽，各自须寻各自门\"，远见卓识。"
       }
-    ]
+    ],
+    "parentIds": [
+      "qin_ye"
+    ],
+    "childrenIds": [],
+    "spouseIds": [
+      "jia_rong"
+    ],
+    "generation": 4,
+    "isMainline": true,
+    "outcome": "病亡（暗线为自缢身亡）"
   },
   {
     "id": "jia_qiaojie",
@@ -995,7 +1204,16 @@
         "title": "中乡魁宝玉却尘缘 沐皇恩贾家延世泽",
         "summary": "贾府衰败后巧姐险被舅舅王仁卖掉，刘姥姥千里赶来搭救，最终嫁入乡间过上安稳日子。"
       }
-    ]
+    ],
+    "parentIds": [
+      "jia_lian",
+      "wang_xifeng"
+    ],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 4,
+    "isMainline": true,
+    "outcome": "被刘姥姥搭救，嫁入乡野"
   },
   {
     "id": "xue_baochai",
@@ -1057,7 +1275,17 @@
         "title": "甄士隐详说太虚情 贾雨村归结红楼梦",
         "summary": "宝玉出家后宝钗独守空房，虽有遗腹子延续贾家血脉，却终身孤寂。"
       }
-    ]
+    ],
+    "parentIds": [
+      "xue_yima"
+    ],
+    "childrenIds": [],
+    "spouseIds": [
+      "jia_baoyu"
+    ],
+    "generation": 3,
+    "isMainline": true,
+    "outcome": "与宝玉成婚后独守空房"
   },
   {
     "id": "lin_daiyu",
@@ -1123,7 +1351,16 @@
         "title": "林黛玉焚稿断痴情 薛宝钗出闺成大礼",
         "summary": "黛玉得知宝玉将娶宝钗后万念俱灰，焚烧诗稿手帕，含恨而亡，\"魂归离恨天\"。"
       }
-    ]
+    ],
+    "parentIds": [
+      "jia_min",
+      "lin_ruhai"
+    ],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 3,
+    "isMainline": true,
+    "outcome": "泪尽而亡，焚稿断痴情"
   },
   {
     "id": "lin_ruhai",
@@ -1164,7 +1401,17 @@
         "title": "林如海捐馆扬州城 贾宝玉路谒北静王",
         "summary": "林如海在扬州病故，贾琏护送黛玉扶灵回去。黛玉自此成了真正的孤儿。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [
+      "lin_daiyu"
+    ],
+    "spouseIds": [
+      "jia_min"
+    ],
+    "generation": 2,
+    "isMainline": true,
+    "outcome": "病逝于扬州任上"
   },
   {
     "id": "xue_pan",
@@ -1208,7 +1455,18 @@
         "title": "薛文龙悔娶河东狮 贾迎春误嫁中山狼",
         "summary": "薛蟠娶了泼辣刁蛮的夏金桂为妻，婚后被其管制得服服帖帖，悔不当初。"
       }
-    ]
+    ],
+    "parentIds": [
+      "xue_yima"
+    ],
+    "childrenIds": [],
+    "spouseIds": [
+      "xia_jingui",
+      "xiang_ling"
+    ],
+    "generation": 3,
+    "isMainline": true,
+    "outcome": "因打死人入狱，后遇赦释放"
   },
   {
     "id": "xue_yima",
@@ -1250,7 +1508,16 @@
         "title": "试文字宝玉始提亲 探惊风贾环重结怨",
         "summary": "薛姨妈与王夫人商议宝钗与宝玉的婚事，金玉良缘逐渐推进。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [
+      "xue_baochai",
+      "xue_pan"
+    ],
+    "spouseIds": [],
+    "generation": 2,
+    "isMainline": true,
+    "outcome": "依靠女儿宝钗度日"
   },
   {
     "id": "xue_baoqin",
@@ -1285,7 +1552,13 @@
         "title": "芦雪广争联即景诗 暖香坞雅制春灯谜",
         "summary": "宝琴在芦雪广联诗中表现出众，又作了十首怀古诗，才华令众人惊叹。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 3,
+    "isMainline": false,
+    "outcome": "另有婚配，结局尚好"
   },
   {
     "id": "xue_ke",
@@ -1312,7 +1585,13 @@
         "title": "薛文龙悔娶河东狮 贾迎春误嫁中山狼",
         "summary": "薛蝌与宝琴一同寄居贾府，为人品性温良。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 3,
+    "isMainline": false,
+    "outcome": "与邢岫烟成婚"
   },
   {
     "id": "xia_jingui",
@@ -1350,7 +1629,15 @@
         "title": "美香菱屈受贪夫棒 王道士胡诌妒妇方",
         "summary": "夏金桂设计陷害香菱，使薛蟠毒打香菱，又起改名之事彰显其恶毒。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [
+      "xue_pan"
+    ],
+    "generation": 3,
+    "isMainline": false,
+    "outcome": "搅闹薛家，结局凄惨"
   },
   {
     "id": "xiang_ling",
@@ -1394,7 +1681,15 @@
         "title": "美香菱屈受贪夫棒 王道士胡诌妒妇方",
         "summary": "香菱受夏金桂虐待迫害，被毒打受辱，委屈不已。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [
+      "xue_pan"
+    ],
+    "generation": 3,
+    "isMainline": false,
+    "outcome": "难产而死"
   },
   {
     "id": "shi_xiangyun",
@@ -1446,7 +1741,13 @@
         "title": "凸碧堂品笛感凄清 凹晶馆联诗悲寂寞",
         "summary": "中秋之夜湘云与黛玉在凹晶馆联诗，湘云对出\"寒塘渡鹤影\"的佳句，诗意苍凉。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 3,
+    "isMainline": true,
+    "outcome": "夫婿早亡，云散高唐"
   },
   {
     "id": "shi_ding",
@@ -1470,7 +1771,13 @@
         "title": "嫌隙人有心生嫌隙 鸳鸯女无意遇鸳鸯",
         "summary": "史鼎等史家人虽与贾府是世交，但随着各家势力消长，来往渐稀。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 2,
+    "isMainline": false,
+    "outcome": "史家败落"
   },
   {
     "id": "shi_nai",
@@ -1495,7 +1802,13 @@
         "title": "嫌隙人有心生嫌隙 鸳鸯女无意遇鸳鸯",
         "summary": "史鼐等史家人在贾母寿辰时前来祝寿，维持世家大族之间的礼尚往来。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 2,
+    "isMainline": false,
+    "outcome": "史家败落"
   },
   {
     "id": "wang_ziteng",
@@ -1528,7 +1841,13 @@
         "title": "王熙凤恃强羞说病 来旺妇倚势霸成亲",
         "summary": "王子腾升任九省统制后离京赴任，此后贾府逐渐失去外戚的强力庇护。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 2,
+    "isMainline": true,
+    "outcome": "升任九省统制后病逝途中"
   },
   {
     "id": "wang_ren",
@@ -1554,7 +1873,13 @@
         "title": "中乡魁宝玉却尘缘 沐皇恩贾家延世泽",
         "summary": "王仁在贾府衰落后与贾芸等人密谋卖掉外甥女巧姐，为人忘恩负义。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 3,
+    "isMainline": false,
+    "outcome": "卖巧姐，后受惩处"
   },
   {
     "id": "xiren",
@@ -1609,7 +1934,13 @@
         "title": "甄士隐详说太虚情 贾雨村归结红楼梦",
         "summary": "宝玉出家后袭人被安排嫁给蒋玉菡，初时寻死觅活，后终从命。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "宝玉出家后嫁蒋玉菡"
   },
   {
     "id": "qingwen",
@@ -1655,7 +1986,13 @@
         "title": "俏丫鬟抱屈夭风流 美优伶斩情归水月",
         "summary": "晴雯被王夫人以\"狐媚\"之名逐出大观园，带病强撑被抬回家后含冤而死，宝玉悲痛作《芙蓉女儿诔》。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "被撵出贾府后抱屈夭亡"
   },
   {
     "id": "zijuan",
@@ -1697,7 +2034,13 @@
         "title": "林黛玉焚稿断痴情 薛宝钗出闺成大礼",
         "summary": "黛玉临终时紫鹃守在身边，悲痛欲绝，是黛玉最忠实的知己和陪伴者。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "黛玉死后不知所终"
   },
   {
     "id": "pinger",
@@ -1744,7 +2087,15 @@
         "title": "投鼠忌器宝玉瞒赃 判冤决狱平儿行权",
         "summary": "平儿在凤姐病中代行管家之权，秉公办事且宽厚待人，处理柳五儿偷窃案手法老到。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [
+      "jia_lian"
+    ],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "贾琏扶正平儿为妻"
   },
   {
     "id": "yuanyang",
@@ -1786,7 +2137,13 @@
         "title": "鸳鸯女殉主登太虚 狗彘奴欺天招伙盗",
         "summary": "贾母去世后鸳鸯殉主自缢，追随老太太而去，义烈忠诚。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "贾母死后殉主自缢"
   },
   {
     "id": "sheyue",
@@ -1819,7 +2176,13 @@
         "title": "俏丫鬟抱屈夭风流 美优伶斩情归水月",
         "summary": "晴雯等被撵走后麝月留在宝玉身边，成为主要侍候丫鬟。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "留在宝玉身边服侍"
   },
   {
     "id": "yinger",
@@ -1855,7 +2218,13 @@
         "title": "白玉钏亲尝莲叶羹 黄金莺巧结梅花络",
         "summary": "莺儿手巧为宝玉结梅花络子系在通灵玉上，两人说笑间气氛融洽。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "随宝钗度日"
   },
   {
     "id": "jinchuan",
@@ -1891,7 +2260,13 @@
         "title": "诉肺腑心迷活宝玉 含耻辱情烈死金钏",
         "summary": "金钏被撵后感到耻辱万分，跳井自尽，死后宝玉深感愧疚。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "被王夫人撵出后投井自尽"
   },
   {
     "id": "yuchuan",
@@ -1918,7 +2293,13 @@
         "title": "白玉钏亲尝莲叶羹 黄金莺巧结梅花络",
         "summary": "玉钏因姐姐金钏之死与宝玉互动时态度冷淡，后被宝玉的关怀所感化，\"亲尝莲叶羹\"暗含和解。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "代替姐姐服侍宝玉"
   },
   {
     "id": "siqi",
@@ -1951,7 +2332,13 @@
         "title": "痴丫头误拾绣春囊 懦小姐不问累金凤",
         "summary": "司棋的绣春囊被拾获引发抄检大观园，司棋和潘又安的私情败露。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "被撵出后触墙殉情"
   },
   {
     "id": "ruhua",
@@ -1976,7 +2363,13 @@
         "title": "惑奸谗抄检大观园 矢孤介杜绝宁国府",
         "summary": "抄检大观园时入画被查出私藏哥哥寄存的财物，受到追问处置。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "随惜春出家"
   },
   {
     "id": "shishu",
@@ -2001,7 +2394,13 @@
         "title": "惑奸谗抄检大观园 矢孤介杜绝宁国府",
         "summary": "抄检大观园时侍书跟随探春，见证了探春掌掴王善保家的名场面。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "随探春远嫁"
   },
   {
     "id": "cuilu",
@@ -2028,7 +2427,13 @@
         "title": "撕扇子作千金一笑 因麒麟伏白首双星",
         "summary": "翠缕陪湘云在大观园闲逛时捡到金麒麟，引发了关于\"阴阳\"的有趣对话。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "随湘云度日"
   },
   {
     "id": "caiyun",
@@ -2054,7 +2459,13 @@
         "title": "茉莉粉替去蔷薇硝 玫瑰露引来茯苓霜",
         "summary": "彩云将王夫人房中的玫瑰露偷给贾环，被发现后引出茯苓霜等一系列连锁事件。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "下落不明"
   },
   {
     "id": "xiaohong",
@@ -2092,7 +2503,13 @@
         "title": "滴翠亭杨妃戏彩蝶 埋香冢飞燕泣残红",
         "summary": "小红在滴翠亭与坠儿私语传帕之事，被宝钗无意听前后机敏应对。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "后嫁贾芸"
   },
   {
     "id": "fangguan",
@@ -2127,7 +2544,13 @@
         "title": "俏丫鬟抱屈夭风流 美优伶斩情归水月",
         "summary": "芳官被王夫人逐出，发配到尼姑庵出家，\"美优伶斩情归水月\"。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "被逐出后出家为尼"
   },
   {
     "id": "qiuwen",
@@ -2154,7 +2577,13 @@
         "title": "薛小妹新编怀古诗 胡庸医乱用虎狼药",
         "summary": "秋纹在怡红院中伺候宝玉日常起居，与其他丫鬟一起照料宝玉生活。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "下落不明"
   },
   {
     "id": "chunyan",
@@ -2179,7 +2608,13 @@
         "title": "柳叶渚边嗔莺咤燕 绛芸轩里召将飞符",
         "summary": "春燕因其母在大观园中惹事而受牵连，向宝玉等人求情化解。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "下落不明"
   },
   {
     "id": "jiao_da",
@@ -2213,7 +2648,13 @@
         "title": "金寡妇贪利权受辱 张太医论病细穷源",
         "summary": "焦大的醉骂在宁府中引起不小波澜，暗示了贾珍与秦可卿之间的丑闻。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "醉骂贾府不肖子弟"
   },
   {
     "id": "lai_da",
@@ -2238,7 +2679,13 @@
         "title": "金兰契互剖金兰语 风雨夕闷制风雨词",
         "summary": "赖大之母赖嬷嬷在贾府中颇有体面，赖大承管外府事务。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "依附贾府"
   },
   {
     "id": "lin_zhixiao",
@@ -2263,7 +2710,13 @@
         "title": "投鼠忌器宝玉瞒赃 判冤决狱平儿行权",
         "summary": "林之孝家的在管理大观园内务中向凤姐汇报各项事务，是贾府中层管事。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "随贾府败落"
   },
   {
     "id": "zhou_rui",
@@ -2288,7 +2741,13 @@
         "title": "送宫花贾琏戏熙凤 宴宁府宝玉会秦钟",
         "summary": "周瑞家的受薛姨妈之托为各房送宫花，借此串联出各房人物和关系。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "随贾府败落"
   },
   {
     "id": "ming_yan",
@@ -2324,7 +2783,13 @@
         "title": "蜂腰桥设言传心事 潇湘馆春困发幽情",
         "summary": "茗烟为宝玉从外面搜罗《西厢记》《牡丹亭》等禁书带进园来。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "随宝玉"
   },
   {
     "id": "miaoyu",
@@ -2372,7 +2837,13 @@
         "title": "凸碧堂品笛感凄清 凹晶馆联诗悲寂寞",
         "summary": "湘云与黛玉联诗到绝妙处，妙玉悄然出现续完全篇，展露非凡诗才。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "被强盗掳走，终陷淖泥中"
   },
   {
     "id": "lai_tou_heshang",
@@ -2409,7 +2880,13 @@
         "title": "魇魔法姊弟逢五鬼 红楼梦通灵遇双真",
         "summary": "宝玉和凤姐被马道婆施魇魔法害得奄奄一息，癞头和尚前来持诵通灵宝玉救治。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "来去飘渺，点化众生"
   },
   {
     "id": "bo_zu_daoren",
@@ -2447,7 +2924,13 @@
         "title": "情小妹耻情归地府 冷二郎一冷入空门",
         "summary": "尤三姐自刎后，柳湘莲悔恨交加，跛足道人点化他出家为道。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "与癞头和尚结伴度化世人"
   },
   {
     "id": "zhineng",
@@ -2474,7 +2957,13 @@
         "title": "王凤姐弄权铁槛寺 秦鲸卿得趣馒头庵",
         "summary": "智能儿是馒头庵（水月庵）的小尼姑，与秦钟暗中相好幽会。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "与秦钟有私情，后不知所终"
   },
   {
     "id": "ma_daopo",
@@ -2501,7 +2990,13 @@
         "title": "魇魔法姊弟逢五鬼 红楼梦通灵遇双真",
         "summary": "马道婆受赵姨娘贿赂，用巫术对宝玉和凤姐施魇魔法，致二人几近丧命。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "施法害人被惩处"
   },
   {
     "id": "liu_laolao",
@@ -2560,7 +3055,13 @@
         "title": "中乡魁宝玉却尘缘 沐皇恩贾家延世泽",
         "summary": "刘姥姥信守承诺，将被拐卖的巧姐搭救出来，报答当年凤姐的恩情。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "三进大观园，救巧姐于危难"
   },
   {
     "id": "jia_yucun",
@@ -2607,7 +3108,13 @@
         "title": "甄士隐详说太虚情 贾雨村归结红楼梦",
         "summary": "贾雨村最终被削职为民，遇甄士隐点化，了悟前因后果，全书以他的故事收束。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "因贪酷被革职"
   },
   {
     "id": "zhen_shiyin",
@@ -2651,7 +3158,13 @@
         "title": "甄士隐详说太虚情 贾雨村归结红楼梦",
         "summary": "甄士隐在最终回中出现，详细解说太虚幻境的前因后果，揭示全书因果主题。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "随跛道人出家"
   },
   {
     "id": "liu_xianglian",
@@ -2687,7 +3200,13 @@
         "title": "情小妹耻情归地府 冷二郎一冷入空门",
         "summary": "柳湘莲与尤三姐订婚后又因误听闲言退婚，尤三姐自刎，柳湘莲追悔莫及随道人出家。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "尤三姐自刎后随道士出家"
   },
   {
     "id": "jiang_yuhan",
@@ -2722,7 +3241,13 @@
         "title": "手足眈眈小动唇舌 不肖种种大承笞挞",
         "summary": "蒋玉菡从忠顺王府出逃一事牵连到宝玉，成为贾政暴打宝玉的导火索之一。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "后娶袭人为妻"
   },
   {
     "id": "you_erjie",
@@ -2764,7 +3289,15 @@
         "title": "弄小巧用借剑杀人 觉大限吞生金自逝",
         "summary": "尤二姐在凤姐的重重毒计下身心俱疲、流产丧子，最终吞金自尽。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [
+      "jia_lian"
+    ],
+    "generation": 3,
+    "isMainline": false,
+    "outcome": "被凤姐折磨后吞金自尽"
   },
   {
     "id": "you_sanjie",
@@ -2805,7 +3338,13 @@
         "title": "幽淑女悲题五美吟 浪荡子情遗九龙佩",
         "summary": "尤三姐在宁国府中以泼辣态度对待贾珍贾蓉的轻薄，令人刮目相看。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 3,
+    "isMainline": false,
+    "outcome": "自刎于柳湘莲面前，以死明志"
   },
   {
     "id": "qin_zhong",
@@ -2845,7 +3384,15 @@
         "title": "贾元春才选凤藻宫 秦鲸卿夭逝黄泉路",
         "summary": "秦钟因伤风加上与智能的情事牵累，不久病重夭亡，宝玉悲恸不已。"
       }
-    ]
+    ],
+    "parentIds": [
+      "qin_ye"
+    ],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 3,
+    "isMainline": false,
+    "outcome": "染病早夭"
   },
   {
     "id": "qin_ye",
@@ -2871,7 +3418,16 @@
         "title": "送宫花贾琏戏熙凤 宴宁府宝玉会秦钟",
         "summary": "秦业是秦钟和秦可卿的养父，为宁国府的营缮郎，家境清寒。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [
+      "qin_zhong",
+      "qin_keqing"
+    ],
+    "spouseIds": [],
+    "generation": 2,
+    "isMainline": false,
+    "outcome": "晚年丧子悲痛而亡"
   },
   {
     "id": "bei_jing_wang",
@@ -2906,7 +3462,13 @@
         "title": "王凤姐弄权铁槛寺 秦鲸卿得趣馒头庵",
         "summary": "北静王与宝玉交好的描写延续，显示出二人之间的知交之谊。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "与宝玉交厚，后不详"
   },
   {
     "id": "zhao_yiniang",
@@ -2949,7 +3511,18 @@
         "title": "茉莉粉替去蔷薇硝 玫瑰露引来茯苓霜",
         "summary": "赵姨娘与芳官等发生冲突，被众小戏子嘲弄奚落，颜面尽失。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [
+      "jia_tanchun",
+      "jia_huan"
+    ],
+    "spouseIds": [
+      "jia_zheng"
+    ],
+    "generation": 2,
+    "isMainline": true,
+    "outcome": "贾府败落后处境凄凉"
   },
   {
     "id": "jia_dairu",
@@ -2982,7 +3555,15 @@
         "title": "王熙凤毒设相思局 贾天祥正照风月鉴",
         "summary": "贾瑞病重后，贾代儒焦急万分，请医问药，却终究没能挽回孙儿性命。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [
+      "jia_rui"
+    ],
+    "spouseIds": [],
+    "generation": 1,
+    "isMainline": false,
+    "outcome": "晚年凄凉"
   },
   {
     "id": "jia_rui",
@@ -3017,7 +3598,15 @@
         "title": "王熙凤毒设相思局 贾天祥正照风月鉴",
         "summary": "凤姐两次设局整治贾瑞，贾瑞痴心不改，终因照风月鉴纵欲伤身而死。"
       }
-    ]
+    ],
+    "parentIds": [
+      "jia_dairu"
+    ],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 3,
+    "isMainline": false,
+    "outcome": "被王熙凤设局害死"
   },
   {
     "id": "jia_yun",
@@ -3055,7 +3644,13 @@
         "title": "中乡魁宝玉却尘缘 沐皇恩贾家延世泽",
         "summary": "贾府败后，贾芸仍奔走照应旧人，在巧姐脱险等事上有所周旋。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 4,
+    "isMainline": false,
+    "outcome": "后与小红结为夫妻"
   },
   {
     "id": "jia_qiang",
@@ -3086,7 +3681,13 @@
         "title": "宝钗借扇机带双敲 龄官划蔷痴及局外",
         "summary": "龄官在地上反复划'蔷'字，贾蔷对她的病情与情绪百般体贴，二人情意可见。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 4,
+    "isMainline": false,
+    "outcome": "贾府败落后艰难度日"
   },
   {
     "id": "lingguan",
@@ -3119,6 +3720,52 @@
         "title": "宝钗借扇机带双敲 龄官划蔷痴及局外",
         "summary": "龄官在蔷薇花下划写'蔷'字，宝玉由此看见她对贾蔷的深情与病中的愁苦。"
       }
-    ]
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "随贾蔷，后不知所终"
+  },
+  {
+    "id": "jia_zhu",
+    "name": "贾珠",
+    "pinyin": "Jiǎ Zhū",
+    "alias": [
+      "珠大爷"
+    ],
+    "gender": "男",
+    "family": "贾家",
+    "group": "贾家-玉字辈",
+    "identity": "贾政长子，李纨之夫，贾兰之父",
+    "importance": 2,
+    "personality": "勤奋好学、循规蹈矩、少年老成",
+    "keyEvents": [
+      "十四岁进学，不到二十岁娶妻生子",
+      "早逝，留下遗腹子贾兰"
+    ],
+    "quotes": [],
+    "description": "贾珠是贾政与王夫人的长子，自幼聪慧好学，十四岁便进学，是贾府寄予厚望的继承人。他不到二十岁便娶李纨为妻，生子贾兰。然而天不假年，英年早逝，遗下孤儿寡母。他的早逝是贾府衰败的伏笔之一，其子贾兰后中举光复门楣，算是延续了他的期望。",
+    "chapters": [
+      {
+        "chapter": 2,
+        "title": "贾夫人仙逝扬州城 冷子兴演说荣国府",
+        "summary": "冷子兴提及贾珠早逝，遗下一子贾兰。"
+      }
+    ],
+    "parentIds": [
+      "jia_zheng",
+      "wang_furen"
+    ],
+    "childrenIds": [
+      "jia_lan"
+    ],
+    "spouseIds": [
+      "li_wan"
+    ],
+    "generation": 3,
+    "isMainline": true,
+    "outcome": "早逝，不到二十岁病故"
   }
 ]
