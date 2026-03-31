@@ -740,5 +740,103 @@
     "type": "rivalry",
     "label": "怒斥",
     "description": "焦大醉骂宁府主子丑事，痛斥贾珍等人"
+  },
+  {
+    "source": "jia_zheng",
+    "target": "jia_yuanchun",
+    "type": "blood",
+    "label": "父女",
+    "description": "贾政是元春之父，元春为嫡长女"
+  },
+  {
+    "source": "wang_xifeng",
+    "target": "jia_qiaojie",
+    "type": "blood",
+    "label": "母女",
+    "description": "王熙凤是巧姐之母"
+  },
+  {
+    "source": "jia_yucun",
+    "target": "lin_daiyu",
+    "type": "social",
+    "label": "师生",
+    "description": "贾雨村曾任黛玉家庭教师，教导其读书识字"
+  },
+  {
+    "source": "sun_shaozu",
+    "target": "jia_yingchun",
+    "type": "marriage",
+    "label": "夫妻",
+    "description": "孙绍祖娶迎春为妻，是'中山狼'式的人物"
+  },
+  {
+    "source": "xue_ke",
+    "target": "xing_xiuyan",
+    "type": "marriage",
+    "label": "夫妻",
+    "description": "薛蝌娶邢岫烟为妻"
+  },
+  {
+    "source": "jia_yucun",
+    "target": "jiao_xing",
+    "type": "marriage",
+    "label": "夫妻",
+    "description": "娇杏原为甄家丫鬟，后成为贾雨村之妻"
+  },
+  {
+    "source": "wei_ruolan",
+    "target": "shi_xiangyun",
+    "type": "marriage",
+    "label": "夫妻",
+    "description": "卫若兰与史湘云成婚，与金麒麟伏笔相关"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "jia_yun",
+    "type": "social",
+    "label": "义父子",
+    "description": "贾芸认宝玉为父辈，二人年龄相仿却以父子相称"
+  },
+  {
+    "source": "jia_yun",
+    "target": "xiaohong",
+    "type": "romance",
+    "label": "恋人",
+    "description": "贾芸与小红以手帕传情，互生爱慕"
+  },
+  {
+    "source": "jia_she",
+    "target": "sun_shaozu",
+    "type": "social",
+    "label": "债务",
+    "description": "孙绍祖声称贾赦欠其五千两银子，以迎春抵债"
+  },
+  {
+    "source": "qingwen",
+    "target": "zhui_er",
+    "type": "social",
+    "label": "逐出",
+    "description": "晴雯发现坠儿偷虾须镯后将其逐出"
+  },
+  {
+    "source": "xing_xiuyan",
+    "target": "miaoyu",
+    "type": "social",
+    "label": "旧识",
+    "description": "邢岫烟曾与妙玉比邻而居，受其教导诗文"
+  },
+  {
+    "source": "jia_yucun",
+    "target": "zhen_shiyin",
+    "type": "social",
+    "label": "受恩",
+    "description": "甄士隐资助贾雨村上京赴考，是其恩人"
+  },
+  {
+    "source": "jia_yucun",
+    "target": "jiao_xing",
+    "type": "romance",
+    "label": "一见钟情",
+    "description": "贾雨村落魄时娇杏回首一顾，雨村铭记在心"
   }
 ]
