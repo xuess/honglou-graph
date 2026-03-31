@@ -26,11 +26,11 @@
     </div>
 
     <div class="header-center">
-      <nav class="view-nav" id="view-nav">
-        <button class="view-nav-tab active" data-view="graph"><span class="view-nav-icon">◉</span><span class="view-nav-label">关系图谱</span></button>
-        <button class="view-nav-tab" data-view="tree"><span class="view-nav-icon">🌳</span><span class="view-nav-label">家族谱系</span></button>
-        <button class="view-nav-tab" data-view="list"><span class="view-nav-icon">📋</span><span class="view-nav-label">人物名录</span></button>
-        <button class="view-nav-tab" data-view="knowledge"><span class="view-nav-icon">📖</span><span class="view-nav-label">知识库</span></button>
+      <nav class="view-nav" id="view-nav" role="tablist" aria-label="视图切换">
+        <button class="view-nav-tab active" data-view="graph" role="tab" aria-selected="true" aria-controls="view-graph"><span class="view-nav-icon">◉</span><span class="view-nav-label">关系图谱</span></button>
+        <button class="view-nav-tab" data-view="tree" role="tab" aria-selected="false" aria-controls="view-tree"><span class="view-nav-icon">🌳</span><span class="view-nav-label">家族谱系</span></button>
+        <button class="view-nav-tab" data-view="list" role="tab" aria-selected="false" aria-controls="view-list"><span class="view-nav-icon">📋</span><span class="view-nav-label">人物名录</span></button>
+        <button class="view-nav-tab" data-view="knowledge" role="tab" aria-selected="false" aria-controls="view-knowledge"><span class="view-nav-icon">📖</span><span class="view-nav-label">知识库</span></button>
       </nav>
     </div>
   </header>
@@ -103,7 +103,7 @@
 
     <main class="content-area">
       <!-- Graph View (default) -->
-      <section class="graph-stage view-panel active" id="view-graph">
+      <section class="graph-stage view-panel active" id="view-graph" role="tabpanel" aria-label="关系图谱">
         <div id="graph-container" class="graph-container">
           <div id="mode-indicator" class="mode-indicator">
             <span id="mode-name">聚焦模式</span>
@@ -128,6 +128,8 @@
                   type="text"
                   placeholder="搜索人物、关系或主题"
                   autocomplete="off"
+                  aria-label="搜索人物、关系或主题"
+                  role="searchbox"
                 >
                 <div id="graph-search-results" class="graph-search-results"></div>
               </div>
@@ -156,17 +158,17 @@
       </section>
 
       <!-- Tree View -->
-      <section class="view-panel" id="view-tree">
+      <section class="view-panel" id="view-tree" role="tabpanel" aria-label="家族谱系">
         <div id="tree-container" class="tree-container"></div>
       </section>
 
       <!-- List View -->
-      <section class="view-panel" id="view-list">
+      <section class="view-panel" id="view-list" role="tabpanel" aria-label="人物名录">
         <div id="list-container" class="list-container"></div>
       </section>
 
       <!-- Knowledge View -->
-      <section class="view-panel" id="view-knowledge">
+      <section class="view-panel" id="view-knowledge" role="tabpanel" aria-label="知识库">
         <div id="knowledge-container" class="knowledge-container"></div>
       </section>
     </main>

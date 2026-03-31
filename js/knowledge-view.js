@@ -12,6 +12,7 @@ class KnowledgeView {
     this.chapterFilter = 'all';
     this.sortBy = 'relevance';
     this.expandedIds = new Set();
+    this.displayCount = 40;
 
     this.categoryConfig = {
       '判词': { icon: '📜', color: '#8B2500' },
@@ -21,6 +22,7 @@ class KnowledgeView {
       '典故': { icon: '📖', color: '#16A085' },
       '名场面': { icon: '🎭', color: '#E67E22' },
       '回目知识点': { icon: '📚', color: '#27AE60' },
+      '回目知识': { icon: '📚', color: '#27AE60' },
       '灯谜': { icon: '🏮', color: '#B35C1E' },
       '建筑': { icon: '🏯', color: '#6C4A9A' },
       '园林空间': { icon: '🌿', color: '#237A57' },
@@ -29,7 +31,11 @@ class KnowledgeView {
       '礼俗制度': { icon: '🪭', color: '#356A9A' },
       '药方': { icon: '💊', color: '#5D6D7E' },
       '生僻字': { icon: '🔤', color: '#5D4E6D' },
-      '人物出场': { icon: '👗', color: '#D4709A' }
+      '生僻字词': { icon: '🔤', color: '#5D4E6D' },
+      '人物出场': { icon: '👗', color: '#D4709A' },
+      '场景': { icon: '🏞️', color: '#4A7C59' },
+      '主题研究': { icon: '🔍', color: '#7B4F8A' },
+      '人物专题': { icon: '👤', color: '#C0605A' }
     };
   }
 
@@ -156,7 +162,8 @@ class KnowledgeView {
             </div>
 
             <div class="knowledge-grid" id="knowledge-items-content">
-              ${filteredItems.length ? filteredItems.map((item) => this._renderKnowledgeCard(item)).join('') : '<div class="knowledge-empty">没有匹配的知识条目，请尝试更换关键词或筛选项。</div>'}
+              ${filteredItems.length ? filteredItems.slice(0, this.displayCount).map((item) => this._renderKnowledgeCard(item)).join('') : '<div class="knowledge-empty">没有匹配的知识条目，请尝试更换关键词或筛选项。</div>'}
+              ${filteredItems.length > this.displayCount ? `<button class="knowledge-load-more" data-action="load-more">加载更多（已显示 ${this.displayCount} / ${filteredItems.length} 条）</button>` : ''}
             </div>
           </div>
         </div>
@@ -172,14 +179,17 @@ class KnowledgeView {
     
     if (!contentEl) return;
 
+    this.displayCount = 40;
     const filteredItems = this._getFilteredItems();
+    const visibleItems = filteredItems.slice(0, this.displayCount);
     
     contentEl.innerHTML = filteredItems.length 
-      ? filteredItems.map((item) => this._renderKnowledgeCard(item)).join('')
+      ? visibleItems.map((item) => this._renderKnowledgeCard(item)).join('') +
+        (filteredItems.length > this.displayCount ? `<button class="knowledge-load-more" data-action="load-more">加载更多（已显示 ${this.displayCount} / ${filteredItems.length} 条）</button>` : '')
       : '<div class="knowledge-empty">没有匹配的知识条目，请尝试更换关键词或筛选项。</div>';
     
     if (subtitleEl) {
-      subtitleEl.textContent = `当前显示 ${filteredItems.length} 条，支持人物跳转、长文展开与多维检索`;
+      subtitleEl.textContent = `当前显示 ${Math.min(this.displayCount, filteredItems.length)} / ${filteredItems.length} 条，支持人物跳转、长文展开与多维检索`;
     }
 
     this._updateCategoryActiveState();
@@ -395,11 +405,15 @@ class KnowledgeView {
     const searchInput = this.container.querySelector('.knowledge-search-input');
     if (searchInput) {
       let searchIsComposing = false;
+      let searchTimer = null;
       
       const handleSearch = (event) => {
         if (searchIsComposing) return;
-        this.searchQuery = event.target.value;
-        this._updateContent();
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(() => {
+          this.searchQuery = event.target.value;
+          this._updateContent();
+        }, 180);
       };
 
       searchInput.addEventListener('compositionstart', () => {
@@ -485,6 +499,31 @@ class KnowledgeView {
         this._updateContent();
       });
     });
+
+    this.container.querySelectorAll('[data-action="load-more"]').forEach((button) => {
+      button.addEventListener('click', () => {
+        this._loadMore();
+      });
+    });
+  }
+
+  _loadMore() {
+    const contentEl = this.container.querySelector('#knowledge-items-content');
+    const subtitleEl = this.container.querySelector('.knowledge-results-subtitle');
+    if (!contentEl) return;
+
+    this.displayCount += 40;
+    const filteredItems = this._getFilteredItems();
+    const visibleItems = filteredItems.slice(0, this.displayCount);
+
+    contentEl.innerHTML = visibleItems.map((item) => this._renderKnowledgeCard(item)).join('') +
+      (filteredItems.length > this.displayCount ? `<button class="knowledge-load-more" data-action="load-more">加载更多（已显示 ${this.displayCount} / ${filteredItems.length} 条）</button>` : '');
+
+    if (subtitleEl) {
+      subtitleEl.textContent = `当前显示 ${Math.min(this.displayCount, filteredItems.length)} / ${filteredItems.length} 条，支持人物跳转、长文展开与多维检索`;
+    }
+
+    this._bindCardEvents();
   }
 
   _scrollToTop() {

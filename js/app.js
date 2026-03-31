@@ -426,7 +426,9 @@ class HongLouMengApp {
     }
 
     this.els.viewNav?.querySelectorAll('.view-nav-tab').forEach(tab => {
-      tab.classList.toggle('active', tab.dataset.view === viewName);
+      const isActive = tab.dataset.view === viewName;
+      tab.classList.toggle('active', isActive);
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
     });
 
     // 更新body上的视图类名，用于CSS布局
@@ -1238,7 +1240,7 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
     this.isFullscreen = nextState;
     this.els.body.classList.toggle('fullscreen', nextState);
     this.els.graphContainer.classList.toggle('is-fullscreen', nextState);
-    this.els.btnHeaderFullscreen.classList.toggle('is-active', nextState);
+    if (this.els.btnHeaderFullscreen) this.els.btnHeaderFullscreen.classList.toggle('is-active', nextState);
     this.els.btnGraphFullscreen.classList.toggle('hidden', nextState);
     this.els.btnExitFullscreen.classList.toggle('hidden', !nextState);
     this.els.graphFloatingBar.classList.toggle('active', nextState);

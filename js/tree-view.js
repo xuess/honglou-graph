@@ -136,8 +136,6 @@ class TreeView {
 
   _updateTreeContent() {
     const treeOutline = this.container.querySelector('#tree-outline-content');
-    const summaryCards = this.container.querySelectorAll('.tree-summary-card span:last-child');
-    
     if (!treeOutline) return;
 
     const familyChars = this._getFamilyCharacters(this.currentFamily);
@@ -147,6 +145,9 @@ class TreeView {
       return servantKeywords.some((keyword) => identity.includes(keyword));
     };
 
+    const familyMembersOnly = familyChars.filter((c) => !isServant(c));
+    const servantCount = familyChars.length - familyMembersOnly.length;
+
     const treeData = this._getFamilyTree(this.currentFamily, familyChars);
     const visibleSections = this._getVisibleSections(treeData.sections);
     const matchedCount = this._countVisibleNodes(visibleSections);
@@ -155,10 +156,30 @@ class TreeView {
       ? visibleSections.map((section) => this._renderSection(section)).join('')
       : '<div class="tree-empty">没有匹配的家族成员，请尝试更换关键词</div>';
 
+    // Update family tab active states
+    this.container.querySelectorAll('.tree-family-tab').forEach((tab) => {
+      tab.classList.toggle('active', tab.dataset.family === this.currentFamily);
+    });
+
+    // Update summary strip
+    const summaryCards = this.container.querySelectorAll('.tree-summary-card');
+    if (summaryCards[0]) {
+      const strong = summaryCards[0].querySelector('strong');
+      const span = summaryCards[0].querySelector('span:last-child');
+      if (strong) strong.textContent = this.currentFamily;
+      if (span) span.textContent = `${familyMembersOnly.length} 位家族成员${servantCount ? ` + ${servantCount} 位仆从` : ''}`;
+    }
     if (summaryCards[1]) {
-      summaryCards[1].textContent = this.searchQuery.trim()
-        ? `匹配 ${matchedCount} 位`
-        : '支持展开收起浏览';
+      const strong = summaryCards[1].querySelector('strong');
+      const span = summaryCards[1].querySelector('span:last-child');
+      if (strong) strong.textContent = String(treeData.sections.length);
+      if (span) span.textContent = this.searchQuery.trim() ? `匹配 ${matchedCount} 位` : '支持展开收起浏览';
+    }
+    if (summaryCards[2]) {
+      const strong = summaryCards[2].querySelector('strong');
+      const span = summaryCards[2].querySelector('span:last-child');
+      if (strong) strong.textContent = treeData.maxGenerationLabel;
+      if (span) span.textContent = `${treeData.mainlineCount} 位主线人物`;
     }
 
     this._bindTreeClickEvents();

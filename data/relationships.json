@@ -838,5 +838,138 @@
     "type": "romance",
     "label": "一见钟情",
     "description": "贾雨村落魄时娇杏回首一顾，雨村铭记在心"
+  },
+  {
+    "source": "jia_zheng",
+    "target": "jia_zhu",
+    "type": "blood",
+    "label": "父子",
+    "description": "贾政是贾珠之父，贾珠为贾政长子，早逝"
+  },
+  {
+    "source": "jia_zhu",
+    "target": "li_wan",
+    "type": "marriage",
+    "label": "夫妻",
+    "description": "贾珠是李纨之夫，早逝后李纨守寡"
+  },
+  {
+    "source": "jia_zhu",
+    "target": "jia_lan",
+    "type": "blood",
+    "label": "父子",
+    "description": "贾珠是贾兰之父"
+  },
+  {
+    "source": "jia_zheng",
+    "target": "lai_da",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "赖大是荣国府大管家，为贾政府中总领家务之人"
+  },
+  {
+    "source": "wang_xifeng",
+    "target": "lin_zhixiao",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "林之孝是荣国府管事，常向凤姐汇报府中事务"
+  },
+  {
+    "source": "wang_furen",
+    "target": "zhou_rui",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "周瑞是王夫人陪房，常为王夫人办事"
+  },
+  {
+    "source": "wang_ren",
+    "target": "wang_xifeng",
+    "type": "blood",
+    "label": "兄妹",
+    "description": "王仁是王熙凤之兄，后贪财将巧姐卖入烟花巷"
+  },
+  {
+    "source": "jia_mu",
+    "target": "shi_ding",
+    "type": "blood",
+    "label": "族亲",
+    "description": "史鼎是贾母娘家史家后人，现袭忠靖侯"
+  },
+  {
+    "source": "jia_mu",
+    "target": "shi_nai",
+    "type": "blood",
+    "label": "族亲",
+    "description": "史鼐是贾母娘家的侄儿，保龄侯"
+  },
+  {
+    "source": "shi_xiangyun",
+    "target": "shi_nai",
+    "type": "blood",
+    "label": "叔侄",
+    "description": "史鼐是史湘云的叔父"
+  },
+  {
+    "source": "bu_shiren",
+    "target": "jia_yun",
+    "type": "blood",
+    "label": "舅甥",
+    "description": "卜世仁是贾芸之舅，贾芸求助借钱被拒"
+  },
+  {
+    "source": "ni_er",
+    "target": "jia_yun",
+    "type": "social",
+    "label": "交友",
+    "description": "倪二是市井醉汉，仗义借钱给贾芸买冰片麝香"
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "si_er",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "四儿是宝玉身边小丫鬟，因与宝玉亲近被逐"
+  },
+  {
+    "source": "wang_xifeng",
+    "target": "he_popo",
+    "type": "social",
+    "label": "利用",
+    "description": "何婆子受凤姐利用参与陷害尤二姐之事"
+  },
+  {
+    "source": "xing_furen",
+    "target": "jia_yingchun",
+    "type": "blood",
+    "label": "嫡母庶女",
+    "description": "邢夫人是迎春的嫡母（迎春为贾赦妾室所出）"
+  },
+  {
+    "source": "xue_baochai",
+    "target": "xue_baoqin",
+    "type": "blood",
+    "label": "堂姐妹",
+    "description": "薛宝琴是宝钗的堂妹，才貌双全，贾母极为喜爱"
+  },
+  {
+    "source": "jia_mu",
+    "target": "xue_baoqin",
+    "type": "social",
+    "label": "宠爱",
+    "description": "贾母初见薛宝琴便极为喜爱，欲为宝玉求配"
+  },
+  {
+    "source": "jinchuan",
+    "target": "yuchuan",
+    "type": "blood",
+    "label": "姐妹",
+    "description": "金钏是玉钏的姐姐，同为王夫人丫鬟"
+  },
+  {
+    "source": "wang_ziteng",
+    "target": "wang_furen",
+    "type": "blood",
+    "label": "兄妹",
+    "description": "王子腾与王夫人是兄妹关系"
   }
 ]

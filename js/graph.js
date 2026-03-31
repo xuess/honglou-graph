@@ -341,25 +341,23 @@ _init() {
 
     this.linkElements.each(function(d) {
       if (!hasVisibilityFilter || visibleLinkKeys.has(d.key)) {
-        d3.select(this)
-          .attr('x1', d.source.x)
-          .attr('y1', d.source.y)
-          .attr('x2', d.target.x)
-          .attr('y2', d.target.y);
+        this.setAttribute('x1', d.source.x);
+        this.setAttribute('y1', d.source.y);
+        this.setAttribute('x2', d.target.x);
+        this.setAttribute('y2', d.target.y);
       }
     });
 
     this.linkLabelElements.each(function(d) {
       if (!hasVisibilityFilter || visibleLinkKeys.has(d.key)) {
-        d3.select(this)
-          .attr('x', (d.source.x + d.target.x) / 2)
-          .attr('y', (d.source.y + d.target.y) / 2);
+        this.setAttribute('x', (d.source.x + d.target.x) / 2);
+        this.setAttribute('y', (d.source.y + d.target.y) / 2);
       }
     });
 
     this.nodeElements.each(function(d) {
       if (!hasVisibilityFilter || visibleNodeIds.has(d.id)) {
-        d3.select(this).attr('transform', `translate(${d.x},${d.y})`);
+        this.setAttribute('transform', `translate(${d.x},${d.y})`);
       }
     });
   }
