@@ -19,7 +19,20 @@ class HongLouMengApp {
     this.isFullscreen = false;
     this.isMobileSearchOpen = false;
     this.els = {};
-    this.viewInitialized = { graph: false, tree: false, list: false, knowledge: false };
+    this.viewInitialized = { graph: true, tree: false, list: false, knowledge: false };
+    this.viewEverRendered = { tree: false, list: false, knowledge: false };
+    this.destroyInactiveViews = false;
+    this.facetState = {
+      selectedCharacterIds: [],
+      selectedTags: [],
+      selectedFamily: null,
+      selectedChapter: null,
+      selectedCategory: null,
+      selectedRelationTypes: [],
+      query: '',
+      breadcrumb: [{ label: '默认概览', type: 'overview' }],
+      sourceView: 'graph'
+    };
 
     this.featuredCharacterIds = ['jia_baoyu', 'lin_daiyu', 'xue_baochai', 'wang_xifeng', 'jia_mu', 'shi_xiangyun'];
 
@@ -170,6 +183,10 @@ class HongLouMengApp {
       btnExitFullscreen: document.getElementById('btn-exit-fullscreen'),
       graphFloatingBar: document.getElementById('graph-floating-bar'),
       fullscreenViewLabel: document.getElementById('fullscreen-view-label'),
+      globalContextBar: document.getElementById('global-context-bar'),
+      contextBreadcrumbs: document.getElementById('context-breadcrumbs'),
+      contextFacets: document.getElementById('context-facets'),
+      btnClearContext: document.getElementById('btn-clear-context'),
       featuredCharacters: document.getElementById('featured-characters'),
       topicList: document.getElementById('topic-list'),
       familyBrowser: document.getElementById('family-browser'),
@@ -255,6 +272,10 @@ class HongLouMengApp {
       this.els.btnBack.addEventListener('click', () => this._goBack());
     }
 
+    if (this.els.btnClearContext) {
+      this.els.btnClearContext.addEventListener('click', () => this._clearFacetContext());
+    }
+
     this.els.btnFullView.addEventListener('click', () => this._showFullGraph());
     this.els.btnZoomIn.addEventListener('click', () => this.graph.zoomIn());
     this.els.btnZoomOut.addEventListener('click', () => this.graph.zoomOut());
@@ -295,6 +316,7 @@ class HongLouMengApp {
       const stageButton = e.target.closest('[data-stage-id]');
       const familyButton = e.target.closest('[data-family-name]');
       const compareButton = e.target.closest('[data-compare-character-id]');
+      const tagButton = e.target.closest('[data-tag-type]');
 
       if (characterButton) this._openCharacter(characterButton.dataset.characterId, { focusNeighbors: true });
       if (openCardButton) {
@@ -305,6 +327,7 @@ class HongLouMengApp {
       if (stageButton) this._openStage(stageButton.dataset.stageId);
       if (familyButton) this._openFamily(familyButton.dataset.familyName);
       if (compareButton) this._prepareCompareFromCurrent(compareButton.dataset.compareCharacterId);
+      if (tagButton) this._handleFacetTagSelection({ type: tagButton.dataset.tagType, value: tagButton.dataset.tagValue, view: 'drawer' });
     });
 
     document.addEventListener('keydown', (e) => {
@@ -390,23 +413,29 @@ class HongLouMengApp {
       this.treeView = new TreeView(this.els.treeContainer);
       this.treeView.setData(this.characters, this.relationships);
       this.treeView.onCharacterClick = (character) => this._openCharacter(character.id, { focusNeighbors: true });
+      this.treeView.onFacetChange = (facet) => this._mergeFacetState(facet);
     }
 
     if (this.els.listContainer) {
       this.listView = new ListView(this.els.listContainer);
       this.listView.setData(this.characters, this.relationships);
       this.listView.onCharacterClick = (character) => this._openCharacter(character.id, { focusNeighbors: true });
+      this.listView.onFacetChange = (facet) => this._mergeFacetState(facet);
     }
 
     if (this.els.knowledgeContainer) {
       this.knowledgeView = new KnowledgeView(this.els.knowledgeContainer);
       this.knowledgeView.setData(this.knowledge, this.characters);
       this.knowledgeView.onCharacterClick = (characterId) => this._openCharacter(characterId, { focusNeighbors: true });
+      this.knowledgeView.onTagClick = (payload) => this._handleFacetTagSelection(payload);
+      this.knowledgeView.onFacetChange = (facet) => this._mergeFacetState(facet);
     }
   }
 
   _switchView(viewName) {
     if (this.activeView === viewName) return;
+
+    const previousView = this.activeView;
 
     this.activeView = viewName;
 
@@ -449,16 +478,26 @@ class HongLouMengApp {
       if (viewName === 'tree' && this.treeView) {
         this.treeView.render();
         this.viewInitialized.tree = true;
+        this.viewEverRendered.tree = true;
       } else if (viewName === 'list' && this.listView) {
         this.listView.render();
         this.viewInitialized.list = true;
+        this.viewEverRendered.list = true;
       } else if (viewName === 'knowledge' && this.knowledgeView) {
         this.knowledgeView.render();
         this.viewInitialized.knowledge = true;
+        this.viewEverRendered.knowledge = true;
       }
     }
 
+    this._teardownInactiveViews(viewName, previousView);
+    this._applyFacetStateToViews();
+
     location.hash = viewName;
+  }
+
+  _teardownInactiveViews(activeViewName, previousViewName) {
+    return;
   }
 
   _buildSidebar() {
@@ -633,6 +672,16 @@ class HongLouMengApp {
     this.graph.showImportantOverview();
     this._renderOverviewDrawer();
     this._updateFloatingContext('默认概览');
+    this._setFacetState({
+      selectedCharacterIds: [],
+      selectedTags: [],
+      selectedFamily: null,
+      selectedChapter: null,
+      selectedCategory: null,
+      query: '',
+      breadcrumb: [{ label: '默认概览', type: 'overview' }],
+      sourceView: 'graph'
+    });
     this._updateActionStates();
     this._updateBackButton();
   }
@@ -840,6 +889,12 @@ _createFontAndThemeControls() {
     this.graph.showFullGraph();
     this._renderFullGraphDrawer();
     this._updateFloatingContext('全图浏览');
+    this._setFacetState({
+      selectedCharacterIds: [],
+      selectedTags: [],
+      breadcrumb: [{ label: '默认概览', type: 'overview' }, { label: '全图浏览', type: 'graph' }],
+      sourceView: 'graph'
+    });
     this._updateActionStates();
     this._updateBackButton();
   }
@@ -877,6 +932,12 @@ _createFontAndThemeControls() {
     }
 
     this._showCard(character);
+    this._setFacetState({
+      selectedCharacterIds: [characterId],
+      selectedFamily: character.family || null,
+      breadcrumb: [{ label: '默认概览', type: 'overview' }, { label: character.name, type: 'character', characterId }],
+      sourceView: this.activeView
+    });
     this._updateActionStates();
     this._updateBackButton();
     if (isGraphView) this._toggleSidebar(false);
@@ -898,6 +959,12 @@ _createFontAndThemeControls() {
     this.graph.showCharacterSet(topic.characterIds, { centerId: topic.focusId });
     this._renderTopicDrawer(topic);
     this._updateFloatingContext(`专题：${topic.title}`);
+    this._setFacetState({
+      selectedCharacterIds: topic.characterIds,
+      selectedTags: topic.tags || [],
+      breadcrumb: [{ label: '默认概览', type: 'overview' }, { label: topic.title, type: 'topic', topicId }],
+      sourceView: 'graph'
+    });
     this._updateActionStates();
     this._updateBackButton();
     this._toggleSidebar(false);
@@ -919,6 +986,12 @@ _createFontAndThemeControls() {
     this.graph.showCharacterSet(stage.characterIds, { centerId: stage.focusId });
     this._renderStageDrawer(stage);
     this._updateFloatingContext(`阶段：${stage.title}`);
+    this._setFacetState({
+      selectedCharacterIds: stage.characterIds,
+      selectedChapter: stage.range,
+      breadcrumb: [{ label: '默认概览', type: 'overview' }, { label: stage.title, type: 'stage', stageId }],
+      sourceView: 'graph'
+    });
     this._updateActionStates();
     this._updateBackButton();
     this._toggleSidebar(false);
@@ -944,6 +1017,12 @@ _createFontAndThemeControls() {
     this.graph.showCharacterSet(topIds, { centerId: familyCharacters[0].id });
     this._renderFamilyDrawer(family, familyCharacters);
     this._updateFloatingContext(`家族：${family}`);
+    this._setFacetState({
+      selectedCharacterIds: topIds,
+      selectedFamily: family,
+      breadcrumb: [{ label: '默认概览', type: 'overview' }, { label: family, type: 'family', family }],
+      sourceView: 'graph'
+    });
     this._updateActionStates();
     this._updateBackButton();
     this._toggleSidebar(false);
@@ -976,6 +1055,12 @@ _createFontAndThemeControls() {
     this.graph.selectNodes([leftId, rightId]);
     this._renderRelationshipDrawer(left, right);
     this._updateFloatingContext(`关系：${left.name} × ${right.name}`);
+    this._setFacetState({
+      selectedCharacterIds: networkIds,
+      selectedTags: [`${left.name} × ${right.name}`],
+      breadcrumb: [{ label: '默认概览', type: 'overview' }, { label: `${left.name} × ${right.name}`, type: 'relationship', leftId, rightId }],
+      sourceView: 'graph'
+    });
     this._updateActionStates();
     this._updateBackButton();
     this._toggleSidebar(false);
@@ -1250,6 +1335,7 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
 
   _updateFloatingContext(label) {
     this.els.fullscreenViewLabel.textContent = label;
+    this._renderGlobalContextBar();
   }
 
   _buildRelationshipSummary(characterId) {
@@ -1665,7 +1751,7 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
           ${character.alias?.length ? `<div class="card-alias">又名：${character.alias.join('、')}</div>` : ''}
           <div class="card-identity">${character.identity}</div>
           <div class="card-tags">
-            <span class="card-tag family" style="color:${familyColor};border-color:${familyColor}40;background:${familyColor}15">${character.family}</span>
+            <button class="card-tag family" data-tag-type="family" data-tag-value="${character.family}" style="color:${familyColor};border-color:${familyColor}40;background:${familyColor}15">${character.family}</button>
             <span class="card-tag ${character.gender === '男' ? 'gender-male' : 'gender-female'}">${character.gender}</span>
             <span class="card-tag card-tag-soft">重要度 ${character.importance}/5</span>
           </div>
@@ -1716,12 +1802,63 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
         this._showCard(targetCharacter);
       });
     });
+    this.els.cardContent.querySelectorAll('[data-tag-type]').forEach((item) => {
+      item.addEventListener('click', () => this._handleFacetTagSelection({
+        type: item.dataset.tagType,
+        value: item.dataset.tagValue,
+        view: 'card'
+      }));
+    });
 
     this.els.cardOverlay.classList.add('active');
   }
 
   _closeCard() {
     this.els.cardOverlay.classList.remove('active');
+  }
+
+  _setFacetState(nextState = {}) {
+    this.facetState = {
+      ...this.facetState,
+      ...nextState,
+      selectedCharacterIds: Array.from(new Set(nextState.selectedCharacterIds ?? this.facetState.selectedCharacterIds ?? [])),
+      selectedTags: Array.from(new Set(nextState.selectedTags ?? this.facetState.selectedTags ?? []))
+    };
+    this._renderGlobalContextBar();
+  }
+
+  _mergeFacetState(partial = {}) {
+    const next = { ...this.facetState };
+    if (partial.query !== undefined) next.query = partial.query;
+    if (partial.selectedFamily !== undefined) next.selectedFamily = partial.selectedFamily;
+    if (partial.selectedCategory !== undefined) next.selectedCategory = partial.selectedCategory;
+    if (partial.selectedChapter !== undefined) next.selectedChapter = partial.selectedChapter;
+    if (partial.view) next.sourceView = partial.view;
+    this._setFacetState(next);
+  }
+
+  _handleFacetTagSelection(payload = {}) {
+    if (!payload?.value) return;
+    if (payload.type === 'family') {
+      this._openFamily(payload.value);
+      return;
+    }
+  }
+
+  _clearFacetContext() {
+    this._showOverview();
+    this.graph.showImportantOverview();
+  }
+
+  _applyFacetStateToViews() {
+    return;
+  }
+
+  _renderGlobalContextBar() {
+    if (!this.els.globalContextBar) return;
+    this.els.globalContextBar.classList.remove('active');
+    if (this.els.contextBreadcrumbs) this.els.contextBreadcrumbs.innerHTML = '';
+    if (this.els.contextFacets) this.els.contextFacets.innerHTML = '';
   }
 
   _hideLoading() {

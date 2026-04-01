@@ -32,6 +32,9 @@ class RelationshipGraph {
     this._highlightRaf = null;
     this._resizeTimer = null;
     this._tooltipEl = null;
+    this._tickPending = false;
+    this._subSimulationMode = false;
+    this._linkMap = new Map();
 
     this.familyColors = {
       '贾家': '#C0392B',
@@ -188,13 +191,14 @@ _init() {
         color: this.relationColors[rel.type] || '#999',
         key: `${rel.source}-${rel.target}-${rel.type}`
       }));
+    this._linkMap = new Map(this.links.map((link) => [link.key, link]));
   }
 
-  _setupSimulation() {
+  _setupSimulation(nodes = this.nodes, links = this.links) {
     if (this.simulation) this.simulation.stop();
 
-    this.simulation = d3.forceSimulation(this.nodes)
-      .force('link', d3.forceLink(this.links)
+    this.simulation = d3.forceSimulation(nodes)
+      .force('link', d3.forceLink(links)
         .id(d => d.id)
         .distance(d => {
           if (d.type === 'blood' || d.type === 'marriage') return this.options.linkDistance * 0.82;
@@ -335,6 +339,10 @@ _init() {
   }
 
   _onTick() {
+    if (this._tickPending) return;
+    this._tickPending = true;
+    window.requestAnimationFrame(() => {
+      this._tickPending = false;
     const visibleNodeIds = this.currentVisibleNodeIds;
     const visibleLinkKeys = this.currentVisibleLinkKeys;
     const hasVisibilityFilter = visibleNodeIds.size > 0 || visibleLinkKeys.size > 0;
@@ -359,6 +367,7 @@ _init() {
       if (!hasVisibilityFilter || visibleNodeIds.has(d.id)) {
         this.setAttribute('transform', `translate(${d.x},${d.y})`);
       }
+    });
     });
   }
 
@@ -502,6 +511,7 @@ _init() {
     this.linkLabelElements.style('display', d => this.currentVisibleLinkKeys.has(this._getLinkKey(d)) ? null : 'none');
 
     this._updateLabelVisibility();
+    this._refreshSimulationForVisibleSubset();
 
     if (centerId) {
       const focusNode = this.nodes.find(node => node.id === centerId);
@@ -564,6 +574,25 @@ _init() {
       }
     });
     return keys;
+  }
+
+  _refreshSimulationForVisibleSubset() {
+    const visibleNodes = this.nodes.filter((node) => this.currentVisibleNodeIds.has(node.id));
+    const visibleLinks = this.links.filter((link) => this.currentVisibleLinkKeys.has(this._getLinkKey(link)));
+    const shouldUseSubset = visibleNodes.length > 0 && visibleNodes.length < Math.max(18, this.nodes.length * 0.72);
+    if (shouldUseSubset) {
+      this._subSimulationMode = true;
+      this._setupSimulation(visibleNodes, visibleLinks);
+      this._warmSimulation(0.18);
+      this._coolDownSimulation(480);
+      return;
+    }
+    if (this._subSimulationMode) {
+      this._subSimulationMode = false;
+      this._setupSimulation(this.nodes, this.links);
+      this._warmSimulation(0.16);
+      this._coolDownSimulation(520);
+    }
   }
 
   setInteractionMode(mode) {
@@ -736,6 +765,15 @@ _init() {
     }
 
     return matches;
+  }
+
+  applyFacetSelection(characterIds = []) {
+    const ids = new Set(characterIds || []);
+    if (!ids.size) {
+      this.selectNodes([]);
+      return;
+    }
+    this.selectNodes([...ids]);
   }
 
   getCharacterRelations(characterId) {

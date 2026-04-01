@@ -9,6 +9,11 @@ class TreeView {
     this.searchQuery = '';
     this.expandedNodes = new Set();
     this.familyTrees = new Map();
+    this._searchTimer = null;
+    this._eventsBound = false;
+    this.onTagClick = null;
+    this.onFacetChange = null;
+    this.relatedCharacterIds = new Set();
 
     this.familyColors = {
       '贾家': '#C0392B',
@@ -35,6 +40,11 @@ class TreeView {
     this.characterMap = new Map();
     this.familyTrees = new Map();
     this.characters.forEach((character) => this.characterMap.set(character.id, character));
+  }
+
+  setFacetContext(facetState = {}) {
+    this.relatedCharacterIds = new Set(facetState.selectedCharacterIds || []);
+    if (facetState.selectedFamily) this.currentFamily = facetState.selectedFamily;
   }
 
   render(family) {
@@ -131,7 +141,7 @@ class TreeView {
     `;
 
     this.container.appendChild(controls);
-    this._bindEvents();
+    if (!this._eventsBound) this._bindEvents();
   }
 
   _updateTreeContent() {
@@ -182,7 +192,7 @@ class TreeView {
       if (span) span.textContent = `${treeData.mainlineCount} 位主线人物`;
     }
 
-    this._bindTreeClickEvents();
+    this._syncTreeHighlights();
   }
 
   _getFamilyCharacters(family) {
@@ -420,22 +430,19 @@ class TreeView {
   }
 
   _bindEvents() {
-    this.container.querySelectorAll('.tree-family-tab').forEach((button) => {
-      button.addEventListener('click', () => {
-        this.searchQuery = '';
-        this.render(button.dataset.family);
-        this._scrollToTop();
-      });
-    });
-
+    this._eventsBound = true;
     const searchInput = this.container.querySelector('.tree-search-input');
     if (searchInput) {
       let searchIsComposing = false;
       
       const handleSearch = (event) => {
         if (searchIsComposing) return;
-        this.searchQuery = event.target.value;
-        this._updateTreeContent();
+        window.clearTimeout(this._searchTimer);
+        this._searchTimer = window.setTimeout(() => {
+          this.searchQuery = event.target.value;
+          this._updateTreeContent();
+          this._emitFacetChange();
+        }, 160);
       };
 
       searchInput.addEventListener('compositionstart', () => {
@@ -450,53 +457,54 @@ class TreeView {
       searchInput.addEventListener('input', handleSearch);
     }
 
-    this.container.querySelectorAll('[data-action="expand-all"]').forEach((button) => {
-      button.addEventListener('click', () => {
-        this._visitTreeNodes((node) => this.expandedNodes.add(node.id));
-        this._updateTreeContent();
-      });
-    });
+    this.container.addEventListener('click', (event) => {
+      const familyTab = event.target.closest('.tree-family-tab');
+      if (familyTab) {
+        this.searchQuery = '';
+        this.render(familyTab.dataset.family);
+        this._scrollToTop();
+        this._emitFacetChange();
+        return;
+      }
 
-    this.container.querySelectorAll('[data-action="collapse-all"]').forEach((button) => {
-      button.addEventListener('click', () => {
-        this.expandedNodes.clear();
-        this._updateTreeContent();
-      });
-    });
+      const actionButton = event.target.closest('[data-action]');
+      if (actionButton) {
+        if (actionButton.dataset.action === 'expand-all') {
+          this._visitTreeNodes((node) => this.expandedNodes.add(node.id));
+          this._updateTreeContent();
+        }
+        if (actionButton.dataset.action === 'collapse-all') {
+          this.expandedNodes.clear();
+          this._updateTreeContent();
+        }
+        return;
+      }
 
-    this._bindTreeClickEvents();
-  }
-
-  _bindTreeClickEvents() {
-    this.container.querySelectorAll('[data-toggle-id]').forEach((button) => {
-      button.addEventListener('click', () => {
-        const nodeId = button.dataset.toggleId;
-        if (!nodeId || button.disabled) return;
-        
+      const toggleBtn = event.target.closest('[data-toggle-id]');
+      if (toggleBtn) {
+        const nodeId = toggleBtn.dataset.toggleId;
+        if (!nodeId || toggleBtn.disabled) return;
         if (this.expandedNodes.has(nodeId)) {
           this.expandedNodes.delete(nodeId);
-          button.classList.remove('expanded');
-          button.ariaLabel = '展开分支';
-          button.innerHTML = '▸';
+          toggleBtn.classList.remove('expanded');
+          toggleBtn.ariaLabel = '展开分支';
+          toggleBtn.innerHTML = '▸';
         } else {
           this.expandedNodes.add(nodeId);
-          button.classList.add('expanded');
-          button.ariaLabel = '收起分支';
-          button.innerHTML = '▾';
+          toggleBtn.classList.add('expanded');
+          toggleBtn.ariaLabel = '收起分支';
+          toggleBtn.innerHTML = '▾';
         }
-        
         const childrenContainer = this.container.querySelector(`[data-node-id="${nodeId}"]`);
-        if (childrenContainer) {
-          childrenContainer.classList.toggle('visible');
-        }
-      });
-    });
+        if (childrenContainer) childrenContainer.classList.toggle('visible');
+        return;
+      }
 
-    this.container.querySelectorAll('[data-char-id]').forEach((button) => {
-      button.addEventListener('click', () => {
-        const character = this.characterMap.get(button.dataset.charId);
+      const charBtn = event.target.closest('[data-char-id]');
+      if (charBtn) {
+        const character = this.characterMap.get(charBtn.dataset.charId);
         if (character && this.onCharacterClick) this.onCharacterClick(character);
-      });
+      }
     });
   }
 
@@ -531,12 +539,29 @@ class TreeView {
     });
   }
 
+  _syncTreeHighlights() {
+    this.container.querySelectorAll('.tree-person-card').forEach((card) => {
+      card.classList.toggle('highlighted', this.relatedCharacterIds.has(card.dataset.charId));
+    });
+  }
+
   _scrollToTop() {
     const outline = this.container.querySelector('.tree-outline');
     if (outline) outline.scrollTo({ top: 0, behavior: 'instant' });
   }
 
   destroy() {
+    window.clearTimeout(this._searchTimer);
+    this._eventsBound = false;
     this.container.innerHTML = '';
+  }
+
+  _emitFacetChange() {
+    if (!this.onFacetChange) return;
+    this.onFacetChange({
+      view: 'tree',
+      selectedFamily: this.currentFamily,
+      query: this.searchQuery.trim() || ''
+    });
   }
 }

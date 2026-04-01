@@ -13,6 +13,13 @@ class KnowledgeView {
     this.sortBy = 'relevance';
     this.expandedIds = new Set();
     this.displayCount = 40;
+    this._searchTimer = null;
+    this._eventsBound = false;
+    this.onTagClick = null;
+    this.onFacetChange = null;
+    this.relatedCharacterIds = new Set();
+    this.characterKnowledgeMap = new Map();
+    this.tagIndex = new Map();
 
     this.categoryConfig = {
       '判词': { icon: '📜', color: '#8B2500' },
@@ -44,6 +51,12 @@ class KnowledgeView {
     this.characters = characters || [];
     this.characterMap = new Map();
     this.characters.forEach((character) => this.characterMap.set(character.id, character));
+    this._buildIndexes();
+  }
+
+  setFacetContext(facetState = {}) {
+    this.relatedCharacterIds = new Set(facetState.selectedCharacterIds || []);
+    if (facetState.selectedChapter) this.chapterFilter = String(facetState.selectedChapter);
   }
 
   render() {
@@ -170,7 +183,7 @@ class KnowledgeView {
       </section>
     `;
 
-    this._bindEvents();
+    if (!this._eventsBound) this._bindEvents();
   }
 
   _updateContent() {
@@ -193,7 +206,7 @@ class KnowledgeView {
     }
 
     this._updateCategoryActiveState();
-    this._bindCardEvents();
+    this._syncKnowledgeHighlights();
     this._scrollToTop();
   }
 
@@ -267,7 +280,21 @@ class KnowledgeView {
   }
 
   _getFilteredItems() {
-    let items = this.knowledge.map((item) => ({ ...item, _score: this._getRelevanceScore(item) }));
+    let source = this.knowledge;
+    if (this.searchQuery.trim()) {
+      const query = this.searchQuery.trim().toLowerCase();
+      const indexed = new Set();
+      this.tagIndex.forEach((matchedItems, key) => {
+        if (key.includes(query)) matchedItems.forEach((item) => indexed.add(item));
+      });
+      this.characterKnowledgeMap.forEach((matchedItems, characterId) => {
+        const name = (this.characterMap.get(characterId)?.name || '').toLowerCase();
+        if (name.includes(query)) matchedItems.forEach((item) => indexed.add(item));
+      });
+      if (indexed.size) source = [...indexed];
+    }
+
+    let items = source.map((item) => ({ ...item, _score: this._getRelevanceScore(item) }));
 
     if (this.activeCategory !== 'all') {
       items = items.filter((item) => item.category === this.activeCategory);
@@ -402,17 +429,18 @@ class KnowledgeView {
   }
 
   _bindEvents() {
+    this._eventsBound = true;
     const searchInput = this.container.querySelector('.knowledge-search-input');
     if (searchInput) {
       let searchIsComposing = false;
-      let searchTimer = null;
       
       const handleSearch = (event) => {
         if (searchIsComposing) return;
-        clearTimeout(searchTimer);
-        searchTimer = setTimeout(() => {
+        clearTimeout(this._searchTimer);
+        this._searchTimer = setTimeout(() => {
           this.searchQuery = event.target.value;
           this._updateContent();
+          this._emitFacetChange();
         }, 180);
       };
 
@@ -428,82 +456,84 @@ class KnowledgeView {
       searchInput.addEventListener('input', handleSearch);
     }
 
-    this.container.querySelectorAll('[data-cat]').forEach((button) => {
-      button.addEventListener('click', () => {
-        this.activeCategory = button.dataset.cat;
+    this.container.addEventListener('click', (event) => {
+      const categoryButton = event.target.closest('[data-cat]');
+      if (categoryButton) {
+        this.activeCategory = categoryButton.dataset.cat;
         this.activeSubcategory = 'all';
         this._updateContent();
         this._scrollToTop();
-      });
-    });
+        this._emitFacetChange();
+        return;
+      }
 
-    this.container.querySelectorAll('[data-subcategory]').forEach((button) => {
-      button.addEventListener('click', () => {
-        this.activeSubcategory = button.dataset.subcategory;
+      const subcategoryButton = event.target.closest('[data-subcategory]');
+      if (subcategoryButton) {
+        this.activeSubcategory = subcategoryButton.dataset.subcategory;
         this._updateContent();
         this._scrollToTop();
-      });
-    });
+        return;
+      }
 
-    this.container.querySelectorAll('[data-tag]').forEach((button) => {
-      button.addEventListener('click', () => {
-        this.searchQuery = button.dataset.tag || '';
-        const searchInput = this.container.querySelector('.knowledge-search-input');
-        if (searchInput) searchInput.value = this.searchQuery;
+      const tagButton = event.target.closest('[data-tag]');
+      if (tagButton) {
+        const tagValue = tagButton.dataset.tag || '';
+        this.searchQuery = tagValue;
+        const input = this.container.querySelector('.knowledge-search-input');
+        if (input) input.value = tagValue;
         this._updateContent();
         this._scrollToTop();
-      });
-    });
+        if (this.onTagClick) this.onTagClick({ type: 'tag', value: tagValue, view: 'knowledge' });
+        this._emitFacetChange();
+        return;
+      }
 
-    this.container.querySelectorAll('.knowledge-select').forEach((select) => {
-      select.addEventListener('change', () => {
-        if (select.dataset.filter === 'chapter') this.chapterFilter = select.value;
-        if (select.dataset.filter === 'sort') this.sortBy = select.value;
+      const charButton = event.target.closest('[data-char-id]');
+      if (charButton) {
+        event.stopPropagation();
+        const character = this.characterMap.get(charButton.dataset.charId);
+        if (character && this.onCharacterClick) this.onCharacterClick(character);
+        return;
+      }
+
+      const expandButton = event.target.closest('[data-expand-id]');
+      if (expandButton) {
+        const id = expandButton.dataset.expandId;
+        if (!id) return;
+        if (this.expandedIds.has(id)) this.expandedIds.delete(id);
+        else this.expandedIds.add(id);
         this._updateContent();
-        this._scrollToTop();
-      });
-    });
+        return;
+      }
 
-    this.container.querySelectorAll('[data-action="clear-filters"]').forEach((button) => {
-      button.addEventListener('click', () => {
+      const actionButton = event.target.closest('[data-action]');
+      if (!actionButton) return;
+      if (actionButton.dataset.action === 'load-more') {
+        this._loadMore();
+        return;
+      }
+      if (actionButton.dataset.action === 'clear-filters') {
         this.activeCategory = 'all';
         this.activeSubcategory = 'all';
         this.chapterFilter = 'all';
         this.sortBy = 'relevance';
         this.searchQuery = '';
-        const searchInput = this.container.querySelector('.knowledge-search-input');
-        if (searchInput) searchInput.value = '';
+        const input = this.container.querySelector('.knowledge-search-input');
+        if (input) input.value = '';
         this._updateContent();
         this._scrollToTop();
-      });
+        this._emitFacetChange();
+      }
     });
 
-    this._bindCardEvents();
-  }
-
-  _bindCardEvents() {
-    this.container.querySelectorAll('[data-char-id]').forEach((button) => {
-      button.addEventListener('click', (event) => {
-        event.stopPropagation();
-        const character = this.characterMap.get(button.dataset.charId);
-        if (character && this.onCharacterClick) this.onCharacterClick(character);
-      });
-    });
-
-    this.container.querySelectorAll('[data-expand-id]').forEach((button) => {
-      button.addEventListener('click', () => {
-        const id = button.dataset.expandId;
-        if (!id) return;
-        if (this.expandedIds.has(id)) this.expandedIds.delete(id);
-        else this.expandedIds.add(id);
-        this._updateContent();
-      });
-    });
-
-    this.container.querySelectorAll('[data-action="load-more"]').forEach((button) => {
-      button.addEventListener('click', () => {
-        this._loadMore();
-      });
+    this.container.addEventListener('change', (event) => {
+      const select = event.target.closest('.knowledge-select');
+      if (!select) return;
+      if (select.dataset.filter === 'chapter') this.chapterFilter = select.value;
+      if (select.dataset.filter === 'sort') this.sortBy = select.value;
+      this._updateContent();
+      this._scrollToTop();
+      this._emitFacetChange();
     });
   }
 
@@ -523,7 +553,7 @@ class KnowledgeView {
       subtitleEl.textContent = `当前显示 ${Math.min(this.displayCount, filteredItems.length)} / ${filteredItems.length} 条，支持人物跳转、长文展开与多维检索`;
     }
 
-    this._bindCardEvents();
+    this._syncKnowledgeHighlights();
   }
 
   _scrollToTop() {
@@ -548,10 +578,44 @@ class KnowledgeView {
   }
 
   getCharacterKnowledge(characterId) {
-    return this.knowledge.filter((item) => (item.relatedCharacters || []).includes(characterId));
+    return this.characterKnowledgeMap.get(characterId) || [];
   }
 
   destroy() {
+    clearTimeout(this._searchTimer);
+    this._eventsBound = false;
     this.container.innerHTML = '';
+  }
+
+  _buildIndexes() {
+    this.characterKnowledgeMap = new Map();
+    this.tagIndex = new Map();
+    this.knowledge.forEach((item) => {
+      (item.relatedCharacters || []).forEach((id) => {
+        if (!this.characterKnowledgeMap.has(id)) this.characterKnowledgeMap.set(id, []);
+        this.characterKnowledgeMap.get(id).push(item);
+      });
+      (item.tags || []).forEach((tag) => {
+        const key = String(tag).toLowerCase();
+        if (!this.tagIndex.has(key)) this.tagIndex.set(key, []);
+        this.tagIndex.get(key).push(item);
+      });
+    });
+  }
+
+  _syncKnowledgeHighlights() {
+    this.container.querySelectorAll('.knowledge-char-pill').forEach((button) => {
+      button.classList.toggle('is-related', this.relatedCharacterIds.has(button.dataset.charId));
+    });
+  }
+
+  _emitFacetChange() {
+    if (!this.onFacetChange) return;
+    this.onFacetChange({
+      view: 'knowledge',
+      query: this.searchQuery.trim() || '',
+      selectedCategory: this.activeCategory !== 'all' ? this.activeCategory : null,
+      selectedChapter: this.chapterFilter !== 'all' ? this.chapterFilter : null
+    });
   }
 }

@@ -11,6 +11,14 @@ class ListView {
     this.filterFamily = 'all';
     this.filterGender = 'all';
     this.searchQuery = '';
+    this._searchTimer = null;
+    this._controlsBound = false;
+    this._listClickBound = false;
+    this.visibleCount = 48;
+    this.onTagClick = null;
+    this.onFacetChange = null;
+    this.relatedCharacterIds = new Set();
+    this.relationCountMap = new Map();
 
     this.familyColors = {
       '贾家': '#C0392B',
@@ -27,6 +35,19 @@ class ListView {
     this.relationships = relationships;
     this.characterMap = new Map();
     characters.forEach(c => this.characterMap.set(c.id, c));
+    this.relationCountMap = new Map();
+    relationships.forEach((r) => {
+      const s = typeof r.source === 'string' ? r.source : r.source.id;
+      const t = typeof r.target === 'string' ? r.target : r.target.id;
+      this.relationCountMap.set(s, (this.relationCountMap.get(s) || 0) + 1);
+      this.relationCountMap.set(t, (this.relationCountMap.get(t) || 0) + 1);
+    });
+  }
+
+  setFacetContext(facetState = {}) {
+    const ids = facetState.selectedCharacterIds || [];
+    this.relatedCharacterIds = new Set(ids);
+    if (facetState.selectedFamily) this.filterFamily = facetState.selectedFamily;
   }
 
   render() {
@@ -71,46 +92,7 @@ class ListView {
     `;
     this.container.appendChild(controls);
 
-    // Bind control events
-    let searchIsComposing = false;
-    
-    const handleSearch = (e) => {
-      if (searchIsComposing) return;
-      this.searchQuery = e.target.value;
-      this._renderList();
-      this._scrollToTop();
-    };
-
-    controls.querySelector('.list-search-input').addEventListener('compositionstart', () => {
-      searchIsComposing = true;
-    });
-
-    controls.querySelector('.list-search-input').addEventListener('compositionend', (e) => {
-      searchIsComposing = false;
-      handleSearch(e);
-    });
-
-    controls.querySelector('.list-search-input').addEventListener('input', handleSearch);
-    controls.querySelectorAll('.list-filter-select').forEach(sel => {
-      sel.addEventListener('change', () => {
-        if (sel.dataset.filter === 'family') this.filterFamily = sel.value;
-        if (sel.dataset.filter === 'gender') this.filterGender = sel.value;
-        this._renderList();
-        this._scrollToTop();
-      });
-    });
-    controls.querySelector('.list-sort-select').addEventListener('change', (e) => {
-      this.sortBy = e.target.value;
-      this._renderList();
-      this._scrollToTop();
-    });
-    controls.querySelectorAll('.list-view-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        this.viewMode = btn.dataset.mode;
-        controls.querySelectorAll('.list-view-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === this.viewMode));
-        this._renderList();
-      });
-    });
+    if (!this._controlsBound) this._bindControls();
 
     // List container
     const listEl = document.createElement('div');
@@ -119,6 +101,61 @@ class ListView {
     this.container.appendChild(listEl);
 
     this._renderList();
+  }
+
+  _bindControls() {
+    this._controlsBound = true;
+    const controls = this.container.querySelector('.list-controls');
+    if (!controls) return;
+
+    let searchIsComposing = false;
+    const searchInput = controls.querySelector('.list-search-input');
+    if (searchInput) {
+      const handleSearch = (e) => {
+        if (searchIsComposing) return;
+        window.clearTimeout(this._searchTimer);
+        this._searchTimer = window.setTimeout(() => {
+          this.searchQuery = e.target.value;
+          this._renderList();
+          this._scrollToTop();
+          this._emitFacetChange();
+        }, 160);
+      };
+      searchInput.addEventListener('compositionstart', () => {
+        searchIsComposing = true;
+      });
+      searchInput.addEventListener('compositionend', (e) => {
+        searchIsComposing = false;
+        handleSearch(e);
+      });
+      searchInput.addEventListener('input', handleSearch);
+    }
+
+    controls.addEventListener('change', (e) => {
+      const target = e.target;
+      if (!(target instanceof HTMLElement)) return;
+      if (target.matches('.list-filter-select')) {
+        if (target.dataset.filter === 'family') this.filterFamily = target.value;
+        if (target.dataset.filter === 'gender') this.filterGender = target.value;
+        this.visibleCount = 48;
+        this._renderList();
+        this._scrollToTop();
+        this._emitFacetChange();
+      }
+      if (target.matches('.list-sort-select')) {
+        this.sortBy = target.value;
+        this._renderList();
+        this._scrollToTop();
+      }
+    });
+
+    controls.addEventListener('click', (e) => {
+      const btn = e.target.closest('.list-view-btn');
+      if (!btn) return;
+      this.viewMode = btn.dataset.mode;
+      controls.querySelectorAll('.list-view-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === this.viewMode));
+      this._renderList();
+    });
   }
 
   _scrollToTop() {
@@ -178,6 +215,7 @@ class ListView {
     if (!listEl) return;
 
     const chars = this._getFilteredCharacters();
+    const visibleChars = chars.slice(0, this.visibleCount);
 
     if (!chars.length) {
       listEl.innerHTML = '<div class="list-empty">没有匹配的人物</div>';
@@ -185,40 +223,46 @@ class ListView {
     }
 
     // Stats bar
-    const statsHtml = `<div class="list-stats">共 ${chars.length} 位人物</div>`;
+    const statsHtml = `<div class="list-stats">共 ${chars.length} 位人物${chars.length > visibleChars.length ? ` · 已显示 ${visibleChars.length}` : ''}</div>`;
 
     if (this.viewMode === 'card') {
-      listEl.innerHTML = statsHtml + `<div class="list-card-grid">${chars.map(c => this._renderCardItem(c)).join('')}</div>`;
+      listEl.innerHTML = statsHtml + `<div class="list-card-grid">${visibleChars.map(c => this._renderCardItem(c)).join('')}</div>${chars.length > visibleChars.length ? `<button class="list-load-more" data-action="load-more">加载更多（${visibleChars.length}/${chars.length}）</button>` : ''}`;
     } else {
-      listEl.innerHTML = statsHtml + `<div class="list-compact-table">${chars.map(c => this._renderCompactItem(c)).join('')}</div>`;
+      listEl.innerHTML = statsHtml + `<div class="list-compact-table">${visibleChars.map(c => this._renderCompactItem(c)).join('')}</div>${chars.length > visibleChars.length ? `<button class="list-load-more" data-action="load-more">加载更多（${visibleChars.length}/${chars.length}）</button>` : ''}`;
     }
 
-    // Bind clicks
-    listEl.querySelectorAll('[data-char-id]').forEach(el => {
-      el.addEventListener('click', () => {
-        const char = this.characterMap.get(el.dataset.charId);
-        if (char && this.onCharacterClick) this.onCharacterClick(char);
+    if (!this._listClickBound) {
+      this._listClickBound = true;
+      listEl.addEventListener('click', (e) => {
+        const charEl = e.target.closest('[data-char-id]');
+        if (charEl) {
+          const char = this.characterMap.get(charEl.dataset.charId);
+          if (char && this.onCharacterClick) this.onCharacterClick(char);
+          return;
+        }
+        const actionEl = e.target.closest('[data-action="load-more"]');
+        if (actionEl) {
+          this.visibleCount += 48;
+          this._renderList();
+        }
       });
-    });
+    }
   }
 
   _renderCardItem(c) {
     const familyGroup = this.familyColors[c.family] ? c.family : '其他';
     const color = this.familyColors[familyGroup];
-    const relCount = this.relationships.filter(r => {
-      const s = typeof r.source === 'string' ? r.source : r.source.id;
-      const t = typeof r.target === 'string' ? r.target : r.target.id;
-      return s === c.id || t === c.id;
-    }).length;
+    const relCount = this.relationCountMap.get(c.id) || 0;
+    const isRelated = this.relatedCharacterIds.has(c.id);
 
     return `
-      <div class="list-card-item" data-char-id="${c.id}">
+      <div class="list-card-item ${isRelated ? 'is-related' : ''}" data-char-id="${c.id}">
         <div class="list-card-avatar" style="background:${color}">${c.name.substring(0, 1)}</div>
         <div class="list-card-body">
           <div class="list-card-name">${c.name}${c.pinyin ? `<span class="list-card-pinyin">${c.pinyin}</span>` : ''}</div>
           <div class="list-card-identity">${c.identity || ''}</div>
           <div class="list-card-meta">
-            <span class="list-card-tag" style="color:${color};border-color:${color}40">${familyGroup}</span>
+            <button class="list-card-tag" data-tag-type="family" data-tag-value="${familyGroup}" style="color:${color};border-color:${color}40">${familyGroup}</button>
             <span class="list-card-tag ${c.gender === '女' ? 'female' : 'male'}">${c.gender}</span>
             <span class="list-card-tag soft">★${c.importance || 1}</span>
             <span class="list-card-tag soft">${relCount}条关系</span>
@@ -252,6 +296,18 @@ class ListView {
   }
 
   destroy() {
+    window.clearTimeout(this._searchTimer);
+    this._controlsBound = false;
+    this._listClickBound = false;
     this.container.innerHTML = '';
+  }
+
+  _emitFacetChange() {
+    if (!this.onFacetChange) return;
+    this.onFacetChange({
+      view: 'list',
+      selectedFamily: this.filterFamily !== 'all' ? this.filterFamily : null,
+      query: this.searchQuery.trim() || ''
+    });
   }
 }

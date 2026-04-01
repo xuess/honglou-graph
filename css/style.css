@@ -243,6 +243,90 @@ body {
   transition: background 0.3s ease;
 }
 
+.global-context-bar {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(139, 37, 0, 0.1);
+  background: rgba(255, 248, 238, 0.88);
+  position: sticky;
+  top: 72px;
+  z-index: 18;
+  backdrop-filter: blur(4px);
+}
+
+.global-context-bar.active {
+  display: flex;
+}
+
+.context-breadcrumbs,
+.context-facets {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.context-breadcrumbs {
+  flex: 1.2;
+}
+
+.context-facets {
+  flex: 1.8;
+}
+
+.context-crumb,
+.context-pill {
+  border-radius: 999px;
+  border: 1px solid rgba(139, 37, 0, 0.14);
+  background: rgba(255,255,255,0.72);
+  color: var(--theme-ink, var(--color-ink));
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.context-crumb {
+  cursor: pointer;
+}
+
+.context-crumb.active,
+.context-pill {
+  background: rgba(139, 37, 0, 0.08);
+}
+
+.context-empty {
+  color: rgba(44, 24, 16, 0.66);
+  font-size: 13px;
+}
+
+.context-actions {
+  flex-shrink: 0;
+}
+
+.list-card-item.is-related,
+.knowledge-char-pill.is-related,
+.tree-person-card.highlighted {
+  box-shadow: 0 0 0 2px rgba(212, 160, 23, 0.45);
+}
+
+.list-load-more {
+  margin: 14px auto 0;
+  display: block;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  background: rgba(139, 37, 0, 0.08);
+  color: var(--theme-primary, var(--color-primary));
+  cursor: pointer;
+}
+
+.card-tag.family {
+  appearance: none;
+  cursor: pointer;
+}
+
 body.theme-red-gold {
   background: linear-gradient(180deg, #f9efe0 0%, var(--theme-parchment) 100%);
   color: var(--theme-ink);
