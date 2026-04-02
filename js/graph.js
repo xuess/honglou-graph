@@ -35,6 +35,8 @@ class RelationshipGraph {
     this._tickPending = false;
     this._subSimulationMode = false;
     this._linkMap = new Map();
+    this._cachedVisibleNodes = [];
+    this._searchIndex = [];
 
     this.familyColors = {
       '贾家': '#C0392B',
@@ -192,6 +194,10 @@ _init() {
         key: `${rel.source}-${rel.target}-${rel.type}`
       }));
     this._linkMap = new Map(this.links.map((link) => [link.key, link]));
+    this._searchIndex = this.nodes.map((node) => ({
+      node,
+      haystack: [node.character.name, ...(node.character.alias || []), node.character.identity, node.character.family].join(' ').toLowerCase()
+    }));
   }
 
   _setupSimulation(nodes = this.nodes, links = this.links) {
@@ -224,6 +230,7 @@ _init() {
 
   _warmSimulation(alpha = 0.22) {
     if (!this.simulation) return;
+    if (alpha <= 0.12 && this.simulation.alpha() > alpha) return;
     this.simulation.alpha(alpha).restart();
   }
 
@@ -505,6 +512,7 @@ _init() {
   _setVisibility(nodeIds, linkKeys, { centerId = null } = {}) {
     this.currentVisibleNodeIds = new Set(nodeIds);
     this.currentVisibleLinkKeys = new Set(linkKeys);
+    this._cachedVisibleNodes = this.nodes.filter(node => this.currentVisibleNodeIds.has(node.id));
 
     this.nodeElements.style('display', d => this.currentVisibleNodeIds.has(d.id) ? null : 'none');
     this.linkElements.style('display', d => this.currentVisibleLinkKeys.has(this._getLinkKey(d)) ? null : 'none');
@@ -520,7 +528,7 @@ _init() {
   }
 
   _getVisibleNodes() {
-    return this.nodes.filter(node => this.currentVisibleNodeIds.has(node.id));
+    return this._cachedVisibleNodes.length ? this._cachedVisibleNodes : this.nodes.filter(node => this.currentVisibleNodeIds.has(node.id));
   }
 
   fitVisibleGraph({ padding = 72, maxScale = 1.08, minScale = 0.62, duration = 520 } = {}) {
@@ -753,10 +761,10 @@ _init() {
       return [];
     }
 
-    const matches = this.nodes.filter(node => {
-      const haystack = [node.character.name, ...(node.character.alias || []), node.character.identity, node.character.family].join(' ').toLowerCase();
-      return haystack.includes(query.toLowerCase());
-    }).map(node => node.character);
+    const normalized = query.toLowerCase();
+    const matches = this._searchIndex
+      .filter(entry => entry.haystack.includes(normalized))
+      .map(entry => entry.node.character);
 
     if (matches.length) {
       const ids = new Set(matches.map(match => match.id));

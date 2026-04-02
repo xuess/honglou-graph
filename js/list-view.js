@@ -16,7 +16,6 @@ class ListView {
     this._listClickBound = false;
     this.visibleCount = 48;
     this.onTagClick = null;
-    this.onFacetChange = null;
     this.relatedCharacterIds = new Set();
     this.relationCountMap = new Map();
 
@@ -118,7 +117,6 @@ class ListView {
           this.searchQuery = e.target.value;
           this._renderList();
           this._scrollToTop();
-          this._emitFacetChange();
         }, 160);
       };
       searchInput.addEventListener('compositionstart', () => {
@@ -140,7 +138,6 @@ class ListView {
         this.visibleCount = 48;
         this._renderList();
         this._scrollToTop();
-        this._emitFacetChange();
       }
       if (target.matches('.list-sort-select')) {
         this.sortBy = target.value;
@@ -302,12 +299,4 @@ class ListView {
     this.container.innerHTML = '';
   }
 
-  _emitFacetChange() {
-    if (!this.onFacetChange) return;
-    this.onFacetChange({
-      view: 'list',
-      selectedFamily: this.filterFamily !== 'all' ? this.filterFamily : null,
-      query: this.searchQuery.trim() || ''
-    });
-  }
 }

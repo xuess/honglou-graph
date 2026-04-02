@@ -250,7 +250,23 @@ class HongLouMengApp {
     this.els.sidebarBackdrop.addEventListener('click', () => this._toggleSidebar(false));
     this.els.drawerClose.addEventListener('click', () => this._closeDrawer());
     this.els.cardOverlay.addEventListener('click', (e) => {
-      if (e.target === this.els.cardOverlay) this._closeCard();
+      if (e.target !== this.els.cardOverlay) return;
+
+      const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height'), 10) || 72;
+      if (e.clientY <= headerHeight + 16) {
+        const previousDisplay = this.els.cardOverlay.style.display;
+        this.els.cardOverlay.style.display = 'none';
+        const underlying = document.elementFromPoint(e.clientX, e.clientY);
+        this.els.cardOverlay.style.display = previousDisplay;
+        const tab = underlying?.closest?.('.view-nav-tab');
+        if (tab?.dataset?.view) {
+          this._forceCloseOverlays();
+          this._switchView(tab.dataset.view);
+          return;
+        }
+      }
+
+      this._closeCard();
     });
 
     // Mobile search
@@ -361,6 +377,7 @@ class HongLouMengApp {
       this.els.viewNav.addEventListener('click', (e) => {
         const tab = e.target.closest('.view-nav-tab');
         if (tab && tab.dataset.view) {
+          this._forceCloseOverlays();
           this._switchView(tab.dataset.view);
         }
       });
@@ -413,14 +430,12 @@ class HongLouMengApp {
       this.treeView = new TreeView(this.els.treeContainer);
       this.treeView.setData(this.characters, this.relationships);
       this.treeView.onCharacterClick = (character) => this._openCharacter(character.id, { focusNeighbors: true });
-      this.treeView.onFacetChange = (facet) => this._mergeFacetState(facet);
     }
 
     if (this.els.listContainer) {
       this.listView = new ListView(this.els.listContainer);
       this.listView.setData(this.characters, this.relationships);
       this.listView.onCharacterClick = (character) => this._openCharacter(character.id, { focusNeighbors: true });
-      this.listView.onFacetChange = (facet) => this._mergeFacetState(facet);
     }
 
     if (this.els.knowledgeContainer) {
@@ -428,12 +443,17 @@ class HongLouMengApp {
       this.knowledgeView.setData(this.knowledge, this.characters);
       this.knowledgeView.onCharacterClick = (characterId) => this._openCharacter(characterId, { focusNeighbors: true });
       this.knowledgeView.onTagClick = (payload) => this._handleFacetTagSelection(payload);
-      this.knowledgeView.onFacetChange = (facet) => this._mergeFacetState(facet);
     }
   }
 
   _switchView(viewName) {
     if (this.activeView === viewName) return;
+
+    this._closeCard();
+    this._closeDrawer();
+    if (this.isFullscreen && viewName !== 'graph') {
+      this._toggleFullscreen(false);
+    }
 
     const previousView = this.activeView;
 
@@ -494,6 +514,15 @@ class HongLouMengApp {
     this._applyFacetStateToViews();
 
     location.hash = viewName;
+  }
+
+  _forceCloseOverlays() {
+    if (this.els.cardOverlay) this.els.cardOverlay.classList.remove('active');
+    if (this.els.cardContent) this.els.cardContent.innerHTML = '';
+    if (this.els.detailDrawer) {
+      this.els.detailDrawer.classList.remove('active');
+      this.els.detailDrawer.classList.add('desktop-hidden');
+    }
   }
 
   _teardownInactiveViews(activeViewName, previousViewName) {
@@ -1815,6 +1844,7 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
 
   _closeCard() {
     this.els.cardOverlay.classList.remove('active');
+    this._setHtml(this.els.cardContent, '');
   }
 
   _setFacetState(nextState = {}) {
@@ -1828,13 +1858,7 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
   }
 
   _mergeFacetState(partial = {}) {
-    const next = { ...this.facetState };
-    if (partial.query !== undefined) next.query = partial.query;
-    if (partial.selectedFamily !== undefined) next.selectedFamily = partial.selectedFamily;
-    if (partial.selectedCategory !== undefined) next.selectedCategory = partial.selectedCategory;
-    if (partial.selectedChapter !== undefined) next.selectedChapter = partial.selectedChapter;
-    if (partial.view) next.sourceView = partial.view;
-    this._setFacetState(next);
+    return;
   }
 
   _handleFacetTagSelection(payload = {}) {

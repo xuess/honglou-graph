@@ -12,7 +12,6 @@ class TreeView {
     this._searchTimer = null;
     this._eventsBound = false;
     this.onTagClick = null;
-    this.onFacetChange = null;
     this.relatedCharacterIds = new Set();
 
     this.familyColors = {
@@ -441,7 +440,6 @@ class TreeView {
         this._searchTimer = window.setTimeout(() => {
           this.searchQuery = event.target.value;
           this._updateTreeContent();
-          this._emitFacetChange();
         }, 160);
       };
 
@@ -463,7 +461,6 @@ class TreeView {
         this.searchQuery = '';
         this.render(familyTab.dataset.family);
         this._scrollToTop();
-        this._emitFacetChange();
         return;
       }
 
@@ -556,12 +553,4 @@ class TreeView {
     this.container.innerHTML = '';
   }
 
-  _emitFacetChange() {
-    if (!this.onFacetChange) return;
-    this.onFacetChange({
-      view: 'tree',
-      selectedFamily: this.currentFamily,
-      query: this.searchQuery.trim() || ''
-    });
-  }
 }

@@ -359,7 +359,7 @@ body.theme-purple-gold {
   background: linear-gradient(135deg, rgba(92,26,0,0.97), rgba(139,37,0,0.96), rgba(199,91,57,0.93));
   border-bottom: 1px solid rgba(240,213,140,0.4);
   box-shadow: 0 8px 28px rgba(0,0,0,0.18);
-  z-index: 1000;
+  z-index: 3001;
 }
 
 /* Theme-adjusted header */
@@ -1374,13 +1374,13 @@ body.theme-purple-gold .header-title { color: var(--theme-gold-light); }
 
 .character-card-overlay {
   position: fixed;
-  inset: 0;
+  inset: calc(var(--header-height) + 12px) 0 0 0;
   display: none;
   align-items: center;
   justify-content: center;
   background: rgba(44,24,16,0.42);
   backdrop-filter: blur(6px);
-  z-index: 2000;
+  z-index: 900;
 }
 
 .character-card-overlay.active {

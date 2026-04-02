@@ -16,10 +16,12 @@ class KnowledgeView {
     this._searchTimer = null;
     this._eventsBound = false;
     this.onTagClick = null;
-    this.onFacetChange = null;
     this.relatedCharacterIds = new Set();
     this.characterKnowledgeMap = new Map();
     this.tagIndex = new Map();
+    this._lastFilterSignature = '';
+    this._lastFilteredItems = [];
+    this._visibleItems = [];
 
     this.categoryConfig = {
       '判词': { icon: '📜', color: '#8B2500' },
@@ -195,11 +197,9 @@ class KnowledgeView {
     this.displayCount = 40;
     const filteredItems = this._getFilteredItems();
     const visibleItems = filteredItems.slice(0, this.displayCount);
+    this._visibleItems = visibleItems;
     
-    contentEl.innerHTML = filteredItems.length 
-      ? visibleItems.map((item) => this._renderKnowledgeCard(item)).join('') +
-        (filteredItems.length > this.displayCount ? `<button class="knowledge-load-more" data-action="load-more">加载更多（已显示 ${this.displayCount} / ${filteredItems.length} 条）</button>` : '')
-      : '<div class="knowledge-empty">没有匹配的知识条目，请尝试更换关键词或筛选项。</div>';
+    this._renderVisibleItems(contentEl, filteredItems, visibleItems, { append: false });
     
     if (subtitleEl) {
       subtitleEl.textContent = `当前显示 ${Math.min(this.displayCount, filteredItems.length)} / ${filteredItems.length} 条，支持人物跳转、长文展开与多维检索`;
@@ -280,6 +280,17 @@ class KnowledgeView {
   }
 
   _getFilteredItems() {
+    const signature = JSON.stringify({
+      query: this.searchQuery.trim(),
+      category: this.activeCategory,
+      subcategory: this.activeSubcategory,
+      chapter: this.chapterFilter,
+      sort: this.sortBy
+    });
+    if (signature === this._lastFilterSignature && this._lastFilteredItems.length) {
+      return this._lastFilteredItems;
+    }
+
     let source = this.knowledge;
     if (this.searchQuery.trim()) {
       const query = this.searchQuery.trim().toLowerCase();
@@ -327,6 +338,8 @@ class KnowledgeView {
         break;
     }
 
+    this._lastFilterSignature = signature;
+    this._lastFilteredItems = items;
     return items;
   }
 
@@ -439,8 +452,8 @@ class KnowledgeView {
         clearTimeout(this._searchTimer);
         this._searchTimer = setTimeout(() => {
           this.searchQuery = event.target.value;
+          this._invalidateFilterCache();
           this._updateContent();
-          this._emitFacetChange();
         }, 180);
       };
 
@@ -461,15 +474,16 @@ class KnowledgeView {
       if (categoryButton) {
         this.activeCategory = categoryButton.dataset.cat;
         this.activeSubcategory = 'all';
+        this._invalidateFilterCache();
         this._updateContent();
         this._scrollToTop();
-        this._emitFacetChange();
         return;
       }
 
       const subcategoryButton = event.target.closest('[data-subcategory]');
       if (subcategoryButton) {
         this.activeSubcategory = subcategoryButton.dataset.subcategory;
+        this._invalidateFilterCache();
         this._updateContent();
         this._scrollToTop();
         return;
@@ -479,6 +493,7 @@ class KnowledgeView {
       if (tagButton) {
         const tagValue = tagButton.dataset.tag || '';
         this.searchQuery = tagValue;
+        this._invalidateFilterCache();
         const input = this.container.querySelector('.knowledge-search-input');
         if (input) input.value = tagValue;
         this._updateContent();
@@ -502,7 +517,7 @@ class KnowledgeView {
         if (!id) return;
         if (this.expandedIds.has(id)) this.expandedIds.delete(id);
         else this.expandedIds.add(id);
-        this._updateContent();
+        this._updateSingleCard(id);
         return;
       }
 
@@ -518,11 +533,11 @@ class KnowledgeView {
         this.chapterFilter = 'all';
         this.sortBy = 'relevance';
         this.searchQuery = '';
+        this._invalidateFilterCache();
         const input = this.container.querySelector('.knowledge-search-input');
         if (input) input.value = '';
         this._updateContent();
         this._scrollToTop();
-        this._emitFacetChange();
       }
     });
 
@@ -531,9 +546,9 @@ class KnowledgeView {
       if (!select) return;
       if (select.dataset.filter === 'chapter') this.chapterFilter = select.value;
       if (select.dataset.filter === 'sort') this.sortBy = select.value;
+      this._invalidateFilterCache();
       this._updateContent();
       this._scrollToTop();
-      this._emitFacetChange();
     });
   }
 
@@ -542,12 +557,14 @@ class KnowledgeView {
     const subtitleEl = this.container.querySelector('.knowledge-results-subtitle');
     if (!contentEl) return;
 
+    const previousCount = this.displayCount;
     this.displayCount += 40;
     const filteredItems = this._getFilteredItems();
     const visibleItems = filteredItems.slice(0, this.displayCount);
+    const newItems = visibleItems.slice(previousCount);
+    this._visibleItems = visibleItems;
 
-    contentEl.innerHTML = visibleItems.map((item) => this._renderKnowledgeCard(item)).join('') +
-      (filteredItems.length > this.displayCount ? `<button class="knowledge-load-more" data-action="load-more">加载更多（已显示 ${this.displayCount} / ${filteredItems.length} 条）</button>` : '');
+    this._renderVisibleItems(contentEl, filteredItems, visibleItems, { append: true, newItems });
 
     if (subtitleEl) {
       subtitleEl.textContent = `当前显示 ${Math.min(this.displayCount, filteredItems.length)} / ${filteredItems.length} 条，支持人物跳转、长文展开与多维检索`;
@@ -584,6 +601,7 @@ class KnowledgeView {
   destroy() {
     clearTimeout(this._searchTimer);
     this._eventsBound = false;
+    this._invalidateFilterCache();
     this.container.innerHTML = '';
   }
 
@@ -609,13 +627,50 @@ class KnowledgeView {
     });
   }
 
-  _emitFacetChange() {
-    if (!this.onFacetChange) return;
-    this.onFacetChange({
-      view: 'knowledge',
-      query: this.searchQuery.trim() || '',
-      selectedCategory: this.activeCategory !== 'all' ? this.activeCategory : null,
-      selectedChapter: this.chapterFilter !== 'all' ? this.chapterFilter : null
-    });
+  _invalidateFilterCache() {
+    this._lastFilterSignature = '';
+    this._lastFilteredItems = [];
+    this._visibleItems = [];
   }
+
+  _renderVisibleItems(contentEl, filteredItems, visibleItems, { append = false, newItems = [] } = {}) {
+    if (!filteredItems.length) {
+      contentEl.innerHTML = '<div class="knowledge-empty">没有匹配的知识条目，请尝试更换关键词或筛选项。</div>';
+      return;
+    }
+
+    const loadMoreHtml = filteredItems.length > visibleItems.length
+      ? `<button class="knowledge-load-more" data-action="load-more">加载更多（已显示 ${visibleItems.length} / ${filteredItems.length} 条）</button>`
+      : '';
+
+    if (!append) {
+      contentEl.innerHTML = visibleItems.map((item) => this._renderKnowledgeCard(item)).join('') + loadMoreHtml;
+      return;
+    }
+
+    const loadMoreButton = contentEl.querySelector('[data-action="load-more"]');
+    if (loadMoreButton) loadMoreButton.remove();
+    if (newItems.length) {
+      contentEl.insertAdjacentHTML('beforeend', newItems.map((item) => this._renderKnowledgeCard(item)).join(''));
+    }
+    if (loadMoreHtml) contentEl.insertAdjacentHTML('beforeend', loadMoreHtml);
+  }
+
+  _updateSingleCard(id) {
+    const contentEl = this.container.querySelector('#knowledge-items-content');
+    if (!contentEl) return;
+    const item = this._visibleItems.find((entry) => entry.id === id);
+    if (!item) {
+      this._updateContent();
+      return;
+    }
+    const current = contentEl.querySelector(`.knowledge-card[data-id="${id}"]`);
+    if (!current) {
+      this._updateContent();
+      return;
+    }
+    current.outerHTML = this._renderKnowledgeCard(item);
+    this._syncKnowledgeHighlights();
+  }
+
 }
