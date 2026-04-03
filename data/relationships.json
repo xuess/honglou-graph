@@ -756,6 +756,13 @@
     "description": "王熙凤是巧姐之母"
   },
   {
+    "source": "jia_lian",
+    "target": "jia_qiaojie",
+    "type": "blood",
+    "label": "父女",
+    "description": "贾琏是巧姐之父"
+  },
+  {
     "source": "jia_yucun",
     "target": "lin_daiyu",
     "type": "social",
@@ -845,6 +852,13 @@
     "type": "blood",
     "label": "父子",
     "description": "贾政是贾珠之父，贾珠为贾政长子，早逝"
+  },
+  {
+    "source": "wang_furen",
+    "target": "jia_zhu",
+    "type": "blood",
+    "label": "母子",
+    "description": "王夫人是贾珠之母，贾珠为其嫡长子"
   },
   {
     "source": "jia_zhu",
@@ -945,10 +959,17 @@
     "description": "邢夫人是迎春的嫡母（迎春为贾赦妾室所出）"
   },
   {
+    "source": "he_popo",
+    "target": "chunyan",
+    "type": "blood",
+    "label": "母女",
+    "description": "何婆子是春燕之母"
+  },
+  {
     "source": "xue_baochai",
     "target": "xue_baoqin",
     "type": "blood",
-    "label": "堂姐妹",
+    "label": "堂姐",
     "description": "薛宝琴是宝钗的堂妹，才貌双全，贾母极为喜爱"
   },
   {

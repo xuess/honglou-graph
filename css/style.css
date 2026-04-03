@@ -639,6 +639,7 @@ body.theme-purple-gold .header-title { color: var(--theme-gold-light); }
 .summary-relation-desc,
 .card-summary-desc,
 .card-description,
+.card-source-note,
 .card-personality,
 .card-identity,
 .card-chapter-summary,
@@ -3908,6 +3909,17 @@ body.view-knowledge .main-container {
   border-color: rgba(196,168,130,0.3);
 }
 
+.knowledge-card-version {
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(196,168,130,0.12);
+  border: 1px solid rgba(196,168,130,0.22);
+  color: var(--color-ink-light);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
 .knowledge-card-analysis {
   font-size: 0.84rem;
   line-height: 1.7;
@@ -4276,6 +4288,29 @@ body.view-knowledge .main-container {
 .note-box {
   background: rgba(212,160,23,0.06);
   border-left-color: var(--color-gold);
+}
+
+.card-source-note {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(196,168,130,0.12);
+  border: 1px solid rgba(196,168,130,0.22);
+}
+
+.card-version-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.card-version-row + .card-version-row {
+  margin-top: 8px;
+}
+
+.card-version-row strong {
+  flex-shrink: 0;
+  color: var(--color-primary);
+  font-size: 0.78rem;
 }
 
 .knowledge-empty {

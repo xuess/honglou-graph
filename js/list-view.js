@@ -294,6 +294,7 @@ class ListView {
     const color = this.familyColors[familyGroup];
     const relCount = this.relationCountMap.get(c.id) || 0;
     const isRelated = this.relatedCharacterIds.has(c.id);
+    const outcomeText = this._formatOutcome(c);
 
     return `
       <div class="list-card-item ${isRelated ? 'is-related' : ''}" data-char-id="${c.id}">
@@ -308,10 +309,17 @@ class ListView {
             <span class="list-card-tag soft">${relCount}条关系</span>
             <button class="list-card-tag knowledge" data-knowledge-id="${c.id}">相关知识</button>
           </div>
-          ${c.outcome ? `<div class="list-card-outcome">结局：${c.outcome}</div>` : ''}
+          ${outcomeText ? `<div class="list-card-outcome">结局：${outcomeText}</div>` : ''}
         </div>
       </div>
     `;
+  }
+
+  _formatOutcome(character) {
+    if (!character?.outcome) return '';
+    if (character.outcomeVersion || character.sourceNote) return character.outcome;
+    const hasLateChapter = (character.chapters || []).some((chapter) => Number(chapter.chapter) > 80);
+    return hasLateChapter ? `通行120回本：${character.outcome}` : character.outcome;
   }
 
   _renderCompactItem(c) {

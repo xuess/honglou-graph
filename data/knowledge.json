@@ -18,6 +18,7 @@
       "太虚幻境",
       "正册"
     ],
+    "versionNote": "判词出自前八十回；当前解析结合通行一百二十回本对黛玉、宝钗结局的常见解读。",
     "analysis": "此判词将黛玉与宝钗合为一首，暗示二人命运交织。\"玉带林中挂\"谐音\"林黛玉\"，暗喻黛玉之死如玉带悬于林间；\"金簪雪里埋\"谐音\"薛宝钗\"，暗喻宝钗虽得金玉良缘却终若雪中金簪般被掩埋。",
     "category": "判词"
   },
@@ -39,6 +40,7 @@
       "金陵十二钗",
       "正册"
     ],
+    "versionNote": "判词出自前八十回；“薨逝”与宫闱结局的展开依据通行一百二十回本后续情节。",
     "analysis": "暗示元春入宫约二十年，曾一度荣耀（榴花照宫闱），但最终在宫廷斗争中薨逝（虎兕相逢大梦归）。\"三春争及初春景\"暗指迎春、探春、惜春三姐妹命运不及元春显赫。",
     "category": "判词"
   },
@@ -59,6 +61,7 @@
       "金陵十二钗",
       "正册"
     ],
+    "versionNote": "判词出自前八十回；“远嫁海疆”的完整命运线依据通行一百二十回本后续情节。",
     "analysis": "探春虽有治家之才与高远之志，却生于贾府衰败之世。最终远嫁海疆，清明时节家人只能在江边遥望送别，千里东风吹散一场旧梦。",
     "category": "判词"
   },
@@ -77,6 +80,7 @@
       "金陵十二钗",
       "正册"
     ],
+    "versionNote": "判词出自前八十回；卫若兰婚配与其后命运多据通行一百二十回本及通行解读。",
     "analysis": "湘云虽出身侯门富贵，幼年即失父母，寄人篱下。后嫁才貌双全之卫若兰，却夫婿早逝，\"湘江水逝楚云飞\"暗喻她如湘水云烟般飘散无依。",
     "category": "判词"
   },
@@ -95,6 +99,7 @@
       "金陵十二钗",
       "正册"
     ],
+    "versionNote": "判词出自前八十回；“被强盗掳走”属于高鹗续书后四十回的具体写法。",
     "analysis": "妙玉虽身在佛门追求清洁，内心却未完全斩断尘缘。最终被强盗掳走，如金玉般的品质终陷污泥之中，暗示修行不能自保。",
     "category": "判词"
   },
@@ -115,6 +120,7 @@
       "金陵十二钗",
       "正册"
     ],
+    "versionNote": "判词出自前八十回；迎春婚后遭虐而死的展开依据通行一百二十回本后续情节。",
     "analysis": "\"子系\"合为\"孙\"字，指迎春之夫孙绍祖。孙绍祖得势后猖狂暴虐，迎春嫁过去不满一年便被折磨致死。金闺中的花柳之质，竟成了一场黄粱美梦。",
     "category": "判词"
   },
@@ -133,6 +139,7 @@
       "金陵十二钗",
       "正册"
     ],
+    "versionNote": "判词出自前八十回；惜春出家为尼的完整落点依据通行一百二十回本后续情节。",
     "analysis": "惜春看透三个姐姐（三春）的悲惨命运后，决意出家为尼。脱去华服换上缁衣（僧服），从此侯门闺秀独伴青灯古佛。",
     "category": "判词"
   },
@@ -155,6 +162,7 @@
       "金陵十二钗",
       "正册"
     ],
+    "versionNote": "判词出自前八十回；“一从二令三人木”的结局解释结合通行一百二十回本后续命运。",
     "analysis": "\"凡鸟\"合为\"凤\"字。凤姐虽才干出众人人称赞，却生于末世。\"一从二令三人木\"暗指贾琏对她从顺从到使令再到休弃（\"人木\"合为\"休\"）。最终她哭向金陵归去，结局更为凄惨。",
     "category": "判词"
   },
@@ -165,9 +173,9 @@
     "content": "势败休云贵，家亡莫论亲。偶因济刘氏，巧得遇恩人。",
     "chapter": 5,
     "relatedCharacters": [
-      "jia_qiaojie",
+      "wang_xifeng",
       "liu_laolao",
-      "wang_xifeng"
+      "jia_qiaojie"
     ],
     "relatedEvents": [
       "刘姥姥救巧姐"
@@ -177,6 +185,7 @@
       "金陵十二钗",
       "正册"
     ],
+    "versionNote": "判词出自前八十回；刘姥姥报恩救巧姐属于高鹗续书后四十回的完整情节。",
     "analysis": "贾府败落后亲友翻脸不认，唯有当初凤姐接济过的村妇刘姥姥伸出援手，救巧姐于危难。\"偶因济刘氏\"指凤姐当年的善举，\"巧得遇恩人\"正应巧姐之名。",
     "category": "判词"
   },
@@ -187,8 +196,8 @@
     "content": "桃李春风结子完，到头谁似一盆兰。如冰水好空相妒，枉与他人作笑谈。",
     "chapter": 5,
     "relatedCharacters": [
-      "li_wan",
-      "jia_lan"
+      "jia_lan",
+      "li_wan"
     ],
     "relatedEvents": [],
     "tags": [
@@ -196,6 +205,7 @@
       "金陵十二钗",
       "正册"
     ],
+    "versionNote": "判词出自前八十回；“贾兰中举”的结局线依据通行一百二十回本后续情节。",
     "analysis": "李纨含辛茹苦教养贾兰（\"一盆兰\"），虽然贾兰最终中举光宗耀祖，但李纨一生青春守寡的代价，终不过是为他人作了笑谈。",
     "category": "判词"
   },
@@ -206,8 +216,8 @@
     "content": "情天情海幻情身，情既相逢必主淫。漫言不肖皆荣出，造衅开端实在宁。",
     "chapter": 5,
     "relatedCharacters": [
-      "qin_keqing",
-      "jia_zhen"
+      "jia_zhen",
+      "qin_keqing"
     ],
     "relatedEvents": [
       "秦可卿之死"
@@ -227,8 +237,8 @@
     "content": "根并荷花一茎香，平生遭际实堪伤。自从两地生孤木，致使香魂返故乡。",
     "chapter": 5,
     "relatedCharacters": [
-      "xiang_ling",
       "xue_pan",
+      "xiang_ling",
       "xia_jingui"
     ],
     "relatedEvents": [],
@@ -237,6 +247,7 @@
       "金陵十二钗",
       "副册"
     ],
+    "versionNote": "判词出自前八十回；“被夏金桂折磨致死”的具体落点属于通行续书写法。",
     "analysis": "香菱本名甄英莲（\"真应怜\"），自幼被拐卖，命途多舛。\"两地生孤木\"暗指\"桂\"字（夏金桂），被夏金桂折磨致死，香魂返回故乡。",
     "category": "判词"
   },
@@ -270,8 +281,8 @@
     "chapter": 5,
     "relatedCharacters": [
       "jia_baoyu",
-      "xue_baochai",
-      "lin_daiyu"
+      "lin_daiyu",
+      "xue_baochai"
     ],
     "relatedEvents": [
       "宝玉娶宝钗",
@@ -335,8 +346,8 @@
     "content": "花谢花飞花满天，红消香断有谁怜？游丝软系飘春榭，落絮轻沾扑绣帘。\n闺中女儿惜春暮，愁绪满怀无释处。手把花锄出绣帘，忍踏落花来复去。\n柳丝榆荚自芳菲，不管桃飘与李飞。桃李明年能再发，明年闺中知有谁？\n三月香巢已垒成，梁间燕子太无情！明年花发虽可啄，却不道人去梁空巢也倾。\n一年三百六十日，风刀霜剑严相逼。明媚鲜妍能几时，一朝漂泊难寻觅。\n花开易见落难寻，阶前愁杀葬花人。独倚花锄泪暗洒，洒上空枝见血痕。\n杜鹃无语正黄昏，荷锄归去掩重门。青灯照壁人初睡，冷雨敲窗被未温。\n怪奴底事倍伤神，半为怜春半恼春。怜春忽至恼忽去，至又无言去不闻。\n昨宵庭外悲歌发，知是花魂与鸟魂？花魂鸟魂总难留，鸟自无言花自羞。\n愿奴胁下生双翼，随花飞到天尽头。天尽头，何处有香丘？\n未若锦囊收艳骨，一抔净土掩风流。质本洁来还洁去，强于污淖陷渠沟。\n尔今死去侬收葬，未卜侬身何日丧？侬今葬花人笑痴，他年葬侬知是谁？\n试看春残花渐落，便是红颜老死时。一朝春尽红颜老，花落人亡两不知！",
     "chapter": 27,
     "relatedCharacters": [
-      "lin_daiyu",
-      "jia_baoyu"
+      "jia_baoyu",
+      "lin_daiyu"
     ],
     "relatedEvents": [
       "黛玉葬花"
@@ -376,8 +387,8 @@
     "chapter": 78,
     "relatedCharacters": [
       "jia_baoyu",
-      "qingwen",
-      "lin_daiyu"
+      "lin_daiyu",
+      "qingwen"
     ],
     "relatedEvents": [
       "晴雯之死",
@@ -500,8 +511,8 @@
     "content": "薛宝钗佩戴金锁，上刻\"不离不弃，芳龄永继\"，恰与宝玉通灵宝玉上的\"莫失莫忘，仙寿恒昌\"相配。人称金玉良缘天作之合。",
     "chapter": 8,
     "relatedCharacters": [
-      "xue_baochai",
       "jia_baoyu",
+      "xue_baochai",
       "xue_yima"
     ],
     "relatedEvents": [
@@ -544,12 +555,12 @@
     "content": "王夫人听信王善保家的谗言，命凤姐带队抄检大观园各房丫鬟箱笼。晴雯首当其冲被搜检，探春怒掴王善保家的，惜春与尤氏翻脸。此事成为贾府由盛转衰的标志性事件。",
     "chapter": 74,
     "relatedCharacters": [
-      "wang_furen",
-      "wang_xifeng",
-      "qingwen",
-      "jia_tanchun",
       "jia_xichun",
-      "siqi"
+      "siqi",
+      "jia_tanchun",
+      "wang_xifeng",
+      "wang_furen",
+      "qingwen"
     ],
     "relatedEvents": [
       "抄检大观园",
@@ -572,10 +583,10 @@
     "content": "黛玉初进贾府，步步留心、时时在意。先拜见贾母，又见王熙凤泼辣登场\"我来迟了，不曾迎接远客\"。最后宝玉归来，二人初相见便觉似曾相识，宝玉问有无玉，闻黛玉说无，登时将通灵宝玉摔在地上。",
     "chapter": 3,
     "relatedCharacters": [
-      "lin_daiyu",
-      "jia_mu",
       "wang_xifeng",
-      "jia_baoyu"
+      "jia_mu",
+      "jia_baoyu",
+      "lin_daiyu"
     ],
     "relatedEvents": [
       "黛玉初进贾府",
@@ -619,10 +630,10 @@
     "chapter": 33,
     "relatedCharacters": [
       "jia_baoyu",
-      "jia_zheng",
-      "wang_furen",
       "jia_mu",
-      "jia_huan"
+      "jia_huan",
+      "wang_furen",
+      "jia_zheng"
     ],
     "relatedEvents": [
       "宝玉挨打",
@@ -643,8 +654,8 @@
     "content": "晴雯性烈率真，撕扇以解千愁：\"撕了也是玩，不撕也是玩\"。后又在重病之中连夜为宝玉修补雀金裘，拼着一夜的精力补好后力竭倒下。",
     "chapter": 31,
     "relatedCharacters": [
-      "qingwen",
-      "jia_baoyu"
+      "jia_baoyu",
+      "qingwen"
     ],
     "relatedEvents": [
       "晴雯撕扇",
@@ -667,10 +678,10 @@
     "chapter": 39,
     "relatedCharacters": [
       "liu_laolao",
-      "jia_mu",
       "wang_xifeng",
-      "yuanyang",
+      "jia_mu",
       "lin_daiyu",
+      "yuanyang",
       "xue_baochai"
     ],
     "relatedEvents": [
@@ -692,8 +703,8 @@
     "content": "得知宝玉将娶宝钗的消息后，黛玉病入膏肓。她将平生所作诗稿和宝玉赠的手帕统统投入火中焚毁，口中直叫\"宝玉，宝玉，你好……\"，话未说完便去世了。",
     "chapter": 97,
     "relatedCharacters": [
-      "lin_daiyu",
       "jia_baoyu",
+      "lin_daiyu",
       "zijuan"
     ],
     "relatedEvents": [
@@ -773,8 +784,8 @@
     "chapter": 17,
     "relatedCharacters": [
       "jia_baoyu",
-      "jia_zheng",
-      "jia_yuanchun"
+      "jia_yuanchun",
+      "jia_zheng"
     ],
     "relatedEvents": [
       "大观园题额",
@@ -808,8 +819,8 @@
     "content": "潇湘馆多竹少花，清幽偏僻，风格纤细而带寒意。窗纱、湘帘、修竹、石径共同构成一种清冷孤高的空间气质，与林黛玉敏感、洁癖、寄人篱下的心境高度吻合。\n\n匾额：有凤来仪（宝玉题）\n\n对联：宝鼎茶闲烟尚绿，幽窗棋罢指犹凉\n\n潇湘馆原为元妃省亲时命名的\"有凤来仪\"，后赐黛玉居住。馆名\"潇湘\"，取自湘妃竹（斑竹）典故，暗合黛玉\"还泪\"的命运——湘妃哭舜，泪洒斑竹，正如黛玉还泪宝玉。\n\n相关故事：\n- 宝玉、黛玉共读西厢于潇湘馆\n- 黛玉葬花后在此哭泣\n- 抄检大观园时，凤姐特意嘱咐不可惊扰黛玉",
     "chapter": 23,
     "relatedCharacters": [
-      "lin_daiyu",
       "jia_baoyu",
+      "lin_daiyu",
       "zijuan"
     ],
     "relatedEvents": [
@@ -896,9 +907,9 @@
     "chapter": 22,
     "relatedCharacters": [
       "jia_mu",
-      "jia_zheng",
       "jia_baoyu",
-      "jia_tanchun"
+      "jia_tanchun",
+      "jia_zheng"
     ],
     "relatedEvents": [
       "元宵制灯谜",
@@ -925,10 +936,10 @@
     "content": "秦可卿丧事极尽铺张，棺椁、诰命、送殡、僧道法事、亲友往来无不夸张。宁府借丧仪展现门第体面，也暴露其奢靡与礼制的空壳化。",
     "chapter": 13,
     "relatedCharacters": [
-      "qin_keqing",
+      "wang_xifeng",
       "jia_zhen",
-      "jia_rong",
-      "wang_xifeng"
+      "qin_keqing",
+      "jia_rong"
     ],
     "relatedEvents": [
       "秦可卿之死",
@@ -955,8 +966,8 @@
     "content": "薛宝钗金锁与贾宝玉通灵玉上的铭文互相映照，构成\"金玉良缘\"最显眼的物证。器物在书中并非摆设，而是直接参与人物命运叙事的象征系统。",
     "chapter": 8,
     "relatedCharacters": [
-      "xue_baochai",
-      "jia_baoyu"
+      "jia_baoyu",
+      "xue_baochai"
     ],
     "relatedEvents": [
       "金锁配宝玉",
@@ -984,8 +995,8 @@
     "chapter": 52,
     "relatedCharacters": [
       "jia_baoyu",
-      "qingwen",
-      "xiren"
+      "xiren",
+      "qingwen"
     ],
     "relatedEvents": [
       "勇晴雯病补雀金裘"
@@ -1010,9 +1021,9 @@
     "content": "刘姥姥进大观园时所见菜点、器皿与席间礼数，展现了贵族饮食并不只是吃什么，更包含座次、劝酒、笑谈、观演与身份秩序。",
     "chapter": 40,
     "relatedCharacters": [
-      "liu_laolao",
-      "jia_mu",
       "wang_xifeng",
+      "jia_mu",
+      "liu_laolao",
       "yuanyang"
     ],
     "relatedEvents": [
@@ -1067,10 +1078,10 @@
     "content": "海棠诗社并非固定一室，而是在大观园各处因景成社、随会赋诗。园林空间因此获得文学功能，少女们的审美共同体也在这种游宴式写作中形成。",
     "chapter": 37,
     "relatedCharacters": [
-      "jia_tanchun",
+      "shi_xiangyun",
       "lin_daiyu",
       "xue_baochai",
-      "shi_xiangyun"
+      "jia_tanchun"
     ],
     "relatedEvents": [
       "海棠诗社成立"
@@ -1123,9 +1134,9 @@
     "content": "史湘云在菊花诗会中往往落笔爽利、气象开阔，她的诗风比黛玉更疏朗，比宝钗更多英气，是大观园女性诗歌群像中极有辨识度的一支。",
     "chapter": 38,
     "relatedCharacters": [
-      "shi_xiangyun",
+      "xue_baochai",
       "lin_daiyu",
-      "xue_baochai"
+      "shi_xiangyun"
     ],
     "relatedEvents": [
       "菊花诗会"
@@ -1152,8 +1163,7 @@
     "chapter": 15,
     "relatedCharacters": [
       "wang_xifeng",
-      "jia_lian",
-      "jingxu"
+      "jia_lian"
     ],
     "relatedEvents": [
       "凤姐弄权"
@@ -1174,9 +1184,10 @@
     "content": "通灵宝玉是女娲补天时剩下的一块顽石，因无才补天而被弃于青埂峰下。后经一僧一道点化，随神瑛侍者下凡，成为贾宝玉出生时衔在口中的玉。玉上刻有\"莫失莫忘，仙寿恒昌\"八字，与宝钗金锁上的\"不离不弃，芳龄永继\"相配。",
     "chapter": 1,
     "relatedCharacters": [
+      "bo_zu_daoren",
       "jia_baoyu",
       "xue_baochai",
-      "yi_seng_yi_dao"
+      "lai_tou_heshang"
     ],
     "relatedEvents": [
       "女娲补天",
@@ -1226,10 +1237,10 @@
     "content": "贾府四位小姐分别以\"元、迎、探、惜\"命名，暗合\"原应叹息\"之意。元春入宫为妃，迎春嫁中山狼而被虐致死，探春远嫁海疆，惜春出家为尼。四人命运皆以悲剧收场。",
     "chapter": 2,
     "relatedCharacters": [
-      "jia_yuanchun",
       "jia_yingchun",
+      "jia_xichun",
       "jia_tanchun",
-      "jia_xichun"
+      "jia_yuanchun"
     ],
     "relatedEvents": [
       "元春省亲",
@@ -1253,12 +1264,12 @@
     "content": "贾府分为宁国府与荣国府两支，各由宁国公、荣国公传下。荣国府中，长子贾赦袭爵，次子贾政继承家业实权。贾政一支中，嫡长子贾珠早亡，次子宝玉成为实际继承人，但这与贾政的期望（科举仕途）相悖。庶子贾环及其母赵姨娘始终觊觎继承权。",
     "chapter": 2,
     "relatedCharacters": [
-      "jia_she",
-      "jia_zheng",
       "jia_baoyu",
-      "jia_huan",
+      "jia_mu",
       "zhao_yiniang",
-      "jia_mu"
+      "jia_huan",
+      "jia_she",
+      "jia_zheng"
     ],
     "relatedEvents": [],
     "tags": [
@@ -1342,8 +1353,8 @@
     "content": "镜里恩情，更那堪梦里功名！那美韶华去之何迅！再休提绣帐鸳衾。只这带珠冠，披凤袄，也抵不了无常性命。虽说是，人生莫受老来贫，也须要阴骘积儿孙。气昂昂头戴簪缨，气昂昂头戴簪缨；光灿灿腰悬金印；威赫赫爵禄高登，威赫赫爵禄高登；昏惨惨黄泉路近。问古来将相可还存？也只是虚名儿与后人钦敬。",
     "chapter": 5,
     "relatedCharacters": [
-      "li_wan",
-      "jia_lan"
+      "jia_lan",
+      "li_wan"
     ],
     "relatedEvents": [],
     "tags": [
@@ -1362,8 +1373,8 @@
     "content": "画梁春尽落香尘。秉风情，擅月貌，便是败家的根本。箕裘颓堕皆从敬，家事消亡首罪宁。宿孽总因情。",
     "chapter": 5,
     "relatedCharacters": [
-      "qin_keqing",
-      "jia_zhen"
+      "jia_zhen",
+      "qin_keqing"
     ],
     "relatedEvents": [
       "秦可卿之死"
@@ -1385,14 +1396,14 @@
     "chapter": 5,
     "relatedCharacters": [
       "jia_baoyu",
-      "lin_daiyu",
-      "xue_baochai",
-      "wang_xifeng",
-      "jia_yuanchun",
       "jia_tanchun",
+      "liu_laolao",
+      "wang_xifeng",
+      "lin_daiyu",
       "shi_xiangyun",
       "jia_qiaojie",
-      "liu_laolao"
+      "xue_baochai",
+      "jia_yuanchun"
     ],
     "relatedEvents": [
       "贾府抄家",
@@ -1523,8 +1534,8 @@
     "content": "人参养荣丸是林黛玉常服之药，用于补气养血、调理虚损。黛玉自幼体弱多病，从会吃饭便开始吃药。书中多次提及她服用人参养荣丸，也是贾母特意为她配制。\n\n黛玉的病既有体质虚弱，更有心病难医。她\"从会吃饭起便吃药\"，却越吃越瘦，终至\"泪尽而亡\"。",
     "chapter": 3,
     "relatedCharacters": [
-      "lin_daiyu",
-      "jia_mu"
+      "jia_mu",
+      "lin_daiyu"
     ],
     "tags": [
       "药方",
@@ -1581,8 +1592,8 @@
     "content": "其一：眼空蓄泪泪空垂，暗洒闲抛却为谁？尺幅鲛绡劳解赠，叫人焉得不伤悲！\n\n其二：抛珠滚玉只偷潸，镇日无心镇日闲。枕上袖边难拂拭，任他点点与斑斑。\n\n其三：彩线难收面上珠，湘江旧迹已模糊。窗前亦有千竿竹，不识香痕渍也无？",
     "chapter": 34,
     "relatedCharacters": [
-      "lin_daiyu",
-      "jia_baoyu"
+      "jia_baoyu",
+      "lin_daiyu"
     ],
     "relatedEvents": [
       "宝玉挨打",
@@ -1648,8 +1659,8 @@
     "content": "茄鲞是贾府名菜，以茄子为主料，配以鸡脯肉、香菌、新笋、蘑菇、五香豆腐干、各色干果子，俱切成丁，用鸡汤煨干，将香油一收，外加糟油一拌，盛在瓷罐子里封严，要吃时拿出来，用炒的鸡瓜子一拌。\n\n刘姥姥品尝后赞不绝口，却不知这小小一道茄子竟要十几只鸡来配。",
     "chapter": 41,
     "relatedCharacters": [
-      "liu_laolao",
-      "wang_xifeng"
+      "wang_xifeng",
+      "liu_laolao"
     ],
     "relatedEvents": [
       "刘姥姥进大观园"
@@ -1671,7 +1682,7 @@
     "chapter": 8,
     "relatedCharacters": [
       "jia_baoyu",
-      "qing_wen"
+      "qingwen"
     ],
     "tags": [
       "饮食",
@@ -1810,14 +1821,14 @@
     "chapter": 23,
     "relatedCharacters": [
       "jia_baoyu",
-      "lin_daiyu",
-      "xue_baochai",
+      "jia_xichun",
       "jia_tanchun",
       "li_wan",
-      "miaoyu",
-      "jia_xichun",
+      "lin_daiyu",
       "jia_yingchun",
-      "shi_xiangyun"
+      "shi_xiangyun",
+      "xue_baochai",
+      "miaoyu"
     ],
     "relatedPlaces": [
       "大观园",
@@ -1863,11 +1874,11 @@
     "content": "【名茶】\n- 老君眉：贾母最爱的茶，产自福建，形如眉，香气清高\n- 六安茶：安徽名茶，香气清幽\n- 普洱茶：云南茶，消食解腻\n- 枫露茶：宝玉喜爱的茶，需三四次后才出色\n\n【茶水讲究】\n- 梅花雪水：妙玉收集梅花上的雪水，存于瓮中埋地下五年，用以泡茶\n- 雨水：取自特定节气，如雨水节的雨水\n- 泉水：山中清泉，水质甘甜\n\n【茶具】\n- 瓟斝：妙玉给宝钗用的茶杯，刻有字\n- 点犀盉：妙玉给黛玉用的茶杯\n- 绿玉斗：妙玉自己用的茶杯，后给宝玉用",
     "chapter": 41,
     "relatedCharacters": [
-      "miaoyu",
-      "jia_mu",
       "jia_baoyu",
+      "jia_mu",
       "lin_daiyu",
-      "xue_baochai"
+      "xue_baochai",
+      "miaoyu"
     ],
     "tags": [
       "饮品",
@@ -1886,8 +1897,8 @@
     "chapter": 63,
     "relatedCharacters": [
       "jia_baoyu",
-      "shi_xiangyun",
-      "jia_mu"
+      "jia_mu",
+      "shi_xiangyun"
     ],
     "tags": [
       "饮品",
@@ -1905,8 +1916,8 @@
     "content": "【春】\n- 银耳莲子汤：润肺养颜，春季必备\n- 枸杞菊花茶：明目清肝\n\n【夏】\n- 绿豆汤：消暑解毒\n- 荷叶粥：清热解暑\n- 西瓜：解暑佳品，贾府常备冰镇西瓜\n\n【秋】\n- 雪梨膏：润肺止咳，秋燥时服用\n- 百合莲子羹：养阴润肺\n\n【冬】\n- 阿胶：补血养颜，冬日进补\n- 人参：大补元气，黛玉常服\n- 鹿茸：壮阳补肾，男眷进补\n- 燕窝：养阴润燥，黛玉日常食用",
     "chapter": 45,
     "relatedCharacters": [
-      "lin_daiyu",
-      "jia_mu"
+      "jia_mu",
+      "lin_daiyu"
     ],
     "tags": [
       "药方",
@@ -1924,8 +1935,8 @@
     "content": "栊翠庵内植有数株梅花，冬日盛开，红梅如霞，白梅似雪。妙玉收集梅花上的雪水，埋于地下五年后用以泡茶。\n\n第五十回，贾母携众人赏雪，见栊翠庵梅花盛开，赞道：\"这一枝梅花，开得有趣。\"",
     "chapter": 50,
     "relatedCharacters": [
-      "miaoyu",
-      "jia_mu"
+      "jia_mu",
+      "miaoyu"
     ],
     "relatedPlaces": [
       "栊翠庵"
@@ -2075,12 +2086,13 @@
     "content": "一僧一道是贯穿全书的人物，他们在关键时刻出现，点化主人公：\n\n【第一回】携带通灵宝玉下凡，点化甄士隐\n【第三回】向贾雨村介绍黛玉病因\n【第十二回】赠贾瑞\"风月宝鉴\"，点化其执念\n【第二十五回】救治被马道婆诅咒的宝玉和凤姐\n【第六十六回】点化柳湘莲出家\n【最终】接引宝玉归入太虚幻境\n\n一僧一道分别代表佛教和道教，是红楼梦\"佛道合一\"思想的体现。",
     "chapter": 1,
     "relatedCharacters": [
-      "yi_seng_yi_dao",
-      "zhen_shiyin",
-      "jia_rui",
+      "bo_zu_daoren",
       "jia_baoyu",
       "wang_xifeng",
-      "liu_xianglian"
+      "liu_xianglian",
+      "jia_rui",
+      "lai_tou_heshang",
+      "zhen_shiyin"
     ],
     "relatedEvents": [
       "点化甄士隐",
@@ -2103,9 +2115,10 @@
     "content": "宝玉在经历黛玉之死、家族败落后，看破红尘，最终随一僧一道出家而去。\n\n最后一回，贾政在毗陵驿的渡口遇见宝玉：\"只见船头上来了两人，一僧一道，夹住宝玉说道：俗缘已毕，还不快走。\" 宝玉\"光着头，赤着脚，披着大红猩猩毡斗篷\"，向贾政\"拜了四拜\"，然后\"飘然而去\"。\n\n贾政叹道：\"岂知宝玉是下凡历劫的，竟哄了老太太十九年！\"",
     "chapter": 120,
     "relatedCharacters": [
+      "bo_zu_daoren",
       "jia_baoyu",
       "jia_zheng",
-      "yi_seng_yi_dao"
+      "lai_tou_heshang"
     ],
     "relatedEvents": [
       "宝玉出家"
@@ -2126,9 +2139,10 @@
     "content": "风月宝鉴是一面神奇镜子，正面照见美女，背面照见骷髅。跛足道人赠予贾瑞，告诫他\"只照背面，不可照正面\"。\n\n贾瑞不听，迷恋正面凤姐的美色，最终纵欲而亡。道人叹道：\"谁叫你们瞧正面了！你们自己以假为真，何苦来烧我？\"",
     "chapter": 12,
     "relatedCharacters": [
-      "jia_rui",
       "wang_xifeng",
-      "yi_seng_yi_dao"
+      "bo_zu_daoren",
+      "jia_rui",
+      "lai_tou_heshang"
     ],
     "relatedEvents": [
       "贾瑞照风月宝鉴"
@@ -2167,9 +2181,9 @@
     "content": "\"假作真时真亦假，无为有处有还无。\"\n\n这副对联是太虚幻境的入口，也是全书的哲学纲领。\n\n【甄士隐】\"真事隐\"——将真事隐去\n【贾雨村】\"假语村言\"——用假语村言敷衍故事\n【贾府】繁华是\"假\"，衰败是\"真\"\n【宝玉】\"衔玉而生\"是神话（假），人生经历是\"真\"\n【大观园】人间仙境是\"假\"，女儿离散是\"真\"\n\n全书在\"真假\"之间来回穿梭，最终揭示：人生如梦，真假难辨。",
     "chapter": 1,
     "relatedCharacters": [
-      "zhen_shiyin",
+      "jia_baoyu",
       "jia_yucun",
-      "jia_baoyu"
+      "zhen_shiyin"
     ],
     "relatedPlaces": [
       "太虚幻境"
@@ -2493,8 +2507,8 @@
     "content": "【第三回 林黛玉进贾府】\n\n众人见黛玉年貌虽小，其举止言谈不俗，身体面庞虽怯弱不胜，却有一段自然的风流态度，便知他有不足之症。\n\n后宝玉眼中看黛玉：\n两弯似蹙非蹙罥烟眉，一双似喜非喜含情目。态生两靥之愁，娇袭一身之病。泪光点点，娇喘微微。闲静时如姣花照水，行动处似弱柳扶风。心较比干多一窍，病如西子胜三分。",
     "chapter": 3,
     "relatedCharacters": [
-      "lin_daiyu",
-      "jia_baoyu"
+      "jia_baoyu",
+      "lin_daiyu"
     ],
     "relatedEvents": [
       "林黛玉进贾府"
@@ -2559,8 +2573,8 @@
     "content": "【第八回 比通灵金莺微露意 探宝钗黛玉半含酸】\n\n宝玉来探望宝钗，见她：\n\n头上挽着漆黑油光的纂儿，蜜合色棉袄，玫瑰紫二色金银鼠比肩褂，葱黄绫棉裙，一色半新不旧，看去不觉奢华。\n\n唇不点而红，眉不画而翠，脸若银盆，眼如水杏。罕言寡语，人谓藏愚，安分随时，自云守拙。",
     "chapter": 8,
     "relatedCharacters": [
-      "xue_baochai",
-      "jia_baoyu"
+      "jia_baoyu",
+      "xue_baochai"
     ],
     "relatedEvents": [
       "宝玉探宝钗"
@@ -2815,8 +2829,7 @@
     "content": "因空见色，由色生情，传情入色，自色悟空。",
     "chapter": 1,
     "relatedCharacters": [
-      "zhens_shiyin",
-      "jue_lian_daoren"
+      "zhen_shiyin"
     ],
     "tags": [
       "哲学",
@@ -2833,10 +2846,7 @@
     "title": "假作真时真亦假",
     "content": "假作真时真亦假，无为有处有还无。",
     "chapter": 1,
-    "relatedCharacters": [
-      "jue_lian_daoren",
-      "tai_xuan_huan_jing"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "对联",
       "太虚幻境",
@@ -2853,8 +2863,8 @@
     "content": "世人都晓神仙好，惟有功名忘不了！古今将相在何方？荒冢一堆草没了。世人都晓神仙好，只有金银忘不了！终朝只恨聚无多，及到多时眼闭了。世人都晓神仙好，只有娇妻忘不了！君生日日说恩情，君死又随人去了。世人都晓神仙好，只有儿孙忘不了！痴心父母古来多，孝顺儿孙谁见了？",
     "chapter": 1,
     "relatedCharacters": [
-      "po_zu_daoren",
-      "zhens_shiyin"
+      "bo_zu_daoren",
+      "zhen_shiyin"
     ],
     "tags": [
       "好了歌",
@@ -2872,7 +2882,7 @@
     "content": "陋室空堂，当年笏满床；衰草枯杨，曾为歌舞场。蛛丝儿结满雕梁，绿纱今又糊在蓬窗上。说什么脂正浓、粉正香，如何两鬓又成霜？昨日黄土陇头送白骨，今宵红灯帐底卧鸳鸯。金满箱，银满箱，展眼乞丐人皆谤。正叹他人命不长，那知自己归来丧！训有方，保不定日后作强梁。择膏粱，谁承望流落在烟花巷！因嫌纱帽小，致使锁枷扛；昨怜破袄寒，今嫌紫蟒长。乱烘烘你方唱罢我登场，反认他乡是故乡。甚荒唐，到头来都是为他人作嫁衣裳！",
     "chapter": 1,
     "relatedCharacters": [
-      "zhens_shiyin"
+      "zhen_shiyin"
     ],
     "tags": [
       "好了歌",
@@ -2890,8 +2900,7 @@
     "content": "身后有馀忘缩手，眼前无路想回头。",
     "chapter": 2,
     "relatedCharacters": [
-      "jia_yucun",
-      "menzi"
+      "jia_yucun"
     ],
     "tags": [
       "谚语",
@@ -3165,10 +3174,9 @@
     "content": "【习俗】行酒令\n【释义】宴席上助兴取乐的游戏，输者饮酒\n【形式】射覆、猜枚、飞花令、击鼓传花\n【红楼场景】宝玉生日、元宵夜宴、螃蟹宴等\n【特点】体现人物才情，暗伏命运",
     "chapter": 28,
     "relatedCharacters": [
-      "furen",
-      "baoyu",
-      "lingguan",
-      "fangguan"
+      "jia_baoyu",
+      "fangguan",
+      "lingguan"
     ],
     "tags": [
       "礼俗",
@@ -3367,9 +3375,9 @@
     "content": "\"步步留心，时时在意，不肯轻易多说一句话，多行一步路，惟恐被人耻笑了他去。\"\n\n宝玉初见：\"这个妹妹我曾见过的。\"\n\"虽没见过，却看着面善，心里倒像是旧相识，今日只作远别重逢。\"",
     "chapter": 3,
     "relatedCharacters": [
-      "lin_daiyu",
       "jia_baoyu",
-      "jiamu"
+      "lin_daiyu",
+      "jia_mu"
     ],
     "tags": [
       "人物出场",
@@ -3387,8 +3395,8 @@
     "content": "【美食】藕粉桂花糖糕\n【原料】藕粉、桂花、糖\n【特点】软糯香甜，清润养颜\n\n【美食】松瓤鹅油卷\n【原料】鹅油、面粉、松仁\n【特点】酥香可口，油脂丰润",
     "chapter": 41,
     "relatedCharacters": [
-      "liulaolao",
-      "jiamu"
+      "jia_mu",
+      "liu_laolao"
     ],
     "tags": [
       "饮食",
@@ -3406,7 +3414,7 @@
     "content": "【茶品】老君眉\n【产地】福建武夷山\n【特点】芽叶细嫩，形似老人眉毛\n【功效】提神醒脑，消食解腻\n\n【茶品】六安茶\n【产地】安徽六安\n【特点】瓜片绿茶，清香爽口",
     "chapter": 41,
     "relatedCharacters": [
-      "liulaolao",
+      "liu_laolao",
       "miaoyu"
     ],
     "tags": [
@@ -3425,8 +3433,8 @@
     "content": "【谐音】甄士隐 → 真事隐\n【含义】真实的事情被隐去\n【对应】贾雨村（假语存）\n【功能】全书叙事框架的设定者",
     "chapter": 1,
     "relatedCharacters": [
-      "zhens_shiyin",
-      "jia_yucun"
+      "jia_yucun",
+      "zhen_shiyin"
     ],
     "tags": [
       "谐音",
@@ -3443,9 +3451,7 @@
     "title": "红楼梦书名由来",
     "content": "【书名】红楼梦\n【出处】第五回警幻仙曲\n【原句】\"开辟鸿蒙，谁为情种？都只为风月情浓。趁着这奈何天，伤怀日，寂寥时，试遣愚衷。因此上演出这怀金悼玉的《红楼梦》。\"\n【含义】\"红楼\"指富贵人家的闺阁，\"梦\"指虚幻无常",
     "chapter": 5,
-    "relatedCharacters": [
-      "jinghuan_xian_gu"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "书名",
       "太虚幻境",
@@ -3462,9 +3468,7 @@
     "content": "满纸荒唐言，一把辛酸泪。都云作者痴，谁解其中味？",
     "chapter": 1,
     "source": "曹雪芹自题诗",
-    "relatedCharacters": [
-      "caoxueqin"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "题诗",
       "作者",
@@ -3484,8 +3488,8 @@
     "chapter": 5,
     "source": "后汉书·列女传",
     "relatedCharacters": [
-      "xue_baochai",
-      "lin_daiyu"
+      "lin_daiyu",
+      "xue_baochai"
     ],
     "tags": [
       "判词",
@@ -3527,8 +3531,8 @@
     "chapter": 1,
     "source": "神话缘起",
     "relatedCharacters": [
-      "lin_daiyu",
-      "jia_baoyu"
+      "jia_baoyu",
+      "lin_daiyu"
     ],
     "tags": [
       "神话",
@@ -3548,9 +3552,9 @@
     "chapter": 6,
     "source": "结构线索",
     "relatedCharacters": [
-      "liu_laolao",
-      "jiamu",
       "wang_xifeng",
+      "jia_mu",
+      "liu_laolao",
       "jia_qiaojie"
     ],
     "tags": [
@@ -3571,8 +3575,8 @@
     "chapter": 27,
     "source": "葬花吟",
     "relatedCharacters": [
-      "lin_daiyu",
-      "jia_baoyu"
+      "jia_baoyu",
+      "lin_daiyu"
     ],
     "tags": [
       "典故",
@@ -3601,8 +3605,8 @@
     "chapter": 97,
     "source": "黛玉之死",
     "relatedCharacters": [
-      "lin_daiyu",
       "jia_baoyu",
+      "lin_daiyu",
       "xue_baochai"
     ],
     "tags": [
@@ -3622,9 +3626,7 @@
     "content": "好一似食尽鸟投林，落了片白茫茫大地真干净",
     "chapter": 5,
     "source": "飞鸟各投林",
-    "relatedCharacters": [
-      "jia_fuxing"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "结局",
       "虚无",
@@ -3877,8 +3879,8 @@
     "content": "【建筑】游廊\n【功能】遮阳避雨，连接各房\n【特点】有顶无墙，可漫步观赏\n【园林】大观园中的重要元素",
     "chapter": 17,
     "relatedCharacters": [
-      "jia_zheng",
-      "jia_baoyu"
+      "jia_baoyu",
+      "jia_zheng"
     ],
     "tags": [
       "建筑",
@@ -3897,8 +3899,8 @@
     "content": "【饮品】杏仁茶\n【原料】杏仁、糯米、糖\n【特点】香甜润肺，养颜美容\n【功效】止咳平喘，润肠通便",
     "chapter": 54,
     "relatedCharacters": [
-      "jiamu",
-      "wang_xifeng"
+      "wang_xifeng",
+      "jia_mu"
     ],
     "tags": [
       "饮食",
@@ -3935,8 +3937,8 @@
     "content": "【节令】腊八粥\n【时间】农历十二月初八\n【原料】米、豆、干果、杂粮\n【寓意】祈福、感恩、养生",
     "chapter": 19,
     "relatedCharacters": [
-      "qingwen",
-      "xiren"
+      "xiren",
+      "qingwen"
     ],
     "tags": [
       "饮食",
@@ -4010,7 +4012,6 @@
     "chapter": 5,
     "relatedCharacters": [
       "jia_baoyu",
-      "jinghuan_xian_gu",
       "qin_keqing"
     ],
     "version": "original",
@@ -4032,10 +4033,9 @@
     "content": "探春发起，众姐妹建立诗社，\n以白海棠为题首作诗，\n黛玉、宝钗、探春等各展才华。\n后改菊花社，再续螃蟹咏。",
     "chapter": 37,
     "relatedCharacters": [
-      "jia_tanchun",
       "lin_daiyu",
       "xue_baochai",
-      "shiyun"
+      "jia_tanchun"
     ],
     "version": "original",
     "versionNote": "前80回曹雪芹原创内容",
@@ -4055,10 +4055,10 @@
     "content": "王夫人受挑唆决定抄检大观园，\n从怡红院、潇湘馆到稻香村、蘅芜苑，\n搜出私物，引发风波，\n为晴雯、芳官等被驱逐埋下伏笔。",
     "chapter": 74,
     "relatedCharacters": [
-      "wang_furen",
       "wang_xifeng",
-      "qingwen",
-      "shi_xiangyun"
+      "shi_xiangyun",
+      "wang_furen",
+      "qingwen"
     ],
     "version": "original",
     "versionNote": "前80回曹雪芹原创内容",
@@ -4099,8 +4099,8 @@
     "content": "龄官在蔷薇花架下雨中画'蔷'字多次，\n被宝玉看到，后宝玉帮其撑伞，\n龄官专注所恋，不理宝玉，\n使宝玉悟到'人生情缘，各人一份'。",
     "chapter": 36,
     "relatedCharacters": [
-      "lingguan",
-      "jia_baoyu"
+      "jia_baoyu",
+      "lingguan"
     ],
     "version": "original",
     "versionNote": "前80回曹雪芹原创内容",
@@ -4119,8 +4119,8 @@
     "content": "黛玉病重，听到传言宝玉将娶宝钗，\n悲极之下，将诗稿与题诗的手帕投入火盆，\n断绝情根，香消玉殒。",
     "chapter": 97,
     "relatedCharacters": [
-      "lin_daiyu",
-      "jia_baoyu"
+      "jia_baoyu",
+      "lin_daiyu"
     ],
     "version": "continuation",
     "versionNote": "高鹗续书后40回内容",
@@ -4141,11 +4141,11 @@
     "chapter": 63,
     "relatedCharacters": [
       "jia_baoyu",
-      "qingwen",
       "xiren",
       "lin_daiyu",
+      "shi_xiangyun",
       "xue_baochai",
-      "shi_xiangyun"
+      "qingwen"
     ],
     "version": "original",
     "versionNote": "前80回曹雪芹原创内容",
@@ -4186,8 +4186,8 @@
     "content": "黛玉收到宝玉遣晴雯送来两条旧帕，体会其中深意，\n题诗三绝于上:\"彩线难收百尺长，鲛绡不剪恨茫茫\";",
     "chapter": 34,
     "relatedCharacters": [
-      "lin_daiyu",
       "jia_baoyu",
+      "lin_daiyu",
       "qingwen"
     ],
     "version": "original",
@@ -4208,9 +4208,9 @@
     "content": "史湘云与宝玉黛玉等谈论昆弋两腔戏曲优劣，\n湘云独有见解，见解非凡，\n体现出她的才思敏捷与独特的艺术品位。",
     "chapter": 54,
     "relatedCharacters": [
-      "shi_xiangyun",
       "jia_baoyu",
-      "lin_daiyu"
+      "lin_daiyu",
+      "shi_xiangyun"
     ],
     "version": "original",
     "versionNote": "前80回曹雪芹原创内容",
@@ -6639,8 +6639,8 @@
     "content": "霁月难逢，彩云易散。心比天高，身为下贱。风流灵巧招人怨。寿夭多因毁谤生，多情公子空牵念。",
     "chapter": 5,
     "relatedCharacters": [
-      "qingwen",
-      "jia_baoyu"
+      "jia_baoyu",
+      "qingwen"
     ],
     "relatedEvents": [
       "晴雯被逐",
@@ -6662,8 +6662,8 @@
     "content": "枉自温柔和顺，空云似桂如兰。堪羡优伶有福，谁知公子无缘。",
     "chapter": 5,
     "relatedCharacters": [
-      "xiren",
       "jia_baoyu",
+      "xiren",
       "jiang_yuhan"
     ],
     "relatedEvents": [
@@ -6686,10 +6686,10 @@
     "content": "元春晋封贤德妃，奉旨归省。贾府为迎省亲建造大观园，极尽奢华。正月十五日，元妃凤驾至贾府，贾母率众人跪迎。元妃命众人免礼，与祖母、父母相见，垂泪叹道：'当日既送我到那不得见人的去处，好容易今日回家，娘儿们一会，不说说笑笑，反倒哭起来。'",
     "chapter": 18,
     "relatedCharacters": [
-      "jia_yuanchun",
       "jia_mu",
+      "wang_furen",
       "jia_zheng",
-      "wang_furen"
+      "jia_yuanchun"
     ],
     "relatedEvents": [
       "元妃省亲",
@@ -6711,10 +6711,10 @@
     "content": "宝玉生日，众人在红香圃饮酒。湘云饮酒过量，离席到园中山后一块青石板上睡着了。'四面芍药花飞了一身，满头脸衣襟上皆是红香散乱，手中的扇子在地下，也半被落花埋了，一群蜂蝶闹穰穰的围着他。'众人来找，见她'业经香梦沉酣'，不敢惊动。",
     "chapter": 62,
     "relatedCharacters": [
-      "shi_xiangyun",
       "jia_baoyu",
+      "xue_baochai",
       "lin_daiyu",
-      "xue_baochai"
+      "shi_xiangyun"
     ],
     "relatedEvents": [
       "宝玉生日",
@@ -6737,8 +6737,8 @@
     "chapter": 120,
     "relatedCharacters": [
       "jia_baoyu",
-      "jia_zheng",
-      "xue_baochai"
+      "xue_baochai",
+      "jia_zheng"
     ],
     "relatedEvents": [
       "宝玉出家",
@@ -6761,8 +6761,8 @@
     "chapter": 38,
     "relatedCharacters": [
       "lin_daiyu",
-      "jia_tanchun",
-      "xue_baochai"
+      "xue_baochai",
+      "jia_tanchun"
     ],
     "relatedEvents": [
       "菊花诗社"
@@ -6783,9 +6783,9 @@
     "content": "桂霭桐阴坐举觞，长安涎口盼重阳。眼前道路无经纬，皮里春秋空黑黄。酒未敌腥还用菊，性防积冷定须姜。于今落釜成何益，月浦空馀禾黍香。",
     "chapter": 38,
     "relatedCharacters": [
-      "xue_baochai",
+      "shi_xiangyun",
       "lin_daiyu",
-      "shi_xiangyun"
+      "xue_baochai"
     ],
     "relatedEvents": [
       "螃蟹宴"
@@ -6806,9 +6806,9 @@
     "content": "粉堕百花洲，香残燕子楼。一团团、逐对成毬。飘泊亦如人命薄，空缱绻，说风流。草木也知愁，韶华竟白头。叹今生、谁舍谁收？嫁与东风春不管，凭尔去，忍淹留！",
     "chapter": 70,
     "relatedCharacters": [
+      "shi_xiangyun",
       "lin_daiyu",
-      "xue_baochai",
-      "shi_xiangyun"
+      "xue_baochai"
     ],
     "relatedEvents": [
       "柳絮词"
@@ -6829,8 +6829,8 @@
     "content": "宝鼎茶闲烟尚绿，幽窗棋罢指犹凉。",
     "chapter": 17,
     "relatedCharacters": [
-      "lin_daiyu",
-      "jia_baoyu"
+      "jia_baoyu",
+      "lin_daiyu"
     ],
     "relatedPlaces": [
       "潇湘馆"
@@ -6851,8 +6851,8 @@
     "content": "吟成豆蔻才犹艳，睡足荼蘼梦亦香。",
     "chapter": 17,
     "relatedCharacters": [
-      "xue_baochai",
-      "jia_baoyu"
+      "jia_baoyu",
+      "xue_baochai"
     ],
     "relatedPlaces": [
       "蘅芜苑"
@@ -6874,8 +6874,8 @@
     "chapter": 1,
     "relatedCharacters": [
       "jia_baoyu",
-      "jia_zheng",
-      "lin_daiyu"
+      "lin_daiyu",
+      "jia_zheng"
     ],
     "tags": [
       "主题",
@@ -6893,13 +6893,13 @@
     "content": "《红楼梦》是一部女性悲剧史诗。书中写了众多女儿，无论贵贱，皆以悲剧收场：\n\n**贵族女子**：\n- 元春：宫闱寂寞而死\n- 迎春：被虐致死\n- 探春：远嫁他乡\n- 惜春：出家为尼\n- 黛玉：泪尽而亡\n- 宝钗：独守空房\n\n**丫鬟仆人**：\n- 晴雯：被逐病亡\n- 金钏：投井自尽\n- 司棋：被逐殉情\n- 香菱：被虐致死\n\n所有美好生命都被封建礼教吞噬，故曰'千红一哭，万艳同悲'。",
     "chapter": 5,
     "relatedCharacters": [
-      "jia_yuanchun",
-      "jia_yingchun",
-      "jia_tanchun",
       "jia_xichun",
+      "jia_tanchun",
+      "jia_yingchun",
       "lin_daiyu",
       "xue_baochai",
       "qingwen",
+      "jia_yuanchun",
       "jinchuan"
     ],
     "tags": [
@@ -6918,8 +6918,8 @@
     "content": "《红楼梦》以贾府兴衰为主线，写尽'烈火烹油，鲜花着锦'到'忽喇喇似大厦倾'的过程：\n\n**兴盛期**：\n- 秦可卿丧礼：极尽奢华\n- 元妃省亲：烈火烹油\n- 大观园建成：人间仙境\n- 诗社雅集：文采风流\n\n**转折期**：\n- 宝玉挨打：父子冲突\n- 抄检大观园：内部瓦解\n- 元妃薨逝：靠山倒塌\n\n**衰败期**：\n- 贾府被抄：大厦倾覆\n- 贾母病逝：支柱崩塌\n- 众人离散：飞鸟投林\n\n'满纸荒唐言，一把辛酸泪'，盛极必衰是历史的必然。",
     "chapter": 1,
     "relatedCharacters": [
-      "jia_mu",
       "wang_xifeng",
+      "jia_mu",
       "jia_baoyu",
       "jia_yuanchun"
     ],
@@ -6939,10 +6939,10 @@
     "content": "晴雯是宝玉房中丫鬟，位列金陵十二钗又副册之首。\n\n**性格特征**：\n- 风流灵巧：针线活极好，曾补雀金裘\n- 心高气傲：不甘卑贱，'心比天高'\n- 口齿伶俐：敢与宝玉拌嘴\n- 刚烈不屈：被逐时不肯低头\n\n**悲剧命运**：\n- 因'风流灵巧'遭嫉\n- 被王夫人诬陷为'狐狸精'\n- 病中被逐，含恨而死\n- 宝玉作《芙蓉女儿诔》祭奠\n\n晴雯是'晴为黛影'，与黛玉命运相通。",
     "chapter": 5,
     "relatedCharacters": [
-      "qingwen",
       "jia_baoyu",
-      "wang_furen",
-      "lin_daiyu"
+      "lin_daiyu",
+      "qingwen",
+      "wang_furen"
     ],
     "tags": [
       "人物专题",
@@ -6960,8 +6960,8 @@
     "content": "袭人是宝玉贴身大丫鬟，原名珍珠，后宝玉取其姓花，取陆游'花气袭人知骤暖'诗意名之。\n\n**性格特征**：\n- 温柔和顺：待人和气，处事周全\n- 忠心耿耿：一心为宝玉着想\n- 务实理性：劝宝玉走正途\n- 善于隐忍：被宝玉踢伤无怨言\n\n**与宝玉关系**：\n- 初试云雨：与宝玉有肌肤之亲\n- 苦口婆心：劝宝玉读书上进\n- 最终分离：嫁与蒋玉菡\n\n袭人代表'贤妻良母'型女性，与晴雯形成对比。",
     "chapter": 5,
     "relatedCharacters": [
-      "xiren",
       "jia_baoyu",
+      "xiren",
       "wang_furen",
       "jiang_yuhan"
     ],
@@ -6981,9 +6981,9 @@
     "content": "刘姥姥是乡下贫婆子，与贾府沾亲，三进大观园，见证贾府盛衰。\n\n**三进大观园**：\n- 一进：打秋风，见凤姐，得二十两银子\n- 二进：报恩，带土产，贾母款待，游园\n- 三进：救巧姐，贾府败后仗义疏财\n\n**人物特点**：\n- 朴实善良：知恩图报\n- 幽默风趣：'老刘老刘，食量大似牛'\n- 大智若愚：看似可笑，实则通透\n- 仗义救人：贾府败后救巧姐\n\n刘姥姥是平民视角，与贵族形成对比。",
     "chapter": 6,
     "relatedCharacters": [
-      "liu_laolao",
-      "jia_mu",
       "wang_xifeng",
+      "jia_mu",
+      "liu_laolao",
       "jia_qiaojie"
     ],
     "tags": [
@@ -7100,8 +7100,8 @@
     "content": "座上珠玑昭日月，堂前黼黻焕烟霞。",
     "chapter": 3,
     "relatedCharacters": [
-      "jia_zheng",
-      "lin_daiyu"
+      "lin_daiyu",
+      "jia_zheng"
     ],
     "relatedEvents": [
       "黛玉进贾府"
@@ -7125,8 +7125,8 @@
     "content": "嫩寒锁梦因春冷，芳气笼人是酒香。",
     "chapter": 5,
     "relatedCharacters": [
-      "qin_keqing",
-      "jia_baoyu"
+      "jia_baoyu",
+      "qin_keqing"
     ],
     "relatedEvents": [
       "神游太虚幻境"
@@ -7150,10 +7150,10 @@
     "content": "黛玉得知宝玉迎娶宝钗的消息后，病情急剧恶化。她将往日与宝玉的诗帕、诗稿一一取出，投入火盆焚烧。紫鹃在侧急切劝阻，黛玉已力不从心，诗稿在火中化为灰烬。",
     "chapter": 97,
     "relatedCharacters": [
-      "lin_daiyu",
-      "zijuan",
       "jia_baoyu",
-      "xue_baochai"
+      "lin_daiyu",
+      "xue_baochai",
+      "zijuan"
     ],
     "relatedEvents": [
       "黛玉焚稿",
@@ -7207,8 +7207,8 @@
     "content": "抄检大观园时，王善保家的自恃是邢夫人陪房，行事嚣张，翻检到探春处时出言不逊，探春怒而掌掴之，斥其\"狗仗人势\"，在场众人皆惊。",
     "chapter": 74,
     "relatedCharacters": [
-      "jia_tanchun",
-      "wang_xifeng"
+      "wang_xifeng",
+      "jia_tanchun"
     ],
     "relatedEvents": [
       "抄检大观园"
@@ -7233,8 +7233,8 @@
     "content": "晴雯被逐出大观园后抱病而亡。宝玉悲痛不已，作《芙蓉女儿诔》祭之，以花喻人，将晴雯比作芙蓉花神，句句泣血，是全书最动人的祭文之一。",
     "chapter": 78,
     "relatedCharacters": [
-      "qingwen",
-      "jia_baoyu"
+      "jia_baoyu",
+      "qingwen"
     ],
     "relatedEvents": [
       "抄检大观园",
@@ -7262,9 +7262,9 @@
     "chapter": 5,
     "relatedCharacters": [
       "jia_baoyu",
+      "jia_mu",
       "lin_daiyu",
       "xue_baochai",
-      "jia_mu",
       "wang_furen"
     ],
     "relatedEvents": [
@@ -7293,8 +7293,8 @@
     "content": "\"贾不假，白玉为堂金作马。阿房宫，三百里，住不下金陵一个史。东海缺少白玉床，龙王来请金陵王。丰年好大雪（薛），珍珠如土金如铁。\"四大家族贾、史、王、薛通过联姻与官场互保形成利益共同体。",
     "chapter": 4,
     "relatedCharacters": [
-      "jia_mu",
       "wang_xifeng",
+      "jia_mu",
       "xue_baochai",
       "jia_zheng"
     ],
@@ -7321,10 +7321,10 @@
     "content": "秦可卿死后，贾珍倾其所有大办丧事，用义忠亲王老千岁的樯木棺材，请六十四名僧人、六十四名道士念经超度。停灵四十九日，多位王公贵族设路祭。凤姐协理宁国府丧事，借此展现管家才能。",
     "chapter": 13,
     "relatedCharacters": [
-      "qin_keqing",
-      "jia_zhen",
       "wang_xifeng",
-      "jia_baoyu"
+      "jia_baoyu",
+      "jia_zhen",
+      "qin_keqing"
     ],
     "relatedEvents": [
       "秦可卿之死",
@@ -7351,11 +7351,11 @@
     "content": "湘云做东道主办螃蟹宴，实由宝钗暗中资助。众人在藕香榭吃螃蟹、饮菊花酒、作菊花诗。黛玉的《咏菊》《问菊》《菊梦》连夺三首第一，宝钗的《螃蟹咏》被推为讽刺世人的绝唱。",
     "chapter": 38,
     "relatedCharacters": [
-      "shi_xiangyun",
-      "xue_baochai",
-      "lin_daiyu",
       "jia_baoyu",
-      "jia_tanchun"
+      "jia_tanchun",
+      "lin_daiyu",
+      "shi_xiangyun",
+      "xue_baochai"
     ],
     "relatedEvents": [
       "海棠诗社",
@@ -7407,8 +7407,8 @@
     "chapter": 37,
     "relatedCharacters": [
       "lin_daiyu",
-      "jia_tanchun",
-      "xue_baochai"
+      "xue_baochai",
+      "jia_tanchun"
     ],
     "relatedEvents": [
       "海棠诗社"
@@ -7429,8 +7429,8 @@
     "content": "珍重芳姿昼掩门，自携手瓮灌苔盆。胭脂洗出秋阶影，冰雪招来露砌魂。淡极始知花更艳，愁多焉得玉无痕。欲偿白帝凭清洁，不语婷婷日又昏。",
     "chapter": 37,
     "relatedCharacters": [
-      "xue_baochai",
       "lin_daiyu",
+      "xue_baochai",
       "jia_tanchun"
     ],
     "relatedEvents": [
@@ -7452,9 +7452,9 @@
     "content": "欲讯秋情众莫知，喃喃负手叩东篱。孤标傲世偕谁隐，一样花开为底迟？圃露庭霜何寂寞，鸿归蛩病可相思？休言举世无谈者，解语何妨话片时。",
     "chapter": 38,
     "relatedCharacters": [
+      "xue_baochai",
       "lin_daiyu",
-      "shi_xiangyun",
-      "xue_baochai"
+      "shi_xiangyun"
     ],
     "relatedEvents": [
       "菊花诗会"
@@ -7475,9 +7475,9 @@
     "content": "篱畔秋酣一觉清，和云伴月不分明。登仙非慕庄生蝶，忆旧还寻陶令盟。睡去依依随雁断，惊回故故恼蛩鸣。醒时幽怨同谁诉，衰草寒烟无限情。",
     "chapter": 38,
     "relatedCharacters": [
+      "xue_baochai",
       "lin_daiyu",
-      "shi_xiangyun",
-      "xue_baochai"
+      "shi_xiangyun"
     ],
     "relatedEvents": [
       "菊花诗会"
@@ -7498,9 +7498,9 @@
     "content": "薛蟠为争香菱打死冯渊，案子落到新任应天府尹贾雨村手里。门子拿出'护官符'，点破四大家族盘根错节的势力网络。贾雨村明知薛蟠有罪，却为了官场自保和仕途前程，顺着权势将案件草草了结，冯家冤情无从昭雪。",
     "chapter": 4,
     "relatedCharacters": [
-      "jia_yucun",
       "xue_pan",
-      "xiang_ling"
+      "xiang_ling",
+      "jia_yucun"
     ],
     "relatedEvents": [
       "葫芦僧乱判葫芦案",
@@ -7523,10 +7523,10 @@
     "content": "贾不假，白玉为堂金作马。阿房宫，三百里，住不下金陵一个史。东海缺少白玉床，龙王来请金陵王。丰年好大雪，珍珠如土金如铁。",
     "chapter": 4,
     "relatedCharacters": [
-      "jia_yucun",
-      "jia_zheng",
       "wang_xifeng",
-      "xue_baochai"
+      "jia_yucun",
+      "xue_baochai",
+      "jia_zheng"
     ],
     "relatedEvents": [
       "葫芦僧乱判葫芦案"
@@ -7548,8 +7548,8 @@
     "content": "蘅芜苑位于大观园东部，为薛宝钗居所。院内遍植藤萝薜荔，无花木之艳，却有藤蔓之幽。室内陈设简素，如\"雪洞一般\"，惟案上瓶中供数枝菊花而已。\n\n匾额：蘅芷清芬（宝玉题）\n对联：吟成豆蔻才犹艳，睡足酴醾梦也香\n\n蘅芜苑的建筑风格与宝钗\"冷香丸\"的意象相呼应，外冷内热，表面简素，内里深沉。藤萝薜荔四季常青，暗合宝钗处世圆融、温厚持重的性格。",
     "chapter": 17,
     "relatedCharacters": [
-      "xue_baochai",
       "jia_baoyu",
+      "xue_baochai",
       "xue_yima"
     ],
     "relatedEvents": [
@@ -7579,8 +7579,8 @@
     "content": "稻香村位于大观园东北角，为李纨居所。此处不种花木，惟植杏花数株，又有土墙茅舍、泥墙篱笆，俨然农家气象。\n\n匾额：杏帘在望（宝玉题）\n对联：新涨绿添浣葛处，好云香护采桑人\n\n稻香村的田园风格与李纨寡居身份相契合。她青春守寡，心如槁木死灰，居于\"稻香村\"中，既是以田园自遣，也是远离繁华、独守清静的象征。\n\n相关故事：海棠诗社在此成立，李纨为社长，评诗公允，展露其沉稳公正的一面。",
     "chapter": 17,
     "relatedCharacters": [
-      "li_wan",
-      "jia_lan"
+      "jia_lan",
+      "li_wan"
     ],
     "relatedEvents": [
       "海棠诗社",
@@ -7607,10 +7607,10 @@
     "content": "栊翠庵位于大观园东部，为妙玉修行之所。庵内供观音大士，又有梅花数株、古松几棵，清幽出世。\n\n匾额：栊翠庵\n对联：座上珠玑昭日月，堂前黼黻焕烟霞\n\n栊翠庵虽在园中，却自成一方净土。妙玉在此品茶、诵经、赏梅，与尘世保持距离。庵中收藏珍贵茶具，如\"成窑五彩小盖钟\"等，显示妙玉出身不凡。\n\n相关故事：\n- 妙玉请宝钗、黛玉品茶，独给宝玉用自己常吃茶的绿玉斗\n- 刘姥姥用过的成窑杯被妙玉嫌弃，欲弃之\n- 宝玉乞红梅于栊翠庵",
     "chapter": 41,
     "relatedCharacters": [
-      "miaoyu",
       "jia_baoyu",
       "lin_daiyu",
-      "xue_baochai"
+      "xue_baochai",
+      "miaoyu"
     ],
     "relatedEvents": [
       "妙玉品茶",
@@ -7637,8 +7637,8 @@
     "content": "秋爽斋为探春居所，位于大观园中。斋内陈设阔朗，三间屋子不曾隔断，案上堆满书籍、法帖，墙上悬挂名人字画，展现探春潇洒开阔的性格。\n\n匾额：秋爽斋\n特点：探春素喜阔朗，屋内摆设大气，不似闺阁小女儿态。案上置大观、汝窑花囊，插满菊花，又有白玉比目磬等器物。\n\n相关故事：\n- 海棠诗社由探春发起，首次聚会即在秋爽斋\n- 探春理家时在此议定兴利除弊之策\n- 抄检大观园时，探春怒掴王善保家的",
     "chapter": 37,
     "relatedCharacters": [
-      "jia_tanchun",
-      "jia_baoyu"
+      "jia_baoyu",
+      "jia_tanchun"
     ],
     "relatedEvents": [
       "海棠诗社",
@@ -7666,8 +7666,8 @@
     "content": "暖香坞为惜春居所，位于大观园中。虽名\"暖香\"，惜春却性情冷淡，后更削发为尼。\n\n匾额：暖香坞\n特点：暖香坞小巧精致，惜春在此学画、诵经。尤氏曾来此处，惜春冷漠相对，显示其与世俗亲情的疏离。\n\n相关故事：\n- 惜春画大观园行乐图\n- 抄检大观园后，惜春将与她无关的丫鬟入画逐出\n- 惜春最终出家为尼",
     "chapter": 74,
     "relatedCharacters": [
-      "jia_xichun",
-      "you_shi"
+      "you_shi",
+      "jia_xichun"
     ],
     "relatedEvents": [
       "抄检大观园",
@@ -7694,8 +7694,8 @@
     "content": "紫菱洲为迎春居所，位于大观园水边。洲上植菱角、芦苇，意境萧瑟。\n\n匾额：紫菱洲\n特点：紫菱洲近水，风景清幽，却略带萧瑟之感，与迎春懦弱、随波逐流的性格相映。\n\n相关故事：\n- 迎春在此居住，性格懦弱，常被下人欺负\n- 司棋被逐，迎春无力相助\n- 迎春嫁给孙绍祖后受虐而死",
     "chapter": 73,
     "relatedCharacters": [
-      "jia_yingchun",
-      "siqi"
+      "siqi",
+      "jia_yingchun"
     ],
     "relatedEvents": [
       "司棋被逐",
@@ -7722,8 +7722,8 @@
     "content": "藕香榭为史湘云居所，位于大观园水池之中，四面环水，藕花环绕。\n\n匾额：藕香榭\n对联：芙蓉影破归兰桨，菱藕香深写竹桥\n\n特点：藕香榭建在水中央，有竹桥相通。夏日藕花盛开，清香四溢，与湘云豪爽明朗的性格相映成趣。\n\n相关故事：\n- 湘云醉卧芍药裀，后在此休息\n- 藕香榭赏桂花、吃螃蟹\n- 菊花诗会在此举行",
     "chapter": 38,
     "relatedCharacters": [
-      "shi_xiangyun",
-      "jia_baoyu"
+      "jia_baoyu",
+      "shi_xiangyun"
     ],
     "relatedEvents": [
       "螃蟹宴",
@@ -7753,8 +7753,7 @@
     "relatedCharacters": [
       "wang_xifeng",
       "qin_zhong",
-      "zhinenger",
-      "jingxu"
+      "zhineng"
     ],
     "relatedEvents": [
       "秦可卿出殡",
@@ -7811,11 +7810,10 @@
     "content": "梨香院原为荣国公晚年静养之所，后为薛姨妈一家暂住，再后来成为贾府戏班女伶的居所。\n\n相关故事：\n- 薛姨妈、宝钗初入贾府时居于此\n- 元妃省亲，戏班女伶在此排练\n- 龄官、藕官、芳官等十二小戏子在此居住\n- 宝玉探望龄官，见她画\"蔷\"字\n\n梨香院是贾府中功能转换最频繁的建筑之一：从养老之所到亲戚客舍，再到戏班居所。十二小戏子的命运——有的被逐、有的出家、有的病死——也是大观园众女儿命运的缩影。",
     "chapter": 4,
     "relatedCharacters": [
-      "xue_yima",
-      "xue_baochai",
       "lingguan",
+      "xue_baochai",
       "fangguan",
-      "ouguan"
+      "xue_yima"
     ],
     "relatedEvents": [
       "元妃省亲",
@@ -7842,11 +7840,11 @@
     "content": "清虚观位于城外，是贾府常去的道观。观主张法官与贾府交好。\n\n相关故事：\n- 端午节贾母率众人往清虚观打醮祈福\n- 张法官献\"麒麟\"给宝玉，与湘云的金麒麟相映\n- 宝玉、黛玉因金玉之说再次闹翻\n\n清虚观打醮表面是祈福，实则是一场复杂的姻缘角力。元妃赏赐的节礼中，宝玉与宝钗相同，黛玉心中不悦；清虚观中张法官又提金麒麟，进一步激化宝黛矛盾。",
     "chapter": 29,
     "relatedCharacters": [
-      "jia_mu",
       "jia_baoyu",
+      "jia_mu",
       "lin_daiyu",
-      "xue_baochai",
-      "shi_xiangyun"
+      "shi_xiangyun",
+      "xue_baochai"
     ],
     "relatedEvents": [
       "清虚观打醮"
@@ -7871,9 +7869,9 @@
     "content": "天齐庙位于城外，是贾敬修道炼丹之所。贾敬系宁国府长房，痴迷道教，不问世事。\n\n相关故事：\n- 贾敬在此修炼，追求长生\n- 因误食丹药而亡\n- 贾敬死后，宁国府更加混乱\n\n天齐庙是贾敬逃避家族责任、追求个人长生的地方。他的死亡方式——吞食丹药——是对盲目迷信的讽刺，也预示了宁国府的衰败。",
     "chapter": 63,
     "relatedCharacters": [
-      "jia_jing",
       "jia_zhen",
-      "jia_rong"
+      "jia_rong",
+      "jia_jing"
     ],
     "relatedEvents": [
       "贾敬之死"
@@ -7898,8 +7896,8 @@
     "content": "西山庄园是贾府在京郊的别业，用于避暑、狩猎、休闲。\n\n相关故事：\n- 贾政曾率宝玉等往西山游玩\n- 贾府衰落后，庄园被变卖\n\n西山庄园代表贾府的富裕与排场。当家族衰败，这些产业逐一变卖，象征贾府由盛转衰的经济困境。",
     "chapter": null,
     "relatedCharacters": [
-      "jia_zheng",
-      "jia_baoyu"
+      "jia_baoyu",
+      "jia_zheng"
     ],
     "relatedEvents": [
       "西山游玩"
@@ -7924,8 +7922,8 @@
     "content": "大观园正门巍峨，门前有石狮一对，门内正殿为省亲别墅。正殿前有玉石牌坊，上刻\"省亲别墅\"四字。\n\n匾额：省亲别墅（正殿）\n对联：金门玉户神仙府，桂殿兰宫妃子家\n\n正门与牌坊是大观园礼制功能的体现。元妃省亲时，正殿为正式礼仪场所，显示皇家规制。省亲后，正殿改作他用，大观园由礼制空间转为生活空间。",
     "chapter": 17,
     "relatedCharacters": [
-      "jia_yuanchun",
-      "jia_zheng"
+      "jia_zheng",
+      "jia_yuanchun"
     ],
     "relatedEvents": [
       "元妃省亲",
@@ -8010,10 +8008,10 @@
     "content": "凸碧山庄位于大观园山坡之上，为贾府中秋赏月佳处。山势高峻，便于眺望，环境清幽。\n\n特点：\n- 地势较高，可俯瞰大观园全景\n- 建筑简洁雅致，以赏月功能为主\n- 与凹晶溪馆高低呼应，构成\"凹凸\"之美\n\n相关故事：\n- 中秋夜，贾母携众家人在凸碧山庄设宴赏月\n- 湘云、黛玉于附近的凹晶溪馆联句\n- 宝玉作《中秋夜大观园即景》诗\n- 众人听曲、猜谜、行酒令",
     "chapter": 75,
     "relatedCharacters": [
+      "jia_baoyu",
       "jia_mu",
       "lin_daiyu",
       "shi_xiangyun",
-      "jia_baoyu",
       "xue_baochai"
     ],
     "relatedEvents": [

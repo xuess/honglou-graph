@@ -402,6 +402,8 @@ class KnowledgeView {
 
         <div class="knowledge-card-content">${this._highlightText(displayContent || '')}</div>
 
+        ${item.versionNote ? `<div class="knowledge-card-version">${this._highlightText(item.versionNote)}</div>` : ''}
+
         ${item.analysis ? `<div class="knowledge-card-analysis ${expanded ? 'visible' : ''}">${this._highlightText(item.analysis)}</div>` : ''}
         ${item.notes ? `<div class="knowledge-card-analysis note-box ${expanded ? 'visible' : ''}">${this._highlightText(item.notes)}</div>` : ''}
 
