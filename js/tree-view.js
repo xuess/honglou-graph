@@ -13,6 +13,8 @@ class TreeView {
     this._eventsBound = false;
     this.onTagClick = null;
     this.relatedCharacterIds = new Set();
+    this._currentTreeData = null;
+    this._searchIndex = new Map();
 
     this.familyColors = {
       '贾家': '#C0392B',
@@ -39,6 +41,7 @@ class TreeView {
     this.characterMap = new Map();
     this.familyTrees = new Map();
     this.characters.forEach((character) => this.characterMap.set(character.id, character));
+    this._buildSearchIndex();
   }
 
   setFacetContext(facetState = {}) {
@@ -73,6 +76,7 @@ class TreeView {
     const servantCount = familyChars.length - familyMembersOnly.length;
 
     const treeData = this._getFamilyTree(this.currentFamily, familyChars);
+    this._currentTreeData = treeData;
     const visibleSections = this._getVisibleSections(treeData.sections);
     const matchedCount = this._countVisibleNodes(visibleSections);
 
@@ -158,6 +162,7 @@ class TreeView {
     const servantCount = familyChars.length - familyMembersOnly.length;
 
     const treeData = this._getFamilyTree(this.currentFamily, familyChars);
+    this._currentTreeData = treeData;
     const visibleSections = this._getVisibleSections(treeData.sections);
     const matchedCount = this._countVisibleNodes(visibleSections);
 
@@ -326,7 +331,7 @@ class TreeView {
       .map((id) => this.characterMap.get(id)?.name || '')
       .filter(Boolean);
 
-    const haystack = [
+    const haystack = this._searchIndex.get(character.id) || [
       character.name,
       ...(character.alias || []),
       character.identity || '',
@@ -468,11 +473,23 @@ class TreeView {
       if (actionButton) {
         if (actionButton.dataset.action === 'expand-all') {
           this._visitTreeNodes((node) => this.expandedNodes.add(node.id));
-          this._updateTreeContent();
+          this.container.querySelectorAll('[data-node-id]').forEach((el) => el.classList.add('visible'));
+          this.container.querySelectorAll('[data-toggle-id]').forEach((btn) => {
+            if (btn.disabled) return;
+            btn.classList.add('expanded');
+            btn.ariaLabel = '收起分支';
+            btn.innerHTML = '▾';
+          });
         }
         if (actionButton.dataset.action === 'collapse-all') {
           this.expandedNodes.clear();
-          this._updateTreeContent();
+          this.container.querySelectorAll('[data-node-id]').forEach((el) => el.classList.remove('visible'));
+          this.container.querySelectorAll('[data-toggle-id]').forEach((btn) => {
+            if (btn.disabled) return;
+            btn.classList.remove('expanded');
+            btn.ariaLabel = '展开分支';
+            btn.innerHTML = '▸';
+          });
         }
         return;
       }
@@ -506,12 +523,31 @@ class TreeView {
   }
 
   _visitTreeNodes(callback) {
-    const treeData = this._getFamilyTree(this.currentFamily, this._getFamilyCharacters(this.currentFamily));
+    const treeData = this._currentTreeData || this._getFamilyTree(this.currentFamily, this._getFamilyCharacters(this.currentFamily));
     const visit = (branch) => {
       callback(branch.character);
       (branch.children || []).forEach(visit);
     };
     treeData.sections.forEach(visit);
+  }
+
+  _buildSearchIndex() {
+    this._searchIndex = new Map();
+    this.characters.forEach((character) => {
+      const spouseNames = (character.spouseIds || [])
+        .map((id) => this.characterMap.get(id)?.name || '')
+        .filter(Boolean);
+      const haystack = [
+        character.name,
+        ...(character.alias || []),
+        character.identity || '',
+        character.description || '',
+        ...(character.keyEvents || []),
+        ...spouseNames,
+        character.family || ''
+      ].join(' ').toLowerCase();
+      this._searchIndex.set(character.id, haystack);
+    });
   }
 
   _highlightText(text) {

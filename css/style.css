@@ -3303,6 +3303,12 @@ body.view-knowledge .main-container {
   border-color: rgba(196,168,130,0.4);
 }
 
+.list-card-tag.knowledge {
+  color: #8B2500;
+  border-color: rgba(212,160,23,0.35);
+  background: rgba(212,160,23,0.12);
+}
+
 .list-card-outcome {
   font-size: 0.8rem;
   color: var(--color-ink-light);

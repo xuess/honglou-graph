@@ -5,6 +5,7 @@ class ListView {
     this.characterMap = new Map();
     this.relationships = [];
     this.onCharacterClick = null;
+    this.onKnowledgeClick = null;
 
     this.viewMode = 'card'; // 'card' | 'compact'
     this.sortBy = 'importance'; // 'importance' | 'family' | 'name' | 'generation'
@@ -18,6 +19,8 @@ class ListView {
     this.onTagClick = null;
     this.relatedCharacterIds = new Set();
     this.relationCountMap = new Map();
+    this._filterCacheKey = '';
+    this._filteredCharacters = [];
 
     this.familyColors = {
       '贾家': '#C0392B',
@@ -115,6 +118,7 @@ class ListView {
         window.clearTimeout(this._searchTimer);
         this._searchTimer = window.setTimeout(() => {
           this.searchQuery = e.target.value;
+          this._invalidateFilterCache();
           this._renderList();
           this._scrollToTop();
         }, 160);
@@ -135,12 +139,14 @@ class ListView {
       if (target.matches('.list-filter-select')) {
         if (target.dataset.filter === 'family') this.filterFamily = target.value;
         if (target.dataset.filter === 'gender') this.filterGender = target.value;
+        this._invalidateFilterCache();
         this.visibleCount = 48;
         this._renderList();
         this._scrollToTop();
       }
       if (target.matches('.list-sort-select')) {
         this.sortBy = target.value;
+        this._invalidateFilterCache();
         this._renderList();
         this._scrollToTop();
       }
@@ -161,6 +167,16 @@ class ListView {
   }
 
   _getFilteredCharacters() {
+    const cacheKey = JSON.stringify({
+      family: this.filterFamily,
+      gender: this.filterGender,
+      query: this.searchQuery.trim(),
+      sortBy: this.sortBy
+    });
+    if (cacheKey === this._filterCacheKey && this._filteredCharacters.length) {
+      return this._filteredCharacters;
+    }
+
     let chars = [...this.characters];
 
     // Filter by family
@@ -204,6 +220,8 @@ class ListView {
         break;
     }
 
+    this._filterCacheKey = cacheKey;
+    this._filteredCharacters = chars;
     return chars;
   }
 
@@ -231,6 +249,14 @@ class ListView {
     if (!this._listClickBound) {
       this._listClickBound = true;
       listEl.addEventListener('click', (e) => {
+        const knowledgeEl = e.target.closest('[data-knowledge-id]');
+        if (knowledgeEl) {
+          e.stopPropagation();
+          e.preventDefault();
+          const char = this.characterMap.get(knowledgeEl.dataset.knowledgeId);
+          if (char && this.onKnowledgeClick) this.onKnowledgeClick(char);
+          return;
+        }
         const charEl = e.target.closest('[data-char-id]');
         if (charEl) {
           const char = this.characterMap.get(charEl.dataset.charId);
@@ -263,6 +289,7 @@ class ListView {
             <span class="list-card-tag ${c.gender === '女' ? 'female' : 'male'}">${c.gender}</span>
             <span class="list-card-tag soft">★${c.importance || 1}</span>
             <span class="list-card-tag soft">${relCount}条关系</span>
+            <button class="list-card-tag knowledge" data-knowledge-id="${c.id}">相关知识</button>
           </div>
           ${c.outcome ? `<div class="list-card-outcome">结局：${c.outcome}</div>` : ''}
         </div>
@@ -282,6 +309,7 @@ class ListView {
         <span class="list-compact-identity">${c.identity || ''}</span>
         <span class="list-compact-importance">★${c.importance || 1}</span>
         <span class="list-compact-gender ${c.gender === '女' ? 'female' : 'male'}">${c.gender}</span>
+        <button class="list-card-tag knowledge" data-knowledge-id="${c.id}">知识</button>
       </div>
     `;
   }
@@ -296,7 +324,13 @@ class ListView {
     window.clearTimeout(this._searchTimer);
     this._controlsBound = false;
     this._listClickBound = false;
+    this._invalidateFilterCache();
     this.container.innerHTML = '';
+  }
+
+  _invalidateFilterCache() {
+    this._filterCacheKey = '';
+    this._filteredCharacters = [];
   }
 
 }
