@@ -506,8 +506,8 @@ class KnowledgeView {
       const charButton = event.target.closest('[data-char-id]');
       if (charButton) {
         event.stopPropagation();
-        const character = this.characterMap.get(charButton.dataset.charId);
-        if (character && this.onCharacterClick) this.onCharacterClick(character);
+        const charId = charButton.dataset.charId;
+        if (this.onCharacterClick) this.onCharacterClick(charId);
         return;
       }
 
@@ -625,6 +625,11 @@ class KnowledgeView {
     this.container.querySelectorAll('.knowledge-char-pill').forEach((button) => {
       button.classList.toggle('is-related', this.relatedCharacterIds.has(button.dataset.charId));
     });
+  }
+
+  _invalidateFilterCache() {
+    this._lastFilterSignature = '';
+    this._lastFilteredItems = [];
   }
 
   _invalidateFilterCache() {

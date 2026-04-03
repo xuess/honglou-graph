@@ -348,33 +348,54 @@ _init() {
   _onTick() {
     if (this._tickPending) return;
     this._tickPending = true;
+    
     window.requestAnimationFrame(() => {
+      if (!this._tickPending) return;
       this._tickPending = false;
-    const visibleNodeIds = this.currentVisibleNodeIds;
-    const visibleLinkKeys = this.currentVisibleLinkKeys;
-    const hasVisibilityFilter = visibleNodeIds.size > 0 || visibleLinkKeys.size > 0;
+      
+      const visibleNodeIds = this.currentVisibleNodeIds;
+      const visibleLinkKeys = this.currentVisibleLinkKeys;
+      const hasVisibilityFilter = visibleNodeIds.size > 0;
 
-    this.linkElements.each(function(d) {
-      if (!hasVisibilityFilter || visibleLinkKeys.has(d.key)) {
-        this.setAttribute('x1', d.source.x);
-        this.setAttribute('y1', d.source.y);
-        this.setAttribute('x2', d.target.x);
-        this.setAttribute('y2', d.target.y);
-      }
-    });
+      if (hasVisibilityFilter) {
+        this.linkElements.each(function(d) {
+          if (visibleLinkKeys.has(d.key)) {
+            this.setAttribute('x1', d.source.x);
+            this.setAttribute('y1', d.source.y);
+            this.setAttribute('x2', d.target.x);
+            this.setAttribute('y2', d.target.y);
+          }
+        });
 
-    this.linkLabelElements.each(function(d) {
-      if (!hasVisibilityFilter || visibleLinkKeys.has(d.key)) {
-        this.setAttribute('x', (d.source.x + d.target.x) / 2);
-        this.setAttribute('y', (d.source.y + d.target.y) / 2);
-      }
-    });
+        this.linkLabelElements.each(function(d) {
+          if (visibleLinkKeys.has(d.key)) {
+            this.setAttribute('x', (d.source.x + d.target.x) / 2);
+            this.setAttribute('y', (d.source.y + d.target.y) / 2);
+          }
+        });
 
-    this.nodeElements.each(function(d) {
-      if (!hasVisibilityFilter || visibleNodeIds.has(d.id)) {
-        this.setAttribute('transform', `translate(${d.x},${d.y})`);
+        this.nodeElements.each(function(d) {
+          if (visibleNodeIds.has(d.id)) {
+            this.setAttribute('transform', `translate(${d.x},${d.y})`);
+          }
+        });
+      } else {
+        this.linkElements.each(function(d) {
+          this.setAttribute('x1', d.source.x);
+          this.setAttribute('y1', d.source.y);
+          this.setAttribute('x2', d.target.x);
+          this.setAttribute('y2', d.target.y);
+        });
+
+        this.linkLabelElements.each(function(d) {
+          this.setAttribute('x', (d.source.x + d.target.x) / 2);
+          this.setAttribute('y', (d.source.y + d.target.y) / 2);
+        });
+
+        this.nodeElements.each(function(d) {
+          this.setAttribute('transform', `translate(${d.x},${d.y})`);
+        });
       }
-    });
     });
   }
 
@@ -587,19 +608,22 @@ _init() {
   _refreshSimulationForVisibleSubset() {
     const visibleNodes = this.nodes.filter((node) => this.currentVisibleNodeIds.has(node.id));
     const visibleLinks = this.links.filter((link) => this.currentVisibleLinkKeys.has(this._getLinkKey(link)));
-    const shouldUseSubset = visibleNodes.length > 0 && visibleNodes.length < Math.max(18, this.nodes.length * 0.72);
+    
+    const shouldUseSubset = visibleNodes.length > 0 && visibleNodes.length < this.nodes.length * 0.6;
+    
     if (shouldUseSubset) {
-      this._subSimulationMode = true;
-      this._setupSimulation(visibleNodes, visibleLinks);
-      this._warmSimulation(0.18);
-      this._coolDownSimulation(480);
+      if (!this._subSimulationMode) {
+        this._subSimulationMode = true;
+        this._setupSimulation(visibleNodes, visibleLinks);
+        this._warmSimulation(0.15);
+      }
       return;
     }
+    
     if (this._subSimulationMode) {
       this._subSimulationMode = false;
       this._setupSimulation(this.nodes, this.links);
-      this._warmSimulation(0.16);
-      this._coolDownSimulation(520);
+      this._warmSimulation(0.12);
     }
   }
 
@@ -823,6 +847,23 @@ _init() {
       familyCounts,
       relationCounts
     };
+  }
+
+  previewNode(characterId) {
+    const node = this.nodes.find(n => n.id === characterId);
+    if (!node) return;
+    
+    this.nodeElements.classed('preview-dimmed', d => d.id !== characterId);
+    this.linkElements.classed('preview-dimmed', d => {
+      const srcId = d.source.id || d.source;
+      const tgtId = d.target.id || d.target;
+      return srcId !== characterId && tgtId !== characterId;
+    });
+  }
+
+  clearPreview() {
+    this.nodeElements.classed('preview-dimmed', false);
+    this.linkElements.classed('preview-dimmed', false);
   }
 
   destroy() {

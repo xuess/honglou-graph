@@ -572,6 +572,12 @@ class TreeView {
     });
   }
 
+  clearHighlight() {
+    this.container.querySelectorAll('.tree-person-card.highlighted').forEach((card) => {
+      card.classList.remove('highlighted');
+    });
+  }
+
   _syncTreeHighlights() {
     this.container.querySelectorAll('.tree-person-card').forEach((card) => {
       card.classList.toggle('highlighted', this.relatedCharacterIds.has(card.dataset.charId));

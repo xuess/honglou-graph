@@ -4181,3 +4181,26 @@ button:focus-visible,
 .character-card:focus-visible {
   outline: none;
 }
+
+/* Preview highlight styles for cross-view hover */
+.preview-highlight {
+  box-shadow: 0 0 0 3px var(--color-gold) !important;
+  transform: scale(1.02);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.node-group.preview-dimmed {
+  opacity: 0.25;
+  transition: opacity 0.2s ease;
+}
+
+.link-line.preview-dimmed {
+  opacity: 0.15;
+  transition: opacity 0.2s ease;
+}
+
+.list-card-item.preview-highlight,
+.list-compact-row.preview-highlight {
+  box-shadow: 0 0 0 2px var(--color-gold);
+  background: var(--color-gold-light, #fffbe6);
+}

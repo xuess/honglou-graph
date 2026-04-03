@@ -430,6 +430,7 @@ class HongLouMengApp {
       this.treeView = new TreeView(this.els.treeContainer);
       this.treeView.setData(this.characters, this.relationships);
       this.treeView.onCharacterClick = (character) => this._openCharacter(character.id, { focusNeighbors: true });
+      this._subscribeViewToFacetStore('tree');
     }
 
     if (this.els.listContainer) {
@@ -437,6 +438,7 @@ class HongLouMengApp {
       this.listView.setData(this.characters, this.relationships);
       this.listView.onCharacterClick = (character) => this._openCharacter(character.id, { focusNeighbors: true });
       this.listView.onKnowledgeClick = (character) => this._openCharacterKnowledge(character);
+      this._subscribeViewToFacetStore('list');
     }
 
     if (this.els.knowledgeContainer) {
@@ -444,7 +446,45 @@ class HongLouMengApp {
       this.knowledgeView.setData(this.knowledge, this.characters);
       this.knowledgeView.onCharacterClick = (characterId) => this._openCharacter(characterId, { focusNeighbors: true });
       this.knowledgeView.onTagClick = (payload) => this._handleFacetTagSelection(payload);
+      this._subscribeViewToFacetStore('knowledge');
     }
+  }
+
+  _subscribeViewToFacetStore(viewName) {
+    if (!facetStore) return;
+    
+    facetStore.subscribe(viewName, (state, changedKeys) => {
+      const view = {
+        tree: this.treeView,
+        list: this.listView,
+        knowledge: this.knowledgeView,
+        graph: this.graph
+      }[viewName];
+      
+      if (!view || !view.setFacetContext) return;
+      
+      view.setFacetContext({
+        selectedCharacterIds: state.selectedCharacterIds,
+        selectedFamily: state.selectedFamily,
+        selectedChapter: state.selectedChapter,
+        selectedTags: state.selectedTags
+      });
+      
+      if (viewName === 'tree' && this.viewInitialized.tree) {
+        view._syncTreeHighlights?.();
+      }
+      if (viewName === 'list' && this.viewInitialized.list) {
+        view._invalidateFilterCache?.();
+        view._renderList?.();
+      }
+      if (viewName === 'knowledge' && this.viewInitialized.knowledge) {
+        view._invalidateFilterCache?.();
+        view._updateContent?.();
+      }
+      if (viewName === 'graph') {
+        view.applyFacetSelection?.(state.selectedCharacterIds);
+      }
+    }, ['selectedCharacterIds', 'selectedFamily', 'selectedChapter', 'selectedTags']);
   }
 
   _switchView(viewName) {
@@ -990,12 +1030,26 @@ _createFontAndThemeControls() {
       this.viewInitialized.knowledge = true;
       this.viewEverRendered.knowledge = true;
     }
+    
+    this.knowledgeView.activeCategory = 'all';
+    this.knowledgeView.activeSubcategory = 'all';
+    this.knowledgeView.chapterFilter = 'all';
+    this.knowledgeView.sortBy = 'relevance';
     this.knowledgeView.searchQuery = character.name;
     this.knowledgeView.relatedCharacterIds = new Set([character.id]);
+    this.knowledgeView.expandedIds.clear();
+    this.knowledgeView.displayCount = 40;
+    
     const input = this.els.knowledgeContainer?.querySelector('.knowledge-search-input');
     if (input) input.value = character.name;
+    
     this.knowledgeView._invalidateFilterCache?.();
     this.knowledgeView._updateContent();
+    this.knowledgeView._scrollToTop();
+    
+    const main = this.els.knowledgeContainer?.querySelector('.knowledge-main');
+    if (main) main.scrollTo({ top: 0, behavior: 'instant' });
+    
     this._updateFloatingContext(`知识：${character.name}`);
   }
 
@@ -1882,14 +1936,71 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
     this._setHtml(this.els.cardContent, '');
   }
 
-  _setFacetState(nextState = {}) {
-    this.facetState = {
+  _setFacetState(nextState = {}, sourceView = 'graph') {
+    const mergedState = {
       ...this.facetState,
       ...nextState,
       selectedCharacterIds: Array.from(new Set(nextState.selectedCharacterIds ?? this.facetState.selectedCharacterIds ?? [])),
       selectedTags: Array.from(new Set(nextState.selectedTags ?? this.facetState.selectedTags ?? []))
     };
+    
+    this.facetState = mergedState;
+    
+    if (facetStore) {
+      facetStore.batchStart();
+      facetStore.set({
+        selectedCharacterIds: mergedState.selectedCharacterIds,
+        selectedTags: mergedState.selectedTags,
+        selectedFamily: mergedState.selectedFamily,
+        selectedChapter: mergedState.selectedChapter,
+        selectedCategory: mergedState.selectedCategory,
+        breadcrumb: mergedState.breadcrumb
+      }, sourceView);
+      facetStore.batchEnd(sourceView);
+    }
+    
     this._renderGlobalContextBar();
+    this._syncFacetStateToViews();
+  }
+
+  _syncFacetStateToViews() {
+    const state = this.facetState;
+    
+    if (this.treeView) {
+      this.treeView.setFacetContext({
+        selectedCharacterIds: state.selectedCharacterIds,
+        selectedFamily: state.selectedFamily
+      });
+      if (this.viewInitialized.tree) {
+        this.treeView._syncTreeHighlights?.();
+      }
+    }
+    
+    if (this.listView) {
+      this.listView.setFacetContext({
+        selectedCharacterIds: state.selectedCharacterIds,
+        selectedFamily: state.selectedFamily
+      });
+      if (this.viewInitialized.list) {
+        this.listView._invalidateFilterCache?.();
+        this.listView._renderList?.();
+      }
+    }
+    
+    if (this.knowledgeView) {
+      this.knowledgeView.setFacetContext({
+        selectedCharacterIds: state.selectedCharacterIds,
+        selectedChapter: state.selectedChapter
+      });
+      if (this.viewInitialized.knowledge) {
+        this.knowledgeView._invalidateFilterCache?.();
+        this.knowledgeView._updateContent?.();
+      }
+    }
+    
+    if (this.graph) {
+      this.graph.applyFacetSelection?.(state.selectedCharacterIds);
+    }
   }
 
   _mergeFacetState(partial = {}) {
@@ -1898,9 +2009,63 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
 
   _handleFacetTagSelection(payload = {}) {
     if (!payload?.value) return;
+    
     if (payload.type === 'family') {
       this._openFamily(payload.value);
       return;
+    }
+    
+    if (payload.type === 'character' || payload.characterId) {
+      const characterId = payload.characterId || payload.value;
+      if (facetStore) {
+        facetStore.toggleCharacter(characterId, payload.view || 'unknown');
+      }
+      this._openCharacter(characterId, { focusNeighbors: true });
+      return;
+    }
+    
+    if (payload.type === 'tag' || payload.tag) {
+      const tag = payload.tag || payload.value;
+      if (facetStore) {
+        facetStore.toggleTag(tag, payload.view || 'unknown');
+      }
+      this._applyTagFilter(tag);
+    }
+  }
+
+  _applyTagFilter(tag) {
+    if (this.knowledgeView && this.viewInitialized.knowledge) {
+      this.knowledgeView.searchQuery = tag;
+      this.knowledgeView._invalidateFilterCache?.();
+      this.knowledgeView._updateContent?.();
+    }
+  }
+
+  previewCharacterHover(characterId, sourceView) {
+    if (sourceView === 'graph' && this.treeView) {
+      this.treeView.highlightCharacter?.(characterId);
+    }
+    if (sourceView === 'graph' && this.listView) {
+      this.listView.highlightCharacter?.(characterId);
+    }
+    if (sourceView === 'tree' && this.graph) {
+      this.graph.previewNode?.(characterId);
+    }
+    if (sourceView === 'list' && this.graph) {
+      this.graph.previewNode?.(characterId);
+    }
+    if (sourceView === 'knowledge' && this.graph) {
+      this.graph.previewNode?.(characterId);
+    }
+  }
+
+  clearCharacterPreview(sourceView) {
+    if (sourceView === 'graph') {
+      this.treeView?.clearHighlight?.();
+      this.listView?.clearHighlight?.();
+    }
+    if (sourceView === 'tree' || sourceView === 'list' || sourceView === 'knowledge') {
+      this.graph?.clearPreview?.();
     }
   }
 

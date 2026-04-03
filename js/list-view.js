@@ -257,12 +257,30 @@ class ListView {
           if (char && this.onKnowledgeClick) this.onKnowledgeClick(char);
           return;
         }
+        
+        const tagEl = e.target.closest('[data-tag-type]');
+        if (tagEl) {
+          e.stopPropagation();
+          e.preventDefault();
+          const tagType = tagEl.dataset.tagType;
+          const tagValue = tagEl.dataset.tagValue;
+          if (tagType === 'family' && tagValue) {
+            this.filterFamily = tagValue;
+            this._invalidateFilterCache();
+            this.visibleCount = 48;
+            this._renderList();
+            this._scrollToTop();
+          }
+          return;
+        }
+        
         const charEl = e.target.closest('[data-char-id]');
         if (charEl) {
           const char = this.characterMap.get(charEl.dataset.charId);
           if (char && this.onCharacterClick) this.onCharacterClick(char);
           return;
         }
+        
         const actionEl = e.target.closest('[data-action="load-more"]');
         if (actionEl) {
           this.visibleCount += 48;
@@ -318,6 +336,18 @@ class ListView {
     const div = document.createElement('div');
     div.textContent = str;
     return div.innerHTML;
+  }
+
+  highlightCharacter(characterId) {
+    this.container.querySelectorAll('.list-card-item, .list-compact-row').forEach((item) => {
+      item.classList.toggle('preview-highlight', item.dataset.charId === characterId);
+    });
+  }
+
+  clearHighlight() {
+    this.container.querySelectorAll('.preview-highlight').forEach((item) => {
+      item.classList.remove('preview-highlight');
+    });
   }
 
   destroy() {
