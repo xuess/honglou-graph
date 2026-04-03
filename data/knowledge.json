@@ -2393,7 +2393,8 @@
       "甬道"
     ],
     "analysis": "甬道是传统建筑的重要组成部分，连接院落各处。贾府这样的大家族，甬道往往宽敞整洁，两旁有抄手游廊，是日常行走的主要通道。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_meng",
@@ -2408,7 +2409,8 @@
       "屋脊"
     ],
     "analysis": "甍是古代建筑专用字，指屋脊。\"雕甍\"指雕刻精美的屋脊，是大观园建筑奢华的象征。红楼梦中大量使用这类建筑词汇，展现贾府的富贵气象。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_qiang",
@@ -2423,7 +2425,8 @@
       "漆器"
     ],
     "analysis": "戗金是明清时期流行的漆器装饰工艺，贾府这样的贵族家庭常用此类精美器物。宁国府祭宗祠场景中提到\"戗金\"器皿，体现贾府的奢华。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_xiang",
@@ -2438,7 +2441,8 @@
       "茄鲞"
     ],
     "analysis": "\"鲞\"原指干鱼，红楼梦中\"茄鲞\"是将茄子如鱼般精心炮制。凤姐介绍这道菜要\"十来只鸡来配\"，是贾府饮食奢华讲究的典型代表。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_hai",
@@ -2453,7 +2457,8 @@
       "酱料"
     ],
     "analysis": "醢是古代食品加工方式的遗存，在红楼梦中反映贾府饮食的古法传承。古代贵族饮食讲究\"酱\"的种类，醢是其中一种高级调料。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_zan",
@@ -2468,7 +2473,8 @@
       "首饰"
     ],
     "analysis": "簪是古代女子必备的首饰，材质有金、玉、银等。\"金簪雪里埋\"是宝钗判词的核心意象：金簪（宝钗）虽珍贵，却被埋在雪中（孤独终老）。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_chai",
@@ -2484,7 +2490,8 @@
       "宝钗"
     ],
     "analysis": "钗与簪相似，但钗是双股，簪是单股。\"钗\"在红楼梦中地位极高：薛宝钗之名、金陵十二钗之称，都与这字相关。\"钗黛\"并称，是黛玉与宝钗的合称。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_chuan",
@@ -2500,7 +2507,8 @@
       "金钏"
     ],
     "analysis": "金钏儿是王夫人的大丫鬟，因与宝玉调笑被王夫人逐出，后投井自尽。这个情节是宝玉挨打的导火索之一。\"钏\"字在人名中的使用，体现了丫鬟命名的器物化。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_pei",
@@ -2515,7 +2523,8 @@
       "礼服"
     ],
     "analysis": "凤冠霞帔是古代贵族妇女的正式礼服。元妃省亲时穿凤冠霞帔，是身份尊贵的象征。宝玉出家时\"披着大红猩猩毡斗篷\"，也类似一种\"帔\"的变体，象征他最后的告别。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_luo",
@@ -2531,7 +2540,8 @@
       "璎珞"
     ],
     "analysis": "璎珞原为佛教用语，指颈饰。传入中国后成为贵族男女的装饰品。宝玉出场时\"项上戴着赤金盘螭璎珞圈\"，象征他的富贵与特殊身份——那块通灵宝玉就系在璎珞上。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_mo",
@@ -2546,7 +2556,8 @@
       "仆人"
     ],
     "analysis": "嬷嬷在贾府有特殊地位。如李嬷嬷是宝玉乳母，虽是仆人，却可以训斥丫鬟。但她最终因年老被边缘化，拿走宝玉给晴雯的豆腐皮包子，反映了贾府等级关系的复杂。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_ru",
@@ -2561,7 +2572,8 @@
       "尊称"
     ],
     "analysis": "孺人是古代对有身份妇人的尊称，明清时期七品官的妻子可封孺人。红楼梦中常用\"孺人\"作为对贵妇的敬称，体现礼仪规范。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_dou",
@@ -2576,7 +2588,8 @@
       "游戏"
     ],
     "analysis": "红楼梦中\"斗\"有多种用法。\"斗草\"是大观园中女儿们的游戏，以草茎相勾拉断为胜负。\"斗篷\"是披在身上的外衣，宝玉出家时披\"大红猩猩毡斗篷\"，是最经典的文学形象之一。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_yi",
@@ -2591,7 +2604,8 @@
       "景象"
     ],
     "analysis": "大观园的景观描写中常用\"逶迤\"形容山水布局的曲折有致。中国传统园林讲究\"曲径通幽\"，\"逶迤\"正是这种意境的典型表达。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_wan",
@@ -2606,7 +2620,8 @@
       "发型"
     ],
     "analysis": "绾发是古代女子梳妆的重要环节。王熙凤出场时\"绾着朝阳五凤挂珠钗\"，描写了她发髻的精致华贵。\"绾\"字在红楼梦中多次出现，是女性形象描写的关键词。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_zuan",
@@ -2621,7 +2636,8 @@
       "首饰"
     ],
     "analysis": "\"攒珠\"是传统首饰工艺，用小珠子攒成各种花样。王熙凤出场时戴着\"金丝八宝攒珠髻\"，是贵族妇女华丽装束的典型代表。攒珠工艺需要极大耐心，体现贾府用物的精巧。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "entrance_xifeng",
@@ -2787,7 +2803,8 @@
       "衣物"
     ],
     "analysis": "襦裙是古代女子最常见的装束，上襦下裙。红楼梦中女性服饰多为袄、褂、裙组合，襦是其中一种款式。襦褓则是包裹婴儿的被褥。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_ao",
@@ -2802,7 +2819,8 @@
       "衣物"
     ],
     "analysis": "袄是清代女性最常见的上衣，有棉袄、夹袄之分。红楼梦中大量出现\"袄\"——如宝玉的\"银红撒花半旧大袄\"，是家常穿着。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_gua",
@@ -2817,7 +2835,8 @@
       "外衣"
     ],
     "analysis": "褂是清代特有的服装，套在袄外面的外衣。凤姐的\"五彩刻丝石青银鼠褂\"是高级褂子，有刻丝工艺、银鼠皮里。宝玉的褂子有\"排穗\"装饰，更显华贵。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_ling",
@@ -2832,7 +2851,8 @@
       "丝绸"
     ],
     "analysis": "绫是高级丝织品，质地轻薄，表面有光泽。红楼梦中的衣物大量使用绫、缎、绸、绉等丝织品，体现贾府的富贵。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_duan",
@@ -2847,7 +2867,8 @@
       "丝绸"
     ],
     "analysis": "缎比绫更厚实光滑，是高级丝织品。\"洋缎\"指进口缎或仿西洋工艺的缎，在清代是奢侈品。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_zhou",
@@ -2862,7 +2883,8 @@
       "丝绸"
     ],
     "analysis": "绉是表面有皱纹的丝织品，轻薄透气。\"洋绉\"指进口绉或仿西洋工艺的绉。凤姐的\"翡翠撒花洋绉裙\"用洋绉制成，轻盈华贵。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_xie",
@@ -2877,7 +2899,8 @@
       "园林"
     ],
     "analysis": "榭是园林建筑，常建在水边或高处，四面开敞，供观赏风景。藕香榭是大观园的重要景点，建在水上，四面荷花环绕，是螃蟹宴的举办地。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_ge",
@@ -2892,7 +2915,8 @@
       "闺阁"
     ],
     "analysis": "阁是多用途建筑，可住人、藏书、观景。\"闺阁\"特指女子居所，红楼梦中\"闺阁女儿\"是对大观园女子的称呼。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_zhao",
@@ -2907,7 +2931,8 @@
       "皇帝"
     ],
     "analysis": "诏是皇帝专用词汇。元春被封为贤德妃、省亲，都是奉皇上诏书。这个字体现了皇家威仪，在省亲场景中出现。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_si",
@@ -2922,7 +2947,8 @@
       "祭祀"
     ],
     "analysis": "祀是祭祀专用字。宁国府除夕祭宗祠是红楼梦重要的礼仪场景，展现贾府的宗族秩序和祭祀文化。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_dian",
@@ -2937,7 +2963,8 @@
       "祭祀"
     ],
     "analysis": "奠是祭祀相关字。\"奠仪\"指祭奠时送的礼物或钱财，秦可卿丧礼中各路亲朋送奠仪，是丧葬礼仪的重要组成部分。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_lian",
@@ -2952,7 +2979,8 @@
       "嫁妆"
     ],
     "analysis": "奁是女子专用器物，指梳妆盒或嫁妆。黛玉进贾府时，她的随身物品中可能有妆奁。\"奁资\"指陪嫁的钱财，是婚姻中的重要内容。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "philosophy_yin_kong",
@@ -3054,10 +3082,7 @@
     "title": "绛（jiàng）",
     "content": "【拼音】jiàng\n【字义】深红色、赤色\n【红楼用例】绛珠仙子——林黛玉的前身\n【典故】\"绛珠\"即红色的珠子，暗示黛玉以血泪还情\n【相关】绛珠草、绛芸轩（宝玉居所）",
     "chapter": 1,
-    "relatedCharacters": [
-      "lin_daiyu",
-      "zhens_shiyin"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "绛",
@@ -3073,10 +3098,7 @@
     "title": "敕（chì）",
     "content": "【拼音】chì\n【释义】皇帝的命令：敕令、敕书、敕封\n【红楼用例】贾元春被封贤德妃是奉\"敕\"\n【相关】敕造（奉皇帝之命建造）、敕命\n【区别】与\"诏\"同义，但\"敕\"多用于汉代，\"诏\"多用于后代",
     "chapter": 16,
-    "relatedCharacters": [
-      "jia_yuanchun",
-      "huangshang"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "敕",
@@ -3099,7 +3121,8 @@
       "佛教"
     ],
     "analysis": "\"祚\"指国运、帝位。\"祚永\"意为国运长久、福祚绵延。红楼梦虽写贾府，实则暗写清朝，\"祚永之朝\"暗示王朝盛衰无常，呼应\"千里搭长棚，没有不散的筵席\"。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_lei",
@@ -3107,11 +3130,7 @@
     "title": "诔（lěi）",
     "content": "【拼音】lěi\n【释义】哀悼死者的文章\n【红楼用例】《芙蓉女儿诔》——宝玉祭奠晴雯之作\n【相关】诔文、诔词\n【特点】古代文体之一，多用于祭奠",
     "chapter": 78,
-    "relatedCharacters": [
-      "jia_baoyu",
-      "qingwen",
-      "lin_daiyu"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "诔",
@@ -3127,11 +3146,7 @@
     "title": "黹（zhǐ）",
     "content": "【拼音】zhǐ\n【释义】缝纫、刺绣等针线活\n【红楼用例】\"针黹\"指女子针线活\n【相关】女红、针线、刺绣\n【文化】古代女子\"德言容功\"四德之一",
     "chapter": 3,
-    "relatedCharacters": [
-      "lin_daiyu",
-      "xue_baochai",
-      "jiamu"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "黹",
@@ -3154,7 +3169,8 @@
       "罕见"
     ],
     "analysis": "\"刳\"意为剖开、挖空，如\"刳木为舟\"。红楼梦开篇提及女娲补天遗留的石头，\"独自己无材不堪入选\"，后幻形入世，此石即被\"刳\"心雕琢过的通灵宝玉。",
-    "category": "生僻字词"
+    "category": "生僻字词",
+    "relatedCharacters": []
   },
   {
     "id": "character_chan",
@@ -3162,10 +3178,7 @@
     "title": "羼（chàn）",
     "content": "【拼音】chàn\n【释义】混杂、搀杂\n【红楼用例】\"胡羼\"指鬼混、瞎掺和\n【相关】羼杂、羼和\n【口语】\"胡羼\"即胡乱混日子",
     "chapter": 9,
-    "relatedCharacters": [
-      "jin_rong",
-      "qiong_you"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "羼",
@@ -3181,10 +3194,7 @@
     "title": "醪（láo）",
     "content": "【拼音】láo\n【释义】未过滤的浊酒、米酒\n【红楼用例】\"醪糟\"是常见饮品\n【相关】醪糟、浊酒、米酒\n【特点】带米渣的甜酒",
     "chapter": 8,
-    "relatedCharacters": [
-      "xue_baochai",
-      "jin_chuan"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "醪",
@@ -3200,10 +3210,7 @@
     "title": "衾（qīn）",
     "content": "【拼音】qīn\n【释义】被子\n【红楼用例】\"同衾\"指同床共枕\n【相关】衾枕、罗衾、布衾\n【诗词】\"鸳鸯瓦冷霜华重，翡翠衾寒谁与共\"（白居易）",
     "chapter": 82,
-    "relatedCharacters": [
-      "daiyu",
-      "baoyu"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "衾",
@@ -3219,10 +3226,7 @@
     "title": "颦（pín）",
     "content": "【拼音】pín\n【释义】皱眉\n【红楼用例】林黛玉字\"颦颦\"\n【出处】宝玉赠字\"颦颦\"，取自\"西方有石名黛，可代画眉之墨\"\n【相关】颦蹙、一颦一笑",
     "chapter": 3,
-    "relatedCharacters": [
-      "lin_daiyu",
-      "jia_baoyu"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "颦",
@@ -3238,10 +3242,7 @@
     "title": "玷（diàn）",
     "content": "【拼音】diàn\n【释义】白玉上的斑点，引申为污损、耻辱\n【红楼用例】\"玷辱\"指使蒙受污损\n【相关】玷污、白圭之玷\n【用法】\"玷辱门楣\"是常用语",
     "chapter": 33,
-    "relatedCharacters": [
-      "jia_zheng",
-      "jia_baoyu"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "玷",
@@ -3257,10 +3258,7 @@
     "title": "敝（bì）",
     "content": "【拼音】bì\n【释义】\n1. 谦辞：敝人、敝处、敝姓\n2. 破旧：敝衣、敝帚\n【红楼用例】谦辞用法多见\n【相关】敝帚自珍、疲敝\n【谦称】\"敝\"是古人常用谦辞",
     "chapter": 3,
-    "relatedCharacters": [
-      "jia_yucun",
-      "lengzi_xing"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "敝",
@@ -3276,10 +3274,7 @@
     "title": "帑（tǎng）",
     "content": "【拼音】tǎng\n【释义】国库、府库中的钱财\n【红楼用例】\"内帑\"指皇室内部财政\n【相关】国帑、府帑、帑银\n【区别】\"帑\"专指官库钱财",
     "chapter": 16,
-    "relatedCharacters": [
-      "jia_yuanchun",
-      "huangshang"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "帑",
@@ -3295,11 +3290,7 @@
     "title": "乩（jī）",
     "content": "【拼音】jī\n【释义】扶乩：通过沙盘请神写字的占卜术\n【红楼用例】\"乩仙\"通过扶乩请来的神灵\n【相关】扶乩、乩笔、乩盘\n【道教】扶乩是民间常见的占卜方式",
     "chapter": 102,
-    "relatedCharacters": [
-      "wang_furen",
-      "baoer",
-      "madaopo"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "乩",
@@ -3315,10 +3306,7 @@
     "title": "鹾（cuó）",
     "content": "【拼音】cuó\n【释义】盐\n【红楼用例】\"鹾政\"即盐政、盐务\n【相关】鹾务、鹾商、盐政\n【历史】盐在古代是国家专卖品，盐政是肥差",
     "chapter": 2,
-    "relatedCharacters": [
-      "lin_ruhai",
-      "jia_yucun"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "鹾",
@@ -3334,11 +3322,7 @@
     "title": "飞觥献斝（fēi gōng xiàn jiǎ）",
     "content": "【成语】飞觥献斝\n【拼音】fēi gōng xiàn jiǎ\n【释义】形容频频举杯、互相敬酒\n【出处】红楼梦宴席场景\n【用例】行酒令、庆寿、节日宴席",
     "chapter": 63,
-    "relatedCharacters": [
-      "baoyu",
-      "qingwen",
-      "xiren"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "礼俗",
       "酒令",
@@ -3375,9 +3359,7 @@
     "title": "庑（wǔ）",
     "content": "【建筑】正房厢庑游廊\n【拼音】wǔ\n【释义】正房或殿堂两侧的廊屋\n【功能】连接正房与厢房，遮阳避雨\n【组成】正房（主屋）、厢房（两侧）、庑（廊屋）、游廊（走廊）",
     "chapter": 3,
-    "relatedCharacters": [
-      "lin_daiyu"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "建筑",
       "庑",
@@ -3411,10 +3393,7 @@
     "title": "攒（cuán）珠髻",
     "content": "【服饰】攒珠髻\n【拼音】cuán\n【释义】聚集、镶嵌珠子而成的发髻\n【工艺】将珍珠、宝石镶嵌于发髻之上\n【地位】贵妇、命妇的华丽头饰",
     "chapter": 3,
-    "relatedCharacters": [
-      "wang_xifeng",
-      "jiamu"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "服饰",
       "发型",
@@ -3430,9 +3409,7 @@
     "title": "盘螭（pán chī）",
     "content": "【器物】盘螭璎珞\n【拼音】pán chī\n【释义】螭龙盘绕成环状\n【螭】古代传说中无角的龙，常用作装饰\n【璎珞】古代颈饰，由珠玉串成",
     "chapter": 3,
-    "relatedCharacters": [
-      "wang_xifeng"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "服饰",
       "珠宝",
@@ -3448,9 +3425,7 @@
     "title": "宫绦（tāo）",
     "content": "【服饰】宫绦\n【拼音】tāo\n【释义】宫廷式样的丝带\n【用途】系裙、束腰，或作装饰\n【材质】丝织，常有花纹",
     "chapter": 3,
-    "relatedCharacters": [
-      "wang_xifeng"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "服饰",
       "丝带",
@@ -3465,9 +3440,7 @@
     "title": "窄褃（kèn）袄",
     "content": "【服饰】窄褃袄\n【拼音】kèn\n【释义】收腰剪裁的短袄\n【特点】贴身剪裁，凸显身材\n【材质】洋缎（进口缎子）",
     "chapter": 3,
-    "relatedCharacters": [
-      "wang_xifeng"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "服饰",
       "袄",
@@ -3483,9 +3456,7 @@
     "title": "洋绉（zhòu）",
     "content": "【服饰】洋绉\n【拼音】zhòu\n【释义】进口的起皱丝绸\n【特点】表面有皱纹，质地轻薄\n【来源】西洋进口，故称\"洋\"",
     "chapter": 3,
-    "relatedCharacters": [
-      "wang_xifeng"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "服饰",
       "丝绸",
@@ -3520,10 +3491,7 @@
     "title": "不忿（bù fèn）",
     "content": "【词语】不忿\n【拼音】bù fèn\n【释义】心中不服气、愤懑\n【用例】\"心有不忿\"\n【近义】不平、不满、气愤",
     "chapter": 9,
-    "relatedCharacters": [
-      "jin_rong",
-      "xiang_ling"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "词语",
       "情绪",
@@ -3538,10 +3506,7 @@
     "title": "蹁跹袅娜（pián xiān niǎo nuó）",
     "content": "【成语】蹁跹袅娜\n【拼音】pián xiān niǎo nuó\n【释义】形容女子姿态轻盈优美、柔美动人\n【用例】形容舞姿、步态\n【近义】婀娜多姿、翩翩起舞",
     "chapter": 5,
-    "relatedCharacters": [
-      "keqing",
-      "baoyu"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "成语",
       "姿态",
@@ -3841,11 +3806,7 @@
     "title": "庠（xiáng）",
     "content": "【拼音】xiáng\n【释义】古代学校：庠序（乡学）\n【红楼用例】义学、家塾\n【文化】周代称'庠'，后称'序'、'学'",
     "chapter": 9,
-    "relatedCharacters": [
-      "jia_dai_ru",
-      "jin_rong",
-      "qinlian"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "庠",
@@ -3862,9 +3823,7 @@
     "title": "耆（qí）",
     "content": "【拼音】qí\n【释义】年老：耆老、耆宿（年高望重者）\n【相关】耆年、耆儒\n【年龄】一般指六十岁以上",
     "chapter": 1,
-    "relatedCharacters": [
-      "zhens_shiyin"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "耆",
@@ -3880,9 +3839,7 @@
     "title": "揆（kuí）",
     "content": "【拼音】kuí\n【释义】\n1. 度量、考察：揆度\n2. 管理、掌管：揆务\n3. 宰相：揆席（相位）",
     "chapter": 2,
-    "relatedCharacters": [
-      "jia_yucun"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "揆",
@@ -3898,10 +3855,7 @@
     "title": "囹圄（líng yǔ）",
     "content": "【拼音】líng yǔ\n【释义】监狱\n【相关】身陷囹圄\n【注意】二字连用，不单用",
     "chapter": 105,
-    "relatedCharacters": [
-      "jia_zhen",
-      "jia_she"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "囹圄",
@@ -3917,9 +3871,7 @@
     "title": "螟蛉（míng líng）",
     "content": "【拼音】míng líng\n【释义】养子、义子\n【典故】蜾蠃捕捉螟蛉幼虫作子的食物，古人误以为蜾蠃养螟蛉为子\n【用法】'螟蛉之子'即养子",
     "chapter": 2,
-    "relatedCharacters": [
-      "jia_yucun"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "螟蛉",
@@ -3935,10 +3887,7 @@
     "title": "阼（zuò）",
     "content": "【拼音】zuò\n【释义】主阶，堂前东阶（主人站立之处）\n【礼仪】古代以东为尊\n【相关】登阼（即位）",
     "chapter": 53,
-    "relatedCharacters": [
-      "jiamu",
-      "jia_zhen"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "阼",
@@ -3955,9 +3904,7 @@
     "title": "闳（hóng）",
     "content": "【拼音】hóng\n【释义】\n1. 宏大、宽广：闳大\n2. 里巷之门\n【相关】闳中肆外（内容丰富，表达自如）",
     "chapter": 78,
-    "relatedCharacters": [
-      "jia_baoyu"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "闳",
@@ -3973,9 +3920,7 @@
     "title": "绠（gěng）",
     "content": "【拼音】gěng\n【释义】汲水用的绳子\n【成语】绠短汲深（才疏学浅，难以胜任）\n【出处】《庄子》'绠短不可以汲深'",
     "chapter": 1,
-    "relatedCharacters": [
-      "caoxueqin"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "绠",
@@ -3991,11 +3936,7 @@
     "title": "谳（yàn）",
     "content": "【拼音】yàn\n【释义】审判、定罪\n【相关】谳词（判决书）、谳定（判决）\n【用法】司法术语",
     "chapter": 105,
-    "relatedCharacters": [
-      "jia_zhen",
-      "jia_she",
-      "jia_yucun"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "谳",
@@ -4011,10 +3952,7 @@
     "title": "窦（dòu）",
     "content": "【拼音】dòu\n【释义】孔洞、洞穴\n【成语】筚门闺窦（贫寒人家）\n【相关】情窦初开（指少年少女萌生爱情）",
     "chapter": 23,
-    "relatedCharacters": [
-      "jia_baoyu",
-      "lin_daiyu"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "生僻字",
       "窦",
@@ -4049,9 +3987,7 @@
     "title": "刻丝（缂丝）",
     "content": "【工艺】刻丝（缂丝）\n【拼音】kè sī\n【特点】通经断纬，正反两面花纹相同\n【价值】极为珍贵，有'一寸缂丝一寸金'之说",
     "chapter": 3,
-    "relatedCharacters": [
-      "wang_xifeng"
-    ],
+    "relatedCharacters": [],
     "tags": [
       "服饰",
       "工艺",
@@ -7360,5 +7296,170 @@
     ],
     "analysis": "螃蟹宴是大观园诗社最热闹的一次聚会。宝钗暗助湘云做东，体现其\"会做人\"的一面。文学上则是曹雪芹展示众钗才情的高光时刻——黛玉诗才第一、宝钗讽世、湘云豪爽，各人性格在诗中一览无遗。",
     "category": "饮食养生"
+  },
+  {
+    "id": "poem_jiayucun_zhongqiu",
+    "type": "poem",
+    "title": "中秋对月口占一绝（贾雨村）",
+    "content": "时逢三五便团圆，满把晴光护玉栏。天上一轮才捧出，人间万姓仰头看。",
+    "chapter": 1,
+    "relatedCharacters": [
+      "jia_yucun",
+      "zhen_shiyin"
+    ],
+    "relatedEvents": [
+      "甄士隐资助贾雨村"
+    ],
+    "tags": [
+      "诗词",
+      "贾雨村",
+      "中秋",
+      "咏月",
+      "第一回"
+    ],
+    "analysis": "这是贾雨村落魄时在甄士隐家中秋赏月所作。表面写中秋月圆，实则借月抒怀：'才捧出'写月亮初升，也暗寓自己将来出人头地；'万姓仰头看'更直露地流露出他对显达功名的强烈渴望。此诗是理解贾雨村性格的关键文本——有才情，也有极强的仕进心与权力欲。",
+    "category": "诗词"
+  },
+  {
+    "id": "poem_yong_bai_haitang_daiyu",
+    "type": "poem",
+    "title": "咏白海棠（黛玉）",
+    "content": "半卷湘帘半掩门，碾冰为土玉为盆。偷来梨蕊三分白，借得梅花一缕魂。月窟仙人缝缟袂，秋闺怨女拭啼痕。娇羞默默同谁诉，倦倚西风夜已昏。",
+    "chapter": 37,
+    "relatedCharacters": [
+      "lin_daiyu",
+      "jia_tanchun",
+      "xue_baochai"
+    ],
+    "relatedEvents": [
+      "海棠诗社"
+    ],
+    "tags": [
+      "诗词",
+      "白海棠",
+      "黛玉",
+      "海棠诗社"
+    ],
+    "analysis": "这是黛玉在海棠诗社中的代表作之一。'偷来梨蕊三分白，借得梅花一缕魂'历来被视为《红楼梦》最著名的咏花警句之一。黛玉借白海棠写自己：清冷、孤洁、带泪含愁。'秋闺怨女拭啼痕'尤是自画像，既写花态，也写其寄人篱下、敏感多情的心境。",
+    "category": "诗词"
+  },
+  {
+    "id": "poem_yong_bai_haitang_baochai",
+    "type": "poem",
+    "title": "咏白海棠（宝钗）",
+    "content": "珍重芳姿昼掩门，自携手瓮灌苔盆。胭脂洗出秋阶影，冰雪招来露砌魂。淡极始知花更艳，愁多焉得玉无痕。欲偿白帝凭清洁，不语婷婷日又昏。",
+    "chapter": 37,
+    "relatedCharacters": [
+      "xue_baochai",
+      "lin_daiyu",
+      "jia_tanchun"
+    ],
+    "relatedEvents": [
+      "海棠诗社"
+    ],
+    "tags": [
+      "诗词",
+      "白海棠",
+      "宝钗",
+      "海棠诗社"
+    ],
+    "analysis": "宝钗此诗最能体现其审美与性格。'淡极始知花更艳'是全诗警策，也可视作宝钗自身人格的写照——不以浓烈取胜，而以内敛端庄见长。与黛玉诗中凄清孤绝不同，宝钗笔下的白海棠更端凝、更有分寸，体现其'藏愚守拙'、含蓄稳重的一面。",
+    "category": "诗词"
+  },
+  {
+    "id": "poem_wenju",
+    "type": "poem",
+    "title": "问菊",
+    "content": "欲讯秋情众莫知，喃喃负手叩东篱。孤标傲世偕谁隐，一样花开为底迟？圃露庭霜何寂寞，鸿归蛩病可相思？休言举世无谈者，解语何妨话片时。",
+    "chapter": 38,
+    "relatedCharacters": [
+      "lin_daiyu",
+      "shi_xiangyun",
+      "xue_baochai"
+    ],
+    "relatedEvents": [
+      "菊花诗会"
+    ],
+    "tags": [
+      "诗词",
+      "菊花诗",
+      "黛玉",
+      "问菊"
+    ],
+    "analysis": "《问菊》是黛玉菊花诗中的名篇。它不是单纯咏物，而是以'问'的形式与菊花对话。'孤标傲世偕谁隐'几乎可以看作黛玉自我精神的陈述：清高孤介，却无人真正理解。全诗借菊自问、自答，把身世之感和知己之思融入秋意之中。",
+    "category": "诗词"
+  },
+  {
+    "id": "poem_jumeng",
+    "type": "poem",
+    "title": "菊梦",
+    "content": "篱畔秋酣一觉清，和云伴月不分明。登仙非慕庄生蝶，忆旧还寻陶令盟。睡去依依随雁断，惊回故故恼蛩鸣。醒时幽怨同谁诉，衰草寒烟无限情。",
+    "chapter": 38,
+    "relatedCharacters": [
+      "lin_daiyu",
+      "shi_xiangyun",
+      "xue_baochai"
+    ],
+    "relatedEvents": [
+      "菊花诗会"
+    ],
+    "tags": [
+      "诗词",
+      "菊花诗",
+      "黛玉",
+      "菊梦"
+    ],
+    "analysis": "《菊梦》写梦中之菊，也是梦中之我。黛玉借'庄生蝶梦'、'陶令东篱'等典故，把个人的幽独心绪写得空灵而凄美。'醒时幽怨同谁诉，衰草寒烟无限情'与其一生命运暗相呼应，是大观园女儿诗词中最具梦幻感与哀感的一首。",
+    "category": "诗词"
+  },
+  {
+    "id": "scene_huluan",
+    "type": "scene",
+    "title": "葫芦僧乱判葫芦案：贾雨村仕途与人性的转折",
+    "content": "薛蟠为争香菱打死冯渊，案子落到新任应天府尹贾雨村手里。门子拿出'护官符'，点破四大家族盘根错节的势力网络。贾雨村明知薛蟠有罪，却为了官场自保和仕途前程，顺着权势将案件草草了结，冯家冤情无从昭雪。",
+    "chapter": 4,
+    "relatedCharacters": [
+      "jia_yucun",
+      "xue_pan",
+      "xiang_ling"
+    ],
+    "relatedEvents": [
+      "葫芦僧乱判葫芦案",
+      "贾雨村判案"
+    ],
+    "tags": [
+      "名场面",
+      "贾雨村",
+      "护官符",
+      "香菱",
+      "四大家族"
+    ],
+    "analysis": "这是贾雨村人物塑造的关键情节。他并非一开始就是彻底的恶人，却在现实权力网络面前迅速选择了顺从与同流合污。此案一方面揭露四大家族'护官符'的社会结构，另一方面也让读者看清贾雨村从'有才而落魄'走向'有权而凉薄'的精神滑坡。",
+    "category": "名场面"
+  },
+  {
+    "id": "allusion_huguanfu",
+    "type": "allusion",
+    "title": "护官符：四大家族的势力清单",
+    "content": "贾不假，白玉为堂金作马。阿房宫，三百里，住不下金陵一个史。东海缺少白玉床，龙王来请金陵王。丰年好大雪，珍珠如土金如铁。",
+    "chapter": 4,
+    "relatedCharacters": [
+      "jia_yucun",
+      "jia_zheng",
+      "wang_xifeng",
+      "xue_baochai"
+    ],
+    "relatedEvents": [
+      "葫芦僧乱判葫芦案"
+    ],
+    "tags": [
+      "护官符",
+      "四大家族",
+      "权力",
+      "金陵",
+      "典故"
+    ],
+    "analysis": "护官符是《红楼梦》最重要的社会结构文本之一，以民间顺口溜的形式把贾、史、王、薛四家的政治、军功、财力与商业势力一一说破。它不只是背景说明，更是全书'权力如何保护权力'的缩影。贾雨村正是在理解护官符后，正式成为这个体系的一部分。",
+    "category": "典故"
   }
 ]
