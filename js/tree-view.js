@@ -46,7 +46,6 @@ class TreeView {
 
   setFacetContext(facetState = {}) {
     this.relatedCharacterIds = new Set(facetState.selectedCharacterIds || []);
-    if (facetState.selectedFamily) this.currentFamily = facetState.selectedFamily;
   }
 
   render(family) {
@@ -134,6 +133,7 @@ class TreeView {
         <span class="tree-hint-pill">点击姓名查看人物卡片</span>
         <span class="tree-hint-pill">点击箭头展开后代分支</span>
         <span class="tree-hint-pill">配偶会以内联标签显示</span>
+        ${this.relatedCharacterIds.size ? `<span class="tree-hint-pill">当前仅高亮 ${this.relatedCharacterIds.size} 位关联人物，不会自动切换家族</span>` : ''}
       </div>
 
       <div class="tree-outline" id="tree-outline-content">
@@ -149,6 +149,7 @@ class TreeView {
 
   _updateTreeContent() {
     const treeOutline = this.container.querySelector('#tree-outline-content');
+    const hintRow = this.container.querySelector('.tree-hint-row');
     if (!treeOutline) return;
 
     const familyChars = this._getFamilyCharacters(this.currentFamily);
@@ -165,6 +166,15 @@ class TreeView {
     this._currentTreeData = treeData;
     const visibleSections = this._getVisibleSections(treeData.sections);
     const matchedCount = this._countVisibleNodes(visibleSections);
+
+    if (hintRow) {
+      hintRow.innerHTML = `
+        <span class="tree-hint-pill">点击姓名查看人物卡片</span>
+        <span class="tree-hint-pill">点击箭头展开后代分支</span>
+        <span class="tree-hint-pill">配偶会以内联标签显示</span>
+        ${this.relatedCharacterIds.size ? `<span class="tree-hint-pill">当前仅高亮 ${this.relatedCharacterIds.size} 位关联人物，不会自动切换家族</span>` : ''}
+      `;
+    }
 
     treeOutline.innerHTML = visibleSections.length
       ? visibleSections.map((section) => this._renderSection(section)).join('')

@@ -124,7 +124,7 @@ dist
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
-
+.playwright-mcp
 .vscode
 # yarn v3
 .pnp.*

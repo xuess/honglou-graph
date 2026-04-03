@@ -58,7 +58,6 @@ class KnowledgeView {
 
   setFacetContext(facetState = {}) {
     this.relatedCharacterIds = new Set(facetState.selectedCharacterIds || []);
-    if (facetState.selectedChapter) this.chapterFilter = String(facetState.selectedChapter);
   }
 
   render() {
@@ -171,7 +170,7 @@ class KnowledgeView {
             <div class="knowledge-results-head card-surface">
               <div>
                 <div class="knowledge-results-title">知识条目</div>
-                <div class="knowledge-results-subtitle">当前显示 ${filteredItems.length} 条，支持人物跳转、长文展开与多维检索</div>
+                <div class="knowledge-results-subtitle">${this._buildResultsSubtitle(filteredItems.length, filteredItems.length)}</div>
               </div>
               <button class="knowledge-clear-btn" data-action="clear-filters">清空筛选</button>
             </div>
@@ -202,7 +201,7 @@ class KnowledgeView {
     this._renderVisibleItems(contentEl, filteredItems, visibleItems, { append: false });
     
     if (subtitleEl) {
-      subtitleEl.textContent = `当前显示 ${Math.min(this.displayCount, filteredItems.length)} / ${filteredItems.length} 条，支持人物跳转、长文展开与多维检索`;
+      subtitleEl.textContent = this._buildResultsSubtitle(Math.min(this.displayCount, filteredItems.length), filteredItems.length);
     }
 
     this._updateCategoryActiveState();
@@ -567,10 +566,18 @@ class KnowledgeView {
     this._renderVisibleItems(contentEl, filteredItems, visibleItems, { append: true, newItems });
 
     if (subtitleEl) {
-      subtitleEl.textContent = `当前显示 ${Math.min(this.displayCount, filteredItems.length)} / ${filteredItems.length} 条，支持人物跳转、长文展开与多维检索`;
+      subtitleEl.textContent = this._buildResultsSubtitle(Math.min(this.displayCount, filteredItems.length), filteredItems.length);
     }
 
     this._syncKnowledgeHighlights();
+  }
+
+  _buildResultsSubtitle(visibleCount, totalCount) {
+    const parts = [`当前显示 ${visibleCount} / ${totalCount} 条`, '支持人物跳转、长文展开与多维检索'];
+    if (this.relatedCharacterIds.size) {
+      parts.push(`已高亮 ${this.relatedCharacterIds.size} 位关联人物，不影响当前筛选`);
+    }
+    return parts.join(' · ');
   }
 
   _scrollToTop() {

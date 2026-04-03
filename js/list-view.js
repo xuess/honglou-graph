@@ -49,7 +49,6 @@ class ListView {
   setFacetContext(facetState = {}) {
     const ids = facetState.selectedCharacterIds || [];
     this.relatedCharacterIds = new Set(ids);
-    if (facetState.selectedFamily) this.filterFamily = facetState.selectedFamily;
   }
 
   render() {
@@ -238,7 +237,7 @@ class ListView {
     }
 
     // Stats bar
-    const statsHtml = `<div class="list-stats">共 ${chars.length} 位人物${chars.length > visibleChars.length ? ` · 已显示 ${visibleChars.length}` : ''}</div>`;
+    const statsHtml = `<div class="list-stats">共 ${chars.length} 位人物${chars.length > visibleChars.length ? ` · 已显示 ${visibleChars.length}` : ''}${this.relatedCharacterIds.size ? ` · 已高亮 ${this.relatedCharacterIds.size} 位关联人物，不影响当前筛选` : ''}</div>`;
 
     if (this.viewMode === 'card') {
       listEl.innerHTML = statsHtml + `<div class="list-card-grid">${visibleChars.map(c => this._renderCardItem(c)).join('')}</div>${chars.length > visibleChars.length ? `<button class="list-load-more" data-action="load-more">加载更多（${visibleChars.length}/${chars.length}）</button>` : ''}`;

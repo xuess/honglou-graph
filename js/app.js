@@ -168,6 +168,7 @@ class HongLouMengApp {
       sidebarBackdrop: document.getElementById('sidebar-backdrop'),
       familyFilters: document.getElementById('family-filters'),
       relationFilters: document.getElementById('relation-filters'),
+      graphFilterSummary: document.getElementById('graph-filter-summary'),
       statsSection: document.getElementById('stats-section'),
       moreTools: document.querySelector('.sidebar-more-tools'),
       cardOverlay: document.getElementById('character-card-overlay'),
@@ -453,10 +454,7 @@ class HongLouMengApp {
       if (!view || !view.setFacetContext) return;
       
       view.setFacetContext({
-        selectedCharacterIds: state.selectedCharacterIds,
-        selectedFamily: state.selectedFamily,
-        selectedChapter: state.selectedChapter,
-        selectedTags: state.selectedTags
+        selectedCharacterIds: state.selectedCharacterIds
       });
       
       if (viewName === 'tree' && this.viewInitialized.tree) {
@@ -473,7 +471,7 @@ class HongLouMengApp {
       if (viewName === 'graph') {
         view.applyFacetSelection?.(state.selectedCharacterIds);
       }
-    }, ['selectedCharacterIds', 'selectedFamily', 'selectedChapter', 'selectedTags']);
+    }, ['selectedCharacterIds']);
   }
 
   _switchView(viewName) {
@@ -563,6 +561,7 @@ class HongLouMengApp {
     const stats = this.graph.getStats();
     this._buildFamilyFilters(stats);
     this._buildRelationFilters(stats);
+    this._updateGraphFilterSummary();
     this._buildStats(stats);
     this._renderFeaturedCharacters();
     this._renderTopics();
@@ -599,7 +598,55 @@ class HongLouMengApp {
   }
 
   _buildFamilyFilters(stats) {
-    const families = [
+    const families = this._getFamilyFilterDefinitions();
+
+    this._setHtml(this.els.familyFilters, families.map((family) => `
+      <button type="button" class="family-filter-item active" data-family="${family.key}" aria-pressed="true" aria-label="切换家族筛选：${family.label}">
+        <div class="custom-checkbox checked"></div>
+        <div class="family-color-dot" style="background:${family.color}"></div>
+        <span class="family-filter-label">${family.label}</span>
+        <span class="family-filter-count">${stats.familyCounts[family.key] || 0}</span>
+      </button>
+    `).join(''));
+
+    this.els.familyFilters.querySelectorAll('.family-filter-item').forEach((item) => {
+      item.addEventListener('click', () => {
+        const family = item.dataset.family;
+        this.graph.toggleFamily(family);
+        this._syncGraphFilterUi();
+        this._refreshViewAfterFilterChange();
+      });
+    });
+
+    this._syncGraphFilterUi();
+  }
+
+  _buildRelationFilters(stats) {
+    const relations = this._getRelationFilterDefinitions();
+
+    this._setHtml(this.els.relationFilters, relations.map((relation) => `
+      <button type="button" class="relation-filter-item active" data-type="${relation.key}" aria-pressed="true" aria-label="切换关系类型筛选：${relation.label}">
+        <div class="custom-checkbox checked"></div>
+        <div class="relation-line-icon" style="background:${relation.color}"></div>
+        <span class="relation-filter-label">${relation.label}</span>
+        <span class="relation-filter-count">${stats.relationCounts[relation.key] || 0}</span>
+      </button>
+    `).join(''));
+
+    this.els.relationFilters.querySelectorAll('.relation-filter-item').forEach((item) => {
+      item.addEventListener('click', () => {
+        const type = item.dataset.type;
+        this.graph.toggleRelationType(type);
+        this._syncGraphFilterUi();
+        this._refreshViewAfterFilterChange();
+      });
+    });
+
+    this._syncGraphFilterUi();
+  }
+
+  _getFamilyFilterDefinitions() {
+    return [
       { key: '贾家', label: '贾家', color: '#C0392B' },
       { key: '史家', label: '史家', color: '#2980B9' },
       { key: '王家', label: '王家', color: '#27AE60' },
@@ -607,29 +654,10 @@ class HongLouMengApp {
       { key: '林家', label: '林家', color: '#16A085' },
       { key: '其他', label: '其他人物', color: '#E67E22' }
     ];
-
-    this._setHtml(this.els.familyFilters, families.map((family) => `
-      <div class="family-filter-item active" data-family="${family.key}">
-        <div class="custom-checkbox checked"></div>
-        <div class="family-color-dot" style="background:${family.color}"></div>
-        <span class="family-filter-label">${family.label}</span>
-        <span class="family-filter-count">${stats.familyCounts[family.key] || 0}</span>
-      </div>
-    `).join(''));
-
-    this.els.familyFilters.querySelectorAll('.family-filter-item').forEach((item) => {
-      item.addEventListener('click', () => {
-        const family = item.dataset.family;
-        item.classList.toggle('active');
-        item.querySelector('.custom-checkbox').classList.toggle('checked');
-        this.graph.toggleFamily(family);
-        this._refreshViewAfterFilterChange();
-      });
-    });
   }
 
-  _buildRelationFilters(stats) {
-    const relations = [
+  _getRelationFilterDefinitions() {
+    return [
       { key: 'blood', label: '血缘关系', color: '#4A90D9' },
       { key: 'marriage', label: '婚姻关系', color: '#E74C3C' },
       { key: 'master_servant', label: '主仆关系', color: '#95A5A6' },
@@ -637,24 +665,54 @@ class HongLouMengApp {
       { key: 'social', label: '社交关系', color: '#F39C12' },
       { key: 'rivalry', label: '敌对关系', color: '#8E44AD' }
     ];
+  }
 
-    this._setHtml(this.els.relationFilters, relations.map((relation) => `
-      <div class="relation-filter-item active" data-type="${relation.key}">
-        <div class="custom-checkbox checked"></div>
-        <div class="relation-line-icon" style="background:${relation.color}"></div>
-        <span class="relation-filter-label">${relation.label}</span>
-        <span class="relation-filter-count">${stats.relationCounts[relation.key] || 0}</span>
+  _syncGraphFilterUi() {
+    if (!this.graph) return;
+
+    this.els.familyFilters?.querySelectorAll('.family-filter-item').forEach((item) => {
+      const isActive = this.graph.activeFamilies.has(item.dataset.family);
+      item.classList.toggle('active', isActive);
+      item.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      item.querySelector('.custom-checkbox')?.classList.toggle('checked', isActive);
+    });
+
+    this.els.relationFilters?.querySelectorAll('.relation-filter-item').forEach((item) => {
+      const isActive = this.graph.activeRelationTypes.has(item.dataset.type);
+      item.classList.toggle('active', isActive);
+      item.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      item.querySelector('.custom-checkbox')?.classList.toggle('checked', isActive);
+    });
+
+    this._updateGraphFilterSummary();
+  }
+
+  _updateGraphFilterSummary() {
+    if (!this.graph || !this.els.graphFilterSummary) return;
+
+    const allFamilies = this._getFamilyFilterDefinitions();
+    const allRelations = this._getRelationFilterDefinitions();
+    const activeFamilyCount = allFamilies.filter((family) => this.graph.activeFamilies.has(family.key)).length;
+    const activeRelationCount = allRelations.filter((relation) => this.graph.activeRelationTypes.has(relation.key)).length;
+    const hasCustomFilters = activeFamilyCount !== allFamilies.length || activeRelationCount !== allRelations.length;
+    const familySummary = activeFamilyCount === allFamilies.length ? '家族：全部可见' : `家族：${activeFamilyCount}/${allFamilies.length}`;
+    const relationSummary = activeRelationCount === allRelations.length ? '关系：全部可见' : `关系：${activeRelationCount}/${allRelations.length}`;
+
+    this._setHtml(this.els.graphFilterSummary, `
+      <div class="filter-summary-card${hasCustomFilters ? ' is-filtered' : ''}">
+        <div class="filter-summary-main">
+          <div class="filter-summary-title">当前图谱筛选</div>
+          <div class="filter-summary-text">${familySummary} · ${relationSummary}</div>
+          <div class="filter-summary-note">筛选只改变图谱显示，不会自动弹出人物卡片。</div>
+        </div>
+        ${hasCustomFilters ? '<button type="button" id="btn-reset-graph-filters" class="secondary-action filter-summary-reset">恢复全部</button>' : '<span class="filter-summary-state">当前是完整视图</span>'}
       </div>
-    `).join(''));
+    `);
 
-    this.els.relationFilters.querySelectorAll('.relation-filter-item').forEach((item) => {
-      item.addEventListener('click', () => {
-        const type = item.dataset.type;
-        item.classList.toggle('active');
-        item.querySelector('.custom-checkbox').classList.toggle('checked');
-        this.graph.toggleRelationType(type);
-        this._refreshViewAfterFilterChange();
-      });
+    this.els.graphFilterSummary.querySelector('#btn-reset-graph-filters')?.addEventListener('click', () => {
+      this.graph.resetAllFilters();
+      this._syncGraphFilterUi();
+      this._refreshViewAfterFilterChange();
     });
   }
 
@@ -1265,6 +1323,7 @@ _createFontAndThemeControls() {
 
   _refreshViewAfterFilterChange() {
     this._closeCard();
+    this._syncGraphFilterUi();
 
     if (this.graph && this.graph.focusMode && this.graph.focusNodeId) {
       this.graph.enterFocusMode(this.graph.focusNodeId);
@@ -1906,6 +1965,8 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
       select.classList.toggle('is-invalid', compareState.reason === 'same');
       select.setAttribute('aria-invalid', compareState.reason === 'same' ? 'true' : 'false');
     });
+
+    this._syncGraphFilterUi();
   }
 
   _prepareCompareFromCurrent(characterId) {
@@ -2059,8 +2120,7 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
     
     if (this.treeView) {
       this.treeView.setFacetContext({
-        selectedCharacterIds: state.selectedCharacterIds,
-        selectedFamily: state.selectedFamily
+        selectedCharacterIds: state.selectedCharacterIds
       });
       if (this.viewInitialized.tree) {
         this.treeView._syncTreeHighlights?.();
@@ -2069,8 +2129,7 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
     
     if (this.listView) {
       this.listView.setFacetContext({
-        selectedCharacterIds: state.selectedCharacterIds,
-        selectedFamily: state.selectedFamily
+        selectedCharacterIds: state.selectedCharacterIds
       });
       if (this.viewInitialized.list) {
         this.listView._invalidateFilterCache?.();
@@ -2080,8 +2139,7 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
     
     if (this.knowledgeView) {
       this.knowledgeView.setFacetContext({
-        selectedCharacterIds: state.selectedCharacterIds,
-        selectedChapter: state.selectedChapter
+        selectedCharacterIds: state.selectedCharacterIds
       });
       if (this.viewInitialized.knowledge) {
         this.knowledgeView._invalidateFilterCache?.();
