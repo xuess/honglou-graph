@@ -125,6 +125,7 @@ class HongLouMengApp {
   async _init() {
     this._initFontAndThemeControls();
     this._cacheDom();
+    this._initSidebarResize();
     this._bindEvents();
 
     try {
@@ -163,6 +164,7 @@ class HongLouMengApp {
       sidebarSearchResults: document.getElementById('sidebar-search-results'),
       sidebarToggle: document.getElementById('sidebar-toggle'),
       sidebar: document.getElementById('sidebar'),
+      sidebarResizeHandle: document.getElementById('sidebar-resize-handle'),
       sidebarBackdrop: document.getElementById('sidebar-backdrop'),
       familyFilters: document.getElementById('family-filters'),
       relationFilters: document.getElementById('relation-filters'),
@@ -225,6 +227,8 @@ class HongLouMengApp {
   }
 
   _bindEvents() {
+    this._bindSidebarResize();
+
     let searchTimer;
     const handleSearch = (value, resultsEl) => {
       window.clearTimeout(searchTimer);
@@ -251,21 +255,6 @@ class HongLouMengApp {
     this.els.drawerClose.addEventListener('click', () => this._closeDrawer());
     this.els.cardOverlay.addEventListener('click', (e) => {
       if (e.target !== this.els.cardOverlay) return;
-
-      const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height'), 10) || 72;
-      if (e.clientY <= headerHeight + 16) {
-        const previousDisplay = this.els.cardOverlay.style.display;
-        this.els.cardOverlay.style.display = 'none';
-        const underlying = document.elementFromPoint(e.clientX, e.clientY);
-        this.els.cardOverlay.style.display = previousDisplay;
-        const tab = underlying?.closest?.('.view-nav-tab');
-        if (tab?.dataset?.view) {
-          this._forceCloseOverlays();
-          this._switchView(tab.dataset.view);
-          return;
-        }
-      }
-
       this._closeCard();
     });
 
@@ -730,6 +719,61 @@ class HongLouMengApp {
     this.graph.setDefaultReadingFilter();
   }
 
+  _initSidebarResize() {
+    const savedWidth = Number(localStorage.getItem('hlm-sidebar-width'));
+    if (Number.isFinite(savedWidth)) {
+      this._applySidebarWidth(savedWidth);
+    }
+  }
+
+  _applySidebarWidth(width) {
+    const clampedWidth = Math.min(480, Math.max(260, Math.round(width)));
+    document.documentElement.style.setProperty('--sidebar-width', `${clampedWidth}px`);
+    return clampedWidth;
+  }
+
+  _bindSidebarResize() {
+    const handle = this.els.sidebarResizeHandle;
+    if (!handle) return;
+
+    let isDragging = false;
+    let startX = 0;
+    let startWidth = 0;
+
+    const onPointerMove = (event) => {
+      if (!isDragging) return;
+      const nextWidth = startWidth + (event.clientX - startX);
+      this._applySidebarWidth(nextWidth);
+    };
+
+    const onPointerUp = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      document.body.classList.remove('sidebar-resizing');
+      window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointerup', onPointerUp);
+      window.removeEventListener('pointercancel', onPointerUp);
+
+      const currentWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sidebar-width'), 10) || 304;
+      localStorage.setItem('hlm-sidebar-width', String(currentWidth));
+      window.dispatchEvent(new Event('resize'));
+    };
+
+    handle.addEventListener('pointerdown', (event) => {
+      if (window.innerWidth <= 1024 || this.activeView !== 'graph') return;
+
+      isDragging = true;
+      startX = event.clientX;
+      startWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sidebar-width'), 10) || 304;
+      document.body.classList.add('sidebar-resizing');
+
+      window.addEventListener('pointermove', onPointerMove);
+      window.addEventListener('pointerup', onPointerUp);
+      window.addEventListener('pointercancel', onPointerUp);
+      event.preventDefault();
+    });
+  }
+
   _showOverview() {
     this.currentCharacterId = null;
     this.currentTopic = null;
@@ -832,118 +876,116 @@ _createFontAndThemeControls() {
     this._setFont(savedFont);
     this._setTheme(savedTheme);
     
-    this._createThemeControlPanel();
+    this._createHeaderSettingsPanel();
   }
   
-  _createThemeControlPanel() {
-    const controlPanel = document.createElement('div');
-    controlPanel.className = 'theme-control-panel';
-    
-    const themeBtn = document.createElement('button');
-    themeBtn.className = 'theme-toggle-btn';
-    themeBtn.innerHTML = '🎨';
-    themeBtn.title = '切换主题';
-    
-    const fontBtn = document.createElement('button');
-    fontBtn.className = 'theme-toggle-btn';
-    fontBtn.innerHTML = '🆎';
-    fontBtn.title = '切换字体';
-    
-    const themeSelector = document.createElement('div');
-    themeSelector.className = 'theme-selector';
-    
-    const themes = [
-      { name: 'red-gold', tooltip: '红金主题', colors: ['#8B2500', '#D4A017'] },
-      { name: 'blue-green', tooltip: '青绿主题', colors: ['#006666', '#2E8B57'] },
-      { name: 'ink-wash', tooltip: '水墨主题', colors: ['#333333', '#8B7355'] },
-      { name: 'purple-gold', tooltip: '紫金主题', colors: ['#663399', '#FFD700'] }
-    ];
-    
-    themes.forEach(theme => {
-      const option = document.createElement('div');
-      option.className = 'theme-option';
-      option.dataset.theme = theme.name;
-      option.title = theme.tooltip;
-      
-      // Set background gradient for preview (not just when active)
-      option.style.background = `linear-gradient(135deg, ${theme.colors[0]}, ${theme.colors[1]})`;
-      
-      option.addEventListener('click', (e) => {
-        e.stopPropagation();
-        this._setTheme(theme.name);
-        
-        themeSelector.querySelectorAll('.theme-option').forEach(opt => {
-          opt.classList.remove('active');
-        });
-        option.classList.add('active');
-      });
-      
-      themeSelector.appendChild(option);
-    });
-    
-    const fontSelector = document.createElement('div');
-    fontSelector.className = 'font-selector';
-    
-    const fonts = [
-      { name: 'serif', className: 'serif', label: '宋体', tooltip: '中文字体 (宋)' },
-      { name: 'sans', className: 'sans', label: '黑体', tooltip: '中文字体 (黑)' },
-      { name: 'title', className: 'title', label: '标题', tooltip: '标题字体' },
-      { name: 'traditional', className: 'traditional', label: '繁体', tooltip: '传统书法字体' }
-    ];
-    
-    fonts.forEach(font => {
-      const option = document.createElement('span');
-      option.className = `font-option ${font.className}`;
-      option.textContent = font.label;
-      option.title = font.tooltip;
-      
-      option.addEventListener('click', (e) => {
-        e.stopPropagation();
-        this._setFont(font.name);
-        
-        fontSelector.querySelectorAll('.font-option').forEach(opt => {
-          opt.classList.remove('active');
-        });
-        option.classList.add('active');
-      });
-      
-      fontSelector.appendChild(option);
-    });
-    
-    themeBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      fontSelector.classList.remove('active');
-      themeSelector.classList.toggle('active');
-    });
-    
-    fontBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      themeSelector.classList.remove('active');
-      fontSelector.classList.toggle('active');
-    });
-    
-    document.addEventListener('click', () => {
-      themeSelector.classList.remove('active');
-      fontSelector.classList.remove('active');
-    });
-    
-    controlPanel.appendChild(themeBtn);
-    controlPanel.appendChild(themeSelector);
-    controlPanel.appendChild(fontBtn);
-    controlPanel.appendChild(fontSelector);
-    
-    document.body.appendChild(controlPanel);
-    
+  _createHeaderSettingsPanel() {
+    const headerRight = document.getElementById('header-right');
+    if (!headerRight) return;
+
     const savedFont = localStorage.getItem('hlm-font-family') || 'serif';
     const savedTheme = localStorage.getItem('hlm-theme') || 'red-gold';
-    
-    // Add 'active' class to font selector for the saved font
-    const activeFont = fontSelector.querySelector(`.font-option.${savedFont}`);
-    if (activeFont) activeFont.classList.add('active');
-    
-    // Add 'active' class to theme selector for the saved theme
-    const activeTheme = themeSelector.querySelector(`[data-theme="${savedTheme}"]`);
-    if (activeTheme) activeTheme.classList.add('active');
+
+    // Settings button
+    const settingsBtn = document.createElement('button');
+    settingsBtn.className = 'header-settings-btn';
+    settingsBtn.innerHTML = '⚙';
+    settingsBtn.title = '主题与字体';
+    settingsBtn.setAttribute('aria-label', '设置主题与字体');
+
+    // Dropdown container (positioned relative to header-right)
+    headerRight.style.position = 'relative';
+    const dropdown = document.createElement('div');
+    dropdown.className = 'settings-dropdown';
+
+    // Theme section
+    const themeSection = document.createElement('div');
+    themeSection.className = 'settings-section';
+    const themeTitle = document.createElement('div');
+    themeTitle.className = 'settings-section-title';
+    themeTitle.textContent = '主题';
+    const themeGrid = document.createElement('div');
+    themeGrid.className = 'settings-theme-grid';
+
+    const themes = [
+      { name: 'red-gold', tooltip: '红金', colors: ['#8B2500', '#D4A017'] },
+      { name: 'blue-green', tooltip: '青绿', colors: ['#006666', '#2E8B57'] },
+      { name: 'ink-wash', tooltip: '水墨', colors: ['#555', '#8B7355'] },
+      { name: 'purple-gold', tooltip: '紫金', colors: ['#663399', '#FFD700'] }
+    ];
+
+    themes.forEach(theme => {
+      const opt = document.createElement('div');
+      opt.className = 'settings-theme-option';
+      opt.dataset.theme = theme.name;
+      opt.title = theme.tooltip;
+      opt.style.background = `linear-gradient(135deg, ${theme.colors[0]}, ${theme.colors[1]})`;
+      if (theme.name === savedTheme) opt.classList.add('active');
+
+      opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this._setTheme(theme.name);
+        themeGrid.querySelectorAll('.settings-theme-option').forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+      });
+      themeGrid.appendChild(opt);
+    });
+
+    themeSection.appendChild(themeTitle);
+    themeSection.appendChild(themeGrid);
+
+    // Font section
+    const fontSection = document.createElement('div');
+    fontSection.className = 'settings-section';
+    const fontTitle = document.createElement('div');
+    fontTitle.className = 'settings-section-title';
+    fontTitle.textContent = '字体';
+    const fontList = document.createElement('div');
+    fontList.className = 'settings-font-list';
+
+    const fonts = [
+      { name: 'serif', label: '宋体 / 衬线', preview: '宋' },
+      { name: 'sans', label: '黑体 / 无衬线', preview: '黑' },
+      { name: 'title', label: '书法体', preview: '书' },
+      { name: 'traditional', label: '繁体宋', preview: '繁' }
+    ];
+
+    fonts.forEach(font => {
+      const opt = document.createElement('button');
+      opt.className = 'settings-font-option';
+      if (font.name === savedFont) opt.classList.add('active');
+      opt.innerHTML = `<span class="font-preview">${font.preview}</span><span class="font-label">${font.label}</span><span class="font-check">✓</span>`;
+      opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this._setFont(font.name);
+        fontList.querySelectorAll('.settings-font-option').forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+      });
+      fontList.appendChild(opt);
+    });
+
+    fontSection.appendChild(fontTitle);
+    fontSection.appendChild(fontList);
+
+    dropdown.appendChild(themeSection);
+    dropdown.appendChild(fontSection);
+
+    // Toggle
+    settingsBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = dropdown.classList.toggle('active');
+      settingsBtn.classList.toggle('is-open', isOpen);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target) && e.target !== settingsBtn) {
+        dropdown.classList.remove('active');
+        settingsBtn.classList.remove('is-open');
+      }
+    });
+
+    headerRight.appendChild(settingsBtn);
+    headerRight.appendChild(dropdown);
   }
 
   _showFullGraph(skipHistory) {
@@ -970,8 +1012,7 @@ _createFontAndThemeControls() {
   }
 
   _handleNodeClick(character) {
-    this._openCharacter(character.id, { focusNeighbors: this.currentView.type !== 'fullgraph' });
-    this._showCard(character);
+    this._openCharacter(character.id, { focusNeighbors: this.currentView.type !== 'fullgraph', showCard: true });
   }
 
   _handleGraphBackgroundClick() {
@@ -1001,7 +1042,9 @@ _createFontAndThemeControls() {
       else this.graph.focusOnNode(characterId);
     }
 
-    this._showCard(character);
+    if (options.showCard !== false && !options._fromRestore) {
+      this._showCard(character);
+    }
     if (this.listView) {
       this.listView.relatedCharacterIds = new Set([characterId]);
     }
@@ -1191,10 +1234,13 @@ _createFontAndThemeControls() {
     this._updateActionStates();
   }
 
-  _restoreCurrentView() {
+  _restoreCurrentView(fromFilterChange = false) {
     switch (this.currentView.type) {
       case 'character':
-        this._openCharacter(this.currentView.characterId, { focusNeighbors: true, keepRelationship: true, _fromRestore: true });
+        // 如果是从筛选变更触发的恢复，不重新打开人物卡片
+        if (!fromFilterChange) {
+          this._openCharacter(this.currentView.characterId, { focusNeighbors: true, keepRelationship: true, _fromRestore: true });
+        }
         break;
       case 'topic':
         this._openTopic(this.currentView.topicId, true);
@@ -1218,12 +1264,59 @@ _createFontAndThemeControls() {
   }
 
   _refreshViewAfterFilterChange() {
+    this._closeCard();
+
     if (this.graph && this.graph.focusMode && this.graph.focusNodeId) {
       this.graph.enterFocusMode(this.graph.focusNodeId);
       return;
     }
 
-    this._restoreCurrentView();
+    switch (this.currentView.type) {
+      case 'character':
+        if (this.currentCharacterId) {
+          this.graph.showNeighborhood(this.currentCharacterId, { center: true, includeSecondDegree: false });
+        }
+        break;
+      case 'topic':
+        if (this.currentTopic) {
+          this.graph.showCharacterSet(this.currentTopic.characterIds, { centerId: this.currentTopic.focusId });
+        }
+        break;
+      case 'stage':
+        if (this.currentStage) {
+          this.graph.showCharacterSet(this.currentStage.characterIds, { centerId: this.currentStage.focusId });
+        }
+        break;
+      case 'family': {
+        if (this.currentFamily) {
+          const familyCharacters = this.characters
+            .filter((character) => this.graph._getFamilyGroup(character) === this.currentFamily)
+            .sort((a, b) => b.importance - a.importance)
+            .slice(0, 12)
+            .map((character) => character.id);
+          if (familyCharacters.length) {
+            this.graph.showCharacterSet(familyCharacters, { centerId: familyCharacters[0] });
+          }
+        }
+        break;
+      }
+      case 'relationship':
+        if (this.currentRelationshipPair) {
+          const { leftId, rightId } = this.currentRelationshipPair;
+          const networkIds = this._getPairNetworkIds(leftId, rightId);
+          this.graph.showCharacterSet(networkIds, { centerId: leftId });
+          this.graph.selectNodes([leftId, rightId]);
+        }
+        break;
+      case 'fullgraph':
+        this.graph.showFullGraph();
+        break;
+      default:
+        this.graph.showImportantOverview();
+        break;
+    }
+
+    this._updateActionStates();
   }
 
   _onSearch(query, resultsEl) {
@@ -1908,10 +2001,8 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
     this.els.cardContent.querySelectorAll('.card-relation-item,[data-character-id]').forEach((item) => {
       item.addEventListener('click', () => {
         const id = item.dataset.id || item.dataset.characterId;
-        const targetCharacter = this.characterMap.get(id);
-        if (!targetCharacter) return;
-        this._openCharacter(id, { focusNeighbors: true });
-        this._showCard(targetCharacter);
+        if (!this.characterMap.get(id)) return;
+        this._openCharacter(id, { focusNeighbors: true, showCard: true });
       });
     });
     this.els.cardContent.querySelectorAll('[data-knowledge-char-id]').forEach((item) => {

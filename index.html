@@ -6,7 +6,13 @@
   <title>红楼梦 · 知识探索工具</title>
   <meta name="description" content="红楼梦知识探索工具：关系图谱、家族谱系、人物名录与诗词典故知识库，边读边查。">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏮</text></svg>">
-  <link rel="stylesheet" href="css/style.css?v=20250916e">
+  <!-- Preconnect for faster font loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Non-blocking font load with display=swap to avoid FOIT -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500;600;700&family=ZCOOL+XiaoWei&family=Noto+Serif+Traditional+Chinese:wght@400;600;700;900&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500;600;700&family=ZCOOL+XiaoWei&family=Noto+Serif+Traditional+Chinese:wght@400;600;700;900&display=swap"></noscript>
+  <link rel="stylesheet" href="css/style.css?v=20260403a">
   <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
@@ -32,6 +38,10 @@
         <button class="view-nav-tab" data-view="list" role="tab" aria-selected="false" aria-controls="view-list"><span class="view-nav-icon">📋</span><span class="view-nav-label">人物名录</span></button>
         <button class="view-nav-tab" data-view="knowledge" role="tab" aria-selected="false" aria-controls="view-knowledge"><span class="view-nav-icon">📖</span><span class="view-nav-label">知识库</span></button>
       </nav>
+    </div>
+
+    <div class="header-right" id="header-right">
+      <!-- Theme & font controls injected here by JS -->
     </div>
   </header>
 
@@ -108,6 +118,8 @@
 
       <div id="sidebar-search-results" class="sidebar-search-results"></div>
     </aside>
+
+    <div id="sidebar-resize-handle" class="sidebar-resize-handle" aria-hidden="true"></div>
 
     <main class="content-area">
       <!-- Graph View (default) -->
