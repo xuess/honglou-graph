@@ -1,5 +1,170 @@
 [
   {
+    "id": "jin_guafu",
+    "name": "金寡妇",
+    "pinyin": "Jīn Guǎfù",
+    "alias": [
+      "金氏"
+    ],
+    "gender": "女",
+    "family": "其他",
+    "group": "其他人物",
+    "identity": "贾家家塾学生金荣之母",
+    "importance": 1,
+    "personality": "势利精明、护短逐利",
+    "keyEvents": [
+      "为金荣奔走贿赂求情",
+      "牵出家塾闹学与诊病一段"
+    ],
+    "quotes": [],
+    "description": "金寡妇是金荣之母，寡居后把儿子送入贾家家塾，凡事只顾护着儿子，又惯于托门路求人情。她虽不是情节主轴人物，却点出了贾府门外人依附权门、逐利营生的一层现实。",
+    "chapters": [
+      {
+        "chapter": 10,
+        "title": "金寡妇贪利权受辱 张太医论病细穷源",
+        "summary": "金寡妇为儿子金荣一事奔走求托，既显其护短，也映出贾府周边依附关系。"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "后续无大段描写"
+  },
+  {
+    "id": "zhang_taiyi",
+    "name": "张太医",
+    "pinyin": "Zhāng Tàiyī",
+    "alias": [
+      "太医张先生"
+    ],
+    "gender": "男",
+    "family": "其他",
+    "group": "其他人物",
+    "identity": "替秦可卿诊病的御医",
+    "importance": 1,
+    "personality": "谨慎老成、医理细密",
+    "keyEvents": [
+      "为秦可卿诊病",
+      "细论病源并暗示病情深重"
+    ],
+    "quotes": [],
+    "description": "张太医是替秦可卿诊病的御医。其问诊与论病一段，不只是医疗描写，也承担了叙事上对秦可卿病势与宁府阴影的铺垫作用。",
+    "chapters": [
+      {
+        "chapter": 10,
+        "title": "金寡妇贪利权受辱 张太医论病细穷源",
+        "summary": "张太医入宁府为秦可卿诊病，细论病源，进一步烘托宁府不祥气氛。"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "诊病后退场"
+  },
+  {
+    "id": "bao_er_jias",
+    "name": "鲍二家的",
+    "pinyin": "Bào Èr Jiāde",
+    "alias": [
+      "鲍二家媳妇"
+    ],
+    "gender": "女",
+    "family": "其他",
+    "group": "其他人物",
+    "identity": "贾琏私通对象之一",
+    "importance": 1,
+    "personality": "轻浮逢迎、处境卑微",
+    "keyEvents": [
+      "与贾琏私通",
+      "被凤姐撞破后酿成风波"
+    ],
+    "quotes": [],
+    "description": "鲍二家的是贾琏偷情对象之一。她在正文中篇幅不多，却是理解贾琏放纵与凤姐夫妻关系裂痕的重要线索人物。",
+    "chapters": [
+      {
+        "chapter": 21,
+        "title": "贤袭人娇嗔箴宝玉 俏平儿软语救贾琏",
+        "summary": "贾琏与鲍二家的偷情被凤姐撞破，引出平儿周旋救场。"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "卷入贾琏凤姐风波"
+  },
+  {
+    "id": "duo_guniang",
+    "name": "多姑娘",
+    "pinyin": "Duō Gūniang",
+    "alias": [
+      "多浑虫之妻"
+    ],
+    "gender": "女",
+    "family": "其他",
+    "group": "其他人物",
+    "identity": "贾琏在外勾连的妇人之一",
+    "importance": 1,
+    "personality": "放纵轻佻",
+    "keyEvents": [
+      "与贾琏有染",
+      "成为贾琏荒唐生活的注脚"
+    ],
+    "quotes": [],
+    "description": "多姑娘是贾琏在外偷情对象之一，虽非主要人物，却有助于勾勒贾琏长期不端、风流放荡的生活方式。",
+    "chapters": [
+      {
+        "chapter": 21,
+        "title": "贤袭人娇嗔箴宝玉 俏平儿软语救贾琏",
+        "summary": "回目所涉贾琏偷情线，旁及其与多姑娘等人的旧事。"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "后文无重笔"
+  },
+  {
+    "id": "zhang_daoshi",
+    "name": "张道士",
+    "pinyin": "Zhāng Dàoshi",
+    "alias": [
+      "清虚观张道士"
+    ],
+    "gender": "男",
+    "family": "其他",
+    "group": "其他人物",
+    "identity": "清虚观道士，与贾府往来密切",
+    "importance": 1,
+    "personality": "世故圆滑、善揣权门心意",
+    "keyEvents": [
+      "清虚观打醮时为宝玉提亲",
+      "引发宝黛关于金玉之说的争执"
+    ],
+    "quotes": [],
+    "description": "张道士是清虚观中与贾府熟识的道士。他替宝玉提亲一节，看似周旋应酬，实则触发了宝黛情感线中极敏感的“金玉之说”。",
+    "chapters": [
+      {
+        "chapter": 29,
+        "title": "享福人福深还祷福 痴情女情重愈斟情",
+        "summary": "清虚观打醮时张道士替宝玉提亲，触动宝黛之间的敏感心事。"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "作为清虚观人物偶见往来"
+  },
+  {
     "id": "jia_mu",
     "name": "贾母",
     "pinyin": "Jiǎ Mǔ",
@@ -4124,5 +4289,432 @@
     "isMainline": false,
     "outcome": "婚后早逝",
     "sourceNote": "根据判词和脂批推断，前八十回未正面出场"
+  },
+  {
+    "id": "jia_hui",
+    "name": "佳蕙",
+    "pinyin": "Jiā Huì",
+    "alias": [],
+    "gender": "女",
+    "family": "贾家",
+    "group": "贾府-丫鬟",
+    "identity": "潇湘馆小丫鬟",
+    "importance": 1,
+    "personality": "伶俐勤快",
+    "keyEvents": [
+      "在潇湘馆服侍黛玉",
+      "见证宝玉探望黛玉等细节"
+    ],
+    "quotes": [],
+    "description": "佳蕙是潇湘馆的小丫鬟，虽着墨极少，但属于大观园中有名有姓、能定位到具体空间和主人的人物。她的存在让黛玉日常生活场景更具实感。",
+    "chapters": [
+      {
+        "chapter": 26,
+        "title": "蜂腰桥设言传心事 潇湘馆春困发幽情",
+        "summary": "佳蕙在潇湘馆随侍，衬出黛玉春困、宝玉探望一段的日常氛围。"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "后文不详"
+  },
+  {
+    "id": "lai_shangrong",
+    "name": "赖尚荣",
+    "pinyin": "Lài Shàngróng",
+    "alias": [],
+    "gender": "男",
+    "family": "贾家",
+    "group": "贾府-仆人管家",
+    "identity": "赖大之子，借贾府势力得官",
+    "importance": 1,
+    "personality": "凭借门路上升的家仆子弟",
+    "keyEvents": [
+      "赖家因贾府荫庇而得势",
+      "映出奴仆阶层亦可借权崛起"
+    ],
+    "quotes": [],
+    "description": "赖尚荣是赖大之子，依托贾府势力获得出身与官职，是《红楼梦》中“豪门之家连家奴子弟也能借势上升”的典型例子。",
+    "chapters": [
+      {
+        "chapter": 47,
+        "title": "呆霸王调情遭苦打 冷郎君惧祸走他乡",
+        "summary": "赖尚荣家宴乐、串戏等热闹场面，映出贾府外缘势力之盛。"
+      }
+    ],
+    "parentIds": [
+      "lai_da"
+    ],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 1,
+    "isMainline": false,
+    "outcome": "依附贾府得势"
+  },
+  {
+    "id": "hu_yongyi",
+    "name": "胡庸医",
+    "pinyin": "Hú Yōngyī",
+    "alias": [
+      "胡太医"
+    ],
+    "gender": "男",
+    "family": "其他",
+    "group": "其他人物",
+    "identity": "庸医，乱用虎狼药",
+    "importance": 1,
+    "personality": "庸碌误人、医理荒唐",
+    "keyEvents": [
+      "胡乱施药误人病情",
+      "成为医道败坏的反面例子"
+    ],
+    "quotes": [],
+    "description": "胡庸医是后文中的庸医形象代表，乱用猛药，不辨病理，具有鲜明的讽刺意味。",
+    "chapters": [
+      {
+        "chapter": 69,
+        "title": "弄小巧用借剑杀人 觉大限吞生金自逝",
+        "summary": "尤二姐病中误用医药，胡庸医之流也象征着无能误人的医疗环境。"
+      },
+      {
+        "chapter": 80,
+        "title": "美香菱屈受贪夫棒 王道士胡诌妒妇方",
+        "summary": "胡庸医与胡乱方药一类情节并列，强化庸医误人的讽刺意味。"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "偶现即退场"
+  },
+  {
+    "id": "bao_chan",
+    "name": "宝蟾",
+    "pinyin": "Bǎo Chán",
+    "alias": [],
+    "gender": "女",
+    "family": "薛家",
+    "group": "薛家",
+    "identity": "夏金桂陪嫁丫鬟",
+    "importance": 1,
+    "personality": "轻佻狐媚、工于设计",
+    "keyEvents": [
+      "帮金桂搅乱薛家内务",
+      "设局引诱薛蝌等人"
+    ],
+    "quotes": [],
+    "description": "宝蟾是夏金桂的陪嫁丫鬟，行事轻佻机敏，常参与薛家内部的勾连设计，是后四十回薛家乱局中的关键小人物。",
+    "chapters": [
+      {
+        "chapter": 91,
+        "title": "纵淫心宝蟾工设计 布疑阵宝玉妄谈禅",
+        "summary": "宝蟾主动设局，推动薛家内外纠葛继续恶化。"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "卷入薛家纷争"
+  },
+  {
+    "id": "wu_er",
+    "name": "五儿",
+    "pinyin": "Wǔ Ér",
+    "alias": [
+      "柳五儿"
+    ],
+    "gender": "女",
+    "family": "贾家",
+    "group": "贾府-丫鬟",
+    "identity": "厨房中小丫头，后牵出冤案",
+    "importance": 1,
+    "personality": "清秀柔弱、命运受摆布",
+    "keyEvents": [
+      "被卷入玫瑰露、茯苓霜等案",
+      "被误会与宝玉有染"
+    ],
+    "quotes": [],
+    "description": "五儿是小丫头人物中较有辨识度的一位，她因姿色与风言风语被卷入是非，映出贾府中下层女子很容易成为流言牺牲品。",
+    "chapters": [
+      {
+        "chapter": 61,
+        "title": "投鼠忌器宝玉瞒赃 判冤决狱平儿行权",
+        "summary": "柳五儿被疑与盗窃案有关，又牵扯出与宝玉相关的流言，平儿秉公断理。"
+      },
+      {
+        "chapter": 109,
+        "title": "候芳魂五儿承错爱 还孽债迎女返真元",
+        "summary": "五儿被误认、误爱，成为后四十回错认错配情节中的一环。"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "命运多舛，逐渐退场"
+  },
+  {
+    "id": "qiutong",
+    "name": "秋桐",
+    "pinyin": "Qiū Tóng",
+    "alias": [],
+    "gender": "女",
+    "family": "贾家",
+    "group": "贾府-丫鬟",
+    "identity": "贾赦赏给贾琏的妾室",
+    "importance": 1,
+    "personality": "尖酸刻薄、恃宠凌人",
+    "keyEvents": [
+      "受贾赦之命嫁与贾琏",
+      "与尤二姐激烈冲突"
+    ],
+    "quotes": [],
+    "description": "秋桐是贾赦赏给贾琏的妾室。她与凤姐、尤二姐之间形成复杂张力，是尤二姐悲剧中重要的加压人物。",
+    "chapters": [
+      {
+        "chapter": 69,
+        "title": "弄小巧用借剑杀人 觉大限吞生金自逝",
+        "summary": "秋桐辱骂、逼迫尤二姐，与凤姐的借刀杀人之计互相配合。"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [
+      "jia_lian"
+    ],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "后文不显"
+  },
+  {
+    "id": "ouguan",
+    "name": "藕官",
+    "pinyin": "Ǒu Guān",
+    "alias": [],
+    "gender": "女",
+    "family": "贾家",
+    "group": "贾府-戏子丫鬟",
+    "identity": "小戏子之一，后留在园中",
+    "importance": 1,
+    "personality": "多情执拗",
+    "keyEvents": [
+      "为死去同伴烧纸祭奠",
+      "牵出优伶情感世界"
+    ],
+    "quotes": [],
+    "description": "藕官原是小戏子，后留在大观园。她为亡故同伴烧纸一节，极细腻地写出了贾府边缘人物之间同样深挚的感情。",
+    "chapters": [
+      {
+        "chapter": 58,
+        "title": "杏子阴假凤泣虚凰 茜纱窗真情揆痴理",
+        "summary": "藕官为亡友烧纸，宝玉替她分辩，显出边缘人物也有真情。"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "戏班散后流落"
+  },
+  {
+    "id": "diguan",
+    "name": "菂官",
+    "pinyin": "Dì Guān",
+    "alias": [],
+    "gender": "女",
+    "family": "贾家",
+    "group": "贾府-戏子丫鬟",
+    "identity": "小戏子之一，与藕官相关",
+    "importance": 1,
+    "personality": "着墨不多，但作为情感对象存在",
+    "keyEvents": [
+      "与藕官情感牵连",
+      "其死后引发藕官烧纸祭奠"
+    ],
+    "quotes": [],
+    "description": "菂官虽不是长篇着墨人物，却因与藕官之间的情感联结而成为《红楼梦》极细腻笔法的一部分。她的存在让戏子群体不再只是背景。",
+    "chapters": [
+      {
+        "chapter": 58,
+        "title": "杏子阴假凤泣虚凰 茜纱窗真情揆痴理",
+        "summary": "菂官虽已不在场，但其身影通过藕官祭奠被重新召回文本。"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "早亡或退场"
+  },
+  {
+    "id": "zhen_yingjia",
+    "name": "甄应嘉",
+    "pinyin": "Zhēn Yìngjiā",
+    "alias": [],
+    "gender": "男",
+    "family": "其他",
+    "group": "其他人物",
+    "identity": "甄家人物，甄贾互照线索人物",
+    "importance": 1,
+    "personality": "作为甄家兴衰的代表被提及",
+    "keyEvents": [
+      "牵连甄家盛衰",
+      "与贾家命运互相照映"
+    ],
+    "quotes": [],
+    "description": "甄应嘉属于甄家镜像线中的人物，作用不在个人戏份，而在于让“甄”“贾”两家的兴衰互相映照，强化全书宿命结构。",
+    "chapters": [
+      {
+        "chapter": 114,
+        "title": "王熙凤历幻返金陵 甄应嘉蒙恩还玉阙",
+        "summary": "甄应嘉再被提起，使甄贾两家的命运呼应更为明显。"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "作为甄家命运线被提及"
+  },
+  {
+    "id": "wu_jinxiao",
+    "name": "乌进孝",
+    "pinyin": "Wū Jìnxiào",
+    "alias": [],
+    "gender": "男",
+    "family": "其他",
+    "group": "其他人物",
+    "identity": "宁荣二府庄头之一",
+    "importance": 1,
+    "personality": "世故油滑、善于逢迎",
+    "keyEvents": [
+      "年节送租纳贡",
+      "映出贾府庄园经济表面繁盛而内里吃紧"
+    ],
+    "quotes": [],
+    "description": "乌进孝是贾府庄头，年底进府送账、送土物的一段，非常关键地展示了贾府外部庄园系统和内部财力衰败的矛盾。虽是小人物，却有极强制度性意义。",
+    "chapters": [
+      {
+        "chapter": 53,
+        "title": "宁国府除夕祭宗祠 荣国府元宵开夜宴",
+        "summary": "乌进孝进府缴租送礼，反衬贾府外强中干、年景渐坏。"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "仍是庄头体系中的一员"
+  },
+  {
+    "id": "laiwang_furen",
+    "name": "来旺妇",
+    "pinyin": "Láiwàng Fù",
+    "alias": [
+      "来旺家的"
+    ],
+    "gender": "女",
+    "family": "其他",
+    "group": "其他人物",
+    "identity": "仆妇，仗势横行的一类家下人物代表",
+    "importance": 1,
+    "personality": "泼悍强横、借势欺人",
+    "keyEvents": [
+      "倚势霸成亲",
+      "折射贾府家下人狐假虎威"
+    ],
+    "quotes": [],
+    "description": "来旺妇是后文中借势欺人的仆妇代表。她并非主线人物，却是理解贾府家下秩序败坏、下人也可倚势横行的重要样本。",
+    "chapters": [
+      {
+        "chapter": 72,
+        "title": "王熙凤恃强羞说病 来旺妇倚势霸成亲",
+        "summary": "来旺妇凭借主家势力横行霸道，映出贾府内部秩序进一步败坏。"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "仍附着权势行事"
+  },
+  {
+    "id": "old_xuejiu",
+    "name": "老学究",
+    "pinyin": "Lǎo Xuéjiū",
+    "alias": [
+      "老先生"
+    ],
+    "gender": "男",
+    "family": "其他",
+    "group": "其他人物",
+    "identity": "讲书论义的老儒生",
+    "importance": 1,
+    "personality": "迂正持重、以义理劝人",
+    "keyEvents": [
+      "讲义规劝宝玉",
+      "对应宝玉顽心与科举正统的冲突"
+    ],
+    "quotes": [],
+    "description": "老学究出现在后四十回中，承担的是以传统义理规劝宝玉的角色。他虽不属于情感主线人物，却是理解宝玉与正统人生道路冲突的一类功能人物。",
+    "chapters": [
+      {
+        "chapter": 82,
+        "title": "老学究讲义警顽心 病潇湘痴魂惊恶梦",
+        "summary": "老学究讲书说道，意在规劝宝玉收心向学，回到正统道路。"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "点到即止"
+  },
+  {
+    "id": "zhenjia_servant",
+    "name": "甄家仆",
+    "pinyin": "Zhēn Jiā Pú",
+    "alias": [
+      "甄府老仆"
+    ],
+    "gender": "男",
+    "family": "其他",
+    "group": "其他人物",
+    "identity": "甄家派来投靠贾家的家仆代表",
+    "importance": 1,
+    "personality": "奔波无依、带有世家败落余影",
+    "keyEvents": [
+      "甄家败后投靠贾家",
+      "把南边甄家衰败消息带入贾府"
+    ],
+    "quotes": [],
+    "description": "“甄家仆”并非强主角型人物，但作为甄家败落后投奔贾府的代表，具有很强的镜像功能：甄、贾两家兴亡互照，这类人物恰好承担了消息与宿命感的传递。",
+    "chapters": [
+      {
+        "chapter": 93,
+        "title": "甄家仆投靠贾家门 水月庵掀翻风月案",
+        "summary": "甄家仆投靠贾家，把甄府衰败的消息带入贾府内部。"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "流离投靠"
   }
 ]

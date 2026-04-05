@@ -3,6 +3,7 @@ class HongLouMengApp {
     this.graph = null;
     this.treeView = null;
     this.listView = null;
+    this.chapterView = null;
     this.knowledgeView = null;
     this.characters = [];
     this.relationships = [];
@@ -19,8 +20,8 @@ class HongLouMengApp {
     this.isFullscreen = false;
     this.isMobileSearchOpen = false;
     this.els = {};
-    this.viewInitialized = { graph: true, tree: false, list: false, knowledge: false };
-    this.viewEverRendered = { tree: false, list: false, knowledge: false };
+    this.viewInitialized = { graph: true, tree: false, list: false, chapter: false, knowledge: false };
+    this.viewEverRendered = { tree: false, list: false, chapter: false, knowledge: false };
     this.destroyInactiveViews = false;
     this.facetState = {
       selectedCharacterIds: [],
@@ -138,7 +139,7 @@ class HongLouMengApp {
       this._showOverview();
 
       const initialView = (location.hash || '').replace('#', '') || 'graph';
-      if (['graph', 'tree', 'list', 'knowledge'].includes(initialView)) {
+      if (['graph', 'tree', 'list', 'chapter', 'knowledge'].includes(initialView)) {
         this._switchView(initialView);
       }
 
@@ -156,6 +157,7 @@ class HongLouMengApp {
       graphContainer: document.getElementById('graph-container'),
       treeContainer: document.getElementById('tree-container'),
       listContainer: document.getElementById('list-container'),
+      chapterContainer: document.getElementById('chapter-container'),
       knowledgeContainer: document.getElementById('knowledge-container'),
       searchInput: document.getElementById('search-input'),
       searchResults: document.getElementById('search-results'),
@@ -168,6 +170,7 @@ class HongLouMengApp {
       sidebarBackdrop: document.getElementById('sidebar-backdrop'),
       familyFilters: document.getElementById('family-filters'),
       relationFilters: document.getElementById('relation-filters'),
+      importanceFilters: document.getElementById('importance-filters'),
       graphFilterSummary: document.getElementById('graph-filter-summary'),
       statsSection: document.getElementById('stats-section'),
       moreTools: document.querySelector('.sidebar-more-tools'),
@@ -212,6 +215,7 @@ class HongLouMengApp {
       viewGraph: document.getElementById('view-graph'),
       viewTree: document.getElementById('view-tree'),
       viewList: document.getElementById('view-list'),
+      viewChapter: document.getElementById('view-chapter'),
       viewKnowledge: document.getElementById('view-knowledge')
     };
   }
@@ -376,7 +380,7 @@ class HongLouMengApp {
     // Handle URL hash changes (browser navigation, direct links)
     window.addEventListener('hashchange', () => {
       const viewName = (location.hash || '').replace('#', '') || 'graph';
-      if (['graph', 'tree', 'list', 'knowledge'].includes(viewName)) {
+      if (['graph', 'tree', 'list', 'chapter', 'knowledge'].includes(viewName)) {
         this._switchView(viewName);
       }
     });
@@ -431,6 +435,15 @@ class HongLouMengApp {
       this._subscribeViewToFacetStore('list');
     }
 
+    if (this.els.chapterContainer) {
+      this.chapterView = new ChapterView(this.els.chapterContainer);
+      this.chapterView.setData(this.knowledge, this.characters);
+      this.chapterView.onCharacterClick = (characterId) => this._openCharacter(characterId, { focusNeighbors: true });
+      this.chapterView.onTagClick = (payload) => this._handleFacetTagSelection(payload);
+      this.chapterView.onKnowledgeNavigate = (payload) => this._openKnowledgeContext(payload);
+      this._subscribeViewToFacetStore('chapter');
+    }
+
     if (this.els.knowledgeContainer) {
       this.knowledgeView = new KnowledgeView(this.els.knowledgeContainer);
       this.knowledgeView.setData(this.knowledge, this.characters);
@@ -447,6 +460,7 @@ class HongLouMengApp {
       const view = {
         tree: this.treeView,
         list: this.listView,
+        chapter: this.chapterView,
         knowledge: this.knowledgeView,
         graph: this.graph
       }[viewName];
@@ -463,6 +477,9 @@ class HongLouMengApp {
       if (viewName === 'list' && this.viewInitialized.list) {
         view._invalidateFilterCache?.();
         view._renderList?.();
+      }
+      if (viewName === 'chapter' && this.viewInitialized.chapter) {
+        view._updateContent?.();
       }
       if (viewName === 'knowledge' && this.viewInitialized.knowledge) {
         view._invalidateFilterCache?.();
@@ -495,6 +512,7 @@ class HongLouMengApp {
       graph: this.els.viewGraph,
       tree: this.els.viewTree,
       list: this.els.viewList,
+      chapter: this.els.viewChapter,
       knowledge: this.els.viewKnowledge
     };
 
@@ -509,7 +527,7 @@ class HongLouMengApp {
     });
 
     // 更新body上的视图类名，用于CSS布局
-    this.els.body.classList.remove('view-graph', 'view-tree', 'view-list', 'view-knowledge');
+    this.els.body.classList.remove('view-graph', 'view-tree', 'view-list', 'view-chapter', 'view-knowledge');
     this.els.body.classList.add(`view-${viewName}`);
 
     // Sidebar只在图谱视图显示，其他视图有自己的控制栏
@@ -531,6 +549,10 @@ class HongLouMengApp {
         this.listView.render();
         this.viewInitialized.list = true;
         this.viewEverRendered.list = true;
+      } else if (viewName === 'chapter' && this.chapterView) {
+        this.chapterView.render();
+        this.viewInitialized.chapter = true;
+        this.viewEverRendered.chapter = true;
       } else if (viewName === 'knowledge' && this.knowledgeView) {
         this.knowledgeView.render();
         this.viewInitialized.knowledge = true;
@@ -561,6 +583,7 @@ class HongLouMengApp {
     const stats = this.graph.getStats();
     this._buildFamilyFilters(stats);
     this._buildRelationFilters(stats);
+    this._buildImportanceFilters();
     this._updateGraphFilterSummary();
     this._buildStats(stats);
     this._renderFeaturedCharacters();
@@ -645,6 +668,32 @@ class HongLouMengApp {
     this._syncGraphFilterUi();
   }
 
+  _buildImportanceFilters() {
+    if (!this.els.importanceFilters) return;
+
+    const options = [
+      { key: '4', label: '默认核心', desc: '只看重要度 4-5' },
+      { key: '3', label: '主要人物', desc: '看重要度 3-5' },
+      { key: '2', label: '扩展人物', desc: '看重要度 2-5' },
+      { key: '1', label: '全部有名人物', desc: '连只有名字的人也显示' }
+    ];
+
+    this._setHtml(this.els.importanceFilters, options.map((option) => `
+      <button type="button" class="importance-filter-item ${String(this.graph.importanceThreshold) === option.key ? 'active' : ''}" data-importance="${option.key}" aria-pressed="${String(this.graph.importanceThreshold) === option.key ? 'true' : 'false'}">
+        <span class="importance-filter-label">${option.label}</span>
+        <span class="importance-filter-desc">${option.desc}</span>
+      </button>
+    `).join(''));
+
+    this.els.importanceFilters.querySelectorAll('.importance-filter-item').forEach((item) => {
+      item.addEventListener('click', () => {
+        this.graph.setImportanceThreshold(Number(item.dataset.importance || 4));
+        this._syncGraphFilterUi();
+        this._refreshViewAfterFilterChange();
+      });
+    });
+  }
+
   _getFamilyFilterDefinitions() {
     return [
       { key: '贾家', label: '贾家', color: '#C0392B' },
@@ -684,6 +733,12 @@ class HongLouMengApp {
       item.querySelector('.custom-checkbox')?.classList.toggle('checked', isActive);
     });
 
+    this.els.importanceFilters?.querySelectorAll('.importance-filter-item').forEach((item) => {
+      const isActive = Number(item.dataset.importance) === Number(this.graph.importanceThreshold);
+      item.classList.toggle('active', isActive);
+      item.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+
     this._updateGraphFilterSummary();
   }
 
@@ -694,16 +749,17 @@ class HongLouMengApp {
     const allRelations = this._getRelationFilterDefinitions();
     const activeFamilyCount = allFamilies.filter((family) => this.graph.activeFamilies.has(family.key)).length;
     const activeRelationCount = allRelations.filter((relation) => this.graph.activeRelationTypes.has(relation.key)).length;
-    const hasCustomFilters = activeFamilyCount !== allFamilies.length || activeRelationCount !== allRelations.length;
+    const hasCustomFilters = activeFamilyCount !== allFamilies.length || activeRelationCount !== allRelations.length || Number(this.graph.importanceThreshold) !== 4;
     const familySummary = activeFamilyCount === allFamilies.length ? '家族：全部可见' : `家族：${activeFamilyCount}/${allFamilies.length}`;
     const relationSummary = activeRelationCount === allRelations.length ? '关系：全部可见' : `关系：${activeRelationCount}/${allRelations.length}`;
+    const importanceSummary = `人物：重要度 ${this.graph.importanceThreshold} 以上`;
 
     this._setHtml(this.els.graphFilterSummary, `
       <div class="filter-summary-card${hasCustomFilters ? ' is-filtered' : ''}">
         <div class="filter-summary-main">
           <div class="filter-summary-title">当前图谱筛选</div>
-          <div class="filter-summary-text">${familySummary} · ${relationSummary}</div>
-          <div class="filter-summary-note">筛选只改变图谱显示，不会自动弹出人物卡片。</div>
+          <div class="filter-summary-text">${familySummary} · ${relationSummary} · ${importanceSummary}</div>
+          <div class="filter-summary-note">默认先看重要人物；需要考据边缘人物时，可放宽到“全部有名人物”。</div>
         </div>
         ${hasCustomFilters ? '<button type="button" id="btn-reset-graph-filters" class="secondary-action filter-summary-reset">恢复全部</button>' : '<span class="filter-summary-state">当前是完整视图</span>'}
       </div>
@@ -1125,33 +1181,43 @@ _createFontAndThemeControls() {
 
   _openCharacterKnowledge(character) {
     if (!character || !this.knowledgeView) return;
+    this._openKnowledgeContext({ query: character.name, selectedCharacterIds: [character.id] });
+    this._updateFloatingContext(`知识：${character.name}`);
+  }
+
+  _openKnowledgeContext(payload = {}) {
+    if (!this.knowledgeView) return;
+    const chapter = payload.chapter ?? 'all';
+    const query = payload.query ?? '';
+    const selectedCharacterIds = payload.selectedCharacterIds || [];
+
     this._switchView('knowledge');
     if (!this.viewInitialized.knowledge) {
       this.knowledgeView.render();
       this.viewInitialized.knowledge = true;
       this.viewEverRendered.knowledge = true;
     }
-    
+
     this.knowledgeView.activeCategory = 'all';
     this.knowledgeView.activeSubcategory = 'all';
-    this.knowledgeView.chapterFilter = 'all';
-    this.knowledgeView.sortBy = 'relevance';
-    this.knowledgeView.searchQuery = character.name;
-    this.knowledgeView.relatedCharacterIds = new Set([character.id]);
+    this.knowledgeView.chapterFilter = chapter === 'all' ? 'all' : String(chapter);
+    this.knowledgeView.sortBy = chapter === 'all' ? 'relevance' : 'chapter';
+    this.knowledgeView.searchQuery = query;
+    this.knowledgeView.relatedCharacterIds = new Set(selectedCharacterIds);
     this.knowledgeView.expandedIds.clear();
     this.knowledgeView.displayCount = 40;
-    
+
     const input = this.els.knowledgeContainer?.querySelector('.knowledge-search-input');
-    if (input) input.value = character.name;
-    
+    if (input) input.value = query;
+    const chapterSelect = this.els.knowledgeContainer?.querySelector('.knowledge-select[data-filter="chapter"]');
+    if (chapterSelect) chapterSelect.value = this.knowledgeView.chapterFilter;
+
     this.knowledgeView._invalidateFilterCache?.();
-    this.knowledgeView._updateContent();
-    this.knowledgeView._scrollToTop();
-    
+    this.knowledgeView._updateContent?.();
+    this.knowledgeView._scrollToTop?.();
+
     const main = this.els.knowledgeContainer?.querySelector('.knowledge-main');
     if (main) main.scrollTo({ top: 0, behavior: 'instant' });
-    
-    this._updateFloatingContext(`知识：${character.name}`);
   }
 
   _openTopic(topicId, skipHistory) {
@@ -2136,6 +2202,15 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
       if (this.viewInitialized.list) {
         this.listView._invalidateFilterCache?.();
         this.listView._renderList?.();
+      }
+    }
+
+    if (this.chapterView) {
+      this.chapterView.setFacetContext({
+        selectedCharacterIds: state.selectedCharacterIds
+      });
+      if (this.viewInitialized.chapter) {
+        this.chapterView._updateContent?.();
       }
     }
     

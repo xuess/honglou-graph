@@ -26,6 +26,7 @@ class RelationshipGraph {
     this.interactionMode = 'reading';
     this.activeRelationTypes = new Set(['blood', 'marriage', 'master_servant', 'romance', 'social', 'rivalry']);
     this.activeFamilies = new Set();
+    this.importanceThreshold = 4;
     this.showLabels = true;
     this.currentVisibleNodeIds = new Set();
     this.currentVisibleLinkKeys = new Set();
@@ -640,10 +641,11 @@ _init() {
   resetAllFilters() {
     this.activeRelationTypes = new Set(['blood', 'marriage', 'master_servant', 'romance', 'social', 'rivalry']);
     this.activeFamilies = new Set(Object.keys(this.familyColors));
+    this.importanceThreshold = 4;
   }
 
   showImportantOverview() {
-    const important = this.nodes.filter(node => (node.character.importance || 1) >= 4);
+    const important = this.nodes.filter(node => (node.character.importance || 1) >= this.importanceThreshold);
     const nodeIds = new Set(important.map(node => node.id));
     const linkKeys = this._collectLinksForNodeSet(nodeIds);
     this._setVisibility(nodeIds, linkKeys, { centerId: 'jia_baoyu' });
@@ -654,6 +656,7 @@ _init() {
   showFullGraph() {
     const nodeIds = new Set(this.nodes
       .filter(node => this.activeFamilies.has(node.family))
+      .filter(node => (node.character.importance || 1) >= this.importanceThreshold)
       .map(node => node.id));
     const linkKeys = this._collectLinksForNodeSet(nodeIds);
     this._setVisibility(nodeIds, linkKeys);
@@ -729,6 +732,12 @@ _init() {
   toggleFamily(family) {
     if (this.activeFamilies.has(family)) this.activeFamilies.delete(family);
     else this.activeFamilies.add(family);
+    this._applyFilters();
+  }
+
+  setImportanceThreshold(threshold = 4) {
+    const nextThreshold = Math.max(1, Math.min(5, Number(threshold) || 4));
+    this.importanceThreshold = nextThreshold;
     this._applyFilters();
   }
 

@@ -7,7 +7,7 @@
   <meta name="description" content="红楼梦知识探索工具：关系图谱、家族谱系、人物名录与诗词典故知识库，边读边查。">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏮</text></svg>">
   <link rel="stylesheet" href="css/fonts.css">
-  <link rel="stylesheet" href="css/style.css?v=20260403a">
+  <link rel="stylesheet" href="css/style.css?v=20260403b">
   <script src="js/d3.v7.min.js"></script>
 </head>
 <body>
@@ -31,6 +31,7 @@
         <button class="view-nav-tab active" data-view="graph" role="tab" aria-selected="true" aria-controls="view-graph"><span class="view-nav-icon">◉</span><span class="view-nav-label">关系图谱</span></button>
         <button class="view-nav-tab" data-view="tree" role="tab" aria-selected="false" aria-controls="view-tree"><span class="view-nav-icon">🌳</span><span class="view-nav-label">家族谱系</span></button>
         <button class="view-nav-tab" data-view="list" role="tab" aria-selected="false" aria-controls="view-list"><span class="view-nav-icon">📋</span><span class="view-nav-label">人物名录</span></button>
+        <button class="view-nav-tab" data-view="chapter" role="tab" aria-selected="false" aria-controls="view-chapter"><span class="view-nav-icon">📚</span><span class="view-nav-label">回目视图</span></button>
         <button class="view-nav-tab" data-view="knowledge" role="tab" aria-selected="false" aria-controls="view-knowledge"><span class="view-nav-icon">📖</span><span class="view-nav-label">知识库</span></button>
       </nav>
     </div>
@@ -79,6 +80,11 @@
           <section class="sidebar-subsection">
             <div class="sidebar-section-title">关系类型</div>
             <div id="relation-filters" class="relation-filter"></div>
+          </section>
+
+          <section class="sidebar-subsection">
+            <div class="sidebar-section-title">人物重要度</div>
+            <div id="importance-filters" class="importance-filter"></div>
           </section>
 
           <section class="sidebar-subsection sidebar-filter-summary" id="graph-filter-summary" aria-live="polite"></section>
@@ -184,6 +190,10 @@
         <div id="list-container" class="list-container"></div>
       </section>
 
+      <section class="view-panel" id="view-chapter" role="tabpanel" aria-label="回目视图">
+        <div id="chapter-container" class="chapter-container"></div>
+      </section>
+
       <!-- Knowledge View -->
       <section class="view-panel" id="view-knowledge" role="tabpanel" aria-label="知识库">
         <div id="knowledge-container" class="knowledge-container"></div>
@@ -196,10 +206,11 @@
   </div>
 
   <script src="js/facet-store.js?v=20250916e"></script>
-  <script src="js/graph.js?v=20250916e"></script>
+  <script src="js/graph.js?v=20260405a"></script>
   <script src="js/tree-view.js?v=20250916e"></script>
   <script src="js/list-view.js?v=20250916e"></script>
+  <script src="js/chapter-view.js?v=20260405a"></script>
   <script src="js/knowledge-view.js?v=20250916e"></script>
-  <script src="js/app.js?v=20250916e"></script>
+  <script src="js/app.js?v=20260405a"></script>
 </body>
 </html>

@@ -607,6 +607,10 @@ class KnowledgeView {
     return this.characterKnowledgeMap.get(characterId) || [];
   }
 
+  _emitFacetChange() {
+    return;
+  }
+
   destroy() {
     clearTimeout(this._searchTimer);
     this._eventsBound = false;
