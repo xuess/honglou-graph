@@ -12,6 +12,8 @@ class ChapterView {
     this.activeChapter = null;
     this.versionFilter = 'all';
     this.searchQuery = '';
+    this.characterTierFilter = 'all';
+    this.sourceFilter = 'all';
     this._searchTimer = null;
     this._eventsBound = false;
 
@@ -165,6 +167,7 @@ class ChapterView {
     const parsed = this._parseChapterEntry(profile.entry);
     const previous = visibleProfiles.find((item) => item.chapter === profile.chapter - 1) || null;
     const next = visibleProfiles.find((item) => item.chapter === profile.chapter + 1) || null;
+    const layeredCharacters = this._groupCharactersByTier(profile.characters);
 
     return `
       <div class="chapter-focus card-surface">
@@ -217,12 +220,24 @@ class ChapterView {
         <div class="chapter-section-head">
           <div>
             <div class="chapter-section-title">本回牵动人物</div>
-            <div class="chapter-section-subtitle">从同回知识条目反推人物出场重心，而不是只看人物人气。</div>
+            <div class="chapter-section-subtitle">分成主线人物、有名有姓人物、旁及人物三层；每个人物都标出它为什么会出现在这一回。</div>
           </div>
         </div>
-        <div class="chapter-character-grid">
-          ${profile.characters.length ? profile.characters.map((item) => this._renderCharacterCard(item)).join('') : '<div class="chapter-empty-block">本回暂无结构化人物关联，后续可继续补全。</div>'}
+        <div class="chapter-character-filterbar">
+          <div class="chapter-filter-block">
+            <div class="chapter-filter-block-label">人物层级</div>
+            <div class="chapter-filter-inline">
+              ${this._renderCharacterTierFilter()}
+            </div>
+          </div>
+          <div class="chapter-filter-block">
+            <div class="chapter-filter-block-label">来源说明</div>
+            <div class="chapter-filter-inline">
+              ${this._renderSourceFilter()}
+            </div>
+          </div>
         </div>
+        ${this._renderLayeredCharacterSections(layeredCharacters)}
       </section>
 
       <section class="chapter-section card-surface">
@@ -243,6 +258,7 @@ class ChapterView {
   _renderCharacterCard(item) {
     const character = item.character;
     const isRelated = this.relatedCharacterIds.has(character.id);
+    const sourceSummary = this._summarizeCharacterSources(item);
     return `
       <button class="chapter-character-card ${isRelated ? 'is-related' : ''}" data-char-id="${character.id}">
         <div class="chapter-character-top">
@@ -254,11 +270,87 @@ class ChapterView {
           <span>${this._escapeHtml(character.family || '其他')}</span>
           <span>★${character.importance || 1}</span>
         </div>
+        <div class="chapter-source-row">
+          ${sourceSummary.map((source) => `<span class="chapter-source-chip ${source.className}">${this._escapeHtml(source.label)}</span>`).join('')}
+        </div>
         <div class="chapter-evidence-group">
           ${item.evidence.slice(0, 3).map((evidence) => `<span class="chapter-evidence-chip">${this._escapeHtml(evidence)}</span>`).join('')}
         </div>
       </button>
     `;
+  }
+
+  _renderLayeredCharacterSections(layeredCharacters) {
+    const sections = [
+      {
+        key: 'main',
+        title: '主线人物',
+        desc: '重要度高、且本回确有情节牵动的人物。适合先读这一层。'
+      },
+      {
+        key: 'named',
+        title: '有名有姓人物',
+        desc: '虽非绝对主线，但本回明确点名、能帮助你补足章回现场感的人物。'
+      },
+      {
+        key: 'peripheral',
+        title: '旁及人物',
+        desc: '更多是规则补全、伏笔牵连或外围映带的人物，可作为深读参考。'
+      }
+    ];
+
+    const rendered = sections.map((section) => {
+      if (this.characterTierFilter !== 'all' && this.characterTierFilter !== section.key) return '';
+      const items = this._applySourceFilter(layeredCharacters[section.key] || []);
+      if (!items.length) return '';
+      return `
+        <div class="chapter-character-group ${section.key}">
+          <div class="chapter-character-group-head">
+            <div>
+              <div class="chapter-character-group-title">${section.title}</div>
+              <div class="chapter-character-group-desc">${section.desc}</div>
+            </div>
+            <div class="chapter-character-group-count">${items.length} 人</div>
+          </div>
+          <div class="chapter-character-grid">
+            ${items.map((item) => this._renderCharacterCard(item)).join('')}
+          </div>
+        </div>
+      `;
+    }).filter(Boolean).join('');
+
+    return rendered || '<div class="chapter-empty-block">本回暂无结构化人物关联，后续可继续补全。</div>';
+  }
+
+  _renderCharacterTierFilter() {
+    const options = [
+      { key: 'all', label: '全部层级' },
+      { key: 'main', label: '只看主线' },
+      { key: 'named', label: '只看有名有姓' },
+      { key: 'peripheral', label: '只看旁及' }
+    ];
+    return options.map((option) => `
+      <button class="chapter-filter-mini ${this.characterTierFilter === option.key ? 'active' : ''}" data-character-tier="${option.key}">${option.label}</button>
+    `).join('');
+  }
+
+  _renderSourceFilter() {
+    const options = [
+      { key: 'all', label: '全部来源' },
+      { key: 'direct', label: '回目直指' },
+      { key: 'knowledge', label: '同回知识' },
+      { key: 'keyword', label: '规则补全' },
+      { key: 'chapterRecord', label: '章节档案' },
+      { key: 'textMention', label: '文本提及' }
+    ];
+    return options.map((option) => `
+      <button class="chapter-filter-mini ${this.sourceFilter === option.key ? 'active' : ''}" data-source-filter="${option.key}">${option.label}</button>
+    `).join('');
+  }
+
+  _applySourceFilter(items = []) {
+    if (this.sourceFilter === 'all') return items;
+    return items.filter((item) => (item.sources || []).includes(this.sourceFilter));
   }
 
   _renderKnowledgeLinkCard(item) {
@@ -330,6 +422,20 @@ class ChapterView {
       const versionButton = event.target.closest('[data-version]');
       if (versionButton) {
         this.versionFilter = versionButton.dataset.version || 'all';
+        this._updateContent();
+        return;
+      }
+
+      const tierButton = event.target.closest('[data-character-tier]');
+      if (tierButton) {
+        this.characterTierFilter = tierButton.dataset.characterTier || 'all';
+        this._updateContent();
+        return;
+      }
+
+      const sourceButton = event.target.closest('[data-source-filter]');
+      if (sourceButton) {
+        this.sourceFilter = sourceButton.dataset.sourceFilter || 'all';
         this._updateContent();
         return;
       }
@@ -429,7 +535,8 @@ class ChapterView {
       .map(([characterId, detail]) => ({
         character: this.characterMap.get(characterId),
         score: detail.score,
-        evidence: Array.from(detail.evidence)
+        evidence: Array.from(detail.evidence),
+        sources: Array.from(detail.sources || [])
       }))
       .filter((item) => item.character)
       .sort((a, b) => b.score - a.score || (b.character.importance || 0) - (a.character.importance || 0) || a.character.name.localeCompare(b.character.name, 'zh-Hans-CN'));
@@ -449,11 +556,53 @@ class ChapterView {
   _pushCharacterEvidence(store, characterId, label, score = 1) {
     if (!characterId || !this.characterMap.has(characterId)) return;
     if (!store.has(characterId)) {
-      store.set(characterId, { score: 0, evidence: new Set() });
+      store.set(characterId, { score: 0, evidence: new Set(), sources: new Set() });
     }
     const current = store.get(characterId);
     current.score += score;
     if (label) current.evidence.add(label);
+    current.sources.add(this._classifyEvidenceSource(label));
+  }
+
+  _classifyEvidenceSource(label = '') {
+    const text = String(label || '');
+    if (text.startsWith('回目直连')) return 'direct';
+    if (text.startsWith('回目线索')) return 'keyword';
+    if (text.startsWith('人物章节档案')) return 'chapterRecord';
+    if (text.startsWith('文本提及')) return 'textMention';
+    return 'knowledge';
+  }
+
+  _summarizeCharacterSources(item) {
+    const sourceMeta = {
+      direct: { label: '回目直指', className: 'is-direct' },
+      knowledge: { label: '同回知识', className: 'is-knowledge' },
+      keyword: { label: '回目规则补全', className: 'is-keyword' },
+      chapterRecord: { label: '人物章节档案', className: 'is-record' },
+      textMention: { label: '文本提及', className: 'is-text' }
+    };
+    return (item.sources || [])
+      .map((source) => sourceMeta[source])
+      .filter(Boolean)
+      .slice(0, 3);
+  }
+
+  _groupCharactersByTier(characters = []) {
+    const groups = { main: [], named: [], peripheral: [] };
+    characters.forEach((item) => {
+      const importance = item.character?.importance || 1;
+      const hasDirectSignal = (item.sources || []).some((source) => ['direct', 'knowledge'].includes(source));
+      const hasNamedSignal = (item.sources || []).some((source) => ['keyword', 'chapterRecord', 'textMention'].includes(source));
+
+      if (importance >= 4 || (importance >= 3 && hasDirectSignal)) {
+        groups.main.push(item);
+      } else if (hasNamedSignal || importance >= 2) {
+        groups.named.push(item);
+      } else {
+        groups.peripheral.push(item);
+      }
+    });
+    return groups;
   }
 
   _inferCharactersFromChapterMetadata(entry, store, parsed = null) {

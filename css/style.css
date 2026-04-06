@@ -4379,6 +4379,48 @@ body.view-knowledge .main-container {
   gap: 8px;
 }
 
+.chapter-character-filterbar {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.chapter-filter-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chapter-filter-block-label {
+  font-size: 0.76rem;
+  color: var(--color-ink-light);
+  font-weight: 700;
+}
+
+.chapter-filter-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chapter-filter-mini {
+  border: 1px solid rgba(196,168,130,0.3);
+  background: rgba(255,255,255,0.66);
+  color: var(--color-ink);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.76rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.chapter-filter-mini.active,
+.chapter-filter-mini:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: var(--color-primary-alpha-06);
+}
+
 .chapter-point-chip {
   border-radius: 999px;
   padding: 6px 12px;
@@ -4417,6 +4459,40 @@ body.view-knowledge .main-container {
   display: grid;
   gap: 12px;
   margin-top: 14px;
+}
+
+.chapter-character-group + .chapter-character-group {
+  margin-top: 18px;
+}
+
+.chapter-character-group-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.chapter-character-group-title {
+  font-family: var(--font-title);
+  color: var(--color-primary);
+  font-size: 0.98rem;
+}
+
+.chapter-character-group-desc {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: var(--color-ink-light);
+  line-height: 1.6;
+}
+
+.chapter-character-group-count {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(139,37,0,0.08);
+  color: var(--color-primary);
+  font-size: 0.74rem;
+  white-space: nowrap;
 }
 
 .chapter-character-grid {
@@ -4478,6 +4554,46 @@ body.view-knowledge .main-container {
 
 .chapter-inline-pill {
   cursor: pointer;
+}
+
+.chapter-source-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0 8px;
+}
+
+.chapter-source-chip {
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border: 1px solid rgba(196,168,130,0.24);
+}
+
+.chapter-source-chip.is-direct {
+  background: rgba(192,57,43,0.1);
+  color: #a02800;
+}
+
+.chapter-source-chip.is-knowledge {
+  background: rgba(39,174,96,0.12);
+  color: #237A57;
+}
+
+.chapter-source-chip.is-keyword {
+  background: rgba(52,152,219,0.1);
+  color: #2d6ca2;
+}
+
+.chapter-source-chip.is-record {
+  background: rgba(142,68,173,0.1);
+  color: #7B4F8A;
+}
+
+.chapter-source-chip.is-text {
+  background: rgba(243,156,18,0.12);
+  color: #a36812;
 }
 
 .chapter-knowledge-icon {
