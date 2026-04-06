@@ -736,6 +736,10 @@ body.theme-purple-gold .header-title { color: var(--theme-gold-light); }
   box-shadow: 0 14px 40px var(--color-shadow-light);
 }
 
+body.card-open {
+  overflow: hidden;
+}
+
 .sidebar {
   border-radius: 24px;
   padding: 16px;
@@ -1664,12 +1668,11 @@ body.sidebar-resizing * {
   position: fixed;
   inset: 0;
   display: none;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  background: rgba(44,24,16,0.42);
-  backdrop-filter: blur(6px);
-  padding: calc(var(--header-height) + 18px) 16px 24px;
-  overflow-y: auto;
+  background: rgba(44,24,16,0.58);
+  padding: 16px;
+  overflow: hidden;
   z-index: 4000;
 }
 
@@ -1680,10 +1683,16 @@ body.sidebar-resizing * {
 .character-card {
   position: relative;
   width: min(760px, 92vw);
-  max-height: calc(100vh - var(--header-height) - 42px);
+  max-height: min(calc(100vh - 32px), 820px);
   border-radius: 24px;
   overflow-y: auto;
   overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  contain: layout paint;
+  transform: translateZ(0);
+  will-change: scroll-position;
+  backdrop-filter: none;
+  box-shadow: 0 10px 28px rgba(44,24,16,0.18);
 }
 
 .card-close-btn {
@@ -1759,6 +1768,10 @@ body.sidebar-resizing * {
 
 .card-body {
   padding: 22px 24px 26px;
+}
+
+.card-section {
+  contain: layout paint;
 }
 
 .card-section + .card-section {
@@ -2135,7 +2148,7 @@ body.fullscreen .graph-floating-bar {
 
   .character-card {
     width: 96vw;
-    max-height: 92vh;
+    max-height: calc(100vh - 20px);
     border-radius: 18px;
   }
 
@@ -2265,7 +2278,7 @@ body.fullscreen .graph-floating-bar {
 
   .character-card {
     width: 98vw;
-    max-height: 94vh;
+    max-height: calc(100vh - 12px);
     border-radius: 16px;
   }
 

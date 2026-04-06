@@ -38,6 +38,8 @@ class RelationshipGraph {
     this._linkMap = new Map();
     this._cachedVisibleNodes = [];
     this._searchIndex = [];
+    this._simulationPaused = false;
+    this._pausedSimulationAlpha = 0;
 
     this.familyColors = {
       '贾家': '#C0392B',
@@ -875,9 +877,35 @@ _init() {
     this.linkElements.classed('preview-dimmed', false);
   }
 
+  pauseSimulation() {
+    if (!this.simulation || this._simulationPaused) return;
+    this._simulationPaused = true;
+    this._pausedSimulationAlpha = this.simulation.alpha();
+    this.simulation.stop();
+  }
+
+  resumeSimulation({ alpha = null, delay = 120 } = {}) {
+    if (!this.simulation || !this._simulationPaused) return;
+    this._simulationPaused = false;
+    const nextAlpha = Math.max(alpha ?? this._pausedSimulationAlpha ?? 0, 0);
+    if (nextAlpha <= 0.015) {
+      this._pausedSimulationAlpha = 0;
+      return;
+    }
+
+    window.clearTimeout(this._resumeTimer);
+    this._resumeTimer = window.setTimeout(() => {
+      if (!this.simulation || this._simulationPaused) return;
+      this.simulation.alpha(Math.min(nextAlpha, 0.08)).restart();
+      this._coolDownSimulation(480);
+      this._pausedSimulationAlpha = 0;
+    }, delay);
+  }
+
   destroy() {
     window.clearTimeout(this._coolDownTimer);
     window.clearTimeout(this._resizeTimer);
+    window.clearTimeout(this._resumeTimer);
     if (this._highlightRaf) window.cancelAnimationFrame(this._highlightRaf);
     if (this.simulation) this.simulation.stop();
     if (this._resizeObserver) this._resizeObserver.disconnect();

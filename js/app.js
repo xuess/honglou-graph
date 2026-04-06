@@ -19,6 +19,7 @@ class HongLouMengApp {
     this.viewHistory = [];
     this.isFullscreen = false;
     this.isMobileSearchOpen = false;
+    this.isCardOpen = false;
     this.els = {};
     this.viewInitialized = { graph: true, tree: false, list: false, chapter: false, knowledge: false };
     this.viewEverRendered = { tree: false, list: false, chapter: false, knowledge: false };
@@ -2059,6 +2060,10 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
   }
 
   _showCard(character) {
+    this.isCardOpen = true;
+    document.body.classList.add('card-open');
+    this.graph?.pauseSimulation?.();
+
     const relations = this.graph.getCharacterRelations(character.id);
     const summaryRelations = this._buildRelationshipSummary(character.id);
     const recommendations = this._buildCharacterRecommendations(character.id);
@@ -2152,8 +2157,11 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
   }
 
   _closeCard() {
+    this.isCardOpen = false;
+    document.body.classList.remove('card-open');
     this.els.cardOverlay.classList.remove('active');
     this._setHtml(this.els.cardContent, '');
+    this.graph?.resumeSimulation?.();
   }
 
   _setFacetState(nextState = {}, sourceView = 'graph') {
