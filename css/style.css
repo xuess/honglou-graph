@@ -906,6 +906,98 @@ body.sidebar-resizing * {
   border-color: var(--color-primary-alpha-40);
 }
 
+body.performance-low .quick-card,
+body.performance-low .topic-card,
+body.performance-low .family-browser-item,
+body.performance-low .summary-relation-item,
+body.performance-low .recommend-pill,
+body.performance-low .primary-action,
+body.performance-low .secondary-action,
+body.performance-low .family-filter-item,
+body.performance-low .relation-filter-item,
+body.performance-low .importance-filter-item,
+body.performance-low .view-nav-tab,
+body.performance-low .tree-family-tab,
+body.performance-low .tree-action-btn,
+body.performance-low .tree-summary-card,
+body.performance-low .tree-person-card,
+body.performance-low .list-card-item,
+body.performance-low .list-compact-row,
+body.performance-low .knowledge-tab,
+body.performance-low .knowledge-chip,
+body.performance-low .knowledge-card,
+body.performance-low .knowledge-char-pill,
+body.performance-low .chapter-directory-item,
+body.performance-low .chapter-filter-mini,
+body.performance-low .chapter-character-card,
+body.performance-low .chapter-knowledge-card,
+body.performance-low .chapter-inline-pill,
+body.performance-low .chapter-nav-btn,
+body.performance-low .chapter-text-action,
+body.performance-low .chapter-inline-link,
+body.performance-low .chapter-point-chip {
+  transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease, opacity 0.12s ease !important;
+}
+
+body.performance-low .view-nav-tab::before,
+body.performance-low .knowledge-tab::before,
+body.performance-low .tree-person-card::before,
+body.performance-low .list-card-item::before,
+body.performance-low .knowledge-card::before,
+body.performance-low .btn::before,
+body.performance-low .tree-item-toggle::before {
+  display: none !important;
+}
+
+body.performance-low .sidebar,
+body.performance-low .card-surface,
+body.performance-low .character-card,
+body.performance-low .detail-drawer,
+body.performance-low .knowledge-hero,
+body.performance-low .knowledge-sidebar,
+body.performance-low .knowledge-results-head,
+body.performance-low .list-card-item,
+body.performance-low .knowledge-card,
+body.performance-low .chapter-character-card,
+body.performance-low .chapter-knowledge-card,
+body.performance-low .tree-summary-card,
+body.performance-low .tree-person-card {
+  backdrop-filter: none !important;
+  box-shadow: 0 4px 12px rgba(44,24,16,0.08) !important;
+}
+
+body.performance-low .quick-card:hover,
+body.performance-low .topic-card:hover,
+body.performance-low .family-browser-item:hover,
+body.performance-low .summary-relation-item:hover,
+body.performance-low .recommend-pill:hover,
+body.performance-low .primary-action:hover,
+body.performance-low .secondary-action:hover,
+body.performance-low .view-nav-tab:hover,
+body.performance-low .tree-summary-card:hover,
+body.performance-low .tree-person-card:hover,
+body.performance-low .list-card-item:hover,
+body.performance-low .knowledge-tab:hover,
+body.performance-low .knowledge-card:hover,
+body.performance-low .chapter-directory-item:hover,
+body.performance-low .chapter-character-card:hover,
+body.performance-low .chapter-knowledge-card:hover {
+  transform: none !important;
+  box-shadow: 0 4px 12px rgba(44,24,16,0.08) !important;
+}
+
+body.performance-low .list-card-item:hover .list-card-avatar,
+body.performance-low .tree-person-card:hover .tree-person-avatar,
+body.performance-low .knowledge-card:hover .knowledge-card-content,
+body.performance-low .view-nav-tab.active,
+body.performance-low .knowledge-tab.active,
+body.performance-low .knowledge-chip.active,
+body.performance-low .chapter-character-card.is-related,
+body.performance-low .chapter-inline-pill.is-related,
+body.performance-low .tree-person-card.highlighted {
+  transform: none !important;
+}
+
 .quick-card-name,
 .topic-title {
   display: block;
@@ -1690,7 +1782,7 @@ body.sidebar-resizing * {
   -webkit-overflow-scrolling: touch;
   contain: layout paint;
   transform: translateZ(0);
-  will-change: scroll-position;
+  will-change: auto;
   backdrop-filter: none;
   box-shadow: 0 10px 28px rgba(44,24,16,0.18);
 }
@@ -2405,6 +2497,7 @@ body.fullscreen .graph-floating-bar {
   white-space: nowrap;
   position: relative;
   overflow: hidden;
+  will-change: auto;
 }
 
 .view-nav-tab::before {
@@ -2912,6 +3005,7 @@ body.view-knowledge .main-container {
   font-size: 1.35rem;
   font-weight: 700;
   transition: all 0.3s ease;
+  contain: layout paint;
 }
 
 .tree-summary-card:hover strong {
@@ -3185,6 +3279,9 @@ body.view-knowledge .main-container {
   position: relative;
   overflow: hidden;
   z-index: 1;
+  contain: layout paint;
+  content-visibility: auto;
+  contain-intrinsic-size: 72px;
 }
 
 .tree-person-card::before {
@@ -3525,11 +3622,14 @@ body.view-knowledge .main-container {
   border: 1px solid rgba(196,168,130,0.38);
   border-radius: 18px;
   background: var(--color-cream-alpha-82);
-  backdrop-filter: blur(8px);
+  backdrop-filter: none;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  contain: layout paint;
+  content-visibility: auto;
+  contain-intrinsic-size: 120px;
 }
 
 .list-card-item::before {
@@ -3792,6 +3892,7 @@ body.view-knowledge .main-container {
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  contain: layout paint;
 }
 
 .knowledge-tab::before {
@@ -3852,10 +3953,13 @@ body.view-knowledge .main-container {
   border-radius: 20px;
   padding: 20px;
   background: var(--color-cream-alpha-88);
-  backdrop-filter: blur(8px);
+  backdrop-filter: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  contain: layout paint;
+  content-visibility: auto;
+  contain-intrinsic-size: 240px;
 }
 
 .knowledge-card::before {
@@ -3878,6 +3982,28 @@ body.view-knowledge .main-container {
 
 .knowledge-card:hover::before {
   opacity: 1;
+}
+
+.knowledge-card.jump-highlight {
+  border-color: rgba(212, 160, 23, 0.88);
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.28), 0 20px 44px rgba(44, 24, 16, 0.18);
+  animation: knowledge-jump-flash 0.9s ease-in-out 0s 3;
+}
+
+.knowledge-card.jump-highlight::before {
+  opacity: 1;
+  background: linear-gradient(90deg, var(--color-gold), var(--color-primary), var(--color-gold));
+}
+
+@keyframes knowledge-jump-flash {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    background: var(--color-cream-alpha-88);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.012);
+    background: rgba(240, 213, 140, 0.42);
+  }
 }
 
 .knowledge-card-header {
@@ -4229,6 +4355,9 @@ body.view-knowledge .main-container {
   gap: 4px;
   cursor: pointer;
   transition: var(--transition);
+  contain: layout paint;
+  content-visibility: auto;
+  contain-intrinsic-size: 88px;
 }
 
 .chapter-directory-item:hover,
@@ -4523,6 +4652,28 @@ body.view-knowledge .main-container {
   background: rgba(255,255,255,0.58);
   padding: 16px;
   transition: var(--transition);
+  contain: layout paint;
+  content-visibility: auto;
+}
+
+.chapter-character-card {
+  contain-intrinsic-size: 156px;
+}
+
+.chapter-knowledge-card {
+  contain-intrinsic-size: 172px;
+}
+
+body.performance-low .knowledge-grid,
+body.performance-low .chapter-related-grid,
+body.performance-low .chapter-character-grid,
+body.performance-low .list-card-grid {
+  align-items: start;
+}
+
+body.performance-low .knowledge-hero-stats,
+body.performance-low .chapter-hero-stats {
+  grid-template-columns: repeat(2, minmax(84px, 1fr));
 }
 
 .chapter-character-card {

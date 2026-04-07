@@ -15,6 +15,8 @@ class ChapterView {
     this.characterTierFilter = 'all';
     this.sourceFilter = 'all';
     this._searchTimer = null;
+    this._deferredMainTimer = null;
+    this._deferredMainToken = 0;
     this._eventsBound = false;
 
     this.onCharacterClick = null;
@@ -46,6 +48,51 @@ class ChapterView {
     };
   }
 
+  _isLowPerformanceMode() {
+    return document.body.classList.contains('performance-low');
+  }
+
+  _getVisibleKnowledgeLimit() {
+    return this._isLowPerformanceMode() ? 10 : 18;
+  }
+
+  _getVisibleCharacterEvidenceLimit() {
+    return this._isLowPerformanceMode() ? 2 : 3;
+  }
+
+  _getDeferredKnowledgeChunkSize() {
+    return this._isLowPerformanceMode() ? 3 : 6;
+  }
+
+  _clearDeferredMainRender() {
+    this._deferredMainToken += 1;
+    if (this._deferredMainTimer) {
+      window.clearTimeout(this._deferredMainTimer);
+      this._deferredMainTimer = null;
+    }
+  }
+
+  _scheduleDeferredKnowledgeCards(container, items = [], token) {
+    if (!container || !items.length) return;
+
+    const activeToken = token ?? this._deferredMainToken;
+    const step = () => {
+      if (activeToken !== this._deferredMainToken || !container.isConnected) return;
+      const chunk = items.splice(0, this._getDeferredKnowledgeChunkSize());
+      if (chunk.length) {
+        container.insertAdjacentHTML('beforeend', chunk.map((item) => this._renderKnowledgeLinkCard(item)).join(''));
+      }
+      if (items.length) {
+        this._deferredMainTimer = window.setTimeout(step, 32);
+        return;
+      }
+      this._deferredMainTimer = null;
+      this._syncCharacterHighlights();
+    };
+
+    this._deferredMainTimer = window.setTimeout(step, 32);
+  }
+
   setData(knowledge, characters) {
     this.knowledge = knowledge || [];
     this.characters = characters || [];
@@ -70,7 +117,9 @@ class ChapterView {
       return;
     }
 
+    this._clearDeferredMainRender();
     this.container.innerHTML = this._renderShell();
+    this._flushDeferredMain(this._resolveCurrentProfile(this._getVisibleProfiles()));
     if (!this._eventsBound) this._bindEvents();
   }
 
@@ -135,13 +184,17 @@ class ChapterView {
     if (liveInput && liveInput.value !== this.searchQuery) liveInput.value = this.searchQuery;
     const directoryEl = this.container.querySelector('#chapter-directory-content');
     const mainEl = this.container.querySelector('#chapter-main-content');
+    this._clearDeferredMainRender();
     const visibleProfiles = this._getVisibleProfiles();
     const currentProfile = this._resolveCurrentProfile(visibleProfiles);
 
     this.visibleProfiles = visibleProfiles;
 
     if (directoryEl) directoryEl.innerHTML = this._renderDirectory(visibleProfiles, currentProfile);
-    if (mainEl) mainEl.innerHTML = currentProfile ? this._renderMain(currentProfile, visibleProfiles) : this._renderEmptyState();
+    if (mainEl) {
+      mainEl.innerHTML = currentProfile ? this._renderMain(currentProfile, visibleProfiles) : this._renderEmptyState();
+      this._flushDeferredMain(currentProfile);
+    }
 
     this._syncCharacterHighlights();
   }
@@ -168,6 +221,10 @@ class ChapterView {
     const previous = visibleProfiles.find((item) => item.chapter === profile.chapter - 1) || null;
     const next = visibleProfiles.find((item) => item.chapter === profile.chapter + 1) || null;
     const layeredCharacters = this._groupCharactersByTier(profile.characters);
+    const visibleKnowledge = profile.relatedKnowledge.slice(0, this._getVisibleKnowledgeLimit());
+    const immediateKnowledgeCount = this._isLowPerformanceMode() ? Math.min(visibleKnowledge.length, 4) : visibleKnowledge.length;
+    const immediateKnowledge = visibleKnowledge.slice(0, immediateKnowledgeCount);
+    const hasDeferredKnowledge = visibleKnowledge.length > immediateKnowledgeCount;
 
     return `
       <div class="chapter-focus card-surface">
@@ -249,10 +306,27 @@ class ChapterView {
           <button class="chapter-text-action" data-action="open-knowledge" data-chapter="${profile.chapter}">打开完整知识库</button>
         </div>
         <div class="chapter-related-grid">
-          ${profile.relatedKnowledge.length ? profile.relatedKnowledge.slice(0, 18).map((item) => this._renderKnowledgeLinkCard(item)).join('') : '<div class="chapter-empty-block">目前这一回还没有补充更多同回知识条目。</div>'}
+          ${visibleKnowledge.length ? immediateKnowledge.map((item) => this._renderKnowledgeLinkCard(item)).join('') : '<div class="chapter-empty-block">目前这一回还没有补充更多同回知识条目。</div>'}
+          ${hasDeferredKnowledge ? '<div class="chapter-deferred-anchor" aria-hidden="true"></div>' : ''}
         </div>
       </section>
     `;
+  }
+
+  _flushDeferredMain(profile) {
+    this._clearDeferredMainRender();
+    if (!profile) return;
+
+    const visibleKnowledge = profile.relatedKnowledge.slice(0, this._getVisibleKnowledgeLimit());
+    const immediateKnowledgeCount = this._isLowPerformanceMode() ? Math.min(visibleKnowledge.length, 4) : visibleKnowledge.length;
+    const remainingKnowledge = visibleKnowledge.slice(immediateKnowledgeCount);
+    if (!remainingKnowledge.length) return;
+
+    const grid = this.container.querySelector('.chapter-related-grid');
+    const anchor = grid?.querySelector('.chapter-deferred-anchor');
+    if (!grid) return;
+    if (anchor) anchor.remove();
+    this._scheduleDeferredKnowledgeCards(grid, remainingKnowledge, this._deferredMainToken);
   }
 
   _renderCharacterCard(item) {
@@ -274,7 +348,7 @@ class ChapterView {
           ${sourceSummary.map((source) => `<span class="chapter-source-chip ${source.className}">${this._escapeHtml(source.label)}</span>`).join('')}
         </div>
         <div class="chapter-evidence-group">
-          ${item.evidence.slice(0, 3).map((evidence) => `<span class="chapter-evidence-chip">${this._escapeHtml(evidence)}</span>`).join('')}
+          ${item.evidence.slice(0, this._getVisibleCharacterEvidenceLimit()).map((evidence) => `<span class="chapter-evidence-chip">${this._escapeHtml(evidence)}</span>`).join('')}
         </div>
       </button>
     `;
@@ -796,6 +870,7 @@ class ChapterView {
   }
 
   destroy() {
+    this._clearDeferredMainRender();
     window.clearTimeout(this._searchTimer);
     this._eventsBound = false;
     this.searchInput = null;

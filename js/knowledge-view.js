@@ -14,6 +14,8 @@ class KnowledgeView {
     this.expandedIds = new Set();
     this.displayCount = 40;
     this._searchTimer = null;
+    this._deferredRenderTimer = null;
+    this._deferredRenderToken = 0;
     this._eventsBound = false;
     this.onTagClick = null;
     this.relatedCharacterIds = new Set();
@@ -22,6 +24,10 @@ class KnowledgeView {
     this._lastFilterSignature = '';
     this._lastFilteredItems = [];
     this._visibleItems = [];
+    this._activeJumpTargetId = null;
+    this._jumpHighlightTimer = null;
+    this._pendingJumpFrame = null;
+    this._pendingJumpTimer = null;
 
     this.categoryConfig = {
       '判词': { icon: '📜', color: '#8B2500' },
@@ -48,6 +54,69 @@ class KnowledgeView {
     };
   }
 
+  _isLowPerformanceMode() {
+    return document.body.classList.contains('performance-low');
+  }
+
+  _getBaseDisplayCount() {
+    return this._isLowPerformanceMode() ? 24 : 40;
+  }
+
+  _getLoadStep() {
+    return this._isLowPerformanceMode() ? 24 : 40;
+  }
+
+  _getDeferredChunkSize() {
+    return this._isLowPerformanceMode() ? 6 : 12;
+  }
+
+  _clearDeferredRender() {
+    this._deferredRenderToken += 1;
+    if (this._deferredRenderTimer) {
+      window.clearTimeout(this._deferredRenderTimer);
+      this._deferredRenderTimer = null;
+    }
+  }
+
+  _scheduleDeferredCards(contentEl, remainingItems = [], filteredItems = [], token) {
+    if (!contentEl || !remainingItems.length) {
+      this._renderLoadMoreButton(contentEl, filteredItems, this._visibleItems.length);
+      return;
+    }
+
+    const activeToken = token ?? this._deferredRenderToken;
+    const step = () => {
+      if (activeToken !== this._deferredRenderToken || !contentEl.isConnected) return;
+
+      const chunkSize = this._getDeferredChunkSize();
+      const chunk = remainingItems.splice(0, chunkSize);
+      if (chunk.length) {
+        contentEl.insertAdjacentHTML('beforeend', chunk.map((item) => this._renderKnowledgeCard(item)).join(''));
+      }
+
+      if (remainingItems.length) {
+        this._deferredRenderTimer = window.setTimeout(step, 32);
+        return;
+      }
+
+      this._deferredRenderTimer = null;
+      this._renderLoadMoreButton(contentEl, filteredItems, this._visibleItems.length);
+      this._syncKnowledgeHighlights();
+    };
+
+    this._deferredRenderTimer = window.setTimeout(step, 32);
+  }
+
+  _renderLoadMoreButton(contentEl, filteredItems, visibleCount) {
+    if (!contentEl) return;
+    const existingButton = contentEl.querySelector('[data-action="load-more"]');
+    if (existingButton) existingButton.remove();
+
+    if (filteredItems.length > visibleCount) {
+      contentEl.insertAdjacentHTML('beforeend', `<button class="knowledge-load-more" data-action="load-more">加载更多（已显示 ${visibleCount} / ${filteredItems.length} 条）</button>`);
+    }
+  }
+
   setData(knowledge, characters) {
     this.knowledge = knowledge || [];
     this.characters = characters || [];
@@ -67,6 +136,7 @@ class KnowledgeView {
       return;
     }
     
+    this._clearDeferredRender();
     this.container.innerHTML = '';
     const filteredItems = this._getFilteredItems();
     const overview = this._getOverviewStats();
@@ -74,6 +144,7 @@ class KnowledgeView {
     const subcategories = this._getSubcategories();
     const chapterOptions = this._getChapterOptions();
     const hotTags = this._getHotTags(filteredItems);
+    const initialDisplayCount = this._getBaseDisplayCount();
 
     this.container.innerHTML = `
       <section class="knowledge-shell">
@@ -176,13 +247,16 @@ class KnowledgeView {
             </div>
 
             <div class="knowledge-grid" id="knowledge-items-content">
-              ${filteredItems.length ? filteredItems.slice(0, this.displayCount).map((item) => this._renderKnowledgeCard(item)).join('') : '<div class="knowledge-empty">没有匹配的知识条目，请尝试更换关键词或筛选项。</div>'}
-              ${filteredItems.length > this.displayCount ? `<button class="knowledge-load-more" data-action="load-more">加载更多（已显示 ${this.displayCount} / ${filteredItems.length} 条）</button>` : ''}
+              ${filteredItems.length ? filteredItems.slice(0, initialDisplayCount).map((item) => this._renderKnowledgeCard(item)).join('') : '<div class="knowledge-empty">没有匹配的知识条目，请尝试更换关键词或筛选项。</div>'}
+              ${filteredItems.length > initialDisplayCount ? `<button class="knowledge-load-more" data-action="load-more">加载更多（已显示 ${initialDisplayCount} / ${filteredItems.length} 条）</button>` : ''}
             </div>
           </div>
         </div>
       </section>
     `;
+
+    this.displayCount = initialDisplayCount;
+    this._visibleItems = filteredItems.slice(0, this.displayCount);
 
     if (!this._eventsBound) this._bindEvents();
   }
@@ -193,7 +267,9 @@ class KnowledgeView {
     
     if (!contentEl) return;
 
-    this.displayCount = 40;
+    this._clearDeferredRender();
+
+    this.displayCount = this._getBaseDisplayCount();
     const filteredItems = this._getFilteredItems();
     const visibleItems = filteredItems.slice(0, this.displayCount);
     this._visibleItems = visibleItems;
@@ -272,10 +348,12 @@ class KnowledgeView {
       });
     });
 
+    const limit = this._isLowPerformanceMode() ? 12 : 16;
+
     return Object.entries(counts)
       .map(([name, count]) => ({ name, count }))
       .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, 'zh-Hans-CN'))
-      .slice(0, 16);
+      .slice(0, limit);
   }
 
   _getFilteredItems() {
@@ -383,8 +461,10 @@ class KnowledgeView {
       .map((id) => this.characterMap.get(id))
       .filter(Boolean);
     const expanded = this.expandedIds.has(item.id);
-    const shouldClamp = (item.content || '').length > 120;
-    const displayContent = !expanded && shouldClamp ? `${item.content.slice(0, 120)}…` : item.content;
+    const previewLength = this._isLowPerformanceMode() ? 88 : 120;
+    const relatedCharacterLimit = this._isLowPerformanceMode() ? 3 : 4;
+    const shouldClamp = (item.content || '').length > previewLength;
+    const displayContent = !expanded && shouldClamp ? `${item.content.slice(0, previewLength)}…` : item.content;
 
     return `
       <article class="knowledge-card ${expanded ? 'expanded' : ''}" data-id="${item.id}">
@@ -420,7 +500,7 @@ class KnowledgeView {
           <div class="knowledge-info-row">
             <span class="knowledge-info-label">相关人物</span>
             <div class="knowledge-card-chars">
-              ${relatedCharacters.map((character) => `<button class="knowledge-char-pill" data-char-id="${character.id}">${character.name}</button>`).join('')}
+              ${relatedCharacters.slice(0, relatedCharacterLimit).map((character) => `<button class="knowledge-char-pill" data-char-id="${character.id}">${character.name}</button>`).join('')}
             </div>
           </div>
         ` : ''}
@@ -558,8 +638,10 @@ class KnowledgeView {
     const subtitleEl = this.container.querySelector('.knowledge-results-subtitle');
     if (!contentEl) return;
 
+    this._clearDeferredRender();
+
     const previousCount = this.displayCount;
-    this.displayCount += 40;
+    this.displayCount += this._getLoadStep();
     const filteredItems = this._getFilteredItems();
     const visibleItems = filteredItems.slice(0, this.displayCount);
     const newItems = visibleItems.slice(previousCount);
@@ -583,8 +665,95 @@ class KnowledgeView {
   }
 
   _scrollToTop() {
-    const main = this.container.querySelector('.knowledge-main');
-    if (main) main.scrollTo({ top: 0, behavior: 'instant' });
+    const shell = this.container.querySelector('.knowledge-shell');
+    if (shell) {
+      shell.scrollIntoView({ block: 'start', behavior: 'instant' });
+      return;
+    }
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  navigateToFirstMatch() {
+    const firstMatch = this._getFilteredItems()[0];
+    if (!firstMatch?.id) {
+      this._clearKnowledgeJumpState();
+      return;
+    }
+
+    this._activeJumpTargetId = firstMatch.id;
+    this._scheduleKnowledgeJump(firstMatch.id);
+  }
+
+  _scheduleKnowledgeJump(id, attempt = 0) {
+    if (!id) return;
+    if (this._pendingJumpFrame) {
+      window.cancelAnimationFrame(this._pendingJumpFrame);
+      this._pendingJumpFrame = null;
+    }
+    if (this._pendingJumpTimer) {
+      window.clearTimeout(this._pendingJumpTimer);
+      this._pendingJumpTimer = null;
+    }
+
+    const runJump = () => {
+      this._pendingJumpFrame = window.requestAnimationFrame(() => {
+        this._pendingJumpFrame = window.requestAnimationFrame(() => {
+          this._pendingJumpFrame = null;
+          const focused = this._focusKnowledgeCard(id);
+          if (!focused && attempt < 12) {
+            this._pendingJumpTimer = window.setTimeout(() => {
+              this._pendingJumpTimer = null;
+              this._scheduleKnowledgeJump(id, attempt + 1);
+            }, 80);
+          }
+        });
+      });
+    };
+
+    runJump();
+  }
+
+  _focusKnowledgeCard(id) {
+    const card = this.container.querySelector(`.knowledge-card[data-id="${id}"]`);
+    if (!card) return false;
+
+    this._clearKnowledgeJumpState({ preserveTarget: true });
+
+    card.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'nearest'
+    });
+
+    card.classList.remove('jump-highlight');
+    void card.offsetWidth;
+    card.classList.add('jump-highlight');
+
+    this._jumpHighlightTimer = window.setTimeout(() => {
+      if (card.isConnected) card.classList.remove('jump-highlight');
+      this._jumpHighlightTimer = null;
+    }, 3000);
+
+    return true;
+  }
+
+  _clearKnowledgeJumpState({ preserveTarget = false } = {}) {
+    if (this._pendingJumpFrame) {
+      window.cancelAnimationFrame(this._pendingJumpFrame);
+      this._pendingJumpFrame = null;
+    }
+    if (this._pendingJumpTimer) {
+      window.clearTimeout(this._pendingJumpTimer);
+      this._pendingJumpTimer = null;
+    }
+    if (this._jumpHighlightTimer) {
+      window.clearTimeout(this._jumpHighlightTimer);
+      this._jumpHighlightTimer = null;
+    }
+    this.container.querySelectorAll('.knowledge-card.jump-highlight').forEach((card) => {
+      card.classList.remove('jump-highlight');
+    });
+    if (!preserveTarget) this._activeJumpTargetId = null;
   }
 
   _highlightText(text) {
@@ -612,6 +781,8 @@ class KnowledgeView {
   }
 
   destroy() {
+    this._clearDeferredRender();
+    this._clearKnowledgeJumpState();
     clearTimeout(this._searchTimer);
     this._eventsBound = false;
     this._invalidateFilterCache();
@@ -652,26 +823,44 @@ class KnowledgeView {
   }
 
   _renderVisibleItems(contentEl, filteredItems, visibleItems, { append = false, newItems = [] } = {}) {
+    this._clearDeferredRender();
+
     if (!filteredItems.length) {
       contentEl.innerHTML = '<div class="knowledge-empty">没有匹配的知识条目，请尝试更换关键词或筛选项。</div>';
       return;
     }
 
-    const loadMoreHtml = filteredItems.length > visibleItems.length
-      ? `<button class="knowledge-load-more" data-action="load-more">加载更多（已显示 ${visibleItems.length} / ${filteredItems.length} 条）</button>`
-      : '';
-
     if (!append) {
-      contentEl.innerHTML = visibleItems.map((item) => this._renderKnowledgeCard(item)).join('') + loadMoreHtml;
+      const immediateCount = this._isLowPerformanceMode() ? Math.min(visibleItems.length, 12) : visibleItems.length;
+      const immediateItems = visibleItems.slice(0, immediateCount);
+      const remainingItems = visibleItems.slice(immediateCount);
+      const token = this._deferredRenderToken;
+      contentEl.innerHTML = immediateItems.map((item) => this._renderKnowledgeCard(item)).join('');
+      this._renderLoadMoreButton(contentEl, filteredItems, immediateItems.length);
+      if (remainingItems.length) {
+        this._scheduleDeferredCards(contentEl, remainingItems, filteredItems, token);
+      }
+      if (this._activeJumpTargetId) this._scheduleKnowledgeJump(this._activeJumpTargetId);
       return;
     }
 
     const loadMoreButton = contentEl.querySelector('[data-action="load-more"]');
     if (loadMoreButton) loadMoreButton.remove();
     if (newItems.length) {
-      contentEl.insertAdjacentHTML('beforeend', newItems.map((item) => this._renderKnowledgeCard(item)).join(''));
+      const token = this._deferredRenderToken;
+      const immediateCount = this._isLowPerformanceMode() ? Math.min(newItems.length, 8) : newItems.length;
+      const immediateItems = newItems.slice(0, immediateCount);
+      const remainingItems = newItems.slice(immediateCount);
+      if (immediateItems.length) {
+        contentEl.insertAdjacentHTML('beforeend', immediateItems.map((item) => this._renderKnowledgeCard(item)).join(''));
+      }
+      this._renderLoadMoreButton(contentEl, filteredItems, visibleItems.length);
+      if (remainingItems.length) {
+        this._scheduleDeferredCards(contentEl, remainingItems, filteredItems, token);
+      }
     }
-    if (loadMoreHtml) contentEl.insertAdjacentHTML('beforeend', loadMoreHtml);
+    this._renderLoadMoreButton(contentEl, filteredItems, visibleItems.length);
+    if (this._activeJumpTargetId) this._scheduleKnowledgeJump(this._activeJumpTargetId);
   }
 
   _updateSingleCard(id) {

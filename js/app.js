@@ -20,6 +20,7 @@ class HongLouMengApp {
     this.isFullscreen = false;
     this.isMobileSearchOpen = false;
     this.isCardOpen = false;
+    this.performanceMode = 'auto';
     this.els = {};
     this.viewInitialized = { graph: true, tree: false, list: false, chapter: false, knowledge: false };
     this.viewEverRendered = { tree: false, list: false, chapter: false, knowledge: false };
@@ -918,11 +919,37 @@ class HongLouMengApp {
   _initFontAndThemeControls() {
     const savedFont = localStorage.getItem('hlm-font-family') || 'serif';
     const savedTheme = localStorage.getItem('hlm-theme') || 'red-gold';
+    const savedPerformanceMode = localStorage.getItem('hlm-performance-mode') || 'auto';
     
     this._setFont(savedFont);
     this._setTheme(savedTheme);
+    this._setPerformanceMode(savedPerformanceMode);
     
     this._createFontAndThemeControls();
+  }
+
+  _detectLowPerformanceDevice() {
+    const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    const cores = navigator.hardwareConcurrency || 0;
+    const memory = navigator.deviceMemory || 0;
+    const isTouchMobile = window.matchMedia?.('(max-width: 768px)').matches;
+    return Boolean(
+      prefersReducedMotion ||
+      (cores && cores <= 4) ||
+      (memory && memory <= 4) ||
+      (isTouchMobile && cores && cores <= 8)
+    );
+  }
+
+  _setPerformanceMode(mode = 'auto') {
+    const normalizedMode = ['auto', 'balanced', 'smooth'].includes(mode) ? mode : 'auto';
+    this.performanceMode = normalizedMode;
+    const lowPerf = normalizedMode === 'smooth' || (normalizedMode === 'auto' && this._detectLowPerformanceDevice());
+
+    document.body.classList.remove('performance-auto', 'performance-balanced', 'performance-smooth', 'performance-low');
+    document.body.classList.add(`performance-${normalizedMode}`);
+    document.body.classList.toggle('performance-low', lowPerf);
+    localStorage.setItem('hlm-performance-mode', normalizedMode);
   }
   
   _resetSearchFilters(event) {
@@ -1000,6 +1027,7 @@ _createFontAndThemeControls() {
 
     const savedFont = localStorage.getItem('hlm-font-family') || 'serif';
     const savedTheme = localStorage.getItem('hlm-theme') || 'red-gold';
+    const savedPerformanceMode = localStorage.getItem('hlm-performance-mode') || 'auto';
 
     // Settings button
     const settingsBtn = document.createElement('button');
@@ -1082,8 +1110,40 @@ _createFontAndThemeControls() {
     fontSection.appendChild(fontTitle);
     fontSection.appendChild(fontList);
 
+    const performanceSection = document.createElement('div');
+    performanceSection.className = 'settings-section';
+    const performanceTitle = document.createElement('div');
+    performanceTitle.className = 'settings-section-title';
+    performanceTitle.textContent = '性能模式';
+    const performanceList = document.createElement('div');
+    performanceList.className = 'settings-font-list';
+
+    const performanceModes = [
+      { name: 'auto', label: '自动', preview: 'A' },
+      { name: 'balanced', label: '标准', preview: 'B' },
+      { name: 'smooth', label: '丝滑优先', preview: 'S' }
+    ];
+
+    performanceModes.forEach((mode) => {
+      const opt = document.createElement('button');
+      opt.className = 'settings-font-option settings-performance-option';
+      if (mode.name === savedPerformanceMode) opt.classList.add('active');
+      opt.innerHTML = `<span class="font-preview">${mode.preview}</span><span class="font-label">${mode.label}</span><span class="font-check">✓</span>`;
+      opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this._setPerformanceMode(mode.name);
+        performanceList.querySelectorAll('.settings-performance-option').forEach((item) => item.classList.remove('active'));
+        opt.classList.add('active');
+      });
+      performanceList.appendChild(opt);
+    });
+
+    performanceSection.appendChild(performanceTitle);
+    performanceSection.appendChild(performanceList);
+
     dropdown.appendChild(themeSection);
     dropdown.appendChild(fontSection);
+    dropdown.appendChild(performanceSection);
 
     // Toggle
     settingsBtn.addEventListener('click', (e) => {
@@ -1191,6 +1251,14 @@ _createFontAndThemeControls() {
     const chapter = payload.chapter ?? 'all';
     const query = payload.query ?? '';
     const selectedCharacterIds = payload.selectedCharacterIds || [];
+    const firstMatchId = this.knowledge
+      .filter((item) => (chapter === 'all' ? true : String(item.chapter || '') === String(chapter)))
+      .map((item) => ({ item, score: this.knowledgeView._getRelevanceScore?.call(this.knowledgeView, item) || 0 }))
+      .filter(({ score }) => (query ? score > 0 : true))
+      .sort((a, b) => {
+        if (chapter === 'all') return b.score - a.score || (a.item.title || '').localeCompare(b.item.title || '', 'zh-Hans-CN');
+        return (a.item.chapter || 999) - (b.item.chapter || 999) || b.score - a.score || (a.item.title || '').localeCompare(b.item.title || '', 'zh-Hans-CN');
+      })[0]?.item?.id || null;
 
     this._switchView('knowledge');
     if (!this.viewInitialized.knowledge) {
@@ -1207,6 +1275,7 @@ _createFontAndThemeControls() {
     this.knowledgeView.relatedCharacterIds = new Set(selectedCharacterIds);
     this.knowledgeView.expandedIds.clear();
     this.knowledgeView.displayCount = 40;
+    this.knowledgeView._activeJumpTargetId = firstMatchId;
 
     const input = this.els.knowledgeContainer?.querySelector('.knowledge-search-input');
     if (input) input.value = query;
@@ -1216,9 +1285,7 @@ _createFontAndThemeControls() {
     this.knowledgeView._invalidateFilterCache?.();
     this.knowledgeView._updateContent?.();
     this.knowledgeView._scrollToTop?.();
-
-    const main = this.els.knowledgeContainer?.querySelector('.knowledge-main');
-    if (main) main.scrollTo({ top: 0, behavior: 'instant' });
+    this.knowledgeView.navigateToFirstMatch?.();
   }
 
   _openTopic(topicId, skipHistory) {
