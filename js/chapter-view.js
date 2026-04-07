@@ -18,6 +18,9 @@ class ChapterView {
     this._deferredMainTimer = null;
     this._deferredMainToken = 0;
     this._eventsBound = false;
+    this._textLayoutFrame = null;
+    this._textLayoutToken = 0;
+    this._layoutResizeObserver = null;
 
     this.onCharacterClick = null;
     this.onKnowledgeNavigate = null;
@@ -72,6 +75,14 @@ class ChapterView {
     }
   }
 
+  _clearTextLayoutWork() {
+    this._textLayoutToken += 1;
+    if (this._textLayoutFrame) {
+      window.cancelAnimationFrame(this._textLayoutFrame);
+      this._textLayoutFrame = null;
+    }
+  }
+
   _scheduleDeferredKnowledgeCards(container, items = [], token) {
     if (!container || !items.length) return;
 
@@ -81,6 +92,7 @@ class ChapterView {
       const chunk = items.splice(0, this._getDeferredKnowledgeChunkSize());
       if (chunk.length) {
         container.insertAdjacentHTML('beforeend', chunk.map((item) => this._renderKnowledgeLinkCard(item)).join(''));
+        this._scheduleTextLayoutPass();
       }
       if (items.length) {
         this._deferredMainTimer = window.setTimeout(step, 32);
@@ -88,6 +100,7 @@ class ChapterView {
       }
       this._deferredMainTimer = null;
       this._syncCharacterHighlights();
+      this._scheduleTextLayoutPass();
     };
 
     this._deferredMainTimer = window.setTimeout(step, 32);
@@ -121,6 +134,8 @@ class ChapterView {
     this.container.innerHTML = this._renderShell();
     this._flushDeferredMain(this._resolveCurrentProfile(this._getVisibleProfiles()));
     if (!this._eventsBound) this._bindEvents();
+    this._observeLayoutResize();
+    this._scheduleTextLayoutPass();
   }
 
   _renderShell() {
@@ -150,7 +165,7 @@ class ChapterView {
               <div class="chapter-sidebar-title">搜索回目</div>
               <div class="chapter-search-box">
                 <span class="chapter-search-icon">🔍</span>
-                <input class="chapter-search-input" type="text" placeholder="搜回目、人名、关键词…" value="${this._escapeHtml(this.searchQuery)}">
+                <input id="chapter-search-input" name="chapter-search" class="chapter-search-input" type="text" placeholder="搜回目、人名、关键词…" value="${this._escapeHtml(this.searchQuery)}">
               </div>
             </div>
 
@@ -197,6 +212,8 @@ class ChapterView {
     }
 
     this._syncCharacterHighlights();
+    this._observeLayoutResize();
+    this._scheduleTextLayoutPass();
   }
 
   _renderDirectory(visibleProfiles, currentProfile) {
@@ -327,6 +344,7 @@ class ChapterView {
     if (!grid) return;
     if (anchor) anchor.remove();
     this._scheduleDeferredKnowledgeCards(grid, remainingKnowledge, this._deferredMainToken);
+    this._scheduleTextLayoutPass();
   }
 
   _renderCharacterCard(item) {
@@ -435,7 +453,7 @@ class ChapterView {
       .slice(0, 4);
 
     return `
-      <article class="chapter-knowledge-card">
+      <article class="chapter-knowledge-card" data-id="${item.id}">
         <div class="chapter-knowledge-head">
           <span class="chapter-knowledge-icon" style="background:${config.color}15;color:${config.color}">${config.icon}</span>
           <div>
@@ -869,9 +887,68 @@ class ChapterView {
     return this._escapeHtml(str).replace(/"/g, '&quot;');
   }
 
+  _observeLayoutResize() {
+    if (this._layoutResizeObserver || typeof ResizeObserver === 'undefined') return;
+
+    const mainEl = this.container.querySelector('#chapter-main-content');
+    if (!mainEl) return;
+
+    this._layoutResizeObserver = new ResizeObserver(() => {
+      this._scheduleTextLayoutPass();
+    });
+    this._layoutResizeObserver.observe(mainEl);
+  }
+
+  _scheduleTextLayoutPass() {
+    const service = window.textLayoutService;
+    const mainEl = this.container.querySelector('#chapter-main-content');
+    if (!service || !mainEl) return;
+
+    this._clearTextLayoutWork();
+    const activeToken = this._textLayoutToken;
+    this._textLayoutFrame = window.requestAnimationFrame(() => {
+      service.whenReady().then(() => {
+        if (activeToken !== this._textLayoutToken || !mainEl.isConnected) return;
+        this._textLayoutFrame = null;
+        this._applyChapterTextLayout(service);
+      });
+    });
+  }
+
+  _applyChapterTextLayout(service) {
+    if (!service?.isReady()) return;
+
+    this.container.querySelectorAll('.chapter-focus-desc').forEach((element) => {
+      const result = service.applyClampToElement(element, { maxLines: 3, wordBreak: 'keep-all' });
+      if (result) element.textContent = result.text;
+    });
+
+    this.container.querySelectorAll('.chapter-interpretation').forEach((element) => {
+      const result = service.applyClampToElement(element, { maxLines: 4, wordBreak: 'keep-all' });
+      if (result) element.textContent = result.text;
+    });
+
+    this.container.querySelectorAll('.chapter-knowledge-card[data-id]').forEach((card) => {
+      const item = this.knowledge.find((entry) => entry.id === card.dataset.id);
+      const snippetEl = card.querySelector('.chapter-knowledge-snippet');
+      if (!item || !snippetEl) return;
+      snippetEl.dataset.fullText = item.analysis || item.content || '';
+      const result = service.applyClampToElement(snippetEl, { maxLines: 4, wordBreak: 'keep-all' });
+      if (result) {
+        snippetEl.textContent = result.text;
+        snippetEl.style.minHeight = `${result.height}px`;
+      }
+    });
+  }
+
   destroy() {
     this._clearDeferredMainRender();
+    this._clearTextLayoutWork();
     window.clearTimeout(this._searchTimer);
+    if (this._layoutResizeObserver) {
+      this._layoutResizeObserver.disconnect();
+      this._layoutResizeObserver = null;
+    }
     this._eventsBound = false;
     this.searchInput = null;
     this.container.innerHTML = '';

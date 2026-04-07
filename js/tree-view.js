@@ -102,6 +102,8 @@ class TreeView {
           <div class="tree-search-box">
             <span class="tree-search-icon">🔍</span>
             <input
+              id="tree-search-input"
+              name="tree-search"
               class="tree-search-input"
               type="text"
               placeholder="搜索家族成员、别名、身份、配偶…"

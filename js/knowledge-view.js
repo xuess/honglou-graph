@@ -28,6 +28,9 @@ class KnowledgeView {
     this._jumpHighlightTimer = null;
     this._pendingJumpFrame = null;
     this._pendingJumpTimer = null;
+    this._textLayoutFrame = null;
+    this._textLayoutToken = 0;
+    this._layoutResizeObserver = null;
 
     this.categoryConfig = {
       '判词': { icon: '📜', color: '#8B2500' },
@@ -78,6 +81,20 @@ class KnowledgeView {
     }
   }
 
+  _clearTextLayoutWork() {
+    this._textLayoutToken += 1;
+    if (this._textLayoutFrame) {
+      window.cancelAnimationFrame(this._textLayoutFrame);
+      this._textLayoutFrame = null;
+    }
+  }
+
+  _getPreviewLineLimit(item) {
+    if (this._isLowPerformanceMode()) return 3;
+    if (['诗词', '曲词', '判词'].includes(item?.category)) return 5;
+    return 4;
+  }
+
   _scheduleDeferredCards(contentEl, remainingItems = [], filteredItems = [], token) {
     if (!contentEl || !remainingItems.length) {
       this._renderLoadMoreButton(contentEl, filteredItems, this._visibleItems.length);
@@ -92,6 +109,7 @@ class KnowledgeView {
       const chunk = remainingItems.splice(0, chunkSize);
       if (chunk.length) {
         contentEl.insertAdjacentHTML('beforeend', chunk.map((item) => this._renderKnowledgeCard(item)).join(''));
+        this._scheduleTextLayoutPass();
       }
 
       if (remainingItems.length) {
@@ -102,6 +120,7 @@ class KnowledgeView {
       this._deferredRenderTimer = null;
       this._renderLoadMoreButton(contentEl, filteredItems, this._visibleItems.length);
       this._syncKnowledgeHighlights();
+      this._scheduleTextLayoutPass();
     };
 
     this._deferredRenderTimer = window.setTimeout(step, 32);
@@ -180,7 +199,7 @@ class KnowledgeView {
               <div class="knowledge-sidebar-title">搜索知识</div>
               <div class="knowledge-search-box">
                 <span class="knowledge-search-icon">🔍</span>
-                <input class="knowledge-search-input" type="text" placeholder="搜索诗词、灯谜、建筑、人物、场景…" value="${this._escapeHtml(this.searchQuery)}">
+                <input id="knowledge-search-input" name="knowledge-search" class="knowledge-search-input" type="text" placeholder="搜索诗词、灯谜、建筑、人物、场景…" value="${this._escapeHtml(this.searchQuery)}">
               </div>
             </div>
 
@@ -211,7 +230,7 @@ class KnowledgeView {
 
             <div class="knowledge-sidebar-section">
               <div class="knowledge-sidebar-title">章节范围</div>
-              <select class="knowledge-select" data-filter="chapter">
+              <select id="knowledge-chapter-filter" name="knowledge-chapter-filter" class="knowledge-select" data-filter="chapter">
                 <option value="all">全部回目</option>
                 ${chapterOptions.map((chapter) => `
                   <option value="${chapter}" ${String(this.chapterFilter) === String(chapter) ? 'selected' : ''}>第${chapter}回</option>
@@ -221,7 +240,7 @@ class KnowledgeView {
 
             <div class="knowledge-sidebar-section">
               <div class="knowledge-sidebar-title">排序方式</div>
-              <select class="knowledge-select" data-filter="sort">
+              <select id="knowledge-sort-filter" name="knowledge-sort-filter" class="knowledge-select" data-filter="sort">
                 <option value="relevance" ${this.sortBy === 'relevance' ? 'selected' : ''}>按相关度</option>
                 <option value="chapter" ${this.sortBy === 'chapter' ? 'selected' : ''}>按回目</option>
                 <option value="category" ${this.sortBy === 'category' ? 'selected' : ''}>按类别</option>
@@ -241,7 +260,7 @@ class KnowledgeView {
             <div class="knowledge-results-head card-surface">
               <div>
                 <div class="knowledge-results-title">知识条目</div>
-                <div class="knowledge-results-subtitle">${this._buildResultsSubtitle(filteredItems.length, filteredItems.length)}</div>
+                <div class="knowledge-results-subtitle">${this._buildResultsSubtitle(Math.min(initialDisplayCount, filteredItems.length), filteredItems.length)}</div>
               </div>
               <button class="knowledge-clear-btn" data-action="clear-filters">清空筛选</button>
             </div>
@@ -259,6 +278,8 @@ class KnowledgeView {
     this._visibleItems = filteredItems.slice(0, this.displayCount);
 
     if (!this._eventsBound) this._bindEvents();
+    this._observeLayoutResize();
+    this._scheduleTextLayoutPass();
   }
 
   _updateContent() {
@@ -283,6 +304,8 @@ class KnowledgeView {
     this._updateCategoryActiveState();
     this._syncKnowledgeHighlights();
     this._scrollToTop();
+    this._observeLayoutResize();
+    this._scheduleTextLayoutPass(true);
   }
 
   _updateCategoryActiveState() {
@@ -824,9 +847,11 @@ class KnowledgeView {
 
   _renderVisibleItems(contentEl, filteredItems, visibleItems, { append = false, newItems = [] } = {}) {
     this._clearDeferredRender();
+    this._clearTextLayoutWork();
 
     if (!filteredItems.length) {
       contentEl.innerHTML = '<div class="knowledge-empty">没有匹配的知识条目，请尝试更换关键词或筛选项。</div>';
+      this._clearMasonryLayout(contentEl);
       return;
     }
 
@@ -841,6 +866,7 @@ class KnowledgeView {
         this._scheduleDeferredCards(contentEl, remainingItems, filteredItems, token);
       }
       if (this._activeJumpTargetId) this._scheduleKnowledgeJump(this._activeJumpTargetId);
+      this._scheduleTextLayoutPass();
       return;
     }
 
@@ -861,6 +887,7 @@ class KnowledgeView {
     }
     this._renderLoadMoreButton(contentEl, filteredItems, visibleItems.length);
     if (this._activeJumpTargetId) this._scheduleKnowledgeJump(this._activeJumpTargetId);
+    this._scheduleTextLayoutPass();
   }
 
   _updateSingleCard(id) {
@@ -878,6 +905,150 @@ class KnowledgeView {
     }
     current.outerHTML = this._renderKnowledgeCard(item);
     this._syncKnowledgeHighlights();
+    this._scheduleTextLayoutPass(true);
+  }
+
+  _observeLayoutResize() {
+    if (this._layoutResizeObserver || typeof ResizeObserver === 'undefined') return;
+
+    const contentEl = this.container.querySelector('#knowledge-items-content');
+    if (!contentEl) return;
+
+    this._layoutResizeObserver = new ResizeObserver(() => {
+      this._scheduleTextLayoutPass(true);
+    });
+    this._layoutResizeObserver.observe(contentEl);
+  }
+
+  _scheduleTextLayoutPass() {
+    const service = window.textLayoutService;
+    const contentEl = this.container.querySelector('#knowledge-items-content');
+    if (!service || !contentEl) return;
+
+    this._clearTextLayoutWork();
+    const activeToken = this._textLayoutToken;
+    this._textLayoutFrame = window.requestAnimationFrame(() => {
+      service.whenReady().then(() => {
+        if (activeToken !== this._textLayoutToken || !contentEl.isConnected) return;
+        this._textLayoutFrame = null;
+        this._applyKnowledgeTextLayout(service);
+        this._applyMasonryLayout(contentEl);
+      });
+    });
+  }
+
+  _applyKnowledgeTextLayout(service) {
+    if (!service?.isReady()) return;
+
+    this.container.querySelectorAll('.knowledge-card[data-id]').forEach((card) => {
+      const item = this._visibleItems.find((entry) => entry.id === card.dataset.id);
+      const contentEl = card.querySelector('.knowledge-card-content');
+      const expandButton = card.querySelector('.knowledge-card-expand');
+      if (!item || !contentEl) return;
+
+      contentEl.dataset.fullText = item.content || '';
+
+      if (this.expandedIds.has(item.id)) {
+        contentEl.innerHTML = this._highlightText(item.content || '');
+        contentEl.style.minHeight = '0px';
+        service.applyMeasuredHeight(contentEl, { wordBreak: 'keep-all' });
+        if (expandButton) expandButton.style.display = '';
+        return;
+      }
+
+      const result = service.applyClampToElement(contentEl, {
+        maxLines: this._getPreviewLineLimit(item),
+        wordBreak: 'keep-all'
+      });
+      if (!result) return;
+
+      contentEl.innerHTML = this._highlightText(result.text);
+      contentEl.style.minHeight = `${result.height}px`;
+      if (expandButton) {
+        expandButton.style.display = (result.truncated || item.analysis || item.notes) ? '' : 'none';
+      }
+    });
+  }
+
+  _applyMasonryLayout(contentEl) {
+    if (!contentEl) return;
+
+    const cards = Array.from(contentEl.querySelectorAll('.knowledge-card'));
+    const loadMoreButton = contentEl.querySelector('.knowledge-load-more');
+    if (!cards.length) {
+      this._clearMasonryLayout(contentEl);
+      return;
+    }
+
+    const gap = 14;
+    const containerWidth = contentEl.clientWidth;
+    const minCardWidth = 380;
+    const columns = Math.max(1, Math.floor((containerWidth + gap) / (minCardWidth + gap)));
+    const shouldUseMasonry = !this._isLowPerformanceMode()
+      && this.expandedIds.size === 0
+      && columns > 1
+      && window.innerWidth >= 1180;
+
+    if (!shouldUseMasonry) {
+      this._clearMasonryLayout(contentEl);
+      return;
+    }
+
+    const itemWidth = (containerWidth - gap * (columns - 1)) / columns;
+    const columnHeights = new Array(columns).fill(0);
+
+    contentEl.classList.add('is-masonry');
+    contentEl.style.setProperty('--knowledge-masonry-item-width', `${itemWidth}px`);
+
+    cards.forEach((card) => {
+      card.style.position = 'absolute';
+      card.style.width = `${itemWidth}px`;
+      const targetColumn = columnHeights.indexOf(Math.min(...columnHeights));
+      const top = columnHeights[targetColumn];
+      const left = targetColumn * (itemWidth + gap);
+      card.style.top = `${top}px`;
+      card.style.left = `${left}px`;
+      columnHeights[targetColumn] = top + card.getBoundingClientRect().height + gap;
+    });
+
+    let gridHeight = Math.max(...columnHeights, 0);
+    if (loadMoreButton) {
+      loadMoreButton.style.position = 'absolute';
+      loadMoreButton.style.left = '0px';
+      loadMoreButton.style.top = `${gridHeight}px`;
+      loadMoreButton.style.width = '100%';
+      gridHeight += loadMoreButton.getBoundingClientRect().height;
+    }
+
+    contentEl.style.height = `${gridHeight}px`;
+  }
+
+  _clearMasonryLayout(contentEl) {
+    if (!contentEl) return;
+    contentEl.classList.remove('is-masonry');
+    contentEl.style.removeProperty('height');
+    contentEl.style.removeProperty('--knowledge-masonry-item-width');
+
+    Array.from(contentEl.children).forEach((child) => {
+      child.style.removeProperty('position');
+      child.style.removeProperty('top');
+      child.style.removeProperty('left');
+      child.style.removeProperty('width');
+    });
+  }
+
+  destroy() {
+    this._clearDeferredRender();
+    this._clearTextLayoutWork();
+    this._clearKnowledgeJumpState();
+    clearTimeout(this._searchTimer);
+    if (this._layoutResizeObserver) {
+      this._layoutResizeObserver.disconnect();
+      this._layoutResizeObserver = null;
+    }
+    this._eventsBound = false;
+    this._invalidateFilterCache();
+    this.container.innerHTML = '';
   }
 
 }

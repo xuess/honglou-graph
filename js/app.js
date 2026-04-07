@@ -988,6 +988,8 @@ class HongLouMengApp {
     }
     
     localStorage.setItem('hlm-font-family', fontFamily);
+    window.textLayoutService?.invalidateCaches?.();
+    window.requestAnimationFrame(() => this._refreshTextLayouts?.());
   }
   
   _setTheme(themeName) {
@@ -1009,6 +1011,8 @@ class HongLouMengApp {
     }
     
     localStorage.setItem('hlm-theme', themeName);
+    window.textLayoutService?.invalidateCaches?.();
+    window.requestAnimationFrame(() => this._refreshTextLayouts?.());
   }
   
 _createFontAndThemeControls() {
@@ -1800,12 +1804,57 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
     this._setHtml(this.els.drawerContent, html);
     this.els.detailDrawer.classList.add('active');
     this.els.detailDrawer.classList.remove('desktop-hidden');
+    this._scheduleScopedTextLayout(this.els.drawerContent, [
+      { selector: '.drawer-description', maxLines: 4 },
+      { selector: '.summary-relation-desc', maxLines: 3 }
+    ]);
   }
 
   _closeDrawer() {
     this.els.detailDrawer.classList.remove('active');
     // On desktop (>1024px) the drawer is in the grid, so also hide it
     this.els.detailDrawer.classList.add('desktop-hidden');
+  }
+
+  _scheduleScopedTextLayout(scope, rules = []) {
+    const service = window.textLayoutService;
+    if (!scope || !service || !rules.length) return;
+
+    window.requestAnimationFrame(() => {
+      service.whenReady().then(() => {
+        if (!scope.isConnected || !service.isReady()) return;
+        rules.forEach((rule) => {
+          scope.querySelectorAll(rule.selector).forEach((element) => {
+            const result = service.applyClampToElement(element, {
+              maxLines: rule.maxLines,
+              wordBreak: 'keep-all'
+            });
+            if (!result) return;
+            element.textContent = result.text;
+            element.style.minHeight = `${result.height}px`;
+          });
+        });
+      });
+    });
+  }
+
+  _refreshTextLayouts() {
+    this.knowledgeView?._scheduleTextLayoutPass?.();
+    this.chapterView?._scheduleTextLayoutPass?.();
+
+    if (this.els?.drawerContent?.childElementCount) {
+      this._scheduleScopedTextLayout(this.els.drawerContent, [
+        { selector: '.drawer-description', maxLines: 4 },
+        { selector: '.summary-relation-desc', maxLines: 3 }
+      ]);
+    }
+
+    if (this.els?.cardContent?.childElementCount) {
+      this._scheduleScopedTextLayout(this.els.cardContent, [
+        { selector: '.card-summary-desc', maxLines: 3 },
+        { selector: '.card-chapter-summary', maxLines: 3 }
+      ]);
+    }
   }
 
   // View history management
@@ -2197,6 +2246,11 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
         ${relatedKnowledge.length ? `<div class="card-section"><div class="card-section-title">相关知识条目</div><div class="recommend-list">${relatedKnowledge.slice(0, 6).map((item) => `<button class="recommend-pill" data-knowledge-char-id="${character.id}">${item.title}</button>`).join('')}</div><div class="card-note-hint">点击可跳转知识库并自动检索该人物</div></div>` : ''}
       </div>
     `);
+
+    this._scheduleScopedTextLayout(this.els.cardContent, [
+      { selector: '.card-summary-desc', maxLines: 3 },
+      { selector: '.card-chapter-summary', maxLines: 3 }
+    ]);
 
     this.els.cardContent.querySelector('[data-close-card="true"]').addEventListener('click', () => this._closeCard());
     this.els.cardContent.querySelectorAll('.card-relation-item,[data-character-id]').forEach((item) => {

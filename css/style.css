@@ -652,6 +652,16 @@ body.theme-purple-gold .header-title { color: var(--theme-gold-light); }
   line-height: 1.65;
 }
 
+.drawer-description,
+.card-summary-desc,
+.card-chapter-summary,
+.summary-relation-desc,
+.chapter-focus-desc,
+.chapter-interpretation,
+.chapter-knowledge-snippet {
+  min-height: var(--text-block-size, auto);
+}
+
 .btn,
 .primary-action,
 .secondary-action,
@@ -3948,6 +3958,27 @@ body.view-knowledge .main-container {
   gap: 14px;
 }
 
+.knowledge-grid.is-masonry {
+  display: block;
+  position: relative;
+}
+
+.knowledge-grid.is-masonry > .knowledge-card,
+.knowledge-grid.is-masonry > .knowledge-load-more {
+  position: absolute;
+  width: var(--knowledge-masonry-item-width);
+}
+
+.knowledge-grid.is-masonry .knowledge-card {
+  content-visibility: visible;
+  contain-intrinsic-size: auto;
+  contain: none;
+}
+
+.knowledge-grid.is-masonry .knowledge-card:hover {
+  transform: none;
+}
+
 .knowledge-card {
   border: 1px solid rgba(196,168,130,0.38);
   border-radius: 20px;
@@ -4069,6 +4100,7 @@ body.view-knowledge .main-container {
   margin-bottom: 10px;
   position: relative;
   transition: all 0.3s ease;
+  min-height: var(--text-block-size, auto);
 }
 
 .knowledge-card:hover .knowledge-card-content {

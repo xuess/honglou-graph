@@ -61,9 +61,9 @@ class ListView {
       <div class="list-controls-left">
         <div class="list-search-box">
           <span class="list-search-icon">🔍</span>
-          <input class="list-search-input" type="text" placeholder="筛选人物…" value="${this._escapeHtml(this.searchQuery)}">
+          <input id="list-search-input" name="list-search" class="list-search-input" type="text" placeholder="筛选人物…" value="${this._escapeHtml(this.searchQuery)}">
         </div>
-        <select class="list-filter-select" data-filter="family">
+        <select id="list-family-filter" name="list-family-filter" class="list-filter-select" data-filter="family">
           <option value="all">全部家族</option>
           <option value="贾家" ${this.filterFamily === '贾家' ? 'selected' : ''}>贾家</option>
           <option value="史家" ${this.filterFamily === '史家' ? 'selected' : ''}>史家</option>
@@ -72,14 +72,14 @@ class ListView {
           <option value="林家" ${this.filterFamily === '林家' ? 'selected' : ''}>林家</option>
           <option value="其他" ${this.filterFamily === '其他' ? 'selected' : ''}>其他</option>
         </select>
-        <select class="list-filter-select" data-filter="gender">
+        <select id="list-gender-filter" name="list-gender-filter" class="list-filter-select" data-filter="gender">
           <option value="all">全部性别</option>
           <option value="男" ${this.filterGender === '男' ? 'selected' : ''}>男</option>
           <option value="女" ${this.filterGender === '女' ? 'selected' : ''}>女</option>
         </select>
       </div>
       <div class="list-controls-right">
-        <select class="list-sort-select">
+        <select id="list-sort-select" name="list-sort-select" class="list-sort-select">
           <option value="importance" ${this.sortBy === 'importance' ? 'selected' : ''}>按重要度</option>
           <option value="family" ${this.sortBy === 'family' ? 'selected' : ''}>按家族</option>
           <option value="name" ${this.sortBy === 'name' ? 'selected' : ''}>按姓名</option>
