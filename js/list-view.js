@@ -47,8 +47,15 @@ class ListView {
   }
 
   setFacetContext(facetState = {}) {
+    const previousIds = this.relatedCharacterIds;
     const ids = facetState.selectedCharacterIds || [];
     this.relatedCharacterIds = new Set(ids);
+    
+    // If there's a new single character selected, scroll to it
+    if (ids.length === 1 && !previousIds.has(ids[0])) {
+      // Defer scroll to allow DOM to update
+      setTimeout(() => this._scrollToCharacter(ids[0]), 100);
+    }
   }
 
   render() {
@@ -355,6 +362,29 @@ class ListView {
     this.container.querySelectorAll('.preview-highlight').forEach((item) => {
       item.classList.remove('preview-highlight');
     });
+  }
+
+  _scrollToCharacter(characterId) {
+    if (!characterId) return;
+    
+    // Find the character card or row
+    const card = this.container.querySelector(`.list-card-item[data-char-id="${characterId}"]`);
+    const row = this.container.querySelector(`.list-compact-row[data-char-id="${characterId}"]`);
+    const target = card || row;
+    
+    if (!target) return;
+    
+    // Scroll into view
+    const listContent = this.container.querySelector('.list-content');
+    if (listContent) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    
+    // Add temporary highlight animation
+    target.classList.add('scroll-highlight');
+    setTimeout(() => {
+      target.classList.remove('scroll-highlight');
+    }, 2000);
   }
 
   destroy() {
