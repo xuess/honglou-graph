@@ -648,6 +648,45 @@ class HongLouMengApp {
     this.graph.focusMode = state.focusMode || false;
     this.graph.focusNodeId = state.focusNodeId || null;
     
+    // Update UI indicator if in focus mode
+    if (state.focusMode && state.focusNodeId) {
+      const character = this.characterMap.get(state.focusNodeId);
+      if (character) {
+        this.els.modeIndicator.classList.add('active');
+        this.els.modeName.textContent = `聚焦：${character.name}`;
+      }
+    } else {
+      this.els.modeIndicator.classList.remove('active');
+    }
+    
+    // Restore selection
+    if (state.selectedNodeId) {
+      const node = this.graph.nodes.find(n => n.id === state.selectedNodeId);
+      if (node) this.graph._selectNode(node);
+    }
+    
+    // Resume simulation with saved alpha
+    this.graph.resumeSimulation({ alpha: state.alpha, delay: 150 });
+  }
+    
+    // Restore interaction mode
+    this.graph.interactionMode = state.interactionMode || 'reading';
+    
+    // Restore focus mode
+    this.graph.focusMode = state.focusMode || false;
+    this.graph.focusNodeId = state.focusNodeId || null;
+    
+    // Update UI indicator if in focus mode
+    if (state.focusMode && state.focusNodeId) {
+      const character = this.characterMap.get(state.focusNodeId);
+      if (character) {
+        this.els.modeIndicator.classList.add('active');
+        this.els.modeName.textContent = `聚焦：${character.name}`;
+      }
+    } else {
+      this.els.modeIndicator.classList.remove('active');
+    }
+    
     // Restore selection
     if (state.selectedNodeId) {
       const node = this.graph.nodes.find(n => n.id === state.selectedNodeId);
