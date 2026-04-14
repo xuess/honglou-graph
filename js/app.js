@@ -2452,8 +2452,55 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
   }
 
   _clearFacetContext() {
-    this._showOverview();
-    this.graph.showImportantOverview();
+    // Per D-05: Clear all selections
+    const previousView = this.activeView;
+    
+    // Clear character selections
+    this.currentCharacterId = null;
+    this.currentTopic = null;
+    this.currentStage = null;
+    this.currentFamily = null;
+    this.currentRelationshipPair = null;
+    
+    // Per D-06: Stay on current view, update currentView type
+    this.currentView = { type: 'cleared', previousView };
+    
+    // Clear FacetStore state
+    this._setFacetState({
+      selectedCharacterIds: [],
+      selectedTags: [],
+      selectedFamily: null,
+      selectedChapter: null,
+      selectedCategory: null,
+      selectedRelationTypes: [],
+      query: '',
+      // Per D-07: Reset breadcrumb to just view name
+      breadcrumb: [{ label: '默认概览', type: 'overview' }],
+      sourceView: this.activeView
+    });
+    
+    // Close any open overlays
+    this._closeCard();
+    this._closeDrawer();
+    
+    // Exit focus mode if active
+    if (this.graph && this.graph.focusMode) {
+      this.graph.exitFocusMode();
+    }
+    
+    // Update action states
+    this._updateActionStates();
+    
+    // Update breadcrumb display
+    this._renderGlobalContextBar();
+    
+    // Update back button visibility
+    this._updateBackButton();
+    
+    // If on graph view, show important overview
+    if (this.activeView === 'graph' && this.graph) {
+      this.graph.showImportantOverview();
+    }
   }
 
   _applyFacetStateToViews() {
