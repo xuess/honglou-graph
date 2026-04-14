@@ -233,6 +233,16 @@ class HongLouMengApp {
     element.replaceChildren(this._safeHtml(html));
   }
 
+  _escapeHtml(text) {
+    if (!text) return '';
+    return String(text)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   _bindEvents() {
     this._bindSidebarResize();
 
@@ -404,6 +414,13 @@ class HongLouMengApp {
       this.characterMap.set(character.id, character);
       this.aliasMap.set(character.name, character.id);
       (character.alias || []).forEach((alias) => this.aliasMap.set(alias, character.id));
+      if (character.pinyin) {
+        const pinyinKey = character.pinyin.toLowerCase().replace(/[āáǎàēéěèīíǐìōóǒòūúǔùüǚǜ]/g, (m) => {
+          const map = {'ā':'a','á':'a','ǎ':'a','à':'a','ē':'e','é':'e','ě':'e','è':'e','ī':'i','í':'i','ǐ':'i','ì':'i','ō':'o','ó':'o','ǒ':'o','ò':'o','ū':'u','ú':'u','ǔ':'u','ü':'u','ǚ':'v','ǜ':'v'};
+          return map[m] || m;
+        });
+        if (pinyinKey) this.aliasMap.set(pinyinKey, character.id);
+      }
     });
   }
 
@@ -1667,17 +1684,27 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
         const identityLower = (character.identity || '').toLowerCase();
         const familyLower = (character.family || '').toLowerCase();
         const eventsLower = (character.keyEvents || []).join(' ').toLowerCase();
-        const searchStr = [nameLower, ...aliases, identityLower, familyLower, eventsLower].join(' ');
+        let pinyinLower = '';
+        if (character.pinyin) {
+          pinyinLower = character.pinyin.toLowerCase().replace(/[āáǎàēéěèīíǐìōóǒòūúǔùüǚǜ]/g, (m) => {
+            const toneMap = {'ā':'a','á':'a','ǎ':'a','à':'a','ē':'e','é':'e','ě':'e','è':'e','ī':'i','í':'i','ǐ':'i','ì':'i','ō':'o','ó':'o','ǒ':'o','ò':'o','ū':'u','ú':'u','ǔ':'u','ü':'u','ǚ':'v','ǜ':'v'};
+            return toneMap[m] || m;
+          });
+        }
+        const searchStr = [nameLower, ...aliases, identityLower, familyLower, eventsLower, pinyinLower].join(' ');
 
         if (!searchStr.includes(lower)) return null;
 
         let score = 0;
         if (nameLower === lower) score += 120;
         else if (aliases.includes(lower)) score += 105;
+        else if (pinyinLower && pinyinLower.includes(lower)) score += 95;
         else if (nameLower.startsWith(lower)) score += 88;
         else if (aliases.some((alias) => alias.startsWith(lower))) score += 76;
+        else if (pinyinLower && pinyinLower.startsWith(lower)) score += 72;
         else if (nameLower.includes(lower)) score += 60;
         else if (aliases.some((alias) => alias.includes(lower))) score += 52;
+        else if (pinyinLower && pinyinLower.includes(lower)) score += 45;
         else if (identityLower.includes(lower)) score += 26;
         else if (eventsLower.includes(lower)) score += 18;
         else if (familyLower.includes(lower)) score += 10;
@@ -2435,9 +2462,81 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
 
   _renderGlobalContextBar() {
     if (!this.els.globalContextBar) return;
-    this.els.globalContextBar.classList.remove('active');
-    if (this.els.contextBreadcrumbs) this.els.contextBreadcrumbs.innerHTML = '';
+    
+    // Build view name from activeView
+    const viewNames = {
+      graph: '关系图谱',
+      tree: '家族谱系',
+      list: '人物名录',
+      chapter: '章节视图',
+      knowledge: '知识库'
+    };
+    const currentViewName = viewNames[this.activeView] || '概览';
+    
+    // Build selection display
+    const breadcrumb = this.facetState.breadcrumb || [];
+    let selectionLabel = '';
+    
+    // Per D-02: Only show current view name + current selection (not full path)
+    // Check for character selection
+    if (this.currentCharacterId) {
+      const character = this.characterMap.get(this.currentCharacterId);
+      if (character) {
+        selectionLabel = character.name;
+      }
+    }
+    // Check for topic/stage/family selection if no character
+    else if (this.currentTopic) {
+      selectionLabel = this.currentTopic.title;
+    }
+    else if (this.currentStage) {
+      selectionLabel = this.currentStage.title;
+    }
+    else if (this.currentFamily) {
+      selectionLabel = this.currentFamily;
+    }
+    else if (this.currentRelationshipPair) {
+      const left = this.characterMap.get(this.currentRelationshipPair.leftId);
+      const right = this.characterMap.get(this.currentRelationshipPair.rightId);
+      if (left && right) {
+        selectionLabel = `${left.name} × ${right.name}`;
+      }
+    }
+    
+    // Render breadcrumb
+    if (this.els.contextBreadcrumbs) {
+      if (selectionLabel) {
+        // Per D-01: "视图名称 / 选中项"
+        this.els.contextBreadcrumbs.innerHTML = `
+          <span class="context-crumb">${this._escapeHtml(currentViewName)}</span>
+          <span class="breadcrumb-separator">/</span>
+          <span class="context-crumb active">${this._escapeHtml(selectionLabel)}</span>
+        `;
+      } else {
+        // Just view name, no selection
+        this.els.contextBreadcrumbs.innerHTML = `
+          <span class="context-crumb active">${this._escapeHtml(currentViewName)}</span>
+        `;
+      }
+    }
+    
+    // Clear facets area (not used in this implementation)
     if (this.els.contextFacets) this.els.contextFacets.innerHTML = '';
+    
+    // Show/hide clear button based on whether there's something to clear
+    const hasSelection = this.currentCharacterId || 
+                         this.currentTopic || 
+                         this.currentStage || 
+                         this.currentFamily ||
+                         this.currentRelationshipPair ||
+                         (this.facetState.selectedCharacterIds && this.facetState.selectedCharacterIds.length > 0);
+    
+    if (this.els.btnClearContext) {
+      this.els.btnClearContext.classList.toggle('hidden', !hasSelection);
+    }
+    
+    // Activate context bar when there's content
+    this.els.globalContextBar.classList.toggle('active', hasSelection);
   }
 
   _hideLoading() {

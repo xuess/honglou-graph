@@ -145,3 +145,5 @@ vite.config.ts.timestamp-*
 !.dev.vars.example
 
 pretext-main
+.opencode
+.planning

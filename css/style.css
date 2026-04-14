@@ -445,6 +445,11 @@ body {
   cursor: pointer;
 }
 
+.breadcrumb-separator {
+  color: var(--color-ink-alpha-40);
+  font-size: 13px;
+}
+
 .context-crumb.active,
 .context-pill {
   background: var(--color-primary-alpha-08);
