@@ -45,7 +45,15 @@ class TreeView {
   }
 
   setFacetContext(facetState = {}) {
+    const previousIds = this.relatedCharacterIds;
     this.relatedCharacterIds = new Set(facetState.selectedCharacterIds || []);
+    
+    // If there's a new single character selected, scroll to it
+    const newIds = facetState.selectedCharacterIds || [];
+    if (newIds.length === 1 && !previousIds.has(newIds[0])) {
+      // Defer scroll to allow DOM to update
+      setTimeout(() => this._scrollToCharacter(newIds[0]), 100);
+    }
   }
 
   render(family) {
@@ -594,6 +602,39 @@ class TreeView {
     this.container.querySelectorAll('.tree-person-card').forEach((card) => {
       card.classList.toggle('highlighted', this.relatedCharacterIds.has(card.dataset.charId));
     });
+  }
+
+  _scrollToCharacter(characterId) {
+    if (!characterId) return;
+    
+    const card = this.container.querySelector(`.tree-person-card[data-char-id="${characterId}"]`);
+    if (!card) return;
+    
+    // Expand parent nodes if needed
+    let parent = card.closest('.tree-item');
+    while (parent) {
+      const toggleBtn = parent.querySelector('[data-toggle-id]');
+      const childrenContainer = parent.querySelector('[data-node-id]');
+      if (toggleBtn && childrenContainer && !childrenContainer.classList.contains('visible')) {
+        const nodeId = toggleBtn.dataset.toggleId;
+        if (nodeId) {
+          this.expandedNodes.add(nodeId);
+          childrenContainer.classList.add('visible');
+          toggleBtn.classList.add('expanded');
+          toggleBtn.innerHTML = '▾';
+        }
+      }
+      parent = parent.parentElement?.closest('.tree-item');
+    }
+    
+    // Scroll card into view with smooth behavior
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
+    // Add temporary highlight animation
+    card.classList.add('scroll-highlight');
+    setTimeout(() => {
+      card.classList.remove('scroll-highlight');
+    }, 2000);
   }
 
   _scrollToTop() {
