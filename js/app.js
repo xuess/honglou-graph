@@ -523,6 +523,11 @@ class HongLouMengApp {
 
     const previousView = this.activeView;
 
+    // Save graph state when leaving graph view
+    if (previousView === 'graph' && viewName !== 'graph') {
+      this._saveGraphState();
+    }
+
     this.activeView = viewName;
 
     this.els.viewPanels.forEach(panel => {
@@ -581,6 +586,11 @@ class HongLouMengApp {
       }
     }
 
+    // Restore graph state when returning to graph view
+    if (viewName === 'graph' && previousView !== 'graph' && this.graphState) {
+      this._restoreGraphState();
+    }
+
     this._teardownInactiveViews(viewName, previousView);
     this._applyFacetStateToViews();
 
@@ -616,6 +626,36 @@ class HongLouMengApp {
       visibleNodeIds: [...this.graph.currentVisibleNodeIds],
       alpha: this.graph._pausedSimulationAlpha || 0
     };
+  }
+
+  _restoreGraphState() {
+    if (!this.graph || !this.graphState) return;
+    
+    const state = this.graphState;
+    
+    // Restore zoom transform
+    if (state.zoomTransform) {
+      const transform = d3.zoomIdentity
+        .translate(state.zoomTransform.x, state.zoomTransform.y)
+        .scale(state.zoomTransform.k);
+      this.graph.svg.call(this.graph.zoom.transform, transform);
+    }
+    
+    // Restore interaction mode
+    this.graph.interactionMode = state.interactionMode || 'reading';
+    
+    // Restore focus mode
+    this.graph.focusMode = state.focusMode || false;
+    this.graph.focusNodeId = state.focusNodeId || null;
+    
+    // Restore selection
+    if (state.selectedNodeId) {
+      const node = this.graph.nodes.find(n => n.id === state.selectedNodeId);
+      if (node) this.graph._selectNode(node);
+    }
+    
+    // Resume simulation with saved alpha
+    this.graph.resumeSimulation({ alpha: state.alpha, delay: 150 });
   }
 
   _buildSidebar() {
