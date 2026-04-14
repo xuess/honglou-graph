@@ -37,6 +37,8 @@ class HongLouMengApp {
       sourceView: 'graph'
     };
 
+    this.graphState = null; // Stores saved graph state when switching views
+
     this.featuredCharacterIds = ['jia_baoyu', 'lin_daiyu', 'xue_baochai', 'wang_xifeng', 'jia_mu', 'shi_xiangyun'];
 
     this.topics = [
@@ -596,6 +598,24 @@ class HongLouMengApp {
 
   _teardownInactiveViews(activeViewName, previousViewName) {
     return;
+  }
+
+  _saveGraphState() {
+    if (!this.graph) return;
+    
+    // Pause the simulation to release CPU
+    this.graph.pauseSimulation();
+    
+    // Save current state
+    this.graphState = {
+      zoomTransform: this.graph.zoom ? d3.zoomTransform(this.graph.svg.node()) : null,
+      selectedNodeId: this.graph.selectedNode ? this.graph.selectedNode.id : null,
+      focusMode: this.graph.focusMode,
+      focusNodeId: this.graph.focusNodeId,
+      interactionMode: this.graph.interactionMode,
+      visibleNodeIds: [...this.graph.currentVisibleNodeIds],
+      alpha: this.graph._pausedSimulationAlpha || 0
+    };
   }
 
   _buildSidebar() {
