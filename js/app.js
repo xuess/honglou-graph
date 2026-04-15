@@ -147,6 +147,7 @@ class HongLouMengApp {
         this._switchView(initialView);
       }
 
+      this._renderSearchState();
       this._hideLoading();
     } catch (err) {
       console.error('初始化失败:', err);
@@ -255,9 +256,15 @@ class HongLouMengApp {
     };
 
     if (this.els.graphSearchInput) {
-      this.els.graphSearchInput.addEventListener('input', (e) => handleSearch(e.target.value, this.els.graphSearchResults));
+      this.els.graphSearchInput.addEventListener('input', (e) => {
+        handleSearch(e.target.value, this.els.graphSearchResults);
+        this._updateSearchInputState();
+      });
       this.els.graphSearchInput.addEventListener('focus', () => {
         if (this.els.graphSearchInput.value.trim()) this.els.graphSearchResults?.classList.add('active');
+      });
+      this.els.graphSearchInput.closest('.search-input-wrapper')?.querySelector('.btn-clear-search')?.addEventListener('click', () => {
+        this._clearSearch();
       });
     }
 
@@ -593,6 +600,7 @@ class HongLouMengApp {
 
     this._teardownInactiveViews(viewName, previousView);
     this._applyFacetStateToViews();
+    this._renderSearchState();
 
     location.hash = viewName;
   }
@@ -667,15 +675,14 @@ class HongLouMengApp {
     
     // Resume simulation with saved alpha
     this.graph.resumeSimulation({ alpha: state.alpha, delay: 150 });
-  }
-    
+
     // Restore interaction mode
     this.graph.interactionMode = state.interactionMode || 'reading';
-    
+
     // Restore focus mode
     this.graph.focusMode = state.focusMode || false;
     this.graph.focusNodeId = state.focusNodeId || null;
-    
+
     // Update UI indicator if in focus mode
     if (state.focusMode && state.focusNodeId) {
       const character = this.characterMap.get(state.focusNodeId);
@@ -686,15 +693,12 @@ class HongLouMengApp {
     } else {
       this.els.modeIndicator.classList.remove('active');
     }
-    
+
     // Restore selection
     if (state.selectedNodeId) {
       const node = this.graph.nodes.find(n => n.id === state.selectedNodeId);
       if (node) this.graph._selectNode(node);
     }
-    
-    // Resume simulation with saved alpha
-    this.graph.resumeSimulation({ alpha: state.alpha, delay: 150 });
   }
 
   _buildSidebar() {
@@ -1069,6 +1073,8 @@ class HongLouMengApp {
   }
   
   _resetSearchFilters(event) {
+    this.facetState.query = '';
+    this._updateSearchInputState();
     if (this.activeView === 'knowledge' && this.knowledgeView) {
       this.knowledgeView.searchQuery = '';
       this.knowledgeView.activeCategory = 'all';
@@ -1078,11 +1084,10 @@ class HongLouMengApp {
     }
     const searchInput = this.els.graphSearchInput || this.els.searchInput;
     if (searchInput) {
-      const searchValue = searchInput.value.trim();
-      if (searchValue) {
-        this._onSearch(searchValue, this.els.graphSearchResults || this.els.searchResults);
-      }
+      searchInput.value = '';
     }
+    this.graph?.highlightSearch('');
+    this._renderSidebarSearchResults([], '搜索人物、关系、专题或阶段，结果会同时出现在这里。');
   }
   
   _setFont(fontFamily) {
@@ -1633,6 +1638,9 @@ _createFontAndThemeControls() {
   }
 
   _onSearch(query, resultsEl) {
+    this.facetState.query = query;
+    this._updateSearchInputState();
+
     const activeResultsEl = resultsEl || this.els.searchResults;
     const clean = query.trim();
     if (!clean) {
@@ -2692,6 +2700,36 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
         this.els.loading.style.display = 'none';
       }, 400);
     }, 600);
+  }
+
+  _updateSearchInputState() {
+    const wrappers = document.querySelectorAll('.search-input-wrapper');
+    wrappers.forEach(wrapper => {
+      const input = wrapper.querySelector('input');
+      if (input) {
+        wrapper.classList.toggle('has-value', !!input.value.trim());
+      }
+    });
+  }
+
+  _renderSearchState() {
+    const query = this.facetState.query || '';
+    const inputs = [this.els.graphSearchInput, this.els.searchInput];
+    inputs.forEach(input => {
+      if (input) input.value = query;
+    });
+    this._updateSearchInputState();
+  }
+
+  _clearSearch() {
+    const inputs = [this.els.graphSearchInput, this.els.searchInput];
+    inputs.forEach(input => {
+      if (input) input.value = '';
+    });
+    this.facetState.query = '';
+    this._updateSearchInputState();
+    this.graph?.highlightSearch('');
+    this._renderSidebarSearchResults([], '搜索人物、关系、专题或阶段，结果会同时出现在这里。');
   }
 
   _showError(message) {

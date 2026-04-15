@@ -145,15 +145,18 @@
             <div class="graph-search-area">
               <div class="graph-search-box">
                 <span class="graph-search-icon">🔍</span>
-                <input
-                  id="graph-search-input"
-                  class="graph-search-input"
-                  type="text"
-                  placeholder="搜索人物、关系或主题"
-                  autocomplete="off"
-                  aria-label="搜索人物、关系或主题"
-                  role="searchbox"
-                >
+                <div class="search-input-wrapper">
+                  <input
+                    id="graph-search-input"
+                    class="graph-search-input"
+                    type="text"
+                    placeholder="搜索人物、关系或主题"
+                    autocomplete="off"
+                    aria-label="搜索人物、关系或主题"
+                    role="searchbox"
+                  >
+                  <button type="button" class="btn-clear-search" title="清空搜索">×</button>
+                </div>
                 <div id="graph-search-results" class="graph-search-results"></div>
               </div>
               <button id="btn-back" class="graph-action-btn hidden" title="返回上一视图">← 返回</button>

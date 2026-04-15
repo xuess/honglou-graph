@@ -1617,6 +1617,39 @@ body.performance-low .tree-person-card.highlighted {
   flex: 1;
 }
 
+.search-input-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.search-input-wrapper .graph-search-input {
+  padding-right: 36px;
+}
+
+.search-input-wrapper .btn-clear-search {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #999;
+  display: none;
+  padding: 4px 8px;
+  line-height: 1;
+}
+
+.search-input-wrapper .btn-clear-search:hover {
+  color: #c0392b;
+}
+
+.search-input-wrapper.has-value .btn-clear-search {
+  display: block;
+}
+
 .graph-search-icon {
   position: absolute;
   top: 50%;
