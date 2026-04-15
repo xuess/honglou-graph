@@ -2610,6 +2610,49 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
     }
   }
 
+  _clearCurrentSelection() {
+    // Per D-02: Clear just the current selection, keep the view
+    // Determine which selection is active and clear it
+    if (this.currentCharacterId) {
+      this.currentCharacterId = null;
+      // Clear FacetStore character selection
+      this._setFacetState({
+        selectedCharacterIds: []
+      });
+    } else if (this.currentTopic) {
+      this.currentTopic = null;
+    } else if (this.currentStage) {
+      this.currentStage = null;
+    } else if (this.currentFamily) {
+      this.currentFamily = null;
+      // Clear FacetStore family selection
+      this._setFacetState({
+        selectedFamily: null
+      });
+    } else if (this.currentRelationshipPair) {
+      this.currentRelationshipPair = null;
+    }
+    
+    // Close any open overlays
+    this._closeCard();
+    this._closeDrawer();
+    
+    // Exit focus mode if active
+    if (this.graph && this.graph.focusMode) {
+      this.graph.exitFocusMode();
+    }
+    
+    // Update UI
+    this._updateActionStates();
+    this._renderGlobalContextBar();
+    this._updateBackButton();
+    
+    // If on graph view, show important overview
+    if (this.activeView === 'graph' && this.graph) {
+      this.graph.showImportantOverview();
+    }
+  }
+
   _applyFacetStateToViews() {
     return;
   }
@@ -2662,16 +2705,31 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
       if (selectionLabel) {
         // Per D-01: "视图名称 / 选中项"
         this.els.contextBreadcrumbs.innerHTML = `
-          <span class="context-crumb">${this._escapeHtml(currentViewName)}</span>
+          <span class="context-crumb" data-crumb-type="view">${this._escapeHtml(currentViewName)}</span>
           <span class="breadcrumb-separator">/</span>
-          <span class="context-crumb active">${this._escapeHtml(selectionLabel)}</span>
+          <span class="context-crumb active" data-crumb-type="selection">${this._escapeHtml(selectionLabel)}</span>
         `;
       } else {
         // Just view name, no selection
         this.els.contextBreadcrumbs.innerHTML = `
-          <span class="context-crumb active">${this._escapeHtml(currentViewName)}</span>
+          <span class="context-crumb active" data-crumb-type="view">${this._escapeHtml(currentViewName)}</span>
         `;
       }
+      
+      // Add click handler via event delegation
+      this.els.contextBreadcrumbs.addEventListener('click', (e) => {
+        const crumb = e.target.closest('.context-crumb');
+        if (!crumb) return;
+        
+        const crumbType = crumb.dataset.crumbType;
+        if (crumbType === 'view') {
+          // Clicking view name clears all selections
+          this._clearFacetContext();
+        } else if (crumbType === 'selection') {
+          // Clicking selection clears just that selection
+          this._clearCurrentSelection();
+        }
+      });
     }
     
     // Clear facets area (not used in this implementation)
