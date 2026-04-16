@@ -527,56 +527,6 @@
     "category": "典故"
   },
   {
-    "id": "allusion_taihuhuanjing",
-    "type": "allusion",
-    "title": "太虚幻境",
-    "content": "太虚幻境为警幻仙姑所居，其中薄命司内收藏天下女子命册。宝玉梦游此处，翻阅金陵十二钗判词，聆听红楼梦曲，预见众女儿命运。",
-    "chapter": 5,
-    "relatedCharacters": [
-      "jia_baoyu"
-    ],
-    "relatedEvents": [
-      "神游太虚幻境",
-      "翻阅判词"
-    ],
-    "tags": [
-      "典故",
-      "太虚幻境",
-      "薄命司",
-      "金陵十二钗"
-    ],
-    "analysis": "太虚幻境是全书的叙事枢纽，在第五回即以判词和曲词的形式预示了所有主要女性角色的命运。这种\"预叙\"手法使读者在此后的阅读中始终带着宿命感的张力。",
-    "category": "典故"
-  },
-  {
-    "id": "allusion_chaojian_daguanyuan",
-    "type": "allusion",
-    "title": "抄检大观园",
-    "content": "王夫人听信王善保家的谗言，命凤姐带队抄检大观园各房丫鬟箱笼。晴雯首当其冲被搜检，探春怒掴王善保家的，惜春与尤氏翻脸。此事成为贾府由盛转衰的标志性事件。",
-    "chapter": 74,
-    "relatedCharacters": [
-      "jia_xichun",
-      "siqi",
-      "jia_tanchun",
-      "wang_xifeng",
-      "wang_furen",
-      "qingwen"
-    ],
-    "relatedEvents": [
-      "抄检大观园",
-      "晴雯被逐",
-      "司棋被逐"
-    ],
-    "tags": [
-      "典故",
-      "名场面",
-      "抄检大观园",
-      "转折"
-    ],
-    "analysis": "抄检大观园是贾府由盛转衰的分水岭。王夫人以整肃家风为名，实则清除宝玉身边\"不安分\"的女子。探春那句\"可知这样大族人家，若从外头杀来，一时是杀不死的……必须先从家里自杀自灭起来，才能一败涂地\"成为全书最具预言性的台词。",
-    "category": "典故"
-  },
-  {
     "id": "scene_daiyu_jinfu",
     "type": "scene",
     "title": "黛玉进贾府",
@@ -4113,27 +4063,6 @@
     "category": "场景"
   },
   {
-    "id": "scene_dream_love",
-    "type": "scene",
-    "title": "黛玉焚稿断痴情",
-    "content": "黛玉病重，听到传言宝玉将娶宝钗，\n悲极之下，将诗稿与题诗的手帕投入火盆，\n断绝情根，香消玉殒。",
-    "chapter": 97,
-    "relatedCharacters": [
-      "jia_baoyu",
-      "lin_daiyu"
-    ],
-    "version": "continuation",
-    "versionNote": "高鹗续书后40回内容",
-    "tags": [
-      "续书",
-      "悲剧",
-      "离别",
-      "黛玉"
-    ],
-    "analysis": "黛玉焚稿是续书中最经典的场面，展现了林黛玉的决绝与悲剧色彩。烧毁诗稿等于是销毁自己与宝玉的情缘记忆，体现了她对纯真情感的坚守。尽管此为续写情节，但仍具高度感染力。",
-    "category": "名场面"
-  },
-  {
     "id": "scene_hall_men",
     "type": "scene",
     "title": "怡红夜宴",
@@ -7144,35 +7073,6 @@
     "category": "对联"
   },
   {
-    "id": "scene_daiyu_burn_poems",
-    "type": "scene",
-    "title": "黛玉焚稿断痴情",
-    "content": "黛玉得知宝玉迎娶宝钗的消息后，病情急剧恶化。她将往日与宝玉的诗帕、诗稿一一取出，投入火盆焚烧。紫鹃在侧急切劝阻，黛玉已力不从心，诗稿在火中化为灰烬。",
-    "chapter": 97,
-    "relatedCharacters": [
-      "jia_baoyu",
-      "lin_daiyu",
-      "xue_baochai",
-      "zijuan"
-    ],
-    "relatedEvents": [
-      "黛玉焚稿",
-      "黛玉之死"
-    ],
-    "relatedPlaces": [
-      "潇湘馆"
-    ],
-    "tags": [
-      "名场面",
-      "焚稿",
-      "黛玉之死",
-      "悲情",
-      "后四十回"
-    ],
-    "analysis": "焚稿是黛玉对自己与宝玉情感最后的了断。诗帕承载的是共读西厢以来的一切知己之情，焚毁意味着黛玉已决意与尘世断绝。此场景与\"宝玉成亲\"交叉叙事，一喜一悲，形成全书最具戏剧张力的对照。",
-    "category": "名场面"
-  },
-  {
     "id": "scene_xifeng_naoningguo",
     "type": "scene",
     "title": "凤姐大闹宁国府",
@@ -8161,13 +8061,6 @@
     "category": "生僻字词"
   },
   {
-    "id": "shengpi_qin_quilt",
-    "type": "character",
-    "title": "衾（qīn）",
-    "content": "【拼音】qīn\n【部首】衣\n【释义】\n1. 被子\n2. 衾枕：被子和枕头\n\n【红楼用例】\n\"衾枕\"：被褥枕席\n\"同衾\"：同盖一床被子，指夫妻或亲密关系\n宝玉与黛玉虽情投意合，却未能\"同衾共枕\"\n\n【相关词汇】衾枕、同衾、孤衾、寒衾",
-    "category": "生僻字词"
-  },
-  {
     "id": "shengpi_wu_awake",
     "type": "character",
     "title": "寤（wù）",
@@ -8193,20 +8086,6 @@
     "type": "character",
     "title": "恹（yān）",
     "content": "【拼音】yān\n【部首】忄\n【释义】\n1. 精神不振、困倦\n2. 恹恹：精神萎靡的样子\n\n【红楼用例】\n\"恹恹少食\"：黛玉病中精神不振、食欲不佳\n黛玉\"病如西子\"，常显恹恹之态\n\n【相关词汇】恹恹、恹恹不振、病恹恹",
-    "category": "生僻字词"
-  },
-  {
-    "id": "shengpi_chen_prophecy",
-    "type": "character",
-    "title": "谶（chèn）",
-    "content": "【拼音】chèn\n【部首】讠\n【释义】\n1. 预言：预示吉凶的话\n2. 谶语：应验的预言\n\n【红楼用例】\n《红楼梦》被称为\"谶语小说\"，满布预言式暗示\n- 判词是谶，预示金陵十二钗命运\n- 灯谜是谶，暗示人物结局\n- 诗词是谶，如\"冷月葬花魂\"\n\n【相关词汇】谶语、谶言、诗谶",
-    "category": "生僻字词"
-  },
-  {
-    "id": "shengpi_lei_elegy",
-    "type": "character",
-    "title": "诔（lěi）",
-    "content": "【拼音】lěi\n【部首】讠\n【释义】\n1. 悼词：祭祀死者时诵读的文章\n2. 诔文：叙述死者生平的哀悼文章\n\n【红楼用例】\n\"芙蓉女儿诔\"：宝玉为晴雯所作的诔文\n这是《红楼梦》中最长的诗文之一，也是宝玉真情流露的杰作\n\"其为质则金玉不足喻其贵，其为性则冰雪不足喻其洁\"\n\n【相关词汇】诔文、诔词、芙蓉女儿诔",
     "category": "生僻字词"
   },
   {
@@ -8249,13 +8128,6 @@
     "type": "character",
     "title": "戆（gàng）",
     "content": "【拼音】gàng\n【部首】心\n【释义】\n1. 愚笨、刚直\n2. 戆直：愚直、刚直\n\n【红楼用例】\n\"戆直\"：形容人愚笨但正直\n用于描写某些仆人或次要人物的性格\n\n【相关词汇】戆直、戆愚、愚戆",
-    "category": "生僻字词"
-  },
-  {
-    "id": "shengpi_jiong_bright",
-    "type": "character",
-    "title": "炯（jiǒng）",
-    "content": "【拼音】jiǒng\n【部首】火\n【释义】\n1. 光明、明亮\n2. 炯炯：目光明亮有神\n\n【红楼用例】\n\"目光炯炯\"：形容人眼睛明亮有神\n宝玉\"面若中秋之月，色如春晓之花\"，目光炯炯\n\n【相关词汇】炯炯、炯然、炯目",
     "category": "生僻字词"
   },
   {
@@ -8347,13 +8219,6 @@
     "type": "character",
     "title": "偌（ruò）",
     "content": "【拼音】ruò\n【部首】亻\n【释义】\n1. 这么、那么\n2. 偌大：这么大、那么大\n\n【红楼用例】\n\"偌大\"：如此之大\n\"偌大一个贾府\"——形容贾府规模之大\n\n【相关词汇】偌大、偌多",
-    "category": "生僻字词"
-  },
-  {
-    "id": "shengpi_zuo_steps",
-    "type": "character",
-    "title": "阼（zuò）",
-    "content": "【拼音】zuò\n【部首】阝\n【释义】\n1. 大堂前东面的台阶：主人迎接宾客的地方\n2. 登阼：即位、登基\n\n【红楼用例】\n\"阼阶\"：东阶\n贾府建筑布局中的等级秩序\n\n【相关词汇】阼阶、登阼、践阼",
     "category": "生僻字词"
   },
   {

@@ -626,8 +626,8 @@
     "source": "jia_yucun",
     "target": "zhen_shiyin",
     "type": "social",
-    "label": "友人",
-    "description": "甄士隐资助贾雨村赶考上京"
+    "label": "受恩",
+    "description": "甄士隐资助贾雨村上京赴考，是其恩人；后贾雨村乱判葫芦案，辜负甄士隐之恩"
   },
   {
     "source": "jia_yucun",
@@ -742,13 +742,6 @@
     "description": "焦大醉骂宁府主子丑事，痛斥贾珍等人"
   },
   {
-    "source": "jia_zheng",
-    "target": "jia_yuanchun",
-    "type": "blood",
-    "label": "父女",
-    "description": "贾政是元春之父，元春为嫡长女"
-  },
-  {
     "source": "wang_xifeng",
     "target": "jia_qiaojie",
     "type": "blood",
@@ -805,13 +798,6 @@
     "description": "贾芸认宝玉为父辈，二人年龄相仿却以父子相称"
   },
   {
-    "source": "jia_yun",
-    "target": "xiaohong",
-    "type": "romance",
-    "label": "恋人",
-    "description": "贾芸与小红以手帕传情，互生爱慕"
-  },
-  {
     "source": "jia_she",
     "target": "sun_shaozu",
     "type": "social",
@@ -831,13 +817,6 @@
     "type": "social",
     "label": "旧识",
     "description": "邢岫烟曾与妙玉比邻而居，受其教导诗文"
-  },
-  {
-    "source": "jia_yucun",
-    "target": "zhen_shiyin",
-    "type": "social",
-    "label": "受恩",
-    "description": "甄士隐资助贾雨村上京赴考，是其恩人"
   },
   {
     "source": "jia_yucun",
