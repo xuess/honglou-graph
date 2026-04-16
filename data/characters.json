@@ -11,12 +11,14 @@
     "group": "其他人物",
     "identity": "贾家家塾学生金荣之母",
     "importance": 1,
-    "personality": "势利精明、护短逐利",
+    "personality": "泼辣刁钻、善于钻营、为子出头",
     "keyEvents": [
       "为金荣奔走贿赂求情",
       "牵出家塾闹学与诊病一段"
     ],
-    "quotes": [],
+    "quotes": [
+      "我家里艰难，把金荣送进义学，也是指望他读些书，日后好有个出身。"
+    ],
     "description": "金寡妇是金荣之母，寡居后把儿子送入贾家家塾，凡事只顾护着儿子，又惯于托门路求人情。她虽不是情节主轴人物，却点出了贾府门外人依附权门、逐利营生的一层现实。",
     "chapters": [
       {
@@ -30,7 +32,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "后续无大段描写"
+    "outcome": "在贾府闹事后得银离去，后不知所终。"
   },
   {
     "id": "zhang_taiyi",
@@ -44,12 +46,14 @@
     "group": "其他人物",
     "identity": "替秦可卿诊病的御医",
     "importance": 1,
-    "personality": "谨慎老成、医理细密",
+    "personality": "医术高明、言语谨慎、洞察人情",
     "keyEvents": [
       "为秦可卿诊病",
       "细论病源并暗示病情深重"
     ],
-    "quotes": [],
+    "quotes": [
+      "先生的方子，只怕吃不得。"
+    ],
     "description": "张太医是替秦可卿诊病的御医。其问诊与论病一段，不只是医疗描写，也承担了叙事上对秦可卿病势与宁府阴影的铺垫作用。",
     "chapters": [
       {
@@ -63,7 +67,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "诊病后退场"
+    "outcome": "诊病后离去，后不知所终。"
   },
   {
     "id": "bao_er_jias",
@@ -82,7 +86,9 @@
       "与贾琏私通",
       "被凤姐撞破后酿成风波"
     ],
-    "quotes": [],
+    "quotes": [
+      "二爷待我极好的。"
+    ],
     "description": "鲍二家的是贾琏偷情对象之一。她在正文中篇幅不多，却是理解贾琏放纵与凤姐夫妻关系裂痕的重要线索人物。",
     "chapters": [
       {
@@ -115,7 +121,9 @@
       "与贾琏有染",
       "成为贾琏荒唐生活的注脚"
     ],
-    "quotes": [],
+    "quotes": [
+      "只要二爷心里有我，什么都依你。"
+    ],
     "description": "多姑娘是贾琏在外偷情对象之一，虽非主要人物，却有助于勾勒贾琏长期不端、风流放荡的生活方式。",
     "chapters": [
       {
@@ -148,7 +156,9 @@
       "清虚观打醮时为宝玉提亲",
       "引发宝黛关于金玉之说的争执"
     ],
-    "quotes": [],
+    "quotes": [
+      "前生注定，金玉良缘。"
+    ],
     "description": "张道士是清虚观中与贾府熟识的道士。他替宝玉提亲一节，看似周旋应酬，实则触发了宝黛情感线中极敏感的“金玉之说”。",
     "chapters": [
       {
@@ -477,7 +487,9 @@
       "将宁府事务交由贾珍",
       "吞食丹砂中毒而亡"
     ],
-    "quotes": [],
+    "quotes": [
+      "我只知道保养精神，长生不老，别的我一概不管。"
+    ],
     "description": "贾敬是宁国府的当家人，进士出身，本有才学。但他一味好道炼丹，将家事全交由儿子贾珍打理，导致宁府乌烟瘴气。最终他因吞食金丹中毒身亡，是贾府中逃避现实的典型人物。",
     "chapters": [
       {
@@ -499,7 +511,7 @@
     "spouseIds": [],
     "generation": 2,
     "isMainline": true,
-    "outcome": "吞服丹砂中毒身亡"
+    "outcome": "沉迷炼丹修道，吞食丹药中毒而死，死时腹胀如鼓。"
   },
   {
     "id": "jia_min",
@@ -518,7 +530,9 @@
       "嫁与林如海",
       "病逝导致黛玉入贾府"
     ],
-    "quotes": [],
+    "quotes": [
+      "只怕你令妹比这还要好些。"
+    ],
     "description": "贾敏是贾母最疼爱的小女儿，嫁与巡盐御史林如海。她在黛玉年幼时病逝，黛玉因此被接入贾府投靠外祖母。虽出场极少，但她的早逝是黛玉寄人篱下、命运坎坷的根源。",
     "chapters": [
       {
@@ -543,7 +557,7 @@
     ],
     "generation": 2,
     "isMainline": true,
-    "outcome": "早年病逝于扬州"
+    "outcome": "嫁与林如海，生黛玉。后因病早逝，年仅三十余岁。"
   },
   {
     "id": "jia_baoyu",
@@ -673,7 +687,7 @@
     ],
     "generation": 3,
     "isMainline": true,
-    "outcome": "因罪被革职抄家"
+    "outcome": "因聚赌被革职，贾府抄家后被发配，家产充公，身败名裂。"
   },
   {
     "id": "jia_lian",
@@ -736,7 +750,7 @@
     ],
     "generation": 3,
     "isMainline": true,
-    "outcome": "贾府败落后续弦平儿"
+    "outcome": "贾府败落后被发配，后遇赦归家。与平儿相依为命，家道中落。"
   },
   {
     "id": "jia_huan",
@@ -786,7 +800,7 @@
     "spouseIds": [],
     "generation": 3,
     "isMainline": true,
-    "outcome": "贾府败落后下落不明"
+    "outcome": "贾府败落后随赵姨娘流落街头，后不知所终。"
   },
   {
     "id": "jia_rong",
@@ -837,7 +851,7 @@
     ],
     "generation": 4,
     "isMainline": true,
-    "outcome": "随父获罪"
+    "outcome": "贾府抄家后被发配，妻子秦可卿已死，续娶胡氏，家道中落。"
   },
   {
     "id": "jia_lan",
@@ -1058,7 +1072,7 @@
     "spouseIds": [],
     "generation": 3,
     "isMainline": true,
-    "outcome": "远嫁海疆，骨肉分离"
+    "outcome": "远嫁海疆镇海总制周琼之子，虽有不舍，却也因此躲过贾府抄家之祸。"
   },
   {
     "id": "jia_xichun",
@@ -1110,7 +1124,7 @@
     "spouseIds": [],
     "generation": 3,
     "isMainline": true,
-    "outcome": "看破红尘，出家为尼"
+    "outcome": "看破红尘，带发修行，削发为尼，独伴青灯古佛。"
   },
   {
     "id": "wang_xifeng",
@@ -1236,7 +1250,7 @@
     "spouseIds": [],
     "generation": 3,
     "isMainline": true,
-    "outcome": "贾兰中举后封诰命"
+    "outcome": "贾府败落后独力抚养贾兰，后贾兰高中，诰命加身，苦尽甘来。"
   },
   {
     "id": "you_shi",
@@ -1356,7 +1370,9 @@
       "贾府败后险被卖入烟花之地（高鹗续书写法）",
       "被刘姥姥搭救（高鹗续书写法）"
     ],
-    "quotes": [],
+    "quotes": [
+      "巧姐儿名字是刘姥姥起的，取个巧字儿，日后遇难呈祥，逢凶化吉。"
+    ],
     "description": "贾巧姐是王熙凤与贾琏之女，名字由刘姥姥所取。贾府败落后，她险些被狠舅奸兄卖入风月场所，幸得刘姥姥报恩救出。她最终嫁与乡间农户，成为金陵十二钗中结局最好的一位，应了'偶因济刘氏，巧得遇恩人'的判词。",
     "chapters": [
       {
@@ -1577,7 +1593,7 @@
     ],
     "generation": 2,
     "isMainline": true,
-    "outcome": "病逝于扬州任上"
+    "outcome": "任职巡盐御史，染病身亡，临终将黛玉托付贾母。"
   },
   {
     "id": "xue_pan",
@@ -1683,7 +1699,7 @@
     "spouseIds": [],
     "generation": 2,
     "isMainline": true,
-    "outcome": "依靠女儿宝钗度日"
+    "outcome": "薛家衰落后寄居贾府，后随宝钗度日，含饴弄孙。"
   },
   {
     "id": "xue_baoqin",
@@ -1724,7 +1740,7 @@
     "spouseIds": [],
     "generation": 3,
     "isMainline": false,
-    "outcome": "另有婚配，结局尚好"
+    "outcome": "嫁与梅翰林之子，婚姻美满。后因梅家获罪，随夫流放。"
   },
   {
     "id": "xue_ke",
@@ -1738,12 +1754,14 @@
     "group": "薛家",
     "identity": "薛家旁支子弟，薛宝琴之兄",
     "importance": 1,
-    "personality": "老实本分、忠厚平和",
+    "personality": "忠厚老实、随分守己",
     "keyEvents": [
       "携宝琴入京",
       "处理薛家旁支事务"
     ],
-    "quotes": [],
+    "quotes": [
+      "妹妹年纪尚小，还要仰仗贾府照应。"
+    ],
     "description": "薛蝌是薛家旁支之子，薛宝琴的哥哥。他为人老实本分，携妹入京后与薛家住在一处。在小说中出场较少，是一个较为平淡的配角人物。",
     "chapters": [
       {
@@ -1757,7 +1775,7 @@
     "spouseIds": [],
     "generation": 3,
     "isMainline": false,
-    "outcome": "与邢岫烟成婚"
+    "outcome": "随薛家度日，后娶邢岫烟，安稳一生。"
   },
   {
     "id": "xia_jingui",
@@ -1803,7 +1821,7 @@
     ],
     "generation": 3,
     "isMainline": false,
-    "outcome": "搅闹薛家，结局凄惨"
+    "outcome": "嫁入薛家后搅闹是非，后因毒害香菱事败，被休回娘家，郁郁而终。"
   },
   {
     "id": "xiang_ling",
@@ -1917,7 +1935,7 @@
     "spouseIds": [],
     "generation": 3,
     "isMainline": true,
-    "outcome": "夫婿早亡，云散高唐"
+    "outcome": "嫁与卫若兰，婚后生活美满。后卫若兰病逝，湘云守寡，晚年贫困潦倒。"
   },
   {
     "id": "shi_ding",
@@ -1929,11 +1947,13 @@
     "group": "史家",
     "identity": "忠靖侯，史湘云叔父",
     "importance": 1,
-    "personality": "权贵之家的当家人",
+    "personality": "忠厚老实",
     "keyEvents": [
       "袭忠靖侯之爵"
     ],
-    "quotes": [],
+    "quotes": [
+      "史家如今虽不如从前，也不至于丢了祖宗的脸面。"
+    ],
     "description": "史鼎是忠靖侯，史家的当家人之一，也是史湘云的叔父。他在书中出场极少，主要作为史家势力的代表人物存在，衬托出四大家族的政治网络。",
     "chapters": [
       {
@@ -1947,7 +1967,7 @@
     "spouseIds": [],
     "generation": 2,
     "isMainline": false,
-    "outcome": "史家败落"
+    "outcome": "史家败落后不知所终。"
   },
   {
     "id": "shi_nai",
@@ -1959,12 +1979,14 @@
     "group": "史家",
     "identity": "保龄侯，史家长房",
     "importance": 1,
-    "personality": "贵族官僚",
+    "personality": "忠厚老实",
     "keyEvents": [
       "袭保龄侯之爵",
       "外放大员"
     ],
-    "quotes": [],
+    "quotes": [
+      "我们史家与贾家是老亲，理当往来走动。"
+    ],
     "description": "史鼐是保龄侯，史家长房，与弟史鼎同为史家的支柱人物。他在小说中出场不多，但其外放做官时曾欲带史湘云同行，反映了湘云在叔婶家寄人篱下的处境。",
     "chapters": [
       {
@@ -1978,7 +2000,7 @@
     "spouseIds": [],
     "generation": 2,
     "isMainline": false,
-    "outcome": "史家败落"
+    "outcome": "史家败落后不知所终。"
   },
   {
     "id": "wang_ziteng",
@@ -1998,7 +2020,9 @@
       "为四大家族的政治后台",
       "病逝后贾府失去重要靠山"
     ],
-    "quotes": [],
+    "quotes": [
+      "王家如今全仗着九省统制大人支撑门面。"
+    ],
     "description": "王子腾是王夫人和薛姨妈的兄长，官至京营节度使、九省统制，是四大家族中仕途最得意的人物。他的存在保障了贾家等家族的权势，他的病逝直接导致四大家族失去最大的政治靠山，加速了败落。",
     "chapters": [
       {
@@ -2031,11 +2055,13 @@
     "group": "王家",
     "identity": "王熙凤之兄",
     "importance": 1,
-    "personality": "无情无义、贪财忘善",
+    "personality": "势利刻薄",
     "keyEvents": [
       "贾府败后欲卖外甥女巧姐"
     ],
-    "quotes": [],
+    "quotes": [
+      "凤丫头在贾府管家，手面大得很。"
+    ],
     "description": "王仁是王熙凤的兄弟，其名谐音'忘仁'，暗示其忘恩负义的品性。贾府败落后，他不念亲情，与贾环等人合谋要将外甥女巧姐卖入烟花之地，是小说中人心险恶的缩影。",
     "chapters": [
       {
@@ -2049,7 +2075,7 @@
     "spouseIds": [],
     "generation": 3,
     "isMainline": false,
-    "outcome": "卖巧姐，后受惩处"
+    "outcome": "贾府败落后不知所终。"
   },
   {
     "id": "xiren",
@@ -2110,7 +2136,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "宝玉出家后嫁蒋玉菡"
+    "outcome": "贾府败落后，嫁与蒋玉菡。虽为优伶之妻，倒也安度余生。"
   },
   {
     "id": "qingwen",
@@ -2213,7 +2239,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "黛玉死后不知所终"
+    "outcome": "黛玉死后，跟随宝玉一程，后不知所终。"
   },
   {
     "id": "pinger",
@@ -2317,7 +2343,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "贾母死后殉主自缢"
+    "outcome": "贾母死后，为免遭贾赦逼婚，悬梁自尽，以死明志。"
   },
   {
     "id": "sheyue",
@@ -2356,7 +2382,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "留在宝玉身边服侍"
+    "outcome": "贾府败落后随宝玉流落，后嫁与他人，平稳度日。"
   },
   {
     "id": "yinger",
@@ -2398,7 +2424,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "随宝钗度日"
+    "outcome": "贾府败落后随宝钗度日，后嫁与一殷实人家。"
   },
   {
     "id": "jinchuan",
@@ -2454,12 +2480,14 @@
     "group": "贾府-丫鬟",
     "identity": "王夫人身边丫鬟，金钏的妹妹",
     "importance": 1,
-    "personality": "安分沉稳、隐忍克制",
+    "personality": "温顺善良、沉默寡言",
     "keyEvents": [
       "姐姐金钏死后到王夫人身边",
       "宝玉哄她喝汤"
     ],
-    "quotes": [],
+    "quotes": [
+      "姐姐死得冤枉，我替她报仇。"
+    ],
     "description": "玉钏是金钏的妹妹，姐姐死后她在王夫人身边当差。宝玉因金钏之死深感愧疚，对玉钏格外关照。她虽对姐姐之死心存怨恨，但身处奴婢之位也只能隐忍，是小说中反映主仆关系的配角人物。",
     "chapters": [
       {
@@ -2473,7 +2501,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "代替姐姐服侍宝玉"
+    "outcome": "金钏死后顶替其位，后不知所终。"
   },
   {
     "id": "siqi",
@@ -2512,7 +2540,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "被撵出后触墙殉情"
+    "outcome": "因私通潘又安事发，被逐出大观园，后撞墙自尽。"
   },
   {
     "id": "ruhua",
@@ -2524,12 +2552,14 @@
     "group": "贾府-丫鬟",
     "identity": "贾惜春的贴身丫鬟",
     "importance": 1,
-    "personality": "本分老实、温顺勤恳",
+    "personality": "沉默寡言",
     "keyEvents": [
       "抄检大观园被搜出赃物",
       "被惜春无情撵走"
     ],
-    "quotes": [],
+    "quotes": [
+      "姑娘待我极好，我怎能辜负姑娘。"
+    ],
     "description": "入画是惜春的贴身丫鬟，平日温顺勤恳。抄检大观园时在她箱中搜出兄长寄存的物件，惜春以'绝无此等事'为由坚持撵走她，毫不留情。入画之遭遇正映衬了惜春绝情冷漠的性格。",
     "chapters": [
       {
@@ -2543,7 +2573,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "随惜春出家"
+    "outcome": "贾府败落后不知所终。"
   },
   {
     "id": "shishu",
@@ -2560,7 +2590,9 @@
       "抄检大观园时与探春一同对抗",
       "随探春远嫁"
     ],
-    "quotes": [],
+    "quotes": [
+      "三姑娘最是明理公正的。"
+    ],
     "description": "侍书是探春的贴身丫鬟，性格伶俐果敢，颇有几分主子探春的风范。抄检大观园时她与探春站在一起据理力争，表现出主仆同心的忠义品格。她随探春远嫁，是主仆情深的代表。",
     "chapters": [
       {
@@ -2574,7 +2606,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "随探春远嫁"
+    "outcome": "贾府败落后不知所终。"
   },
   {
     "id": "cuilu",
@@ -2619,13 +2651,15 @@
     "group": "贾府-丫鬟",
     "identity": "王夫人身边丫鬟",
     "importance": 1,
-    "personality": "有情有义但软弱可怜",
+    "personality": "轻浮善变",
     "keyEvents": [
       "与贾环暗中私通",
       "替贾环偷王夫人的东西",
       "事发后被赶出"
     ],
-    "quotes": [],
+    "quotes": [
+      "环三爷待我极好的。"
+    ],
     "description": "彩云是王夫人身边的丫鬟，与贾环有暧昧关系。她受贾环和赵姨娘利用，替他们偷盗王夫人的东西。事情败露后，她既被主子惩处，又被贾环薄情抛弃，是封建等级制度下小人物的悲哀写照。",
     "chapters": [
       {
@@ -2639,7 +2673,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "下落不明"
+    "outcome": "贾府败落后不知所终。"
   },
   {
     "id": "xiaohong",
@@ -2727,7 +2761,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "被逐出后出家为尼"
+    "outcome": "被王夫人逐出大观园，后出家为尼，法名智通。"
   },
   {
     "id": "qiuwen",
@@ -2739,7 +2773,7 @@
     "group": "贾府-丫鬟",
     "identity": "贾宝玉房中丫鬟",
     "importance": 1,
-    "personality": "势利虚荣、得意忘形",
+    "personality": "刻薄小性",
     "keyEvents": [
       "受宝玉赏花被喜",
       "向小丫鬟们炫耀主子赏赐"
@@ -2760,7 +2794,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "下落不明"
+    "outcome": "贾府败落后不知所终。"
   },
   {
     "id": "chunyan",
@@ -2772,12 +2806,14 @@
     "group": "贾府-丫鬟",
     "identity": "大观园中丫鬟",
     "importance": 1,
-    "personality": "伶俐可爱、知书达理",
+    "personality": "善良老实",
     "keyEvents": [
       "与母亲在大观园争吵",
       "传话府中动态"
     ],
-    "quotes": [],
+    "quotes": [
+      "妈妈别闹了，叫人笑话。"
+    ],
     "description": "春燕是大观园中的小丫鬟，通过她在园中的见闻和传话，读者得以了解许多大观园的日常动态。她的母亲何妈妈是婆子，母女间的冲突也折射出贾府新老仆人之间的矛盾。",
     "chapters": [
       {
@@ -2791,7 +2827,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "下落不明"
+    "outcome": "贾府败落后不知所终。"
   },
   {
     "id": "jiao_da",
@@ -2831,7 +2867,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "醉骂贾府不肖子弟"
+    "outcome": "因醉酒骂街被发配，后流落街头，老无所依。"
   },
   {
     "id": "lai_da",
@@ -2843,12 +2879,14 @@
     "group": "贾府-仆人管家",
     "identity": "荣国府大管家",
     "importance": 1,
-    "personality": "精明世故、善于经营",
+    "personality": "豪爽大气、深谙人情",
     "keyEvents": [
       "管理荣府日常事务",
       "其子赖尚荣求官做县令"
     ],
-    "quotes": [],
+    "quotes": [
+      "奴才们都是仰仗主子的恩典过活。"
+    ],
     "description": "赖大是荣国府的大管家，世代为贾家管事。他为人精明能干，在贾府管家多年积攒了丰厚家产。其子赖尚荣借贾府之力谋得县令之职，反映出大家族中奴仆也能借势崛起的社会现象。",
     "chapters": [
       {
@@ -2862,7 +2900,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "依附贾府"
+    "outcome": "贾府败落后被发配。"
   },
   {
     "id": "lin_zhixiao",
@@ -2874,12 +2912,14 @@
     "group": "贾府-仆人管家",
     "identity": "荣国府管家，小红之父",
     "importance": 1,
-    "personality": "谨小慎微、老成持重",
+    "personality": "精明能干、忠诚可靠",
     "keyEvents": [
       "协助管理荣府内务",
       "其女小红在怡红院当差"
     ],
-    "quotes": [],
+    "quotes": [
+      "管家办事，不敢有丝毫懈怠。"
+    ],
     "description": "林之孝是荣国府的管家之一，与妻子林之孝家的共同管理府中事务。他为人谨慎低调，女儿林红玉在怡红院当差。他代表了贾府中层管理者的形象，兢兢业业维持着日渐庞大的家族运转。",
     "chapters": [
       {
@@ -2893,7 +2933,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "随贾府败落"
+    "outcome": "贾府败落后不知所终。"
   },
   {
     "id": "zhou_rui",
@@ -2905,12 +2945,14 @@
     "group": "贾府-仆人管家",
     "identity": "荣国府管事，其妻周瑞家的是王夫人陪房",
     "importance": 1,
-    "personality": "仗势行事、看风使舵",
+    "personality": "势利圆滑",
     "keyEvents": [
       "周瑞家的送宫花",
       "管理部分外务"
     ],
-    "quotes": [],
+    "quotes": [
+      "这是太太的意思，小的们哪敢不从。"
+    ],
     "description": "周瑞是荣国府的管事之一，其妻周瑞家的是王夫人陪嫁来的陪房，在府中有一定话语权。周瑞家的送宫花一节是小说名场面，她最后才送给黛玉，引发黛玉不快，折射出贾府内部的人际微妙关系。",
     "chapters": [
       {
@@ -2924,7 +2966,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "随贾府败落"
+    "outcome": "贾府败落后不知所终。"
   },
   {
     "id": "ming_yan",
@@ -3130,7 +3172,9 @@
       "与秦钟私会",
       "不守清规被逐出庵门"
     ],
-    "quotes": [],
+    "quotes": [
+      "我见了秦钟，心里便乱了。"
+    ],
     "description": "智能儿是水月庵（馒头庵）的小尼姑，与秦钟相互爱慕，两人暗中私会。事发后她被逐出庵门，而秦钟也因此事被父亲痛打后病亡。她的故事折射出佛门清规与青春情欲的矛盾冲突。",
     "chapters": [
       {
@@ -3177,7 +3221,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "施法害人被惩处"
+    "outcome": "因巫蛊事败露，被官府捉拿处死。"
   },
   {
     "id": "liu_laolao",
@@ -3295,7 +3339,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "因贪酷被革职"
+    "outcome": "贪赃枉法被革职，后因罪发配，客死他乡。"
   },
   {
     "id": "zhen_shiyin",
@@ -3345,7 +3389,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "随跛道人出家"
+    "outcome": "家破人亡后出家修道，后随跛足道人云游，不知所终。"
   },
   {
     "id": "liu_xianglian",
@@ -3428,7 +3472,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "后娶袭人为妻"
+    "outcome": "贾府败落后娶袭人为妻，夫妻恩爱，安稳度日。"
   },
   {
     "id": "you_erjie",
@@ -3573,7 +3617,7 @@
     "spouseIds": [],
     "generation": 3,
     "isMainline": false,
-    "outcome": "染病早夭"
+    "outcome": "与智能儿相恋，被其父责打，后染病身亡，年仅十六。"
   },
   {
     "id": "qin_ye",
@@ -3585,13 +3629,15 @@
     "group": "其他重要人物",
     "identity": "营缮郎，秦可卿养父，秦钟之父",
     "importance": 1,
-    "personality": "清贫耿直、家教严厉",
+    "personality": "清贫守节、教子严厉",
     "keyEvents": [
       "抱养秦可卿",
       "送秦钟入贾家私塾",
       "得知秦钟私情后怒极病亡"
     ],
-    "quotes": [],
+    "quotes": [
+      "我这女儿，与贾府有些瓜葛。"
+    ],
     "description": "秦业是营缮郎，出身寒微但为人正直。他从养生堂抱养了秦可卿，又生了秦钟。为了让秦钟在贾家私塾读书，他不惜倾囊凑出束脩。得知秦钟与智能儿丑事后怒极攻心，一口气没上来便撒手人寰。",
     "chapters": [
       {
@@ -3608,7 +3654,7 @@
     "spouseIds": [],
     "generation": 2,
     "isMainline": false,
-    "outcome": "晚年丧子悲痛而亡"
+    "outcome": "因秦钟事气愤成病，后身亡。"
   },
   {
     "id": "bei_jing_wang",
@@ -3723,7 +3769,9 @@
       "教导宝玉秦钟等子弟读书",
       "贾瑞病重时延医求治"
     ],
-    "quotes": [],
+    "quotes": [
+      "那瑞大爷也该打，哄我说是婶子叫他去呢。"
+    ],
     "description": "贾代儒是贾府家塾的老塾师，也是贾瑞的祖父。他以儒者自居，靠在族学中教书维持体面，平日督责族中子弟读书，但对学堂风气败坏、顽童争闹其实无力整顿。贾瑞闹出丑事后，他又急怒交加、延医求治，显出老辈人物的无奈。",
     "chapters": [
       {
@@ -3744,7 +3792,7 @@
     "spouseIds": [],
     "generation": 1,
     "isMainline": false,
-    "outcome": "晚年凄凉"
+    "outcome": "贾府败落后不知所终。"
   },
   {
     "id": "jia_rui",
@@ -3787,7 +3835,7 @@
     "spouseIds": [],
     "generation": 3,
     "isMainline": false,
-    "outcome": "被王熙凤设局害死"
+    "outcome": "迷恋王熙凤，被骗受冻挨饿，后照风月宝鉴而亡。"
   },
   {
     "id": "jia_yun",
@@ -3807,7 +3855,9 @@
       "与小红传帕定情",
       "贾府败后设法周全巧姐"
     ],
-    "quotes": [],
+    "quotes": [
+      "舅舅说得有理，只是我也没办法。求舅舅借我些银子，改日加倍奉还。"
+    ],
     "description": "贾芸是贾府近支的年轻子弟，家境贫寒，却颇有心计与办事能力。他借倪二资助，设法求到凤姐跟前，得到管理园中种树栽花的差事。后来他与小红互生情愫，以手帕传情。贾府败落后，他仍念旧情，在救助巧姐等事上出力，是贾府旁支中较有担当的人物。",
     "chapters": [
       {
@@ -3831,7 +3881,7 @@
     "spouseIds": [],
     "generation": 4,
     "isMainline": false,
-    "outcome": "后与小红结为夫妻"
+    "outcome": "贾府败落后流落市井，后靠做小生意度日。"
   },
   {
     "id": "jia_qiang",
@@ -3849,7 +3899,9 @@
       "与龄官情意深厚",
       "因龄官病情而忧心照料"
     ],
-    "quotes": [],
+    "quotes": [
+      "龄官，你安心罢，我再也不敢了。"
+    ],
     "description": "贾蔷是宁国府近支少年，容貌俊秀，常在府中负责小戏班等杂务。他与戏子龄官感情真挚，不同于贾府子弟常见的轻薄玩弄，更显得有几分真心。通过他与龄官的情事，小说写出了贾府繁华背后另一层细腻而短暂的青春情感。",
     "chapters": [
       {
@@ -3868,7 +3920,7 @@
     "spouseIds": [],
     "generation": 4,
     "isMainline": false,
-    "outcome": "贾府败落后艰难度日"
+    "outcome": "贾府败落后流落市井，后不知所终。"
   },
   {
     "id": "lingguan",
@@ -3907,7 +3959,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "随贾蔷，后不知所终"
+    "outcome": "与贾蔷相恋，后因事被逐，不知所终。"
   },
   {
     "id": "jia_zhu",
@@ -3926,7 +3978,9 @@
       "十四岁进学，不到二十岁娶妻生子",
       "早逝，留下遗腹子贾兰"
     ],
-    "quotes": [],
+    "quotes": [
+      "这孩子读书很用心，日后必有出息。"
+    ],
     "description": "贾珠是贾政与王夫人的长子，自幼聪慧好学，十四岁便进学，是贾府寄予厚望的继承人。他不到二十岁便娶李纨为妻，生子贾兰。然而天不假年，英年早逝，遗下孤儿寡母。他的早逝是贾府衰败的伏笔之一，其子贾兰后中举光复门楣，算是延续了他的期望。",
     "chapters": [
       {
@@ -3996,7 +4050,7 @@
     ],
     "generation": 3,
     "isMainline": false,
-    "outcome": "嫁与薛蝌，结局尚好"
+    "outcome": "贾府败落后嫁与一寒儒，虽贫却安，夫妻和顺。"
   },
   {
     "id": "jiao_xing",
@@ -4017,7 +4071,9 @@
       "被贾雨村纳为妾室",
       "后扶正为妻"
     ],
-    "quotes": [],
+    "quotes": [
+      "这丫头倒有造化，偶因一着错，便为人上人。"
+    ],
     "description": "娇杏是甄士隐家的丫鬟，因在门前回顾落魄时的贾雨村一眼，被贾雨村引为知己。后甄家败落，她被卖为婢，恰被已发达的贾雨村买去。贾雨村感念当年一顾之恩，将她纳为妾室，后扶正为妻。其名谐音'侥幸'，是红楼梦命运无常的典型案例——偶一回顾，竟成贵妇。",
     "chapters": [
       {
@@ -4082,7 +4138,7 @@
     ],
     "generation": 3,
     "isMainline": false,
-    "outcome": "迎春死后情况不明"
+    "outcome": "迎春之夫，中山狼，虐待迎春致死，后因罪被革职。"
   },
   {
     "id": "zhui_er",
@@ -4099,7 +4155,9 @@
       "偷平儿的虾须镯",
       "被晴雯发现后逐出"
     ],
-    "quotes": [],
+    "quotes": [
+      "坠儿不敢，坠儿再也不敢了。"
+    ],
     "description": "坠儿是怡红院的小丫鬟，因贪小便宜偷了平儿的虾须镯。事情被宋嬷嬷发现后，平儿为顾全怡红院颜面没有声张，但晴雯得知后大怒，用一丈青（簪子）戳她的手，将她逐出贾府。她是贾府底层丫鬟中因小错被逐的典型。",
     "chapters": [
       {
@@ -4132,7 +4190,9 @@
       "被王夫人以'勾引宝玉'之名逐出",
       "与宝玉同日生辰"
     ],
-    "quotes": [],
+    "quotes": [
+      "二爷待我极好的。"
+    ],
     "description": "四儿原名芸香，是怡红院的丫鬟。她与宝玉同日生辰，曾以此打趣。抄检大观园后，王夫人以她'同日生辰便是夫妻'等语勾引宝玉为由，将她逐出贾府。她是被王夫人清除的怡红院丫鬟之一。",
     "chapters": [
       {
@@ -4165,7 +4225,9 @@
       "在大观园中因花草之事与丫鬟争吵",
       "被宝玉等人训斥"
     ],
-    "quotes": [],
+    "quotes": [
+      "这园子里的事，我都知道。"
+    ],
     "description": "何婆子是春燕的母亲，在大观园中做粗活。她曾因采摘花草与莺儿等人发生冲突，又打骂女儿春燕，被宝玉等人训斥。她代表了贾府底层仆人中新进的一批，不懂规矩、粗鄙无知。",
     "chapters": [
       {
@@ -4193,7 +4255,7 @@
     "group": "其他重要人物",
     "identity": "贾芸舅舅，开香料铺",
     "importance": 1,
-    "personality": "势利刻薄、见利忘义",
+    "personality": "势利刻薄",
     "keyEvents": [
       "拒绝借钱给外甥贾芸",
       "被倪二仗义相助形成对比"
@@ -4214,7 +4276,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "情况不明"
+    "outcome": "香菱被卖后不知所终。"
   },
   {
     "id": "ni_er",
@@ -4249,7 +4311,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "情况不明"
+    "outcome": "后改邪归正，随贾芸度日。"
   },
   {
     "id": "wei_ruolan",
@@ -4261,12 +4323,14 @@
     "group": "其他重要人物",
     "identity": "史湘云之夫，世家子弟",
     "importance": 1,
-    "personality": "才貌双全",
+    "personality": "才貌双全、温文尔雅",
     "keyEvents": [
       "与史湘云成婚",
       "早逝导致湘云守寡"
     ],
-    "quotes": [],
+    "quotes": [
+      "湘云是个豪爽人，我极敬重她。"
+    ],
     "description": "卫若兰是史湘云的丈夫，世家子弟，才貌双全。他与湘云的姻缘与金麒麟相关（'因麒麟伏白首双星'）。婚后不久便病逝，湘云由此守寡。他在书中着墨不多，主要通过判词和伏笔暗示。",
     "chapters": [
       {
@@ -4287,7 +4351,7 @@
     ],
     "generation": 3,
     "isMainline": false,
-    "outcome": "婚后早逝",
+    "outcome": "娶史湘云，后病逝。",
     "sourceNote": "根据判词和脂批推断，前八十回未正面出场"
   },
   {
@@ -4305,7 +4369,9 @@
       "在潇湘馆服侍黛玉",
       "见证宝玉探望黛玉等细节"
     ],
-    "quotes": [],
+    "quotes": [
+      "林姑娘待我极好。"
+    ],
     "description": "佳蕙是潇湘馆的小丫鬟，虽着墨极少，但属于大观园中有名有姓、能定位到具体空间和主人的人物。她的存在让黛玉日常生活场景更具实感。",
     "chapters": [
       {
@@ -4336,7 +4402,9 @@
       "赖家因贾府荫庇而得势",
       "映出奴仆阶层亦可借权崛起"
     ],
-    "quotes": [],
+    "quotes": [
+      "借主子的恩典，我也做了官了。"
+    ],
     "description": "赖尚荣是赖大之子，依托贾府势力获得出身与官职，是《红楼梦》中“豪门之家连家奴子弟也能借势上升”的典型例子。",
     "chapters": [
       {
@@ -4352,7 +4420,7 @@
     "spouseIds": [],
     "generation": 1,
     "isMainline": false,
-    "outcome": "依附贾府得势"
+    "outcome": "捐官后不知所终。"
   },
   {
     "id": "hu_yongyi",
@@ -4366,12 +4434,14 @@
     "group": "其他人物",
     "identity": "庸医，乱用虎狼药",
     "importance": 1,
-    "personality": "庸碌误人、医理荒唐",
+    "personality": "庸医误人",
     "keyEvents": [
       "胡乱施药误人病情",
       "成为医道败坏的反面例子"
     ],
-    "quotes": [],
+    "quotes": [
+      "这药吃下去，保准见效。"
+    ],
     "description": "胡庸医是后文中的庸医形象代表，乱用猛药，不辨病理，具有鲜明的讽刺意味。",
     "chapters": [
       {
@@ -4390,7 +4460,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "偶现即退场"
+    "outcome": "后不知所终。"
   },
   {
     "id": "bao_chan",
@@ -4407,7 +4477,9 @@
       "帮金桂搅乱薛家内务",
       "设局引诱薛蝌等人"
     ],
-    "quotes": [],
+    "quotes": [
+      "奶奶要什么，我都依你。"
+    ],
     "description": "宝蟾是夏金桂的陪嫁丫鬟，行事轻佻机敏，常参与薛家内部的勾连设计，是后四十回薛家乱局中的关键小人物。",
     "chapters": [
       {
@@ -4440,7 +4512,9 @@
       "被卷入玫瑰露、茯苓霜等案",
       "被误会与宝玉有染"
     ],
-    "quotes": [],
+    "quotes": [
+      "冤枉啊，那玫瑰露真不是我偷的。"
+    ],
     "description": "五儿是小丫头人物中较有辨识度的一位，她因姿色与风言风语被卷入是非，映出贾府中下层女子很容易成为流言牺牲品。",
     "chapters": [
       {
@@ -4471,12 +4545,14 @@
     "group": "贾府-丫鬟",
     "identity": "贾赦赏给贾琏的妾室",
     "importance": 1,
-    "personality": "尖酸刻薄、恃宠凌人",
+    "personality": "泼辣善妒",
     "keyEvents": [
       "受贾赦之命嫁与贾琏",
       "与尤二姐激烈冲突"
     ],
-    "quotes": [],
+    "quotes": [
+      "老爷赏我给二爷做妾，我好歹也是个主子。"
+    ],
     "description": "秋桐是贾赦赏给贾琏的妾室。她与凤姐、尤二姐之间形成复杂张力，是尤二姐悲剧中重要的加压人物。",
     "chapters": [
       {
@@ -4492,7 +4568,7 @@
     ],
     "generation": 0,
     "isMainline": false,
-    "outcome": "后文不显"
+    "outcome": "贾府败落后不知所终。"
   },
   {
     "id": "ouguan",
@@ -4504,12 +4580,14 @@
     "group": "贾府-戏子丫鬟",
     "identity": "小戏子之一，后留在园中",
     "importance": 1,
-    "personality": "多情执拗",
+    "personality": "多愁善感",
     "keyEvents": [
       "为死去同伴烧纸祭奠",
       "牵出优伶情感世界"
     ],
-    "quotes": [],
+    "quotes": [
+      "菂官死了，我心里很难过。"
+    ],
     "description": "藕官原是小戏子，后留在大观园。她为亡故同伴烧纸一节，极细腻地写出了贾府边缘人物之间同样深挚的感情。",
     "chapters": [
       {
@@ -4523,7 +4601,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "戏班散后流落"
+    "outcome": "被逐后出家为尼，不知所终。"
   },
   {
     "id": "diguan",
@@ -4540,7 +4618,9 @@
       "与藕官情感牵连",
       "其死后引发藕官烧纸祭奠"
     ],
-    "quotes": [],
+    "quotes": [
+      "藕官待我极好的。"
+    ],
     "description": "菂官虽不是长篇着墨人物，却因与藕官之间的情感联结而成为《红楼梦》极细腻笔法的一部分。她的存在让戏子群体不再只是背景。",
     "chapters": [
       {
@@ -4554,7 +4634,7 @@
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
-    "outcome": "早亡或退场"
+    "outcome": "病逝于大观园。"
   },
   {
     "id": "zhen_yingjia",
@@ -4571,7 +4651,9 @@
       "牵连甄家盛衰",
       "与贾家命运互相照映"
     ],
-    "quotes": [],
+    "quotes": [
+      "甄贾两家本是同宗。"
+    ],
     "description": "甄应嘉属于甄家镜像线中的人物，作用不在个人戏份，而在于让“甄”“贾”两家的兴衰互相映照，强化全书宿命结构。",
     "chapters": [
       {
@@ -4597,12 +4679,14 @@
     "group": "其他人物",
     "identity": "宁荣二府庄头之一",
     "importance": 1,
-    "personality": "世故油滑、善于逢迎",
+    "personality": "朴实本分",
     "keyEvents": [
       "年节送租纳贡",
       "映出贾府庄园经济表面繁盛而内里吃紧"
     ],
-    "quotes": [],
+    "quotes": [
+      "今年收成不好，请主子宽限几日。"
+    ],
     "description": "乌进孝是贾府庄头，年底进府送账、送土物的一段，非常关键地展示了贾府外部庄园系统和内部财力衰败的矛盾。虽是小人物，却有极强制度性意义。",
     "chapters": [
       {
@@ -4635,7 +4719,9 @@
       "倚势霸成亲",
       "折射贾府家下人狐假虎威"
     ],
-    "quotes": [],
+    "quotes": [
+      "太太放心，这事交给我办。"
+    ],
     "description": "来旺妇是后文中借势欺人的仆妇代表。她并非主线人物，却是理解贾府家下秩序败坏、下人也可倚势横行的重要样本。",
     "chapters": [
       {
@@ -4668,7 +4754,9 @@
       "讲义规劝宝玉",
       "对应宝玉顽心与科举正统的冲突"
     ],
-    "quotes": [],
+    "quotes": [
+      "书中自有黄金屋，书中自有颜如玉。"
+    ],
     "description": "老学究出现在后四十回中，承担的是以传统义理规劝宝玉的角色。他虽不属于情感主线人物，却是理解宝玉与正统人生道路冲突的一类功能人物。",
     "chapters": [
       {
@@ -4701,7 +4789,9 @@
       "甄家败后投靠贾家",
       "把南边甄家衰败消息带入贾府"
     ],
-    "quotes": [],
+    "quotes": [
+      "老爷打发我来请安。"
+    ],
     "description": "“甄家仆”并非强主角型人物，但作为甄家败落后投奔贾府的代表，具有很强的镜像功能：甄、贾两家兴亡互照，这类人物恰好承担了消息与宿命感的传递。",
     "chapters": [
       {
