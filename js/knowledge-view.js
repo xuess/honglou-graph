@@ -31,6 +31,8 @@ class KnowledgeView {
     this._textLayoutFrame = null;
     this._textLayoutToken = 0;
     this._layoutResizeObserver = null;
+    this._keyboardNavIndex = -1;
+    this._keyboardNavColumnCount = 1;
 
     this.categoryConfig = {
       '判词': { icon: '📜', color: '#8B2500' },
@@ -285,10 +287,11 @@ class KnowledgeView {
   _updateContent() {
     const contentEl = this.container.querySelector('#knowledge-items-content');
     const subtitleEl = this.container.querySelector('.knowledge-results-subtitle');
-    
+
     if (!contentEl) return;
 
     this._clearDeferredRender();
+    this._clearKeyboardNavState();
 
     this.displayCount = this._getBaseDisplayCount();
     const filteredItems = this._getFilteredItems();
@@ -483,11 +486,9 @@ class KnowledgeView {
     const relatedCharacters = (item.relatedCharacters || [])
       .map((id) => this.characterMap.get(id))
       .filter(Boolean);
-    const expanded = this.expandedIds.has(item.id);
-    const previewLength = this._isLowPerformanceMode() ? 88 : 120;
+    const expanded = true;
     const relatedCharacterLimit = this._isLowPerformanceMode() ? 3 : 4;
-    const shouldClamp = (item.content || '').length > previewLength;
-    const displayContent = !expanded && shouldClamp ? `${item.content.slice(0, previewLength)}…` : item.content;
+    const displayContent = item.content || '';
 
     return `
       <article class="knowledge-card ${expanded ? 'expanded' : ''}" data-id="${item.id}">
@@ -539,7 +540,6 @@ class KnowledgeView {
 
         <div class="knowledge-card-footer">
           <div class="knowledge-card-related-events">${(item.relatedEvents || []).slice(0, 3).map((event) => `<span>${this._highlightText(event)}</span>`).join('')}</div>
-          ${(item.analysis || item.notes || shouldClamp) ? `<button class="knowledge-card-expand" data-expand-id="${item.id}">${expanded ? '收起全文' : '展开全文'}</button>` : ''}
         </div>
       </article>
     `;
@@ -615,16 +615,6 @@ class KnowledgeView {
         return;
       }
 
-      const expandButton = event.target.closest('[data-expand-id]');
-      if (expandButton) {
-        const id = expandButton.dataset.expandId;
-        if (!id) return;
-        if (this.expandedIds.has(id)) this.expandedIds.delete(id);
-        else this.expandedIds.add(id);
-        this._updateSingleCard(id);
-        return;
-      }
-
       const actionButton = event.target.closest('[data-action]');
       if (!actionButton) return;
       if (actionButton.dataset.action === 'load-more') {
@@ -654,6 +644,82 @@ class KnowledgeView {
       this._updateContent();
       this._scrollToTop();
     });
+
+    this.container.addEventListener('keydown', (event) => {
+      if (event.target.closest('.knowledge-search-input')) return;
+      this._handleKeyboardNavigation(event);
+    });
+  }
+
+  _handleKeyboardNavigation(event) {
+    const contentEl = this.container.querySelector('#knowledge-items-content');
+    if (!contentEl) return;
+
+    const cards = Array.from(contentEl.querySelectorAll('.knowledge-card[data-id]'));
+    if (!cards.length) return;
+
+    const minCardWidth = 380;
+    const gap = 14;
+    const containerWidth = contentEl.clientWidth;
+    this._keyboardNavColumnCount = Math.max(1, Math.floor((containerWidth + gap) / (minCardWidth + gap)));
+
+    switch (event.key) {
+      case 'ArrowDown':
+        event.preventDefault();
+        this._keyboardNavIndex = Math.min(this._keyboardNavIndex + this._keyboardNavColumnCount, cards.length - 1);
+        this._scrollToKeyboardNavCard(cards);
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        this._keyboardNavIndex = Math.max(this._keyboardNavIndex - this._keyboardNavColumnCount, 0);
+        this._scrollToKeyboardNavCard(cards);
+        break;
+      case 'ArrowRight':
+        event.preventDefault();
+        this._keyboardNavIndex = Math.min(this._keyboardNavIndex + 1, cards.length - 1);
+        this._scrollToKeyboardNavCard(cards);
+        break;
+      case 'ArrowLeft':
+        event.preventDefault();
+        this._keyboardNavIndex = Math.max(this._keyboardNavIndex - 1, 0);
+        this._scrollToKeyboardNavCard(cards);
+        break;
+      case 'Enter':
+        event.preventDefault();
+        if (this._keyboardNavIndex >= 0 && this._keyboardNavIndex < cards.length) {
+          const card = cards[this._keyboardNavIndex];
+          const firstCharPill = card.querySelector('.knowledge-char-pill');
+          if (firstCharPill) {
+            firstCharPill.click();
+          } else {
+            card.click();
+          }
+        }
+        break;
+      case 'Escape':
+        this._keyboardNavIndex = -1;
+        this._clearKeyboardNavHighlight(cards);
+        break;
+    }
+  }
+
+  _scrollToKeyboardNavCard(cards) {
+    const cards2 = Array.from(this.container.querySelectorAll('#knowledge-items-content .knowledge-card[data-id]'));
+    cards2.forEach((card, i) => card.classList.toggle('keyboard-nav', i === this._keyboardNavIndex));
+    const card = cards[this._keyboardNavIndex];
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+    }
+  }
+
+  _clearKeyboardNavHighlight(cards) {
+    cards.forEach(card => card.classList.remove('keyboard-nav'));
+  }
+
+  _clearKeyboardNavState() {
+    this._keyboardNavIndex = -1;
+    const cards = this.container.querySelectorAll('.knowledge-card.keyboard-nav');
+    cards.forEach(card => card.classList.remove('keyboard-nav'));
   }
 
   _loadMore() {
@@ -943,30 +1009,12 @@ class KnowledgeView {
     this.container.querySelectorAll('.knowledge-card[data-id]').forEach((card) => {
       const item = this._visibleItems.find((entry) => entry.id === card.dataset.id);
       const contentEl = card.querySelector('.knowledge-card-content');
-      const expandButton = card.querySelector('.knowledge-card-expand');
       if (!item || !contentEl) return;
 
       contentEl.dataset.fullText = item.content || '';
-
-      if (this.expandedIds.has(item.id)) {
-        contentEl.innerHTML = this._highlightText(item.content || '');
-        contentEl.style.minHeight = '0px';
-        service.applyMeasuredHeight(contentEl, { wordBreak: 'keep-all' });
-        if (expandButton) expandButton.style.display = '';
-        return;
-      }
-
-      const result = service.applyClampToElement(contentEl, {
-        maxLines: this._getPreviewLineLimit(item),
-        wordBreak: 'keep-all'
-      });
-      if (!result) return;
-
-      contentEl.innerHTML = this._highlightText(result.text);
-      contentEl.style.minHeight = `${result.height}px`;
-      if (expandButton) {
-        expandButton.style.display = (result.truncated || item.analysis || item.notes) ? '' : 'none';
-      }
+      contentEl.innerHTML = this._highlightText(item.content || '');
+      contentEl.style.minHeight = '0px';
+      service.applyMeasuredHeight(contentEl, { wordBreak: 'keep-all' });
     });
   }
 
@@ -985,7 +1033,6 @@ class KnowledgeView {
     const minCardWidth = 380;
     const columns = Math.max(1, Math.floor((containerWidth + gap) / (minCardWidth + gap)));
     const shouldUseMasonry = !this._isLowPerformanceMode()
-      && this.expandedIds.size === 0
       && columns > 1
       && window.innerWidth >= 1180;
 
