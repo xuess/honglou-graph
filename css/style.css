@@ -5439,3 +5439,21 @@ button:focus-visible,
   box-shadow: 0 0 0 2px var(--color-gold);
   background: var(--color-gold-light, #fffbe6);
 }
+
+/* Keyboard navigation highlight */
+.knowledge-card.keyboard-nav {
+  box-shadow: 0 0 0 3px var(--color-gold), 0 4px 20px rgba(0,0,0,0.15);
+  transform: scale(1.02);
+  z-index: 100;
+  position: relative;
+}
+
+.jump-highlight {
+  animation: knowledge-jump-pulse 0.6s ease-out;
+}
+
+@keyframes knowledge-jump-pulse {
+  0% { box-shadow: 0 0 0 0 var(--color-gold); }
+  50% { box-shadow: 0 0 0 8px rgba(200, 169, 110, 0.4); }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
