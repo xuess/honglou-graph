@@ -971,5 +971,19 @@
     "type": "blood",
     "label": "兄妹",
     "description": "王子腾与王夫人是兄妹关系"
+  },
+  {
+    "source": "lai_da",
+    "target": "lai_shangrong",
+    "type": "blood",
+    "label": "父子",
+    "description": "赖大是赖尚荣之父，赖尚荣借贾府恩典得以做官"
+  },
+  {
+    "source": "jia_lian",
+    "target": "qiutong",
+    "type": "marriage",
+    "label": "妾室",
+    "description": "秋桐是贾赦赏给贾琏的妾室，与尤二姐之事相互牵连"
   }
 ]

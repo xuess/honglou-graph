@@ -647,30 +647,6 @@
     "category": "名场面"
   },
   {
-    "id": "scene_daiyu_fengao",
-    "type": "scene",
-    "title": "黛玉焚稿断痴情",
-    "content": "得知宝玉将娶宝钗的消息后，黛玉病入膏肓。她将平生所作诗稿和宝玉赠的手帕统统投入火中焚毁，口中直叫\"宝玉，宝玉，你好……\"，话未说完便去世了。",
-    "chapter": 97,
-    "relatedCharacters": [
-      "jia_baoyu",
-      "lin_daiyu",
-      "zijuan"
-    ],
-    "relatedEvents": [
-      "黛玉焚稿",
-      "黛玉之死"
-    ],
-    "tags": [
-      "名场面",
-      "黛玉之死",
-      "焚稿",
-      "悲剧高潮"
-    ],
-    "analysis": "黛玉焚稿是全书最催人泪下的场面之一。焚稿意味着她将与宝玉的一切情感记忆付之一炬，是最决绝的告别。\"宝玉你好……\"那未完之语，千百年来读者众说纷纭——\"你好狠\"？\"你好自为之\"？留白之妙成为文学经典。",
-    "category": "名场面"
-  },
-  {
     "id": "riddle_yuanxiao_baoyu",
     "type": "riddle",
     "title": "宝玉所制灯谜",
@@ -3955,10 +3931,10 @@
     "category": "诗词"
   },
   {
-    "id": "scene_fisrt_dream_journey",
+    "id": "scene_first_dream_journey",
     "type": "scene",
-    "title": "太虚幻境",
-    "content": "宝玉梦游太虚幻境，警幻仙姑领其游览，\n见到众多丫鬟，暗示日后情缘。\n听《红楼梦十二支曲》，预示众女儿命运。\n最后与可卿结欢，梦醒恍惚不己。",
+    "title": "宝玉梦游太虚幻境",
+    "content": "宝玉梦游太虚幻境，警幻仙姑领其游览，\n见到众多丫鬟，暗示日后情缘。\n听《红楼梦十二支曲》，预示众女儿命运。\n最后与可卿结欢，梦醒恍惚不已。",
     "chapter": 5,
     "relatedCharacters": [
       "jia_baoyu",
@@ -3974,7 +3950,10 @@
       "太虚幻境"
     ],
     "analysis": "太虚幻境是整部《红楼梦》的精神核心之一，通过梦幻形式，预先展示了大观园众女儿的命运。'薄命司'册子揭示人物结局，《红楼梦十二支曲》唱尽群芳悲剧。这次梦境经历是对全书人物命运的总体预告，是理解小说的关键。",
-    "category": "名场面"
+    "category": "名场面",
+    "relatedEvents": [
+      "神游太虚幻境"
+    ]
   },
   {
     "id": "scene_poetry_osmanthus",
@@ -4001,7 +3980,7 @@
   {
     "id": "scene_crisis_house",
     "type": "scene",
-    "title": "抄检大观园",
+    "title": "抄检大观园风波",
     "content": "王夫人受挑唆决定抄检大观园，\n从怡红院、潇湘馆到稻香村、蘅芜苑，\n搜出私物，引发风波，\n为晴雯、芳官等被驱逐埋下伏笔。",
     "chapter": 74,
     "relatedCharacters": [
@@ -4019,7 +3998,12 @@
       "衰败"
     ],
     "analysis": "抄检大观园是贾府走向衰败的关键节点，标志着大观园理想的破灭。通过这一次次抄检，各房隐私被暴露，矛盾激化，人性复杂展现得淋漓尽致。这次事件成为晴雯等悲剧命运的直接导火索。",
-    "category": "名场面"
+    "category": "名场面",
+    "relatedEvents": [
+      "抄检大观园",
+      "晴雯被逐",
+      "芳官被逐"
+    ]
   },
   {
     "id": "scene_red_cliff_funeral",
