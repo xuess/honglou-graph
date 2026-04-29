@@ -612,13 +612,13 @@
     "category": "名场面"
   },
   {
-    "id": "scene_fisrt_dream_journey",
+    "id": "scene_first_dream_journey",
     "type": "scene",
     "title": "太虚幻境",
-    "content": "宝玉梦游太虚幻境，警幻仙姑领其游览，\n见到众多丫鬟，暗示日后情缘。\n听《红楼梦十二支曲》，预示众女儿命运。\n最后与可卿结欢，梦醒恍惚不己。",
+    "content": "宝玉梦游太虚幻境，警幻仙姑领其游览，\n见到众多丫鬟，暗示日后情缘。\n听《红楼梦十二支曲》，预示众女儿命运。\n最后与可卿结欢，梦醒恍惚不已。",
     "chapter": 5,
     "relatedCharacters": [
-      "jia_baoyu", 
+      "jia_baoyu",
       "jinghuan_xian_gu",
       "qin_keqing"
     ],
@@ -642,9 +642,9 @@
     "chapter": 37,
     "relatedCharacters": [
       "jia_tanchun",
-      "lin_daiyu", 
+      "lin_daiyu",
       "xue_baochai",
-      "shiyun"
+      "shi_xiangyun"
     ],
     "version": "original",
     "versionNote": "前80回曹雪芹原创内容",
@@ -659,7 +659,7 @@
   },
   {
     "id": "scene_crisis_house",
-    "type": "scene", 
+    "type": "scene",
     "title": "抄检大观园",
     "content": "王夫人受挑唆决定抄检大观园，\n从怡红院、潇湘馆到稻香村、蘅芜苑，\n搜出私物，引发风波，\n为晴雯、芳官等被驱逐埋下伏笔。",
     "chapter": 74,
@@ -690,10 +690,10 @@
       "jia_baoyu",
       "qingwen"
     ],
-    "version": "original", 
+    "version": "original",
     "versionNote": "前80回曹雪芹原创内容",
     "tags": [
-      "情节", 
+      "情节",
       "悼念",
       "忠心",
       "悲剧"
@@ -703,17 +703,17 @@
   },
   {
     "id": "scene_lotus_senior",
-    "type": "scene", 
+    "type": "scene",
     "title": "刘姥姥游大观园",
     "content": "刘姥姥二进荣国府，被贾母挽留游览大观园。\n在晓翠堂品茶，在紫菱洲行令，\n在缀锦阁看戏，闹出种种笑话。\n展现了贾府奢华，亦讽刺世情。",
     "chapter": 40,
     "relatedCharacters": [
       "liu_laolao",
-      "jia_mu", 
+      "jia_mu",
       "wang_xifeng"
     ],
     "version": "original",
-    "versionNote": "前80回曹雪芹原创内容", 
+    "versionNote": "前80回曹雪芹原创内容",
     "tags": [
       "情节",
       "幽默",
@@ -730,7 +730,7 @@
     "content": "龄官在蔷薇花架下雨中画'蔷'字多次，\n被宝玉看到，后宝玉帮其撑伞，\n龄官专注所恋，不理宝玉，\n使宝玉悟到'人生情缘，各人一份'。",
     "chapter": 36,
     "relatedCharacters": [
-      "lingguan", 
+      "lingguan",
       "jia_baoyu"
     ],
     "version": "original",
@@ -774,7 +774,7 @@
       "jia_baoyu",
       "qingwen",
       "xiren",
-      "lin_daiyu", 
+      "lin_daiyu",
       "xue_baochai",
       "shi_xiangyun"
     ],
@@ -787,6 +787,6 @@
       "预言"
     ],
     "analysis": "怡红生日夜宴是大观园青春时代最为欢乐、温馨的片段之一。众人玩乐行令，各抽花名签，签上诗句隐约预示着她们未来的命运轨迹，充满了象征含义。这一场景是对青春年华的深情礼赞，也是美好时光的最后记录。",
-    "category": "名场面"  
+    "category": "名场面"
   }
 ]

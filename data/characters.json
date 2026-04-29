@@ -346,7 +346,8 @@
       "jia_baoyu",
       "jia_yuanchun",
       "jia_tanchun",
-      "jia_huan"
+      "jia_huan",
+      "jia_zhu"
     ],
     "spouseIds": [
       "wang_furen",
@@ -451,7 +452,9 @@
       }
     ],
     "parentIds": [],
-    "childrenIds": [],
+    "childrenIds": [
+      "jia_zhu"
+    ],
     "spouseIds": [
       "jia_zheng"
     ],
@@ -732,7 +735,8 @@
     "spouseIds": [
       "wang_xifeng",
       "you_erjie",
-      "pinger"
+      "pinger",
+      "qiutong"
     ],
     "generation": 3,
     "isMainline": true,
@@ -994,7 +998,9 @@
       "jia_she"
     ],
     "childrenIds": [],
-    "spouseIds": [],
+    "spouseIds": [
+      "sun_shaozu"
+    ],
     "generation": 3,
     "isMainline": true,
     "outcome": "嫁孙绍祖后被虐待致死"
@@ -1233,7 +1239,9 @@
     "childrenIds": [
       "jia_lan"
     ],
-    "spouseIds": [],
+    "spouseIds": [
+      "jia_zhu"
+    ],
     "generation": 3,
     "isMainline": true,
     "outcome": "贾兰中举后封诰命"
@@ -1754,7 +1762,9 @@
     ],
     "parentIds": [],
     "childrenIds": [],
-    "spouseIds": [],
+    "spouseIds": [
+      "xing_xiuyan"
+    ],
     "generation": 3,
     "isMainline": false,
     "outcome": "与邢岫烟成婚"
@@ -1914,7 +1924,9 @@
     ],
     "parentIds": [],
     "childrenIds": [],
-    "spouseIds": [],
+    "spouseIds": [
+      "wei_ruolan"
+    ],
     "generation": 3,
     "isMainline": true,
     "outcome": "夫婿早亡，云散高唐"
@@ -2786,7 +2798,9 @@
         "summary": "春燕因其母在大观园中惹事而受牵连，向宝玉等人求情化解。"
       }
     ],
-    "parentIds": [],
+    "parentIds": [
+      "he_popo"
+    ],
     "childrenIds": [],
     "spouseIds": [],
     "generation": 0,
@@ -2858,7 +2872,9 @@
       }
     ],
     "parentIds": [],
-    "childrenIds": [],
+    "childrenIds": [
+      "lai_shangrong"
+    ],
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
@@ -3292,7 +3308,9 @@
     ],
     "parentIds": [],
     "childrenIds": [],
-    "spouseIds": [],
+    "spouseIds": [
+      "jiao_xing"
+    ],
     "generation": 0,
     "isMainline": false,
     "outcome": "因贪酷被革职"
