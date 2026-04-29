@@ -4382,10 +4382,13 @@ body.view-knowledge .main-container {
 
 .chapter-sidebar {
   padding: 18px;
+  padding-bottom: 24px;
   position: sticky;
   top: calc(var(--header-height) + 14px);
-  max-height: calc(100vh - var(--header-height) - 28px);
+  max-height: calc(100vh - var(--header-height) - 14px - 24px);
   overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-padding-bottom: 24px;
 }
 
 .chapter-sidebar-section + .chapter-sidebar-section {
@@ -4990,11 +4993,13 @@ body.performance-low .chapter-hero-stats {
 .knowledge-sidebar {
   border-radius: var(--radius-xl);
   padding: 18px;
+  padding-bottom: 24px;
   position: sticky;
   top: calc(var(--header-height) + 14px);
-  max-height: calc(100vh - var(--header-height) - 28px);
+  max-height: calc(100vh - var(--header-height) - 14px - 24px);
   overflow-y: auto;
   overscroll-behavior: contain;
+  scroll-padding-bottom: 24px;
 }
 
 .knowledge-sidebar-section + .knowledge-sidebar-section {
