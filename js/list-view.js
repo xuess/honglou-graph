@@ -289,8 +289,11 @@ class ListView {
         
         const actionEl = e.target.closest('[data-action="load-more"]');
         if (actionEl) {
+          const scrollEl = this.container.querySelector('#list-view-content');
+          const scrollTop = scrollEl?.scrollTop || 0;
           this.visibleCount += 48;
           this._renderList();
+          if (scrollEl) scrollEl.scrollTop = scrollTop;
         }
       });
     }
@@ -347,9 +350,12 @@ class ListView {
   }
 
   _escapeHtml(str) {
-    const div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
   highlightCharacter(characterId) {

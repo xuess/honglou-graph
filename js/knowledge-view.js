@@ -856,9 +856,12 @@ class KnowledgeView {
   }
 
   _escapeHtml(str) {
-    const div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
   getCharacterKnowledge(characterId) {
@@ -867,15 +870,6 @@ class KnowledgeView {
 
   _emitFacetChange() {
     return;
-  }
-
-  destroy() {
-    this._clearDeferredRender();
-    this._clearKnowledgeJumpState();
-    clearTimeout(this._searchTimer);
-    this._eventsBound = false;
-    this._invalidateFilterCache();
-    this.container.innerHTML = '';
   }
 
   _buildIndexes() {
@@ -898,11 +892,6 @@ class KnowledgeView {
     this.container.querySelectorAll('.knowledge-char-pill').forEach((button) => {
       button.classList.toggle('is-related', this.relatedCharacterIds.has(button.dataset.charId));
     });
-  }
-
-  _invalidateFilterCache() {
-    this._lastFilterSignature = '';
-    this._lastFilteredItems = [];
   }
 
   _invalidateFilterCache() {

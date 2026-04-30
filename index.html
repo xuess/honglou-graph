@@ -53,23 +53,13 @@
     <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
 
     <aside id="sidebar" class="sidebar">
-      <section class="sidebar-section sidebar-priority-block">
-        <div class="sidebar-section-title">推荐人物</div>
-        <div id="featured-characters" class="quick-grid"></div>
+      <section class="sidebar-section sidebar-priority-block" id="recent-characters-section" style="display:none">
+        <div class="sidebar-section-title">最近浏览</div>
+        <div id="recent-characters" class="quick-grid"></div>
       </section>
 
-      <section class="sidebar-section sidebar-priority-block">
-        <div class="sidebar-section-title">专题入口</div>
-        <div id="topic-list" class="topic-list"></div>
-      </section>
-
-      <section class="sidebar-section sidebar-priority-block">
-        <div class="sidebar-section-title">阅读阶段</div>
-        <div id="stage-list" class="topic-list"></div>
-      </section>
-
-      <details class="sidebar-section sidebar-more-tools">
-        <summary class="sidebar-more-summary">筛选与比较</summary>
+      <section class="sidebar-section sidebar-more-tools sidebar-tools-expanded">
+        <div class="sidebar-section-title">筛选与比较</div>
 
         <div class="sidebar-more-content">
           <section class="sidebar-subsection">
@@ -117,7 +107,7 @@
             <div id="stats-section" class="stats-section"></div>
           </section>
         </div>
-      </details>
+      </section>
 
       <div id="sidebar-search-results" class="sidebar-search-results"></div>
     </aside>
@@ -160,27 +150,28 @@
                 <div id="graph-search-results" class="graph-search-results"></div>
               </div>
               <button id="btn-back" class="graph-action-btn hidden" title="返回上一视图">← 返回</button>
-              <button id="btn-full-view" class="graph-action-btn" title="回到完整图谱">全图</button>
+              <button id="btn-exit-focus-bar" class="graph-action-btn hidden" title="退出聚焦模式">退出聚焦</button>
+              <button id="btn-full-view" class="graph-action-btn" title="显示全部人物关系网">显示全部</button>
             </div>
             <div class="graph-floating-info">
+              <div class="graph-importance-quick" id="importance-quick" role="group" aria-label="人物重要度切换">
+                <button class="importance-quick-btn active" data-level="4" title="核心人物（重要度 4-5）">核心</button>
+                <button class="importance-quick-btn" data-level="3" title="主要人物（重要度 3+）">主要</button>
+                <button class="importance-quick-btn" data-level="2" title="扩展人物（重要度 2+）">扩展</button>
+                <button class="importance-quick-btn" data-level="1" title="全部有名人物">全部</button>
+              </div>
               <div id="fullscreen-view-label" class="graph-floating-label">默认概览</div>
             </div>
             <div class="graph-floating-actions">
               <button id="btn-exit-fullscreen" class="control-btn hidden" title="退出大图模式">✕</button>
             </div>
           </div>
-        </div>
 
-        <aside id="detail-drawer" class="detail-drawer">
-          <div class="detail-drawer-header">
-            <div>
-              <div class="drawer-eyebrow">当前视图</div>
-              <div class="detail-drawer-title">关系摘要</div>
-            </div>
-            <button id="drawer-close" class="drawer-close" aria-label="关闭详情">✕</button>
+          <div id="graph-hint" class="graph-hint">
+            <span>拖拽移动 · 滚轮缩放 · 点击查看详情 · 双击聚焦</span>
+            <button id="graph-hint-dismiss" class="graph-hint-dismiss">知道了</button>
           </div>
-          <div id="drawer-content" class="detail-drawer-content"></div>
-        </aside>
+        </div>
       </section>
 
       <!-- Tree View -->

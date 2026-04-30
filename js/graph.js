@@ -2,8 +2,8 @@ class RelationshipGraph {
   constructor(container, options = {}) {
     this.container = container;
     this.options = {
-      nodeMinRadius: 8,
-      nodeMaxRadius: 28,
+      nodeMinRadius: 10,
+      nodeMaxRadius: 36,
       linkDistance: 120,
       chargeStrength: -240,
       collisionPadding: 10,
@@ -93,7 +93,9 @@ _init() {
       .append('svg')
       .attr('width', '100%')
       .attr('height', '100%')
-      .attr('viewBox', `0 0 ${this.width} ${this.height}`);
+      .attr('viewBox', `0 0 ${this.width} ${this.height}`)
+      .attr('role', 'img')
+      .attr('aria-label', '红楼梦人物关系图谱');
 
     const defs = this.svg.append('defs');
     const filter = defs.append('filter').attr('id', 'soft-glow');
@@ -106,6 +108,7 @@ _init() {
       .scaleExtent([0.5, 4])
       .on('zoom', (event) => {
         this.g.attr('transform', event.transform);
+        this._updateLinkLabelVisibilityOnZoom(event.transform.k);
       });
 
     this.svg.call(this.zoom);
@@ -282,6 +285,9 @@ _init() {
         enter => {
           const group = enter.append('g')
             .attr('class', d => `node-group family-${d.family}`)
+            .attr('tabindex', '0')
+            .attr('role', 'button')
+            .attr('aria-label', d => `${d.character.name}，${d.character.identity || ''}`)
             .call(this._drag());
 
           group.append('circle')
@@ -331,6 +337,14 @@ _init() {
             }
             if (!this.selectedNode) this._clearHighlight();
             this._hideTooltip();
+          })
+          .on('keydown', (event, d) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              event.stopPropagation();
+              this._selectNode(d);
+              if (this.onNodeClick) this.onNodeClick(d.character);
+            }
           });
 
           return group;
@@ -521,16 +535,39 @@ _init() {
   _showTooltip(event, node) {
     if (!this._tooltipEl) return;
 
-    this._tooltipEl.innerHTML = `<strong>${node.character.name}</strong><br>${node.character.identity}`;
+    const relCount = this._getNodeRelationCount(node.id);
+    const stars = '★'.repeat(node.character.importance || 1) + '☆'.repeat(5 - (node.character.importance || 1));
+    const family = this._getFamilyGroup(node.character);
+    this._tooltipEl.innerHTML = `
+      <strong>${node.character.name}</strong>
+      <span class="tooltip-identity">${node.character.identity || ''}</span>
+      <span class="tooltip-meta">${family} · ${stars} · ${relCount}条关系</span>
+    `;
     this._tooltipEl.classList.add('visible');
 
-    const x = event.pageX;
-    const y = event.pageY;
-    this._tooltipEl.style.transform = `translate(${x}px, ${y - 52}px) translateX(-50%)`;
+    const x = event.clientX;
+    const y = event.clientY;
+    this._tooltipEl.style.transform = `translate(${x}px, ${y - 68}px) translateX(-50%)`;
+  }
+
+  _getNodeRelationCount(nodeId) {
+    let count = 0;
+    for (const link of this.links) {
+      const src = link.source.id || link.source;
+      const tgt = link.target.id || link.target;
+      if (src === nodeId || tgt === nodeId) count++;
+    }
+    return count;
   }
 
   _hideTooltip() {
     if (this._tooltipEl) this._tooltipEl.classList.remove('visible');
+  }
+
+  _updateLinkLabelVisibilityOnZoom(scale) {
+    if (!this.linkLabelElements) return;
+    const shouldShow = scale >= 1.5;
+    this.linkLabelElements.classed('zoom-visible', shouldShow);
   }
 
   _setVisibility(nodeIds, linkKeys, { centerId = null } = {}) {
