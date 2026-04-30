@@ -415,7 +415,6 @@ body {
   display: flex;
 }
 
-.context-breadcrumbs,
 .context-facets {
   display: flex;
   align-items: center;
@@ -423,15 +422,11 @@ body {
   gap: 8px;
 }
 
-.context-breadcrumbs {
-  flex: 1.2;
-}
-
 .context-facets {
-  flex: 1.8;
+  flex: 1;
+  min-width: 0;
 }
 
-.context-crumb,
 .context-pill {
   border-radius: 999px;
   border: 1px solid var(--color-primary-alpha-14);
@@ -439,22 +434,12 @@ body {
   color: var(--theme-ink, var(--color-ink));
   padding: 6px 12px;
   font-size: 13px;
-}
-
-.context-crumb {
-  cursor: pointer;
-  max-width: 120px;
+  max-width: 240px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.breadcrumb-separator {
-  color: var(--color-ink-alpha-40);
-  font-size: 13px;
-}
-
-.context-crumb.active,
 .context-pill {
   background: var(--color-primary-alpha-08);
 }
@@ -2490,19 +2475,10 @@ body.fullscreen .graph-floating-bar {
     padding: 8px 12px;
     gap: 8px;
   }
-  
-  .context-breadcrumbs {
-    flex: 1;
-    min-width: 0;
-  }
-  
-  .context-crumb {
+
+  .context-pill {
     max-width: 80px;
     padding: 5px 10px;
-    font-size: 12px;
-  }
-  
-  .breadcrumb-separator {
     font-size: 12px;
   }
 }
@@ -2599,12 +2575,7 @@ body.fullscreen .graph-floating-bar {
     text-align: center;
   }
   
-  .context-breadcrumbs .context-crumb:not(:first-child),
-  .context-breadcrumbs .breadcrumb-separator {
-    display: none;
-  }
-  
-  .context-crumb:first-child {
+  .context-pill {
     max-width: none;
   }
 }

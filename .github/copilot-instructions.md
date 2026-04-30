@@ -199,8 +199,14 @@ open http://localhost:8080
    ```bash
    ps -ax -o pid=,command= | grep -E 'chrome-devtools-mcp|chrome-profile' | grep -v grep
    ```
-3. 确认后清理：
+3. 确认后清理（注意`{USER}`要换成当前系统用户名）：
    ```bash
-   pkill -f '/Users/${USER}/.cache/chrome-devtools-mcp/chrome-profile'
+   pkill -f '/Users/{USER}/.cache/chrome-devtools-mcp/chrome-profile'
    ```
 4. **MUST NOT** 误杀用户正常使用的 Chrome 进程，只处理 `chrome-devtools-mcp/chrome-profile` 对应的调试实例。
+
+### 如果 MCP 浏览器实例冲突。
+
+- 仅清理 `chrome-devtools-mcp/chrome-profile` 对应进程
+- 不要误杀用户正常 Chrome
+- 如果遇到提示：`Use --isolated to run multiple browser instances` 或 `` Use a different `userDataDir` or stop the running browser first ``。解决方案 1：杀掉旧进程；解决方案 2(慎用)：删缓存目录`rm -rf ~/.cache/chrome-devtools-mcp`
