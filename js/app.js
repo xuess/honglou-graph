@@ -536,8 +536,11 @@ class HongLouMengApp {
     }, ['selectedCharacterIds']);
   }
 
-  _switchView(viewName) {
+  _switchView(viewName, options = {}) {
+    const { preserveScroll = true } = options;
     if (this.activeView === viewName) return;
+
+    const previousScrollY = window.scrollY;
 
     this._closeCard();
     this._closeDrawer();
@@ -618,6 +621,10 @@ class HongLouMengApp {
     this._teardownInactiveViews(viewName, previousView);
     this._applyFacetStateToViews();
     this._renderSearchState();
+
+    if (preserveScroll) {
+      window.scrollTo({ top: previousScrollY, behavior: 'instant' });
+    }
 
     location.hash = viewName;
   }
@@ -2248,7 +2255,8 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
       });
       if (this.viewInitialized.knowledge) {
         this.knowledgeView._invalidateFilterCache?.();
-        this.knowledgeView._updateContent?.();
+        // Keep viewport stable when switching top-level views.
+        this.knowledgeView._updateContent?.({ scrollToTop: false });
       }
     }
     
@@ -2535,6 +2543,8 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
   }
 
   _renderRecentCharacters() {
+    // 最近浏览区块已隐藏，保留逻辑以便日后恢复
+    return;
     if (!this.els.recentCharacters || !this.els.recentCharactersSection) return;
     if (!this.recentBrowsingHistory.length) {
       this.els.recentCharactersSection.style.display = 'none';

@@ -284,7 +284,8 @@ class KnowledgeView {
     this._scheduleTextLayoutPass();
   }
 
-  _updateContent() {
+  _updateContent(options = {}) {
+    const { scrollToTop = true } = options;
     const contentEl = this.container.querySelector('#knowledge-items-content');
     const subtitleEl = this.container.querySelector('.knowledge-results-subtitle');
 
@@ -306,7 +307,7 @@ class KnowledgeView {
 
     this._updateCategoryActiveState();
     this._syncKnowledgeHighlights();
-    this._scrollToTop();
+    if (scrollToTop) this._scrollToTop();
     this._observeLayoutResize();
     this._scheduleTextLayoutPass(true);
   }
