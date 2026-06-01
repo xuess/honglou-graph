@@ -81,12 +81,16 @@
           <section class="sidebar-subsection">
             <div class="sidebar-section-title">人物对比</div>
             <div class="compare-inputs compare-inputs-sidebar">
-              <select id="compare-left"></select>
+              <select id="compare-left" aria-label="选择人物 A"></select>
               <span class="compare-sep">↔</span>
-              <select id="compare-right"></select>
+              <select id="compare-right" aria-label="选择人物 B"></select>
               <button id="btn-run-compare" class="secondary-action">查看关系</button>
             </div>
-            <button id="btn-compare-current" class="text-action sidebar-compare-current">用当前人物发起对比</button>
+            <div class="compare-actions">
+              <button id="btn-compare-current" class="text-action sidebar-compare-current">用当前人物发起对比</button>
+              <button id="btn-find-path" class="text-action" title="查找两个人物之间的最短关系链">🔍 查找路径</button>
+              <button id="btn-pk-compare" class="text-action" title="并排对比两个人物">⚔️ PK对比</button>
+            </div>
           </section>
 
           <section class="sidebar-subsection compact-legend">
@@ -127,7 +131,11 @@
             <button id="btn-zoom-out" class="control-btn" title="缩小">－</button>
             <button id="btn-reset" class="control-btn" title="重置视图">⟲</button>
             <button id="btn-toggle-labels" class="control-btn active" title="切换标签">字</button>
+            <button id="btn-toggle-cluster" class="control-btn" title="按关系聚类">🔗</button>
+            <button id="btn-toggle-particles" class="control-btn" title="粒子动画">✨</button>
             <button id="btn-graph-fullscreen" class="control-btn" title="大图模式">⛶</button>
+            <button id="btn-export-png" class="control-btn" title="导出图谱为PNG图片">📷</button>
+            <button id="btn-share-card" class="control-btn" title="生成分享卡片">📤</button>
           </div>
 
           <div id="graph-floating-bar" class="graph-floating-bar">
@@ -151,6 +159,7 @@
               <button id="btn-back" class="graph-action-btn hidden" title="返回上一视图">← 返回</button>
               <button id="btn-exit-focus-bar" class="graph-action-btn hidden" title="退出聚焦模式">退出聚焦</button>
               <button id="btn-full-view" class="graph-action-btn" title="显示全部人物关系网">显示全部</button>
+              <button id="btn-random" class="graph-action-btn" title="随机探索一个人物或知识条目">🎲 随缘</button>
             </div>
             <div class="graph-floating-info">
               <div class="graph-importance-quick" id="importance-quick" role="group" aria-label="人物重要度切换">
@@ -169,6 +178,20 @@
           <div id="graph-hint" class="graph-hint">
             <span>拖拽移动 · 滚轮缩放 · 点击查看详情 · 双击聚焦</span>
             <button id="graph-hint-dismiss" class="graph-hint-dismiss">知道了</button>
+          </div>
+
+          <div id="timeline-slider" class="timeline-slider">
+            <div class="timeline-header">
+              <span class="timeline-label">章回时间线</span>
+              <div class="timeline-controls">
+                <button id="btn-timeline-play" class="timeline-play-btn" title="自动播放">▶</button>
+                <span id="timeline-chapter" class="timeline-chapter">全部</span>
+              </div>
+            </div>
+            <input type="range" id="timeline-range" class="timeline-range" min="0" max="120" value="0" step="1" aria-label="章回时间线滑块">
+            <div class="timeline-marks">
+              <span>1</span><span>20</span><span>40</span><span>60</span><span>80</span><span>100</span><span>120</span>
+            </div>
           </div>
         </div>
       </section>
@@ -198,6 +221,8 @@
     <div id="card-content" class="character-card"></div>
   </div>
 
+  <script src="js/edge-tts.js?v=20260530a"></script>
+  <script src="js/utils.js?v=20260529a"></script>
   <script src="js/facet-store.js?v=20250916e"></script>
   <script src="js/text-layout.js?v=20260407a"></script>
   <script src="js/graph.js?v=20260405a"></script>

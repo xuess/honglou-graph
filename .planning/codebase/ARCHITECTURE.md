@@ -1,192 +1,188 @@
-# Architecture: 红楼梦 · 知识探索工具
+# Architecture
 
-**Last updated:** 2025-04-13
+**Analysis Date:** 2026-04-13
 
-## Project Overview
+## Pattern Overview
 
-This is a **brownfield project** — an existing working application with comprehensive features.
+**Overall:** Single-Page Application (SPA) with View-Based Architecture
 
-### Core Value
+**Key Characteristics:**
+- Zero-build, zero-framework frontend: All JavaScript loaded via `<script>` tags, no bundler or transpiler
+- Class-based component pattern: Each view is a class instance with `setData()`, `render()`, and lifecycle methods
+- Centralized state management: `FacetStore` implements publish/subscribe pattern for cross-view state synchronization
+- D3.js-driven force simulation: Relationship graph uses D3 force layout for node positioning
 
-Interactive knowledge exploration tool for 红楼梦 (Dream of the Red Chamber), enabling users to discover relationships, family genealogy, character profiles, and literary knowledge (poems/judgments/allusions) through an explorable interface.
+## Layers
 
----
+**Application Layer (Orchestration):**
+- Purpose: Entry point, view lifecycle, navigation, sidebar, search, global events
+- Location: `js/app.js`
+- Contains: `HongLouMengApp` class - the single orchestrator class
+- Depends on: All view classes, FacetStore, D3.js
+- Used by: Browser (global instantiation on page load)
 
-## Component Structure
+**State Layer (Cross-View Communication):**
+- Purpose: Centralized state with pub/sub notifications
+- Location: `js/facet-store.js`
+- Contains: `FacetStore` class with subscribe/unsubscribe/set pattern
+- Depends on: None (pure JavaScript)
+- Used by: All views receive state updates via subscription
 
-### File Responsibilities
+**View Layer (Presentation Components):**
+- Purpose: Render specific views, handle view-specific interactions
+- Location: `js/graph.js`, `js/tree-view.js`, `js/list-view.js`, `js/knowledge-view.js`, `js/chapter-view.js`
+- Contains: One class per view with common interface
+- Depends on: Data layer, FacetStore (optional), DOM APIs
+- Used by: Application layer instantiates and controls
 
-| File | Responsibility |
-|------|---------------|
-| `index.html` | Entry point, view markup, navigation |
-| `js/app.js` | Main application, routing, search, UI orchestration |
-| `js/facet-store.js` | Cross-view state management (pub/sub) |
-| `js/graph.js` | RelationshipGraph class — D3 force-directed visualization |
-| `js/tree-view.js` | TreeView — family genealogy tree |
-| `js/list-view.js` | ListView — character card/list display |
-| `js/chapter-view.js` | Chapter view — chapter-by-chapter navigation |
-| `js/knowledge-view.js` | KnowledgeView — literature knowledge base |
-| `js/text-layout.js` | Text rendering utilities |
-| `css/style.css` | Global styles, classical Chinese aesthetic |
+**Data Layer (Static JSON):**
+- Purpose: Character, relationship, and knowledge data
+- Location: `data/characters.json`, `data/relationships.json`, `data/knowledge.json`
+- Contains: Static JSON arrays loaded via `fetch()` at initialization
+- Depends on: None (served as static files)
+- Used by: Application and view layers
 
-### State Management
+**Presentation Layer (Styling):**
+- Purpose: Visual design, layout, responsive behavior
+- Location: `css/style.css`, `css/fonts.css`
+- Contains: Single monolithic stylesheet with Chinese classical aesthetic
+- Depends on: Custom fonts (Noto Serif SC, ZCOOL XiaoWei)
+- Used by: All HTML elements
 
-**FacetStore** is the single source of truth for cross-view state:
+## Data Flow
 
-```javascript
-facetState = {
-  selectedCharacterIds: [],
-  selectedTags: [],
-  selectedFamily: null,
-  selectedChapter: null,
-  selectedCategory: null,
-  selectedRelationTypes: [],
-  query: '',
-  breadcrumb: [{ label: '默认概览', type: 'overview' }],
-  sourceView: 'graph'
-}
-```
+**Initialization Flow:**
 
-**Key constraint:** When switching top-level views, the previous view's implicit filter conditions (currentFamily, selectedChapter) must NOT carry over.
+1. Browser loads `index.html` with scripts in dependency order (D3 → FacetStore → Views → App)
+2. `HongLouMengApp` constructor initializes, caches DOM elements
+3. `_loadData()` fetches all JSON files in parallel
+4. Character and relationship maps built for fast lookup
+5. `RelationshipGraph` initialized with D3 force simulation
+6. Views initialized with data, subscriptions registered with FacetStore
+7. Default view rendered (graph view)
 
----
+**View Switching Flow:**
 
-## Data Models
+1. User clicks navigation tab → `_switchView(viewName)` called
+2. Previous view's overlays closed (card, drawer)
+3. View panel visibility toggled via CSS classes
+4. If view not initialized, `render()` called once
+5. URL hash updated for browser history
+6. FacetState applied to new view
 
-### characters.json
+**Character Selection Flow:**
 
-```json
-{
-  "id": "jia_baoyu",
-  "name": "贾宝玉",
-  "alias": ["宝二爷", "怡红公子"],
-  "family": "贾家",
-  "group": "贾家-玉字辈",
-  "importance": 5,
-  "personality": "多情、叛逆",
-  "keyEvents": ["衔玉而生"],
-  "quotes": ["女儿是水作的骨肉"],
-  "description": "...",
-  "chapters": [3, 5, 7, 9]
-}
-```
+1. User clicks node/card/list item → `_openCharacter(id)` called
+2. View history pushed for back navigation
+3. Graph view shows neighborhood (if active)
+4. Character card displayed (modal overlay)
+5. FacetStore updated with `selectedCharacterIds`
+6. All subscribed views receive notification
+7. Views update highlights based on selection
 
-### relationships.json
+**State Management:**
+- `FacetStore` maintains singleton state object
+- Views subscribe to specific state keys
+- State changes trigger batched notifications
+- Source view tracked to prevent circular updates
 
-```json
-{
-  "source": "jia_baoyu",
-  "target": "lin_daiyu",
-  "type": "romance",
-  "label": "恋人",
-  "description": "木石前盟"
-}
-```
+## Key Abstractions
 
-**type values:** `blood | marriage | master_servant | romance | social | rivalry`
-
-### knowledge.json
-
-```json
-{
-  "id": "poem-001",
-  "type": "poem",
-  "title": "《葬花吟》",
-  "content": "花谢花飞花满天...",
-  "chapter": 27,
-  "relatedCharacters": ["lin_daiyu"],
-  "category": "poem"
-}
-```
-
----
-
-## View Architecture
-
-### View Initialization
-
-Views follow lazy initialization pattern:
-
-```javascript
-class HongLouMengApp {
-  viewInitialized = { graph: true, tree: false, list: false, chapter: false, knowledge: false };
-  viewEverRendered = { tree: false, list: false, chapter: false, knowledge: false };
-
-  // First render triggers initialization
-  async switchToView(viewType) {
-    if (!this.viewInitialized[viewType]) {
-      this[`${viewType}View`] = new TreeView(this);
-      this.viewInitialized[viewType] = true;
-    }
+**View Class Pattern:**
+- Purpose: Encapsulate view-specific rendering and interaction
+- Examples: `js/graph.js`, `js/tree-view.js`, `js/list-view.js`
+- Pattern: 
+  ```javascript
+  class SomeView {
+    constructor(container) { /* setup properties */ }
+    setData(data) { /* receive data */ }
+    render() { /* initial render */ }
+    setFacetContext(state) { /* receive cross-view state */ }
   }
-}
-```
+  ```
 
-### Graph View (D3.js)
+**Character Data Structure:**
+- Purpose: Represent a person from the novel
+- Examples: `data/characters.json` (each object)
+- Schema: `{ id, name, pinyin, alias[], gender, family, group, identity, importance, personality, keyEvents[], quotes[], chapters[], parentIds[], childrenIds[], spouseIds[], generation, isMainline, outcome }`
 
-- Uses D3.js v7 force simulation
-- Supports focus mode (show only character + direct connections)
-- Drag, zoom, pan interactions
-- Relationship type-based edge styling
+**Relationship Data Structure:**
+- Purpose: Represent connections between characters
+- Examples: `data/relationships.json` (each object)
+- Schema: `{ source: id, target: id, type: enum, label: string, description: string }`
+- Type enum: `blood | marriage | master_servant | romance | social | rivalry`
 
-### Tree View
+**Knowledge Data Structure:**
+- Purpose: Represent literary/cultural knowledge entries
+- Examples: `data/knowledge.json` (each object)
+- Schema: `{ id, type, title, content, chapter, relatedCharacters[], relatedEvents[], tags[], analysis, category, versionNote? }`
 
-- Family-based tree structure
-- Multi-family support (Jia, Wang, Xue, Shi)
-- Collapsible branches
+**Graph Node/Link Abstraction:**
+- Purpose: Transform character/relationship data for D3 simulation
+- Examples: `js/graph.js` `_buildGraph()` method
+- Pattern: Characters → nodes with position/radius/color; Relationships → links with style
 
-### List View
+## Entry Points
 
-- Card view and compact view modes
-- Sort by importance, family, name
-- Filter by family, importance
+**HTML Entry Point:**
+- Location: `index.html`
+- Triggers: Browser navigation
+- Responsibilities: Load scripts in order, provide DOM structure, define view panels
 
-### Chapter View
+**Application Entry Point:**
+- Location: `js/app.js` `HongLouMengApp` constructor
+- Triggers: Script load complete
+- Responsibilities: Initialize app state, load data, create views, bind events
 
-- Chapter-by-chapter navigation
-- Character appearance tracking
-- Reading progress
+**View Entry Points:**
+- `js/graph.js`: `RelationshipGraph` constructor + `setData()` + `render()`
+- `js/tree-view.js`: `TreeView` constructor + `setData()` + `render()`
+- `js/list-view.js`: `ListView` constructor + `setData()` + `render()`
+- `js/knowledge-view.js`: `KnowledgeView` constructor + `setData()` + `render()`
+- `js/chapter-view.js`: `ChapterView` constructor + `setData()` + `render()`
 
-### Knowledge View
+## Error Handling
 
-- Categories: poem, judgment, allusion, event
-- Related character linking
-- Search and filter
+**Strategy:** Fail-fast on data load, graceful degradation on runtime
+
+**Patterns:**
+- Data load failure: Show error message, prevent app initialization
+- Missing character: Early return from functions (null checks)
+- D3 simulation issues: Caught and logged, simulation continues
+- Search index: Empty results handled gracefully with UI feedback
+
+**Loading State:**
+- Full-page loading overlay shown during data fetch
+- Overlay removed on successful initialization
+- Error state displayed if fetch fails
+
+## Cross-Cutting Concerns
+
+**Logging:** Console logging for development; no production logging framework
+
+**Validation:** 
+- JSON validation via `python3 -m json.tool` during development
+- Runtime: null checks and type coercion for safety
+
+**Authentication:** None - static site, no user accounts
+
+**Performance:**
+- Performance mode detection based on device capabilities
+- CSS class toggling (`performance-low`) for reduced animations
+- Deferred rendering for large lists
+- Simulation alpha cooling to reduce CPU usage
+
+**Accessibility:**
+- ARIA labels on interactive elements
+- Semantic HTML structure
+- Keyboard navigation support (Escape to close, / to focus search)
+- Focus management in modals
+
+**Internationalization:**
+- All content in Chinese
+- No i18n framework - hardcoded strings
+- Pinyin stored for search indexing
 
 ---
 
-## Integration Points
-
-### Cross-View Navigation
-
-1. Click character in any view → opens detail card
-2. Detail card links to related knowledge entries
-3. Search results highlight across all views
-4. Global context bar shows current exploration state
-
-### Sidebar Integration
-
-- Featured characters (quick access)
-- Topic entry points (pre-curated character groups)
-- Reading stages (chapter-based guidance)
-- Filters (family, relation type, importance)
-- Comparison tool (side-by-side relationship view)
-
----
-
-## Deployment
-
-- **Cloudflare Pages** (wrangler.jsonc)
-- No server-side logic
-- Static assets only
-- Base directory: `.`
-
----
-
-## Key Patterns Observed
-
-1. **No build step** — all JS loaded via `<script>` tags
-2. **No framework** — vanilla JavaScript classes
-3. **Classical aesthetic** — red (#C0392B), ink gray, rice paper white
-4. **Chinese fonts** — Noto Serif SC → Noto Serif TC → ZCOOL XiaoWei
-5. **Pub/sub state** — FacetStore isolates views
+*Architecture analysis: 2026-04-13*

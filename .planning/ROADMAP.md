@@ -60,14 +60,15 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] 03-01-PLAN.md — Search state persistence with clear button (VIEW-05)
 
 ### Phase 4: 面包屑导航
-**Goal**: 用户能看到清晰的层次导航路径
+**Goal**: 用户能看到清晰的层次导航路径，可点击面包屑项导航
 **Depends on**: Phase 1
 **Requirements**: VIEW-06
 **Success Criteria** (what must be TRUE):
-  1. 用户能看到当前所在位置的层次路径面包屑（如"概览 > 宝黛关系专题 > 林黛玉"）
+  1. 用户能看到当前所在位置的层次路径面包屑（如"关系图谱 / 林黛玉"）
   2. 用户点击面包屑项能跳转到对应层级
   3. 面包屑在窄屏设备上正确截断显示（不破坏布局）
-**Plans**: TBD
+**Plans**: 1 plan
+- [x] 04-01-PLAN.md — Clickable breadcrumb navigation with responsive truncation (VIEW-06)
 
 ### Phase 5: 人物关系数据审查
 **Goal**: 所有人物关系和家族辈分信息准确无误
@@ -119,7 +120,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
 | 1. 视图状态管理规范 | 2/2 | ✓ | 2026-04-14 |
 | 2. 图谱生命周期优化 | 2/2 | ✓ | 2026-04-14 |
 | 3. 搜索状态保持 | 1/1 | ✓ | 2026-04-14 |
-| 4. 面包屑导航 | - | Context captured | 2026-04-15 |
+| 4. 面包屑导航 | 0/1 | Planned | 2026-04-15 |
 | 5. 人物关系数据审查 | 0/TBD | Not started | - |
 | 6. 诗词判词核对 | 0/TBD | Not started | - |
 | 7. 人物详情补充 | 0/TBD | Not started | - |

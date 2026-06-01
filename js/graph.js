@@ -100,7 +100,7 @@ _init() {
     const defs = this.svg.append('defs');
     const filter = defs.append('filter').attr('id', 'soft-glow');
     filter.append('feGaussianBlur').attr('stdDeviation', '2.5').attr('result', 'coloredBlur');
-    const merge = defs.append('feMerge');
+    const merge = filter.append('feMerge');
     merge.append('feMergeNode').attr('in', 'coloredBlur');
     merge.append('feMergeNode').attr('in', 'SourceGraphic');
 
@@ -375,29 +375,9 @@ _init() {
       const hasVisibilityFilter = visibleNodeIds.size > 0;
 
       if (hasVisibilityFilter) {
+        // Performance optimization: only update visible elements
         this.linkElements.each(function(d) {
-          if (visibleLinkKeys.has(d.key)) {
-            this.setAttribute('x1', d.source.x);
-            this.setAttribute('y1', d.source.y);
-            this.setAttribute('x2', d.target.x);
-            this.setAttribute('y2', d.target.y);
-          }
-        });
-
-        this.linkLabelElements.each(function(d) {
-          if (visibleLinkKeys.has(d.key)) {
-            this.setAttribute('x', (d.source.x + d.target.x) / 2);
-            this.setAttribute('y', (d.source.y + d.target.y) / 2);
-          }
-        });
-
-        this.nodeElements.each(function(d) {
-          if (visibleNodeIds.has(d.id)) {
-            this.setAttribute('transform', `translate(${d.x},${d.y})`);
-          }
-        });
-      } else {
-        this.linkElements.each(function(d) {
+          if (!visibleLinkKeys.has(d.key)) return;
           this.setAttribute('x1', d.source.x);
           this.setAttribute('y1', d.source.y);
           this.setAttribute('x2', d.target.x);
@@ -405,15 +385,108 @@ _init() {
         });
 
         this.linkLabelElements.each(function(d) {
+          if (!visibleLinkKeys.has(d.key)) return;
           this.setAttribute('x', (d.source.x + d.target.x) / 2);
           this.setAttribute('y', (d.source.y + d.target.y) / 2);
         });
 
         this.nodeElements.each(function(d) {
+          if (!visibleNodeIds.has(d.id)) return;
+          this.setAttribute('transform', `translate(${d.x},${d.y})`);
+        });
+      } else {
+        // No filter - update all (but skip hidden ones)
+        this.linkElements.each(function(d) {
+          if (this.style.display === 'none') return;
+          this.setAttribute('x1', d.source.x);
+          this.setAttribute('y1', d.source.y);
+          this.setAttribute('x2', d.target.x);
+          this.setAttribute('y2', d.target.y);
+        });
+
+        this.linkLabelElements.each(function(d) {
+          if (this.style.display === 'none') return;
+          this.setAttribute('x', (d.source.x + d.target.x) / 2);
+          this.setAttribute('y', (d.source.y + d.target.y) / 2);
+        });
+
+        this.nodeElements.each(function(d) {
+          if (this.style.display === 'none') return;
           this.setAttribute('transform', `translate(${d.x},${d.y})`);
         });
       }
     });
+  }
+
+  // Enable/disable particle animation on links
+  toggleParticles() {
+    this._particlesEnabled = !this._particlesEnabled;
+    if (this._particlesEnabled) {
+      this._startParticleAnimation();
+    } else {
+      this._stopParticleAnimation();
+    }
+    return this._particlesEnabled;
+  }
+
+  _startParticleAnimation() {
+    if (this._particleTimer) return;
+    
+    // Create particle group if not exists
+    if (!this._particleGroup) {
+      this._particleGroup = this.g.append('g').attr('class', 'particles');
+    }
+    
+    const animate = () => {
+      if (!this._particlesEnabled) return;
+      
+      // Get visible links
+      const visibleLinks = this.links.filter(link => {
+        if (this.currentVisibleLinkKeys.size === 0) return true;
+        return this.currentVisibleLinkKeys.has(link.key);
+      });
+      
+      // Create particles on random links
+      const link = visibleLinks[Math.floor(Math.random() * visibleLinks.length)];
+      if (link && link.source.x !== undefined) {
+        this._createParticle(link);
+      }
+      
+      this._particleTimer = window.setTimeout(animate, 200 + Math.random() * 300);
+    };
+    
+    animate();
+  }
+
+  _stopParticleAnimation() {
+    if (this._particleTimer) {
+      window.clearTimeout(this._particleTimer);
+      this._particleTimer = null;
+    }
+    if (this._particleGroup) {
+      this._particleGroup.selectAll('.particle').remove();
+    }
+  }
+
+  _createParticle(link) {
+    if (!this._particleGroup) return;
+    
+    const particle = this._particleGroup.append('circle')
+      .attr('class', 'particle')
+      .attr('r', 3)
+      .attr('fill', link.color)
+      .attr('opacity', 0.8)
+      .attr('cx', link.source.x)
+      .attr('cy', link.source.y);
+    
+    // Animate along the link
+    particle.transition()
+      .duration(1500)
+      .ease(d3.easeLinear)
+      .attr('cx', link.target.x)
+      .attr('cy', link.target.y)
+      .attr('opacity', 0)
+      .remove();
   }
 
   _drag() {
@@ -827,6 +900,81 @@ _init() {
     return this.showLabels;
   }
 
+  // Toggle clustering mode - groups characters by relationship density
+  toggleClustering() {
+    this._clusteringMode = !this._clusteringMode;
+    if (this._clusteringMode) {
+      this._applyClusteringForces();
+    } else {
+      this._applyFamilyForces();
+    }
+    this._warmSimulation(0.3);
+    return this._clusteringMode;
+  }
+
+  _applyClusteringForces() {
+    if (!this.simulation) return;
+    
+    // Build adjacency map
+    const adjacency = new Map();
+    this.nodes.forEach(n => adjacency.set(n.id, new Set()));
+    this.links.forEach(link => {
+      const srcId = link.source.id || link.source;
+      const tgtId = link.target.id || link.target;
+      adjacency.get(srcId)?.add(tgtId);
+      adjacency.get(tgtId)?.add(srcId);
+    });
+    
+    // Find connected components using BFS
+    const visited = new Set();
+    const clusters = [];
+    this.nodes.forEach(node => {
+      if (visited.has(node.id)) return;
+      const cluster = [];
+      const queue = [node.id];
+      while (queue.length) {
+        const current = queue.shift();
+        if (visited.has(current)) continue;
+        visited.add(current);
+        cluster.push(current);
+        adjacency.get(current)?.forEach(neighbor => {
+          if (!visited.has(neighbor)) queue.push(neighbor);
+        });
+      }
+      clusters.push(cluster);
+    });
+    
+    // Assign cluster index to each node
+    const nodeCluster = new Map();
+    clusters.forEach((cluster, idx) => {
+      cluster.forEach(id => nodeCluster.set(id, idx));
+    });
+    
+    // Calculate cluster centers
+    const clusterCenters = clusters.map((cluster, idx) => {
+      const angle = (2 * Math.PI * idx) / clusters.length;
+      const radius = Math.min(this.width, this.height) * 0.3;
+      return {
+        x: this.width / 2 + Math.cos(angle) * radius,
+        y: this.height / 2 + Math.sin(angle) * radius
+      };
+    });
+    
+    // Apply cluster forces
+    this.simulation
+      .force('clusterX', d3.forceX(d => {
+        const clusterIdx = nodeCluster.get(d.id) || 0;
+        return clusterCenters[clusterIdx]?.x || this.width / 2;
+      }).strength(0.15))
+      .force('clusterY', d3.forceY(d => {
+        const clusterIdx = nodeCluster.get(d.id) || 0;
+        return clusterCenters[clusterIdx]?.y || this.height / 2;
+      }).strength(0.15));
+    
+    // Remove family forces
+    this.simulation.force('familyX', null).force('familyY', null);
+  }
+
   highlightSearch(query) {
     if (!query) {
       this._clearHighlight();
@@ -914,6 +1062,82 @@ _init() {
     this.linkElements.classed('preview-dimmed', false);
   }
 
+  // Find shortest path between two nodes using BFS
+  findShortestPath(startId, endId) {
+    if (startId === endId) return [startId];
+    
+    const visited = new Set([startId]);
+    const queue = [[startId]];
+    
+    while (queue.length > 0) {
+      const path = queue.shift();
+      const current = path[path.length - 1];
+      
+      // Get neighbors
+      for (const link of this.links) {
+        const sourceId = link.source.id || link.source;
+        const targetId = link.target.id || link.target;
+        let neighborId = null;
+        
+        if (sourceId === current) neighborId = targetId;
+        else if (targetId === current) neighborId = sourceId;
+        
+        if (neighborId && !visited.has(neighborId)) {
+          const newPath = [...path, neighborId];
+          if (neighborId === endId) return newPath;
+          visited.add(neighborId);
+          queue.push(newPath);
+        }
+      }
+    }
+    
+    return null; // No path found
+  }
+
+  // Highlight a specific path
+  highlightPath(pathNodeIds) {
+    if (!pathNodeIds || pathNodeIds.length === 0) {
+      this._clearHighlight();
+      return;
+    }
+    
+    const pathSet = new Set(pathNodeIds);
+    const pathEdges = new Set();
+    
+    // Find edges that are part of the path
+    for (let i = 0; i < pathNodeIds.length - 1; i++) {
+      const from = pathNodeIds[i];
+      const to = pathNodeIds[i + 1];
+      
+      for (const link of this.links) {
+        const sourceId = link.source.id || link.source;
+        const targetId = link.target.id || link.target;
+        if ((sourceId === from && targetId === to) || (sourceId === to && targetId === from)) {
+          pathEdges.add(link.key);
+        }
+      }
+    }
+    
+    this.nodeElements
+      .classed('dimmed', d => !pathSet.has(d.id))
+      .classed('highlighted', d => pathSet.has(d.id))
+      .classed('path-node', d => pathSet.has(d.id));
+    
+    this.linkElements
+      .classed('dimmed', d => !pathEdges.has(d.key))
+      .classed('highlighted', d => pathEdges.has(d.key))
+      .classed('path-link', d => pathEdges.has(d.key));
+    
+    this.linkLabelElements.classed('visible', d => pathEdges.has(d.key));
+  }
+
+  // Clear path highlighting
+  clearPath() {
+    this.nodeElements.classed('path-node', false);
+    this.linkElements.classed('path-link', false);
+    this._clearHighlight();
+  }
+
   pauseSimulation() {
     if (!this.simulation || this._simulationPaused) return;
     this._simulationPaused = true;
@@ -937,6 +1161,128 @@ _init() {
       this._coolDownSimulation(480);
       this._pausedSimulationAlpha = 0;
     }, delay);
+  }
+
+  // Export graph as PNG
+  async exportAsPng(filename = 'honglou-graph.png') {
+    const svgElement = this.svg.node();
+    const svgData = new XMLSerializer().serializeToString(svgElement);
+    const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(svgBlob);
+    
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const scale = 2; // High DPI
+        canvas.width = this.width * scale;
+        canvas.height = this.height * scale;
+        const ctx = canvas.getContext('2d');
+        ctx.scale(scale, scale);
+        
+        // Fill background
+        const bgColor = getComputedStyle(document.body).getPropertyValue('--color-cream') || '#FFF8EE';
+        ctx.fillStyle = bgColor;
+        ctx.fillRect(0, 0, this.width, this.height);
+        
+        ctx.drawImage(img, 0, 0, this.width, this.height);
+        URL.revokeObjectURL(url);
+        
+        canvas.toBlob((blob) => {
+          if (!blob) {
+            reject(new Error('Failed to create blob'));
+            return;
+          }
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = filename;
+          link.click();
+          URL.revokeObjectURL(link.href);
+          resolve();
+        }, 'image/png');
+      };
+      img.onerror = reject;
+      img.src = url;
+    });
+  }
+
+  // Export graph as PNG with title and description
+  async exportAsCardPng(title = '红楼梦人物关系图', description = '', filename = 'honglou-share.png') {
+    const svgElement = this.svg.node();
+    const svgData = new XMLSerializer().serializeToString(svgElement);
+    const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(svgBlob);
+    
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        const padding = 40;
+        const headerHeight = 80;
+        const footerHeight = description ? 60 : 0;
+        const totalWidth = this.width + padding * 2;
+        const totalHeight = this.height + padding * 2 + headerHeight + footerHeight;
+        
+        const canvas = document.createElement('canvas');
+        const scale = 2;
+        canvas.width = totalWidth * scale;
+        canvas.height = totalHeight * scale;
+        const ctx = canvas.getContext('2d');
+        ctx.scale(scale, scale);
+        
+        // Background
+        const bgColor = getComputedStyle(document.body).getPropertyValue('--color-cream') || '#FFF8EE';
+        ctx.fillStyle = bgColor;
+        ctx.fillRect(0, 0, totalWidth, totalHeight);
+        
+        // Border
+        const borderColor = getComputedStyle(document.body).getPropertyValue('--color-border') || '#C4A882';
+        ctx.strokeStyle = borderColor;
+        ctx.lineWidth = 2;
+        ctx.strokeRect(1, 1, totalWidth - 2, totalHeight - 2);
+        
+        // Title
+        const primaryColor = getComputedStyle(document.body).getPropertyValue('--color-primary') || '#8B2500';
+        ctx.fillStyle = primaryColor;
+        ctx.font = 'bold 24px "Noto Serif SC", serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(title, totalWidth / 2, padding + 35);
+        
+        // Subtitle line
+        ctx.strokeStyle = borderColor;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(padding + 50, padding + 55);
+        ctx.lineTo(totalWidth - padding - 50, padding + 55);
+        ctx.stroke();
+        
+        // Graph image
+        ctx.drawImage(img, padding, padding + headerHeight, this.width, this.height);
+        URL.revokeObjectURL(url);
+        
+        // Description
+        if (description) {
+          ctx.fillStyle = '#666';
+          ctx.font = '14px "Noto Serif SC", serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(description, totalWidth / 2, totalHeight - padding - 15);
+        }
+        
+        canvas.toBlob((blob) => {
+          if (!blob) {
+            reject(new Error('Failed to create blob'));
+            return;
+          }
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = filename;
+          link.click();
+          URL.revokeObjectURL(link.href);
+          resolve();
+        }, 'image/png');
+      };
+      img.onerror = reject;
+      img.src = url;
+    });
   }
 
   destroy() {

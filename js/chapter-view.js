@@ -134,6 +134,7 @@ class ChapterView {
     this.container.innerHTML = this._renderShell();
     this._flushDeferredMain(this._resolveCurrentProfile(this._getVisibleProfiles()));
     if (!this._eventsBound) this._bindEvents();
+    this._initResizeHandle();
     this._observeLayoutResize();
     this._scheduleTextLayoutPass();
   }
@@ -180,11 +181,17 @@ class ChapterView {
 
             <div class="chapter-sidebar-section">
               <div class="chapter-sidebar-title">回目目录</div>
+              <div class="chapter-quick-jump">
+                <input type="number" id="chapter-quick-jump-input" class="chapter-quick-jump-input" min="1" max="120" placeholder="输入回目号…">
+                <button id="chapter-quick-jump-btn" class="chapter-quick-jump-btn">跳转</button>
+              </div>
               <div class="chapter-directory" id="chapter-directory-content">
                 ${this._renderDirectory(visibleProfiles, currentProfile)}
               </div>
             </div>
           </aside>
+
+          <div class="panel-resize-handle" data-resize-target="chapter-sidebar" aria-hidden="true"></div>
 
           <div class="chapter-main" id="chapter-main-content">
             ${currentProfile ? this._renderMain(currentProfile, visibleProfiles) : this._renderEmptyState()}
@@ -221,16 +228,60 @@ class ChapterView {
       return '<div class="chapter-directory-empty">没有符合条件的回目，请试试别的关键词。</div>';
     }
 
+    const favorites = this._getFavoriteChapters();
+
     return visibleProfiles.map((profile) => {
       const isActive = currentProfile && profile.chapter === currentProfile.chapter;
+      const isFavorite = favorites.has(profile.chapter);
       return `
-        <button class="chapter-directory-item ${isActive ? 'active' : ''}" data-chapter="${profile.chapter}">
-          <span class="chapter-directory-number">第${profile.chapter}回</span>
-          <span class="chapter-directory-title">${this._escapeHtml(profile.titleShort || profile.entry.title || '')}</span>
-          <span class="chapter-directory-meta">${profile.characterCount}人 · ${profile.relatedKnowledge.length}条知识</span>
-        </button>
+        <div class="chapter-directory-item ${isActive ? 'active' : ''}" data-chapter="${profile.chapter}">
+          <button class="chapter-directory-fav ${isFavorite ? 'active' : ''}" data-fav-chapter="${profile.chapter}" title="${isFavorite ? '取消收藏' : '收藏本回'}">${isFavorite ? '★' : '☆'}</button>
+          <button class="chapter-directory-content" data-chapter="${profile.chapter}">
+            <span class="chapter-directory-number">第${profile.chapter}回</span>
+            <span class="chapter-directory-title">${this._escapeHtml(profile.titleShort || profile.entry.title || '')}</span>
+            <span class="chapter-directory-meta">${profile.characterCount}人 · ${profile.relatedKnowledge.length}条知识</span>
+          </button>
+        </div>
       `;
     }).join('');
+  }
+
+  _getFavoriteChapters() {
+    try {
+      const saved = localStorage.getItem('hlm-favorite-chapters');
+      return new Set(saved ? JSON.parse(saved) : []);
+    } catch (e) {
+      return new Set();
+    }
+  }
+
+  _toggleFavoriteChapter(chapter) {
+    const favorites = this._getFavoriteChapters();
+    if (favorites.has(chapter)) {
+      favorites.delete(chapter);
+    } else {
+      favorites.add(chapter);
+    }
+    try {
+      localStorage.setItem('hlm-favorite-chapters', JSON.stringify([...favorites]));
+    } catch (e) {
+      // Ignore storage errors
+    }
+    return favorites.has(chapter);
+  }
+
+  _initResizeHandle() {
+    if (typeof HLMUtils !== 'undefined' && HLMUtils.initPanelResize) {
+      HLMUtils.initPanelResize(this.container, {
+        handleSelector: '.panel-resize-handle',
+        sidebarSelector: '.chapter-sidebar',
+        cssVarName: '--chapter-sidebar-width',
+        defaultWidth: 300,
+        minWidth: 240,
+        maxWidth: 500,
+        storageKey: 'hlm-chapter-sidebar-width'
+      });
+    }
   }
 
   _renderMain(profile, visibleProfiles) {
@@ -254,6 +305,7 @@ class ChapterView {
           <div class="chapter-focus-actions">
             ${previous ? `<button class="chapter-nav-btn" data-jump-chapter="${previous.chapter}">← 上一回</button>` : ''}
             <button class="chapter-nav-btn primary" data-action="open-knowledge" data-chapter="${profile.chapter}">在知识库查看本回</button>
+            <button class="chapter-nav-btn" data-action="toggle-auto-read" title="自动连续阅读">▶ 自动阅读</button>
             ${next ? `<button class="chapter-nav-btn" data-jump-chapter="${next.chapter}">下一回 →</button>` : ''}
           </div>
         </div>
@@ -296,7 +348,9 @@ class ChapterView {
             <div class="chapter-section-title">本回牵动人物</div>
             <div class="chapter-section-subtitle">分成主线人物、有名有姓人物、旁及人物三层；每个人物都标出它为什么会出现在这一回。</div>
           </div>
+          <button class="chapter-text-action" data-action="toggle-chapter-graph">显示人物关系图</button>
         </div>
+        <div id="chapter-mini-graph" class="chapter-mini-graph hidden"></div>
         <div class="chapter-character-filterbar">
           <div class="chapter-filter-block">
             <div class="chapter-filter-block-label">人物层级</div>
@@ -510,6 +564,25 @@ class ChapterView {
       searchInput.addEventListener('input', handleSearch);
     }
 
+    // Quick jump functionality
+    const quickJumpInput = this.container.querySelector('#chapter-quick-jump-input');
+    const quickJumpBtn = this.container.querySelector('#chapter-quick-jump-btn');
+    if (quickJumpInput && quickJumpBtn) {
+      const handleJump = () => {
+        const chapter = parseInt(quickJumpInput.value);
+        if (chapter >= 1 && chapter <= 120) {
+          this.activeChapter = chapter;
+          this._updateContent();
+          this._scrollMainToTop();
+          quickJumpInput.value = '';
+        }
+      };
+      quickJumpBtn.addEventListener('click', handleJump);
+      quickJumpInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') handleJump();
+      });
+    }
+
     this.container.addEventListener('click', (event) => {
       const versionButton = event.target.closest('[data-version]');
       if (versionButton) {
@@ -533,10 +606,20 @@ class ChapterView {
       }
 
       const chapterButton = event.target.closest('[data-chapter]');
-      if (chapterButton && chapterButton.classList.contains('chapter-directory-item')) {
+      if (chapterButton && chapterButton.classList.contains('chapter-directory-content')) {
         this.activeChapter = Number(chapterButton.dataset.chapter);
         this._updateContent();
         this._scrollMainToTop();
+        return;
+      }
+
+      const favButton = event.target.closest('[data-fav-chapter]');
+      if (favButton) {
+        const chapter = Number(favButton.dataset.favChapter);
+        const isNowFavorite = this._toggleFavoriteChapter(chapter);
+        favButton.textContent = isNowFavorite ? '★' : '☆';
+        favButton.classList.toggle('active', isNowFavorite);
+        favButton.title = isNowFavorite ? '取消收藏' : '收藏本回';
         return;
       }
 
@@ -574,6 +657,20 @@ class ChapterView {
           chapter: Number(actionButton.dataset.chapter) || this.activeChapter,
           query: actionButton.dataset.query || ''
         });
+      }
+      if (actionButton.dataset.action === 'toggle-chapter-graph') {
+        const graphContainer = this.container.querySelector('#chapter-mini-graph');
+        if (graphContainer) {
+          const isHidden = graphContainer.classList.contains('hidden');
+          graphContainer.classList.toggle('hidden');
+          actionButton.textContent = isHidden ? '隐藏人物关系图' : '显示人物关系图';
+          if (isHidden) {
+            this._renderMiniGraph(graphContainer);
+          }
+        }
+      }
+      if (actionButton.dataset.action === 'toggle-auto-read') {
+        this._toggleAutoRead(actionButton);
       }
     });
   }
@@ -941,10 +1038,107 @@ class ChapterView {
     });
   }
 
+  _toggleAutoRead(button) {
+    if (this._autoReadTimer) {
+      // Stop auto reading
+      clearInterval(this._autoReadTimer);
+      this._autoReadTimer = null;
+      button.textContent = '▶ 自动阅读';
+      button.classList.remove('active');
+    } else {
+      // Start auto reading
+      button.textContent = '⏸ 停止';
+      button.classList.add('active');
+      this._autoReadTimer = setInterval(() => {
+        const visibleProfiles = this._getVisibleProfiles();
+        const currentIndex = visibleProfiles.findIndex(p => p.chapter === this.activeChapter);
+        const nextProfile = visibleProfiles[currentIndex + 1];
+        if (nextProfile) {
+          this.activeChapter = nextProfile.chapter;
+          this._updateContent();
+          this._scrollMainToTop();
+        } else {
+          // Reached the end, stop
+          this._toggleAutoRead(button);
+        }
+      }, 5000); // 5 seconds per chapter
+    }
+  }
+
+  _renderMiniGraph(container) {
+    if (!container) return;
+    
+    const profile = this.chapterProfileMap.get(this.activeChapter);
+    if (!profile || !profile.characters.length) {
+      container.innerHTML = '<div class="chapter-muted">暂无人物数据</div>';
+      return;
+    }
+
+    // Create a simple force-directed graph
+    const width = container.clientWidth || 600;
+    const height = 300;
+    const nodes = profile.characters.slice(0, 15).map((item, i) => ({
+      id: item.character.id,
+      name: item.character.name,
+      importance: item.character.importance || 1,
+      family: item.character.family || '其他',
+      x: width * (0.2 + 0.6 * Math.random()),
+      y: height * (0.2 + 0.6 * Math.random())
+    }));
+
+    const nodeIds = new Set(nodes.map(n => n.id));
+    const links = [];
+    
+    // Find relationships between nodes
+    if (window.app?.relationships) {
+      window.app.relationships.forEach(rel => {
+        const sourceId = typeof rel.source === 'string' ? rel.source : rel.source.id;
+        const targetId = typeof rel.target === 'string' ? rel.target : rel.target.id;
+        if (nodeIds.has(sourceId) && nodeIds.has(targetId)) {
+          links.push({ source: sourceId, target: targetId, type: rel.type });
+        }
+      });
+    }
+
+    // Simple SVG rendering
+    const familyColors = {
+      '贾家': '#C0392B', '史家': '#2980B9', '王家': '#27AE60',
+      '薛家': '#8E44AD', '林家': '#16A085', '其他': '#E67E22'
+    };
+
+    let svg = `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">`;
+    
+    // Render links
+    links.forEach(link => {
+      const source = nodes.find(n => n.id === link.source);
+      const target = nodes.find(n => n.id === link.target);
+      if (source && target) {
+        svg += `<line x1="${source.x}" y1="${source.y}" x2="${target.x}" y2="${target.y}" 
+                stroke="#C4A882" stroke-width="1.5" stroke-opacity="0.6"/>`;
+      }
+    });
+
+    // Render nodes
+    nodes.forEach(node => {
+      const radius = 8 + node.importance * 4;
+      const color = familyColors[node.family] || familyColors['其他'];
+      svg += `<circle cx="${node.x}" cy="${node.y}" r="${radius}" fill="${color}" stroke="white" stroke-width="2"/>`;
+      svg += `<text x="${node.x}" y="${node.y + radius + 14}" text-anchor="middle" 
+              font-size="11" fill="var(--color-ink)">${node.name}</text>`;
+    });
+
+    svg += '</svg>';
+    container.innerHTML = svg;
+  }
+
   destroy() {
     this._clearDeferredMainRender();
     this._clearTextLayoutWork();
     window.clearTimeout(this._searchTimer);
+    if (this._autoReadTimer) {
+      clearInterval(this._autoReadTimer);
+      this._autoReadTimer = null;
+    }
     if (this._layoutResizeObserver) {
       this._layoutResizeObserver.disconnect();
       this._layoutResizeObserver = null;

@@ -258,6 +258,8 @@ class KnowledgeView {
             </div>
           </aside>
 
+          <div class="panel-resize-handle" data-resize-target="knowledge-sidebar" aria-hidden="true"></div>
+
           <div class="knowledge-main">
             <div class="knowledge-results-head card-surface">
               <div>
@@ -280,6 +282,7 @@ class KnowledgeView {
     this._visibleItems = filteredItems.slice(0, this.displayCount);
 
     if (!this._eventsBound) this._bindEvents();
+    this._initResizeHandle();
     this._observeLayoutResize();
     this._scheduleTextLayoutPass();
   }
@@ -302,7 +305,7 @@ class KnowledgeView {
     this._renderVisibleItems(contentEl, filteredItems, visibleItems, { append: false });
     
     if (subtitleEl) {
-      subtitleEl.textContent = this._buildResultsSubtitle(Math.min(this.displayCount, filteredItems.length), filteredItems.length);
+      subtitleEl.innerHTML = this._buildResultsSubtitle(Math.min(this.displayCount, filteredItems.length), filteredItems.length);
     }
 
     this._updateCategoryActiveState();
@@ -339,6 +342,20 @@ class KnowledgeView {
       characters: relatedCharacters.size,
       chapters: chapters.size
     };
+  }
+
+  _initResizeHandle() {
+    if (typeof HLMUtils !== 'undefined' && HLMUtils.initPanelResize) {
+      HLMUtils.initPanelResize(this.container, {
+        handleSelector: '.panel-resize-handle',
+        sidebarSelector: '.knowledge-sidebar',
+        cssVarName: '--knowledge-sidebar-width',
+        defaultWidth: 280,
+        minWidth: 220,
+        maxWidth: 480,
+        storageKey: 'hlm-knowledge-sidebar-width'
+      });
+    }
   }
 
   _getCategories() {
@@ -541,9 +558,14 @@ class KnowledgeView {
 
         <div class="knowledge-card-footer">
           <div class="knowledge-card-related-events">${(item.relatedEvents || []).slice(0, 3).map((event) => `<span>${this._highlightText(event)}</span>`).join('')}</div>
+          ${this._canSpeak(displayContent) ? `<button class="knowledge-speak-btn" data-speak-text="${this._escapeHtmlAttr(displayContent)}" title="朗读此内容">🔊 朗读</button>` : ''}
         </div>
       </article>
     `;
+  }
+
+  _canSpeak(text) {
+    return (typeof window.edgeTTS !== 'undefined' || typeof speechSynthesis !== 'undefined') && text && text.trim().length > 0;
   }
 
   _bindEvents() {
@@ -613,6 +635,17 @@ class KnowledgeView {
         event.stopPropagation();
         const charId = charButton.dataset.charId;
         if (this.onCharacterClick) this.onCharacterClick(charId);
+        return;
+      }
+
+      const speakButton = event.target.closest('[data-speak-text]');
+      if (speakButton) {
+        event.stopPropagation();
+        // 立即在点击事件的首个同步宏任务中激活音频通路（破除移动端/iOS拦截）
+        if (window.edgeTTS && typeof window.edgeTTS.warmUp === 'function') {
+          window.edgeTTS.warmUp();
+        }
+        this._speakText(speakButton.dataset.speakText, speakButton);
         return;
       }
 
@@ -740,17 +773,30 @@ class KnowledgeView {
     this._renderVisibleItems(contentEl, filteredItems, visibleItems, { append: true, newItems });
 
     if (subtitleEl) {
-      subtitleEl.textContent = this._buildResultsSubtitle(Math.min(this.displayCount, filteredItems.length), filteredItems.length);
+      subtitleEl.innerHTML = this._buildResultsSubtitle(Math.min(this.displayCount, filteredItems.length), filteredItems.length);
     }
 
     this._syncKnowledgeHighlights();
   }
 
   _buildResultsSubtitle(visibleCount, totalCount) {
-    const parts = [`当前显示 ${visibleCount} / ${totalCount} 条`, '支持人物跳转、长文展开与多维检索'];
+    const parts = [`当前显示 ${visibleCount} / ${totalCount} 条`];
+    
     if (this.relatedCharacterIds.size) {
-      parts.push(`已高亮 ${this.relatedCharacterIds.size} 位关联人物，不影响当前筛选`);
+      // 显示关联人物的名称
+      const names = [...this.relatedCharacterIds]
+        .slice(0, 3)
+        .map(id => this.characterMap.get(id)?.name)
+        .filter(Boolean);
+      
+      if (names.length > 0) {
+        const highlightedNames = names.map(name => `<span class="knowledge-highlight-name">${this._escapeHtml(name)}</span>`).join('、');
+        parts.push(`关联人物：${highlightedNames}${this.relatedCharacterIds.size > 3 ? '等' : ''}`);
+      }
     }
+    
+    parts.push('支持人物跳转、长文展开与多维检索');
+    
     return parts.join(' · ');
   }
 
@@ -865,12 +911,53 @@ class KnowledgeView {
       .replace(/'/g, '&#39;');
   }
 
+  _escapeHtmlAttr(str) {
+    return this._escapeHtml(str).replace(/"/g, '&quot;');
+  }
+
   getCharacterKnowledge(characterId) {
     return this.characterKnowledgeMap.get(characterId) || [];
   }
 
   _emitFacetChange() {
     return;
+  }
+
+  async _speakText(text, button) {
+    // 再次点击同一个按钮代表停止播放
+    if (this._currentSpeakButton === button) {
+      this._currentSpeakButton = null;
+      if (window.edgeTTS) {
+        window.edgeTTS.stop();
+      }
+      button.classList.remove('speaking');
+      return;
+    }
+
+    // 暂停先前任何可能在播放的语音
+    if (window.edgeTTS) {
+      window.edgeTTS.stop();
+    }
+
+    // 安全限制文本最长长度，防截断出错
+    const maxTextLength = 400;
+    const speakText = text.length > maxTextLength ? text.substring(0, maxTextLength) + '...' : text;
+
+    this._currentSpeakButton = button;
+    button.classList.add('speaking');
+
+    try {
+      if (window.edgeTTS) {
+        await window.edgeTTS.speak(speakText);
+      }
+    } catch (e) {
+      console.warn('[KnowledgeView] TTS final fallback failed:', e);
+    } finally {
+      if (this._currentSpeakButton === button) {
+        this._currentSpeakButton = null;
+      }
+      button.classList.remove('speaking');
+    }
   }
 
   _buildIndexes() {

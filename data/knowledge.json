@@ -228,7 +228,8 @@
       "正册"
     ],
     "analysis": "秦可卿身世扑朔迷离，与贾珍关系暧昧。\"造衅开端实在宁\"点明宁国府是贾府败亡的祸端起源。",
-    "category": "判词"
+    "category": "判词",
+    "versionNote": "判词出自前八十回（第五回太虚幻境薄命司）"
   },
   {
     "id": "prophecy_xiangling",
@@ -483,50 +484,6 @@
     "category": "对联"
   },
   {
-    "id": "allusion_mushiqianmeng",
-    "type": "allusion",
-    "title": "木石前盟",
-    "content": "西方灵河岸上三生石畔，有绛珠仙草一株，时有赤瑕宫神瑛侍者以甘露灌溉，仙草得以久延修炼成女体。为报灌溉之德，许以一生眼泪偿还。",
-    "chapter": 1,
-    "relatedCharacters": [
-      "jia_baoyu",
-      "lin_daiyu"
-    ],
-    "relatedEvents": [
-      "黛玉还泪"
-    ],
-    "tags": [
-      "典故",
-      "木石前盟",
-      "前世姻缘",
-      "神话"
-    ],
-    "analysis": "\"木石前盟\"是宝黛爱情的神话起源。黛玉是绛珠仙草转世，宝玉是神瑛侍者下凡。黛玉一生以泪偿还前世灌溉之恩，因此她\"泪尽而亡\"是命运的必然。\"木石前盟\"与\"金玉良缘\"构成全书最核心的爱情冲突。",
-    "category": "典故"
-  },
-  {
-    "id": "allusion_jinyuliangyan",
-    "type": "allusion",
-    "title": "金玉良缘",
-    "content": "薛宝钗佩戴金锁，上刻\"不离不弃，芳龄永继\"，恰与宝玉通灵宝玉上的\"莫失莫忘，仙寿恒昌\"相配。人称金玉良缘天作之合。",
-    "chapter": 8,
-    "relatedCharacters": [
-      "jia_baoyu",
-      "xue_baochai",
-      "xue_yima"
-    ],
-    "relatedEvents": [
-      "金锁配宝玉"
-    ],
-    "tags": [
-      "典故",
-      "金玉良缘",
-      "婚姻"
-    ],
-    "analysis": "\"金玉良缘\"是薛家与王夫人一系力推的宝玉婚配方案，以宝钗金锁配宝玉通灵玉为天意依据。但宝玉心系黛玉（木石前盟），两种姻缘的冲突构成全书核心矛盾。最终金玉虽成，却是有缘无分。",
-    "category": "典故"
-  },
-  {
     "id": "scene_daiyu_jinfu",
     "type": "scene",
     "title": "黛玉进贾府",
@@ -573,31 +530,6 @@
     "category": "名场面"
   },
   {
-    "id": "scene_baoyu_aitaida",
-    "type": "scene",
-    "title": "宝玉挨打",
-    "content": "贾政因宝玉结交戏子蒋玉菡、逼死母婢金钏等事大怒，将宝玉按在凳上以大板痛打，几乎致命。王夫人、贾母先后赶来阻拦，宝玉遍体鳞伤。",
-    "chapter": 33,
-    "relatedCharacters": [
-      "jia_baoyu",
-      "jia_mu",
-      "jia_huan",
-      "wang_furen",
-      "jia_zheng"
-    ],
-    "relatedEvents": [
-      "宝玉挨打",
-      "金钏投井"
-    ],
-    "tags": [
-      "名场面",
-      "父子冲突",
-      "宝玉挨打"
-    ],
-    "analysis": "宝玉挨打是全书最剧烈的父子冲突。贾政代表封建正统希望宝玉走仕途经济之路，宝玉却偏偏\"不肖\"。此事由贾环告密引发，也暴露了贾府内部庶嫡之争的暗流。宝玉挨打后黛玉来探望，\"你放心\"三字道尽千言万语。",
-    "category": "名场面"
-  },
-  {
     "id": "scene_qingwen_sibu",
     "type": "scene",
     "title": "晴雯撕扇·病补雀金裘",
@@ -624,7 +556,7 @@
     "id": "scene_liulaolao_jinda",
     "type": "scene",
     "title": "刘姥姥进大观园",
-    "content": "刘姥姥二进荣国府，贾母带她游大观园。凤姐与鸳鸯拿她取笑，她却浑然不觉，插了一头花说\"我也风流了一回\"。席间说\"老刘老刘，食量大似牛\"逗得众人大笑，各有各的笑法。\n\n刘姥姥二进荣国府，被贾母挽留游览大观园。\n在晓翠堂品茶，在紫菱洲行令，\n在缀锦阁看戏，闹出种种笑话。\n展现了贾府奢华，亦讽刺世情。",
+    "content": "刘姥姥二进荣国府，贾母带她游大观园。刘姥姥说笑话逗乐众人，醉卧怡红院，闹出不少笑话。凤姐和鸳鸯拿她取乐，刘姥姥却说\"老刘老刘，食量大如牛，吃一个老母猪不抬头\"，引得众人大笑。",
     "chapter": 39,
     "relatedCharacters": [
       "liu_laolao",
@@ -3372,22 +3304,6 @@
     "category": "典故"
   },
   {
-    "id": "allusion_honglou_meng",
-    "type": "allusion",
-    "title": "红楼梦书名由来",
-    "content": "【书名】红楼梦\n【出处】第五回警幻仙曲\n【原句】\"开辟鸿蒙，谁为情种？都只为风月情浓。趁着这奈何天，伤怀日，寂寥时，试遣愚衷。因此上演出这怀金悼玉的《红楼梦》。\"\n【含义】\"红楼\"指富贵人家的闺阁，\"梦\"指虚幻无常",
-    "chapter": 5,
-    "relatedCharacters": [],
-    "tags": [
-      "书名",
-      "太虚幻境",
-      "怀金悼玉",
-      "主旨"
-    ],
-    "analysis": "\"红楼梦\"书名出自太虚幻境的《红楼梦曲》。\"红楼\"指朱门绣户、富贵人家；\"梦\"暗示全书皆为虚幻。\"怀金悼玉\"既指宝钗（金）黛玉（玉），也泛指对所有薄命女儿的哀悼。书名点出主旨：繁华如梦，终归虚无；对美好事物的追忆与哀悼。",
-    "category": "典故"
-  },
-  {
     "id": "allusion_man_zhi_huangtang",
     "type": "allusion",
     "title": "满纸荒唐言",
@@ -3492,36 +3408,6 @@
     ],
     "analysis": "刘姥姥三进大观园是全书结构的重要线索。一进（第6回）打秋风，见凤姐，写贾府之盛。二进（第39-42回）游园，贾母款待，写贾府之欢，刘姥姥的质朴与贵族生活形成对比。三进（第113回）救巧姐，贾府已败，写贾府之衰，知恩图报。作用：以平民视角看贵族，盛衰对比的见证人，因果报应的体现。",
     "category": "典故"
-  },
-  {
-    "id": "allusion_daixu_zhishuai",
-    "type": "allusion",
-    "title": "黛玉葬花",
-    "content": "黛玉葬花是《红楼梦》中最具象征意义的经典场景之一。黛玉感伤落花，不忍其落入沟渠被玷污，遂收集落花埋入花冢，并作《葬花吟》以抒怀抱。\n\n故事梗概：\n- 黛玉夜访怡红院，被晴雯误拒门外，心生郁结\n- 次日见落花满地，引发身世之感\n- 手把花锄，收花入囊，葬于花冢\n- 吟《葬花吟》，感叹\"花谢花飞飞满天，红消香断有谁怜\"\n\n文学意义：\n葬花不仅是黛玉性格的外化，更是全书的象征性场景。\"质本洁来还洁去\"体现了黛玉对洁净人格的追求，也预示了她悲剧的命运结局。",
-    "chapter": 27,
-    "source": "葬花吟",
-    "relatedCharacters": [
-      "jia_baoyu",
-      "lin_daiyu"
-    ],
-    "tags": [
-      "典故",
-      "黛玉",
-      "葬花",
-      "象征",
-      "悲剧"
-    ],
-    "analysis": "芒种节黛玉葬花，吟出'花谢花飞飞满天，红消香断有谁怜'的千古名句。以花自喻，感叹身世飘零：'质本洁来还洁去，强于污淖陷渠沟'。宝玉听后'痴倒'，痛哭不已。这是全书最动人的场景之一，预示黛玉'泪尽而亡'的悲剧命运。",
-    "category": "典故",
-    "relatedEvents": [
-      "黛玉葬花",
-      "共读西厢"
-    ],
-    "relatedPlaces": [
-      "潇湘馆",
-      "沁芳桥",
-      "花冢"
-    ]
   },
   {
     "id": "allusion_fen_gao",
@@ -3914,7 +3800,7 @@
   },
   {
     "id": "poetry_xijiang",
-    "type": "poetry",
+    "type": "poem",
     "title": "西江月",
     "content": "【词牌】西江月\n【格式】双调五十字，上下片各四句\n【韵脚】平仄韵转换\n【名作】苏轼、辛弃疾",
     "chapter": 3,
@@ -3929,31 +3815,6 @@
     ],
     "analysis": "《西江月》是词牌名，双调五十字。宝玉出场时的《西江月》二词即用此调。词牌规定了字数、句数、平仄、韵脚。宝玉的《西江月》似贬实褒，是理解其性格的重要文本。",
     "category": "诗词"
-  },
-  {
-    "id": "scene_first_dream_journey",
-    "type": "scene",
-    "title": "宝玉梦游太虚幻境",
-    "content": "宝玉梦游太虚幻境，警幻仙姑领其游览，\n见到众多丫鬟，暗示日后情缘。\n听《红楼梦十二支曲》，预示众女儿命运。\n最后与可卿结欢，梦醒恍惚不已。",
-    "chapter": 5,
-    "relatedCharacters": [
-      "jia_baoyu",
-      "qin_keqing"
-    ],
-    "version": "original",
-    "versionNote": "前80回曹雪芹原创内容",
-    "tags": [
-      "情节",
-      "神话",
-      "预言",
-      "宝玉",
-      "太虚幻境"
-    ],
-    "analysis": "太虚幻境是整部《红楼梦》的精神核心之一，通过梦幻形式，预先展示了大观园众女儿的命运。'薄命司'册子揭示人物结局，《红楼梦十二支曲》唱尽群芳悲剧。这次梦境经历是对全书人物命运的总体预告，是理解小说的关键。",
-    "category": "名场面",
-    "relatedEvents": [
-      "神游太虚幻境"
-    ]
   },
   {
     "id": "scene_poetry_osmanthus",
@@ -6706,11 +6567,7 @@
     "version": "continuation",
     "versionNote": "高鹗续书后40回内容",
     "relatedCharacters": [
-      "jia_baoheyin",
-      "feng_jie",
-      "shui_yue",
-      "bai Wenyuan",
-      "jia_qin"
+      "zhenjia_servant"
     ],
     "analysis": "本章重要知识点：甄家：甄家仆人来找贾府；水月庵：水月庵出事；贾芹：贾芹管理小和尚。主要人物动向：贾府管理混乱。"
   },
@@ -7421,7 +7278,8 @@
       "晴雯"
     ],
     "analysis": "晴雯是又副册之首。'霁月难逢，彩云易散'暗喻'晴雯'二字（霁谐音晴，雯指云纹）。'心比天高，身为下贱'写出她的矛盾：心高气傲，却只是丫鬟。'风流灵巧招人怨'点明她被逐的原因。最终'寿夭多因毁谤生'，被王夫人逐出后病亡。",
-    "category": "判词"
+    "category": "判词",
+    "versionNote": "判词出自前八十回（第五回太虚幻境薄命司）"
   },
   {
     "id": "prophecy_xiren",
@@ -7445,7 +7303,8 @@
       "袭人"
     ],
     "analysis": "袭人是又副册人物。'温柔和顺''似桂如兰'写她的性格（花袭人名字即取'花气袭人知骤暖'）。'枉自''空云'暗示她对宝玉的用心终成空。'堪羡优伶有福'指她最终嫁给戏子蒋玉菡（优伶），'谁知公子无缘'指与宝玉无缘。",
-    "category": "判词"
+    "category": "判词",
+    "versionNote": "判词出自前八十回（第五回太虚幻境薄命司）"
   },
   {
     "id": "scene_yuanfei_shengqin",
@@ -7910,34 +7769,6 @@
     ],
     "analysis": "此联为秦可卿卧室中所挂，宋学士秦太虚所书。宝玉在此处入梦游太虚幻境，对联的绮丽香艳与梦境虚幻互为映衬，暗伏秦可卿的风流与早亡。",
     "category": "对联"
-  },
-  {
-    "id": "scene_xifeng_naoningguo",
-    "type": "scene",
-    "title": "凤姐大闹宁国府",
-    "content": "贾琏偷娶尤二姐事发，王熙凤带人杀到宁国府兴师问罪，指桑骂槐，又哭又闹，把尤氏骂得无地自容。表面上是泼醋吃醋，实际是一番精密算计，要把尤二姐置于自己掌控之下。",
-    "chapter": 68,
-    "relatedCharacters": [
-      "wang_xifeng",
-      "jia_lian",
-      "you_erjie"
-    ],
-    "relatedEvents": [
-      "贾琏偷娶尤二姐",
-      "凤姐设局害尤二姐"
-    ],
-    "relatedPlaces": [
-      "宁国府"
-    ],
-    "tags": [
-      "名场面",
-      "凤姐",
-      "权谋",
-      "妒忌",
-      "尤二姐"
-    ],
-    "analysis": "此段是凤姐\"辣手\"本色最淋漓的展现。她在宁国府又哭又骂看似失控，实则句句有目的——既让尤氏无法袒护，又迫使尤二姐\"自愿\"搬入大观园受其控制，最终将其逼死。曹雪芹写凤姐的聪明与狠毒在此合为一体。",
-    "category": "名场面"
   },
   {
     "id": "scene_tanchun_slap",
@@ -9849,5 +9680,1265 @@
     "category": "诗词",
     "version": "original",
     "versionNote": "前80回曹雪芹原创内容"
+  },
+  {
+    "id": "poem_zilingzhou",
+    "type": "poem",
+    "category": "诗词",
+    "title": "紫菱洲歌",
+    "content": "池塘一夜秋风冷，吹散芰荷红玉影。\n蓼花菱叶不胜愁，重露繁霜压纤梗。\n不闻永昼敲棋声，燕泥点点污棋枰。\n古人惜别怜朋友，况我今当手足情！",
+    "chapter": 79,
+    "relatedCharacters": [
+      "jia_baoyu",
+      "jia_yingchun"
+    ],
+    "relatedEvents": [
+      "迎春出嫁",
+      "紫菱洲荒凉"
+    ],
+    "tags": [
+      "诗词",
+      "宝玉",
+      "迎春",
+      "紫菱洲",
+      "惜别"
+    ],
+    "analysis": "宝玉在迎春出嫁后重访紫菱洲，见昔日姐妹嬉戏之地已荒凉破败，触景生情而作此诗。'池塘一夜秋风冷'写景凄凉，'吹散芰荷红玉影'暗喻迎春离去。'不闻永昼敲棋声'忆往日欢乐，'况我今当手足情'直抒胸臆。此诗是宝玉对姐妹离散的第一次真切感受，预示大观园众女儿终将风流云散。",
+    "versionNote": "前80回曹雪芹原创内容"
+  },
+  {
+    "id": "verse_lezhongbei",
+    "type": "verse",
+    "category": "曲词",
+    "title": "乐中悲",
+    "content": "襁褓中，父母叹双亡。\n纵居那绮罗丛，谁知娇养？\n幸生来，英豪阔大宽宏量，\n从未将儿女私情略萦心上。\n好一似，霁月光风耀玉堂。\n厮配得才貌仙郎，博得个地久天长，\n准折得幼年时坎坷形状。\n终久是云散高唐，水涸湘江。\n这是尘寰中消长数应当，何必枉悲伤！",
+    "chapter": 5,
+    "relatedCharacters": [
+      "shi_xiangyun"
+    ],
+    "relatedEvents": [
+      "太虚幻境",
+      "红楼梦十二支曲"
+    ],
+    "tags": [
+      "曲词",
+      "判词",
+      "湘云",
+      "十二支曲"
+    ],
+    "analysis": "此曲咏史湘云命运。'襁褓中父母叹双亡'写其自幼孤苦；'英豪阔大宽宏量'赞其性格豁达；'厮配得才貌仙郎'指嫁卫若兰；'终久是云散高唐，水涸湘江'暗喻好景不长。全曲先扬后抑，湘云虽有豪爽之才，终不免离散之悲。",
+    "versionNote": "前80回曹雪芹原创内容"
+  },
+  {
+    "id": "verse_liuyuqing",
+    "type": "verse",
+    "category": "曲词",
+    "title": "留余庆",
+    "content": "留余庆，留余庆，忽遇恩人；\n幸娘亲，幸娘亲，积得阴功。\n劝人生，济困扶穷，\n休似俺那爱银钱忘骨肉的狠舅奸兄！\n正是乘除加减，上有苍穹。",
+    "chapter": 5,
+    "relatedCharacters": [
+      "jia_qiaojie",
+      "wang_xifeng",
+      "liu_laolao"
+    ],
+    "relatedEvents": [
+      "太虚幻境",
+      "红楼梦十二支曲",
+      "刘姥姥救巧姐"
+    ],
+    "tags": [
+      "曲词",
+      "判词",
+      "巧姐",
+      "十二支曲",
+      "刘姥姥"
+    ],
+    "analysis": "此曲咏贾巧姐命运。'留余庆'指王熙凤曾接济刘姥姥所积阴德；'忽遇恩人'指贾府败落后刘姥姥搭救巧姐；'狠舅奸兄'指王仁等人卖巧姐。全曲主旨为'善有善报'，凤姐一时之善，换来女儿一条生路。'乘除加减，上有苍穹'点明因果报应。",
+    "versionNote": "前80回曹雪芹原创内容"
+  },
+  {
+    "id": "scene_baodie_pu",
+    "type": "scene",
+    "category": "名场面",
+    "title": "宝钗扑蝶",
+    "content": "芒种节，宝钗在滴翠亭追扑一双玉色蝴蝶，无意间听到小红与坠儿私语传帕之事。为避嫌，宝钗故意高声呼唤黛玉，嫁祸于人。",
+    "chapter": 27,
+    "relatedCharacters": [
+      "xue_baochai",
+      "xiaohong",
+      "zhui_er",
+      "lin_daiyu"
+    ],
+    "relatedEvents": [
+      "滴翠亭",
+      "小红传帕"
+    ],
+    "tags": [
+      "名场面",
+      "宝钗",
+      "扑蝶",
+      "滴翠亭"
+    ],
+    "analysis": "宝钗扑蝶是红楼梦最经典的场景之一。蝴蝶象征自由与美好，宝钗追蝶展现她少女天真的一面。但随后的'金蝉脱壳'又暴露其城府深沉。这一场景完美展现了宝钗性格的两面性：既有少女的天真烂漫，又有成人的精明世故。"
+  },
+  {
+    "id": "scene_daiyu_fengao",
+    "type": "scene",
+    "category": "名场面",
+    "title": "黛玉焚稿断痴情",
+    "content": "宝玉被骗娶宝钗之夜，黛玉病重垂危。她将平日所作诗稿和宝玉赠的手帕付之一炬，泪尽而亡。",
+    "chapter": 97,
+    "relatedCharacters": [
+      "lin_daiyu",
+      "jia_baoyu",
+      "zijuan"
+    ],
+    "relatedEvents": [
+      "黛玉之死",
+      "宝玉成婚"
+    ],
+    "tags": [
+      "名场面",
+      "黛玉",
+      "焚稿",
+      "断情",
+      "悲剧"
+    ],
+    "analysis": "黛玉焚稿是全书最悲惨的场景之一。诗稿是她才华与情感的结晶，焚稿象征着她对这段感情的彻底绝望。'焚稿断痴情'与'魂归离恨天'构成黛玉悲剧命运的终章。"
+  },
+  {
+    "id": "scene_baoyu_chujiabei",
+    "type": "scene",
+    "category": "名场面",
+    "title": "宝玉挨打",
+    "content": "贾政因宝玉结交戏子蒋玉菡、逼死金钏等事大怒，将宝玉按在凳上痛打，几乎致命。王夫人、贾母先后赶来阻止。",
+    "chapter": 33,
+    "relatedCharacters": [
+      "jia_baoyu",
+      "jia_zheng",
+      "wang_furen",
+      "jia_mu"
+    ],
+    "relatedEvents": [
+      "宝玉挨打",
+      "蒋玉菡",
+      "金钏"
+    ],
+    "tags": [
+      "名场面",
+      "宝玉",
+      "贾政",
+      "父子冲突"
+    ],
+    "analysis": "宝玉挨打是全书最激烈的冲突场景。表面原因是宝玉结交戏子、逼死金钏，深层原因是贾政对宝玉'不肖'的绝望。这一场景展现了封建父子关系的紧张，也为后续情节发展埋下伏笔。"
+  },
+  {
+    "id": "scene_daiyu_changxiaoxiang",
+    "type": "scene",
+    "category": "名场面",
+    "title": "黛玉潇湘馆听雨",
+    "content": "秋夜，黛玉独坐潇湘馆，听窗外竹声淅沥，雨打芭蕉，感怀身世，写下《秋窗风雨夕》。",
+    "chapter": 45,
+    "relatedCharacters": [
+      "lin_daiyu"
+    ],
+    "relatedEvents": [
+      "秋窗风雨夕"
+    ],
+    "tags": [
+      "名场面",
+      "黛玉",
+      "潇湘馆",
+      "秋雨",
+      "诗词"
+    ],
+    "analysis": "黛玉听雨是全书最诗意的场景之一。竹声、雨声与黛玉的心境融为一体，展现其多愁善感的性格。'秋花惨淡秋草黄，耿耿秋灯秋夜长'将秋意与黛玉的孤独完美结合。"
+  },
+  {
+    "id": "scene_baoyu_mengyou_taixu",
+    "type": "scene",
+    "category": "名场面",
+    "title": "宝玉梦游太虚幻境",
+    "content": "宝玉在秦可卿房中午睡，梦游太虚幻境，翻阅金陵十二钗判词，听闻红楼梦十二支曲，与可卿成亲。",
+    "chapter": 5,
+    "relatedCharacters": [
+      "jia_baoyu",
+      "qin_keqing"
+    ],
+    "relatedEvents": [
+      "太虚幻境",
+      "判词",
+      "十二支曲"
+    ],
+    "tags": [
+      "名场面",
+      "宝玉",
+      "太虚幻境",
+      "判词",
+      "梦"
+    ],
+    "analysis": "宝玉梦游太虚幻境是全书最重要的预叙场景。通过判词和曲词，预示了金陵十二钗的命运结局。'假作真时真亦假，无为有处有还无'点明全书主旨。"
+  },
+  {
+    "id": "scene_tanchun_zhangjia",
+    "type": "scene",
+    "category": "名场面",
+    "title": "探春理家",
+    "content": "王熙凤病倒，探春受命理家。她精明果断，改革弊弊，兴利除弊，展现出超凡的管理才能。",
+    "chapter": 55,
+    "relatedCharacters": [
+      "jia_tanchun",
+      "wang_xifeng",
+      "li_wan"
+    ],
+    "relatedEvents": [
+      "探春理家",
+      "大观园改革"
+    ],
+    "tags": [
+      "名场面",
+      "探春",
+      "理家",
+      "改革"
+    ],
+    "analysis": "探春理家展现了她的管理才能和改革精神。她提出的'承包制'改革，是红楼梦中少见的积极向上的场景。但探春的悲剧在于：她有才能却受制于庶出身份，最终只能远嫁海疆。"
+  },
+  {
+    "id": "scene_yuanchun_shengqin",
+    "type": "scene",
+    "category": "名场面",
+    "title": "元妃省亲",
+    "content": "元春封妃后回贾府省亲，排场极大，烈火烹油。元春与家人相见，泪流满面，感叹'见不得人的去处'。",
+    "chapter": 18,
+    "relatedCharacters": [
+      "jia_yuanchun",
+      "jia_mu",
+      "jia_zheng",
+      "wang_furen"
+    ],
+    "relatedEvents": [
+      "元妃省亲",
+      "大观园建成"
+    ],
+    "tags": [
+      "名场面",
+      "元春",
+      "省亲",
+      "奢华",
+      "悲剧"
+    ],
+    "analysis": "元妃省亲是全书最奢华的场景，也是贾府鼎盛的标志。但元春的眼泪和'见不得人的去处'暗示了宫中生活的痛苦。'烈火烹油，鲜花着锦'的背后，是盛极必衰的预兆。"
+  },
+  {
+    "id": "scene_qingwen_buque",
+    "type": "scene",
+    "category": "名场面",
+    "title": "晴雯撕扇",
+    "content": "宝玉因晴雯跌折扇子而生气，晴雯不服，宝玉便让她撕扇子玩。晴雯千金一笑，撕了宝玉和麝月的扇子。",
+    "chapter": 31,
+    "relatedCharacters": [
+      "qingwen",
+      "jia_baoyu",
+      "sheyue"
+    ],
+    "relatedEvents": [
+      "晴雯撕扇"
+    ],
+    "tags": [
+      "名场面",
+      "晴雯",
+      "宝玉",
+      "扇子",
+      "性情"
+    ],
+    "analysis": "晴雯撕扇展现了她率真任性的性格。'千金一笑'的典故被赋予新意：宝玉不惜让晴雯撕扇取乐，体现了他对女儿的尊重和爱护。这一场景也暗示了晴雯'心比天高'的性格悲剧。"
+  },
+  {
+    "id": "scene_xifeng_ningguo",
+    "type": "scene",
+    "category": "名场面",
+    "title": "凤姐大闹宁国府",
+    "content": "凤姐得知贾琏偷娶尤二姐，表面笑脸相迎将其赚入大观园，暗地里施展借剑杀人之计，大闹宁国府。",
+    "chapter": 68,
+    "relatedCharacters": [
+      "wang_xifeng",
+      "jia_lian",
+      "you_erjie",
+      "jia_zhen"
+    ],
+    "relatedEvents": [
+      "凤姐大闹宁国府",
+      "尤二姐之死"
+    ],
+    "tags": [
+      "名场面",
+      "凤姐",
+      "尤二姐",
+      "借刀杀人"
+    ],
+    "analysis": "凤姐大闹宁国府展现了她的心狠手辣和精明算计。她表面和善，暗地里步步紧逼，最终逼死尤二姐。这一场景深刻揭示了封建大家庭中妻妾争宠的残酷现实。"
+  },
+  {
+    "id": "scene_daiyu_zanghua",
+    "type": "scene",
+    "category": "名场面",
+    "title": "黛玉葬花",
+    "content": "芒种节，黛玉独往花冢葬花，吟出'花谢花飞花满天，红消香断有谁怜'的千古名篇《葬花吟》。宝玉听后痴倒痛哭。",
+    "chapter": 27,
+    "relatedCharacters": [
+      "lin_daiyu",
+      "jia_baoyu"
+    ],
+    "relatedEvents": [
+      "葬花吟"
+    ],
+    "tags": [
+      "名场面",
+      "黛玉",
+      "葬花",
+      "诗词",
+      "悲剧"
+    ],
+    "analysis": "黛玉葬花是全书最经典的场景之一。以花自喻，感叹身世飘零：'质本洁来还洁去，强于污淖陷渠沟'。宝玉偷听后'痴倒'，痛哭不已，展现了宝黛心灵的深度共鸣。"
+  },
+  {
+    "id": "poem_chunxiao",
+    "type": "poem",
+    "category": "诗词",
+    "title": "春晓（改作）",
+    "content": "春眠不觉晓，处处闻啼鸟。夜来风雨声，花落知多少。",
+    "chapter": 23,
+    "relatedCharacters": [
+      "jia_baoyu"
+    ],
+    "relatedEvents": [
+      "共读西厢"
+    ],
+    "tags": [
+      "诗词",
+      "宝玉",
+      "春晓"
+    ],
+    "analysis": "此为宝玉在大观园中与黛玉共读《西厢记》时引用的诗句，展现了宝玉的文学素养和对美好事物的敏感。"
+  },
+  {
+    "id": "poem_chuntian_liuxu",
+    "type": "poem",
+    "category": "诗词",
+    "title": "南柯子·柳絮",
+    "content": "粉堕百花洲，香残燕子楼。一团团逐对成毬。\n飘泊亦如人命薄，空缱绻，说风流。\n\n草木也知愁，韶华竟白头。叹今生谁舍谁收？\n嫁与东风春不管，凭尔去，忍淹留！",
+    "chapter": 70,
+    "relatedCharacters": [
+      "lin_daiyu"
+    ],
+    "relatedEvents": [
+      "柳絮词"
+    ],
+    "tags": [
+      "诗词",
+      "黛玉",
+      "柳絮",
+      "命运"
+    ],
+    "analysis": "黛玉的柳絮词以柳絮自喻，感叹身世飘零。'嫁与东风春不管'暗示了她无法掌控自己命运的无奈。'凭尔去，忍淹留'道出了她对离别的不舍。"
+  },
+  {
+    "id": "poem_baochai_liuxu",
+    "type": "poem",
+    "category": "诗词",
+    "title": "临江仙·柳絮",
+    "content": "白玉堂前春解舞，东风卷得均匀。蜂围蝶阵乱纷纷。几曾随逝水？岂必委芳尘？\n\n万缕千丝终不改，任他随聚随分。韶华休笑本无根。好风凭借力，送我上青云！",
+    "chapter": 70,
+    "relatedCharacters": [
+      "xue_baochai"
+    ],
+    "relatedEvents": [
+      "柳絮词"
+    ],
+    "tags": [
+      "诗词",
+      "宝钗",
+      "柳絮",
+      "志向"
+    ],
+    "analysis": "宝钗的柳絮词与众不同，她不写柳絮的飘零，而写柳絮的上升。'好风凭借力，送我上青云'展现了她的积极进取和远大志向。这首词也暗示了她最终成为宝二奶奶的命运。"
+  },
+  {
+    "id": "poem_jia_yucun_zhongqiu",
+    "type": "poem",
+    "category": "诗词",
+    "title": "中秋对月口占一绝",
+    "content": "时逢三五便团圆，满把晴光护玉栏。\n天上一轮才捧出，人间万姓仰头看。",
+    "chapter": 1,
+    "relatedCharacters": [
+      "jia_yucun"
+    ],
+    "relatedEvents": [
+      "贾雨村吟诗"
+    ],
+    "tags": [
+      "诗词",
+      "贾雨村",
+      "中秋",
+      "咏月"
+    ],
+    "analysis": "贾雨村落魄时在甄士隐家中秋赏月所作。表面写中秋月圆，实则借月抒怀：'才捧出'暗寓自己将来出人头地，'万姓仰头看'流露出对功名的渴望。此诗展现了贾雨村的才情与野心。"
+  },
+  {
+    "id": "poem_zhen_shiyin_haole",
+    "type": "poem",
+    "category": "诗词",
+    "title": "好了歌注",
+    "content": "陋室空堂，当年笏满床；\n衰草枯杨，曾为歌舞场。\n蛛丝儿结满雕梁，绿纱今又糊在蓬窗上。\n说什么脂正浓、粉正香，如何两鬓又成霜？\n昨日黄土陇头送白骨，今宵红灯帐底卧鸳鸯。\n金满箱，银满箱，展眼乞丐人皆谤。\n正叹他人命不长，那知自己归来丧！\n训有方，保不定日后作强梁。\n择膏粱，谁承望流落在烟花巷！\n因嫌纱帽小，致使锁枷扛；\n昨怜破袄寒，今嫌紫蟒长。\n乱烘烘你方唱罢我登场，反认他乡是故乡。\n甚荒唐，到头来都是为他人作嫁衣裳！",
+    "chapter": 1,
+    "relatedCharacters": [
+      "zhen_shiyin"
+    ],
+    "relatedEvents": [
+      "甄士隐注解好了歌"
+    ],
+    "tags": [
+      "诗词",
+      "甄士隐",
+      "好了歌",
+      "人生无常"
+    ],
+    "analysis": "甄士隐听《好了歌》后所作的注解，预言全书主要人物结局。'笏满床'指史家，'歌舞场'暗示贾府败落，'乞丐'写宝玉，'烟花巷'指巧姐。末句'为他人作嫁衣裳'点出全书主题。"
+  },
+  {
+    "id": "poem_baoyu_niren",
+    "type": "poem",
+    "category": "诗词",
+    "title": "咏白海棠",
+    "content": "半卷湘帘半掩门，碾冰为土玉为盆。\n偷来梨蕊三分白，借得梅花一缕魂。\n月窟仙人缝缟袂，秋闺怨女拭啼痕。\n娇羞默默同谁诉？倦倚西风夜已昏。",
+    "chapter": 37,
+    "relatedCharacters": [
+      "lin_daiyu"
+    ],
+    "relatedEvents": [
+      "海棠诗社"
+    ],
+    "tags": [
+      "诗词",
+      "黛玉",
+      "海棠",
+      "诗社"
+    ],
+    "analysis": "黛玉的咏白海棠诗，以海棠自喻。'偷来梨蕊三分白，借得梅花一缕魂'写海棠的清雅高洁。'娇羞默默同谁诉'道出了黛玉的孤独和无人理解的苦闷。"
+  },
+  {
+    "id": "poem_baochai_juhua",
+    "type": "poem",
+    "category": "诗词",
+    "title": "忆菊",
+    "content": "怅望西风抱闷思，蓼红苇白断肠时。\n空篱旧圃秋无迹，瘦月清霜梦有知。\n念念心随归雁远，寥寥坐听晚砧迟。\n谁怜我为黄花病，慰语重阳会有期。",
+    "chapter": 38,
+    "relatedCharacters": [
+      "xue_baochai"
+    ],
+    "relatedEvents": [
+      "菊花诗社"
+    ],
+    "tags": [
+      "诗词",
+      "宝钗",
+      "菊花",
+      "诗社"
+    ],
+    "analysis": "宝钗的忆菊诗，以菊花寄托对远方亲人的思念。'念念心随归雁远'写出了她对远方兄长薛蟠的牵挂。全诗意境深远，情感含蓄，符合宝钗内敛的性格。"
+  },
+  {
+    "id": "poem_daiyu_juhua",
+    "type": "poem",
+    "category": "诗词",
+    "title": "咏菊",
+    "content": "无赖诗魔昏晓侵，绕篱欹石自沉音。\n毫端蕴秀临霜写，口角噙香对月吟。\n满纸自怜题素怨，片言谁解诉秋心？\n一从陶令评章后，千古高风说到今。",
+    "chapter": 38,
+    "relatedCharacters": [
+      "lin_daiyu"
+    ],
+    "relatedEvents": [
+      "菊花诗社"
+    ],
+    "tags": [
+      "诗词",
+      "黛玉",
+      "菊花",
+      "诗社"
+    ],
+    "analysis": "黛玉的咏菊诗，以菊花自喻高洁。'满纸自怜题素怨，片言谁解诉秋心'道出了她内心的孤独和无人理解的苦闷。'一从陶令评章后，千古高风说到今'以陶渊明自比，展现了她的孤高自许。"
+  },
+  {
+    "id": "allusion_jin_yu_liang_yuan",
+    "type": "allusion",
+    "category": "典故",
+    "title": "金玉良缘",
+    "content": "金锁配宝玉的婚姻安排，由薛姨妈和王夫人推动。宝钗金锁上刻'不离不弃，芳龄永继'，与宝玉通灵宝玉上的'莫失莫忘，仙寿恒昌'相配。",
+    "chapter": 8,
+    "relatedCharacters": [
+      "xue_baochai",
+      "jia_baoyu",
+      "wang_furen"
+    ],
+    "relatedEvents": [
+      "金玉良缘"
+    ],
+    "tags": [
+      "典故",
+      "金玉良缘",
+      "宝钗",
+      "宝玉",
+      "婚姻"
+    ],
+    "analysis": "'金玉良缘'是红楼梦中与'木石前盟'对立的婚姻观念。它代表了家族利益、社会地位的考量，与宝玉黛玉基于真情的'木石前盟'形成鲜明对比。金玉良缘最终得以实现，但宝玉心中始终只有黛玉。"
+  },
+  {
+    "id": "allusion_mu_shi_qian_meng",
+    "type": "allusion",
+    "category": "典故",
+    "title": "木石前盟",
+    "content": "绛珠仙草受神瑛侍者灌溉之恩，愿以一生眼泪偿还。黛玉是绛珠仙草转世，宝玉是神瑛侍者下凡。",
+    "chapter": 1,
+    "relatedCharacters": [
+      "lin_daiyu",
+      "jia_baoyu"
+    ],
+    "relatedEvents": [
+      "还泪之说"
+    ],
+    "tags": [
+      "典故",
+      "木石前盟",
+      "黛玉",
+      "宝玉",
+      "前世"
+    ],
+    "analysis": "'木石前盟'是红楼梦爱情主题的神话根基。绛珠仙草（黛玉）受神瑛侍者（宝玉）灌溉之恩，愿以一生眼泪偿还。黛玉的多愁善感、爱哭，都是'还泪'的宿命体现。"
+  },
+  {
+    "id": "allusion_feng_yue_bao_jian",
+    "type": "allusion",
+    "category": "典故",
+    "title": "风月宝鉴",
+    "content": "跛足道人赠贾瑞风月宝鉴，正面是凤姐，背面是骷髅。贾瑞照正面而死，点明'色即是空'的道理。",
+    "chapter": 12,
+    "relatedCharacters": [
+      "jia_rui",
+      "bo_zu_daoren"
+    ],
+    "relatedEvents": [
+      "贾瑞照风月宝鉴"
+    ],
+    "tags": [
+      "典故",
+      "风月宝鉴",
+      "贾瑞",
+      "色空"
+    ],
+    "analysis": "'风月宝鉴'是红楼梦中最重要的象征物之一。正面是美人（色），背面是骷髅（空），点明'色即是空'的道理。贾瑞照正面而死，暗示世人执迷于色相而不知觉悟。"
+  },
+  {
+    "id": "allusion_tong_ling_bao_yu",
+    "type": "allusion",
+    "category": "典故",
+    "title": "通灵宝玉",
+    "content": "女娲补天剩下的一块顽石，经一僧一道点化，随神瑛侍者下凡，成为宝玉出生时衔在口中的玉。",
+    "chapter": 1,
+    "relatedCharacters": [
+      "jia_baoyu"
+    ],
+    "relatedEvents": [
+      "衔玉而生"
+    ],
+    "tags": [
+      "典故",
+      "通灵宝玉",
+      "宝玉",
+      "女娲补天"
+    ],
+    "analysis": "通灵宝玉是全书最重要的象征物。它既是宝玉的'命根子'，也是他前世作为顽石的物证。'无才补天'暗示宝玉无法融入世俗社会，只能做一块'多余'的石头。"
+  },
+  {
+    "id": "allusion_da_guan_yuan",
+    "type": "allusion",
+    "category": "典故",
+    "title": "大观园",
+    "content": "为元妃省亲而建的园林，后成为宝玉和众姐妹的居所。大观园象征着青春、美好和理想世界。",
+    "chapter": 16,
+    "relatedCharacters": [
+      "jia_baoyu",
+      "lin_daiyu",
+      "xue_baochai"
+    ],
+    "relatedEvents": [
+      "元妃省亲",
+      "大观园建成"
+    ],
+    "tags": [
+      "典故",
+      "大观园",
+      "园林",
+      "青春"
+    ],
+    "analysis": "大观园是红楼梦中最重要的空间意象。它象征着青春、美好和理想世界，与园外的世俗世界形成对比。众姐妹在园中吟诗作赋、结社雅集，度过了人生最美好的时光。但大观园最终也逃不过衰败的命运。"
+  },
+  {
+    "id": "allusion_hong_lou_meng",
+    "type": "allusion",
+    "category": "典故",
+    "title": "红楼梦书名由来",
+    "content": "红楼梦又名石头记、情僧录、风月宝鉴、金陵十二钗。'红楼'指富贵人家，'梦'指人生如梦。",
+    "chapter": 1,
+    "relatedCharacters": [],
+    "relatedEvents": [],
+    "tags": [
+      "典故",
+      "书名",
+      "红楼梦"
+    ],
+    "analysis": "'红楼梦'书名有多重含义：'红楼'指富贵人家的华美楼阁，'梦'指人生如梦、繁华如梦。全书通过贾府的兴衰，展现了'到头一梦，万境归空'的主旨。"
+  },
+  {
+    "id": "allusion_jin_ling_shi_er_chai",
+    "type": "allusion",
+    "category": "典故",
+    "title": "金陵十二钗",
+    "content": "金陵省最优秀的十二位女子，分为正册、副册、又副册。正册包括黛玉、宝钗、元春、探春、湘云、妙玉、迎春、惜春、凤姐、巧姐、李纨、可卿。",
+    "chapter": 5,
+    "relatedCharacters": [
+      "lin_daiyu",
+      "xue_baochai",
+      "jia_yuanchun"
+    ],
+    "relatedEvents": [
+      "太虚幻境",
+      "判词"
+    ],
+    "tags": [
+      "典故",
+      "金陵十二钗",
+      "判词",
+      "命运"
+    ],
+    "analysis": "'金陵十二钗'是红楼梦中最重要的女性群体。她们的命运通过判词和曲词得以预示，构成了全书的悲剧主题。'千红一哭，万艳同悲'，十二钗的命运是封建社会女性悲剧的缩影。"
+  },
+  {
+    "id": "allusion_qian_hong_yi_ku",
+    "type": "allusion",
+    "category": "典故",
+    "title": "千红一哭，万艳同悲",
+    "content": "太虚幻境中的茶名和酒名，暗示众女儿的悲剧命运。'千红一窟'谐音'千红一哭'，'万艳同杯'谐音'万艳同悲'。",
+    "chapter": 5,
+    "relatedCharacters": [
+      "jia_baoyu"
+    ],
+    "relatedEvents": [
+      "太虚幻境"
+    ],
+    "tags": [
+      "典故",
+      "千红一哭",
+      "万艳同悲",
+      "悲剧"
+    ],
+    "analysis": "'千红一哭，万艳同悲'是红楼梦悲剧主题的高度概括。通过谐音手法，暗示了众女儿的悲惨命运。这也是宝玉在太虚幻境中领悟到的人生真谛。"
+  },
+  {
+    "id": "allusion_jia_fu_si_da_jia",
+    "type": "allusion",
+    "category": "典故",
+    "title": "贾、史、王、薛四大家族",
+    "content": "金陵省最显赫的四大家族，彼此联姻，互相扶持。'贾不假，白玉为堂金作马；阿房宫，三百里，住不下金陵一个史；东海缺少白玉床，龙王来请金陵王；丰年好大雪，珍珠如土金如铁。'",
+    "chapter": 4,
+    "relatedCharacters": [
+      "jia_mu",
+      "shi_xiangyun",
+      "wang_xifeng",
+      "xue_baochai"
+    ],
+    "relatedEvents": [
+      "护官符"
+    ],
+    "tags": [
+      "典故",
+      "四大家族",
+      "贾史王薛",
+      "护官符"
+    ],
+    "analysis": "四大家族是红楼梦的社会背景。他们通过联姻结成利益共同体，掌握着巨大的权力和财富。但随着故事发展，四大家族逐渐衰败，象征着封建社会的没落。"
+  },
+  {
+    "id": "allusion_hao_le_ge",
+    "type": "allusion",
+    "category": "典故",
+    "title": "好了歌",
+    "content": "跛足道人所唱，点明'好便是了，了便是好'的道理。歌中批判世人对功名、金银、姣妻、儿孙的执着。",
+    "chapter": 1,
+    "relatedCharacters": [
+      "zhen_shiyin",
+      "bo_zu_daoren"
+    ],
+    "relatedEvents": [
+      "甄士隐悟道"
+    ],
+    "tags": [
+      "典故",
+      "好了歌",
+      "甄士隐",
+      "悟道"
+    ],
+    "analysis": "'好了歌'是红楼梦的哲学纲领。'好'与'了'谐音，'好便是了，了便是好'，揭示了人生的真谛：世间所谓'好'（功名、金银、姣妻、儿孙），终将'了'（结束、消散）。甄士隐听后顿悟，随道人出家。"
+  },
+  {
+    "id": "architecture_rong_guo_fu",
+    "type": "architecture",
+    "category": "建筑",
+    "title": "荣国府",
+    "content": "贾政一脉的府邸，位于宁荣街西。荣国府是红楼梦故事的主要发生地，包括荣禧堂、贾母院、王夫人院等。",
+    "chapter": 3,
+    "relatedCharacters": [
+      "jia_mu",
+      "jia_zheng",
+      "wang_furen"
+    ],
+    "relatedEvents": [
+      "黛玉进贾府"
+    ],
+    "tags": [
+      "建筑",
+      "荣国府",
+      "贾府"
+    ],
+    "analysis": "荣国府是红楼梦的核心空间。它不仅是贾政一脉的居所，也是全书故事的主要发生地。荣禧堂的对联'座上珠玑昭日月，堂前黼黻焕烟霞'，展现了贾府的显赫地位。"
+  },
+  {
+    "id": "architecture_ning_guo_fu",
+    "type": "architecture",
+    "category": "建筑",
+    "title": "宁国府",
+    "content": "贾珍一脉的府邸，位于宁荣街东。宁国府是贾府的另一支，以贾珍、贾蓉为主。",
+    "chapter": 3,
+    "relatedCharacters": [
+      "jia_zhen",
+      "jia_rong",
+      "qin_keqing"
+    ],
+    "relatedEvents": [
+      "秦可卿丧礼"
+    ],
+    "tags": [
+      "建筑",
+      "宁国府",
+      "贾府"
+    ],
+    "analysis": "宁国府是贾府的另一支，虽然不如荣国府显赫，但也是四大家族之一。秦可卿的丧礼在宁国府举行，展现了贾府的奢华。"
+  },
+  {
+    "id": "architecture_yihong_yuan",
+    "type": "architecture",
+    "category": "建筑",
+    "title": "怡红院",
+    "content": "宝玉在大观园中的居所，位于园中东南。怡红院是宝玉与姐妹们聚会的主要场所。",
+    "chapter": 17,
+    "relatedCharacters": [
+      "jia_baoyu",
+      "xiren",
+      "qingwen"
+    ],
+    "relatedEvents": [
+      "宝玉入住大观园"
+    ],
+    "tags": [
+      "建筑",
+      "怡红院",
+      "宝玉",
+      "大观园"
+    ],
+    "analysis": "怡红院是宝玉在大观园中的居所，象征着他的富贵和地位。院内陈设奢华，有'怡红快绿'匾额。宝玉在此与姐妹们吟诗作赋，度过了人生最美好的时光。"
+  },
+  {
+    "id": "architecture_xiaoxiang_guan",
+    "type": "architecture",
+    "category": "建筑",
+    "title": "潇湘馆",
+    "content": "黛玉在大观园中的居所，以竹子闻名。潇湘馆象征黛玉的清高和孤傲。",
+    "chapter": 17,
+    "relatedCharacters": [
+      "lin_daiyu",
+      "zijuan"
+    ],
+    "relatedEvents": [
+      "黛玉入住大观园"
+    ],
+    "tags": [
+      "建筑",
+      "潇湘馆",
+      "黛玉",
+      "竹子"
+    ],
+    "analysis": "潇湘馆以竹子闻名，'凤尾森森，龙吟细细'。竹子象征清高、孤傲，与黛玉的性格相呼应。黛玉在此吟诗作赋，度过了人生最美好的时光。"
+  },
+  {
+    "id": "architecture_hengwu_yuan",
+    "type": "architecture",
+    "category": "建筑",
+    "title": "蘅芜苑",
+    "content": "宝钗在大观园中的居所，以奇草异卉闻名。蘅芜院象征宝钗的端庄和稳重。",
+    "chapter": 17,
+    "relatedCharacters": [
+      "xue_baochai"
+    ],
+    "relatedEvents": [
+      "宝钗入住大观园"
+    ],
+    "tags": [
+      "建筑",
+      "蘅芜苑",
+      "宝钗",
+      "植物"
+    ],
+    "analysis": "蘅芜苑以奇草异卉闻名，'奇草仙藤愈冷愈苍翠'。院内陈设朴素，'雪洞一般'，与宝钗的性格相呼应。宝钗在此端庄稳重地生活，与黛玉的潇湘馆形成对比。"
+  },
+  {
+    "id": "architecture_dao_xiang_cun",
+    "type": "architecture",
+    "category": "建筑",
+    "title": "稻香村",
+    "content": "李纨在大观园中的居所，以田园风光闻名。稻香村象征李纨的淡泊和宁静。",
+    "chapter": 17,
+    "relatedCharacters": [
+      "li_wan",
+      "jia_lan"
+    ],
+    "relatedEvents": [
+      "李纨入住大观园"
+    ],
+    "tags": [
+      "建筑",
+      "稻香村",
+      "李纨",
+      "田园"
+    ],
+    "analysis": "稻香村以田园风光闻名，'有几百株杏花，如喷火蒸霞一般'。院内陈设简朴，'纸窗木榻'，与李纨的性格相呼应。李纨在此淡泊宁静地生活，抚养贾兰。"
+  },
+  {
+    "id": "architecture_mi_yu_an",
+    "type": "architecture",
+    "category": "建筑",
+    "title": "栊翠庵",
+    "content": "妙玉在大观园中的居所，是一座尼姑庵。栊翠庵象征妙玉的清高和孤傲。",
+    "chapter": 17,
+    "relatedCharacters": [
+      "miaoyu"
+    ],
+    "relatedEvents": [
+      "妙玉入住大观园"
+    ],
+    "tags": [
+      "建筑",
+      "栊翠庵",
+      "妙玉",
+      "尼姑庵"
+    ],
+    "analysis": "栊翠庵是妙玉在大观园中的居所，是一座尼姑庵。妙玉在此清修，品茶论道，展现了她的清高和孤傲。"
+  },
+  {
+    "id": "architecture_qiu_shuang_zhai",
+    "type": "architecture",
+    "category": "建筑",
+    "title": "秋爽斋",
+    "content": "探春在大观园中的居所，以爽朗明快闻名。秋爽斋象征探春的精明和果断。",
+    "chapter": 17,
+    "relatedCharacters": [
+      "jia_tanchun"
+    ],
+    "relatedEvents": [
+      "探春入住大观园"
+    ],
+    "tags": [
+      "建筑",
+      "秋爽斋",
+      "探春"
+    ],
+    "analysis": "秋爽斋以爽朗明快闻名，'三间房子并不隔断'。院内陈设简洁大方，与探春的性格相呼应。探春在此理家改革，展现了她的管理才能。"
+  },
+  {
+    "id": "architecture_nuan_xiang_wu",
+    "type": "architecture",
+    "category": "建筑",
+    "title": "暖香坞",
+    "content": "惜春在大观园中的居所，以温暖宁静闻名。暖香坞象征惜春的内向和孤独。",
+    "chapter": 17,
+    "relatedCharacters": [
+      "jia_xichun"
+    ],
+    "relatedEvents": [
+      "惜春入住大观园"
+    ],
+    "tags": [
+      "建筑",
+      "暖香坞",
+      "惜春"
+    ],
+    "analysis": "暖香坞以温暖宁静闻名，'四面墙皆是书画'。惜春在此作画，展现了她的艺术才华。惜春最终出家为尼，暖香坞也成了她孤独的见证。"
+  },
+  {
+    "id": "architecture_lv_yun_xuan",
+    "type": "architecture",
+    "category": "建筑",
+    "title": "紫菱洲",
+    "content": "迎春在大观园中的居所，以菱角闻名。紫菱洲象征迎春的懦弱和无助。",
+    "chapter": 17,
+    "relatedCharacters": [
+      "jia_yingchun"
+    ],
+    "relatedEvents": [
+      "迎春入住大观园"
+    ],
+    "tags": [
+      "建筑",
+      "紫菱洲",
+      "迎春"
+    ],
+    "analysis": "紫菱洲以菱角闻名，'池中菱荷盛开'。迎春在此懦弱地生活，最终被孙绍祖虐待致死。宝玉重访紫菱洲时，写下了《紫菱洲歌》悼念迎春。"
+  },
+  {
+    "id": "custom_ke_ju",
+    "type": "custom",
+    "category": "礼俗制度",
+    "title": "科举制度",
+    "content": "明清科举制度分为童试、乡试、会试、殿试四级。贾政期望宝玉走科举仕途，但宝玉厌恶科举。",
+    "chapter": 9,
+    "relatedCharacters": [
+      "jia_baoyu",
+      "jia_zheng"
+    ],
+    "relatedEvents": [
+      "宝玉厌学"
+    ],
+    "tags": [
+      "礼俗",
+      "科举",
+      "宝玉",
+      "贾政"
+    ],
+    "analysis": "科举制度是红楼梦中重要的社会背景。贾政期望宝玉走科举仕途，但宝玉厌恶科举，认为是'饵名钓禄之阶'。这种父子冲突是全书的重要主题之一。"
+  },
+  {
+    "id": "custom_ji_du_shu",
+    "type": "custom",
+    "category": "礼俗制度",
+    "title": "嫡庶之分",
+    "content": "古代婚姻制度中，正妻所生为嫡，妾所生为庶。嫡子地位高于庶子，继承权优先。",
+    "chapter": 55,
+    "relatedCharacters": [
+      "jia_tanchun",
+      "jia_huan",
+      "zhao_yiniang"
+    ],
+    "relatedEvents": [
+      "探春理家"
+    ],
+    "tags": [
+      "礼俗",
+      "嫡庶",
+      "探春",
+      "赵姨娘"
+    ],
+    "analysis": "嫡庶之分是红楼梦中重要的社会制度。探春虽有才能，但因庶出身份而受限制。她理家时拒绝为赵姨娘破例，正是对这一制度的无奈接受。"
+  },
+  {
+    "id": "custom_hun_yin",
+    "type": "custom",
+    "category": "礼俗制度",
+    "title": "古代婚姻制度",
+    "content": "古代婚姻讲究'父母之命，媒妁之言'。宝玉的婚姻由贾母、王夫人决定，宝玉本人没有选择权。",
+    "chapter": 97,
+    "relatedCharacters": [
+      "jia_baoyu",
+      "lin_daiyu",
+      "xue_baochai"
+    ],
+    "relatedEvents": [
+      "宝玉成婚"
+    ],
+    "tags": [
+      "礼俗",
+      "婚姻",
+      "宝玉",
+      "黛玉",
+      "宝钗"
+    ],
+    "analysis": "古代婚姻制度是红楼梦悲剧的根源之一。宝玉与黛玉相爱，但婚姻由家长决定，最终宝玉被骗娶宝钗，黛玉泪尽而亡。这种制度对个人幸福的压制是全书的重要主题。"
+  },
+  {
+    "id": "food_lv_tang",
+    "type": "food",
+    "category": "饮食养生",
+    "title": "枫露茶",
+    "content": "宝玉最爱喝的茶，用枫露点制。枫露茶清香扑鼻，是贾府的珍贵茶品。",
+    "chapter": 8,
+    "relatedCharacters": [
+      "jia_baoyu"
+    ],
+    "relatedEvents": [
+      "宝玉品茶"
+    ],
+    "tags": [
+      "饮食",
+      "茶",
+      "宝玉"
+    ],
+    "analysis": "枫露茶是宝玉最爱喝的茶，象征着他的品味和地位。茶文化在红楼梦中占有重要地位，品茶是人物社交和展现品味的方式。"
+  },
+  {
+    "id": "food_lian_ye_geng",
+    "type": "food",
+    "category": "饮食养生",
+    "title": "莲叶羹",
+    "content": "宝玉挨打后想吃的汤，用莲叶熬制。莲叶羹清淡可口，适合病后调养。",
+    "chapter": 35,
+    "relatedCharacters": [
+      "jia_baoyu",
+      "wang_furen"
+    ],
+    "relatedEvents": [
+      "宝玉挨打后"
+    ],
+    "tags": [
+      "饮食",
+      "莲叶羹",
+      "宝玉"
+    ],
+    "analysis": "莲叶羹是宝玉挨打后想吃的汤，展现了贾府的精致饮食。王夫人亲自吩咐制作，体现了母亲对儿子的关爱。"
+  },
+  {
+    "id": "food_lu_tang",
+    "type": "food",
+    "category": "饮食养生",
+    "title": "酸笋鸡皮汤",
+    "content": "刘姥姥进大观园时喝的汤，酸辣可口。刘姥姥喝后连声称赞。",
+    "chapter": 41,
+    "relatedCharacters": [
+      "liu_laolao",
+      "jia_mu"
+    ],
+    "relatedEvents": [
+      "刘姥姥进大观园"
+    ],
+    "tags": [
+      "饮食",
+      "酸笋鸡皮汤",
+      "刘姥姥"
+    ],
+    "analysis": "酸笋鸡皮汤是刘姥姥进大观园时喝的汤，展现了贾府的精致饮食。刘姥姥喝后连声称赞，与她朴素的饮食习惯形成对比。"
+  },
+  {
+    "id": "costume_jin_su_xiang_nang",
+    "type": "costume",
+    "category": "器物服饰",
+    "title": "金麒麟",
+    "content": "湘云佩戴的金麒麟，是卫若兰的遗物。金麒麟象征着湘云与卫若兰的婚姻。",
+    "chapter": 31,
+    "relatedCharacters": [
+      "shi_xiangyun",
+      "wei_ruolan"
+    ],
+    "relatedEvents": [
+      "湘云拾麒麟"
+    ],
+    "tags": [
+      "器物",
+      "金麒麟",
+      "湘云",
+      "卫若兰"
+    ],
+    "analysis": "金麒麟是湘云与卫若兰婚姻的象征。湘云拾得宝玉遗失的金麒麟，后与卫若兰成婚，金麒麟成了他们婚姻的信物。"
+  },
+  {
+    "id": "costume_que_jin_diao",
+    "type": "costume",
+    "category": "器物服饰",
+    "title": "雀金裘",
+    "content": "俄罗斯进口的孔雀毛织成的裘衣，是贾母赐给宝玉的珍贵衣物。晴雯曾带病为其修补。",
+    "chapter": 52,
+    "relatedCharacters": [
+      "jia_baoyu",
+      "qingwen",
+      "jia_mu"
+    ],
+    "relatedEvents": [
+      "晴雯补裘"
+    ],
+    "tags": [
+      "器物",
+      "雀金裘",
+      "晴雯",
+      "宝玉"
+    ],
+    "analysis": "雀金裘是贾府奢华生活的象征。晴雯带病为其修补，展现了她的忠诚和能干。'勇晴雯病补雀金裘'是红楼梦最感人的场景之一。"
+  },
+  {
+    "id": "costume_jia_lian_shan_po",
+    "type": "costume",
+    "category": "器物服饰",
+    "title": "汗巾",
+    "content": "宝玉与蒋玉菡互赠的汗巾，象征着他们的友谊。汗巾后被袭人发现，成为宝玉结交戏子的证据。",
+    "chapter": 28,
+    "relatedCharacters": [
+      "jia_baoyu",
+      "jiang_yuhan",
+      "xiren"
+    ],
+    "relatedEvents": [
+      "宝玉赠汗巾"
+    ],
+    "tags": [
+      "器物",
+      "汗巾",
+      "宝玉",
+      "蒋玉菡"
+    ],
+    "analysis": "汗巾是宝玉与蒋玉菡友谊的象征。宝玉将自己的松花汗巾赠给蒋玉菡，蒋玉菡将茜香罗赠给宝玉。汗巾后被袭人发现，成为宝玉结交戏子的证据。"
+  },
+  {
+    "id": "character_baoyu_special",
+    "type": "character_study",
+    "category": "人物专题",
+    "title": "贾宝玉——叛逆的贵族公子",
+    "content": "贾宝玉是红楼梦的男主角，衔通灵宝玉而生。他天性纯真多情，厌恶功名利禄，尊重女性，最终出家为僧。",
+    "chapter": 1,
+    "relatedCharacters": [
+      "jia_baoyu"
+    ],
+    "relatedEvents": [
+      "衔玉而生",
+      "宝玉出家"
+    ],
+    "tags": [
+      "人物专题",
+      "宝玉",
+      "叛逆",
+      "出家"
+    ],
+    "analysis": "贾宝玉是封建礼教的叛逆者。他拒绝走仕途经济之路，厌恶科举功名，亲近女儿而鄙弃男子。他的叛逆是对封建价值观的根本否定，也是作者曹雪芹自我投射。宝玉最终出家，是对世俗的彻底否定。"
+  },
+  {
+    "id": "character_daiyu_special",
+    "type": "character_study",
+    "category": "人物专题",
+    "title": "林黛玉——才情与悲剧的化身",
+    "content": "林黛玉是红楼梦的女主角，绛珠仙草转世。她才华横溢、敏感多愁，与宝玉相爱却不能相守，最终泪尽而亡。",
+    "chapter": 3,
+    "relatedCharacters": [
+      "lin_daiyu"
+    ],
+    "relatedEvents": [
+      "黛玉进贾府",
+      "黛玉焚稿"
+    ],
+    "tags": [
+      "人物专题",
+      "黛玉",
+      "才情",
+      "悲剧"
+    ],
+    "analysis": "林黛玉是中国文学史上最经典的女性形象之一。她的才华、敏感、真诚和悲剧命运，深深打动了无数读者。'质本洁来还洁去，强于污淖陷渠沟'，她的清高和孤傲是对世俗的无声抗议。"
+  },
+  {
+    "id": "character_baochai_special",
+    "type": "character_study",
+    "category": "人物专题",
+    "title": "薛宝钗——端庄的大家闺秀",
+    "content": "薛宝钗是红楼梦的女主角之一，薛姨妈之女。她端庄稳重、博学多才，最终嫁给宝玉，却独守空房。",
+    "chapter": 4,
+    "relatedCharacters": [
+      "xue_baochai"
+    ],
+    "relatedEvents": [
+      "宝钗进贾府",
+      "宝玉成婚"
+    ],
+    "tags": [
+      "人物专题",
+      "宝钗",
+      "端庄",
+      "金玉良缘"
+    ],
+    "analysis": "薛宝钗是封建礼教的典范。她端庄稳重、博学多才，符合封建社会对女性的要求。但她最终嫁给宝玉却独守空房，展现了封建婚姻的悲剧。'好风凭借力，送我上青云'是她的志向，但最终未能实现。"
+  },
+  {
+    "id": "theme_aiqing",
+    "type": "theme",
+    "category": "主题研究",
+    "title": "宝黛爱情悲剧",
+    "content": "宝玉与黛玉的爱情是红楼梦的核心主题。他们相爱却不能相守，最终黛玉泪尽而亡，宝玉出家为僧。",
+    "chapter": 1,
+    "relatedCharacters": [
+      "jia_baoyu",
+      "lin_daiyu",
+      "xue_baochai"
+    ],
+    "relatedEvents": [
+      "木石前盟",
+      "金玉良缘"
+    ],
+    "tags": [
+      "主题",
+      "爱情",
+      "悲剧",
+      "宝玉",
+      "黛玉"
+    ],
+    "analysis": "宝黛爱情悲剧是红楼梦最感人的主题。他们的爱情基于心灵的共鸣和才华的欣赏，但被封建礼教和家族利益所扼杀。黛玉的'泪尽而亡'和宝玉的'出家为僧'，是对封建婚姻制度的无声抗议。"
+  },
+  {
+    "id": "theme_jiazu_shuailuo",
+    "type": "theme",
+    "category": "主题研究",
+    "title": "贾府兴衰",
+    "content": "贾府从'烈火烹油，鲜花着锦'到'忽喇喇似大厦倾'的过程，展现了封建家族的没落。",
+    "chapter": 1,
+    "relatedCharacters": [
+      "jia_mu",
+      "wang_xifeng",
+      "jia_baoyu"
+    ],
+    "relatedEvents": [
+      "元妃省亲",
+      "抄检大观园",
+      "贾府被抄"
+    ],
+    "tags": [
+      "主题",
+      "兴衰",
+      "家族",
+      "封建"
+    ],
+    "analysis": "贾府兴衰是红楼梦的结构主线。从元妃省亲的鼎盛，到抄检大观园的转折，再到贾府被抄的衰败，展现了封建家族的没落规律。'盛极必衰'是历史的必然，也是全书的主旨。"
+  },
+  {
+    "id": "theme_nvxing_mingyun",
+    "type": "theme",
+    "category": "主题研究",
+    "title": "女性命运悲歌",
+    "content": "红楼梦通过金陵十二钗的命运，展现了封建社会女性的悲剧。'千红一哭，万艳同悲'是全书的主旨。",
+    "chapter": 5,
+    "relatedCharacters": [
+      "lin_daiyu",
+      "xue_baochai",
+      "jia_yuanchun"
+    ],
+    "relatedEvents": [
+      "太虚幻境",
+      "判词"
+    ],
+    "tags": [
+      "主题",
+      "女性",
+      "命运",
+      "悲剧"
+    ],
+    "analysis": "女性命运悲歌是红楼梦最重要的主题之一。通过金陵十二钗的命运，展现了封建社会对女性的压迫和摧残。黛玉的泪尽而亡、宝钗的独守空房、元春的宫中薨逝，都是封建社会女性悲剧的缩影。"
   }
 ]

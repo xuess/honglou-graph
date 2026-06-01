@@ -143,9 +143,26 @@ class HongLouMengApp {
       this._renderComparisonTools();
       this._showOverview();
 
-      const initialView = (location.hash || '').replace('#', '') || 'graph';
-      if (['graph', 'tree', 'list', 'chapter', 'knowledge'].includes(initialView)) {
-        this._switchView(initialView);
+      // Parse URL params for deep linking
+      const urlParams = new URLSearchParams(location.search);
+      const viewParam = urlParams.get('view');
+      const charParam = urlParams.get('char');
+      const topicParam = urlParams.get('topic');
+      const stageParam = urlParams.get('stage');
+
+      // Hash-based routing (legacy)
+      const hashView = (location.hash || '').replace('#', '');
+      const initialView = viewParam || (['graph', 'tree', 'list', 'chapter', 'knowledge'].includes(hashView) ? hashView : 'graph');
+      
+      this._switchView(initialView);
+
+      // Restore state from URL params
+      if (charParam && this.characterMap.has(charParam)) {
+        this._openCharacter(charParam, { focusNeighbors: true, showCard: true });
+      } else if (topicParam) {
+        this._openTopic(topicParam, true);
+      } else if (stageParam) {
+        this._openStage(stageParam, true);
       }
 
       this._renderSearchState();
@@ -186,6 +203,7 @@ class HongLouMengApp {
       modeIndicator: document.getElementById('mode-indicator'),
       modeName: document.getElementById('mode-name'),
       btnFullView: document.getElementById('btn-full-view'),
+      btnRandom: document.getElementById('btn-random'),
       btnHeaderFullscreen: document.getElementById('btn-header-fullscreen'),
       btnZoomIn: document.getElementById('btn-zoom-in'),
       btnZoomOut: document.getElementById('btn-zoom-out'),
@@ -194,6 +212,7 @@ class HongLouMengApp {
       btnExitFocus: document.getElementById('btn-exit-focus'),
       btnGraphFullscreen: document.getElementById('btn-graph-fullscreen'),
       btnExitFullscreen: document.getElementById('btn-exit-fullscreen'),
+      btnExportPng: document.getElementById('btn-export-png'),
       graphFloatingBar: document.getElementById('graph-floating-bar'),
       fullscreenViewLabel: document.getElementById('fullscreen-view-label'),
       globalContextBar: document.getElementById('global-context-bar'),
@@ -208,6 +227,7 @@ class HongLouMengApp {
       compareRight: document.getElementById('compare-right'),
       btnRunCompare: document.getElementById('btn-run-compare'),
       btnCompareCurrent: document.getElementById('btn-compare-current'),
+      btnFindPath: document.getElementById('btn-find-path'),
       btnBack: document.getElementById('btn-back'),
       btnMobileSearch: document.getElementById('btn-mobile-search'),
       mobileSearchOverlay: document.getElementById('mobile-search-overlay'),
@@ -220,7 +240,10 @@ class HongLouMengApp {
       viewTree: document.getElementById('view-tree'),
       viewList: document.getElementById('view-list'),
       viewChapter: document.getElementById('view-chapter'),
-      viewKnowledge: document.getElementById('view-knowledge')
+      viewKnowledge: document.getElementById('view-knowledge'),
+      timelineSlider: document.getElementById('timeline-slider'),
+      timelineRange: document.getElementById('timeline-range'),
+      timelineChapter: document.getElementById('timeline-chapter')
     };
   }
 
@@ -245,6 +268,10 @@ class HongLouMengApp {
       .replace(/'/g, '&#39;');
   }
 
+  _escapeHtmlAttr(text) {
+    return this._escapeHtml(text).replace(/"/g, '&quot;');
+  }
+
   _bindEvents() {
     this._bindSidebarResize();
 
@@ -260,7 +287,13 @@ class HongLouMengApp {
         this._updateSearchInputState();
       });
       this.els.graphSearchInput.addEventListener('focus', () => {
-        if (this.els.graphSearchInput.value.trim()) this.els.graphSearchResults?.classList.add('active');
+        if (this.els.graphSearchInput.value.trim()) {
+          this.els.graphSearchResults?.classList.add('active');
+        } else {
+          // Show search history when input is empty
+          this._renderSearchHistory(this.els.graphSearchResults);
+          this.els.graphSearchResults?.classList.add('active');
+        }
       });
       this.els.graphSearchInput.closest('.search-input-wrapper')?.querySelector('.btn-clear-search')?.addEventListener('click', () => {
         this._clearSearch();
@@ -306,6 +339,9 @@ class HongLouMengApp {
     }
 
     this.els.btnFullView.addEventListener('click', () => this._showFullGraph());
+    if (this.els.btnRandom) {
+      this.els.btnRandom.addEventListener('click', () => this._randomExplore());
+    }
     if (this.els.btnExitFocusBar) {
       this.els.btnExitFocusBar.addEventListener('click', () => this._exitFocusMode());
     }
@@ -322,6 +358,57 @@ class HongLouMengApp {
     }
     this.els.btnGraphFullscreen.addEventListener('click', () => this._toggleFullscreen(true));
     this.els.btnExitFullscreen.addEventListener('click', () => this._toggleFullscreen(false));
+
+    if (this.els.btnExportPng) {
+      this.els.btnExportPng.addEventListener('click', async () => {
+        try {
+          this.els.btnExportPng.disabled = true;
+          this.els.btnExportPng.textContent = '...';
+          await this.graph.exportAsPng('honglou-graph.png');
+        } catch (err) {
+          console.error('导出失败:', err);
+        } finally {
+          this.els.btnExportPng.disabled = false;
+          this.els.btnExportPng.textContent = '📷';
+        }
+      });
+    }
+
+    const btnToggleCluster = document.getElementById('btn-toggle-cluster');
+    if (btnToggleCluster) {
+      btnToggleCluster.addEventListener('click', () => {
+        const isClusterMode = this.graph.toggleClustering();
+        btnToggleCluster.classList.toggle('active', isClusterMode);
+      });
+    }
+
+    const btnToggleParticles = document.getElementById('btn-toggle-particles');
+    if (btnToggleParticles) {
+      btnToggleParticles.addEventListener('click', () => {
+        const isParticlesEnabled = this.graph.toggleParticles();
+        btnToggleParticles.classList.toggle('active', isParticlesEnabled);
+      });
+    }
+
+    const btnShareCard = document.getElementById('btn-share-card');
+    if (btnShareCard) {
+      btnShareCard.addEventListener('click', async () => {
+        try {
+          btnShareCard.disabled = true;
+          btnShareCard.textContent = '...';
+          const title = this.currentCharacterId 
+            ? `${this.characterMap.get(this.currentCharacterId)?.name || '人物'} - 红楼梦人物关系`
+            : '红楼梦人物关系图';
+          const description = this.els.fullscreenViewLabel?.textContent || '';
+          await this.graph.exportAsCardPng(title, description, 'honglou-share.png');
+        } catch (err) {
+          console.error('生成分享卡片失败:', err);
+        } finally {
+          btnShareCard.disabled = false;
+          btnShareCard.textContent = '📤';
+        }
+      });
+    }
 
     this.els.btnRunCompare.addEventListener('click', () => {
       const compareState = this._getCompareState();
@@ -341,6 +428,24 @@ class HongLouMengApp {
       this._openSidebarTools();
     });
 
+    if (this.els.btnFindPath) {
+      this.els.btnFindPath.addEventListener('click', () => {
+        const compareState = this._getCompareState();
+        if (!compareState.canCompare) return;
+        this._findAndHighlightPath(compareState.leftValue, compareState.rightValue);
+      });
+    }
+
+    // Add PK button handler if exists
+    const btnPK = document.getElementById('btn-pk-compare');
+    if (btnPK) {
+      btnPK.addEventListener('click', () => {
+        const compareState = this._getCompareState();
+        if (!compareState.canCompare) return;
+        this._showPKPanel(compareState.leftValue, compareState.rightValue);
+      });
+    }
+
     if (this.els.importanceQuick) {
       this.els.importanceQuick.addEventListener('click', (e) => {
         const btn = e.target.closest('.importance-quick-btn');
@@ -355,7 +460,28 @@ class HongLouMengApp {
     }
 
     document.addEventListener('keydown', (e) => {
+      // Skip if user is typing in an input
+      const isTyping = e.target.closest('input') || e.target.closest('select') || e.target.closest('textarea');
+      
       if (e.key === 'Escape') {
+        // Close search dropdowns first
+        const graphSearchResults = this.els.graphSearchResults;
+        const searchResults = this.els.searchResults;
+        const mobileSearchResults = this.els.mobileSearchResults;
+        
+        if (graphSearchResults?.classList.contains('active')) {
+          graphSearchResults.classList.remove('active');
+          return;
+        }
+        if (searchResults?.classList.contains('active')) {
+          searchResults.classList.remove('active');
+          return;
+        }
+        if (mobileSearchResults?.classList.contains('active')) {
+          mobileSearchResults.classList.remove('active');
+          return;
+        }
+        
         if (this.isMobileSearchOpen) {
           this._closeMobileSearch();
           return;
@@ -375,9 +501,27 @@ class HongLouMengApp {
         this._closeDrawer();
       }
 
-      if (e.key === '/' && !e.target.closest('input') && !e.target.closest('select') && !e.target.closest('textarea')) {
+      if (isTyping) return;
+
+      if (e.key === '/') {
         e.preventDefault();
         (this.els.graphSearchInput || this.els.searchInput)?.focus();
+      }
+
+      // Number keys 1-5 to switch views
+      if (e.key >= '1' && e.key <= '5') {
+        const views = ['graph', 'tree', 'list', 'chapter', 'knowledge'];
+        const viewIndex = parseInt(e.key) - 1;
+        if (viewIndex < views.length) {
+          e.preventDefault();
+          this._switchView(views[viewIndex]);
+        }
+      }
+
+      // ? to show keyboard shortcuts help
+      if (e.key === '?' || (e.shiftKey && e.key === '/')) {
+        e.preventDefault();
+        this._showKeyboardHelp();
       }
     });
 
@@ -422,6 +566,107 @@ class HongLouMengApp {
         this._switchView(viewName);
       }
     });
+
+    // Timeline slider
+    if (this.els.timelineRange) {
+      this.els.timelineRange.addEventListener('input', (e) => {
+        const chapter = parseInt(e.target.value);
+        this._handleTimelineChange(chapter);
+      });
+    }
+
+    // Timeline play button
+    const btnTimelinePlay = document.getElementById('btn-timeline-play');
+    if (btnTimelinePlay) {
+      btnTimelinePlay.addEventListener('click', () => {
+        this._toggleTimelinePlay(btnTimelinePlay);
+      });
+    }
+  }
+
+  _toggleTimelinePlay(btn) {
+    if (this._timelinePlaying) {
+      this._stopTimelinePlay();
+      btn.textContent = '▶';
+      btn.classList.remove('playing');
+    } else {
+      this._startTimelinePlay();
+      btn.textContent = '⏸';
+      btn.classList.add('playing');
+    }
+  }
+
+  _startTimelinePlay() {
+    this._timelinePlaying = true;
+    let currentChapter = parseInt(this.els.timelineRange?.value || '0');
+    
+    const playNext = () => {
+      if (!this._timelinePlaying) return;
+      
+      currentChapter++;
+      if (currentChapter > 120) {
+        this._stopTimelinePlay();
+        return;
+      }
+      
+      if (this.els.timelineRange) {
+        this.els.timelineRange.value = currentChapter;
+      }
+      this._handleTimelineChange(currentChapter);
+      
+      this._timelineTimer = setTimeout(playNext, 1500);
+    };
+    
+    playNext();
+  }
+
+  _stopTimelinePlay() {
+    this._timelinePlaying = false;
+    if (this._timelineTimer) {
+      clearTimeout(this._timelineTimer);
+      this._timelineTimer = null;
+    }
+  }
+
+  _handleTimelineChange(chapter) {
+    if (!this.els.timelineChapter) return;
+    
+    if (chapter === 0) {
+      // Show all
+      this.els.timelineChapter.textContent = '全部';
+      this.graph.showImportantOverview();
+      this._timelineAnimating = false;
+      return;
+    }
+    
+    this.els.timelineChapter.textContent = `第${chapter}回`;
+    
+    // Find characters that appear up to this chapter (cumulative)
+    const chapterChars = this.characters.filter(c => 
+      (c.chapters || []).some(ch => ch.chapter <= chapter)
+    ).map(c => c.id);
+    
+    // Also include characters whose relationships are active
+    const activeChars = new Set(chapterChars);
+    this.relationships.forEach(rel => {
+      const sourceId = typeof rel.source === 'string' ? rel.source : rel.source.id;
+      const targetId = typeof rel.target === 'string' ? rel.target : rel.target.id;
+      if (activeChars.has(sourceId) || activeChars.has(targetId)) {
+        activeChars.add(sourceId);
+        activeChars.add(targetId);
+      }
+    });
+    
+    const charArray = [...activeChars];
+    if (charArray.length) {
+      // Find center character (most important in this chapter)
+      const centerChar = this.characters
+        .filter(c => activeChars.has(c.id))
+        .sort((a, b) => (b.importance || 0) - (a.importance || 0))[0];
+      
+      this.graph.showCharacterSet(charArray, { centerId: centerChar?.id });
+      this._updateFloatingContext(`第${chapter}回：${charArray.length} 位人物`);
+    }
   }
 
   async _loadData() {
@@ -621,12 +866,40 @@ class HongLouMengApp {
     this._teardownInactiveViews(viewName, previousView);
     this._applyFacetStateToViews();
     this._renderSearchState();
+    this._renderGlobalContextBar();
 
     if (preserveScroll) {
+      // 为解决由于新视图在分批延迟渲染（如知识库）导致页面高度瞬时塌缩、从而引起 scrollTo 坐标被浏览器硬件截断导致滚动丢失的问题（对应测试用例 TC-09 漂移 bug）
+      // 我们在滚动前同步、强行将 body 高度支撑起来
+      if (previousScrollY > 10) {
+        this.els.body.style.minHeight = `${previousScrollY + window.innerHeight + 200}px`;
+      }
+
       window.scrollTo({ top: previousScrollY, behavior: 'instant' });
+
+      // 在极短延时（约50ms，通常经历了两帧排版并完成了基础卡片铺底）后，悄无声息地移除 minHeight 样式，恢复真实的排版自适应尺寸
+      setTimeout(() => {
+        this.els.body.style.minHeight = '';
+      }, 50);
     }
 
-    location.hash = viewName;
+    this._updateUrlParams();
+  }
+
+  _updateUrlParams() {
+    const params = new URLSearchParams();
+    params.set('view', this.activeView);
+    
+    if (this.currentCharacterId) {
+      params.set('char', this.currentCharacterId);
+    } else if (this.currentTopic) {
+      params.set('topic', this.currentTopic.id);
+    } else if (this.currentStage) {
+      params.set('stage', this.currentStage.id);
+    }
+    
+    const newUrl = `${location.pathname}?${params.toString()}`;
+    history.replaceState(null, '', newUrl);
   }
 
   _forceCloseOverlays() {
@@ -635,7 +908,46 @@ class HongLouMengApp {
   }
 
   _teardownInactiveViews(activeViewName, previousViewName) {
-    return;
+    // Performance optimization: cleanup DOM of inactive views
+    // Only cleanup if the view was initialized (has content)
+    const viewCleanupMap = {
+      tree: { view: this.treeView, container: this.els.treeContainer, initialized: this.viewInitialized.tree },
+      list: { view: this.listView, container: this.els.listContainer, initialized: this.viewInitialized.list },
+      chapter: { view: this.chapterView, container: this.els.chapterContainer, initialized: this.viewInitialized.chapter },
+      knowledge: { view: this.knowledgeView, container: this.els.knowledgeContainer, initialized: this.viewInitialized.knowledge }
+    };
+
+    // Cleanup previous view if it's not the active one
+    if (previousViewName && previousViewName !== activeViewName && previousViewName !== 'graph') {
+      const prevViewInfo = viewCleanupMap[previousViewName];
+      if (prevViewInfo && prevViewInfo.initialized && prevViewInfo.container) {
+        // Cleanup timers and observers before clearing DOM
+        const view = prevViewInfo.view;
+        if (view) {
+          // Clear timers
+          if (view._searchTimer) window.clearTimeout(view._searchTimer);
+          if (view._deferredRenderTimer) window.clearTimeout(view._deferredRenderTimer);
+          if (view._deferredMainTimer) window.clearTimeout(view._deferredMainTimer);
+          if (view._textLayoutFrame) window.cancelAnimationFrame(view._textLayoutFrame);
+          
+          // Disconnect observers
+          if (view._layoutResizeObserver) {
+            view._layoutResizeObserver.disconnect();
+            view._layoutResizeObserver = null;
+          }
+          
+          // Reset event binding flags so they re-bind on next render
+          if (view._eventsBound !== undefined) view._eventsBound = false;
+          if (view._controlsBound !== undefined) view._controlsBound = false;
+          if (view._listClickBound !== undefined) view._listClickBound = false;
+        }
+        
+        // Clear container content to free DOM nodes
+        prevViewInfo.container.innerHTML = '';
+        // Mark as needing re-render
+        this.viewInitialized[previousViewName] = false;
+      }
+    }
   }
 
   _saveGraphState() {
@@ -1266,6 +1578,125 @@ _createFontAndThemeControls() {
     this._updateBackButton();
   }
 
+  _showKeyboardHelp() {
+    const helpHtml = `
+      <div class="keyboard-help-modal">
+        <div class="keyboard-help-content">
+          <div class="keyboard-help-header">
+            <h3>键盘快捷键</h3>
+            <button class="keyboard-help-close" data-close-help="true">✕</button>
+          </div>
+          <div class="keyboard-help-body">
+            <div class="keyboard-help-section">
+              <h4>视图切换</h4>
+              <div class="keyboard-shortcut"><kbd>1</kbd><span>关系图谱</span></div>
+              <div class="keyboard-shortcut"><kbd>2</kbd><span>家族谱系</span></div>
+              <div class="keyboard-shortcut"><kbd>3</kbd><span>人物名录</span></div>
+              <div class="keyboard-shortcut"><kbd>4</kbd><span>回目视图</span></div>
+              <div class="keyboard-shortcut"><kbd>5</kbd><span>知识库</span></div>
+            </div>
+            <div class="keyboard-help-section">
+              <h4>通用操作</h4>
+              <div class="keyboard-shortcut"><kbd>/</kbd><span>聚焦搜索框</span></div>
+              <div class="keyboard-shortcut"><kbd>Esc</kbd><span>关闭/返回</span></div>
+              <div class="keyboard-shortcut"><kbd>?</kbd><span>显示此帮助</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    const existing = document.querySelector('.keyboard-help-modal');
+    if (existing) {
+      existing.remove();
+      return;
+    }
+    
+    document.body.insertAdjacentHTML('beforeend', helpHtml);
+    const modal = document.querySelector('.keyboard-help-modal');
+    modal.querySelector('.keyboard-help-close').addEventListener('click', () => modal.remove());
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.remove();
+    });
+  }
+
+  _randomExplore() {
+    // 在关系图谱视图时，只随机选择人物
+    if (this.activeView === 'graph') {
+      if (this.characters.length) {
+        // 随机人物 - 偏好重要人物
+        const weighted = this.characters
+          .filter(c => c.importance >= 2)
+          .sort(() => Math.random() - 0.5);
+        const character = weighted[0] || this.characters[Math.floor(Math.random() * this.characters.length)];
+        if (character) {
+          this._openCharacter(character.id, { focusNeighbors: true, showCard: true });
+          this._updateFloatingContext(`随缘：${character.name}`);
+          return;
+        }
+      }
+      return;
+    }
+    
+    // 其他视图的随机逻辑
+    const rand = Math.random();
+    
+    // 50% 概率随机人物，30% 概率随机知识条目，20% 概率随机章回
+    if (rand < 0.5 && this.characters.length) {
+      // 随机人物 - 偏好重要人物
+      const weighted = this.characters
+        .filter(c => c.importance >= 2)
+        .sort(() => Math.random() - 0.5);
+      const character = weighted[0] || this.characters[Math.floor(Math.random() * this.characters.length)];
+      if (character) {
+        this._openCharacter(character.id, { focusNeighbors: true, showCard: true });
+        this._updateFloatingContext(`随缘：${character.name}`);
+        return;
+      }
+    }
+    
+    if (rand < 0.8 && this.knowledge.length) {
+      // 随机知识条目
+      const item = this.knowledge[Math.floor(Math.random() * this.knowledge.length)];
+      if (item) {
+        this._switchView('knowledge');
+        if (!this.viewInitialized.knowledge) {
+          this.knowledgeView.render();
+          this.viewInitialized.knowledge = true;
+          this.viewEverRendered.knowledge = true;
+        }
+        this.knowledgeView.searchQuery = '';
+        this.knowledgeView.activeCategory = 'all';
+        this.knowledgeView.activeSubcategory = 'all';
+        this.knowledgeView.chapterFilter = 'all';
+        this.knowledgeView.sortBy = 'relevance';
+        this.knowledgeView.expandedIds.clear();
+        this.knowledgeView._activeJumpTargetId = item.id;
+        this.knowledgeView._invalidateFilterCache?.();
+        this.knowledgeView._updateContent?.();
+        this._updateFloatingContext(`随缘：${item.title || '知识条目'}`);
+        return;
+      }
+    }
+    
+    // 随机章回
+    if (this.chapterView) {
+      const chapters = [...new Set(this.knowledge.map(k => k.chapter).filter(Boolean))];
+      if (chapters.length) {
+        const chapter = chapters[Math.floor(Math.random() * chapters.length)];
+        this._switchView('chapter');
+        if (!this.viewInitialized.chapter) {
+          this.chapterView.render();
+          this.viewInitialized.chapter = true;
+          this.viewEverRendered.chapter = true;
+        }
+        this.chapterView.activeChapter = chapter;
+        this.chapterView._updateContent?.();
+        this._updateFloatingContext(`随缘：第${chapter}回`);
+      }
+    }
+  }
+
   _handleNodeClick(character) {
     this._openCharacter(character.id, { focusNeighbors: this.currentView.type !== 'fullgraph', showCard: true });
   }
@@ -1319,6 +1750,7 @@ _createFontAndThemeControls() {
     this._updateActionStates();
     this._updateBackButton();
     if (isGraphView) this._toggleSidebar(false);
+    this._updateUrlParams();
   }
 
   _openCharacterKnowledge(character) {
@@ -1383,7 +1815,6 @@ _createFontAndThemeControls() {
 
     this._setReadingGraphState();
     this.graph.showCharacterSet(topic.characterIds, { centerId: topic.focusId });
-    this._renderTopicDrawer(topic);
     this._updateFloatingContext(`专题：${topic.title}`);
     this._setFacetState({
       selectedCharacterIds: topic.characterIds,
@@ -1394,6 +1825,7 @@ _createFontAndThemeControls() {
     this._updateActionStates();
     this._updateBackButton();
     this._toggleSidebar(false);
+    this._updateUrlParams();
   }
 
   _openStage(stageId, skipHistory) {
@@ -1410,7 +1842,6 @@ _createFontAndThemeControls() {
 
     this._setReadingGraphState();
     this.graph.showCharacterSet(stage.characterIds, { centerId: stage.focusId });
-    this._renderStageDrawer(stage);
     this._updateFloatingContext(`阶段：${stage.title}`);
     this._setFacetState({
       selectedCharacterIds: stage.characterIds,
@@ -1421,6 +1852,7 @@ _createFontAndThemeControls() {
     this._updateActionStates();
     this._updateBackButton();
     this._toggleSidebar(false);
+    this._updateUrlParams();
   }
 
   _openFamily(family, skipHistory) {
@@ -1441,7 +1873,6 @@ _createFontAndThemeControls() {
 
     this._setReadingGraphState();
     this.graph.showCharacterSet(topIds, { centerId: familyCharacters[0].id });
-    this._renderFamilyDrawer(family, familyCharacters);
     this._updateFloatingContext(`家族：${family}`);
     this._setFacetState({
       selectedCharacterIds: topIds,
@@ -1479,7 +1910,6 @@ _createFontAndThemeControls() {
     const networkIds = this._getPairNetworkIds(leftId, rightId);
     this.graph.showCharacterSet(networkIds, { centerId: leftId });
     this.graph.selectNodes([leftId, rightId]);
-    this._renderRelationshipDrawer(left, right);
     this._updateFloatingContext(`关系：${left.name} × ${right.name}`);
     this._setFacetState({
       selectedCharacterIds: networkIds,
@@ -1490,6 +1920,45 @@ _createFontAndThemeControls() {
     this._updateActionStates();
     this._updateBackButton();
     this._toggleSidebar(false);
+  }
+
+  _findAndHighlightPath(leftId, rightId) {
+    if (!leftId || !rightId || leftId === rightId) return;
+    
+    // Switch to graph view if not already there
+    if (this.activeView !== 'graph') {
+      this._switchView('graph');
+    }
+    
+    const path = this.graph.findShortestPath(leftId, rightId);
+    if (!path) {
+      // No path found - show message
+      const left = this.characterMap.get(leftId);
+      const right = this.characterMap.get(rightId);
+      this._updateFloatingContext(`${left?.name || '未知'} ↔ ${right?.name || '未知'}：无直接关系链`);
+      return;
+    }
+    
+    // Show path on graph
+    this.graph.showCharacterSet(path, { centerId: leftId });
+    this.graph.highlightPath(path);
+    
+    // Build path description
+    const pathNames = path.map(id => this.characterMap.get(id)?.name || '未知').join(' → ');
+    const left = this.characterMap.get(leftId);
+    const right = this.characterMap.get(rightId);
+    this._updateFloatingContext(`路径：${pathNames}`);
+    
+    // Update facet state
+    this._setFacetState({
+      selectedCharacterIds: path,
+      selectedTags: [`路径：${left?.name} → ${right?.name}`],
+      breadcrumb: [
+        { label: '默认概览', type: 'overview' },
+        { label: `${left?.name} → ${right?.name}`, type: 'path', leftId, rightId }
+      ],
+      sourceView: 'graph'
+    });
   }
 
   _enterFocusMode(character) {
@@ -1671,7 +2140,78 @@ _createFontAndThemeControls() {
     }
 
     this._renderSearchResultsDropdown(resultGroups, activeResultsEl);
-this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以试试"宝玉和黛玉""前二十回"。');
+    this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以试试"宝玉和黛玉""前二十回"。');
+    
+    // Save search history
+    if (clean.length >= 2) {
+      this._saveSearchHistory(clean);
+    }
+  }
+
+  _saveSearchHistory(query) {
+    try {
+      let history = JSON.parse(localStorage.getItem('hlm-search-history') || '[]');
+      // Remove duplicates
+      history = history.filter(item => item !== query);
+      // Add to front
+      history.unshift(query);
+      // Keep only last 10
+      history = history.slice(0, 10);
+      localStorage.setItem('hlm-search-history', JSON.stringify(history));
+    } catch (e) {
+      // Ignore storage errors
+    }
+  }
+
+  _getSearchHistory() {
+    try {
+      return JSON.parse(localStorage.getItem('hlm-search-history') || '[]');
+    } catch (e) {
+      return [];
+    }
+  }
+
+  _clearSearchHistory() {
+    try {
+      localStorage.removeItem('hlm-search-history');
+    } catch (e) {
+      // Ignore
+    }
+  }
+
+  _renderSearchHistory(resultsEl) {
+    const history = this._getSearchHistory();
+    if (!history.length) return;
+    
+    const historyHtml = `
+      <div class="search-history-section">
+        <div class="search-history-header">
+          <span class="search-history-title">最近搜索</span>
+          <button class="search-history-clear" data-clear-history="true">清空</button>
+        </div>
+        ${history.map(query => `
+          <button class="search-history-item" data-history-query="${this._escapeHtmlAttr(query)}">${this._escapeHtml(query)}</button>
+        `).join('')}
+      </div>
+    `;
+    
+    resultsEl.insertAdjacentHTML('afterbegin', historyHtml);
+    
+    // Bind click events
+    resultsEl.querySelectorAll('.search-history-item').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const query = btn.dataset.historyQuery;
+        if (this.els.graphSearchInput) this.els.graphSearchInput.value = query;
+        this._onSearch(query, resultsEl);
+      });
+    });
+    
+    resultsEl.querySelector('[data-clear-history="true"]')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this._clearSearchHistory();
+      resultsEl.innerHTML = '';
+      resultsEl.classList.remove('active');
+    });
   }
 
   _renderSearchResultsDropdown(groups, targetEl) {
@@ -2049,15 +2589,6 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
     this._syncGraphFilterUi();
   }
 
-  _prepareCompareFromCurrent(characterId) {
-    this.els.compareLeft.value = characterId;
-    if (this.els.compareRight.value === characterId) this.els.compareRight.value = '';
-    this._updateActionStates();
-    this._toggleSidebar(true);
-    this._openSidebarTools();
-    this.els.compareRight.focus();
-  }
-
   _openSidebarTools() {
     // No-op: sidebar tools are now always expanded
   }
@@ -2069,16 +2600,6 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
       const level = Number(btn.dataset.level);
       btn.classList.toggle('active', level === threshold);
     });
-  }
-
-  _getNextTopic(currentTopicId) {
-    const currentIndex = this.topics.findIndex((topic) => topic.id === currentTopicId);
-    return this.topics[(currentIndex + 1) % this.topics.length];
-  }
-
-  _getNextStage(currentStageId) {
-    const currentIndex = this.stages.findIndex((stage) => stage.id === currentStageId);
-    return this.stages[(currentIndex + 1) % this.stages.length];
   }
 
   _showCard(character) {
@@ -2191,6 +2712,92 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
     this.graph?.resumeSimulation?.();
   }
 
+  _showPKPanel(leftId, rightId) {
+    const left = this.characterMap.get(leftId);
+    const right = this.characterMap.get(rightId);
+    if (!left || !right) return;
+
+    this.isCardOpen = true;
+    document.body.classList.add('card-open');
+    this.graph?.pauseSimulation?.();
+
+    const leftRelations = this.graph.getCharacterRelations(leftId);
+    const rightRelations = this.graph.getCharacterRelations(rightId);
+    const directRelation = this._getDirectRelation(leftId, rightId);
+    const mutualConnections = this._getMutualConnections(leftId, rightId);
+
+    const familyColor = (c) => this.graph._getNodeColor(c);
+    const stars = (c) => '★'.repeat(c.importance || 1) + '☆'.repeat(5 - (c.importance || 1));
+
+    this._setHtml(this.els.cardContent, `
+      <button class="card-close-btn" data-close-card="true">✕</button>
+      <div class="pk-panel">
+        <div class="pk-header">
+          <div class="pk-versus">VS</div>
+          <h3 class="pk-title">人物对比</h3>
+        </div>
+        <div class="pk-grid">
+          <div class="pk-side pk-left">
+            <div class="pk-avatar" style="background:${familyColor(left)}">${left.name.substring(0, 1)}</div>
+            <div class="pk-name">${left.name}</div>
+            <div class="pk-identity">${left.identity || ''}</div>
+            <div class="pk-tags">
+              <span class="pk-tag" style="color:${familyColor(left)}">${left.family}</span>
+              <span class="pk-tag">${left.gender}</span>
+              <span class="pk-tag">${stars(left)}</span>
+            </div>
+            <div class="pk-stats">
+              <div class="pk-stat"><span>关系数</span><strong>${leftRelations.length}</strong></div>
+              <div class="pk-stat"><span>出场回数</span><strong>${(left.chapters || []).length}</strong></div>
+              <div class="pk-stat"><span>重要度</span><strong>${left.importance || 1}</strong></div>
+            </div>
+          </div>
+          <div class="pk-vs">
+            ${directRelation.length ? `<div class="pk-direct-rel"><span>${directRelation[0].label}</span></div>` : '<div class="pk-no-rel">无直接关系</div>'}
+          </div>
+          <div class="pk-side pk-right">
+            <div class="pk-avatar" style="background:${familyColor(right)}">${right.name.substring(0, 1)}</div>
+            <div class="pk-name">${right.name}</div>
+            <div class="pk-identity">${right.identity || ''}</div>
+            <div class="pk-tags">
+              <span class="pk-tag" style="color:${familyColor(right)}">${right.family}</span>
+              <span class="pk-tag">${right.gender}</span>
+              <span class="pk-tag">${stars(right)}</span>
+            </div>
+            <div class="pk-stats">
+              <div class="pk-stat"><span>关系数</span><strong>${rightRelations.length}</strong></div>
+              <div class="pk-stat"><span>出场回数</span><strong>${(right.chapters || []).length}</strong></div>
+              <div class="pk-stat"><span>重要度</span><strong>${right.importance || 1}</strong></div>
+            </div>
+          </div>
+        </div>
+        ${mutualConnections.length ? `
+          <div class="pk-mutual">
+            <h4>共同关联人物</h4>
+            <div class="pk-mutual-list">
+              ${mutualConnections.map(c => `<span class="pk-mutual-pill">${c.name}</span>`).join('')}
+            </div>
+          </div>
+        ` : ''}
+        ${left.personality || right.personality ? `
+          <div class="pk-personality">
+            <div class="pk-personality-side">
+              <h4>性格特征</h4>
+              <p>${left.personality || '暂无'}</p>
+            </div>
+            <div class="pk-personality-side">
+              <h4>性格特征</h4>
+              <p>${right.personality || '暂无'}</p>
+            </div>
+          </div>
+        ` : ''}
+      </div>
+    `);
+
+    this.els.cardContent.querySelector('[data-close-card="true"]').addEventListener('click', () => this._closeCard());
+    this.els.cardOverlay.classList.add('active');
+  }
+
   _setFacetState(nextState = {}, sourceView = 'graph') {
     const mergedState = {
       ...this.facetState,
@@ -2215,7 +2822,6 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
     }
     
     this._renderGlobalContextBar();
-    this._syncFacetStateToViews();
   }
 
   _syncFacetStateToViews() {
@@ -2263,10 +2869,6 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
     if (this.graph) {
       this.graph.applyFacetSelection?.(state.selectedCharacterIds);
     }
-  }
-
-  _mergeFacetState(partial = {}) {
-    Object.assign(this.facetState, partial);
   }
 
   _handleFacetTagSelection(payload = {}) {
@@ -2377,48 +2979,8 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
     // Update back button visibility
     this._updateBackButton();
     
-    // If on graph view, show important overview
-    if (this.activeView === 'graph' && this.graph) {
-      this.graph.showImportantOverview();
-    }
-  }
-
-  _clearCurrentSelection() {
-    // Per D-02: Clear just the current selection, keep the view
-    // Determine which selection is active and clear it
-    if (this.currentCharacterId) {
-      this.currentCharacterId = null;
-      // Clear FacetStore character selection
-      this._setFacetState({
-        selectedCharacterIds: []
-      });
-    } else if (this.currentTopic) {
-      this.currentTopic = null;
-    } else if (this.currentStage) {
-      this.currentStage = null;
-    } else if (this.currentFamily) {
-      this.currentFamily = null;
-      // Clear FacetStore family selection
-      this._setFacetState({
-        selectedFamily: null
-      });
-    } else if (this.currentRelationshipPair) {
-      this.currentRelationshipPair = null;
-    }
-    
-    // Close any open overlays
-    this._closeCard();
-    this._closeDrawer();
-    
-    // Exit focus mode if active
-    if (this.graph && this.graph.focusMode) {
-      this.graph.exitFocusMode();
-    }
-    
-    // Update UI
-    this._updateActionStates();
-    this._renderGlobalContextBar();
-    this._updateBackButton();
+    // Update URL parameters
+    this._updateUrlParams();
     
     // If on graph view, show important overview
     if (this.activeView === 'graph' && this.graph) {
@@ -2441,7 +3003,15 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
       chapter: '章节视图',
       knowledge: '知识库'
     };
+    const viewIcons = {
+      graph: '◉',
+      tree: '🌳',
+      list: '📋',
+      chapter: '📚',
+      knowledge: '📖'
+    };
     const currentViewName = viewNames[this.activeView] || '概览';
+    const currentViewIcon = viewIcons[this.activeView] || '';
     
     // Build selection display
     let selectionLabel = '';
@@ -2474,9 +3044,9 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
     
     // Breadcrumb is disabled for now; render plain context pills instead.
     if (this.els.contextFacets) {
-      const contextPills = [`当前视图：${currentViewName}`];
+      const contextPills = [`${currentViewIcon} ${currentViewName}`];
       if (selectionLabel) {
-        contextPills.push(`当前选择：${selectionLabel}`);
+        contextPills.push(selectionLabel);
       }
       this.els.contextFacets.innerHTML = contextPills
         .map((label) => `<span class="context-pill">${this._escapeHtml(label)}</span>`)
@@ -2495,8 +3065,8 @@ this._renderSidebarSearchResults(resultGroups, '未找到匹配内容，可以�
       this.els.btnClearContext.classList.toggle('hidden', !hasSelection);
     }
     
-    // Activate context bar when there's content
-    this.els.globalContextBar.classList.toggle('active', hasSelection);
+    // Always show context bar
+    this.els.globalContextBar.classList.add('active');
   }
 
   _initGraphHint() {
