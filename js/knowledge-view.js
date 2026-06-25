@@ -251,6 +251,16 @@ class KnowledgeView {
             </div>
 
             <div class="knowledge-sidebar-section">
+              <div class="knowledge-sidebar-title">语音引擎</div>
+              <select id="knowledge-voice-filter" name="knowledge-voice-filter" class="knowledge-select" data-filter="voice">
+                <option value="mimo_白桦" selected>白桦（男声·沉稳）</option>
+                <option value="mimo_苏打">苏打（男声·清朗）</option>
+                <option value="mimo_茉莉">茉莉（女声·知性）</option>
+              </select>
+              <div id="knowledge-voice-status" class="knowledge-voice-status" style="font-size:11px;color:#999;margin-top:4px;">加载中…</div>
+            </div>
+
+            <div class="knowledge-sidebar-section">
               <div class="knowledge-sidebar-title">高频标签</div>
               <div class="knowledge-chip-group">
                 ${hotTags.map((tag) => `<button class="knowledge-chip" data-tag="${tag.name}">${tag.name}<span>${tag.count}</span></button>`).join('') || '<span class="knowledge-muted">暂无高频标签</span>'}
@@ -285,6 +295,7 @@ class KnowledgeView {
     this._initResizeHandle();
     this._observeLayoutResize();
     this._scheduleTextLayoutPass();
+    this._loadVoiceEngines();
   }
 
   _updateContent(options = {}) {
@@ -558,7 +569,7 @@ class KnowledgeView {
 
         <div class="knowledge-card-footer">
           <div class="knowledge-card-related-events">${(item.relatedEvents || []).slice(0, 3).map((event) => `<span>${this._highlightText(event)}</span>`).join('')}</div>
-          ${this._canSpeak(displayContent) ? `<button class="knowledge-speak-btn" data-speak-text="${this._escapeHtmlAttr(displayContent)}" title="朗读此内容">🔊 朗读</button>` : ''}
+          ${this._canSpeak(displayContent) ? `<button class="knowledge-speak-btn" data-speak-id="${this._escapeHtmlAttr(item.id)}" data-speak-text="${this._escapeHtmlAttr(displayContent)}" title="朗读此内容">🔊 朗读</button>` : ''}
         </div>
       </article>
     `;
@@ -645,7 +656,7 @@ class KnowledgeView {
         if (window.edgeTTS && typeof window.edgeTTS.warmUp === 'function') {
           window.edgeTTS.warmUp();
         }
-        this._speakText(speakButton.dataset.speakText, speakButton);
+        this._speakText(speakButton.dataset.speakText, speakButton, speakButton.dataset.speakId);
         return;
       }
 
@@ -674,6 +685,10 @@ class KnowledgeView {
       if (!select) return;
       if (select.dataset.filter === 'chapter') this.chapterFilter = select.value;
       if (select.dataset.filter === 'sort') this.sortBy = select.value;
+      if (select.dataset.filter === 'voice') {
+        this._setVoiceEngine(select.value);
+        return;
+      }
       this._invalidateFilterCache();
       this._updateContent();
       this._scrollToTop();
@@ -923,10 +938,13 @@ class KnowledgeView {
     return;
   }
 
-  async _speakText(text, button) {
+  async _speakText(text, button, speakId) {
     // 再次点击同一个按钮代表停止播放
     if (this._currentSpeakButton === button) {
       this._currentSpeakButton = null;
+      if (window.__audioPreloadCache) {
+        window.__audioPreloadCache.stop();
+      }
       if (window.edgeTTS) {
         window.edgeTTS.stop();
       }
@@ -935,6 +953,9 @@ class KnowledgeView {
     }
 
     // 暂停先前任何可能在播放的语音
+    if (window.__audioPreloadCache) {
+      window.__audioPreloadCache.stop();
+    }
     if (window.edgeTTS) {
       window.edgeTTS.stop();
     }
@@ -946,6 +967,25 @@ class KnowledgeView {
     this._currentSpeakButton = button;
     button.classList.add('speaking');
 
+    // 优先尝试预生成音频（毫秒级响应）
+    if (speakId && window.__audioPreloadCache) {
+      try {
+        await window.__audioPreloadCache.play(speakId, speakText);
+        // 播放成功，正常结束
+        if (this._currentSpeakButton === button) {
+          this._currentSpeakButton = null;
+          button.classList.remove('speaking');
+        }
+        return;
+      } catch (e) {
+        // cache_miss 或 audio_load_error → 继续走到 edgeTTS 回退
+        if (e.message !== 'cache_miss' && e.message !== 'audio_load_error') {
+          console.warn('[KnowledgeView] AudioPreloadCache error:', e.message);
+        }
+      }
+    }
+
+    // 回退：使用 edgeTTS（原有三级降级链）
     try {
       if (window.edgeTTS) {
         await window.edgeTTS.speak(speakText);
@@ -955,8 +995,78 @@ class KnowledgeView {
     } finally {
       if (this._currentSpeakButton === button) {
         this._currentSpeakButton = null;
+        button.classList.remove('speaking');
       }
-      button.classList.remove('speaking');
+    }
+  }
+
+  /**
+   * 切换语音引擎
+   */
+  _setVoiceEngine(engine) {
+    if (window.__audioPreloadCache) {
+      window.__audioPreloadCache.setEngine(engine);
+    }
+    const statusEl = this.container.querySelector('#knowledge-voice-status');
+    if (statusEl) {
+      const label = this._getEngineLabel(engine);
+      statusEl.textContent = `当前：${label}`;
+    }
+  }
+
+  /**
+   * 获取引擎显示名
+   */
+  _getEngineLabel(engine) {
+    const map = {
+      'mimo_白桦': '白桦（男声·沉稳）',
+      'mimo_苏打': '苏打（男声·清朗）',
+      'mimo_茉莉': '茉莉（女声·知性）',
+      'mimo_冰糖': '冰糖（女声·甜美）',
+      'mimo_default': '默认（MiMo）'
+    };
+    return map[engine] || engine;
+  }
+
+  /**
+   * 异步加载 manifest 并填充语音下拉框
+   */
+  async _loadVoiceEngines() {
+    const selectEl = this.container.querySelector('#knowledge-voice-filter');
+    const statusEl = this.container.querySelector('#knowledge-voice-status');
+    if (!selectEl || !window.__audioPreloadCache) return;
+
+    try {
+      await window.__audioPreloadCache._ensureManifest();
+      const engines = window.__audioPreloadCache.getAvailableEngines();
+
+      // 收集已有的 option value
+      const existing = new Set([...selectEl.options].map(o => o.value));
+
+      // 补充 manifest 中发现但下拉框中缺失的引擎
+      for (const engine of engines) {
+        if (existing.has(engine.id)) continue;
+        const opt = document.createElement('option');
+        opt.value = engine.id;
+        opt.textContent = engine.label;
+        selectEl.appendChild(opt);
+      }
+
+      // 确保当前引擎被选中
+      const current = window.__audioPreloadCache.engine;
+      for (const opt of selectEl.options) {
+        opt.selected = opt.value === current;
+      }
+
+      if (statusEl) {
+        const total = Object.keys(window.__audioPreloadCache._manifest || {}).length;
+        statusEl.textContent = `已加载 ${total} 条音频`;
+      }
+    } catch (e) {
+      if (statusEl) {
+        statusEl.textContent = '音频未加载，使用在线 TTS';
+        statusEl.style.color = '#C0392B';
+      }
     }
   }
 
