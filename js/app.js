@@ -1976,8 +1976,16 @@ _createFontAndThemeControls() {
 
   _openCharacterKnowledge(character) {
     if (!character || !this.knowledgeView) return;
+    this.currentCharacterId = character.id;
+    this.currentTopic = null;
+    this.currentStage = null;
+    this.currentFamily = null;
+    this.currentRelationshipPair = null;
+    this.currentView = { type: 'character', characterId: character.id };
     this._openKnowledgeContext({ query: character.name, selectedCharacterIds: [character.id] });
+    this._renderGlobalContextBar();
     this._updateFloatingContext(`知识：${character.name}`);
+    this._updateUrlParams();
   }
 
   _openKnowledgeContext(payload = {}) {
@@ -2015,6 +2023,8 @@ _createFontAndThemeControls() {
     if (input) input.value = query;
     const chapterSelect = this.els.knowledgeContainer?.querySelector('.knowledge-select[data-filter="chapter"]');
     if (chapterSelect) chapterSelect.value = this.knowledgeView.chapterFilter;
+    const sortSelect = this.els.knowledgeContainer?.querySelector('.knowledge-select[data-filter="sort"]');
+    if (sortSelect) sortSelect.value = this.knowledgeView.sortBy;
 
     this.knowledgeView._invalidateFilterCache?.();
     this.knowledgeView._updateContent?.();
@@ -3434,6 +3444,23 @@ _createFontAndThemeControls() {
       breadcrumb: [{ label: '默认概览', type: 'overview' }],
       sourceView: this.activeView
     });
+    // Reset knowledge view's explicit filters so stale chapter-jump state
+    // doesn't leak into subsequent character/overview contexts.
+    if (this.knowledgeView) {
+      this.knowledgeView.activeCategory = 'all';
+      this.knowledgeView.activeSubcategory = 'all';
+      this.knowledgeView.chapterFilter = 'all';
+      this.knowledgeView.sortBy = 'relevance';
+      this.knowledgeView.searchQuery = '';
+      const input = this.els.knowledgeContainer?.querySelector('.knowledge-search-input');
+      if (input) input.value = '';
+      const chSel = this.els.knowledgeContainer?.querySelector('.knowledge-select[data-filter="chapter"]');
+      if (chSel) chSel.value = 'all';
+      const sortSel = this.els.knowledgeContainer?.querySelector('.knowledge-select[data-filter="sort"]');
+      if (sortSel) sortSel.value = 'relevance';
+      this.knowledgeView._invalidateFilterCache?.();
+      this.knowledgeView._updateContent?.();
+    }
     
     // Close any open overlays
     this._closeCard();
