@@ -5,6 +5,7 @@ class HongLouMengApp {
     this.listView = null;
     this.chapterView = null;
     this.knowledgeView = null;
+    this.timelineView = null;
     this.characters = [];
     this.relationships = [];
     this.knowledge = [];
@@ -20,6 +21,7 @@ class HongLouMengApp {
     this.isFullscreen = false;
     this.isMobileSearchOpen = false;
     this.isCardOpen = false;
+    this.isDiscoveryOpen = false;
     this.performanceMode = 'auto';
     this.els = {};
     this.viewInitialized = { graph: true, tree: false, list: false, chapter: false, knowledge: false };
@@ -40,6 +42,11 @@ class HongLouMengApp {
     this.graphState = null;
     this.recentBrowsingHistory = [];
     this.RECENT_MAX = 8;
+    this.timelineFilterMode = 'single';
+    this.timelinePlayInterval = 900;
+    this._timelineInputRaf = null;
+    this._pendingTimelineChapter = 0;
+    this.chapterCharacterIndex = new Map();
 
     this.featuredCharacterIds = ['jia_baoyu', 'lin_daiyu', 'xue_baochai', 'wang_xifeng', 'jia_mu', 'shi_xiangyun'];
 
@@ -152,7 +159,9 @@ class HongLouMengApp {
 
       // Hash-based routing (legacy)
       const hashView = (location.hash || '').replace('#', '');
-      const initialView = viewParam || (['graph', 'tree', 'list', 'chapter', 'knowledge'].includes(hashView) ? hashView : 'graph');
+      const validViews = ['graph', 'tree', 'list', 'chapter', 'knowledge'];
+      const initialView = viewParam || (validViews.includes(hashView) ? hashView : 'graph');
+    this.els.body.classList.add(`view-${initialView}`);
       
       this._switchView(initialView);
 
@@ -167,6 +176,8 @@ class HongLouMengApp {
 
       this._renderSearchState();
       this._initGraphHint();
+      this._initDiscovery();
+      this._initPathPanel();
       this._restoreRecentBrowsing();
       this._hideLoading();
     } catch (err) {
@@ -241,9 +252,21 @@ class HongLouMengApp {
       viewList: document.getElementById('view-list'),
       viewChapter: document.getElementById('view-chapter'),
       viewKnowledge: document.getElementById('view-knowledge'),
+      viewTimeline: document.getElementById('view-timeline'),
+      timelineContainer: document.getElementById('timeline-container'),
+      discoveryOverlay: document.getElementById('discovery-overlay'),
+      discoveryCards: document.getElementById('discovery-cards'),
+      discoveryDaily: document.getElementById('discovery-daily'),
+      pathDisplayPanel: document.getElementById('path-display-panel'),
+      pathChain: document.getElementById('path-chain'),
+      pathPanelLabel: document.getElementById('path-panel-label'),
+      pathPanelClose: document.getElementById('path-panel-close'),
       timelineSlider: document.getElementById('timeline-slider'),
       timelineRange: document.getElementById('timeline-range'),
-      timelineChapter: document.getElementById('timeline-chapter')
+      timelineChapter: document.getElementById('timeline-chapter'),
+      timelineMode: document.getElementById('timeline-mode'),
+      timelineSpeed: document.getElementById('timeline-speed'),
+      btnTimelinePlay: document.getElementById('btn-timeline-play')
     };
   }
 
@@ -410,6 +433,23 @@ class HongLouMengApp {
       });
     }
 
+    // Overflow menu toggle
+    const btnControlsMore = document.getElementById('btn-controls-more');
+    const overflowMenu = document.getElementById('controls-overflow-menu');
+    if (btnControlsMore && overflowMenu) {
+      btnControlsMore.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = overflowMenu.classList.toggle('open');
+        btnControlsMore.setAttribute('aria-expanded', String(isOpen));
+      });
+      document.addEventListener('click', (e) => {
+        if (!overflowMenu.contains(e.target) && e.target !== btnControlsMore) {
+          overflowMenu.classList.remove('open');
+          btnControlsMore.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
     this.els.btnRunCompare.addEventListener('click', () => {
       const compareState = this._getCompareState();
       if (!compareState.canCompare) return;
@@ -464,6 +504,16 @@ class HongLouMengApp {
       const isTyping = e.target.closest('input') || e.target.closest('select') || e.target.closest('textarea');
       
       if (e.key === 'Escape') {
+        // Close discovery panel first
+        if (this.isDiscoveryOpen) {
+          this._hideDiscovery();
+          return;
+        }
+        // Close path panel
+        if (this.els.pathDisplayPanel?.classList.contains('active')) {
+          this._hidePathPanel();
+          return;
+        }
         // Close search dropdowns first
         const graphSearchResults = this.els.graphSearchResults;
         const searchResults = this.els.searchResults;
@@ -502,6 +552,13 @@ class HongLouMengApp {
       }
 
       if (isTyping) return;
+
+      // Cmd+K or Ctrl+K to focus search
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        (this.els.graphSearchInput || this.els.searchInput)?.focus();
+        return;
+      }
 
       if (e.key === '/') {
         e.preventDefault();
@@ -567,19 +624,41 @@ class HongLouMengApp {
       }
     });
 
-    // Timeline slider
+    // Timeline slider + controls
     if (this.els.timelineRange) {
       this.els.timelineRange.addEventListener('input', (e) => {
-        const chapter = parseInt(e.target.value);
-        this._handleTimelineChange(chapter);
+        const chapter = Number.parseInt(e.target.value, 10) || 0;
+        this._pendingTimelineChapter = chapter;
+        if (this._timelineInputRaf) return;
+        this._timelineInputRaf = window.requestAnimationFrame(() => {
+          this._timelineInputRaf = null;
+          this._handleTimelineChange(this._pendingTimelineChapter, { centerOnChapter: false, reason: 'scrub' });
+        });
+      });
+
+      this.els.timelineRange.addEventListener('change', (e) => {
+        const chapter = Number.parseInt(e.target.value, 10) || 0;
+        this._handleTimelineChange(chapter, { centerOnChapter: true, reason: 'commit' });
       });
     }
 
-    // Timeline play button
-    const btnTimelinePlay = document.getElementById('btn-timeline-play');
-    if (btnTimelinePlay) {
-      btnTimelinePlay.addEventListener('click', () => {
-        this._toggleTimelinePlay(btnTimelinePlay);
+    if (this.els.btnTimelinePlay) {
+      this.els.btnTimelinePlay.addEventListener('click', () => {
+        this._toggleTimelinePlay(this.els.btnTimelinePlay);
+      });
+    }
+
+    if (this.els.timelineMode) {
+      this.els.timelineMode.addEventListener('change', (e) => {
+        this.timelineFilterMode = e.target.value === 'cumulative' ? 'cumulative' : 'single';
+        const chapter = Number.parseInt(this.els.timelineRange?.value || '0', 10) || 0;
+        this._handleTimelineChange(chapter, { centerOnChapter: true, reason: 'mode' });
+      });
+    }
+
+    if (this.els.timelineSpeed) {
+      this.els.timelineSpeed.addEventListener('change', (e) => {
+        this.timelinePlayInterval = Number.parseInt(e.target.value, 10) || 900;
       });
     }
   }
@@ -612,9 +691,9 @@ class HongLouMengApp {
       if (this.els.timelineRange) {
         this.els.timelineRange.value = currentChapter;
       }
-      this._handleTimelineChange(currentChapter);
+      this._handleTimelineChange(currentChapter, { centerOnChapter: true, reason: 'play' });
       
-      this._timelineTimer = setTimeout(playNext, 1500);
+      this._timelineTimer = setTimeout(playNext, this.timelinePlayInterval);
     };
     
     playNext();
@@ -626,9 +705,14 @@ class HongLouMengApp {
       clearTimeout(this._timelineTimer);
       this._timelineTimer = null;
     }
+    if (this.els.btnTimelinePlay) {
+      this.els.btnTimelinePlay.textContent = '▶';
+      this.els.btnTimelinePlay.classList.remove('playing');
+    }
   }
 
-  _handleTimelineChange(chapter) {
+  _handleTimelineChange(chapter, options = {}) {
+    const { centerOnChapter = false } = options;
     if (!this.els.timelineChapter) return;
     
     if (chapter === 0) {
@@ -638,35 +722,85 @@ class HongLouMengApp {
       this._timelineAnimating = false;
       return;
     }
-    
-    this.els.timelineChapter.textContent = `第${chapter}回`;
-    
-    // Find characters that appear up to this chapter (cumulative)
-    const chapterChars = this.characters.filter(c => 
-      (c.chapters || []).some(ch => ch.chapter <= chapter)
-    ).map(c => c.id);
-    
-    // Also include characters whose relationships are active
-    const activeChars = new Set(chapterChars);
-    this.relationships.forEach(rel => {
+
+    const modeLabel = this.timelineFilterMode === 'cumulative' ? '累计' : '单回';
+    const baseChars = this._getTimelineCharacterIds(chapter, this.timelineFilterMode);
+    const activeChars = this._expandByRelations(baseChars, this.timelineFilterMode === 'cumulative' ? 40 : 20);
+    const charArray = [...activeChars];
+
+    this.els.timelineChapter.textContent = `第${chapter}回 · ${modeLabel}（${charArray.length}人）`;
+
+    if (!charArray.length) {
+      this._updateFloatingContext(`第${chapter}回 · ${modeLabel}：暂无人物数据`);
+      return;
+    }
+
+    const centerChar = this.characters
+      .filter((c) => activeChars.has(c.id))
+      .sort((a, b) => (b.importance || 0) - (a.importance || 0))[0];
+
+    this.graph.showCharacterSet(charArray, { centerId: centerOnChapter ? centerChar?.id : null });
+    this._updateFloatingContext(`第${chapter}回 · ${modeLabel}：${charArray.length} 位人物`);
+  }
+
+  _buildTimelineChapterIndex() {
+    this.chapterCharacterIndex = new Map();
+    for (let chapter = 1; chapter <= 120; chapter++) {
+      this.chapterCharacterIndex.set(chapter, new Set());
+    }
+
+    this.characters.forEach((character) => {
+      (character.chapters || []).forEach((entry) => {
+        const chapter = Number.parseInt(entry?.chapter, 10);
+        if (!Number.isFinite(chapter) || chapter < 1 || chapter > 120) return;
+        this.chapterCharacterIndex.get(chapter)?.add(character.id);
+      });
+    });
+  }
+
+  _getTimelineCharacterIds(chapter, mode = 'single') {
+    if (mode === 'cumulative') {
+      const ids = new Set();
+      for (let ch = 1; ch <= chapter; ch++) {
+        this.chapterCharacterIndex.get(ch)?.forEach((id) => ids.add(id));
+      }
+      return ids;
+    }
+
+    const direct = new Set(this.chapterCharacterIndex.get(chapter) || []);
+    if (direct.size >= 4) return direct;
+
+    // 单回人物太少时补入邻近回，避免“拖了没反应”的感受。
+    for (let radius = 1; radius <= 2; radius++) {
+      const prev = chapter - radius;
+      const next = chapter + radius;
+      if (prev >= 1) this.chapterCharacterIndex.get(prev)?.forEach((id) => direct.add(id));
+      if (next <= 120) this.chapterCharacterIndex.get(next)?.forEach((id) => direct.add(id));
+      if (direct.size >= 6) break;
+    }
+
+    return direct;
+  }
+
+  _expandByRelations(baseIds, maxExtra = 24) {
+    const expanded = new Set(baseIds || []);
+    if (!expanded.size) return expanded;
+
+    let extraCount = 0;
+    for (const rel of this.relationships) {
       const sourceId = typeof rel.source === 'string' ? rel.source : rel.source.id;
       const targetId = typeof rel.target === 'string' ? rel.target : rel.target.id;
-      if (activeChars.has(sourceId) || activeChars.has(targetId)) {
-        activeChars.add(sourceId);
-        activeChars.add(targetId);
+      if (expanded.has(sourceId) && !expanded.has(targetId)) {
+        expanded.add(targetId);
+        extraCount += 1;
+      } else if (expanded.has(targetId) && !expanded.has(sourceId)) {
+        expanded.add(sourceId);
+        extraCount += 1;
       }
-    });
-    
-    const charArray = [...activeChars];
-    if (charArray.length) {
-      // Find center character (most important in this chapter)
-      const centerChar = this.characters
-        .filter(c => activeChars.has(c.id))
-        .sort((a, b) => (b.importance || 0) - (a.importance || 0))[0];
-      
-      this.graph.showCharacterSet(charArray, { centerId: centerChar?.id });
-      this._updateFloatingContext(`第${chapter}回：${charArray.length} 位人物`);
+      if (extraCount >= maxExtra) break;
     }
+
+    return expanded;
   }
 
   async _loadData() {
@@ -681,6 +815,8 @@ class HongLouMengApp {
     this.characters = await charRes.json();
     this.relationships = await relRes.json();
     this.knowledge = knowledgeRes.ok ? await knowledgeRes.json() : [];
+    this._augmentCharacterChaptersFromKnowledge();
+    this._buildTimelineChapterIndex();
     this.characters.forEach((character) => {
       this.characterMap.set(character.id, character);
       this.aliasMap.set(character.name, character.id);
@@ -692,6 +828,65 @@ class HongLouMengApp {
         });
         if (pinyinKey) this.aliasMap.set(pinyinKey, character.id);
       }
+    });
+  }
+
+  _augmentCharacterChaptersFromKnowledge() {
+    if (!Array.isArray(this.characters) || !Array.isArray(this.knowledge)) return;
+
+    const characterById = new Map(this.characters.map((c) => [c.id, c]));
+    const chapterMapByCharacter = new Map();
+
+    const normalizeChapter = (value) => {
+      const chapter = Number.parseInt(value, 10);
+      if (!Number.isFinite(chapter) || chapter < 1 || chapter > 120) return null;
+      return chapter;
+    };
+
+    const toSummary = (item) => {
+      const raw = item?.analysis || item?.content || item?.title || '';
+      return String(raw).replace(/\s+/g, ' ').trim().slice(0, 90);
+    };
+
+    // Seed with existing chapter data first.
+    this.characters.forEach((character) => {
+      const chapterMap = new Map();
+      (character.chapters || []).forEach((entry) => {
+        const chapter = normalizeChapter(entry?.chapter);
+        if (!chapter) return;
+        chapterMap.set(chapter, {
+          chapter,
+          title: entry?.title || `第${chapter}回`,
+          summary: entry?.summary || ''
+        });
+      });
+      chapterMapByCharacter.set(character.id, chapterMap);
+    });
+
+    // Backfill from knowledge entries with explicit chapter + relatedCharacters.
+    this.knowledge.forEach((item) => {
+      const chapter = normalizeChapter(item?.chapter);
+      const related = Array.isArray(item?.relatedCharacters) ? item.relatedCharacters : [];
+      if (!chapter || !related.length) return;
+
+      related.forEach((charId) => {
+        if (!characterById.has(charId)) return;
+        const chapterMap = chapterMapByCharacter.get(charId) || new Map();
+        if (!chapterMap.has(chapter)) {
+          chapterMap.set(chapter, {
+            chapter,
+            title: item?.title || `第${chapter}回相关知识`,
+            summary: toSummary(item)
+          });
+        }
+        chapterMapByCharacter.set(charId, chapterMap);
+      });
+    });
+
+    // Write back sorted chapters.
+    this.characters.forEach((character) => {
+      const chapterMap = chapterMapByCharacter.get(character.id) || new Map();
+      character.chapters = [...chapterMap.values()].sort((a, b) => a.chapter - b.chapter);
     });
   }
 
@@ -727,7 +922,7 @@ class HongLouMengApp {
 
     if (this.els.chapterContainer) {
       this.chapterView = new ChapterView(this.els.chapterContainer);
-      this.chapterView.setData(this.knowledge, this.characters);
+      this.chapterView.setData(this.knowledge, this.characters, this.relationships);
       this.chapterView.onCharacterClick = (characterId) => this._openCharacter(characterId, { focusNeighbors: true });
       this.chapterView.onTagClick = (payload) => this._handleFacetTagSelection(payload);
       this.chapterView.onKnowledgeNavigate = (payload) => this._openKnowledgeContext(payload);
@@ -741,6 +936,7 @@ class HongLouMengApp {
       this.knowledgeView.onTagClick = (payload) => this._handleFacetTagSelection(payload);
       this._subscribeViewToFacetStore('knowledge');
     }
+
   }
 
   _subscribeViewToFacetStore(viewName) {
@@ -754,9 +950,9 @@ class HongLouMengApp {
         knowledge: this.knowledgeView,
         graph: this.graph
       }[viewName];
-      
+
       if (!view || !view.setFacetContext) return;
-      
+
       view.setFacetContext({
         selectedCharacterIds: state.selectedCharacterIds
       });
@@ -765,8 +961,7 @@ class HongLouMengApp {
         view._syncTreeHighlights?.();
       }
       if (viewName === 'list' && this.viewInitialized.list) {
-        view._invalidateFilterCache?.();
-        view._renderList?.();
+        view.syncFacetHighlights?.();
       }
       if (viewName === 'chapter' && this.viewInitialized.chapter) {
         view._updateContent?.();
@@ -782,10 +977,8 @@ class HongLouMengApp {
   }
 
   _switchView(viewName, options = {}) {
-    const { preserveScroll = true } = options;
+    const { preserveScroll = false } = options;
     if (this.activeView === viewName) return;
-
-    const previousScrollY = window.scrollY;
 
     this._closeCard();
     this._closeDrawer();
@@ -868,22 +1061,50 @@ class HongLouMengApp {
     this._renderSearchState();
     this._renderGlobalContextBar();
 
-    if (preserveScroll) {
-      // 为解决由于新视图在分批延迟渲染（如知识库）导致页面高度瞬时塌缩、从而引起 scrollTo 坐标被浏览器硬件截断导致滚动丢失的问题（对应测试用例 TC-09 漂移 bug）
-      // 我们在滚动前同步、强行将 body 高度支撑起来
-      if (previousScrollY > 10) {
-        this.els.body.style.minHeight = `${previousScrollY + window.innerHeight + 200}px`;
-      }
-
-      window.scrollTo({ top: previousScrollY, behavior: 'instant' });
-
-      // 在极短延时（约50ms，通常经历了两帧排版并完成了基础卡片铺底）后，悄无声息地移除 minHeight 样式，恢复真实的排版自适应尺寸
-      setTimeout(() => {
-        this.els.body.style.minHeight = '';
-      }, 50);
-    }
+    // 统一使用视图内容容器作为滚动层，避免 window 级滚动与内层滚动打架。
+    this._resetViewScrollPosition(viewName, { preserveScroll });
 
     this._updateUrlParams();
+  }
+
+  _resetViewScrollPosition(viewName, options = {}) {
+    const { preserveScroll = false } = options;
+    this.els.body.style.minHeight = '';
+
+    if (preserveScroll) return;
+
+    const reset = (selector) => {
+      const el = document.querySelector(selector);
+      if (!el) return;
+      el.scrollTo({ top: 0, behavior: 'instant' });
+    };
+
+    if (viewName === 'graph') {
+      return;
+    }
+
+    if (viewName === 'tree') {
+      reset('.tree-outline');
+      return;
+    }
+
+    if (viewName === 'list') {
+      reset('.list-content');
+      return;
+    }
+
+    if (viewName === 'chapter') {
+      reset('.chapter-main');
+      reset('.chapter-directory');
+      return;
+    }
+
+    if (viewName === 'knowledge') {
+      reset('.knowledge-main');
+      reset('.knowledge-sidebar');
+      return;
+    }
+
   }
 
   _updateUrlParams() {
@@ -1948,6 +2169,9 @@ _createFontAndThemeControls() {
     const left = this.characterMap.get(leftId);
     const right = this.characterMap.get(rightId);
     this._updateFloatingContext(`路径：${pathNames}`);
+
+    // Show path panel
+    this._showPathPanel(path);
     
     // Update facet state
     this._setFacetState({
@@ -2072,7 +2296,7 @@ _createFontAndThemeControls() {
       activeResultsEl.classList.remove('active');
       activeResultsEl.innerHTML = '';
       this.graph.highlightSearch('');
-      this._renderSidebarSearchResults([], '搜索人物、关系、专题或阶段，结果会同时出现在这里。');
+      this._renderSidebarSearchResults([], '搜索人物、知识、章回、专题或阶段，结果会同时出现在这里。');
       return;
     }
 
@@ -2086,6 +2310,12 @@ _createFontAndThemeControls() {
       const haystack = [stage.title, stage.description, stage.range, ...(stage.questions || [])].join(' ').toLowerCase();
       return haystack.includes(clean.toLowerCase());
     }).slice(0, 3);
+
+    // Knowledge search via Fuse
+    const matchedKnowledge = this._searchKnowledge(clean).slice(0, 6);
+
+    // Chapter search: "第5回", "5", "五十回"
+    const matchedChapters = this._searchChapters(clean);
 
     this.graph.highlightSearch(clean);
 
@@ -2135,6 +2365,28 @@ _createFontAndThemeControls() {
           id: stage.id,
           name: stage.title,
           info: `${stage.range} · ${stage.description}`
+        }))
+      });
+    }
+    if (matchedKnowledge.length) {
+      resultGroups.push({
+        title: '知识',
+        items: matchedKnowledge.map((item) => ({
+          type: 'knowledge',
+          id: item.id,
+          name: item.title,
+          info: `${item.category || ''}${item.chapter ? ' · 第' + item.chapter + '回' : ''}${item.tags?.length ? ' · ' + item.tags.slice(0, 3).join('、') : ''}`
+        }))
+      });
+    }
+    if (matchedChapters.length) {
+      resultGroups.push({
+        title: '章回',
+        items: matchedChapters.map((ch) => ({
+          type: 'chapter',
+          id: String(ch.chapter),
+          name: `第${ch.chapter}回`,
+          info: ch.title || ''
         }))
       });
     }
@@ -2217,7 +2469,7 @@ _createFontAndThemeControls() {
   _renderSearchResultsDropdown(groups, targetEl) {
     const resultsEl = targetEl || this.els.searchResults;
     if (!groups.length) {
-      this._setHtml(resultsEl, '<div class="search-result-item"><span class="search-result-info">未找到匹配的人物、关系或专题。</span></div>');
+      this._setHtml(resultsEl, '<div class="search-result-item"><span class="search-result-info">未找到匹配内容，可以试试"葬花吟""第5回"。</span></div>');
       resultsEl.classList.add('active');
       return;
     }
@@ -2272,6 +2524,8 @@ _createFontAndThemeControls() {
         if (type === 'topic') this._openTopic(item.dataset.id);
         if (type === 'stage') this._openStage(item.dataset.id);
         if (type === 'relationship') this._openRelationshipView(item.dataset.left, item.dataset.right);
+        if (type === 'knowledge') this._openKnowledgeItem(item.dataset.id);
+        if (type === 'chapter') this._openChapterView(parseInt(item.dataset.id, 10));
         if (this.els.graphSearchInput) this.els.graphSearchInput.value = '';
         if (this.els.searchInput) this.els.searchInput.value = '';
         this.els.graphSearchResults?.classList.remove('active');
@@ -2324,6 +2578,83 @@ _createFontAndThemeControls() {
       .map((item) => item.character);
   }
 
+  _searchKnowledge(query) {
+    if (!this.knowledge?.length) return [];
+    let fuse = this.knowledgeView?.fuse;
+    if (!fuse && typeof Fuse !== 'undefined') {
+      fuse = new Fuse(this.knowledge, {
+        includeScore: true,
+        threshold: 0.38,
+        minMatchCharLength: 2,
+        ignoreLocation: true,
+        keys: [
+          { name: 'title', weight: 0.34 },
+          { name: 'tags', weight: 0.2 },
+          { name: 'category', weight: 0.12 },
+          { name: 'subcategory', weight: 0.08 },
+          { name: 'content', weight: 0.15 },
+          { name: 'analysis', weight: 0.08 },
+        ],
+      });
+    }
+    if (!fuse) return [];
+    return fuse.search(query).map(r => r.item);
+  }
+
+  _searchChapters(query) {
+    const clean = query.trim();
+    if (!clean) return [];
+    const chapterMatch = clean.match(/(?:第\s*)?(\d{1,3})\s*回?/);
+    if (chapterMatch) {
+      const num = parseInt(chapterMatch[1], 10);
+      if (num >= 1 && num <= 120) {
+        const chapterItems = [];
+        const chapterKnowledge = this.knowledge.filter(k => k.chapter === num && k.type === 'chapter_summary');
+        if (chapterKnowledge.length) {
+          chapterKnowledge.forEach(k => { chapterItems.push({ chapter: num, title: k.title }); });
+        } else {
+          let title = '';
+          for (const char of this.characters) {
+            const entry = char.chapters?.find(c => c.chapter === num);
+            if (entry?.title) { title = entry.title; break; }
+          }
+          chapterItems.push({ chapter: num, title: title || `第${num}回` });
+        }
+        return chapterItems;
+      }
+    }
+    const chineseNumMap = { '零':0,'一':1,'二':2,'三':3,'四':4,'五':5,'六':6,'七':7,'八':8,'九':9,'十':10,'百':100 };
+    const chineseMatch = clean.match(/([零一二三四五六七八九十百]+)\s*回/);
+    if (chineseMatch) {
+      let num = 0;
+      const chars = chineseMatch[1];
+      if (chars.includes('百')) {
+        const parts = chars.split('百');
+        num = (chineseNumMap[parts[0]] || 1) * 100;
+        if (parts[1]) {
+          if (parts[1].includes('十')) {
+            const tParts = parts[1].split('十');
+            num += (tParts[0] ? chineseNumMap[tParts[0]] : 1) * 10;
+            if (tParts[1]) num += chineseNumMap[tParts[1]] || 0;
+          } else { num += chineseNumMap[parts[1]] || 0; }
+        }
+      } else if (chars.includes('十')) {
+        const parts = chars.split('十');
+        num = (parts[0] ? chineseNumMap[parts[0]] : 1) * 10;
+        if (parts[1]) num += chineseNumMap[parts[1]] || 0;
+      } else { num = chineseNumMap[chars] || 0; }
+      if (num >= 1 && num <= 120) {
+        let title = '';
+        for (const char of this.characters) {
+          const entry = char.chapters?.find(c => c.chapter === num);
+          if (entry?.title) { title = entry.title; break; }
+        }
+        return [{ chapter: num, title: title || `第${num}回` }];
+      }
+    }
+    return [];
+  }
+
   _getSearchRelationContext(targetId) {
     const currentId = this.currentCharacterId;
     if (!currentId || currentId === targetId) return '';
@@ -2342,6 +2673,42 @@ _createFontAndThemeControls() {
       const haystack = [character.name, ...(character.alias || [])].join(' ');
       return haystack.includes(clean) || clean.includes(character.name);
     }) || null;
+  }
+
+  _openKnowledgeItem(itemId) {
+    if (!this.knowledgeView) return;
+    const item = this.knowledge.find(k => k.id === itemId);
+    if (!item) return;
+    this._switchView('knowledge');
+    if (!this.viewInitialized.knowledge) {
+      this.knowledgeView.render();
+      this.viewInitialized.knowledge = true;
+      this.viewEverRendered.knowledge = true;
+    }
+    this.knowledgeView.searchQuery = '';
+    this.knowledgeView.activeCategory = 'all';
+    this.knowledgeView.activeSubcategory = 'all';
+    this.knowledgeView.chapterFilter = 'all';
+    this.knowledgeView.sortBy = 'relevance';
+    this.knowledgeView.expandedIds.clear();
+    this.knowledgeView._activeJumpTargetId = itemId;
+    this.knowledgeView._invalidateFilterCache?.();
+    this.knowledgeView._updateContent?.();
+    this._updateFloatingContext(`知识：${item.title || ''}`);
+  }
+
+  _openChapterView(chapterNum) {
+    if (!this.chapterView) return;
+    this._switchView('chapter');
+    if (!this.viewInitialized.chapter) {
+      this.chapterView.render();
+      this.viewInitialized.chapter = true;
+      this.viewEverRendered.chapter = true;
+    }
+    this.chapterView.activeChapter = chapterNum;
+    this.chapterView._updateContent();
+    this.chapterView._scrollMainToTop?.();
+    this._updateFloatingContext(`第${chapterNum}回`);
   }
 
   _parseRelationshipQuery(query) {
@@ -2521,10 +2888,8 @@ _createFontAndThemeControls() {
   }
 
   _updateBackButton() {
-    if (this.els.btnBack) {
-      const show = this.viewHistory.length > 0 || this.currentView.type !== 'overview';
-      this.els.btnBack.classList.toggle('hidden', !show);
-    }
+    // Logic moved to _updateActionStates for mutual exclusivity
+    this._updateActionStates();
   }
 
   // Mobile search
@@ -2572,13 +2937,24 @@ _createFontAndThemeControls() {
     const hasCurrentCharacter = Boolean(this.currentCharacterId && this.characterMap.get(this.currentCharacterId));
     const compareState = this._getCompareState();
     const isFocusMode = Boolean(this.graph && this.graph.focusMode);
+    const isInSpecificView = this.currentView.type !== 'overview';
+    const hasHistory = this.viewHistory.length > 0;
 
     this.els.btnCompareCurrent.disabled = !hasCurrentCharacter;
     this.els.btnRunCompare.disabled = !compareState.canCompare;
     this.els.btnRunCompare.title = compareState.canCompare ? '查看这两个人物的关系' : compareState.message;
     this.els.btnExitFocus.disabled = !isFocusMode;
+
     if (this.els.btnExitFocusBar) {
       this.els.btnExitFocusBar.classList.toggle('hidden', !isFocusMode);
+    }
+    if (this.els.btnBack) {
+      const showBack = !isFocusMode && (hasHistory || isInSpecificView);
+      this.els.btnBack.classList.toggle('hidden', !showBack);
+    }
+    if (this.els.btnFullView) {
+      const showFull = !isFocusMode && !isInSpecificView && !hasHistory;
+      this.els.btnFullView.classList.toggle('hidden', !showFull);
     }
 
     [this.els.compareLeft, this.els.compareRight].forEach((select) => {
@@ -2605,7 +2981,7 @@ _createFontAndThemeControls() {
   _showCard(character) {
     this.isCardOpen = true;
     document.body.classList.add('card-open');
-    this.graph?.pauseSimulation?.();
+    // Graph stays interactive when panel slides in from right (no pauseSimulation)
 
     const relations = this.graph.getCharacterRelations(character.id);
     const summaryRelations = this._buildRelationshipSummary(character.id);
@@ -2614,15 +2990,36 @@ _createFontAndThemeControls() {
     const familyColor = this.graph._getNodeColor(character);
 
     const relationTypeColors = {
-      blood: '#4A90D9', marriage: '#E74C3C', master_servant: '#95A5A6', romance: '#E91E8C', social: '#F39C12', rivalry: '#8E44AD'
+      blood: '#4A6B8A', marriage: '#B83232', master_servant: '#95A5A6', romance: '#C75B6E', social: '#C49A2A', rivalry: '#8E44AD'
     };
 
     const relationTypeLabels = {
       blood: '血缘', marriage: '婚姻', master_servant: '主仆', romance: '情感', social: '社交', rivalry: '敌对'
     };
 
+    // Build character fate mini-timeline (chapters 1-120)
+    const chapSet = new Set((character.chapters || []).map(c => c.chapter));
+    const chapterEntryMap = new Map((character.chapters || []).map((entry) => [entry.chapter, entry]));
+    const fateTimelineCells = Array.from({ length: 120 }, (_, i) => {
+      const ch = i + 1;
+      const active = chapSet.has(ch);
+      const chapterEntry = chapterEntryMap.get(ch);
+      const chapterTitle = chapterEntry?.title || `第${ch}回`;
+      const chapterSummary = chapterEntry?.summary || '';
+      return `<button type="button" class="card-fate-cell ${active ? 'active' : 'inactive'}" data-chapter="${ch}" data-title="${this._escapeHtmlAttr(chapterTitle)}" data-summary="${this._escapeHtmlAttr(chapterSummary)}" style="${active ? `background:${familyColor}` : ''}" ${active ? '' : 'disabled'} aria-label="${active ? `第${ch}回` : `第${ch}回暂无记录`}"></button>`;
+    }).join('');
+    const fateSectionHtml = character.chapters?.length ? `
+      <div class="card-section">
+        <div class="card-section-title">出场时间线（第1-120回）</div>
+        <div class="card-fate-timeline-wrap">
+          <div class="card-fate-timeline">${fateTimelineCells}</div>
+          <div class="card-fate-marks"><span>第1回</span><span>第60回</span><span>第120回</span></div>
+          <div class="card-fate-detail" data-fate-detail>悬停高亮格子查看回目详情</div>
+        </div>
+      </div>` : '';
+
     this._setHtml(this.els.cardContent, `
-      <button class="card-close-btn" data-close-card="true">✕</button>
+      <button class="card-close-btn" data-close-card="true" aria-label="关闭详情">✕</button>
       <div class="card-header">
         <div class="card-avatar" style="background:${familyColor}"><span class="card-avatar-text">${character.name.substring(0, 1)}</span></div>
         <div class="card-header-info">
@@ -2636,41 +3033,63 @@ _createFontAndThemeControls() {
           </div>
         </div>
       </div>
+
+      <div class="card-nav-actions">
+        <button class="card-nav-btn" data-nav-view="graph" data-nav-char="${character.id}">◉ 图谱探索</button>
+        <button class="card-nav-btn" data-nav-view="knowledge" data-nav-char="${character.id}">📖 知识库</button>
+      </div>
+
+      <div class="card-tabs">
+        <button class="card-tab active" data-tab="overview">概览</button>
+        <button class="card-tab" data-tab="relations">关系</button>
+        ${fateSectionHtml ? '<button class="card-tab" data-tab="fate">命运线</button>' : ''}
+        ${relatedKnowledge.length ? '<button class="card-tab" data-tab="knowledge">相关知识</button>' : ''}
+      </div>
+
       <div class="card-body">
-        <div class="card-section card-highlight-box">
-          <div class="card-section-title">阅读时先看这几条</div>
-          <div class="card-summary-list">
-            ${summaryRelations.map((rel) => `
-              <div class="card-summary-item">
-                <div class="card-summary-head">
-                  <strong>${rel.character.name}</strong>
-                  <span class="card-summary-type" style="background:${relationTypeColors[rel.type] || '#999'}">${relationTypeLabels[rel.type] || rel.type} · ${rel.label}</span>
-                </div>
-                <div class="card-summary-desc">${rel.description || rel.summary}</div>
-              </div>
-            `).join('')}
-          </div>
+        <div class="card-tab-panel active" data-tab-panel="overview">
+          ${character.description ? `<div class="card-section"><div class="card-section-title">人物简介</div><div class="card-description">${character.description}</div></div>` : ''}
+          ${character.sourceNote ? `<div class="card-section"><div class="card-section-title">版本说明</div><div class="card-source-note">${character.sourceNote}</div></div>` : ''}
+          ${character.outcomeVersion ? `<div class="card-section"><div class="card-section-title">结局版本</div><div class="card-source-note"><div class="card-version-row"><strong>前八十回</strong><span>${character.outcomeVersion.original || '未注明'}</span></div><div class="card-version-row"><strong>后四十回</strong><span>${character.outcomeVersion.continuation || '未注明'}</span></div></div></div>` : ''}
+          ${character.personality ? `<div class="card-section"><div class="card-section-title">性格特征</div><div class="card-personality">${character.personality}</div></div>` : ''}
+          ${character.keyEvents?.length ? `<div class="card-section"><div class="card-section-title">关键事迹</div><ul class="card-events">${character.keyEvents.map((event) => `<li>${event}</li>`).join('')}</ul></div>` : ''}
+          ${character.chapters?.length ? `<div class="card-section"><div class="card-section-title">相关章节</div><div class="card-chapters">${character.chapters.slice(0, 5).map((chapter) => `
+            <div class="card-chapter-item">
+              <div class="card-chapter-header"><span class="card-chapter-number">第${chapter.chapter}回</span><span class="card-chapter-title">${chapter.title}</span></div>
+              <div class="card-chapter-summary">${chapter.summary}</div>
+            </div>`).join('')}</div></div>` : ''}
+          ${character.quotes?.length ? `<div class="card-section"><div class="card-section-title">经典语录</div>${character.quotes.slice(0, 2).map((quote) => `<div class="card-quote">${quote}</div>`).join('')}</div>` : ''}
         </div>
 
-        ${character.description ? `<div class="card-section"><div class="card-section-title">人物简介</div><div class="card-description">${character.description}</div></div>` : ''}
-        ${character.sourceNote ? `<div class="card-section"><div class="card-section-title">版本说明</div><div class="card-source-note">${character.sourceNote}</div></div>` : ''}
-        ${character.outcomeVersion ? `<div class="card-section"><div class="card-section-title">结局版本</div><div class="card-source-note"><div class="card-version-row"><strong>前八十回</strong><span>${character.outcomeVersion.original || '未注明'}</span></div><div class="card-version-row"><strong>后四十回</strong><span>${character.outcomeVersion.continuation || '未注明'}</span></div></div></div>` : ''}
-        ${character.personality ? `<div class="card-section"><div class="card-section-title">性格特征</div><div class="card-personality">${character.personality}</div></div>` : ''}
-        ${character.keyEvents?.length ? `<div class="card-section"><div class="card-section-title">关键事迹</div><ul class="card-events">${character.keyEvents.map((event) => `<li>${event}</li>`).join('')}</ul></div>` : ''}
-        ${character.chapters?.length ? `<div class="card-section"><div class="card-section-title">相关章节</div><div class="card-chapters">${character.chapters.slice(0, 5).map((chapter) => `
-          <div class="card-chapter-item">
-            <div class="card-chapter-header"><span class="card-chapter-number">第${chapter.chapter}回</span><span class="card-chapter-title">${chapter.title}</span></div>
-            <div class="card-chapter-summary">${chapter.summary}</div>
-          </div>`).join('')}</div></div>` : ''}
-        ${character.quotes?.length ? `<div class="card-section"><div class="card-section-title">经典语录</div>${character.quotes.slice(0, 2).map((quote) => `<div class="card-quote">${quote}</div>`).join('')}</div>` : ''}
-        ${relations.length ? `<div class="card-section"><div class="card-section-title">全部人物关系</div><div class="card-relations">${relations.map((rel) => `
-          <div class="card-relation-item" data-id="${rel.character.id}">
-            <span class="card-relation-type" style="background:${relationTypeColors[rel.type] || '#999'}">${relationTypeLabels[rel.type] || rel.type}</span>
-            <span class="card-relation-name">${rel.character.name}</span>
-            <span class="card-relation-label">${rel.label}</span>
-          </div>`).join('')}</div></div>` : ''}
-        ${recommendations.length ? `<div class="card-section"><div class="card-section-title">继续阅读这些人物</div><div class="recommend-list">${recommendations.map((relChar) => `<button class="recommend-pill" data-character-id="${relChar.id}">${relChar.name}</button>`).join('')}</div></div>` : ''}
-        ${relatedKnowledge.length ? `<div class="card-section"><div class="card-section-title">相关知识条目</div><div class="recommend-list">${relatedKnowledge.slice(0, 6).map((item) => `<button class="recommend-pill" data-knowledge-char-id="${character.id}">${item.title}</button>`).join('')}</div><div class="card-note-hint">点击可跳转知识库并自动检索该人物</div></div>` : ''}
+        <div class="card-tab-panel" data-tab-panel="relations">
+          <div class="card-section card-highlight-box">
+            <div class="card-section-title">阅读时先看这几条</div>
+            <div class="card-summary-list">
+              ${summaryRelations.map((rel) => `
+                <div class="card-summary-item">
+                  <div class="card-summary-head">
+                    <strong>${rel.character.name}</strong>
+                    <span class="card-summary-type" style="background:${relationTypeColors[rel.type] || '#999'}">${relationTypeLabels[rel.type] || rel.type} · ${rel.label}</span>
+                  </div>
+                  <div class="card-summary-desc">${rel.description || rel.summary}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          ${relations.length ? `<div class="card-section"><div class="card-section-title">全部人物关系</div><div class="card-relations">${relations.map((rel) => `
+            <div class="card-relation-item" data-id="${rel.character.id}">
+              <span class="card-relation-type" style="background:${relationTypeColors[rel.type] || '#999'}">${relationTypeLabels[rel.type] || rel.type}</span>
+              <span class="card-relation-name">${rel.character.name}</span>
+              <span class="card-relation-label">${rel.label}</span>
+            </div>`).join('')}</div></div>` : ''}
+          ${recommendations.length ? `<div class="card-section"><div class="card-section-title">继续阅读这些人物</div><div class="recommend-list">${recommendations.map((relChar) => `<button class="recommend-pill" data-character-id="${relChar.id}">${relChar.name}</button>`).join('')}</div></div>` : ''}
+        </div>
+
+        ${fateSectionHtml ? `<div class="card-tab-panel" data-tab-panel="fate">${fateSectionHtml}</div>` : ''}
+
+        ${relatedKnowledge.length ? `<div class="card-tab-panel" data-tab-panel="knowledge">
+          <div class="card-section"><div class="card-section-title">相关知识条目</div><div class="recommend-list">${relatedKnowledge.slice(0, 10).map((item) => `<button class="recommend-pill" data-knowledge-char-id="${character.id}">${item.title}</button>`).join('')}</div><div class="card-note-hint">点击可跳转知识库并自动检索该人物</div></div>
+        </div>` : ''}
       </div>
     `);
 
@@ -2680,6 +3099,39 @@ _createFontAndThemeControls() {
     ]);
 
     this.els.cardContent.querySelector('[data-close-card="true"]').addEventListener('click', () => this._closeCard());
+
+    // Tab switching
+    this.els.cardContent.querySelectorAll('.card-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabName = tab.dataset.tab;
+        this.els.cardContent.querySelectorAll('.card-tab').forEach(t => t.classList.toggle('active', t === tab));
+        this.els.cardContent.querySelectorAll('.card-tab-panel').forEach(p => p.classList.toggle('active', p.dataset.tabPanel === tabName));
+      });
+    });
+
+    // Cross-view navigation buttons
+    this.els.cardContent.querySelectorAll('.card-nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const view = btn.dataset.navView;
+        const charId = btn.dataset.navChar;
+        if (!view || !charId) return;
+        this._closeCard();
+        if (view === 'knowledge') {
+          const char = this.characterMap.get(charId);
+          if (char) {
+            this._switchView('knowledge');
+            this._openCharacterKnowledge(char);
+          }
+        } else if (view === 'tree') {
+          this._switchView('tree');
+          this._openCharacter(charId, { focusNeighbors: true });
+        } else if (view === 'graph') {
+          this._switchView('graph');
+          this._openCharacter(charId, { focusNeighbors: true });
+        }
+      });
+    });
+
     this.els.cardContent.querySelectorAll('.card-relation-item,[data-character-id]').forEach((item) => {
       item.addEventListener('click', () => {
         const id = item.dataset.id || item.dataset.characterId;
@@ -2701,6 +3153,29 @@ _createFontAndThemeControls() {
       }));
     });
 
+    const fateDetailEl = this.els.cardContent.querySelector('[data-fate-detail]');
+    if (fateDetailEl) {
+      this.els.cardContent.querySelectorAll('.card-fate-cell.active').forEach((cell) => {
+        const renderDetail = () => {
+          const chapter = cell.dataset.chapter || '';
+          const title = cell.dataset.title || '';
+          const summary = cell.dataset.summary || '';
+          const summaryText = summary ? ` · ${summary}` : '';
+          fateDetailEl.textContent = `第${chapter}回 · ${title}${summaryText}`;
+          fateDetailEl.classList.add('visible');
+        };
+
+        const resetDetail = () => {
+          fateDetailEl.textContent = '悬停高亮格子查看回目详情';
+        };
+
+        cell.addEventListener('mouseenter', renderDetail);
+        cell.addEventListener('focus', renderDetail);
+        cell.addEventListener('mouseleave', resetDetail);
+        cell.addEventListener('blur', resetDetail);
+      });
+    }
+
     this.els.cardOverlay.classList.add('active');
   }
 
@@ -2709,7 +3184,7 @@ _createFontAndThemeControls() {
     document.body.classList.remove('card-open');
     this.els.cardOverlay.classList.remove('active');
     this._setHtml(this.els.cardContent, '');
-    this.graph?.resumeSimulation?.();
+    // No need to resumeSimulation — panel no longer pauses it
   }
 
   _showPKPanel(leftId, rightId) {
@@ -2841,8 +3316,7 @@ _createFontAndThemeControls() {
         selectedCharacterIds: state.selectedCharacterIds
       });
       if (this.viewInitialized.list) {
-        this.listView._invalidateFilterCache?.();
-        this.listView._renderList?.();
+        this.listView.syncFacetHighlights?.();
       }
     }
 
@@ -3067,6 +3541,14 @@ _createFontAndThemeControls() {
     
     // Always show context bar
     this.els.globalContextBar.classList.add('active');
+
+    // Keep main container offset in sync with context bar actual height.
+    if (this.els.body) {
+      this.els.body.classList.add('context-bar-active');
+    }
+    const contextHeight = Math.ceil(this.els.globalContextBar.getBoundingClientRect().height || 0);
+    const resolvedHeight = Math.max(40, contextHeight || 46);
+    document.documentElement.style.setProperty('--context-bar-height', `${resolvedHeight}px`);
   }
 
   _initGraphHint() {
@@ -3113,8 +3595,6 @@ _createFontAndThemeControls() {
   }
 
   _renderRecentCharacters() {
-    // 最近浏览区块已隐藏，保留逻辑以便日后恢复
-    return;
     if (!this.els.recentCharacters || !this.els.recentCharactersSection) return;
     if (!this.recentBrowsingHistory.length) {
       this.els.recentCharactersSection.style.display = 'none';
@@ -3142,6 +3622,199 @@ _createFontAndThemeControls() {
         this.els.loading.style.display = 'none';
       }, 400);
     });
+  }
+
+  // ────────────────────────────────────────────────────────────────────────────
+  // Discovery Panel (12金钗首页)
+  // ────────────────────────────────────────────────────────────────────────────
+
+  // 正册十二钗标准顺序（以太虚幻境正册为准）
+  _getTwelveJinchais() {
+    const order = [
+      { id: 'lin_daiyu',    rank: '正册第一' },
+      { id: 'xue_baochai',  rank: '正册第一' },
+      { id: 'jia_yuanchun', rank: '正册第三' },
+      { id: 'jia_tanchun',  rank: '正册第四' },
+      { id: 'shi_xiangyun', rank: '正册第五' },
+      { id: 'miaoyu',       rank: '正册第六' },
+      { id: 'jia_yingchun', rank: '正册第七' },
+      { id: 'jia_xichun',   rank: '正册第八' },
+      { id: 'wang_xifeng',  rank: '正册第九' },
+      { id: 'jia_qiaojie',  rank: '正册第十' },
+      { id: 'li_wan',       rank: '正册第十一' },
+      { id: 'qin_keqing',   rank: '正册第十二' }
+    ];
+    return order.map(item => ({
+      ...item,
+      character: this.characterMap.get(item.id)
+    })).filter(item => item.character);
+  }
+
+  _initDiscovery() {
+    const overlay = this.els.discoveryOverlay;
+    if (!overlay) return;
+
+    // Render discovery cards
+    this._renderDiscoveryCards();
+    this._renderDiscoveryDaily();
+
+    // Bind events
+    document.getElementById('discovery-skip-btn')?.addEventListener('click', () => this._hideDiscovery());
+    document.getElementById('discovery-topic-btn')?.addEventListener('click', () => {
+      this._hideDiscovery();
+      // Open first topic
+      if (this.topics.length) this._openTopic(this.topics[0].id, false);
+    });
+    document.getElementById('discovery-stage-btn')?.addEventListener('click', () => {
+      this._hideDiscovery();
+      if (this.stages.length) this._openStage(this.stages[0].id, false);
+    });
+    document.getElementById('discovery-random-btn')?.addEventListener('click', () => {
+      this._hideDiscovery();
+      this._randomExplore();
+    });
+
+    // Card clicks
+    overlay.addEventListener('click', (e) => {
+      const card = e.target.closest('.discovery-char-card');
+      if (card?.dataset.charId) {
+        const charId = card.dataset.charId;
+        this._hideDiscovery();
+        this._openCharacter(charId, { focusNeighbors: true, showCard: true });
+      }
+      const dailyChar = e.target.closest('.discovery-daily-char');
+      if (dailyChar?.dataset.charId) {
+        this._hideDiscovery();
+        this._openCharacter(dailyChar.dataset.charId, { focusNeighbors: true, showCard: true });
+      }
+    });
+
+    // Close on overlay click (outside content)
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) this._hideDiscovery();
+    });
+
+    // Show on first visit (no prior state)
+    const hasVisited = localStorage.getItem('hlm-discovery-shown');
+    const hasUrlState = new URLSearchParams(location.search).has('char') ||
+                        new URLSearchParams(location.search).has('topic') ||
+                        new URLSearchParams(location.search).has('stage');
+    if (!hasVisited && !hasUrlState) {
+      setTimeout(() => this._showDiscovery(), 400);
+    }
+  }
+
+  _renderDiscoveryCards() {
+    const container = this.els.discoveryCards;
+    if (!container) return;
+    const jinchais = this._getTwelveJinchais();
+    const familyColors = this.graph ? {
+      '贾家': '#C0392B', '史家': '#2980B9', '王家': '#27AE60',
+      '薛家': '#8E44AD', '林家': '#16A085', '其他': '#E67E22'
+    } : {};
+
+    container.innerHTML = jinchais.map(({ character, rank }) => {
+      const color = familyColors[character.family] || '#E67E22';
+      const identity = (character.identity || '').slice(0, 16);
+      return `
+        <button class="discovery-char-card" data-char-id="${character.id}" aria-label="探索人物：${character.name}">
+          <div class="discovery-char-avatar" style="background:${color}">${character.name.charAt(0)}</div>
+          <div class="discovery-char-name">${character.name}</div>
+          <div class="discovery-char-identity">${identity}</div>
+          <div class="discovery-char-rank">${rank}</div>
+        </button>
+      `;
+    }).join('');
+  }
+
+  _renderDiscoveryDaily() {
+    const container = this.els.discoveryDaily;
+    if (!container) return;
+    const char = this._getDailyCharacter();
+    if (!char) return;
+    container.innerHTML = `
+      <div class="discovery-daily-label">今日推荐探索</div>
+      <button class="discovery-daily-char" data-char-id="${char.id}">
+        ${char.name}　${(char.identity || '').slice(0, 12)}
+      </button>
+    `;
+  }
+
+  _getDailyCharacter() {
+    const importantChars = this.characters.filter(c => c.importance >= 3);
+    if (!importantChars.length) return null;
+    const dayNum = Math.floor(Date.now() / (24 * 60 * 60 * 1000));
+    return importantChars[dayNum % importantChars.length];
+  }
+
+  _showDiscovery() {
+    if (!this.els.discoveryOverlay) return;
+    this.isDiscoveryOpen = true;
+    this.els.discoveryOverlay.classList.add('active');
+    this.els.discoveryOverlay.querySelector('.discovery-skip-btn')?.focus();
+    // Mark as shown so it doesn't auto-show again
+    try { localStorage.setItem('hlm-discovery-shown', '1'); } catch (e) { /* ignore */ }
+  }
+
+  _hideDiscovery() {
+    if (!this.els.discoveryOverlay) return;
+    this.isDiscoveryOpen = false;
+    this.els.discoveryOverlay.classList.remove('active');
+  }
+
+  // ────────────────────────────────────────────────────────────────────────────
+  // Path Display Panel
+  // ────────────────────────────────────────────────────────────────────────────
+
+  _initPathPanel() {
+    this.els.pathPanelClose?.addEventListener('click', () => this._hidePathPanel());
+  }
+
+  _showPathPanel(path) {
+    if (!this.els.pathDisplayPanel || !this.els.pathChain) return;
+    if (!path || path.length < 2) {
+      this._hidePathPanel();
+      return;
+    }
+
+    const relations = this.relationships;
+    const getRelation = (aId, bId) => {
+      return relations.find(r => {
+        const src = typeof r.source === 'string' ? r.source : r.source?.id;
+        const tgt = typeof r.target === 'string' ? r.target : r.target?.id;
+        return (src === aId && tgt === bId) || (src === bId && tgt === aId);
+      });
+    };
+
+    let chainHtml = '';
+    for (let i = 0; i < path.length; i++) {
+      const char = this.characterMap.get(path[i]);
+      if (!char) continue;
+      chainHtml += `<div class="path-node"><button class="path-node-name" data-char-id="${char.id}">${char.name}</button></div>`;
+      if (i < path.length - 1) {
+        const rel = getRelation(path[i], path[i + 1]);
+        const label = rel?.label || '';
+        chainHtml += `<div class="path-arrow"><span class="path-arrow-line">→</span>${label ? `<span class="path-arrow-label">${label}</span>` : ''}</div>`;
+      }
+    }
+
+    this.els.pathChain.innerHTML = chainHtml;
+    if (this.els.pathPanelLabel) {
+      this.els.pathPanelLabel.textContent = `关系路径（${path.length - 1}步）`;
+    }
+
+    // Bind node clicks
+    this.els.pathChain.querySelectorAll('.path-node-name').forEach(btn => {
+      btn.addEventListener('click', () => {
+        this._openCharacter(btn.dataset.charId, { focusNeighbors: true, showCard: true });
+      });
+    });
+
+    this.els.pathDisplayPanel.classList.add('active');
+  }
+
+  _hidePathPanel() {
+    this.els.pathDisplayPanel?.classList.remove('active');
   }
 
   _updateSearchInputState() {

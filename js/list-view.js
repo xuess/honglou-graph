@@ -24,11 +24,11 @@ class ListView {
 
     this.familyColors = {
       '贾家': '#C0392B',
-      '史家': '#2980B9',
-      '王家': '#27AE60',
+      '史家': '#4A6B8A',
+      '王家': '#4A7C59',
       '薛家': '#8E44AD',
       '林家': '#16A085',
-      '其他': '#E67E22'
+      '其他': '#C49A2A'
     };
   }
 
@@ -50,12 +50,23 @@ class ListView {
     const previousIds = this.relatedCharacterIds;
     const ids = facetState.selectedCharacterIds || [];
     this.relatedCharacterIds = new Set(ids);
+    this.syncFacetHighlights();
     
     // If there's a new single character selected, scroll to it
     if (ids.length === 1 && !previousIds.has(ids[0])) {
       // Defer scroll to allow DOM to update
       setTimeout(() => this._scrollToCharacter(ids[0]), 100);
     }
+  }
+
+  syncFacetHighlights() {
+    const cards = this.container.querySelectorAll('.list-card-item, .list-compact-row');
+    if (!cards.length) return;
+
+    cards.forEach((item) => {
+      const charId = item.dataset.charId;
+      item.classList.toggle('is-related', this.relatedCharacterIds.has(charId));
+    });
   }
 
   render() {
@@ -380,10 +391,15 @@ class ListView {
     
     if (!target) return;
     
-    // Scroll into view
+    // Scroll into view only if target is outside viewport to prevent jitter.
     const listContent = this.container.querySelector('.list-content');
     if (listContent) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const containerRect = listContent.getBoundingClientRect();
+      const targetRect = target.getBoundingClientRect();
+      const fullyVisible = targetRect.top >= containerRect.top && targetRect.bottom <= containerRect.bottom;
+      if (!fullyVisible) {
+        target.scrollIntoView({ behavior: 'auto', block: 'center' });
+      }
     }
     
     // Add temporary highlight animation

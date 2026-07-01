@@ -43,19 +43,19 @@ class RelationshipGraph {
 
     this.familyColors = {
       '贾家': '#C0392B',
-      '史家': '#2980B9',
-      '王家': '#27AE60',
+      '史家': '#4A6B8A',
+      '王家': '#4A7C59',
       '薛家': '#8E44AD',
       '林家': '#16A085',
-      '其他': '#E67E22'
+      '其他': '#C49A2A'
     };
 
     this.relationColors = {
-      blood: '#4A90D9',
-      marriage: '#E74C3C',
+      blood: '#4A6B8A',
+      marriage: '#B83232',
       master_servant: '#95A5A6',
-      romance: '#E91E8C',
-      social: '#F39C12',
+      romance: '#C75B6E',
+      social: '#C49A2A',
       rivalry: '#8E44AD'
     };
 
@@ -98,10 +98,12 @@ _init() {
       .attr('aria-label', '红楼梦人物关系图谱');
 
     const defs = this.svg.append('defs');
-    const filter = defs.append('filter').attr('id', 'soft-glow');
-    filter.append('feGaussianBlur').attr('stdDeviation', '2.5').attr('result', 'coloredBlur');
+    const filter = defs.append('filter').attr('id', 'soft-glow').attr('x', '-50%').attr('y', '-50%').attr('width', '200%').attr('height', '200%');
+    filter.append('feGaussianBlur').attr('stdDeviation', '4').attr('result', 'coloredBlur');
+    filter.append('feFlood').attr('flood-color', '#D4A017').attr('flood-opacity', '0.3').attr('result', 'glowColor');
+    filter.append('feComposite').attr('in', 'glowColor').attr('in2', 'coloredBlur').attr('operator', 'in').attr('result', 'softGlow');
     const merge = filter.append('feMerge');
-    merge.append('feMergeNode').attr('in', 'coloredBlur');
+    merge.append('feMergeNode').attr('in', 'softGlow');
     merge.append('feMergeNode').attr('in', 'SourceGraphic');
 
     this.zoom = d3.zoom()
@@ -196,6 +198,7 @@ _init() {
         type: rel.type,
         label: rel.label,
         description: rel.description,
+        weight: rel.weight || 1,
         color: this.relationColors[rel.type] || '#999',
         key: `${rel.source}-${rel.target}-${rel.type}`
       }));
@@ -256,7 +259,11 @@ _init() {
         enter => enter.append('line')
           .attr('class', 'link-line')
           .attr('stroke', d => d.color)
-          .attr('stroke-width', d => (d.type === 'blood' || d.type === 'marriage') ? 2.2 : 1.6)
+          .attr('stroke-width', d => {
+            const base = (d.type === 'blood' || d.type === 'marriage') ? 2.2 : 1.6;
+            return base * (0.7 + (d.weight || 1) * 0.15);
+          })
+          .attr('stroke-opacity', d => 0.3 + (d.weight || 1) * 0.14)
           .attr('stroke-dasharray', d => {
             if (d.type === 'romance') return '6,3';
             if (d.type === 'rivalry') return '3,5';
@@ -795,7 +802,7 @@ _init() {
     this.focusMode = true;
     this.focusNodeId = characterId;
     this.showNeighborhood(characterId, { center: true, includeSecondDegree: true });
-    if (this.simulation) this.simulation.alphaTarget(0.04);
+    if (this.simulation) this.simulation.alphaTarget(0);
     this._warmSimulation(0.14);
     this._coolDownSimulation(700);
   }

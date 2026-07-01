@@ -106,9 +106,10 @@ class ChapterView {
     this._deferredMainTimer = window.setTimeout(step, 32);
   }
 
-  setData(knowledge, characters) {
+  setData(knowledge, characters, relationships) {
     this.knowledge = knowledge || [];
     this.characters = characters || [];
+    this.relationships = relationships || [];
     this.characterMap = new Map();
     this.characters.forEach((character) => this.characterMap.set(character.id, character));
     this._buildChapterProfiles();
@@ -1067,68 +1068,156 @@ class ChapterView {
 
   _renderMiniGraph(container) {
     if (!container) return;
-    
+
     const profile = this.chapterProfileMap.get(this.activeChapter);
     if (!profile || !profile.characters.length) {
       container.innerHTML = '<div class="chapter-muted">暂无人物数据</div>';
       return;
     }
 
-    // Create a simple force-directed graph
     const width = container.clientWidth || 600;
-    const height = 300;
-    const nodes = profile.characters.slice(0, 15).map((item, i) => ({
-      id: item.character.id,
-      name: item.character.name,
-      importance: item.character.importance || 1,
-      family: item.character.family || '其他',
-      x: width * (0.2 + 0.6 * Math.random()),
-      y: height * (0.2 + 0.6 * Math.random())
-    }));
+    const height = 320;
 
-    const nodeIds = new Set(nodes.map(n => n.id));
-    const links = [];
-    
-    // Find relationships between nodes
-    if (window.app?.relationships) {
-      window.app.relationships.forEach(rel => {
-        const sourceId = typeof rel.source === 'string' ? rel.source : rel.source.id;
-        const targetId = typeof rel.target === 'string' ? rel.target : rel.target.id;
-        if (nodeIds.has(sourceId) && nodeIds.has(targetId)) {
-          links.push({ source: sourceId, target: targetId, type: rel.type });
-        }
-      });
-    }
-
-    // Simple SVG rendering
     const familyColors = {
       '贾家': '#C0392B', '史家': '#2980B9', '王家': '#27AE60',
       '薛家': '#8E44AD', '林家': '#16A085', '其他': '#E67E22'
     };
 
-    let svg = `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">`;
-    
-    // Render links
-    links.forEach(link => {
-      const source = nodes.find(n => n.id === link.source);
-      const target = nodes.find(n => n.id === link.target);
-      if (source && target) {
-        svg += `<line x1="${source.x}" y1="${source.y}" x2="${target.x}" y2="${target.y}" 
-                stroke="#C4A882" stroke-width="1.5" stroke-opacity="0.6"/>`;
+    const nodes = profile.characters.slice(0, 15).map((item) => ({
+      id: item.character.id,
+      name: item.character.name,
+      importance: item.character.importance || 1,
+      family: item.character.family || '其他'
+    }));
+
+    const nodeMap = new Map(nodes.map(n => [n.id, n]));
+    const nodeIds = new Set(nodes.map(n => n.id));
+    const links = [];
+    const seen = new Set();
+    this.relationships.forEach(rel => {
+      const sourceId = typeof rel.source === 'string' ? rel.source : rel.source.id;
+      const targetId = typeof rel.target === 'string' ? rel.target : rel.target.id;
+      if (nodeIds.has(sourceId) && nodeIds.has(targetId)) {
+        const key = [sourceId, targetId].sort().join('|');
+        if (seen.has(key)) return;
+        seen.add(key);
+        links.push({ source: sourceId, target: targetId, type: rel.type, label: rel.label });
       }
     });
 
-    // Render nodes
-    nodes.forEach(node => {
-      const radius = 8 + node.importance * 4;
-      const color = familyColors[node.family] || familyColors['其他'];
-      svg += `<circle cx="${node.x}" cy="${node.y}" r="${radius}" fill="${color}" stroke="white" stroke-width="2"/>`;
-      svg += `<text x="${node.x}" y="${node.y + radius + 14}" text-anchor="middle" 
-              font-size="11" fill="var(--color-ink)">${node.name}</text>`;
+    container.innerHTML = '';
+    const svg = d3.select(container).append('svg')
+      .attr('width', width)
+      .attr('height', height)
+      .attr('viewBox', `0 0 ${width} ${height}`)
+      .style('cursor', 'grab');
+
+    // Arrow markers for directed links
+    const linkColor = '#C4A882';
+    svg.append('defs').append('marker')
+      .attr('id', 'mini-arrow')
+      .attr('viewBox', '0 -5 10 10')
+      .attr('refX', 16)
+      .attr('refY', 0)
+      .attr('markerWidth', 6)
+      .attr('markerHeight', 6)
+      .attr('orient', 'auto')
+      .append('path')
+      .attr('d', 'M0,-4L6,0L0,4')
+      .attr('fill', linkColor);
+
+    // Zoomable container — all content goes inside this <g>
+    const zoomG = svg.append('g').attr('class', 'mini-zoom');
+    const linkGroup = zoomG.append('g').attr('class', 'mini-links');
+    const nodeGroup = zoomG.append('g').attr('class', 'mini-nodes');
+
+    const zoom = d3.zoom()
+      .scaleExtent([0.3, 4])
+      .on('start', () => svg.style('cursor', 'grabbing'))
+      .on('zoom', (event) => zoomG.attr('transform', event.transform))
+      .on('end', () => svg.style('cursor', 'grab'));
+    svg.call(zoom);
+    // Prevent zoom from interfering with node drag
+    svg.on('dblclick.zoom', null);
+
+    const linkSel = linkGroup.selectAll('line')
+      .data(links)
+      .join('line')
+      .attr('stroke', linkColor)
+      .attr('stroke-width', 1.5)
+      .attr('stroke-opacity', 0.5)
+      .attr('marker-end', 'url(#mini-arrow)');
+
+    const nodeSel = nodeGroup.selectAll('g')
+      .data(nodes)
+      .join('g')
+      .attr('cursor', 'pointer')
+      .call(d3.drag()
+        .on('start', (event, d) => {
+          if (!event.active) simulation.alphaTarget(0.3).restart();
+          d.fx = d.x;
+          d.fy = d.y;
+        })
+        .on('drag', (event, d) => {
+          // event.x/y are already in the simulation's coordinate space
+          // because d3.drag maps pointer coords through the SVG's transform
+          d.fx = event.x;
+          d.fy = event.y;
+        })
+        .on('end', (event, d) => {
+          if (!event.active) simulation.alphaTarget(0);
+          d.fx = null;
+          d.fy = null;
+        })
+        .filter(event => !event.button)); // left-click only, let zoom handle wheel/drag on bg
+
+    nodeSel.append('circle')
+      .attr('r', d => 8 + d.importance * 3.5)
+      .attr('fill', d => familyColors[d.family] || familyColors['其他'])
+      .attr('stroke', '#fff')
+      .attr('stroke-width', 2);
+
+    nodeSel.append('text')
+      .attr('text-anchor', 'middle')
+      .attr('dy', d => (8 + d.importance * 3.5) + 14)
+      .attr('font-size', '11px')
+      .attr('fill', 'var(--color-ink)')
+      .text(d => d.name);
+
+    // Tooltip
+    nodeSel.append('title').text(d => `${d.name} · ${d.family}`);
+    linkSel.append('title').text(d => d.label || d.type);
+
+    const maxR = Math.max(...nodes.map(n => 8 + n.importance * 3.5));
+
+    const simulation = d3.forceSimulation(nodes)
+      .force('link', d3.forceLink(links).id(d => d.id).distance(d => {
+        const sR = 8 + (nodeMap.get(typeof d.source === 'string' ? d.source : d.source.id)?.importance || 1) * 3.5;
+        const tR = 8 + (nodeMap.get(typeof d.target === 'string' ? d.target : d.target.id)?.importance || 1) * 3.5;
+        return sR + tR + 50;
+      }).strength(0.4))
+      .force('charge', d3.forceManyBody().strength(-180))
+      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('collide', d3.forceCollide().radius(d => 8 + d.importance * 3.5 + 12).strength(0.8))
+      .force('x', d3.forceX(width / 2).strength(0.05))
+      .force('y', d3.forceY(height / 2).strength(0.05))
+      .alphaDecay(0.03);
+
+    simulation.on('tick', () => {
+      linkSel
+        .attr('x1', d => d.source.x)
+        .attr('y1', d => d.source.y)
+        .attr('x2', d => d.target.x)
+        .attr('y2', d => d.target.y);
+      nodeSel.attr('transform', d => `translate(${d.x},${d.y})`);
     });
 
-    svg += '</svg>';
-    container.innerHTML = svg;
+    // Stop simulation after settling to free CPU
+    setTimeout(() => simulation.stop(), 3000);
+
+    // Cleanup on re-render
+    if (this._miniSim) this._miniSim.stop();
+    this._miniSim = simulation;
   }
 
   destroy() {
@@ -1142,6 +1231,10 @@ class ChapterView {
     if (this._layoutResizeObserver) {
       this._layoutResizeObserver.disconnect();
       this._layoutResizeObserver = null;
+    }
+    if (this._miniSim) {
+      this._miniSim.stop();
+      this._miniSim = null;
     }
     this._eventsBound = false;
     this.searchInput = null;

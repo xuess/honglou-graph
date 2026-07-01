@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "playwright": "^1.61.1"
+  },
+  "dependencies": {
+    "fuse.js": "^7.4.2"
+  }
+}

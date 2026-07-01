@@ -18,11 +18,11 @@ class TreeView {
 
     this.familyColors = {
       '贾家': '#C0392B',
-      '史家': '#2980B9',
-      '王家': '#27AE60',
+      '史家': '#4A6B8A',
+      '王家': '#4A7C59',
       '薛家': '#8E44AD',
       '林家': '#16A085',
-      '其他': '#E67E22'
+      '其他': '#C49A2A'
     };
 
     this.generationLabels = {

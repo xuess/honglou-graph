@@ -240,10 +240,13 @@
       "jia_zheng",
       "jia_min"
     ],
-    "spouseIds": [],
+    "spouseIds": [
+      "jia_daishan"
+    ],
     "generation": 1,
     "isMainline": true,
-    "outcome": "寿终正寝，贾府衰败后病逝"
+    "outcome": "寿终正寝，贾府衰败后病逝",
+    "sourceNote": "前八十回为贾府最高权威；寿终正寝的描写见于后四十回续书。"
   },
   {
     "id": "jia_she",
@@ -287,7 +290,8 @@
       }
     ],
     "parentIds": [
-      "jia_mu"
+      "jia_mu",
+      "jia_daishan"
     ],
     "childrenIds": [
       "jia_lian",
@@ -298,7 +302,8 @@
     ],
     "generation": 2,
     "isMainline": true,
-    "outcome": "因贪赃枉法被革职查抄，发配边疆"
+    "outcome": "因贪赃枉法被革职查抄，发配边疆",
+    "sourceNote": "前八十回为贾赦；因强夺石呆子古扇获罪流放的情节见于后四十回续书。"
   },
   {
     "id": "jia_zheng",
@@ -350,7 +355,8 @@
       }
     ],
     "parentIds": [
-      "jia_mu"
+      "jia_mu",
+      "jia_daishan"
     ],
     "childrenIds": [
       "jia_baoyu",
@@ -365,7 +371,8 @@
     ],
     "generation": 2,
     "isMainline": true,
-    "outcome": "蒙圣恩复职，晚年凄凉"
+    "outcome": "蒙圣恩复职，晚年凄凉",
+    "sourceNote": "前八十回为贾府家长；外任学差等情节见于后四十回续书。"
   },
   {
     "id": "xing_furen",
@@ -463,7 +470,9 @@
     ],
     "parentIds": [],
     "childrenIds": [
-      "jia_zhu"
+      "jia_zhu",
+      "jia_baoyu",
+      "jia_yuanchun"
     ],
     "spouseIds": [
       "jia_zheng"
@@ -506,7 +515,9 @@
         "summary": "贾敬因吞食丹砂烧胀而死，尤氏等人操办丧事。"
       }
     ],
-    "parentIds": [],
+    "parentIds": [
+      "jia_daihua"
+    ],
     "childrenIds": [
       "jia_zhen",
       "jia_xichun"
@@ -550,7 +561,8 @@
       }
     ],
     "parentIds": [
-      "jia_mu"
+      "jia_mu",
+      "jia_daishan"
     ],
     "childrenIds": [
       "lin_daiyu"
@@ -629,7 +641,8 @@
       }
     ],
     "parentIds": [
-      "jia_zheng"
+      "jia_zheng",
+      "wang_furen"
     ],
     "childrenIds": [],
     "spouseIds": [
@@ -637,7 +650,8 @@
     ],
     "generation": 3,
     "isMainline": true,
-    "outcome": "出家为僧，悬崖撒手，归于大荒山青埂峰"
+    "outcome": "出家为僧，悬崖撒手，归于大荒山青埂峰",
+    "sourceNote": "前八十回为主线人物；出家为僧的结局见于后四十回续书。"
   },
   {
     "id": "jia_zhen",
@@ -690,7 +704,8 @@
     ],
     "generation": 3,
     "isMainline": true,
-    "outcome": "因聚赌被革职，贾府抄家后被发配，家产充公，身败名裂。"
+    "outcome": "因聚赌被革职，贾府抄家后被发配，家产充公，身败名裂。",
+    "sourceNote": "前八十回为宁国府当家人；因奢纵获罪、流放的情节见于后四十回续书。"
   },
   {
     "id": "jia_lian",
@@ -804,7 +819,8 @@
     "spouseIds": [],
     "generation": 3,
     "isMainline": true,
-    "outcome": "贾府败落后随赵姨娘流落街头，后不知所终。"
+    "outcome": "贾府败落后随赵姨娘流落街头，后不知所终。",
+    "sourceNote": "前八十回为庶出公子；参与谋害宝玉等情节见于后四十回续书。"
   },
   {
     "id": "jia_rong",
@@ -855,7 +871,8 @@
     ],
     "generation": 4,
     "isMainline": true,
-    "outcome": "贾府抄家后被发配，妻子秦可卿已死，续娶胡氏，家道中落。"
+    "outcome": "贾府抄家后被发配，妻子秦可卿已死，续娶胡氏，家道中落。",
+    "sourceNote": "前八十回为贾蓉；后四十回中随父获罪。"
   },
   {
     "id": "jia_lan",
@@ -900,7 +917,8 @@
     "spouseIds": [],
     "generation": 4,
     "isMainline": true,
-    "outcome": "发奋读书，后中举光复门楣"
+    "outcome": "发奋读书，后中举光复门楣",
+    "sourceNote": "前八十回为贾珠李纨之子；中举的情节见于后四十回续书。"
   },
   {
     "id": "jia_yuanchun",
@@ -957,13 +975,15 @@
       }
     ],
     "parentIds": [
-      "jia_zheng"
+      "jia_zheng",
+      "wang_furen"
     ],
     "childrenIds": [],
     "spouseIds": [],
     "generation": 3,
     "isMainline": true,
-    "outcome": "在宫中薨逝，死因成谜"
+    "outcome": "在宫中薨逝，死因成谜",
+    "sourceNote": "前八十回已封妃；薨逝的描写见于后四十回续书。"
   },
   {
     "id": "jia_yingchun",
@@ -1017,7 +1037,8 @@
     ],
     "generation": 3,
     "isMainline": true,
-    "outcome": "嫁孙绍祖后被虐待致死"
+    "outcome": "嫁孙绍祖后被虐待致死",
+    "sourceNote": "前八十回已嫁孙绍祖；受虐而亡的描写见于后四十回续书。"
   },
   {
     "id": "jia_tanchun",
@@ -1078,7 +1099,8 @@
     "spouseIds": [],
     "generation": 3,
     "isMainline": true,
-    "outcome": "远嫁海疆镇海总制周琼之子，虽有不舍，却也因此躲过贾府抄家之祸。"
+    "outcome": "远嫁海疆镇海总制周琼之子，虽有不舍，却也因此躲过贾府抄家之祸。",
+    "sourceNote": "前八十回已远嫁；探春远嫁的完整描写见于后四十回续书。"
   },
   {
     "id": "jia_xichun",
@@ -1143,7 +1165,7 @@
       "阿凤"
     ],
     "gender": "女",
-    "family": "贾家",
+    "family": "王家",
     "group": "贾家-女眷",
     "identity": "贾琏之妻，荣国府实际管家人，王夫人侄女",
     "importance": 5,
@@ -1195,7 +1217,9 @@
         "summary": "凤姐在大观园夜遇秦可卿幽魂，在散花寺求签得警示，心神不安，身体每况愈下。"
       }
     ],
-    "parentIds": [],
+    "parentIds": [
+      "wang_ziteng"
+    ],
     "childrenIds": [
       "jia_qiaojie"
     ],
@@ -1204,7 +1228,8 @@
     ],
     "generation": 3,
     "isMainline": true,
-    "outcome": "机关算尽太聪明，反误了卿卿性命"
+    "outcome": "机关算尽太聪明，反误了卿卿性命",
+    "sourceNote": "前八十回为主线人物；\"机关算尽\"的结局在后四十回有更完整描写。"
   },
   {
     "id": "li_wan",
@@ -1258,7 +1283,8 @@
     ],
     "generation": 3,
     "isMainline": true,
-    "outcome": "贾府败落后独力抚养贾兰，后贾兰高中，诰命加身，苦尽甘来。"
+    "outcome": "贾府败落后独力抚养贾兰，后贾兰高中，诰命加身，苦尽甘来。",
+    "sourceNote": "前八十回为贾珠遗孀；\"凤冠霞帔\"的结局见于后四十回续书判词应验。"
   },
   {
     "id": "you_shi",
@@ -1467,7 +1493,8 @@
       }
     ],
     "parentIds": [
-      "xue_yima"
+      "xue_yima",
+      "xue_fu"
     ],
     "childrenIds": [],
     "spouseIds": [
@@ -1475,7 +1502,8 @@
     ],
     "generation": 3,
     "isMainline": true,
-    "outcome": "与宝玉成婚后独守空房"
+    "outcome": "与宝玉成婚后独守空房",
+    "sourceNote": "前八十回为主线人物；与宝玉成婚的\"调包计\"情节见于后四十回续书。"
   },
   {
     "id": "lin_daiyu",
@@ -1550,7 +1578,8 @@
     "spouseIds": [],
     "generation": 3,
     "isMainline": true,
-    "outcome": "泪尽而亡，焚稿断痴情"
+    "outcome": "泪尽而亡，焚稿断痴情",
+    "sourceNote": "前八十回为主线人物；焚稿断痴情、泪尽而亡的完整描写见于后四十回续书。"
   },
   {
     "id": "lin_ruhai",
@@ -1647,7 +1676,8 @@
       }
     ],
     "parentIds": [
-      "xue_yima"
+      "xue_yima",
+      "xue_fu"
     ],
     "childrenIds": [],
     "spouseIds": [
@@ -1704,7 +1734,9 @@
       "xue_baochai",
       "xue_pan"
     ],
-    "spouseIds": [],
+    "spouseIds": [
+      "xue_fu"
+    ],
     "generation": 2,
     "isMainline": true,
     "outcome": "薛家衰落后寄居贾府，后随宝钗度日，含饴弄孙。"
@@ -1887,7 +1919,8 @@
     "outcomeVersion": {
       "original": "前八十回未明确交代结局",
       "continuation": "高鹗续书：难产而死"
-    }
+    },
+    "sourceNote": "前八十回为薛蟠之妾；被夏金桂虐待致死见于后四十回续书。"
   },
   {
     "id": "shi_xiangyun",
@@ -1947,7 +1980,8 @@
     ],
     "generation": 3,
     "isMainline": true,
-    "outcome": "嫁与卫若兰，婚后生活美满。后卫若兰病逝，湘云守寡，晚年贫困潦倒。"
+    "outcome": "嫁与卫若兰，婚后生活美满。后卫若兰病逝，湘云守寡，晚年贫困潦倒。",
+    "sourceNote": "前八十回为史湘云；\"白首双星\"的判词在后四十回有部分应验。"
   },
   {
     "id": "shi_ding",
@@ -2099,7 +2133,7 @@
       "蕊珠"
     ],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "贾宝玉身边第一大丫鬟，后嫁蒋玉菡",
     "importance": 4,
@@ -2159,7 +2193,7 @@
       "雯儿"
     ],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "贾宝玉房中丫鬟，容貌才巧出众",
     "importance": 4,
@@ -2213,7 +2247,7 @@
       "鹦哥"
     ],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "林黛玉贴身丫鬟，原名鹦哥，贾母赐予黛玉",
     "importance": 3,
@@ -2261,7 +2295,7 @@
       "平丫头"
     ],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "王熙凤的贴身丫鬟兼通房大丫头",
     "importance": 4,
@@ -2317,7 +2351,7 @@
       "金鸳鸯"
     ],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "贾母身边首席大丫鬟",
     "importance": 3,
@@ -2363,7 +2397,7 @@
     "pinyin": "Shè Yuè",
     "alias": [],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "贾宝玉房中丫鬟",
     "importance": 2,
@@ -2446,7 +2480,7 @@
       "金钏儿"
     ],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "王夫人身边的大丫鬟",
     "importance": 2,
@@ -2488,7 +2522,7 @@
       "玉钏儿"
     ],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "王夫人身边丫鬟，金钏的妹妹",
     "importance": 1,
@@ -2521,7 +2555,7 @@
     "pinyin": "Sī Qí",
     "alias": [],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "贾迎春的贴身大丫鬟",
     "importance": 2,
@@ -2560,7 +2594,7 @@
     "pinyin": "Rù Huà",
     "alias": [],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "贾惜春的贴身丫鬟",
     "importance": 1,
@@ -2593,7 +2627,7 @@
     "pinyin": "Shì Shū",
     "alias": [],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "贾探春的贴身丫鬟",
     "importance": 1,
@@ -2626,7 +2660,7 @@
     "pinyin": "Cuì Lǚ",
     "alias": [],
     "gender": "女",
-    "family": "贾家",
+    "family": "史家",
     "group": "贾府-丫鬟",
     "identity": "史湘云的贴身丫鬟",
     "importance": 1,
@@ -2659,7 +2693,7 @@
     "pinyin": "Cǎi Yún",
     "alias": [],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "王夫人身边丫鬟",
     "importance": 1,
@@ -2696,7 +2730,7 @@
       "红儿"
     ],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "怡红院粗使丫鬟，林之孝之女",
     "importance": 2,
@@ -2740,7 +2774,7 @@
     "pinyin": "Fāng Guān",
     "alias": [],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "贾府买来的十二个小戏子之一，后为宝玉丫鬟",
     "importance": 2,
@@ -2781,7 +2815,7 @@
     "pinyin": "Qiū Wén",
     "alias": [],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "贾宝玉房中丫鬟",
     "importance": 1,
@@ -2814,7 +2848,7 @@
     "pinyin": "Chūn Yàn",
     "alias": [],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "大观园中丫鬟",
     "importance": 1,
@@ -2849,7 +2883,7 @@
     "pinyin": "Jiāo Dà",
     "alias": [],
     "gender": "男",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-仆人管家",
     "identity": "宁国府老仆，曾跟随宁国公出生入死的老奴",
     "importance": 2,
@@ -2889,7 +2923,7 @@
     "pinyin": "Lài Dà",
     "alias": [],
     "gender": "男",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-仆人管家",
     "identity": "荣国府大管家",
     "importance": 1,
@@ -2924,7 +2958,7 @@
     "pinyin": "Lín Zhīxiào",
     "alias": [],
     "gender": "男",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-仆人管家",
     "identity": "荣国府管家，小红之父",
     "importance": 1,
@@ -2957,7 +2991,7 @@
     "pinyin": "Zhōu Ruì",
     "alias": [],
     "gender": "男",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-仆人管家",
     "identity": "荣国府管事，其妻周瑞家的是王夫人陪房",
     "importance": 1,
@@ -2992,7 +3026,7 @@
       "焙茗"
     ],
     "gender": "男",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-仆人管家",
     "identity": "贾宝玉的贴身小厮",
     "importance": 2,
@@ -3082,7 +3116,8 @@
     "outcomeVersion": {
       "original": "前八十回未明确交代结局，判词暗示'终陷淖泥中'",
       "continuation": "高鹗续书：被强盗掳走，终陷淖泥中"
-    }
+    },
+    "sourceNote": "前八十回为栊翠庵尼姑；被劫的结局见于后四十回续书。"
   },
   {
     "id": "lai_tou_heshang",
@@ -4019,7 +4054,8 @@
     ],
     "generation": 3,
     "isMainline": true,
-    "outcome": "早逝，不到二十岁病故"
+    "outcome": "早逝，不到二十岁病故",
+    "sourceNote": "前八十回已故（故事开始前）；仅在回忆中提及。"
   },
   {
     "id": "xing_xiuyan",
@@ -4164,7 +4200,7 @@
     "pinyin": "Zhuì Ér",
     "alias": [],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "怡红院小丫鬟",
     "importance": 1,
@@ -4199,7 +4235,7 @@
       "芸香"
     ],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "怡红院丫鬟，原名芸香",
     "importance": 1,
@@ -4234,7 +4270,7 @@
       "何妈妈"
     ],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-仆人管家",
     "identity": "春燕之母，大观园管事婆子",
     "importance": 1,
@@ -4378,7 +4414,7 @@
     "pinyin": "Jiā Huì",
     "alias": [],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "潇湘馆小丫鬟",
     "importance": 1,
@@ -4521,7 +4557,7 @@
       "柳五儿"
     ],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "厨房中小丫头，后牵出冤案",
     "importance": 1,
@@ -4559,7 +4595,7 @@
     "pinyin": "Qiū Tóng",
     "alias": [],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-丫鬟",
     "identity": "贾赦赏给贾琏的妾室",
     "importance": 1,
@@ -4594,7 +4630,7 @@
     "pinyin": "Ǒu Guān",
     "alias": [],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-戏子丫鬟",
     "identity": "小戏子之一，后留在园中",
     "importance": 1,
@@ -4627,7 +4663,7 @@
     "pinyin": "Dì Guān",
     "alias": [],
     "gender": "女",
-    "family": "贾家",
+    "family": "其他",
     "group": "贾府-戏子丫鬟",
     "identity": "小戏子之一，与藕官相关",
     "importance": 1,
@@ -4824,5 +4860,125 @@
     "generation": 0,
     "isMainline": false,
     "outcome": "流离投靠"
+  },
+  {
+    "id": "jia_daishan",
+    "name": "贾代善",
+    "pinyin": "Jiǎ Dàishàn",
+    "alias": [
+      "荣国公"
+    ],
+    "gender": "男",
+    "family": "贾家",
+    "group": "贾府宗族",
+    "identity": "荣国公，贾母之夫，贾赦、贾政、贾敏之父",
+    "importance": 2,
+    "personality": "功勋之后，承袭荣国公爵位",
+    "keyEvents": [
+      "承袭荣国公爵位",
+      "与史太君（贾母）成婚"
+    ],
+    "quotes": [],
+    "description": "贾代善是荣国公贾源之孙，承袭荣国公爵位。其妻为史太君（贾母），育有贾赦、贾政、贾敏三子女。在原著中已故，主要作为家族背景出现。",
+    "chapters": [],
+    "parentIds": [],
+    "childrenIds": [
+      "jia_she",
+      "jia_zheng",
+      "jia_min"
+    ],
+    "spouseIds": [
+      "jia_mu"
+    ],
+    "generation": 1,
+    "isMainline": true,
+    "outcome": "在故事开始前已故，贾母常追念其生前。"
+  },
+  {
+    "id": "jia_daihua",
+    "name": "贾代化",
+    "pinyin": "Jiǎ Dàihuà",
+    "alias": [
+      "宁国公"
+    ],
+    "gender": "男",
+    "family": "贾家",
+    "group": "贾府宗族",
+    "identity": "宁国公，贾敬之父，贾珍之祖父",
+    "importance": 2,
+    "personality": "功勋之后，承袭宁国公爵位",
+    "keyEvents": [
+      "承袭宁国公爵位"
+    ],
+    "quotes": [],
+    "description": "贾代化是宁国公贾演之孙，承袭宁国公爵位。其子贾敬，孙贾珍。在原著中已故，作为宁国府背景出现。",
+    "chapters": [],
+    "parentIds": [],
+    "childrenIds": [
+      "jia_jing"
+    ],
+    "spouseIds": [],
+    "generation": 1,
+    "isMainline": true,
+    "outcome": "在故事开始前已故。"
+  },
+  {
+    "id": "wang_ziteng",
+    "name": "王子腾",
+    "pinyin": "Wáng Zǐténg",
+    "alias": [],
+    "gender": "男",
+    "family": "王家",
+    "group": "王家成员",
+    "identity": "京营节度使，王夫人之兄，王熙凤之父",
+    "importance": 2,
+    "personality": "权势显赫，为四大家族王家的核心人物",
+    "keyEvents": [
+      "升任京营节度使",
+      "后升九省都检点"
+    ],
+    "quotes": [],
+    "description": "王子腾是王夫人之兄、王熙凤之父，王家在朝中的核心人物。其权势为四大家族联姻网络的重要支柱。在原著中官至九省都检点，后于后四十回中病故。",
+    "chapters": [],
+    "parentIds": [],
+    "childrenIds": [
+      "wang_xifeng"
+    ],
+    "spouseIds": [],
+    "generation": 2,
+    "isMainline": true,
+    "outcome": "官至九省都检点，后于赴任途中病故（见于后四十回）。",
+    "sourceNote": "前八十回多次提及王子腾的官职升迁；其病故情节见于后四十回续书。"
+  },
+  {
+    "id": "xue_fu",
+    "name": "薛父",
+    "pinyin": "Xuē Fù",
+    "alias": [
+      "紫薇舍人薛公之后"
+    ],
+    "gender": "男",
+    "family": "薛家",
+    "group": "薛家成员",
+    "identity": "紫薇舍人薛公之后，薛姨妈之夫，薛蟠与薛宝钗之父",
+    "importance": 2,
+    "personality": "经商世家之后，早逝",
+    "keyEvents": [
+      "承袭薛家基业"
+    ],
+    "quotes": [],
+    "description": "薛父是紫薇舍人薛公之后，薛姨妈之夫。育有薛蟠、薛宝钗二子女。在原著中已故，薛家由薛姨妈主持。",
+    "chapters": [],
+    "parentIds": [],
+    "childrenIds": [
+      "xue_pan",
+      "xue_baochai"
+    ],
+    "spouseIds": [
+      "xue_yima"
+    ],
+    "generation": 2,
+    "isMainline": true,
+    "outcome": "在故事开始前已故。"
   }
 ]

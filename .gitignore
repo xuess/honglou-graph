@@ -151,3 +151,5 @@ vite.config.ts.timestamp-*
 pretext-main
 .opencode
 .planning
+# Test results
+test-results/

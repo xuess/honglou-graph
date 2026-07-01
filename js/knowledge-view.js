@@ -21,6 +21,7 @@ class KnowledgeView {
     this.relatedCharacterIds = new Set();
     this.characterKnowledgeMap = new Map();
     this.tagIndex = new Map();
+    this.fuse = null;
     this._lastFilterSignature = '';
     this._lastFilteredItems = [];
     this._visibleItems = [];
@@ -37,12 +38,12 @@ class KnowledgeView {
     this.categoryConfig = {
       '判词': { icon: '📜', color: '#8B2500' },
       '曲词': { icon: '🎵', color: '#8E44AD' },
-      '诗词': { icon: '✒️', color: '#2980B9' },
+      '诗词': { icon: '✒️', color: '#4A6B8A' },
       '对联': { icon: '🏮', color: '#C0392B' },
       '典故': { icon: '📖', color: '#16A085' },
-      '名场面': { icon: '🎭', color: '#E67E22' },
-      '回目知识点': { icon: '📚', color: '#27AE60' },
-      '回目知识': { icon: '📚', color: '#27AE60' },
+      '名场面': { icon: '🎭', color: '#C49A2A' },
+      '回目知识点': { icon: '📚', color: '#4A7C59' },
+      '回目知识': { icon: '📚', color: '#4A7C59' },
       '灯谜': { icon: '🏮', color: '#B35C1E' },
       '建筑': { icon: '🏯', color: '#6C4A9A' },
       '园林空间': { icon: '🌿', color: '#237A57' },
@@ -144,6 +145,7 @@ class KnowledgeView {
     this.characterMap = new Map();
     this.characters.forEach((character) => this.characterMap.set(character.id, character));
     this._buildIndexes();
+    this._buildFuseIndex();
   }
 
   setFacetContext(facetState = {}) {
@@ -424,9 +426,20 @@ class KnowledgeView {
     }
 
     let source = this.knowledge;
+    const fuseScoreById = new Map();
     if (this.searchQuery.trim()) {
       const query = this.searchQuery.trim().toLowerCase();
       const indexed = new Set();
+
+      if (this.fuse) {
+        const fuseResults = this.fuse.search(this.searchQuery.trim(), { limit: 600 });
+        fuseResults.forEach((result) => {
+          if (!result?.item?.id) return;
+          indexed.add(result.item);
+          fuseScoreById.set(result.item.id, Number.isFinite(result.score) ? result.score : 1);
+        });
+      }
+
       this.tagIndex.forEach((matchedItems, key) => {
         if (key.includes(query)) matchedItems.forEach((item) => indexed.add(item));
       });
@@ -437,7 +450,7 @@ class KnowledgeView {
       if (indexed.size) source = [...indexed];
     }
 
-    let items = source.map((item) => ({ ...item, _score: this._getRelevanceScore(item) }));
+    let items = source.map((item) => ({ ...item, _score: this._getRelevanceScore(item, fuseScoreById) }));
 
     if (this.activeCategory !== 'all') {
       items = items.filter((item) => item.category === this.activeCategory);
@@ -475,7 +488,7 @@ class KnowledgeView {
     return items;
   }
 
-  _getRelevanceScore(item) {
+  _getRelevanceScore(item, fuseScoreById = new Map()) {
     const query = this.searchQuery.trim().toLowerCase();
     if (!query) return 1;
 
@@ -496,6 +509,12 @@ class KnowledgeView {
     };
 
     let score = 0;
+    const fuseScore = item?.id ? fuseScoreById.get(item.id) : null;
+    if (Number.isFinite(fuseScore)) {
+      // Fuse score越小越相关，映射到一个正向分数加权。
+      score += Math.max(0, (1 - Math.min(fuseScore, 1)) * 10) + 2;
+    }
+
     Object.entries(fields).forEach(([fieldName, fieldValue]) => {
       const normalized = String(fieldValue).toLowerCase();
       if (!normalized) return;
@@ -816,12 +835,15 @@ class KnowledgeView {
   }
 
   _scrollToTop() {
-    const shell = this.container.querySelector('.knowledge-shell');
-    if (shell) {
-      shell.scrollIntoView({ block: 'start', behavior: 'instant' });
-      return;
+    const main = this.container.querySelector('.knowledge-main');
+    if (main) {
+      main.scrollTo({ top: 0, behavior: 'instant' });
     }
-    window.scrollTo({ top: 0, behavior: 'instant' });
+
+    const sidebar = this.container.querySelector('.knowledge-sidebar');
+    if (sidebar) {
+      sidebar.scrollTo({ top: 0, behavior: 'instant' });
+    }
   }
 
   navigateToFirstMatch() {
@@ -1083,6 +1105,30 @@ class KnowledgeView {
         if (!this.tagIndex.has(key)) this.tagIndex.set(key, []);
         this.tagIndex.get(key).push(item);
       });
+    });
+  }
+
+  _buildFuseIndex() {
+    if (typeof Fuse === 'undefined' || !Array.isArray(this.knowledge) || !this.knowledge.length) {
+      this.fuse = null;
+      return;
+    }
+
+    this.fuse = new Fuse(this.knowledge, {
+      includeScore: true,
+      threshold: 0.38,
+      minMatchCharLength: 2,
+      ignoreLocation: true,
+      keys: [
+        { name: 'title', weight: 0.34 },
+        { name: 'tags', weight: 0.2 },
+        { name: 'category', weight: 0.12 },
+        { name: 'subcategory', weight: 0.08 },
+        { name: 'content', weight: 0.15 },
+        { name: 'analysis', weight: 0.08 },
+        { name: 'relatedEvents', weight: 0.02 },
+        { name: 'relatedPlaces', weight: 0.01 },
+      ],
     });
   }
 
