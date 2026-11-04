@@ -209,9 +209,20 @@ try {
     const facets = document.getElementById('context-facets')?.innerText || '';
     // tree 的家族筛选应未被偷偷设置 — 检查是否有激活的家族tab非默认
     const activeFamily = document.querySelector('.tree-family-tab.active')?.dataset.family || '';
-    return { facets, activeFamily };
+    const outlineText = document.querySelector('.tree-outline')?.innerText || '';
+    const hasRongguoBranch = outlineText.includes('贾代善') && outlineText.includes('贾政');
+    return { facets, activeFamily, hasRongguoBranch };
   });
   assert(/王熙凤/.test(treeState.facets), `TC-15: 树视图上下文应含王熙凤: ${treeState.facets}`);
+  assert(treeState.hasRongguoBranch, 'TC-15: 贾家谱系应包含荣国府贾代善—贾政分支');
+  await page.click('.tree-family-tab[data-family="王家"]');
+  await sleep(300);
+  const wangTreeHasXifeng = await page.evaluate(() =>
+    (document.querySelector('.tree-outline')?.innerText || '').includes('王熙凤')
+  );
+  assert(wangTreeHasXifeng, 'TC-15: 王熙凤不应被误判为仆从而从王家谱系消失');
+  await page.click('.tree-family-tab[data-family="贾家"]');
+  await sleep(300);
   // 切到人物名录
   await page.click('[data-view="list"]');
   await sleep(1500);

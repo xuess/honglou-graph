@@ -6,9 +6,12 @@
   <title>红楼梦 · 知识探索工具</title>
   <meta name="description" content="红楼梦知识探索工具：关系图谱、家族谱系、人物名录与诗词典故知识库，边读边查。">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏮</text></svg>">
-  <link rel="stylesheet" href="css/fonts.css">
-  <link rel="stylesheet" href="css/style.css?v=20260629a">
-  <script src="js/d3.v7.min.js"></script>
+  <!-- 数据文件的内容版本：由 npm run stamp 与资源版本号一起更新，
+       否则浏览器会一直复用旧的 characters.json / knowledge.json。 -->
+  <meta name="hlm-asset-version" content="38637eef18">
+  <link rel="stylesheet" href="css/fonts.css?v=38637eef18">
+  <link rel="stylesheet" href="css/style.css?v=38637eef18">
+  <script src="js/d3.v7.min.js?v=38637eef18"></script>
 </head>
 <body>
   <div id="loading-overlay" class="loading-overlay">
@@ -19,20 +22,20 @@
 
   <header class="header">
     <div class="header-left">
-      <button id="sidebar-toggle" class="btn-sidebar-toggle" aria-label="切换侧边栏">☰</button>
+      <button id="sidebar-toggle" class="btn-sidebar-toggle" aria-label="切换侧边栏" aria-controls="sidebar" aria-expanded="false">☰</button>
       <div>
-        <div class="header-title">红楼梦 · 知识探索工具</div>
-        <div class="header-subtitle">图谱 · 族谱 · 名录 · 知识库</div>
+        <h1 class="header-title">红楼梦 · 知识探索工具</h1>
+        <div class="header-subtitle">图谱 · 族谱 · 名录 · 回目 · 知识库</div>
       </div>
     </div>
 
     <div class="header-center">
       <nav class="view-nav" id="view-nav" role="tablist" aria-label="视图切换">
-        <button class="view-nav-tab active" data-view="graph" role="tab" aria-selected="true" aria-controls="view-graph"><span class="view-nav-icon">◉</span><span class="view-nav-label">关系图谱</span></button>
-        <button class="view-nav-tab" data-view="tree" role="tab" aria-selected="false" aria-controls="view-tree"><span class="view-nav-icon">🌳</span><span class="view-nav-label">家族谱系</span></button>
-        <button class="view-nav-tab" data-view="list" role="tab" aria-selected="false" aria-controls="view-list"><span class="view-nav-icon">📋</span><span class="view-nav-label">人物名录</span></button>
-        <button class="view-nav-tab" data-view="chapter" role="tab" aria-selected="false" aria-controls="view-chapter"><span class="view-nav-icon">📚</span><span class="view-nav-label">回目视图</span></button>
-        <button class="view-nav-tab" data-view="knowledge" role="tab" aria-selected="false" aria-controls="view-knowledge"><span class="view-nav-icon">📖</span><span class="view-nav-label">知识库</span></button>
+        <button class="view-nav-tab active" data-view="graph" data-short="图谱" role="tab" aria-selected="true" aria-controls="view-graph"><span class="view-nav-icon">◉</span><span class="view-nav-label">关系图谱</span></button>
+        <button class="view-nav-tab" data-view="tree" tabindex="-1" data-short="族谱" role="tab" aria-selected="false" aria-controls="view-tree"><span class="view-nav-icon">🌳</span><span class="view-nav-label">家族谱系</span></button>
+        <button class="view-nav-tab" data-view="list" tabindex="-1" data-short="名录" role="tab" aria-selected="false" aria-controls="view-list"><span class="view-nav-icon">📋</span><span class="view-nav-label">人物名录</span></button>
+        <button class="view-nav-tab" data-view="chapter" tabindex="-1" data-short="回目" role="tab" aria-selected="false" aria-controls="view-chapter"><span class="view-nav-icon">📚</span><span class="view-nav-label">回目视图</span></button>
+        <button class="view-nav-tab" data-view="knowledge" tabindex="-1" data-short="知识" role="tab" aria-selected="false" aria-controls="view-knowledge"><span class="view-nav-icon">📖</span><span class="view-nav-label">知识库</span></button>
       </nav>
     </div>
 
@@ -127,19 +130,19 @@
 
           <div class="controls-panel">
             <div class="controls-core">
-              <button id="btn-zoom-in" class="control-btn" title="放大">＋</button>
-              <button id="btn-zoom-out" class="control-btn" title="缩小">－</button>
-              <button id="btn-reset" class="control-btn" title="重置视图">⟲</button>
-              <button id="btn-toggle-labels" class="control-btn active" title="切换标签">字</button>
+              <button id="btn-zoom-in" class="control-btn" title="放大" aria-label="放大图谱">＋</button>
+              <button id="btn-zoom-out" class="control-btn" title="缩小" aria-label="缩小图谱">－</button>
+              <button id="btn-reset" class="control-btn" title="重置视图" aria-label="重置图谱视图">⟲</button>
+              <button id="btn-toggle-labels" class="control-btn active" title="切换标签" aria-label="切换人物标签" aria-pressed="true">字</button>
             </div>
             <div class="controls-overflow">
-              <button id="btn-controls-more" class="control-btn controls-more-btn" title="更多控制" aria-expanded="false">⋯</button>
-              <div class="controls-overflow-menu" id="controls-overflow-menu">
-                <button id="btn-toggle-cluster" class="control-btn" title="按关系聚类">🔗</button>
-                <button id="btn-toggle-particles" class="control-btn" title="粒子动画">✨</button>
-                <button id="btn-graph-fullscreen" class="control-btn" title="大图模式">⛶</button>
-                <button id="btn-export-png" class="control-btn" title="导出图谱为PNG图片">📷</button>
-                <button id="btn-share-card" class="control-btn" title="生成分享卡片">📤</button>
+              <button id="btn-controls-more" class="control-btn controls-more-btn" title="更多控制" aria-label="更多图谱控制" aria-expanded="false" aria-controls="controls-overflow-menu">⋯</button>
+              <div class="controls-overflow-menu" id="controls-overflow-menu" role="menu" aria-label="更多图谱控制">
+                <button id="btn-toggle-cluster" class="control-btn" role="menuitem" title="按关系聚类" aria-label="按关系聚类">🔗</button>
+                <button id="btn-toggle-particles" class="control-btn" role="menuitem" title="粒子动画" aria-label="粒子动画">✨</button>
+                <button id="btn-graph-fullscreen" class="control-btn" role="menuitem" title="大图模式" aria-label="大图模式">⛶</button>
+                <button id="btn-export-png" class="control-btn" role="menuitem" title="导出图谱为PNG图片" aria-label="导出图谱为PNG图片">📷</button>
+                <button id="btn-share-card" class="control-btn" role="menuitem" title="生成分享卡片" aria-label="生成分享卡片">📤</button>
               </div>
             </div>
           </div>
@@ -233,7 +236,7 @@
   </div>
 
 <!-- Discovery Panel (12金钗首页) -->
-<div id="discovery-overlay" class="discovery-overlay" role="dialog" aria-label="金陵十二钗·探索入口" aria-modal="true">
+<div id="discovery-overlay" class="discovery-overlay" role="dialog" aria-label="金陵十二钗·探索入口" aria-modal="true" aria-hidden="true">
   <div class="discovery-content">
     <div class="discovery-header">
       <div class="discovery-title">金陵十二钗</div>
@@ -260,21 +263,30 @@
 </div>
 
 <!-- Character Detail Panel (slides in from right) -->
-<div id="character-card-overlay" class="character-card-overlay" role="complementary" aria-label="人物详情">
-  <div id="card-content" class="character-card"></div>
+<div id="character-card-overlay" class="character-card-overlay" role="dialog" aria-modal="true" aria-label="人物详情" aria-hidden="true">
+  <div id="card-content" class="character-card" tabindex="-1"></div>
 </div>
 
-  <script src="js/edge-tts.js?v=20260530a"></script>
-  <script src="js/audio-preload-cache.js?v=20250625a"></script>
-  <script src="js/utils.js?v=20260529a"></script>
-  <script src="js/facet-store.js?v=20250916e"></script>
-  <script src="js/text-layout.js?v=20260407a"></script>
-  <script src="js/graph.js?v=20260405a"></script>
-  <script src="js/tree-view.js?v=20250916e"></script>
-  <script src="js/list-view.js?v=20250916e"></script>
-  <script src="js/chapter-view.js?v=20260407a"></script>
-  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.1.0/dist/fuse.min.js"></script>
-  <script src="js/knowledge-view.js?v=20260626b"></script>
-  <script src="js/app.js?v=20260626c"></script>
+  <script src="js/edge-tts.js?v=38637eef18"></script>
+  <script src="js/audio-preload-cache.js?v=38637eef18"></script>
+  <script src="js/utils.js?v=38637eef18"></script>
+  <script src="js/facet-store.js?v=38637eef18"></script>
+  <script src="js/text-layout.js?v=38637eef18"></script>
+  <script src="js/graph.js?v=38637eef18"></script>
+  <script src="js/tree-view.js?v=38637eef18"></script>
+  <script src="js/list-view.js?v=38637eef18"></script>
+  <script src="js/chapter-view.js?v=38637eef18"></script>
+  <!-- fuse.js 本地化：原先是唯一的外部运行时依赖，断网/公司网络下会静默降级为关键词匹配。
+       用模块脚本加载，把默认导出挂到 window.Fuse，其余视图沿用全局访问方式。 -->
+  <script type="module">
+    try {
+      const module = await import('./js/fuse.min.mjs?v=38637eef18');
+      window.Fuse = module.default;
+    } catch (err) {
+      console.warn('[fuse] 本地模块加载失败，知识库检索将退回关键词匹配', err);
+    }
+  </script>
+  <script src="js/knowledge-view.js?v=38637eef18"></script>
+  <script src="js/app.js?v=38637eef18"></script>
 </body>
 </html>

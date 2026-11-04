@@ -1,0 +1,139 @@
+{
+  "policy": {
+    "baseEditions": [
+      "甲戌本",
+      "庚辰本"
+    ],
+    "factScope": {
+      "maxChapter": 80,
+      "rule": "人物、关系、引语、结局等事实层内容，必须能定位到甲戌本或庚辰本的回目与原文位置。"
+    },
+    "displayRules": [
+      "引语须逐条提供 quoteSources，且每条来源都在底本范围内，才能标作“经典语录”。",
+      "结局须提供 outcomeSources，且每条来源都在底本范围内，才能在人物名录中展示。",
+      "第八十一回及以后、程高系统及其他续书材料不得作为事实层的来源；如需比较，必须在独立的版本比较字段中明示。"
+    ]
+  },
+  "sourceCatalog": [
+    {
+      "id": "jiaxu-wikisource",
+      "edition": "甲戌本",
+      "kind": "online-transcription",
+      "citation": "《脂砚斋重评石头记甲戌本》（维基文库转录，存第 1–8、13–16、25–28 回）",
+      "urlTemplate": "https://zh.wikisource.org/wiki/%E8%84%82%E7%A1%AF%E9%BD%8B%E9%87%8D%E8%A9%95%E7%9F%B3%E9%A0%AD%E8%A8%98%E7%94%B2%E6%88%8C%E6%9C%AC/{chapterZh}%E5%9B%9E",
+      "coveredChapters": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        13,
+        14,
+        15,
+        16,
+        25,
+        26,
+        27,
+        28
+      ],
+      "note": "仅用于线上检索与回目定位；新增事实仍须复核影印本或可靠校勘本的页码。该转录本未覆盖的章回不得引用此条目。"
+    },
+    {
+      "id": "gengchen-facsimile-pending",
+      "edition": "庚辰本",
+      "kind": "facsimile-pending",
+      "citation": "《脂砚斋重评石头记庚辰本》",
+      "note": "待补入可复核的馆藏或影印本页码；在补齐定位前，不得以此目录项单独支撑展示事实。"
+    }
+  ],
+  "evidence": [
+    {
+      "entityId": "wang_ziteng",
+      "field": "identity",
+      "claim": "甲戌本第三回明言王子腾为薛蟠之母舅。",
+      "status": "verified",
+      "sources": [
+        {
+          "sourceId": "jiaxu-wikisource",
+          "edition": "甲戌本",
+          "chapter": 3,
+          "locator": "第三回末段“母舅王子腾”"
+        }
+      ]
+    }
+  ],
+  "auditQueue": [
+    {
+      "id": "character-quotes-without-source",
+      "scope": "data/characters.json",
+      "field": "quotesPendingVerified",
+      "status": "pending",
+      "recordCount": 107,
+      "action": "逐条补入 quoteSources（版本、回目、定位）后再显示为“经典语录”。已核对 10 人 17 条（甲戌本可逐字定位），其余 98 人待校；待校引语暂存 quotesPendingVerified，前端标作“待校引语”。",
+      "verifiedCount": 10,
+      "verifiedQuoteLines": 17,
+      "pendingQuoteLines": 157,
+      "note": "核对方式：以维基文库甲戌本转录（第 1–8、13–16、25–28 回）为底本，繁转简后逐条字符串比对。甲戌本未收录的章回（9–12、17–24、29–80）无法用该转录本核对，须补庚辰本影印页码后再校。"
+    },
+    {
+      "id": "later-text-or-continuation-content",
+      "scope": "data/characters.json",
+      "fields": [
+        "description",
+        "keyEvents",
+        "chapters",
+        "outcome",
+        "outcomeVersion",
+        "sourceNote"
+      ],
+      "status": "pending",
+      "entityIds": [
+        "jia_mu",
+        "jia_she",
+        "jia_zheng",
+        "jia_baoyu",
+        "jia_zhen",
+        "jia_huan",
+        "jia_rong",
+        "jia_lan",
+        "jia_yuanchun",
+        "jia_yingchun",
+        "jia_tanchun",
+        "jia_xichun",
+        "wang_xifeng",
+        "li_wan",
+        "jia_qiaojie",
+        "xue_baochai",
+        "lin_daiyu",
+        "xiang_ling",
+        "shi_xiangyun",
+        "wang_ziteng",
+        "pinger",
+        "xiaohong",
+        "miaoyu",
+        "bao_chan",
+        "wu_er",
+        "old_xuejiu",
+        "xue_yima",
+        "wang_ren",
+        "xiren",
+        "zijuan",
+        "yuanyang",
+        "liu_laolao",
+        "jia_yucun",
+        "zhen_shiyin",
+        "jia_yun",
+        "zhen_yingjia",
+        "zhenjia_servant",
+        "xia_jingui",
+        "jia_zhu",
+        "jia_lian",
+        "wang_furen"
+      ],
+      "action": "按甲戌本、庚辰本逐条拆分可证事实与版本比较材料；续书结局统一移入 outcomeVersion.continuation 并在 outcome 前标注“（续书）”，未定位内容继续保持待核。"
+    }
+  ]
+}

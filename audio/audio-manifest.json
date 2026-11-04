@@ -2,6 +2,16 @@
   "voice": "茉莉",
   "generatedAt": "2026-06-25T15:02:12.381945",
   "engines": {
+    "mimo_白桦": {
+      "model": "mimo-v2.5-tts",
+      "voice": "白桦",
+      "provider": "mimo"
+    },
+    "mimo_苏打": {
+      "model": "mimo-v2.5-tts",
+      "voice": "苏打",
+      "provider": "mimo"
+    },
     "mimo_茉莉": {
       "model": "mimo-v2.5-tts",
       "voice": "茉莉",
@@ -11,43 +21,45 @@
   "manifest": {
     "prophecy_baochai_daiyu": {
       "engine:mimo_苏打": {
-        "file": "audio/knowledge/prophecy_baochai_daiyu_mimo_苏打.mp3",
         "voice": "苏打",
         "model": "mimo-v2.5-tts",
-        "status": "generated"
+        "file": null,
+        "status": "failed"
       },
       "engine:mimo_白桦": {
-        "file": "audio/knowledge/prophecy_baochai_daiyu_mimo_白桦.mp3",
         "voice": "白桦",
         "model": "mimo-v2.5-tts",
-        "status": "generated"
+        "file": null,
+        "status": "failed"
       },
       "engine:mimo_茉莉": {
-        "file": "audio/knowledge/prophecy_baochai_daiyu_mimo_茉莉.mp3",
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
-        "status": "generated"
-      }
+        "file": null,
+        "status": "failed"
+      },
+      "textHash": "c67d1236c4cc5461943346317bf4188c5c31f00bc6ffaf33fe5a029e0120b35b"
     },
     "prophecy_yuanchun": {
       "engine:mimo_苏打": {
-        "file": "audio/knowledge/prophecy_yuanchun_mimo_苏打.mp3",
         "voice": "苏打",
         "model": "mimo-v2.5-tts",
-        "status": "generated"
+        "file": null,
+        "status": "failed"
       },
       "engine:mimo_白桦": {
-        "file": "audio/knowledge/prophecy_yuanchun_mimo_白桦.mp3",
         "voice": "白桦",
         "model": "mimo-v2.5-tts",
-        "status": "generated"
+        "file": null,
+        "status": "failed"
       },
       "engine:mimo_茉莉": {
-        "file": "audio/knowledge/prophecy_yuanchun_mimo_茉莉.mp3",
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
-        "status": "generated"
-      }
+        "file": null,
+        "status": "failed"
+      },
+      "textHash": "beaa771715ab81b9253e5d067f94c623c3a3552f2c75fa51f581b2c6db11caff"
     },
     "prophecy_tanchun": {
       "engine:mimo_苏打": {
@@ -67,7 +79,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "bb5ffcd79652f62de1d8862a47035b4828393e14da44856f3890398d852ad465"
     },
     "prophecy_xiangyun": {
       "engine:mimo_苏打": {
@@ -87,7 +100,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "36807d08b12181c61d64c541b75092961e8d1626764d0437d11957ac2fcecb43"
     },
     "prophecy_miaoyu": {
       "engine:mimo_苏打": {
@@ -107,7 +121,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "0f3e8cd6aca273d413786acca948c6d86cfc5176919017825a8945f83d13ad46"
     },
     "prophecy_yingchun": {
       "engine:mimo_苏打": {
@@ -127,7 +142,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "4f702d12e0b75982e1a2c401d042a1df0d391a4242bd5dc1c56ba2458d47a37f"
     },
     "prophecy_xichun": {
       "engine:mimo_苏打": {
@@ -147,7 +163,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "59b451614f9c364a2b7744aa959cc11043889d1ccf78b0df685fc99084d6d433"
     },
     "prophecy_xifeng": {
       "engine:mimo_苏打": {
@@ -167,27 +184,29 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8c51dd977d227224fff46db6b6d2a9945a5b13aa6d3d9ec8c7803472ede74a0f"
     },
     "prophecy_qiaojie": {
       "engine:mimo_苏打": {
-        "file": "audio/knowledge/prophecy_qiaojie_mimo_苏打.mp3",
         "voice": "苏打",
         "model": "mimo-v2.5-tts",
-        "status": "generated"
+        "file": null,
+        "status": "failed"
       },
       "engine:mimo_白桦": {
-        "file": "audio/knowledge/prophecy_qiaojie_mimo_白桦.mp3",
         "voice": "白桦",
         "model": "mimo-v2.5-tts",
-        "status": "generated"
+        "file": null,
+        "status": "failed"
       },
       "engine:mimo_茉莉": {
-        "file": "audio/knowledge/prophecy_qiaojie_mimo_茉莉.mp3",
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
-        "status": "generated"
-      }
+        "file": null,
+        "status": "failed"
+      },
+      "textHash": "9e32a21f8f9d23e469668694c338febc26bf5b9e5a08ffaa1a3cf8468039777c"
     },
     "prophecy_liwankeqing": {
       "engine:mimo_苏打": {
@@ -207,7 +226,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f9ed288b54a985d33bddbdccdb70a96862c6a85165fe4fd1cb094f94a01395f5"
     },
     "prophecy_qinkeqing": {
       "engine:mimo_苏打": {
@@ -227,7 +247,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c6c3f0414b09bc2e541ad0841e8bab393e6ab6aed601a1e556d188cd243e2d95"
     },
     "prophecy_xiangling": {
       "engine:mimo_苏打": {
@@ -247,7 +268,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "09e43dd9cd8f67b67ee4466881416651e18a4cd582f8b44aff7976214731ea99"
     },
     "verse_hongloumeng_yinsong": {
       "engine:mimo_苏打": {
@@ -267,7 +289,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "a8b99ddf9e89655ed85964ca50e3a670243ba3275a9be4ccdb8bb8956954a964"
     },
     "verse_zhongshenwu": {
       "engine:mimo_苏打": {
@@ -287,7 +310,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "90022613aa794b5cb2854037b0582a01096e8f80e8ba563568be7ed6e48f5279"
     },
     "verse_wangxifeng": {
       "engine:mimo_苏打": {
@@ -307,7 +331,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "a065961b1277da13c97d88b1218b0d76f45726549a3aaaab4bc0c5c547a49f8f"
     },
     "verse_fenshengli": {
       "engine:mimo_苏打": {
@@ -327,7 +352,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "b2e5f34bbd83ff7c455107c85abe166e3ae005a3cf566f706be73472e1c3a7dd"
     },
     "poem_zanghua": {
       "engine:mimo_苏打": {
@@ -347,7 +373,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "0b28b2c284072241fb0d6d6f280b156a766e6e4e189356ffdfd1b97139b97b1f"
     },
     "poem_taohua": {
       "engine:mimo_苏打": {
@@ -367,7 +394,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "40cc658445885f84a27024216cea9a14c64e0cfe5173b21c5cee3d0318024024"
     },
     "poem_furonglei": {
       "engine:mimo_苏打": {
@@ -387,7 +415,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "26686f7dfc63e07ba7a6342f66317e74aa6705db350c4dcc3dfeb5b624bcf8f6"
     },
     "poem_haitang": {
       "engine:mimo_苏打": {
@@ -407,27 +436,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
-    },
-    "couplet_daguanyuan_main": {
-      "engine:mimo_苏打": {
-        "file": "audio/knowledge/couplet_daguanyuan_main_mimo_苏打.mp3",
-        "voice": "苏打",
-        "model": "mimo-v2.5-tts",
-        "status": "generated"
       },
-      "engine:mimo_白桦": {
-        "file": "audio/knowledge/couplet_daguanyuan_main_mimo_白桦.mp3",
-        "voice": "白桦",
-        "model": "mimo-v2.5-tts",
-        "status": "generated"
-      },
-      "engine:mimo_茉莉": {
-        "file": "audio/knowledge/couplet_daguanyuan_main_mimo_茉莉.mp3",
-        "voice": "茉莉",
-        "model": "mimo-v2.5-tts",
-        "status": "generated"
-      }
+      "textHash": "da887fbfce7a8c5fffe9c3a156b19738be672b1eed08106402e61f5c1957b2c6"
     },
     "couplet_taixu": {
       "engine:mimo_苏打": {
@@ -447,7 +457,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "43273b63fd4fa93d57f93b6c77560a50698a3786d38928b47c2d663e9d521e60"
     },
     "couplet_ningrongmen": {
       "engine:mimo_苏打": {
@@ -467,7 +478,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "1e931236726a3f42ebb2f8b25205d14adc0e49d7d5e0cc40521ac4547454ff73"
     },
     "scene_daiyu_jinfu": {
       "engine:mimo_苏打": {
@@ -487,7 +499,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f1a80d67fdd74650791609658736e0cc65ddb00109b50cdf706f3b8f9f58cd7f"
     },
     "scene_gongdu_xixiang": {
       "engine:mimo_苏打": {
@@ -507,7 +520,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "48d0a57a885428a3ffef5af74cf80c468be48b0abd6e6c42d2d7e22faa79207d"
     },
     "scene_qingwen_sibu": {
       "engine:mimo_苏打": {
@@ -527,7 +541,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8c3ec182cddf8c8079e2eb259c521ce1403871f798877b201320b4f59f5d6e4d"
     },
     "scene_liulaolao_jinda": {
       "engine:mimo_苏打": {
@@ -547,7 +562,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7dc41963cbb8d1eec391a11e8d4e4f96a935deedde8f7617198819a7177cce26"
     },
     "riddle_yuanxiao_baoyu": {
       "engine:mimo_苏打": {
@@ -567,7 +583,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "646886521163781d02633ba5e277c6fd5f7a119c258fffb86ee59efc08c8df22"
     },
     "riddle_tanchun_yuanxiao": {
       "engine:mimo_苏打": {
@@ -587,7 +604,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6b0dde99bab36bd70aac2e4478c9bd3d0ae306ec4e226f3946fa11d0f7dec642"
     },
     "architecture_daguanyuan_layout": {
       "engine:mimo_苏打": {
@@ -607,7 +625,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "beed4f2e8fa8b197228638460bf6a52f493038f3548019c7da6eee04fce5a3bf"
     },
     "architecture_xiaoxiangguan": {
       "engine:mimo_苏打": {
@@ -627,7 +646,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "3fcc6e2f8121b08fa5721c3617ca210afa6cab2e862cb25a607a5f03a542c479"
     },
     "architecture_yihongyuan": {
       "engine:mimo_苏打": {
@@ -647,7 +667,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "b6aff6469582f56df5786f9c5e498e921a1e1786d3b52976ba2c4b3277ed6e08"
     },
     "couplet_daguanyuan_trial_inscription": {
       "engine:mimo_苏打": {
@@ -667,7 +688,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "008ac037cf7e08051b60ce7dfa58baec2e3c516410f91a2c90fc0752c5226a3d"
     },
     "customs_yuanxiao_feast": {
       "engine:mimo_苏打": {
@@ -687,7 +709,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "842b5f915ebcac877951cdb1158948f6cd2c17ec7eeab664ca4d3373b13988eb"
     },
     "customs_funeral_qin_keqing": {
       "engine:mimo_苏打": {
@@ -707,7 +730,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ec305249ce0ce8c95b390720fafbc138ef50f95ae7e08311888c5b07c88d2b97"
     },
     "objects_jinsuo_tonglingbao": {
       "engine:mimo_苏打": {
@@ -727,7 +751,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7cdae1f7370e410e3e6f3ad7425dbc8ad868fb0fcdae2d7b16cda9361d56cc63"
     },
     "objects_quejinqiu": {
       "engine:mimo_苏打": {
@@ -747,7 +772,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "73e5603607a812a79660bf8ca7be8ed668e7a260db8a56801099a2ab602cdf56"
     },
     "diet_liulaolao_banquet": {
       "engine:mimo_苏打": {
@@ -767,7 +793,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "b5efa444880ece019749e8ab459eb946e192ddc60380c6239fceb9f0d4a41d03"
     },
     "diet_medicinal_food_daiyu": {
       "engine:mimo_苏打": {
@@ -787,7 +814,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "d6dca208bf202a23f44e1384a7f101dd1f955ed530dd6243624af0877115c429"
     },
     "space_haitang_shishe": {
       "engine:mimo_苏打": {
@@ -807,7 +835,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "67344dd0d71f7384e7dc440d2334adc8ab71438e21ad23986bfaf3d88d7f9512"
     },
     "allusion_cold_incense_pills": {
       "engine:mimo_苏打": {
@@ -827,7 +856,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "418d0495e75996f3cc9eb7533bcf0b8957cd66f43ae970fdab8e96a009c31ad7"
     },
     "poem_juhua_shi_xiangyun": {
       "engine:mimo_苏打": {
@@ -847,7 +877,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "36689abb78bd141bd54630c579d35dfb96b97353b76887017c6265f62e705847"
     },
     "scene_xifeng_nongquan": {
       "engine:mimo_苏打": {
@@ -867,7 +898,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "5b97e54f4474c5da697a592f4d0b60ac6909d5fe7c933770e6779077371f9a65"
     },
     "allusion_tongling_baoyu": {
       "engine:mimo_苏打": {
@@ -887,7 +919,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7565d64fe2da5ce7984ee5d9a35c7a80f379c3fc8e0b0fd0b2f1d0f7799d6268"
     },
     "scene_baoyu_tiyuan": {
       "engine:mimo_苏打": {
@@ -907,7 +940,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "2a173372f1c847d2e2e0f929d67bb3ccfc3bb45147e94e5441feba87061880a9"
     },
     "allusion_jiafu_paiming": {
       "engine:mimo_苏打": {
@@ -927,7 +961,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "a78878efdd776845de8b3f3b70f957d8fb6562ae8f93c75cd4a509e75ac06af0"
     },
     "customs_jiazhu_jicheng": {
       "engine:mimo_苏打": {
@@ -947,7 +982,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "2fdaa61a54f6a5d99aecc92d1f129888e13859beea4bfe33ebdb6fa864c672b0"
     },
     "verse_henwuchang": {
       "engine:mimo_苏打": {
@@ -967,7 +1003,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8449fa1123f3c66377db0ed801be14e27224606881a4755b0de96d4887350812"
     },
     "verse_xiyuanjia": {
       "engine:mimo_苏打": {
@@ -987,7 +1024,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "34226b694a2fa6c4d8e153d2a3e9c54cf9992894f4689783ce112a23c81372bf"
     },
     "verse_xuhuawu": {
       "engine:mimo_苏打": {
@@ -1007,7 +1045,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "466142d285f8ee1d1e5cfd7056c79368ff4f796c834a658f0cf5acfc8045404a"
     },
     "verse_wanshaohua": {
       "engine:mimo_苏打": {
@@ -1027,7 +1066,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c70e54a5cca43c012da8d752f5ccfcc6c9b49b0b64e2ee4fa4950e03359fa510"
     },
     "verse_haoshizhong": {
       "engine:mimo_苏打": {
@@ -1047,7 +1087,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "cc2b5aecc6db1b81e318fb111fcf999b8e690d53b27851f742c407cad81ec0b7"
     },
     "verse_feiniaoge_toulin": {
       "engine:mimo_苏打": {
@@ -1067,7 +1108,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "485e3aced5e419e35139a2c3f4949de1b6542e108157f8b014dd4ba658038cf8"
     },
     "verse_hongdouqu": {
       "engine:mimo_苏打": {
@@ -1087,7 +1129,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "bd5428417746a3b56d0d7694086e84640225672939aff47bd73a8626fcebcda3"
     },
     "garden_longcuian": {
       "engine:mimo_苏打": {
@@ -1107,7 +1150,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6f74d9d20b68f0c871c15a5c389cf93c2187c1aeb5b77b19bcbaff76957a96da"
     },
     "garden_nuanxiangwu": {
       "engine:mimo_苏打": {
@@ -1127,7 +1171,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e3bd15666c9d4ecd7a037ba4f7bdc8664e3994cb712aed83263624096601ef9d"
     },
     "garden_zilingzhou": {
       "engine:mimo_苏打": {
@@ -1147,7 +1192,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "9df3d6336603aeaf4ea892c69e8b21caa70956173f2d10d4c084c48783d26d74"
     },
     "medicine_lengxiangwan": {
       "engine:mimo_苏打": {
@@ -1167,7 +1213,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "02de36dc9009f3a7d9bdb539d390045144c406ed7bdb9ac68d966fb9657a6c0e"
     },
     "medicine_renshen_yangrong": {
       "engine:mimo_苏打": {
@@ -1187,7 +1234,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "49243715649e69a226e6d05c2a3dc46ce2445d00450b2647aeb98d263bdcd8ea"
     },
     "medicine_wuji_baifeng": {
       "engine:mimo_苏打": {
@@ -1207,7 +1255,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "5213ddafaca721ce13d8c384edae2aae50685210e538073e21a6ba11f062492a"
     },
     "poem_qiuchuang_fengyuxi": {
       "engine:mimo_苏打": {
@@ -1227,7 +1276,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6913c4c1d41b936ab5e34cfb1fad14c2c43f72bbbc40728f26178ffad1d1e0d2"
     },
     "poem_tipa_sanju": {
       "engine:mimo_苏打": {
@@ -1247,7 +1297,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "53fc3d6e6c84913ec3bbbeb60e66fd37a2e258828422a632c195302b1d4b371e"
     },
     "poem_guihuaci": {
       "engine:mimo_苏打": {
@@ -1267,7 +1318,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "733ac34a4a4eb2c253b409f2dda3ce804c00fb16effefcc06811c82118a96657"
     },
     "poem_wuguni": {
       "engine:mimo_苏打": {
@@ -1287,7 +1339,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ef0c42ea987a6850df07033d9014b49e540a1d1ec53a4918f5021310d6d91e9c"
     },
     "food_qiexiang": {
       "engine:mimo_苏打": {
@@ -1307,7 +1360,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "a547f416c20616793682480b4715007b5997700b3a10acb54d2cd07e9e47a661"
     },
     "food_doufu_baozi": {
       "engine:mimo_苏打": {
@@ -1327,7 +1381,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "56153ec400398896dfdd4dba988f340d817f2bc412b38a23b7401d3aeef963d5"
     },
     "food_huotui_xiansun": {
       "engine:mimo_苏打": {
@@ -1347,7 +1402,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "10d4d37b499ccf9452dc2e7668c210be4d5fe35edeebafc8e35b5ea75cf952f5"
     },
     "food_zuo_yangrou": {
       "engine:mimo_苏打": {
@@ -1367,7 +1423,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "5742128dce34f22286f728e4b20366e786ccf30fb33a83e67edd80441ff56a5d"
     },
     "plant_zhu": {
       "engine:mimo_苏打": {
@@ -1387,7 +1444,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f30300bfb584e5af176103db93577ed37f58aa3b0eceec37bf575cb51c23da2e"
     },
     "plant_haitang": {
       "engine:mimo_苏打": {
@@ -1407,7 +1465,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "52aa44829d7107e43787a9432d445dd0f8f72b54f9df664b936b6fc8e53d38a7"
     },
     "plant_shaoyao": {
       "engine:mimo_苏打": {
@@ -1427,7 +1486,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "3378938a7d00b7af4a4cf30c7c49d6766f0ef23a22d77402dae3a36809735379"
     },
     "rock_jiashan": {
       "engine:mimo_苏打": {
@@ -1447,7 +1507,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "3694479f569ee2db1fc267dffbffae9f77bb52945fc79b1013cc9ffd7ae22527"
     },
     "garden_residents": {
       "engine:mimo_苏打": {
@@ -1467,7 +1528,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "632e9f1047e778fc0ccbe75132d08c834d02e1a248c42d3a6414212bfe21bf1f"
     },
     "food_sijian": {
       "engine:mimo_苏打": {
@@ -1487,7 +1549,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7de25b664017b79f90377af4e64ca95c6910f21894eaf79f6cd09468d0acc24b"
     },
     "drink_tea": {
       "engine:mimo_苏打": {
@@ -1507,7 +1570,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7c60732edca80f4998d3014c293e744edf868f1bac6332ebf403e59e417418b7"
     },
     "drink_wine": {
       "engine:mimo_苏打": {
@@ -1527,7 +1591,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c5e3a7944df292778665803dc2e1a242236c7023fe745ecf26fb797208d66935"
     },
     "medicine_sijibuyang": {
       "engine:mimo_苏打": {
@@ -1547,7 +1612,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "dcf5e5aeb3007d84ee836d58eeea9958b897505865d969f51d655d6362a2f9f0"
     },
     "plant_meihua": {
       "engine:mimo_苏打": {
@@ -1567,7 +1633,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "48340aa46c9bd4209449f10277f830a91e522474d6bf22cebdcd84470a3c5cb2"
     },
     "plant_ouhua": {
       "engine:mimo_苏打": {
@@ -1587,7 +1654,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "27a0c06b5267ce743980cc77eb30028d444efbaa9ee59db57ca3d1c67fb20534"
     },
     "plant_mudan": {
       "engine:mimo_苏打": {
@@ -1607,7 +1675,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "01178a1899478b01b0b6fc0be4107a4d5fa8098f40c6d8396f63592403bd87a6"
     },
     "landscape_tubitang": {
       "engine:mimo_苏打": {
@@ -1627,7 +1696,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "d2deb8b07a7b82a9442dc55b9b59201837c01d1cfbe04745854cfcfb96b6b0ad"
     },
     "food_luwei": {
       "engine:mimo_苏打": {
@@ -1647,7 +1717,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "2dec09ccfea744eb236d800bb560f25a4a22f9af0e322baf87db970c7055cb35"
     },
     "philosophy_haoliaoge": {
       "engine:mimo_苏打": {
@@ -1667,7 +1738,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "47383eef8d58084e5ed9df0936405c21ce4140d3346b5bb1a942db8983958b6f"
     },
     "philosophy_zhuangzi": {
       "engine:mimo_苏打": {
@@ -1687,7 +1759,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6c0e41d92cbd881f77cdc96aa2b0bfc24c5e4144c8caf4229e752cc575680134"
     },
     "philosophy_yisengyidao": {
       "engine:mimo_苏打": {
@@ -1707,7 +1780,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "9e938551ff82833ddec2a8b54ceecfa21e7bf02b7d8ddcb5e8b210ab6c28555d"
     },
     "philosophy_baoyu_chujia": {
       "engine:mimo_苏打": {
@@ -1727,7 +1801,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ec6edb81cd45af82ac9dcd95e352312b63a47a2542b855ec77afb72e6fbdef31"
     },
     "philosophy_fengyuebaojian": {
       "engine:mimo_苏打": {
@@ -1747,7 +1822,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6b5e28638b78908c64ff015caf05dd06e8c415907d83b5b4a5df7481740a4374"
     },
     "philosophy_xiangyun_wudao": {
       "engine:mimo_苏打": {
@@ -1767,7 +1843,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "fcd7b6ae1189037f1c0734f48b62442ee09fdc8174db6194a06b9d132c5adfef"
     },
     "philosophy_zhen_jia": {
       "engine:mimo_苏打": {
@@ -1787,7 +1864,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f024bb2d742749f88acc68d9170e5f0204eaf1d5d311856dc5f473844a1edd98"
     },
     "philosophy_muzhishi": {
       "engine:mimo_苏打": {
@@ -1807,7 +1885,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "fc5ca0b9d39ca3ad68de9bc4090fed77247867f688d2619367d5d8997f0c26dc"
     },
     "character_jian": {
       "engine:mimo_苏打": {
@@ -1827,7 +1906,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "08f1525b476f4fc7621b3d28fbff06a9f907e3eefa26dc98de5312d869fe31cf"
     },
     "character_meng": {
       "engine:mimo_苏打": {
@@ -1847,7 +1927,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e0246d1d5bb356241e0753ead08ab8c3607785603a7dd56bae78f9c8cb5515dd"
     },
     "character_qiang": {
       "engine:mimo_苏打": {
@@ -1867,7 +1948,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "9ae0091086b935276750802f872a061469bf2253876c72f9b731260b9ff73f5b"
     },
     "character_xiang": {
       "engine:mimo_苏打": {
@@ -1887,7 +1969,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6680d86300acd1556da58afd50a775bed3d478eac076850ac3b765946bf13198"
     },
     "character_hai": {
       "engine:mimo_苏打": {
@@ -1907,7 +1990,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "1e96b3f4d559a000c457c4d98df3e8c07cceaa9e95c0b6aea5d23fb249c648e5"
     },
     "character_zan": {
       "engine:mimo_苏打": {
@@ -1927,7 +2011,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7fc7535d5db2289747dcae80f8d7aaa0465e185bddb5616d7710b42ed8583ddf"
     },
     "character_chai": {
       "engine:mimo_苏打": {
@@ -1947,7 +2032,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "1026f93ca3272f8f98e256e81910e3e28a0853a4fff5472555050e51f0c68290"
     },
     "character_chuan": {
       "engine:mimo_苏打": {
@@ -1967,7 +2053,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f67d2d044310a0dae1be5523e24b787bb4c9839d7bb8f0777ed6d4a31afb16c2"
     },
     "character_pei": {
       "engine:mimo_苏打": {
@@ -1987,7 +2074,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8ddd2f66af8f9608bdcd071c9353b90c808238d0a9010c31fc2d24b45a56ebb9"
     },
     "character_luo": {
       "engine:mimo_苏打": {
@@ -2007,7 +2095,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "966025e92cd322357436fd9f66f50815974125a71ac31383a8c0cae404e1a7bc"
     },
     "character_mo": {
       "engine:mimo_苏打": {
@@ -2027,7 +2116,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "cb04c3e1757f6af6cdc39ce744024c5d1a663e7089694603fc962320e311e7a0"
     },
     "character_ru": {
       "engine:mimo_苏打": {
@@ -2047,7 +2137,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "527cf089d0ab9e19229be2aa63d26a1f036aac69146d9e6a43b61d1ea08b5e19"
     },
     "character_dou": {
       "engine:mimo_苏打": {
@@ -2067,7 +2158,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "0bcad92979d5257f134129c39ad6e516a3d9760a7429664a59431e8e1079ef1a"
     },
     "character_yi": {
       "engine:mimo_苏打": {
@@ -2087,7 +2179,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "4f60a75b41e88cfa03ae9bccd06508b8a6f2ff5a5d13afbb9140141ab3504351"
     },
     "character_wan": {
       "engine:mimo_苏打": {
@@ -2107,7 +2200,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "48c44b63e5b354401582addf821e13fedb5bfd6e0ac6ac7fd2d45a8406d6c123"
     },
     "character_zuan": {
       "engine:mimo_苏打": {
@@ -2127,7 +2221,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "618f2fa2c0bbd2fad4b343a860ceb7c3a0cde7aad77c30a21dee6f646debe57f"
     },
     "entrance_xifeng": {
       "engine:mimo_苏打": {
@@ -2147,7 +2242,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6172e7ffe4a8098aeaf358916d7b1dad49adadac9b4aa10fd046606f9c5c8295"
     },
     "entrance_daiyu": {
       "engine:mimo_苏打": {
@@ -2167,7 +2263,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "3ce6539812cb973cf0ff88d11931f64dbb369f3b7504e1ef340c347fed751762"
     },
     "entrance_baoyu_first": {
       "engine:mimo_苏打": {
@@ -2187,7 +2284,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "d3b334e889d86ae24229228bb08d228b98409c2d82e786a3c21efc881e106a15"
     },
     "entrance_baoyu_second": {
       "engine:mimo_苏打": {
@@ -2207,7 +2305,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "cffd246f1a441c95ccfe1cf1e13e9e41e0eea7b6080a88dbb1108f2a12828a52"
     },
     "entrance_baochai": {
       "engine:mimo_苏打": {
@@ -2227,7 +2326,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "216e6fefd00f692889bc3b8496d587d4865ec945411fbe1d573e00a63e77f051"
     },
     "entrance_yuanchun": {
       "engine:mimo_苏打": {
@@ -2247,7 +2347,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "5c6c9f9053bcc1e99a54cc0dc3cb8cd27a01f6f0d36a3fbb51fbe0fae40f1555"
     },
     "entrance_xiangyun": {
       "engine:mimo_苏打": {
@@ -2267,7 +2368,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "9211fa4a1adefbbe24e4d42b985b854af6c12754b7ce4e5d297998819c8dd359"
     },
     "character_xiu": {
       "engine:mimo_苏打": {
@@ -2287,7 +2389,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ca482f35b17ce4454083a990094d4aff0a7ee9206fc4b87e9fd8609531d28edf"
     },
     "character_ao": {
       "engine:mimo_苏打": {
@@ -2307,7 +2410,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f8973ddd5ff23cd9cea1a30665c371fa2ab0c3101a0c6e0f91c00801df0c4774"
     },
     "character_gua": {
       "engine:mimo_苏打": {
@@ -2327,7 +2431,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "20bbfa9abe5493cc047ffd7e03d4944af85216fe0cd7b85b80fd8defdaf6d3ec"
     },
     "character_ling": {
       "engine:mimo_苏打": {
@@ -2347,7 +2452,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "946d0d1e8ac9b68f553e257eaa5be5edd600fdad9db7eed0a2efd7ed5478bb7b"
     },
     "character_duan": {
       "engine:mimo_苏打": {
@@ -2367,7 +2473,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f45e770bdf501558f2392e1dde2593288d148b0686c0a438841144db300db440"
     },
     "character_zhou": {
       "engine:mimo_苏打": {
@@ -2387,7 +2494,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ddd65193a1b5e7fc37c3befa52dceba03393a522d54fd4ea416b9fce7b4550ba"
     },
     "character_xie": {
       "engine:mimo_苏打": {
@@ -2407,7 +2515,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "51c1a2c15fadd552293686a2ec6d59fc3680ebe1789d876969d146e919b80320"
     },
     "character_ge": {
       "engine:mimo_苏打": {
@@ -2427,7 +2536,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "01711662a1baa7ba6d00d80244227869b82c621fd75a1e52423341abe726365d"
     },
     "character_zhao": {
       "engine:mimo_苏打": {
@@ -2447,7 +2557,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "96f0e63ddb54fa1954645f14437d23968cce00ff3fb8bd8914223a35d801928f"
     },
     "character_si": {
       "engine:mimo_苏打": {
@@ -2467,7 +2578,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ba3ae6c474a200825d74f186f33b7b8376b57b1171f066090b86df8efe9a4324"
     },
     "character_dian": {
       "engine:mimo_苏打": {
@@ -2487,7 +2599,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "de095733b7327dac6be905a9f063856197d381d517d75b204e7f643a7e0d79a1"
     },
     "character_lian": {
       "engine:mimo_苏打": {
@@ -2507,7 +2620,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ae6eafdb90a3486dc19b79579d7242e0b5b79a380ca23af9ff944b298f5ee317"
     },
     "philosophy_yin_kong": {
       "engine:mimo_苏打": {
@@ -2527,7 +2641,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "4fde6fafda3de50de599248063170f2f6bdb86e01cb7ba74bedc71b73f5183f5"
     },
     "proverb_jia_zuo_zhen": {
       "engine:mimo_苏打": {
@@ -2547,7 +2662,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "43273b63fd4fa93d57f93b6c77560a50698a3786d38928b47c2d663e9d521e60"
     },
     "song_haole_ge": {
       "engine:mimo_苏打": {
@@ -2567,7 +2683,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "4b3aa36fd7e1055d99c9fd1a664f472a5295005531c99167fdfb707e416151a0"
     },
     "song_haole_ge_zhu": {
       "engine:mimo_苏打": {
@@ -2587,7 +2704,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "49f8bd9555f33f466a5fc069e10ca6a21b7ca6ed01bf62650dfdf3e1d973599a"
     },
     "proverb_shen_hou_you_yu": {
       "engine:mimo_苏打": {
@@ -2607,7 +2725,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e47c3e94f98539af9047d9eff50f8017a1285bd9fbfe14f3781231df4dc070bf"
     },
     "character_jiang": {
       "engine:mimo_苏打": {
@@ -2627,7 +2746,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "fff7e8e49298a36688adea93e3cc1a10e5b2172a250fdf9ecaa8261648cce0f9"
     },
     "character_chi": {
       "engine:mimo_苏打": {
@@ -2647,7 +2767,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "256459d3cc4e297d656a5fdd58dfa620b08f5a64730f8219ea7a95853b663451"
     },
     "character_zuo": {
       "engine:mimo_苏打": {
@@ -2667,7 +2788,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "53f871ca717d8a5e4b064981daab50b86b85e4f3352ec6184780edbdeb8f572d"
     },
     "character_lei": {
       "engine:mimo_苏打": {
@@ -2687,7 +2809,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "71af1f96e34ee69632dff343eacfcac3e07fc319bec7b210b4b90fcfe56df177"
     },
     "character_zhi": {
       "engine:mimo_苏打": {
@@ -2707,7 +2830,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "65d5b04fe209ca15cb5d92c43c7306e62304fa2aa0c32fbef0b42b1740c28e44"
     },
     "character_ku": {
       "engine:mimo_苏打": {
@@ -2727,7 +2851,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ce09daaee4cae7862a7ea2f728f7db7435e1ae0772641cc2318c49f473ef6788"
     },
     "character_chan": {
       "engine:mimo_苏打": {
@@ -2747,7 +2872,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7f845e1ca7066a31cdeb826bada8c49990b2102405fbfe6990576a784634a791"
     },
     "character_lao": {
       "engine:mimo_苏打": {
@@ -2767,7 +2893,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8b35e0ccaec0a0e1b828a8f7c52ad70d8a1ff66dceb03ba4434389429b289634"
     },
     "character_qin": {
       "engine:mimo_苏打": {
@@ -2787,7 +2914,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "b37ef9c5344777811c9f458532d6aad4ae71876303599f2b61f570bbf717f327"
     },
     "character_pin": {
       "engine:mimo_苏打": {
@@ -2807,7 +2935,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6f81dfab8e4e5080d00562e21dc8481e8819ee33407a903177005334fd18a91d"
     },
     "character_dian_honor": {
       "engine:mimo_苏打": {
@@ -2827,7 +2956,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c20d220f757206e15c3e47334412da425bd1efabf3b825f8d555d7e3d06780c3"
     },
     "character_bi": {
       "engine:mimo_苏打": {
@@ -2847,7 +2977,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "a92e1498987490c18f469a0d61ef10d6a39424e4cac3855eca804c1fbbec3d2f"
     },
     "character_tang": {
       "engine:mimo_苏打": {
@@ -2867,7 +2998,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "573fe8b8f39e447cdfc3a91a46512695471b3f92560c8b2a528c26e80fc08af9"
     },
     "character_ji": {
       "engine:mimo_苏打": {
@@ -2887,7 +3019,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "08a60e6587f89d4b8bdc09c6b0efd90ebcb8a00558ac31b76e3f316cdf59a4f2"
     },
     "character_cuo": {
       "engine:mimo_苏打": {
@@ -2907,7 +3040,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "81d0f089cf267ab7e62ce8ecc83cbd2d32e8d4e7b829dd267ef72d8d0b1d9fed"
     },
     "custom_feigong": {
       "engine:mimo_苏打": {
@@ -2927,7 +3061,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c59802593541b54690bb0c36a1836d929e51d323969c82cb47bb502b7d1c4925"
     },
     "custom_xingjiuling": {
       "engine:mimo_苏打": {
@@ -2947,7 +3082,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f355b488fe47019815a94808cf290b909a6d252d11fae3a33ce9cd77c6a6f330"
     },
     "architecture_wu": {
       "engine:mimo_苏打": {
@@ -2967,7 +3103,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e9a2379ace388a91ebc391f851619138a2c9300cda8d9fea461e8d8364998001"
     },
     "costume_xifeng_chuchang": {
       "engine:mimo_苏打": {
@@ -2987,7 +3124,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ebfbca6e1748112455d69939ef4299c3bfe74375742809c3ba58843c80807fbe"
     },
     "term_cuan": {
       "engine:mimo_苏打": {
@@ -3007,7 +3145,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "bc90a0bb3a7bd31941d3074b780f2d03272a160157a833bc553d9ea37d5a9310"
     },
     "term_panchi": {
       "engine:mimo_苏打": {
@@ -3027,7 +3166,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "0c04e7db9d2a1d5e1512df0803195205e0559b4e8e14a8037de9ece4cd70336f"
     },
     "term_tao": {
       "engine:mimo_苏打": {
@@ -3047,7 +3187,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "d04247f60556035ef856a990a22eb730bff2827fee39ea31b70be386aa033858"
     },
     "term_ken": {
       "engine:mimo_苏打": {
@@ -3067,7 +3208,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "a0c41467f0ca520f994102268383fddf1f522495629e809b2d3bc37672acefbd"
     },
     "term_zhou": {
       "engine:mimo_苏打": {
@@ -3087,7 +3229,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "80e05ebf85aeb74d707f0e67e1001df471f209212a16e2d2422a1395b67b764c"
     },
     "proverb_ren_ruo_gai_chang": {
       "engine:mimo_苏打": {
@@ -3107,7 +3250,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8e607326c1777332d1f651110d6441b076be3c744a424759ae56bb8c68e17544"
     },
     "proverb_bu_fen": {
       "engine:mimo_苏打": {
@@ -3127,7 +3271,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "0b5b4d0d630e70b697454b88354a3a182020e9f8831bb3a01e282353f0ad83c1"
     },
     "proverb_pian_xian": {
       "engine:mimo_苏打": {
@@ -3147,7 +3292,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "18e0dd5c17fe27288eda8cc7ddfd0c132206322cab07001826e17310ab344973"
     },
     "scene_baoyu_chuchang": {
       "engine:mimo_苏打": {
@@ -3167,7 +3313,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f0f1ec7261d67588a5038564ccbb59617fceaaa316f6a11d4e84802fb1c6b25e"
     },
     "scene_daiyu_chuchang": {
       "engine:mimo_苏打": {
@@ -3187,7 +3334,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "918d626b935aa125d2fa7b259f4f33af504a433dca103d659ea24b8a303f35b4"
     },
     "food_cake_er": {
       "engine:mimo_苏打": {
@@ -3207,7 +3355,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e13c84467af969a02ef80b7e0161b08cf4c67ef15fdd9d8eb890d16e956f55ad"
     },
     "food_tea_old": {
       "engine:mimo_苏打": {
@@ -3227,7 +3376,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "d32f88eb1cef35ad7b317901b91e8e1579e79b85239d552dbbe8809a15252d57"
     },
     "allusion_zhishiyin": {
       "engine:mimo_苏打": {
@@ -3247,7 +3397,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e7c83728b202a78bf4881a62fd651f6ecf9e47f5cda52123025d0b9c46cb8c76"
     },
     "allusion_man_zhi_huangtang": {
       "engine:mimo_苏打": {
@@ -3267,7 +3418,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c158f4131541b1ea34b1d9f985bf63e21d0d68a79ccdaf9abd6c35455b8f8311"
     },
     "allusion_tingji_de": {
       "engine:mimo_苏打": {
@@ -3287,7 +3439,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "edede9458a655e4d67ff5fcdde9168ff6a189694c540d75b1189ed73085c0ef5"
     },
     "allusion_yongxu_cai": {
       "engine:mimo_苏打": {
@@ -3307,7 +3460,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "bb2274d1f9839cf8f7307e83b44f2aec333de8044f4e953ef0ce4382723532ff"
     },
     "allusion_huan_lei": {
       "engine:mimo_苏打": {
@@ -3327,7 +3481,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7e0afbd3dd33c8fbc77dd79e444186ed4c962eb13822d975cd0c045e0f1aec7e"
     },
     "allusion_liulaosan_jin": {
       "engine:mimo_苏打": {
@@ -3347,7 +3502,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "48804080a1a701b274c9a2cacb5d0d42e9fdae7f233d3eaf60af43856739776e"
     },
     "allusion_fen_gao": {
       "engine:mimo_苏打": {
@@ -3367,7 +3523,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "13f70a57b3e6159b1796d82165db2fdc1db0fc3489f6e568845896d2a23290ec"
     },
     "allusion_baixuemangmang": {
       "engine:mimo_苏打": {
@@ -3387,7 +3544,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "d303b7d9b90f3962ef95ea4e9495e6977c73c3375bb262fb33b694c46e859518"
     },
     "char_xiang": {
       "engine:mimo_苏打": {
@@ -3407,7 +3565,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "76869637221d989097c246ff55f9142103f0520322f778d40a120e0c9227cb6a"
     },
     "char_qi": {
       "engine:mimo_苏打": {
@@ -3427,7 +3586,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "66d3f322a653b2d8c903d36d3e1e5c29aefa79b30bc37cf7931acef44dff97d8"
     },
     "char_kui": {
       "engine:mimo_苏打": {
@@ -3447,7 +3607,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "cd412a2682575b9030c0717e2760e5b2185bd4272fb97b1b522f8be3e282e137"
     },
     "char_zhi_jian": {
       "engine:mimo_苏打": {
@@ -3467,7 +3628,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "23a61d4ebfe6ee5b81f599817c4709482e9c2562bec0b80d5d2f6daf7e08924c"
     },
     "char_yin_die": {
       "engine:mimo_苏打": {
@@ -3487,7 +3649,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "16042d5d8e728df2ce0bcbdefa8f073d34cd427bd275dd7db3fdc17eba559c42"
     },
     "char_xia_hui": {
       "engine:mimo_苏打": {
@@ -3507,7 +3670,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f5deda5bc47b080c1e0790b08d2bab79667b2ed7e523301e971cf68a5476b8a6"
     },
     "char_hong_xi": {
       "engine:mimo_苏打": {
@@ -3527,7 +3691,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6824b837781642f0e3c7e76ab0baa9ff42dab83bf3a95e59341ee8ccdad33650"
     },
     "char_geng_li": {
       "engine:mimo_苏打": {
@@ -3547,7 +3712,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c8e51ffee91d67a77d84537f805a19c94227c52a399372e8a86c90fc2bfb8c91"
     },
     "char_yan_su": {
       "engine:mimo_苏打": {
@@ -3567,7 +3733,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "4e8131770c28bac2a16d2d87396c47f95c20d75daa4e2116d0791bd1f73f003c"
     },
     "char_dou_ke": {
       "engine:mimo_苏打": {
@@ -3587,7 +3754,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "0b98625b1c3d32e6fcffe56ae190ae06c1c388c19c39fb41dd44cc48f7e05bc9"
     },
     "costume_pei": {
       "engine:mimo_苏打": {
@@ -3607,7 +3775,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "30feb4e30eb7066619e78b8a4e15dbba3e4a925209cfac91c4452a6cbb72d4a6"
     },
     "costume_ke_si": {
       "engine:mimo_苏打": {
@@ -3627,7 +3796,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "deab3649dff48bbe1ec7ae3827d86051429c469a92d03dc3aecf08c8b3911de6"
     },
     "costume_shu_hua": {
       "engine:mimo_苏打": {
@@ -3647,7 +3817,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "9167a0daa2bdaa635a2d419331c5458ecd308d6d35a1dc70e92ad00566a30662"
     },
     "arch_xiang_fang": {
       "engine:mimo_苏打": {
@@ -3667,7 +3838,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "04d6c79a4d40a73c458fc5c8d356b3af41e6e5b028d1b68edca831c308cf421b"
     },
     "arch_you_lang": {
       "engine:mimo_苏打": {
@@ -3687,7 +3859,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "fa510cb783c2fc63256a140caa97c6773bedac45429699b6b1d7e868488e8e1b"
     },
     "food_xing_yi": {
       "engine:mimo_苏打": {
@@ -3707,7 +3880,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "2a7f6b82c8009ab9ece010f0f26a05c3facc1e102ad74ea87ca2d7438ad090a8"
     },
     "food_ham": {
       "engine:mimo_苏打": {
@@ -3727,7 +3901,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c7de35b7151a5630dd1bfc305cdac49655e28551807842dbc012a1db76e41ae6"
     },
     "food_laba": {
       "engine:mimo_苏打": {
@@ -3747,7 +3922,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "0b0555ef2f5a04f55842888da4c47815dc7eab259a1d8d9a16a9109f0ea3039d"
     },
     "medicine_ren_shen": {
       "engine:mimo_苏打": {
@@ -3767,7 +3943,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "1adb9c28b30cbf766ae4d42e99e6a1a92c44ca4f77d58c6d9b967244c15f5309"
     },
     "medicine_ban_xia": {
       "engine:mimo_苏打": {
@@ -3787,7 +3964,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "348188b78e93d55e8283b1e15ea62548830bb7a49816f831558dd25d62d9fc77"
     },
     "poetry_xijiang": {
       "engine:mimo_苏打": {
@@ -3807,7 +3985,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7907536378e1eeae7f44f942e95c7204f40fd2ae2b4abef89d1fdc570cbbe24a"
     },
     "scene_poetry_osmanthus": {
       "engine:mimo_苏打": {
@@ -3827,7 +4006,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "687f38c1e128527bc9561c7601d57632ea6d9f4b23494c48c446ae7e6cf50018"
     },
     "scene_crisis_house": {
       "engine:mimo_苏打": {
@@ -3847,7 +4027,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "729f81dd9eacfbb51a6bb57ee09d24418ad50e99d65b5456aca7e01913578ba6"
     },
     "scene_red_cliff_funeral": {
       "engine:mimo_苏打": {
@@ -3867,7 +4048,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "dd6d3ab679e4b318d57e5f75c2cbf0e1fd7d096020c0429b9d1565ace9ba3c34"
     },
     "scene_pity_bird": {
       "engine:mimo_苏打": {
@@ -3887,7 +4069,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c80a4963665c79b7613ba9825949fc5d676d8412cc41fd49971d31aa78c4e8ec"
     },
     "scene_hall_men": {
       "engine:mimo_苏打": {
@@ -3907,7 +4090,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "48a63720c0639a7c73c19a1b36b67b7b32331baecbcae0fb7bdcccede15d79e2"
     },
     "scene_jade_broken": {
       "engine:mimo_苏打": {
@@ -3927,7 +4111,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "0464778e0a0b5d6c4901953ccccb6109b7cbafe3e73fd0a589d76cee93595cb6"
     },
     "scene_letter_daiyu": {
       "engine:mimo_苏打": {
@@ -3947,7 +4132,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "26dff81b356ec83f23036a12441902187817584d4b734de9f3c88dae58cca467"
     },
     "scene_xiangyun_embroidery": {
       "engine:mimo_苏打": {
@@ -3967,7 +4153,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c5c91b6b17bb47046a8ec8243ec562ad115ba502da40d2cb1443cd47c4e7bae1"
     },
     "chapter_001": {
       "engine:mimo_苏打": {
@@ -3987,7 +4174,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "664f4caba4e64f2ce1205bf90273313c48b7a8f746f7ec66f23f14d3b1496aa8"
     },
     "chapter_002": {
       "engine:mimo_苏打": {
@@ -4007,7 +4195,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "93eeaff56f32878bbf8fdc65000753af199d8555622c7a3fcb620caaed572c30"
     },
     "chapter_003": {
       "engine:mimo_苏打": {
@@ -4027,7 +4216,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "48ead3f54436ba3ed2bfcdfb889c96889ebc186b154bdd63b3fd1616b8b49975"
     },
     "character_luo_yi": {
       "engine:mimo_苏打": {
@@ -4047,7 +4237,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "9f263cdfd83165043c69e86a27d663c669cf3134ceef8155f51ca68fe3523fed"
     },
     "character_ti_hu": {
       "engine:mimo_苏打": {
@@ -4067,7 +4258,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f502ee4be312b59f7e255fc8de7b05fcd184cc859784934ca618c92abcbff4f2"
     },
     "character_shang_jue": {
       "engine:mimo_苏打": {
@@ -4087,7 +4279,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "179f48186fc6b89e24280fbebd9c24e5e72e31b3e4f78d654c7b9b1a5a947ceb"
     },
     "character_yi_ding": {
       "engine:mimo_苏打": {
@@ -4107,7 +4300,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "94400e1991aee53a67ce3e8c035226e9ca9bdb76f5922fffe62ed294e1b8d5bb"
     },
     "character_ding_li": {
       "engine:mimo_苏打": {
@@ -4127,7 +4321,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "583494990c4e89859f0df1658c4ad46d5ed373600296862c96f7da70e760fd4e"
     },
     "character_yun_lv": {
       "engine:mimo_苏打": {
@@ -4147,7 +4342,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "67383c7d5db15292ab041e4bfa629d4d630add14112f20b6dca2ec0b226ef512"
     },
     "character_fu_sao": {
       "engine:mimo_苏打": {
@@ -4167,7 +4363,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6389783df19f1ea8edc0ae5bc1445a82ce5b78abd8cf6d0764be159c5bc8c6d8"
     },
     "character_duo_ye": {
       "engine:mimo_苏打": {
@@ -4187,7 +4384,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "5e7f2f422aeb479374276efc02474c98d2888f9fd0ba42b69f7fe84db1bec1d8"
     },
     "character_yue_tong": {
       "engine:mimo_苏打": {
@@ -4207,7 +4405,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ca83a4549c7fc38a1fd754a0b7e635d70b8d58da66d45d70c0d059bacbde846a"
     },
     "character_jue_shuo": {
       "engine:mimo_苏打": {
@@ -4227,7 +4426,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f294c447ccd13138166141799bca04a25c07f99d1a3f4d378c2cd345e5ca344d"
     },
     "character_jian_jian": {
       "engine:mimo_苏打": {
@@ -4247,7 +4447,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e93ae7aba0cdef4e955800b5c6e0c1c1cf4e204519dcee2b0fff4fa28867304b"
     },
     "character_chuo_yue": {
       "engine:mimo_苏打": {
@@ -4267,7 +4468,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f9bec159f167ca9dfa13cf0a51bb162e3e103abcd4a0152bf1506842dc137b8f"
     },
     "character_ye_ye": {
       "engine:mimo_苏打": {
@@ -4287,7 +4489,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "5a436c7af5cd497c4a2636020b8854db78578cea73f43be925cd0ac3569ff044"
     },
     "character_min_min": {
       "engine:mimo_苏打": {
@@ -4307,7 +4510,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "831ccaa56782dc9950beb2e1ed7e218cd769596ec887617546e54229275249cc"
     },
     "character_lin_lin": {
       "engine:mimo_苏打": {
@@ -4327,7 +4531,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "a31b671501b815da05c2b48f9e7ee8f35e2a0aabe289468970e498a906d3dbf9"
     },
     "character_xi_xi": {
       "engine:mimo_苏打": {
@@ -4347,7 +4552,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "50b069e51b70c51a5d7b41e2041281d8579b41672e166b64a79f6e770774a7e9"
     },
     "character_wei_wei": {
       "engine:mimo_苏打": {
@@ -4367,7 +4573,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "eaedd3a66eb1772b3d8a6e6193914e612e57ffdaaaa583868c03be553628552e"
     },
     "character_chen_chen": {
       "engine:mimo_苏打": {
@@ -4387,7 +4594,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "40dcb8b424a64a79782b5563cef677f97cbc1e4584d29cc10486326b8cb97d6c"
     },
     "character_ze_ze": {
       "engine:mimo_苏打": {
@@ -4407,7 +4615,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "d00ef1c8a8d8d3834aebbe2555025278b8a4749092b6758ca3946f927086fb73"
     },
     "character_jiong_jiong": {
       "engine:mimo_苏打": {
@@ -4427,7 +4636,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "cf49e986b493ec95be790f097c90934638190de0c28c612da73c279ffd17b8c3"
     },
     "chapter_004": {
       "engine:mimo_苏打": {
@@ -4447,7 +4657,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "78ead2732e44818eaad2f864eec4b9902fbfbeedae151dbc9fabebec4900765c"
     },
     "chapter_005": {
       "engine:mimo_苏打": {
@@ -4467,7 +4678,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "32368c4501057e32c47bd4d5d672629f54338eb11e6d939a9ec29859302b426d"
     },
     "chapter_006": {
       "engine:mimo_苏打": {
@@ -4487,7 +4699,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "93b6ff916d68b762187445686250c55f7478b7050b77a4fad976ef8670ef22d2"
     },
     "chapter_007": {
       "engine:mimo_苏打": {
@@ -4507,7 +4720,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "516ef9d7f41cd3a83beb1db8e12940ddfd04657ffae0c714d4247a115955baa4"
     },
     "chapter_008": {
       "engine:mimo_苏打": {
@@ -4527,7 +4741,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "a44d6131428500e09a7f7808c62a6a4ce3da466bbadfb69dc2f0d9f7f8612bf0"
     },
     "chapter_009": {
       "engine:mimo_苏打": {
@@ -4547,7 +4762,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c740d8f5e3273ee9ed60edfb315073a8d35b04bfd4d6c952b900922429fee4e6"
     },
     "chapter_010": {
       "engine:mimo_苏打": {
@@ -4567,7 +4783,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "1a4fbeee25fe81b2733b4e59878195e76c71a74a0617cc30825800e6533d7177"
     },
     "chapter_011": {
       "engine:mimo_苏打": {
@@ -4587,7 +4804,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "9f130e2bfac4700fced091f0478ff4fb421fa89ae8fc20891de7dd045a81104c"
     },
     "chapter_012": {
       "engine:mimo_苏打": {
@@ -4607,7 +4825,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7b1fffc9cf78990e13d82d3a7b07ff66f8119cbcd44c8dca6dfeb19d999bb019"
     },
     "chapter_013": {
       "engine:mimo_苏打": {
@@ -4627,7 +4846,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "2c51fcdca0cf8104f9875c27eaed3221c44386a3c18a2588a2cf5c0c8c8b314a"
     },
     "chapter_014": {
       "engine:mimo_苏打": {
@@ -4647,7 +4867,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7fecfeb4e836652b7a6076ab2aac3f040b7d19f3b3d7e0302b409c7456c9be87"
     },
     "chapter_015": {
       "engine:mimo_苏打": {
@@ -4667,7 +4888,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7f4948a0b592c1508c321af7504f465b9a32f4ab63dc8756f0eeef255ae3c541"
     },
     "chapter_016": {
       "engine:mimo_苏打": {
@@ -4687,7 +4909,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "34d53d6d58b3a814745436ed1a21d2a8bb93533cc7ad7486568c146f2d5d6a96"
     },
     "chapter_017": {
       "engine:mimo_苏打": {
@@ -4707,7 +4930,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "cd56f86fb50f61199419bcf900496f0b942eb802f040b4b6e61de4a71fcc5926"
     },
     "chapter_018": {
       "engine:mimo_苏打": {
@@ -4727,7 +4951,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6376ba581c8ba5c7aed51b3d3cb4511ad555e4a3493a4061fdd9f4dc11b30697"
     },
     "chapter_019": {
       "engine:mimo_苏打": {
@@ -4747,7 +4972,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8906904190a61d66e36ce98cd2e4b8db8fff5b5307e27f2dfa3f08dbebfb7d1d"
     },
     "chapter_020": {
       "engine:mimo_苏打": {
@@ -4767,7 +4993,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "aae640748c4dd02b67bccf37e717c458a765ac69760a7f3e0dd4169b8e640dc9"
     },
     "chapter_021": {
       "engine:mimo_苏打": {
@@ -4787,7 +5014,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7acc42d8212bfb5a37a95d4fc7de7905e0bbb458c51f1224685059dc5dacc3a8"
     },
     "chapter_022": {
       "engine:mimo_苏打": {
@@ -4807,7 +5035,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "4f18d9474df625dbdf84c399b5f0a627b1f59bb5195bd59a1d35b3138f712cd1"
     },
     "chapter_023": {
       "engine:mimo_苏打": {
@@ -4827,7 +5056,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "d7c30b31ba4f2f7b66c247960d5a96db5384a2b7a1ae72df1981e27823068cbd"
     },
     "chapter_024": {
       "engine:mimo_苏打": {
@@ -4847,7 +5077,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8f58bfd4fc8eb1ddc25f910fa307987c39725eff32d9a3ecfd2fdb7ad377e00e"
     },
     "chapter_025": {
       "engine:mimo_苏打": {
@@ -4867,7 +5098,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "0c88cf6e4ac89b86c661cffd65cbb25ab10e09caa48c0a3e2664f32876295f07"
     },
     "chapter_026": {
       "engine:mimo_苏打": {
@@ -4887,7 +5119,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e24b0bcc19260124a66b021c8652b55ce39fa6c1989beab3e804fbeab6295fc3"
     },
     "chapter_027": {
       "engine:mimo_苏打": {
@@ -4907,7 +5140,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7c830b85f781cbf7dca0a7076a8aed9d9c12fa00618285c06662146fe6aa8de4"
     },
     "chapter_028": {
       "engine:mimo_苏打": {
@@ -4927,7 +5161,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c1e5d63019cdccae5de6a9090b05e6be8ca583fff0d83469739af296482b4039"
     },
     "chapter_029": {
       "engine:mimo_苏打": {
@@ -4947,7 +5182,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "5aa04abd6c9c9be75d087b60170db1e078391f9ab1bd3488e10e574f18a3f22f"
     },
     "chapter_030": {
       "engine:mimo_苏打": {
@@ -4967,7 +5203,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "921a4a28dfb124962a9273a04cd117279cb5fb4f523a05573223d8d4b13e2c27"
     },
     "chapter_031": {
       "engine:mimo_苏打": {
@@ -4987,7 +5224,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "372de9c0d4c4c554ded51cd80896d340b89c976b9ad7b6de4a4b26e125b69e93"
     },
     "chapter_032": {
       "engine:mimo_苏打": {
@@ -5007,7 +5245,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "3965c88072ec861b5fa769d5d6b7aa441a13df149dfebc63a0ecd08275c1bcf4"
     },
     "chapter_033": {
       "engine:mimo_苏打": {
@@ -5027,7 +5266,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "bdaec6eb4a016711664ff389a439ae290b9fcb79bd920ef53eb4b9b188bf9d64"
     },
     "chapter_034": {
       "engine:mimo_苏打": {
@@ -5047,7 +5287,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "4da02d7f9ce9f21cd162473662e2f1641a4e0434c6a2244dc2724dee6041eaf3"
     },
     "chapter_035": {
       "engine:mimo_苏打": {
@@ -5067,7 +5308,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7fd8a4df6aebff1702c51c91e6eae6c254693858035ac61dc946d8d81be41d16"
     },
     "chapter_036": {
       "engine:mimo_苏打": {
@@ -5087,7 +5329,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "816285f03db03a71a9fc9f12b63f263e990a3dfff4bfe58ae489e1c7f15cfda6"
     },
     "chapter_037": {
       "engine:mimo_苏打": {
@@ -5107,7 +5350,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "cd812d4de1088a83b3a3d92e01bfcface9b3c72518b760750fe5587058599400"
     },
     "chapter_038": {
       "engine:mimo_苏打": {
@@ -5127,7 +5371,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f526325f6df4fbbaa95d98fe3dcfd94cce9288a64bc0dd5971741757cf7cefcb"
     },
     "chapter_039": {
       "engine:mimo_苏打": {
@@ -5147,7 +5392,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "42adbd42c51812ea776fe6ad767b93c36d22e858be9d2f7dc679436ca35fd31d"
     },
     "chapter_040": {
       "engine:mimo_苏打": {
@@ -5167,7 +5413,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "1d69121f4bd332dcc918ee9448d2083c8b15bff591ec5ec363dd4dcc3739a881"
     },
     "chapter_041": {
       "engine:mimo_苏打": {
@@ -5187,7 +5434,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "5eb9bff91e59e3d991ece8bfe1bfa3162ea1a01620096838805f1519efe320ea"
     },
     "chapter_042": {
       "engine:mimo_苏打": {
@@ -5207,7 +5455,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "0dcb3aaeaa226ada9058ae737c165bfb634a6bfa2302de0526bd3950647a3381"
     },
     "chapter_043": {
       "engine:mimo_苏打": {
@@ -5227,7 +5476,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "b4c0b782fdf39748c660aebd0b9ab9412106891b468b570184f77cc3718e193e"
     },
     "chapter_044": {
       "engine:mimo_苏打": {
@@ -5247,7 +5497,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6332dee5e2b9865e8c2c563f28243a2c7ea224d5f4558b8b7cfc49fd22cd2921"
     },
     "chapter_045": {
       "engine:mimo_苏打": {
@@ -5267,7 +5518,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "2227214837dbedf06d11edcdd10cfda385e0292fec01157e4e431d9104183ab6"
     },
     "chapter_046": {
       "engine:mimo_苏打": {
@@ -5287,7 +5539,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "37af8274f17807b8f999155828249f07b580171659239778feccaa60122887e2"
     },
     "chapter_047": {
       "engine:mimo_苏打": {
@@ -5307,7 +5560,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "98457efb24c011340a48a2ee6e20f84adbcbc0ab61715d9b57ca0df8732847b6"
     },
     "chapter_048": {
       "engine:mimo_苏打": {
@@ -5327,7 +5581,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ae39a0bcae756eb935e8b6f9d99aa34f8d0e90d72b2dcb6597be27e70eb231dc"
     },
     "chapter_049": {
       "engine:mimo_苏打": {
@@ -5347,7 +5602,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "22d0fe2caa8267f037b0ad177833d5944fbd08c7cf5d3557e7fb34e590ae2a6d"
     },
     "chapter_050": {
       "engine:mimo_苏打": {
@@ -5367,7 +5623,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e8e9018db336284def28fab3ba2a77ddf58e6ac8ccddcfd3387f34fdd5159ca9"
     },
     "chapter_051": {
       "engine:mimo_苏打": {
@@ -5387,7 +5644,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8e449e2ba66b37b88803d2ad55dcb56949efae3148427d6746e279478465e1d8"
     },
     "chapter_052": {
       "engine:mimo_苏打": {
@@ -5407,7 +5665,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8ac704af881f6e64f4a2784ca1ebb956b0e52a7d25701257cfca1dee4b3f578e"
     },
     "chapter_053": {
       "engine:mimo_苏打": {
@@ -5427,7 +5686,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e43b0ae699370b33f9c0411f07f2411670c2fd1484063b88850d2ea2501bacb5"
     },
     "chapter_054": {
       "engine:mimo_苏打": {
@@ -5447,7 +5707,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "439626cc25f980f5e5801f42e52592dadaab03ceb68016209b226964052345ad"
     },
     "chapter_055": {
       "engine:mimo_苏打": {
@@ -5467,7 +5728,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "31e284daea95f71fbb8c1249202774f3cc6a1894829112e99256dab33ee2e10b"
     },
     "chapter_056": {
       "engine:mimo_苏打": {
@@ -5487,7 +5749,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8377181ac5ef78ff362fb3b2bf793c64f5865f305513ad0c7651e62b80df3be7"
     },
     "chapter_057": {
       "engine:mimo_苏打": {
@@ -5507,7 +5770,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ad06661ecbaf126fc1a3b5ebc9ef3dca26690c82547ce6795996be43c32c8c98"
     },
     "chapter_058": {
       "engine:mimo_苏打": {
@@ -5527,7 +5791,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "a44d6d7c11c5ae0673739a8df49461fc3eff94208402151ab006a105c8290d5c"
     },
     "chapter_059": {
       "engine:mimo_苏打": {
@@ -5547,7 +5812,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c66ba15c03fee8f54f6a49cc248eea2f499ea889f031674b9ef66b6281016af5"
     },
     "chapter_060": {
       "engine:mimo_苏打": {
@@ -5567,7 +5833,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "9e6ec719c7c5e056ecccfba2df00af2adc4b1a8bd41ff0e2c4f2dba231781bfb"
     },
     "chapter_061": {
       "engine:mimo_苏打": {
@@ -5587,7 +5854,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "bd239f3f364ffd1a9b7b21f639b9ba0736b618fd55291be114b1ab8b15e78b47"
     },
     "chapter_062": {
       "engine:mimo_苏打": {
@@ -5607,7 +5875,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "5f70ee7e38a05c302d03bcdaa661ec482190f563423a9c948ed26bf45e4ce747"
     },
     "chapter_063": {
       "engine:mimo_苏打": {
@@ -5627,7 +5896,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "0ed2f617247c6f22f3e1c63019ee50665a7ce5fad48b97c8d8ad34ab11147df4"
     },
     "chapter_064": {
       "engine:mimo_苏打": {
@@ -5647,7 +5917,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "4c80754b39f6418eb65266e1035e73b6154f0bc7d5c2608c9629a0264b9c5053"
     },
     "chapter_065": {
       "engine:mimo_苏打": {
@@ -5667,7 +5938,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "74caee56d14e211f18e37f485a5d61c6990582218bbe8a275600d8101befab2e"
     },
     "chapter_066": {
       "engine:mimo_苏打": {
@@ -5687,7 +5959,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "632403c602a3e1311ae51f2b95395a83801ce16f956785d8b26f9997fbbefa1b"
     },
     "chapter_067": {
       "engine:mimo_苏打": {
@@ -5707,7 +5980,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e41dd960aeaf1a49707ae1961b40a6a3ce1e5231f6fc7486f52b8c00693c996e"
     },
     "chapter_068": {
       "engine:mimo_苏打": {
@@ -5727,7 +6001,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8dcaecd672cb303832a0dcb84941541a53d4021471e2cb2b921307857c9ee43d"
     },
     "chapter_069": {
       "engine:mimo_苏打": {
@@ -5747,7 +6022,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "545f67ff4ad39b61a53398731e109bc2e916abee1eae4f217bed4285e583e508"
     },
     "chapter_070": {
       "engine:mimo_苏打": {
@@ -5767,7 +6043,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "4eb8e0bb55af04f4d08453e5c1852ddf970b51fbc57d7bb3e57a5417456a2a37"
     },
     "chapter_071": {
       "engine:mimo_苏打": {
@@ -5787,7 +6064,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8a6a9dfa22a5ee39c40f2f162b3283b7d66dfa8a51d5b5c5a765d96e9dc0edcc"
     },
     "chapter_072": {
       "engine:mimo_苏打": {
@@ -5807,7 +6085,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "65ee9f83957271c6b29b0a666a106ac8a89404dc70547fc13abb149a8e587c4e"
     },
     "chapter_073": {
       "engine:mimo_苏打": {
@@ -5827,7 +6106,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "43eddceaa8f5a061d4111854d6084cf1ffdf9bcf23784233e558276391dec757"
     },
     "chapter_074": {
       "engine:mimo_苏打": {
@@ -5847,7 +6127,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e5ae130017235729b6fb4ff1299c5da1966f425abb5d74c20e7d3c72bc96e770"
     },
     "chapter_075": {
       "engine:mimo_苏打": {
@@ -5867,7 +6148,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6f4077f5edf83e46d4dc4480460fa161c78876c6b770d4b7612ca34c550019e3"
     },
     "chapter_076": {
       "engine:mimo_苏打": {
@@ -5887,7 +6169,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7fa7295b5e09be81890c6d973fce02d28fc924513a36642bdd1e26eec47fb7d1"
     },
     "chapter_077": {
       "engine:mimo_苏打": {
@@ -5907,7 +6190,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "2659528990c91cc84e747e2f2152ff998ebd7a48e94e951042834fb06d75eef5"
     },
     "chapter_078": {
       "engine:mimo_苏打": {
@@ -5927,7 +6211,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "0269f3f67c0346f00941a4c8b7f20ca8397ba578effdc06513a2b6fe24c26399"
     },
     "chapter_079": {
       "engine:mimo_苏打": {
@@ -5947,7 +6232,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "2ebe2db3f74c168b35424298e87016b6fc74cba884fde8c8c3ca0b6bf71d8d95"
     },
     "chapter_080": {
       "engine:mimo_苏打": {
@@ -5967,7 +6253,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e4aef17d9120c6fe0167f3e45939a8f4353b6e8bfd53ad1040bfaf0cd44668e2"
     },
     "chapter_081": {
       "engine:mimo_苏打": {
@@ -5987,7 +6274,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "57d4adf67e3a870562f5ae2d5e1a399a86a6a214a9124a49b08af6ea01a165a0"
     },
     "chapter_082": {
       "engine:mimo_苏打": {
@@ -6007,7 +6295,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "3126a942ce8b695aeef40bec885cc68a4de133df334dbf36cafe788e662a905b"
     },
     "chapter_083": {
       "engine:mimo_苏打": {
@@ -6027,7 +6316,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "2b26f12b01287312801f12af7a6aaea43eb3ff6127ca660adcdfd9424094c377"
     },
     "chapter_084": {
       "engine:mimo_苏打": {
@@ -6047,7 +6337,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f15bd1ac5a30c953755983a4ef54f387cb3f289c09ec43591ce65cbe25d92ecd"
     },
     "chapter_085": {
       "engine:mimo_苏打": {
@@ -6067,7 +6358,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "b0ef4e849059b964aeed59d0766cd03d0bc01187317d2e94e84641e9db2e7f36"
     },
     "chapter_086": {
       "engine:mimo_苏打": {
@@ -6087,7 +6379,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6ab9ee42344b881e3795816148bb96fa3634ce36571e0734bfb536c24bbaf525"
     },
     "chapter_087": {
       "engine:mimo_苏打": {
@@ -6107,7 +6400,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "cb01b98718f19805b4c24a15b1aff960f208b8858dfa3e8b0676038ce10f5da4"
     },
     "chapter_088": {
       "engine:mimo_苏打": {
@@ -6127,7 +6421,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "9ebb61bcd1376a1469e14588d020ed0dfff2e3bb82a0f9fafdcee790a04d3c10"
     },
     "chapter_089": {
       "engine:mimo_苏打": {
@@ -6147,7 +6442,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "347454d8f209e4860f251d9acf309108ba9980bb83bb6f2a9f6cb0fe015509e9"
     },
     "chapter_090": {
       "engine:mimo_苏打": {
@@ -6167,7 +6463,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f2536555709f623222e15f155c095690af009dcdf2ba75c5afe5eff28c3fa06b"
     },
     "chapter_091": {
       "engine:mimo_苏打": {
@@ -6187,7 +6484,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "31809f96cb567f62f92c50be2f5523dd692667e57da0a17862b337bb405cde2c"
     },
     "chapter_092": {
       "engine:mimo_苏打": {
@@ -6207,7 +6505,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7e5fc3423fdb135abb27551d93b345514c3ed0bc59e55da089dac424342956f2"
     },
     "chapter_093": {
       "engine:mimo_苏打": {
@@ -6227,7 +6526,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c675aea45aef8c1edda7065ec344e3408f151d4a7079c321d780d7433424453e"
     },
     "chapter_094": {
       "engine:mimo_苏打": {
@@ -6247,7 +6547,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "df8ba11816cb6d2528a3e4c06c47706316cbdef5011accac9d7f704a81eb8c38"
     },
     "chapter_095": {
       "engine:mimo_苏打": {
@@ -6267,7 +6568,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8802a19112ce4d8c750768fa4cd386bece25dcef952e97c2ecb4309893a6bfbe"
     },
     "chapter_096": {
       "engine:mimo_苏打": {
@@ -6287,7 +6589,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e47b4d68a1dddb40aa389be7b39f021524a83884a19f27c8948151861c03fd70"
     },
     "chapter_097": {
       "engine:mimo_苏打": {
@@ -6307,7 +6610,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "2dc4a7b94a136e17ab4b1b00ad9b951f03692ea961a4a5dc8a897e819dce450f"
     },
     "chapter_098": {
       "engine:mimo_苏打": {
@@ -6327,7 +6631,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8af9e97ab79b3ceed41edfdc5eb478723878814ec1049e089dc237beb8463ee2"
     },
     "chapter_099": {
       "engine:mimo_苏打": {
@@ -6347,7 +6652,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "d08ce4d1028e2a6c5f815b8e3f890265de9027ee88fb0822227b9b0ba6196751"
     },
     "chapter_100": {
       "engine:mimo_苏打": {
@@ -6367,7 +6673,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "709ec520d06b947430bacf4715a1ddb62150c38ba417221dfcec3600e90905b2"
     },
     "chapter_101": {
       "engine:mimo_苏打": {
@@ -6387,27 +6694,29 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "31ecfe7af7a918853441c987affead33d7b67d283da968146e3e9843096fe629"
     },
     "chapter_102": {
       "engine:mimo_苏打": {
-        "file": "audio/knowledge/chapter_102_mimo_苏打.mp3",
         "voice": "苏打",
         "model": "mimo-v2.5-tts",
-        "status": "generated"
+        "file": null,
+        "status": "failed"
       },
       "engine:mimo_白桦": {
-        "file": "audio/knowledge/chapter_102_mimo_白桦.mp3",
         "voice": "白桦",
         "model": "mimo-v2.5-tts",
-        "status": "generated"
+        "file": null,
+        "status": "failed"
       },
       "engine:mimo_茉莉": {
-        "file": "audio/knowledge/chapter_102_mimo_茉莉.mp3",
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
-        "status": "generated"
-      }
+        "file": null,
+        "status": "failed"
+      },
+      "textHash": "69ddd413c55d13b578b8a7caf58d338833733ac5dea29a0c30e00b79f5a79b7c"
     },
     "chapter_103": {
       "engine:mimo_苏打": {
@@ -6427,7 +6736,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6b8490edf8a8d4097d36a83cbf1ad2338e95531dbceac99b5329f69e49985332"
     },
     "chapter_104": {
       "engine:mimo_苏打": {
@@ -6447,7 +6757,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c71f178cd14941e463297c6548aed2e75dc157f8410851b2ce45cfdb5ae16f27"
     },
     "chapter_105": {
       "engine:mimo_苏打": {
@@ -6467,7 +6778,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "2b2b096408ce215c5195f3ba2220eb5055313b9041cdf83d81b253509aeb49a4"
     },
     "chapter_106": {
       "engine:mimo_苏打": {
@@ -6487,7 +6799,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ca2566240607de070a31f6d7a5bf9897f503ef5a9f477cdd8b6d7c8f6c3db53e"
     },
     "chapter_107": {
       "engine:mimo_苏打": {
@@ -6507,7 +6820,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "cd1d370587b83cbbfc1949c0ae51fcaab0ea2830c6524e65bdf877c9aa686c7e"
     },
     "chapter_108": {
       "engine:mimo_苏打": {
@@ -6527,27 +6841,29 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "cc9597190673b716de34af5b67b1f31d0709005fc48357aaf0ed442a96c6fe4f"
     },
     "chapter_109": {
       "engine:mimo_苏打": {
-        "file": "audio/knowledge/chapter_109_mimo_苏打.mp3",
         "voice": "苏打",
         "model": "mimo-v2.5-tts",
-        "status": "generated"
+        "file": null,
+        "status": "failed"
       },
       "engine:mimo_白桦": {
-        "file": "audio/knowledge/chapter_109_mimo_白桦.mp3",
         "voice": "白桦",
         "model": "mimo-v2.5-tts",
-        "status": "generated"
+        "file": null,
+        "status": "failed"
       },
       "engine:mimo_茉莉": {
-        "file": "audio/knowledge/chapter_109_mimo_茉莉.mp3",
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
-        "status": "generated"
-      }
+        "file": null,
+        "status": "failed"
+      },
+      "textHash": "d20589c99b7c342c44d96fd066df0fb65811cb4ec9a55e405e850481ef7c8593"
     },
     "chapter_110": {
       "engine:mimo_苏打": {
@@ -6567,7 +6883,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "122f0cc10d70f08ec06c9a9d53ddea43bcb7447ea0fdacab56d5dc9b45295c00"
     },
     "chapter_111": {
       "engine:mimo_苏打": {
@@ -6587,7 +6904,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6aae53928f60041c41963a3f8130117bbb76b976f230463b849daba893172add"
     },
     "chapter_112": {
       "engine:mimo_苏打": {
@@ -6607,7 +6925,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "39054c68e5da92913bff994c840ee113f259c59ed1694ff92ac08b8376a92b82"
     },
     "chapter_113": {
       "engine:mimo_苏打": {
@@ -6627,7 +6946,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "cb19f25d956a5bb49c91089b18c6e831c6a8da5795b780f560bedba56c2febe9"
     },
     "chapter_114": {
       "engine:mimo_苏打": {
@@ -6647,7 +6967,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "5006eeb3910afc374bdcd5b43b433e0f88fc1f83efe18ca5f691d5c45047dfb1"
     },
     "chapter_115": {
       "engine:mimo_苏打": {
@@ -6667,7 +6988,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "cdf93d4b85b8f78e0995dc47614198190c337e1da4eda437ae48fe49085e5d58"
     },
     "chapter_116": {
       "engine:mimo_苏打": {
@@ -6687,7 +7009,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "24eeeea167b99475c59625019ebef902d0c17b9ede3a60711802e7a71be5794e"
     },
     "chapter_117": {
       "engine:mimo_苏打": {
@@ -6707,7 +7030,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "4d708a9be4c6fad33e968759c914bc5dbe6c24de65205ba257ce76aebf6ca0c9"
     },
     "chapter_118": {
       "engine:mimo_苏打": {
@@ -6727,7 +7051,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "b2974fbf62dc61bbdae849f55e3946b32f42ea3f5f13033b34b7c4324640cb2c"
     },
     "chapter_119": {
       "engine:mimo_苏打": {
@@ -6747,7 +7072,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e4978e3b3bb8efd7fe327ec3d1bf34272a4b9cb06d90347ac0f78fd932a27044"
     },
     "chapter_120": {
       "engine:mimo_苏打": {
@@ -6767,7 +7093,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c1e407a639478033323dbf5defcde826c149b8a61e75dfabc2735ccb4860773b"
     },
     "verse_wangningmei": {
       "engine:mimo_苏打": {
@@ -6787,7 +7114,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e777f46c5eec8f7d1a0552fff033e5ce8b466eef2ea5c070e4c2ac3167c4e986"
     },
     "verse_shinanrong": {
       "engine:mimo_苏打": {
@@ -6807,7 +7135,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "9a815c4501069b57c9655311bfa82ef1ecaa2531ca0f88dacf40ab816c1e3e3f"
     },
     "prophecy_qingwen": {
       "engine:mimo_苏打": {
@@ -6827,7 +7156,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "4755ee148b7524d98ebec29fcbde182169b65a1d9b0e06679af50574314c6061"
     },
     "prophecy_xiren": {
       "engine:mimo_苏打": {
@@ -6847,7 +7177,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f5561d6703010f905ebfe1cd59414b1551e495c1979cef6b58a785d682de5144"
     },
     "scene_yuanfei_shengqin": {
       "engine:mimo_苏打": {
@@ -6867,7 +7198,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "cac5a9b65edc920ce4307170ce480aa98813e60ab17d45132e03d4abff7f24d4"
     },
     "scene_xiangyun_zuiwo": {
       "engine:mimo_苏打": {
@@ -6887,7 +7219,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "540f0f0acf7c04cb4a52bef6e083636e6a565011df8b31cf2befac45b3202609"
     },
     "scene_baoyu_chujia": {
       "engine:mimo_苏打": {
@@ -6907,7 +7240,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "181de4bb21485eb92cb70600564447cd992e3dc3a8ea3e6b8c01dc3b513fd455"
     },
     "poem_juhua": {
       "engine:mimo_苏打": {
@@ -6927,7 +7261,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "1ffd967eb0f4c05601ecbc9d97aa0894d017b50158e406a06223847f671315f9"
     },
     "poem_pangxie": {
       "engine:mimo_苏打": {
@@ -6947,7 +7282,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "9cafb74518ec088c07843f04b7b1d0896f080d760c5dfdd6cd8f032db1558808"
     },
     "poem_liuxu": {
       "engine:mimo_苏打": {
@@ -6967,7 +7303,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c1caeb0a012dc9f71427749a340994d547f6e1cd27d61c20331dd42486dc2043"
     },
     "couplet_xiaoxiangguan": {
       "engine:mimo_苏打": {
@@ -6987,7 +7324,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "4bcd8679c44943369b40a93d5a90ec5d4429410ab7840dde5d100de2047923a0"
     },
     "couplet_hengwuyuan": {
       "engine:mimo_苏打": {
@@ -7007,7 +7345,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "718d21fd33b716c2bfde334dbf7d2b270c8e27d0aee39ba7f6fd3e3f7447560c"
     },
     "theme_baoyu_panpan": {
       "engine:mimo_苏打": {
@@ -7027,7 +7366,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "1b2e284768263e407d21d85bdef128f614603f10e225660abe0ff49c250cfbb4"
     },
     "theme_daughters_tragedy": {
       "engine:mimo_苏打": {
@@ -7047,7 +7387,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "5b208433209516051e9277dcc402d66a91f2f71dbc25998340edaab9122a16e1"
     },
     "theme_caifu_xingshuai": {
       "engine:mimo_苏打": {
@@ -7067,7 +7408,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "a99c664ac0d74c45636b851a7ec77a93360d1e76592b1bfbe3605c5902701db9"
     },
     "character_qingwen_special": {
       "engine:mimo_苏打": {
@@ -7087,7 +7429,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ac2270c2c5bfcdaf1fccfff9700c5efccfd2b7664599ada523d2270fd539af76"
     },
     "character_xiren_special": {
       "engine:mimo_苏打": {
@@ -7107,7 +7450,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "0e963a029aefb7f470c8daa87894b7471badd619626ace4b23ad90d9c55a18d9"
     },
     "character_liulaolao_special": {
       "engine:mimo_苏打": {
@@ -7127,7 +7471,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f328cb07cce86f922c39413dc941747f2286883d87fbcb3712fa5683a4fbe4f3"
     },
     "riddle_daiyu_yuanxiao": {
       "engine:mimo_苏打": {
@@ -7147,7 +7492,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "1ee95cf9f6ef4876a8c78f665ddd53ebc4f24be895ffcb41384d4636db52e85e"
     },
     "riddle_baochai_yuanxiao": {
       "engine:mimo_苏打": {
@@ -7167,7 +7513,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "92933f1bdaa7eb41f9003d6662622931b8a9267e3fb71d434d64664dcde8c5f9"
     },
     "riddle_yingchun_yuanxiao": {
       "engine:mimo_苏打": {
@@ -7187,7 +7534,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "2278150a125f8d229dc5f3f9db903d2ecc7053ca65d32701548b98e0a9a6e633"
     },
     "riddle_xichun_yuanxiao": {
       "engine:mimo_苏打": {
@@ -7207,7 +7555,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "336a32bf43706eada27698ae3384c5c694275be908d46c93ca386ffb735d61c2"
     },
     "couplet_rongxi_tang": {
       "engine:mimo_苏打": {
@@ -7227,7 +7576,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f1dc90fcbe5c19a87433348d159943599d76defbea76c7fcee73294de3775bc7"
     },
     "couplet_qinkeqing_room": {
       "engine:mimo_苏打": {
@@ -7247,7 +7597,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e8b0ce228bb9ef16af023663eb157ee51b5c45946dd136367089f3debda80687"
     },
     "scene_tanchun_slap": {
       "engine:mimo_苏打": {
@@ -7267,7 +7618,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "35636d42999eca9de9caef51da1f84133aea622f831b6ef69662c3df3753f0a5"
     },
     "scene_qingwen_death": {
       "engine:mimo_苏打": {
@@ -7287,7 +7639,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "af1bd634047e292be4f41f6b2d628b6c9aa5e34b37b0407bb75234202a9e0115"
     },
     "theme_jinyu_mushi": {
       "engine:mimo_苏打": {
@@ -7307,7 +7660,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e4a190b8d35cc54d7e69fd6b2fb92c043bad6bfdcfe56167764911f1a234959b"
     },
     "theme_four_families": {
       "engine:mimo_苏打": {
@@ -7327,7 +7681,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ef7f1a0c5918ba57ecdb2a33c9c8ba9f1ae28ab0719fa720a07bd9273f3dab2c"
     },
     "ritual_mourning_system": {
       "engine:mimo_苏打": {
@@ -7347,7 +7702,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "da672843c5fd77eea0bce52b0498f75bac53640881558b93bda3e8e7067180a3"
     },
     "food_crab_feast": {
       "engine:mimo_苏打": {
@@ -7367,7 +7723,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "04f0984b99f46f26803c946d9cecde3c8ba3b8a42a91dea412cf6169179fee66"
     },
     "poem_jiayucun_zhongqiu": {
       "engine:mimo_苏打": {
@@ -7387,7 +7744,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "69f013925655d0bd35c68e4bc95dc68f47102d0804624308128e5b88652baecc"
     },
     "poem_yong_bai_haitang_daiyu": {
       "engine:mimo_苏打": {
@@ -7407,7 +7765,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "df34c6e2e3fd0e148dccb04e531111f87aa9342386a788cd51cc389c3ad19d2e"
     },
     "poem_yong_bai_haitang_baochai": {
       "engine:mimo_苏打": {
@@ -7427,7 +7786,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7497b36db735010003d2ba4e7b2db8b5d82c7d286a51e47e35d575eca5cffb34"
     },
     "poem_wenju": {
       "engine:mimo_苏打": {
@@ -7447,7 +7807,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "2c27f0f6303774927e72b6f86434d7de694493849e01aa430e5470247a9f1321"
     },
     "poem_jumeng": {
       "engine:mimo_苏打": {
@@ -7467,7 +7828,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c67bbe92c0f30a3ecfbe7c86f8e2b3c2cd14288059b5579aa757eeb7218602a2"
     },
     "scene_huluan": {
       "engine:mimo_苏打": {
@@ -7487,7 +7849,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "555703228980a2a94b9a5db4e81ee0f0d223ae14385a83970c54f54c2155e127"
     },
     "allusion_huguanfu": {
       "engine:mimo_苏打": {
@@ -7507,7 +7870,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "addf47ac4d21a6cec167e55896a7fa428568281338334f690aa59a16530016c6"
     },
     "architecture_hengwuyuan": {
       "engine:mimo_苏打": {
@@ -7527,7 +7891,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f01de602c8d67dfbe39f5d2ace8be9f60aeb51e7cb6f9074a7f8a9f17cdb87b2"
     },
     "architecture_daoxiangcun": {
       "engine:mimo_苏打": {
@@ -7547,7 +7912,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "20b0b94fc164903d0501122f97ff6acfc03d8918f861021cdd669712308bf13b"
     },
     "architecture_longcuian": {
       "engine:mimo_苏打": {
@@ -7567,7 +7933,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f61a92823fa6c22abe64626be01bd01b38232f189f9fe6ba4299d02c2bb2de9d"
     },
     "architecture_qiushuangzhai": {
       "engine:mimo_苏打": {
@@ -7587,7 +7954,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6c10dd5f3cead47d486c1016b2ef7895fcf362afafb08035299b4a0bfcd00821"
     },
     "architecture_nuanxiangwu": {
       "engine:mimo_苏打": {
@@ -7607,7 +7975,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "d255ee1914eb11f40c143ca2cbf0afcf1cf90a9aa3cbf567d5fc5c9c1a55edf3"
     },
     "architecture_zilingzhou": {
       "engine:mimo_苏打": {
@@ -7627,7 +7996,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "dbf0f0fd9ca314bc7d9bcbafde9799eef4e3a07507f3c3d4cf9ab34feb211ac2"
     },
     "architecture_ouxiangxie": {
       "engine:mimo_苏打": {
@@ -7647,7 +8017,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "4fce5c7d20f0efbeeac9e01e5c08191e345940c93de09480177dc41f4c388883"
     },
     "architecture_mantouan": {
       "engine:mimo_苏打": {
@@ -7667,7 +8038,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "b3026e1544922e818428f6d20fd09c0e679f18b86ae3d60e826c97fbb9922760"
     },
     "architecture_tiekansi": {
       "engine:mimo_苏打": {
@@ -7687,7 +8059,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8485448a0dd922875f5e610d694356f377991d74d29ec5bf2c2995bdb929aa76"
     },
     "architecture_lixiangyuan": {
       "engine:mimo_苏打": {
@@ -7707,7 +8080,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "adc1cce95ab1b14298215a3f6d793206109ce41fba50113a69b2dabd09375e95"
     },
     "architecture_qingxuguan": {
       "engine:mimo_苏打": {
@@ -7727,7 +8101,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "904dc4dea62c817ee03b5e2a641673758380d8150643915130054efec2e9ad12"
     },
     "architecture_tianqimiao": {
       "engine:mimo_苏打": {
@@ -7747,27 +8122,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
-    },
-    "architecture_xishanzhuang": {
-      "engine:mimo_苏打": {
-        "file": "audio/knowledge/architecture_xishanzhuang_mimo_苏打.mp3",
-        "voice": "苏打",
-        "model": "mimo-v2.5-tts",
-        "status": "generated"
       },
-      "engine:mimo_白桦": {
-        "file": "audio/knowledge/architecture_xishanzhuang_mimo_白桦.mp3",
-        "voice": "白桦",
-        "model": "mimo-v2.5-tts",
-        "status": "generated"
-      },
-      "engine:mimo_茉莉": {
-        "file": "audio/knowledge/architecture_xishanzhuang_mimo_茉莉.mp3",
-        "voice": "茉莉",
-        "model": "mimo-v2.5-tts",
-        "status": "generated"
-      }
+      "textHash": "25eeb93e3541248d06486fd215cec797fbb684a4ac415ec95c9b82cd40d1f0e3"
     },
     "architecture_daguanyuan_gates": {
       "engine:mimo_苏打": {
@@ -7787,7 +8143,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "1383f57afe6d12b0bdb1f192e742f5ceab1b8b0a3e4e1e567ffc1dd056acb81a"
     },
     "architecture_qinfangting": {
       "engine:mimo_苏打": {
@@ -7807,7 +8164,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "da971ebea6eea7b6e9b186e83bea6478bc798194a6eef93fe646aae6e4e992ad"
     },
     "architecture_qujingtongyou": {
       "engine:mimo_苏打": {
@@ -7827,7 +8185,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c95b79786e5d3364d8a3bcd43bc9ce590ede32d59ff9a657cdb57481c5f2c6fe"
     },
     "architecture_tubishanzhuang": {
       "engine:mimo_苏打": {
@@ -7847,7 +8206,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "3f08cdd3db211c88f39e511edf1391bdbff69b03a27e7dc6eff0551adad628ff"
     },
     "architecture_aojingpiguan": {
       "engine:mimo_苏打": {
@@ -7867,7 +8227,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "295f6d96d8fbf35736ea9e7b9e0f19a9c178dc0bf3d85d9b958b1dce47566f95"
     },
     "shengpi_long_cui": {
       "engine:mimo_苏打": {
@@ -7887,7 +8248,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "42ab5d1e172c40058d14d9e8c83945ca91449fe7f141fab554e0b3e948fbb23f"
     },
     "shengpi_xiao_xiang": {
       "engine:mimo_苏打": {
@@ -7907,7 +8269,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8c9a38a49cd218efd15435842f9f5272eedccc3cf486093f2f959c02e9c9f99c"
     },
     "shengpi_heng_wu": {
       "engine:mimo_苏打": {
@@ -7927,7 +8290,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f94b471de7c6e810c9c1a8e9e23f80ab6221c7e7a527c152426998efcb48cd57"
     },
     "shengpi_bi_li": {
       "engine:mimo_苏打": {
@@ -7947,7 +8311,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "4444e6de37aec6a383d9ac04134c3fbb2518c177fcd217941683c2ded2ff6761"
     },
     "shengpi_xing_cai": {
       "engine:mimo_苏打": {
@@ -7967,7 +8332,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "5ec111f4139e5ba299080bb83706f6f83567ebfc1dfdd7d3ed64fcf46b4e3684"
     },
     "shengpi_juan_yan": {
       "engine:mimo_苏打": {
@@ -7987,7 +8353,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "2a70852a4f29543e49c4a830eb396930cbfecd434c74d73a0384507f0addef6e"
     },
     "shengpi_ye_jiuwo": {
       "engine:mimo_苏打": {
@@ -8007,7 +8374,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ab40923a939ac1f39fdce2b428f2f1c2a0e2c0988eeff4c76e799f3f6920c39e"
     },
     "shengpi_xi_shoe": {
       "engine:mimo_苏打": {
@@ -8027,7 +8395,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "d1d2e2e442eb97d2bb895430d7db31d30437465d8f1484b3ac42fcd5e2675009"
     },
     "shengpi_ji_fabric": {
       "engine:mimo_苏打": {
@@ -8047,7 +8416,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "655254154ef4f7c888888cabfc4fe4bec2fa1ee0103de6440545b75c73276c32"
     },
     "shengpi_chang_coat": {
       "engine:mimo_苏打": {
@@ -8067,7 +8437,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "b105e493ca6f6165d7b1e7be885c72ed3a017320a7e5c0f00cc00731637c66eb"
     },
     "shengpi_bei_jacket": {
       "engine:mimo_苏打": {
@@ -8087,7 +8458,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "791cd158b626e914cdd0e16f799fa16560dc9e219426909be63045a0d488f4fd"
     },
     "shengpi_da_bag": {
       "engine:mimo_苏打": {
@@ -8107,7 +8479,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "3bd4664cabb779f349cb59f455bd15c1f6e6ec5eb29f897d8aa077616aba07a1"
     },
     "shengpi_chi_strip": {
       "engine:mimo_苏打": {
@@ -8127,7 +8500,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "cba0daefc2ab5c7408b777e200e1883ef5a27131261b9e295d0644554f65c85c"
     },
     "shengpi_wu_awake": {
       "engine:mimo_苏打": {
@@ -8147,7 +8521,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "113f661924eaf13094e4758110546c4dbf48453f6089842a084d89e32b0962f4"
     },
     "shengpi_cun_ponder": {
       "engine:mimo_苏打": {
@@ -8167,7 +8542,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "449816b614bad4f2c579d7e2d9b89edf284bc00b2eac948b38c78305c85b4846"
     },
     "shengpi_yi_depressed": {
       "engine:mimo_苏打": {
@@ -8187,7 +8563,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6cb195ec6cd61f6fcabda43c5e292072e97460bb643907241c4c1adfa78732a0"
     },
     "shengpi_yan_listless": {
       "engine:mimo_苏打": {
@@ -8207,7 +8584,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "791f1e501f236736b29c955090f3fb90d73c7709ea2727f0d69955b82802f324"
     },
     "shengpi_liu_lock": {
       "engine:mimo_苏打": {
@@ -8227,7 +8605,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8c3be0353c1005fbb4aa95f13be72ec1c2f1d3e26ae9a2845b9405becb98a5dc"
     },
     "shengpi_ji_hairpin": {
       "engine:mimo_苏打": {
@@ -8247,7 +8626,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "966272a0f7088358bf9ec12a3c3800e572619086a42e85d24ec71f0232deae92"
     },
     "shengpi_yin_late": {
       "engine:mimo_苏打": {
@@ -8267,7 +8647,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "1a6ec0873da744a97ceadaab915994321be7694a8bab64060b648d85a47159d2"
     },
     "shengpi_yin_heir": {
       "engine:mimo_苏打": {
@@ -8287,7 +8668,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "388f02f612c07df5df18e69c3a4ab47b59d32c4c581c7353a279f0126f397b2c"
     },
     "shengpi_huan_escape": {
       "engine:mimo_苏打": {
@@ -8307,7 +8689,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6201e80d9f156755a6deb3a27615a33a636596d6473680c9dffad93a9d42d37a"
     },
     "shengpi_gang_blunt": {
       "engine:mimo_苏打": {
@@ -8327,7 +8710,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "5dc0ac51f143275756ef33f0faecf20840f2018eae66789343eb6f1d4d7d7d54"
     },
     "shengpi_jue_cunning": {
       "engine:mimo_苏打": {
@@ -8347,7 +8731,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ae3dc9be633e882f853672acf9826ff40c288d6af96da25884d27a50e902ea90"
     },
     "shengpi_ou_soak": {
       "engine:mimo_苏打": {
@@ -8367,7 +8752,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "010379fb16c24d916cebacf016235214a81ccddf5071224fc81663f79650d1f8"
     },
     "shengpi_jian_silk": {
       "engine:mimo_苏打": {
@@ -8387,7 +8773,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e30adea220f3d3c37084cb397ffa2db217100581e6efd679d7e84e7bdf48f144"
     },
     "shengpi_chan_repent": {
       "engine:mimo_苏打": {
@@ -8407,7 +8794,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "579f49abcd5853a57aee8d5fb11592b6959b170037f596606ac1136b39e91b42"
     },
     "shengpi_hao_vast": {
       "engine:mimo_苏打": {
@@ -8427,7 +8815,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "5490d3964ced118a9655d8476fbdb29c0d90916325f13e45c89a59217e23d408"
     },
     "shengpi_xue_tease": {
       "engine:mimo_苏打": {
@@ -8447,7 +8836,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6d1c66c2cc0847945ed4e290dd6e4169201589323a182de2f66461f6fd169844"
     },
     "shengpi_liao_wind": {
       "engine:mimo_苏打": {
@@ -8467,7 +8857,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "893f4e292852ba4547fcc14884cd381872b2e597ee31ab358201546cc98111f9"
     },
     "shengpi_lan_robe": {
       "engine:mimo_苏打": {
@@ -8487,7 +8878,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "6de6e33d806664453e6da1a51f4edba6004b1c42ddf0867e85c74050cb4d26f3"
     },
     "shengpi_zi_breed": {
       "engine:mimo_苏打": {
@@ -8507,7 +8899,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "15cc008f7d371a0661e79c8347eed6a462b8886349d06410e28f7ea46d84afe2"
     },
     "shengpi_xiao_confuse": {
       "engine:mimo_苏打": {
@@ -8527,7 +8920,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "a0eca50fca541315b415e70b5c13fe2c73d622a1d4c9c977ad9551e876e4cd72"
     },
     "shengpi_zhan_flutter": {
       "engine:mimo_苏打": {
@@ -8547,7 +8941,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "1275325d9f66b5e93a90a39d9d4f85c64edf2c50d3d97e4a7c38cd2d06159512"
     },
     "shengpi_hao_white": {
       "engine:mimo_苏打": {
@@ -8567,7 +8962,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "35a2e64ddd5a8a406b20f7cbbbef3a63bc03308e2ce49b6831b194a348680f1e"
     },
     "shengpi_ruo_such": {
       "engine:mimo_苏打": {
@@ -8587,7 +8983,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ef64b2d7524bde43aa28dcbc0be3684154e94fba55b45ce7ac901cb98835c6e7"
     },
     "shengpi_mou_helmet": {
       "engine:mimo_苏打": {
@@ -8607,7 +9004,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f5a23ae63681765618e1386c073b9c2b9132c3bb17f8ab6797d44a1c71593340"
     },
     "shengpi_bi_jade_disc": {
       "engine:mimo_苏打": {
@@ -8627,7 +9025,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "be7bd937dc8114592b8a8170f3656bd1f44aebf0ff61d869568e501535c210ec"
     },
     "shengpi_zan_torture": {
       "engine:mimo_苏打": {
@@ -8647,7 +9046,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "a54116c14687c70e7931c1c88044e33da36d4b2131066367e71cbd40f3dd3e34"
     },
     "shengpi_zhi_book": {
       "engine:mimo_苏打": {
@@ -8667,7 +9067,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "b5c350607ffa7f488fcc3f3d9b169fee14b118ef69a8410918c010af19ed681a"
     },
     "shengpi_jian_letter": {
       "engine:mimo_苏打": {
@@ -8687,7 +9088,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "bc553727a002158ccdc7c9b6600456cc478c0447dc3b53f9c65a9e22b3bd9f9c"
     },
     "poem_yong_bai_haitang_baoyu": {
       "engine:mimo_苏打": {
@@ -8707,7 +9109,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "2c2dc56512751f02f42a796a22485c0c6a0c5335420cba0e78713c6b65d5c65d"
     },
     "poem_yong_bai_haitang_xiangyun_1": {
       "engine:mimo_苏打": {
@@ -8727,7 +9130,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "9941bf9f88a2def7091d20559ad877d49f4705a135c3fc8d320584d419b19eb3"
     },
     "poem_yong_bai_haitang_xiangyun_2": {
       "engine:mimo_苏打": {
@@ -8747,7 +9151,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "58e714012b854ccf7ac0d4a523b7128e4324eb554431adfc85412f1410158285"
     },
     "poem_yi_ju": {
       "engine:mimo_苏打": {
@@ -8767,7 +9172,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f8fa82aff7db90068dc2f57c72127cc8327095c53428636c3db57b94443973ca"
     },
     "poem_fang_ju": {
       "engine:mimo_苏打": {
@@ -8787,7 +9193,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "80d6fbdc23e31a627fbcb245ddda5acc10fa18f952a7c2f949fb0d7a32f0c6cb"
     },
     "poem_zhong_ju": {
       "engine:mimo_苏打": {
@@ -8807,7 +9214,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "1651201212396c209bdd1fd10154e98317f248e344fd6fdfae1df185aec9fb41"
     },
     "poem_dui_ju": {
       "engine:mimo_苏打": {
@@ -8827,7 +9235,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7f1bf5e2c95c015b965555803abac281d1d70eeac29ac5fad8c69a85cb7d6b06"
     },
     "poem_zan_ju": {
       "engine:mimo_苏打": {
@@ -8847,7 +9256,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "b9778edefb3dd783b74da3702547067c0af6b1928f248009b004712f09d92970"
     },
     "poem_ju_ying": {
       "engine:mimo_苏打": {
@@ -8867,7 +9277,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "5d1c5a1417305c4cdb44dbadffe43b1427caceba10bef8e1d6b98f1b161d7c1c"
     },
     "poem_gong_ju": {
       "engine:mimo_苏打": {
@@ -8887,27 +9298,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
-    },
-    "poem_meng_ju": {
-      "engine:mimo_苏打": {
-        "file": "audio/knowledge/poem_meng_ju_mimo_苏打.mp3",
-        "voice": "苏打",
-        "model": "mimo-v2.5-tts",
-        "status": "generated"
       },
-      "engine:mimo_白桦": {
-        "file": "audio/knowledge/poem_meng_ju_mimo_白桦.mp3",
-        "voice": "白桦",
-        "model": "mimo-v2.5-tts",
-        "status": "generated"
-      },
-      "engine:mimo_茉莉": {
-        "file": "audio/knowledge/poem_meng_ju_mimo_茉莉.mp3",
-        "voice": "茉莉",
-        "model": "mimo-v2.5-tts",
-        "status": "generated"
-      }
+      "textHash": "872f1a341119e4357663b037b6a418277f6e51f8847c8c902f24eaf92f9e0f37"
     },
     "poem_can_ju": {
       "engine:mimo_苏打": {
@@ -8927,7 +9319,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7e658e125323340b9923fcaae8308271601fe534ce2ba2edb19e5f61bba7e61f"
     },
     "poem_luxuean_lianju": {
       "engine:mimo_苏打": {
@@ -8947,7 +9340,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "031a59642f7bb4955c51f620f555a14b55e499780537f008d17d1e41557fc9af"
     },
     "poem_liuxu_baochai": {
       "engine:mimo_苏打": {
@@ -8967,7 +9361,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "2ef3f61c6c2570b5506418eeea3ea8ed21184f80ec731860045989241995828d"
     },
     "poem_liuxu_baoyu": {
       "engine:mimo_苏打": {
@@ -8987,7 +9382,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "4c9ee88681b069cb1d7bd7f121d8716b48b30827fe4d2c271bb00a240acb3f95"
     },
     "poem_liuxu_xiangyun": {
       "engine:mimo_苏打": {
@@ -9007,7 +9403,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "cb4b2185751f613cfbc76aac487f0f4ebb8b2331c021d13f372d02710781720a"
     },
     "poem_huaigu_chibi": {
       "engine:mimo_苏打": {
@@ -9027,7 +9424,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7d2b9957c58d6281ead500c4754c1fd965ce1d4253d0143a300d26c8f81554ba"
     },
     "poem_huaigu_guangling": {
       "engine:mimo_苏打": {
@@ -9047,7 +9445,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "df0f6e93ded7571c1ce6574d40a6821c48bf1c6b1d8368df98c084849fa90f15"
     },
     "poem_huaigu_qingzhong": {
       "engine:mimo_苏打": {
@@ -9067,7 +9466,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "9851716525f86f54c534e44b9bc01e6416a6a62b3102871bee902284e3a3981c"
     },
     "poem_huaigu_mawwei": {
       "engine:mimo_苏打": {
@@ -9087,7 +9487,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "efc7b84967da0445a892ffc43ecbf4c74224dc5b2b9521683663b474a1abacc4"
     },
     "poem_huaigu_huaiyin": {
       "engine:mimo_苏打": {
@@ -9107,7 +9508,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "661b48d28f779febc6dfde3a24f0d95ef14a45aaba020642501b24345a46086b"
     },
     "poem_huaigu_guangchuan": {
       "engine:mimo_苏打": {
@@ -9127,7 +9529,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7fd45e09e657169e151e672acedb0b12d93879ed9d17ed5a53714cdd6df39f75"
     },
     "poem_huaigu_pudong": {
       "engine:mimo_苏打": {
@@ -9147,7 +9550,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7bd748baa0e06be7525e2e1d496e184f850e3d34ae404e2c46b432a6dd3e27e6"
     },
     "poem_huaigu_meihua": {
       "engine:mimo_苏打": {
@@ -9167,7 +9571,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "2b2cc650ba82a8bdd4a5b9b2f408ea8da7ae94e3cacfb0e5d022aa242d5e5645"
     },
     "poem_huaigu_zhongshan": {
       "engine:mimo_苏打": {
@@ -9187,7 +9592,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "fcf871842c85786a8aa52255db9d01ac1bfbf78cfad8198f9f6eac6df7ed2fb7"
     },
     "poem_jiuling_shangyou": {
       "engine:mimo_苏打": {
@@ -9207,7 +9613,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "0052b12c9412c02ae1cc67cc42a798a1ebf5418b4c0ab42cb4ccb125972cc8b8"
     },
     "poem_aozhan_lianshi": {
       "engine:mimo_苏打": {
@@ -9227,7 +9634,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "db0ad911460a70403a4f1ffa810d6fa52bd1f9d9227156931e14df91ff694499"
     },
     "poem_zilingzhou": {
       "engine:mimo_苏打": {
@@ -9247,7 +9655,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "41d67b335a45bad7f6eb45c1b291ade20c6da297b2ccc0f2ff8ecf2e3090cfeb"
     },
     "verse_lezhongbei": {
       "engine:mimo_苏打": {
@@ -9267,7 +9676,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "265c0ecd7fa61b5e360d03d73db05d5158ac73945de0ce0f299a01d34cce9f1c"
     },
     "verse_liuyuqing": {
       "engine:mimo_苏打": {
@@ -9287,7 +9697,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "d870870653ff39915c054a55ae66f31e66dce7150e1296bc1be553670a8d8e5f"
     },
     "scene_baodie_pu": {
       "engine:mimo_苏打": {
@@ -9307,7 +9718,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f61891e5ed1afb435b2cde7e7678676585b5b4a701b9d825a7934a241f3b1b0d"
     },
     "scene_daiyu_fengao": {
       "engine:mimo_苏打": {
@@ -9327,7 +9739,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "d89abd137d759f062a7bc64e66f4d118e539b6eacd10ec5edd6b515ed643673e"
     },
     "scene_baoyu_chujiabei": {
       "engine:mimo_苏打": {
@@ -9347,7 +9760,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "be51517ec12e5ab6b34f46e45f63e8273793304b5c3461a95c557bbafa5c1504"
     },
     "scene_daiyu_changxiaoxiang": {
       "engine:mimo_苏打": {
@@ -9367,7 +9781,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e14ee842bdd5f944960a7dccd629693990cb123e4001abb3f0878cc1394ba20f"
     },
     "scene_baoyu_mengyou_taixu": {
       "engine:mimo_苏打": {
@@ -9387,7 +9802,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e2c8e6ca5401dd271324e4da11253f488e07d596899122baa2a60a553678094c"
     },
     "scene_tanchun_zhangjia": {
       "engine:mimo_苏打": {
@@ -9407,7 +9823,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "607c51a74be5675c88c37e45defd6239a402c8026860950db6d38b6cce8259d2"
     },
     "scene_yuanchun_shengqin": {
       "engine:mimo_苏打": {
@@ -9427,7 +9844,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "b4b3af3a8390b75b7ad5d94cdc508c2a2d8ef368e84ee0d8366c8cd04da9a1f0"
     },
     "scene_qingwen_buque": {
       "engine:mimo_苏打": {
@@ -9447,7 +9865,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "2983a707db4a6070d4eee883b1c1b159a1aa41574e7671ca3793115e3b1786cb"
     },
     "scene_xifeng_ningguo": {
       "engine:mimo_苏打": {
@@ -9467,7 +9886,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ca786477d6aa1236b80e6fa5a5184a9134415d20b22addb9a068a6362f78f74a"
     },
     "scene_daiyu_zanghua": {
       "engine:mimo_苏打": {
@@ -9487,7 +9907,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "007122ab613db5991a196895baa250bd9eaa9e9d8f634df36fb35b9b4b33b60e"
     },
     "poem_chunxiao": {
       "engine:mimo_苏打": {
@@ -9507,7 +9928,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "623c68c832cbc816c755fd83967bd744c641649b00e512a49cb9569beac7eda8"
     },
     "poem_chuntian_liuxu": {
       "engine:mimo_苏打": {
@@ -9527,7 +9949,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "c1caeb0a012dc9f71427749a340994d547f6e1cd27d61c20331dd42486dc2043"
     },
     "poem_baochai_liuxu": {
       "engine:mimo_苏打": {
@@ -9547,7 +9970,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "0d4d70a371ffef4a90afc1c5d4b48ee09ae5fa8d11949e22e4fd2dcef243d36d"
     },
     "poem_jia_yucun_zhongqiu": {
       "engine:mimo_苏打": {
@@ -9567,7 +9991,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "69f013925655d0bd35c68e4bc95dc68f47102d0804624308128e5b88652baecc"
     },
     "poem_zhen_shiyin_haole": {
       "engine:mimo_苏打": {
@@ -9587,7 +10012,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "49f8bd9555f33f466a5fc069e10ca6a21b7ca6ed01bf62650dfdf3e1d973599a"
     },
     "poem_baoyu_niren": {
       "engine:mimo_苏打": {
@@ -9607,7 +10033,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "df34c6e2e3fd0e148dccb04e531111f87aa9342386a788cd51cc389c3ad19d2e"
     },
     "poem_baochai_juhua": {
       "engine:mimo_苏打": {
@@ -9627,7 +10054,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8fa0d97de3c89df24cf93ef09df6f5d4a4006353400e49149dd3fa0a4fe7e0ac"
     },
     "poem_daiyu_juhua": {
       "engine:mimo_苏打": {
@@ -9647,7 +10075,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ea1a38b8489bc0f100ca388ce7807814a8facf2849376bf2bb64d9470c44d2c1"
     },
     "allusion_jin_yu_liang_yuan": {
       "engine:mimo_苏打": {
@@ -9667,7 +10096,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "d7fd4929a765788aee931e03ea0ce700847fff3911a6cbed567a47877552e030"
     },
     "allusion_mu_shi_qian_meng": {
       "engine:mimo_苏打": {
@@ -9687,7 +10117,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "4aa31fa0871f36c5764800ec00dc0eb82ba8554d9828f1ae028a8c26d4a4512d"
     },
     "allusion_feng_yue_bao_jian": {
       "engine:mimo_苏打": {
@@ -9707,7 +10138,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "45f77dbda94a06e50a973b1f154a0d15483321927060286031609946ffd2d50f"
     },
     "allusion_tong_ling_bao_yu": {
       "engine:mimo_苏打": {
@@ -9727,7 +10159,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8c5df5e2cd4aa8b23193c99e4fa4595ddb57aa760fd30a9d9f1307e079c8c2c9"
     },
     "allusion_da_guan_yuan": {
       "engine:mimo_苏打": {
@@ -9747,7 +10180,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "00f5b4e5843841d63f3f2cbd73b9828fb1e03646aba75bcc451cd04523f70444"
     },
     "allusion_hong_lou_meng": {
       "engine:mimo_苏打": {
@@ -9767,7 +10201,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ef8aec34a4552d85dc9ccb3cb697746cf3cd4dcceaee875abf4177c9dc2900e1"
     },
     "allusion_jin_ling_shi_er_chai": {
       "engine:mimo_苏打": {
@@ -9787,7 +10222,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "d8f93d5fa7a92270e4d2cafe8839f5d452fef5a044f70520fda30262eefc3f82"
     },
     "allusion_qian_hong_yi_ku": {
       "engine:mimo_苏打": {
@@ -9807,7 +10243,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "b272caf7f9954695a9c6489390c85be32060ef171d4b12421e8bc72e0d137421"
     },
     "allusion_jia_fu_si_da_jia": {
       "engine:mimo_苏打": {
@@ -9827,7 +10264,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "23f743acab3de7c455954cbaf0bbef23f152c6d11c34b9548b808a926e88d0f2"
     },
     "allusion_hao_le_ge": {
       "engine:mimo_苏打": {
@@ -9847,7 +10285,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "a0121adba2d6ca6209332dfe7d8b821ba3136b1714eeb6874625a249ce2d103d"
     },
     "architecture_rong_guo_fu": {
       "engine:mimo_苏打": {
@@ -9867,7 +10306,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "be3ab08d3f050a7d46b4c49f0e574860d6813313bb5ec4400de5e7d2341f126a"
     },
     "architecture_ning_guo_fu": {
       "engine:mimo_苏打": {
@@ -9887,7 +10327,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "2fdbbc980d1fe0e20619d453e93b031055b7c73f680481803364672d36dd1c6d"
     },
     "architecture_yihong_yuan": {
       "engine:mimo_苏打": {
@@ -9907,7 +10348,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "770a31500597583e19925678e04542f3c438b9969258f8fb917af2eb6ebc6ed0"
     },
     "architecture_xiaoxiang_guan": {
       "engine:mimo_苏打": {
@@ -9927,7 +10369,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "7335156ccfd975737ec3e8475ea01eae7d1d5beb214350d68780e0b0dea78dd9"
     },
     "architecture_hengwu_yuan": {
       "engine:mimo_苏打": {
@@ -9947,7 +10390,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "d51b323524f74f9c9cd75a01394fa40e4e9bb9ec6861a9518fb73fdd54da3282"
     },
     "architecture_dao_xiang_cun": {
       "engine:mimo_苏打": {
@@ -9967,7 +10411,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "0c44d914bd113b4c847975dc3fa858a43526be151dc6d8a493640aa1543de795"
     },
     "architecture_mi_yu_an": {
       "engine:mimo_苏打": {
@@ -9987,7 +10432,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "277b56ee342d4a0f437726c9c65df81e9217be6fb628785073d4d00aa187685b"
     },
     "architecture_qiu_shuang_zhai": {
       "engine:mimo_苏打": {
@@ -10007,7 +10453,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "05fc7314ecc06abe1f10558dbdca495be2a45e7c7d5e2b04468a9da3760978e7"
     },
     "architecture_nuan_xiang_wu": {
       "engine:mimo_苏打": {
@@ -10027,7 +10474,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f9d2f1240b826611d6f1e9ea7bc8cca29b29f0e016eaf5aff70e923468ca7af7"
     },
     "architecture_lv_yun_xuan": {
       "engine:mimo_苏打": {
@@ -10047,7 +10495,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e2e7a27989b13b1d0a6de7b9f379408171ff8c43147498402b840b99131a72e5"
     },
     "custom_ke_ju": {
       "engine:mimo_苏打": {
@@ -10067,7 +10516,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e36b5cc3fc7f18ed82b21adab675a8628ccfe1daba05cee015db25bd2501ba09"
     },
     "custom_ji_du_shu": {
       "engine:mimo_苏打": {
@@ -10087,7 +10537,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "f139a7c603eefda5194a8fc45b198751f8552839cc09576130d4a968c36c49ff"
     },
     "custom_hun_yin": {
       "engine:mimo_苏打": {
@@ -10107,7 +10558,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e5a9427f46599646f5bd50475f3c6f4e445d71d828b2c9eeafdf439b090486d8"
     },
     "food_lv_tang": {
       "engine:mimo_苏打": {
@@ -10127,7 +10579,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "d02cb73dcf41e47ff4ae4b02d761b7376a0159f7bc327eca24272a286727cffe"
     },
     "food_lian_ye_geng": {
       "engine:mimo_苏打": {
@@ -10147,7 +10600,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "dff30d9e9e072198e577f1899a1a959c8c2c149c90528c99698eb360ce6d4409"
     },
     "food_lu_tang": {
       "engine:mimo_苏打": {
@@ -10167,7 +10621,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "10de46e6a108f26400fc58a1d5060d0a41bdbf39dac9a370d4ef33ac2db4d7d3"
     },
     "costume_jin_su_xiang_nang": {
       "engine:mimo_苏打": {
@@ -10187,7 +10642,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "0689cf171a21c2d1ac16c9dc6d2c831df20ddb4a5bb0306b273c358048fca2f9"
     },
     "costume_que_jin_diao": {
       "engine:mimo_苏打": {
@@ -10207,7 +10663,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "fca4356368431a86f0e601ba96f9aa68e2f7f31f17c081b109b078376c61c7df"
     },
     "costume_jia_lian_shan_po": {
       "engine:mimo_苏打": {
@@ -10227,7 +10684,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "ff61f5d4d37871e4f46b02711bd61dbedef95ef88b7a477d7f425e36a95c3597"
     },
     "character_baoyu_special": {
       "engine:mimo_苏打": {
@@ -10247,7 +10705,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "fa1b7d07810e3be89bcf84b1610884d0137059cf77cdc200855a68ad7ece8dc5"
     },
     "character_daiyu_special": {
       "engine:mimo_苏打": {
@@ -10267,7 +10726,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "aa36bc9eeeb77db01fdc8dd5e1656c3bb9a06241e2d8d792e6cb67b35c0bc5d2"
     },
     "character_baochai_special": {
       "engine:mimo_苏打": {
@@ -10287,7 +10747,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "e0cb23d475dc61ad318f0a992260e998228cdbc43ba90a97589348e21e89db66"
     },
     "theme_aiqing": {
       "engine:mimo_苏打": {
@@ -10307,7 +10768,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "d8e92b9563bb3bedb1ccdaf00b15579eb4a2d5e481fc4ee1bd4a3ace9800aafd"
     },
     "theme_jiazu_shuailuo": {
       "engine:mimo_苏打": {
@@ -10327,7 +10789,8 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "8f7ab9768e56e2f8feec1c8f3e1b221bc77aeff488523e3d5acb5c811327c9d1"
     },
     "theme_nvxing_mingyun": {
       "engine:mimo_苏打": {
@@ -10347,7 +10810,12 @@
         "voice": "茉莉",
         "model": "mimo-v2.5-tts",
         "status": "generated"
-      }
+      },
+      "textHash": "24b5e55bb2e4b33098f15736db690c633c8684421f6c5f602d90a4c7d9d6e3b7"
     }
-  }
+  },
+  "textHashAlgorithm": "sha256(nfkc-cjk-strip-punct)",
+  "knowledgeItems": 515,
+  "manifestEntries": 514,
+  "auditedAt": "2026-11-04T13:52:05"
 }

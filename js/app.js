@@ -22,6 +22,7 @@ class HongLouMengApp {
     this.isMobileSearchOpen = false;
     this.isCardOpen = false;
     this.isDiscoveryOpen = false;
+    this._discoveryReturnFocus = null;
     this.performanceMode = 'auto';
     this.els = {};
     this.viewInitialized = { graph: true, tree: false, list: false, chapter: false, knowledge: false };
@@ -161,17 +162,23 @@ class HongLouMengApp {
       const hashView = (location.hash || '').replace('#', '');
       const validViews = ['graph', 'tree', 'list', 'chapter', 'knowledge'];
       const initialView = viewParam || (validViews.includes(hashView) ? hashView : 'graph');
-    this.els.body.classList.add(`view-${initialView}`);
-      
-      this._switchView(initialView);
+      this.els.body.classList.add(`view-${initialView}`);
 
-      // Restore state from URL params
-      if (charParam && this.characterMap.has(charParam)) {
-        this._openCharacter(charParam, { focusNeighbors: true, showCard: true });
-      } else if (topicParam) {
-        this._openTopic(topicParam, true);
-      } else if (stageParam) {
-        this._openStage(stageParam, true);
+      // 首屏还原不算用户导航，只替换当前历史条目。
+      this._suppressHistoryPush = true;
+      try {
+        this._switchView(initialView);
+
+        // Restore state from URL params
+        if (charParam && this.characterMap.has(charParam)) {
+          this._openCharacter(charParam, { focusNeighbors: true, showCard: true });
+        } else if (topicParam) {
+          this._openTopic(topicParam, true);
+        } else if (stageParam) {
+          this._openStage(stageParam, true);
+        }
+      } finally {
+        this._suppressHistoryPush = false;
       }
 
       this._renderSearchState();
@@ -304,6 +311,57 @@ class HongLouMengApp {
       searchTimer = window.setTimeout(() => this._onSearch(value, resultsEl), 180);
     };
 
+    // 让搜索框像常规搜索一样支持 Enter / 上下键，而不是只能用鼠标点结果。
+    const bindSearchKeyboard = (input, resultsEl) => {
+      if (!input || !resultsEl) return;
+      input.addEventListener('keydown', (e) => {
+        if (e.isComposing) return;
+        if (e.key === 'ArrowDown') {
+          if (input.value.trim() && !resultsEl.querySelector('[data-type]')) {
+            this._onSearch(input.value, resultsEl);
+          }
+          const first = resultsEl.querySelector('button:not([disabled])');
+          if (first) {
+            e.preventDefault();
+            first.focus();
+          }
+          return;
+        }
+        if (e.key === 'Enter') {
+          const query = input.value.trim();
+          if (!query) return;
+          let first = resultsEl.querySelector('[data-type]');
+          if (!first) {
+            this._onSearch(query, resultsEl);
+            first = resultsEl.querySelector('[data-type]');
+          }
+          if (first) {
+            e.preventDefault();
+            first.click();
+          }
+        }
+      });
+
+      resultsEl.addEventListener('keydown', (e) => {
+        if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+        const items = Array.from(resultsEl.querySelectorAll('button:not([disabled])'))
+          .filter((el) => el.getClientRects().length > 0);
+        if (!items.length) return;
+        const current = items.indexOf(document.activeElement);
+        e.preventDefault();
+        if (e.key === 'ArrowDown') {
+          items[Math.min(current + 1, items.length - 1)]?.focus();
+        } else if (current <= 0) {
+          input.focus({ preventScroll: true });
+        } else {
+          items[current - 1]?.focus();
+        }
+      });
+    };
+
+    bindSearchKeyboard(this.els.graphSearchInput, this.els.graphSearchResults);
+    bindSearchKeyboard(this.els.mobileSearchInput, this.els.mobileSearchResults);
+
     if (this.els.graphSearchInput) {
       this.els.graphSearchInput.addEventListener('input', (e) => {
         handleSearch(e.target.value, this.els.graphSearchResults);
@@ -333,9 +391,18 @@ class HongLouMengApp {
 
     this.els.sidebarToggle.addEventListener('click', () => this._toggleSidebar());
     this.els.sidebarBackdrop.addEventListener('click', () => this._toggleSidebar(false));
+    this.els.sidebar.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab' || !this.els.sidebar.classList.contains('open')) return;
+      if (!window.matchMedia('(max-width: 768px)').matches) return;
+      this._trapTabKey(this.els.sidebar, e);
+    });
     this.els.cardOverlay.addEventListener('click', (e) => {
       if (e.target !== this.els.cardOverlay) return;
       this._closeCard();
+    });
+    this.els.cardOverlay.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab' || !this.els.cardOverlay.classList.contains('active')) return;
+      this._trapTabKey(this.els.cardOverlay, e);
     });
 
     // Mobile search
@@ -437,15 +504,36 @@ class HongLouMengApp {
     const btnControlsMore = document.getElementById('btn-controls-more');
     const overflowMenu = document.getElementById('controls-overflow-menu');
     if (btnControlsMore && overflowMenu) {
+      const closeOverflowMenu = (restoreFocus = false) => {
+        overflowMenu.classList.remove('open');
+        btnControlsMore.setAttribute('aria-expanded', 'false');
+        if (restoreFocus) btnControlsMore.focus({ preventScroll: true });
+      };
       btnControlsMore.addEventListener('click', (e) => {
         e.stopPropagation();
         const isOpen = overflowMenu.classList.toggle('open');
         btnControlsMore.setAttribute('aria-expanded', String(isOpen));
       });
+      btnControlsMore.addEventListener('keydown', (e) => {
+        if (e.key !== 'ArrowDown' || !overflowMenu.classList.contains('open')) return;
+        e.preventDefault();
+        overflowMenu.querySelector('button')?.focus({ preventScroll: true });
+      });
       document.addEventListener('click', (e) => {
         if (!overflowMenu.contains(e.target) && e.target !== btnControlsMore) {
-          overflowMenu.classList.remove('open');
-          btnControlsMore.setAttribute('aria-expanded', 'false');
+          closeOverflowMenu();
+        }
+      });
+      // Esc 关菜单并把焦点交回触发器；焦点 Tab 出菜单时也收起，避免留下一个看不见的展开状态。
+      overflowMenu.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          e.stopPropagation();
+          closeOverflowMenu(true);
+        }
+      });
+      overflowMenu.addEventListener('focusout', (e) => {
+        if (!overflowMenu.contains(e.relatedTarget) && e.relatedTarget !== btnControlsMore) {
+          closeOverflowMenu();
         }
       });
     }
@@ -500,8 +588,10 @@ class HongLouMengApp {
     }
 
     document.addEventListener('keydown', (e) => {
-      // Skip if user is typing in an input
-      const isTyping = e.target.closest('input') || e.target.closest('select') || e.target.closest('textarea');
+      // Skip if user is typing in an input. e.target can be Document when the
+      // event is dispatched programmatically, so guard before calling closest().
+      const eventTarget = e.target instanceof Element ? e.target : null;
+      const isTyping = Boolean(eventTarget?.closest('input, select, textarea'));
       
       if (e.key === 'Escape') {
         // Close discovery panel first
@@ -536,6 +626,10 @@ class HongLouMengApp {
           this._closeMobileSearch();
           return;
         }
+        if (this.els.sidebar.classList.contains('open')) {
+          this._toggleSidebar(false);
+          return;
+        }
         if (this.els.cardOverlay.classList.contains('active')) {
           this._closeCard();
           return;
@@ -546,23 +640,23 @@ class HongLouMengApp {
         }
         if (this.graph && this.graph.focusMode) {
           this._exitFocusMode();
-          return;
         }
-        this._closeDrawer();
       }
 
       if (isTyping) return;
 
-      // Cmd+K or Ctrl+K to focus search
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        (this.els.graphSearchInput || this.els.searchInput)?.focus();
+      // 弹层打开时，除 Escape（上方已处理）外不再响应全局快捷键，
+      // 否则 ⌘K/数字键会把焦点或视图切到弹层背后。
+      if (this.isCardOpen || this.isDiscoveryOpen || document.querySelector('.keyboard-help-modal')) {
         return;
       }
 
-      if (e.key === '/') {
+      // Cmd+K / Ctrl+K 与 / 统一聚焦「当前视图」的搜索框。
+      // 旧实现只找 #graph-search-input，非图谱视图下它的祖先 display:none，focus() 静默失败。
+      if (((e.metaKey || e.ctrlKey) && e.key === 'k') || e.key === '/') {
         e.preventDefault();
-        (this.els.graphSearchInput || this.els.searchInput)?.focus();
+        this._focusActiveViewSearch();
+        return;
       }
 
       // Number keys 1-5 to switch views
@@ -622,6 +716,11 @@ class HongLouMengApp {
       if (['graph', 'tree', 'list', 'chapter', 'knowledge'].includes(viewName)) {
         this._switchView(viewName);
       }
+    });
+
+    // 浏览器前进/后退：地址栏是唯一真源，回放时不再写历史栈。
+    window.addEventListener('popstate', () => {
+      this._applyStateFromUrl();
     });
 
     // Timeline slider + controls
@@ -804,10 +903,14 @@ class HongLouMengApp {
   }
 
   async _loadData() {
+    // 数据文件也必须带版本号：无版本号的 fetch 会被浏览器长期缓存，
+    // 导致数据改了但界面还是旧的（本地调试时尤其难排查）。
+    const version = document.querySelector('meta[name="hlm-asset-version"]')?.content || '';
+    const dataUrl = (file) => (version ? `data/${file}?v=${version}` : `data/${file}`);
     const [charRes, relRes, knowledgeRes] = await Promise.all([
-      fetch('data/characters.json'),
-      fetch('data/relationships.json'),
-      fetch('data/knowledge.json')
+      fetch(dataUrl('characters.json')),
+      fetch(dataUrl('relationships.json')),
+      fetch(dataUrl('knowledge.json'))
     ]);
 
     if (!charRes.ok || !relRes.ok) throw new Error('无法加载数据文件');
@@ -981,7 +1084,6 @@ class HongLouMengApp {
     if (this.activeView === viewName) return;
 
     this._closeCard();
-    this._closeDrawer();
     if (this.isFullscreen && viewName !== 'graph') {
       this._toggleFullscreen(false);
     }
@@ -1015,6 +1117,8 @@ class HongLouMengApp {
       const isActive = tab.dataset.view === viewName;
       tab.classList.toggle('active', isActive);
       tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      // Roving tabindex: Tab 进入标签栏一次，方向键在标签之间移动。
+      tab.tabIndex = isActive ? 0 : -1;
     });
 
     // 更新body上的视图类名，用于CSS布局
@@ -1083,6 +1187,10 @@ class HongLouMengApp {
       return;
     }
 
+    // 手机上非图谱视图改为整页滚动，滚动发生在 .main-container；
+    // 桌面端该容器不滚动，这一步是空操作。
+    reset('.main-container');
+
     if (viewName === 'tree') {
       reset('.tree-outline');
       return;
@@ -1110,7 +1218,7 @@ class HongLouMengApp {
   _updateUrlParams() {
     const params = new URLSearchParams();
     params.set('view', this.activeView);
-    
+
     if (this.currentCharacterId) {
       params.set('char', this.currentCharacterId);
     } else if (this.currentTopic) {
@@ -1118,9 +1226,54 @@ class HongLouMengApp {
     } else if (this.currentStage) {
       params.set('stage', this.currentStage.id);
     }
-    
+
     const newUrl = `${location.pathname}?${params.toString()}`;
-    history.replaceState(null, '', newUrl);
+    if (newUrl === `${location.pathname}${location.search}`) return;
+
+    // 初始化与 popstate 回放期间只替换当前条目，避免把「恢复」也算作一次新的用户导航。
+    // 其余情况写入历史栈，浏览器的前进/后退才能逐步回退视图与人物选择。
+    if (this._suppressHistoryPush) {
+      history.replaceState(null, '', newUrl);
+    } else {
+      history.pushState(null, '', newUrl);
+    }
+  }
+
+  /**
+   * 把地址栏里的 ?view/?char/?topic/?stage 还原成界面状态。
+   * 只在 popstate 时调用；初始化路径由 _init 自己解析一次参数。
+   */
+  _applyStateFromUrl() {
+    const urlParams = new URLSearchParams(location.search);
+    const validViews = ['graph', 'tree', 'list', 'chapter', 'knowledge'];
+    const viewParam = urlParams.get('view');
+    const charParam = urlParams.get('char');
+    const topicParam = urlParams.get('topic');
+    const stageParam = urlParams.get('stage');
+
+    this._suppressHistoryPush = true;
+    try {
+      // 没有 ?view 时按默认图谱处理，否则后退到首条历史记录会停在当前视图不响应。
+      this._switchView(viewParam && validViews.includes(viewParam) ? viewParam : 'graph');
+
+      if (charParam && this.characterMap.has(charParam)) {
+        this._openCharacter(charParam, { focusNeighbors: true, showCard: true, _fromRestore: true });
+      } else if (topicParam) {
+        this._openTopic(topicParam, true);
+      } else if (stageParam) {
+        this._openStage(stageParam, true);
+      } else {
+        this.currentCharacterId = null;
+        this.currentTopic = null;
+        this.currentStage = null;
+        this.currentView = { type: 'overview' };
+        this._closeCard();
+        this._renderGlobalContextBar();
+        this._updateActionStates();
+      }
+    } finally {
+      this._suppressHistoryPush = false;
+    }
   }
 
   _forceCloseOverlays() {
@@ -1332,11 +1485,11 @@ class HongLouMengApp {
   _getFamilyFilterDefinitions() {
     return [
       { key: '贾家', label: '贾家', color: '#C0392B' },
-      { key: '史家', label: '史家', color: '#2980B9' },
-      { key: '王家', label: '王家', color: '#27AE60' },
+      { key: '史家', label: '史家', color: '#4A6B8A' },
+      { key: '王家', label: '王家', color: '#4A7C59' },
       { key: '薛家', label: '薛家', color: '#8E44AD' },
       { key: '林家', label: '林家', color: '#16A085' },
-      { key: '其他', label: '其他人物', color: '#E67E22' }
+      { key: '其他', label: '其他人物', color: '#C49A2A' }
     ];
   }
 
@@ -1491,6 +1644,7 @@ class HongLouMengApp {
   }
 
   _showOverview() {
+    this._closeCard();
     this.currentCharacterId = null;
     this.currentTopic = null;
     this.currentStage = null;
@@ -1550,24 +1704,6 @@ class HongLouMengApp {
     document.body.classList.add(`performance-${normalizedMode}`);
     document.body.classList.toggle('performance-low', lowPerf);
     localStorage.setItem('hlm-performance-mode', normalizedMode);
-  }
-  
-  _resetSearchFilters(event) {
-    this.facetState.query = '';
-    this._updateSearchInputState();
-    if (this.activeView === 'knowledge' && this.knowledgeView) {
-      this.knowledgeView.searchQuery = '';
-      this.knowledgeView.activeCategory = 'all';
-      this.knowledgeView.activeSubcategory = 'all';
-      this.knowledgeView.chapterFilter = 'all';
-      this.knowledgeView.sortBy = 'relevance';
-    }
-    const searchInput = this.els.graphSearchInput || this.els.searchInput;
-    if (searchInput) {
-      searchInput.value = '';
-    }
-    this.graph?.highlightSearch('');
-    this._renderSidebarSearchResults([], '搜索人物、关系、专题或阶段，结果会同时出现在这里。');
   }
   
   _setFont(fontFamily) {
@@ -1636,18 +1772,23 @@ _createFontAndThemeControls() {
 
     // Settings button
     const settingsBtn = document.createElement('button');
+    settingsBtn.type = 'button';
+    settingsBtn.id = 'settings-toggle';
     settingsBtn.className = 'header-settings-btn';
     settingsBtn.innerHTML = '⚙';
     settingsBtn.title = '主题与字体';
     settingsBtn.setAttribute('aria-label', '设置主题与字体');
-    settingsBtn.setAttribute('aria-haspopup', 'true');
+    settingsBtn.setAttribute('aria-haspopup', 'dialog');
     settingsBtn.setAttribute('aria-expanded', 'false');
+    settingsBtn.setAttribute('aria-controls', 'settings-dropdown');
 
     // Dropdown container (positioned relative to header-right)
     headerRight.style.position = 'relative';
     const dropdown = document.createElement('div');
+    dropdown.id = 'settings-dropdown';
     dropdown.className = 'settings-dropdown';
-    dropdown.setAttribute('role', 'menu');
+    dropdown.setAttribute('role', 'dialog');
+    dropdown.setAttribute('aria-label', '主题与字体设置');
 
     // Theme section
     const themeSection = document.createElement('div');
@@ -1666,18 +1807,25 @@ _createFontAndThemeControls() {
     ];
 
     themes.forEach(theme => {
-      const opt = document.createElement('div');
+      const opt = document.createElement('button');
+      opt.type = 'button';
       opt.className = 'settings-theme-option';
       opt.dataset.theme = theme.name;
       opt.title = theme.tooltip;
+      opt.setAttribute('aria-label', `${theme.tooltip}主题`);
+      opt.setAttribute('aria-pressed', String(theme.name === savedTheme));
       opt.style.background = `linear-gradient(135deg, ${theme.colors[0]}, ${theme.colors[1]})`;
       if (theme.name === savedTheme) opt.classList.add('active');
 
       opt.addEventListener('click', (e) => {
         e.stopPropagation();
         this._setTheme(theme.name);
-        themeGrid.querySelectorAll('.settings-theme-option').forEach(o => o.classList.remove('active'));
+        themeGrid.querySelectorAll('.settings-theme-option').forEach(o => {
+          o.classList.remove('active');
+          o.setAttribute('aria-pressed', 'false');
+        });
         opt.classList.add('active');
+        opt.setAttribute('aria-pressed', 'true');
       });
       themeGrid.appendChild(opt);
     });
@@ -1703,14 +1851,20 @@ _createFontAndThemeControls() {
 
     fonts.forEach(font => {
       const opt = document.createElement('button');
+      opt.type = 'button';
       opt.className = 'settings-font-option';
+      opt.setAttribute('aria-pressed', String(font.name === savedFont));
       if (font.name === savedFont) opt.classList.add('active');
       opt.innerHTML = `<span class="font-preview">${font.preview}</span><span class="font-label">${font.label}</span><span class="font-check">✓</span>`;
       opt.addEventListener('click', (e) => {
         e.stopPropagation();
         this._setFont(font.name);
-        fontList.querySelectorAll('.settings-font-option').forEach(o => o.classList.remove('active'));
+        fontList.querySelectorAll('.settings-font-option').forEach(o => {
+          o.classList.remove('active');
+          o.setAttribute('aria-pressed', 'false');
+        });
         opt.classList.add('active');
+        opt.setAttribute('aria-pressed', 'true');
       });
       fontList.appendChild(opt);
     });
@@ -1734,14 +1888,20 @@ _createFontAndThemeControls() {
 
     performanceModes.forEach((mode) => {
       const opt = document.createElement('button');
+      opt.type = 'button';
       opt.className = 'settings-font-option settings-performance-option';
+      opt.setAttribute('aria-pressed', String(mode.name === savedPerformanceMode));
       if (mode.name === savedPerformanceMode) opt.classList.add('active');
       opt.innerHTML = `<span class="font-preview">${mode.preview}</span><span class="font-label">${mode.label}</span><span class="font-check">✓</span>`;
       opt.addEventListener('click', (e) => {
         e.stopPropagation();
         this._setPerformanceMode(mode.name);
-        performanceList.querySelectorAll('.settings-performance-option').forEach((item) => item.classList.remove('active'));
+        performanceList.querySelectorAll('.settings-performance-option').forEach((item) => {
+          item.classList.remove('active');
+          item.setAttribute('aria-pressed', 'false');
+        });
         opt.classList.add('active');
+        opt.setAttribute('aria-pressed', 'true');
       });
       performanceList.appendChild(opt);
     });
@@ -1749,23 +1909,75 @@ _createFontAndThemeControls() {
     performanceSection.appendChild(performanceTitle);
     performanceSection.appendChild(performanceList);
 
+    const settingsFocusables = () => Array.from(dropdown.querySelectorAll(
+      'button:not([disabled]), [href], select, input, textarea, [tabindex]:not([tabindex="-1"])'
+    )).filter((el) => el.getClientRects().length > 0);
+
+    const setSettingsOpen = (open, { focusToggle = false } = {}) => {
+      dropdown.classList.toggle('active', open);
+      settingsBtn.classList.toggle('is-open', open);
+      settingsBtn.setAttribute('aria-expanded', String(open));
+      if (!open && focusToggle) settingsBtn.focus({ preventScroll: true });
+    };
+
+    const openSettings = () => {
+      setSettingsOpen(true);
+      requestAnimationFrame(() => settingsFocusables()[0]?.focus({ preventScroll: true }));
+    };
+
+    // 键盘快捷键帮助：`?` 是隐藏手势，按项目自己的交互原则必须有可见入口。
+    const helpSection = document.createElement('div');
+    helpSection.className = 'settings-section';
+    const helpButton = document.createElement('button');
+    helpButton.type = 'button';
+    helpButton.className = 'settings-font-option settings-help-option';
+    helpButton.innerHTML = '<span class="font-preview">⌘</span><span class="font-label">键盘快捷键</span><span class="font-check">?</span>';
+    helpButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setSettingsOpen(false);
+      // 帮助弹层关闭后应回到设置按钮，而不是已隐藏的帮助项。
+      settingsBtn.focus({ preventScroll: true });
+      this._showKeyboardHelp();
+    });
+    helpSection.appendChild(helpButton);
+
     dropdown.appendChild(themeSection);
     dropdown.appendChild(fontSection);
     dropdown.appendChild(performanceSection);
+    dropdown.appendChild(helpSection);
 
-    // Toggle
     settingsBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      const isOpen = dropdown.classList.toggle('active');
-      settingsBtn.classList.toggle('is-open', isOpen);
-      settingsBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (dropdown.classList.contains('active')) setSettingsOpen(false);
+      else openSettings();
+    });
+
+    settingsBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        openSettings();
+      }
+    });
+
+    dropdown.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        e.stopPropagation();
+        setSettingsOpen(false, { focusToggle: true });
+      }
+    });
+
+    // 焦点离开面板时收起；不抢焦点，避免 Tab 到页头其他控件时被打断。
+    dropdown.addEventListener('focusout', (e) => {
+      if (!dropdown.classList.contains('active')) return;
+      if (e.relatedTarget && !dropdown.contains(e.relatedTarget) && e.relatedTarget !== settingsBtn) {
+        setSettingsOpen(false);
+      }
     });
 
     document.addEventListener('click', (e) => {
       if (!dropdown.contains(e.target) && e.target !== settingsBtn) {
-        dropdown.classList.remove('active');
-        settingsBtn.classList.remove('is-open');
-        settingsBtn.setAttribute('aria-expanded', 'false');
+        setSettingsOpen(false);
       }
     });
 
@@ -1800,12 +2012,22 @@ _createFontAndThemeControls() {
   }
 
   _showKeyboardHelp() {
+    const existing = document.querySelector('.keyboard-help-modal');
+    if (existing) {
+      this._closeKeyboardHelp();
+      return;
+    }
+
+    this._helpReturnFocus = document.activeElement && typeof document.activeElement.focus === 'function'
+      ? document.activeElement
+      : null;
+
     const helpHtml = `
-      <div class="keyboard-help-modal">
-        <div class="keyboard-help-content">
+      <div class="keyboard-help-modal" role="dialog" aria-modal="true" aria-labelledby="keyboard-help-title">
+        <div class="keyboard-help-content" tabindex="-1">
           <div class="keyboard-help-header">
-            <h3>键盘快捷键</h3>
-            <button class="keyboard-help-close" data-close-help="true">✕</button>
+            <h3 id="keyboard-help-title">键盘快捷键</h3>
+            <button class="keyboard-help-close" data-close-help="true" aria-label="关闭快捷键帮助">✕</button>
           </div>
           <div class="keyboard-help-body">
             <div class="keyboard-help-section">
@@ -1817,28 +2039,49 @@ _createFontAndThemeControls() {
               <div class="keyboard-shortcut"><kbd>5</kbd><span>知识库</span></div>
             </div>
             <div class="keyboard-help-section">
+              <h4>图谱</h4>
+              <div class="keyboard-shortcut"><kbd>单击</kbd><span>查看人物详情</span></div>
+              <div class="keyboard-shortcut"><kbd>双击</kbd><span>聚焦其关系网络</span></div>
+              <div class="keyboard-shortcut"><kbd>Tab</kbd><span>在节点间移动</span></div>
+              <div class="keyboard-shortcut"><kbd>Enter</kbd><span>打开当前节点</span></div>
+            </div>
+            <div class="keyboard-help-section">
               <h4>通用操作</h4>
-              <div class="keyboard-shortcut"><kbd>/</kbd><span>聚焦搜索框</span></div>
-              <div class="keyboard-shortcut"><kbd>Esc</kbd><span>关闭/返回</span></div>
+              <div class="keyboard-shortcut"><kbd>⌘K</kbd><span>聚焦当前视图搜索框</span></div>
+              <div class="keyboard-shortcut"><kbd>/</kbd><span>聚焦当前视图搜索框</span></div>
+              <div class="keyboard-shortcut"><kbd>Esc</kbd><span>逐层关闭弹层</span></div>
               <div class="keyboard-shortcut"><kbd>?</kbd><span>显示此帮助</span></div>
             </div>
           </div>
         </div>
       </div>
     `;
-    
-    const existing = document.querySelector('.keyboard-help-modal');
-    if (existing) {
-      existing.remove();
-      return;
-    }
-    
+
     document.body.insertAdjacentHTML('beforeend', helpHtml);
     const modal = document.querySelector('.keyboard-help-modal');
-    modal.querySelector('.keyboard-help-close').addEventListener('click', () => modal.remove());
+    const close = () => this._closeKeyboardHelp();
+    modal.querySelector('.keyboard-help-close').addEventListener('click', close);
     modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.remove();
+      if (e.target === modal) close();
     });
+    modal.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        e.stopPropagation();
+        close();
+        return;
+      }
+      if (e.key === 'Tab') this._trapTabKey(modal, e);
+    });
+    modal.querySelector('.keyboard-help-content').focus({ preventScroll: true });
+  }
+
+  _closeKeyboardHelp() {
+    const modal = document.querySelector('.keyboard-help-modal');
+    if (!modal) return;
+    modal.remove();
+    const returnTo = this._helpReturnFocus;
+    this._helpReturnFocus = null;
+    if (returnTo && returnTo.isConnected) returnTo.focus({ preventScroll: true });
   }
 
   _randomExplore() {
@@ -1923,9 +2166,7 @@ _createFontAndThemeControls() {
   }
 
   _handleGraphBackgroundClick() {
-    if (this.currentView.type === 'overview' || this.currentView.type === 'fullgraph') {
-      this._closeDrawer();
-    }
+    // 背景点击只清空当前人物选中；卡片由 _closeCard 负责，无需额外关闭抽屉。
     this.currentCharacterId = null;
     this._updateActionStates();
   }
@@ -1950,8 +2191,13 @@ _createFontAndThemeControls() {
       else this.graph.focusOnNode(characterId);
     }
 
-    if (options.showCard !== false && !options._fromRestore) {
+    // _fromRestore 只表示“不要再次写入历史/最近浏览”，不等于“不要恢复卡片”。
+    // 浏览器前进后退和站内返回都是恢复视觉状态，必须重新渲染卡片，否则
+    // currentCharacterId 已切换而 DOM 仍停留在上一个人物。
+    if (options.showCard !== false && (options.showCard === true || !options._fromRestore)) {
       this._showCard(character);
+    } else if (options._fromRestore) {
+      this._closeCard();
     }
     if (this.listView) {
       this.listView.relatedCharacterIds = new Set([characterId]);
@@ -2733,9 +2979,30 @@ _createFontAndThemeControls() {
   }
 
   _toggleSidebar(forceState) {
-    const shouldOpen = forceState === undefined ? !this.els.sidebar.classList.contains('open') : forceState;
+    const wasOpen = this.els.sidebar.classList.contains('open');
+    const shouldOpen = forceState === undefined ? !wasOpen : forceState;
     this.els.sidebar.classList.toggle('open', shouldOpen);
     this.els.sidebarBackdrop.classList.toggle('active', shouldOpen);
+    this.els.sidebarToggle.setAttribute('aria-expanded', String(shouldOpen));
+
+    if (shouldOpen && !wasOpen) {
+      this._sidebarReturnFocus = this.els.sidebarToggle;
+      // 等抽屉开始过渡后再移动焦点，避免浏览器把焦点滚回页面顶部。
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        window.setTimeout(() => {
+          if (!this.els.sidebar.classList.contains('open')) return;
+          this._getFocusableElements(this.els.sidebar)[0]?.focus({ preventScroll: true });
+        }, 60);
+      }
+    } else if (!shouldOpen && wasOpen) {
+      const returnTo = this._sidebarReturnFocus || this.els.sidebarToggle;
+      this._sidebarReturnFocus = null;
+      const active = document.activeElement;
+      // 只在焦点仍在抽屉内/页面上时还原，避免把刚打开的人物卡焦点抢走。
+      if (active && (this.els.sidebar.contains(active) || active === document.body)) {
+        returnTo.focus({ preventScroll: true });
+      }
+    }
   }
 
   _toggleFullscreen(forceState) {
@@ -2804,28 +3071,6 @@ _createFontAndThemeControls() {
     return [...connected];
   }
 
-  _buildPairSummary(left, right) {
-    const directRelations = this._getDirectRelation(left.id, right.id);
-    if (directRelations.length) {
-      return directRelations.map((rel) => `${left.name}与${right.name}之间存在${rel.label}（${rel.description || '关系直接明确'}）。`).join(' ');
-    }
-
-    const mutualConnections = this._getMutualConnections(left.id, right.id);
-    if (mutualConnections.length) {
-      return `${left.name}与${right.name}没有直接连线，但都与${mutualConnections.map((character) => character.name).slice(0, 2).join('、')}等人物有重要联系。`;
-    }
-
-    return `${left.name}与${right.name}在现有关系数据中没有直接关系记录，更适合从家族与章节背景理解他们的联系。`;
-  }
-
-  _openDrawer(html) {
-    // No-op: drawer removed
-  }
-
-  _closeDrawer() {
-    // No-op: drawer removed
-  }
-
   _scheduleScopedTextLayout(scope, rules = []) {
     const service = window.textLayoutService;
     if (!scope || !service || !rules.length) return;
@@ -2871,17 +3116,31 @@ _createFontAndThemeControls() {
   _goBack() {
     if (!this.viewHistory.length) {
       this._showOverview();
+      // 站内返回不是一次新的用户导航：替换当前历史条目，避免 URL 仍指向
+      // 刚关闭的人物，也避免浏览器后退又回到同一个人物。
+      this._suppressHistoryPush = true;
+      try {
+        this._updateUrlParams();
+      } finally {
+        this._suppressHistoryPush = false;
+      }
       return;
     }
 
     const prev = this.viewHistory.pop();
-    this._navigateToView(prev);
+    const wasSuppressed = this._suppressHistoryPush;
+    this._suppressHistoryPush = true;
+    try {
+      this._navigateToView(prev);
+    } finally {
+      this._suppressHistoryPush = wasSuppressed;
+    }
     this._updateBackButton();
   }
 
   _navigateToView(view) {
     if (view.type === 'character') {
-      this._openCharacter(view.characterId, { focusNeighbors: true, _fromRestore: true });
+      this._openCharacter(view.characterId, { focusNeighbors: true, showCard: true, _fromRestore: true });
     } else if (view.type === 'topic') {
       this._openTopic(view.topicId, true);
     } else if (view.type === 'stage') {
@@ -2988,6 +3247,44 @@ _createFontAndThemeControls() {
     });
   }
 
+  /**
+   * 引语分档展示，对应 provenance.policy.displayRules：
+   * - 有 quoteSources 的才标“经典语录”，并附回目与版本；
+   * - 只有待校摘录的标“待校摘录”，明确告知尚未核对；
+   * - 两者都没有则不显示。
+   */
+  _renderQuotesSection(character) {
+    const sources = character.quoteSources || [];
+    // quotes 与 quoteSources 按下标一一对应；没有对应来源的那条属待校，不能算经典语录。
+    const allQuotes = character.quotes || [];
+    const verified = [];
+    const unverified = [];
+    allQuotes.forEach((quote, index) => {
+      if (sources[index]) verified.push({ quote, source: sources[index] });
+      else unverified.push(quote);
+    });
+    unverified.push(...(character.quotesPendingVerified || []));
+
+    if (!verified.length && !unverified.length) return '';
+
+    // locator 本身已带「第N回」前缀，引用里只在缺失时补，避免「第27回 · 第27回…」。
+    const verifiedHtml = verified.slice(0, 2).map(({ quote, source }) => {
+      const rawLocator = String(source.locator || '').trim();
+      const locator = rawLocator.replace(/^第[0-9一二三四五六七八九十百]+回\s*/, '');
+      const parts = [this._escapeHtml(source.edition), `第${source.chapter}回`];
+      if (locator) parts.push(this._escapeHtml(locator));
+      return `<div class="card-quote">${this._escapeHtml(quote)}<span class="card-quote-source">${parts.join(' · ')}</span></div>`;
+    }).join('');
+
+    const pendingHtml = unverified.length
+      ? `<div class="card-section-title card-section-title-sub">待校摘录</div>${unverified.slice(0, 2).map((quote) => `<div class="card-quote card-quote-pending">${this._escapeHtml(quote)}</div>`).join('')}<div class="card-note-hint">尚未在甲戌本／庚辰本中定位，暂不作为经典语录引用</div>`
+      : '';
+
+    return verified.length
+      ? `<div class="card-section"><div class="card-section-title">经典语录</div>${verifiedHtml}${pendingHtml}</div>`
+      : `<div class="card-section">${pendingHtml}</div>`;
+  }
+
   _showCard(character) {
     this.isCardOpen = true;
     document.body.classList.add('card-open');
@@ -3007,16 +3304,19 @@ _createFontAndThemeControls() {
       blood: '血缘', marriage: '婚姻', master_servant: '主仆', romance: '情感', social: '社交', rivalry: '敌对'
     };
 
-    // Build character fate mini-timeline (chapters 1-120)
+    // 出场时间线：120 个格子若都做成可聚焦按钮，键盘要按 120 次才能离开这个区块。
+    // 改为 roving tabindex——整条时间线只占一个 Tab 位，进入后用方向键逐回移动。
     const chapSet = new Set((character.chapters || []).map(c => c.chapter));
     const chapterEntryMap = new Map((character.chapters || []).map((entry) => [entry.chapter, entry]));
+    const firstActiveChapter = (character.chapters || []).map((entry) => Number(entry.chapter)).sort((a, b) => a - b)[0] || 1;
     const fateTimelineCells = Array.from({ length: 120 }, (_, i) => {
       const ch = i + 1;
       const active = chapSet.has(ch);
       const chapterEntry = chapterEntryMap.get(ch);
       const chapterTitle = chapterEntry?.title || `第${ch}回`;
       const chapterSummary = chapterEntry?.summary || '';
-      return `<button type="button" class="card-fate-cell ${active ? 'active' : 'inactive'}" data-chapter="${ch}" data-title="${this._escapeHtmlAttr(chapterTitle)}" data-summary="${this._escapeHtmlAttr(chapterSummary)}" style="${active ? `background:${familyColor}` : ''}" ${active ? '' : 'disabled'} aria-label="${active ? `第${ch}回` : `第${ch}回暂无记录`}"></button>`;
+      const tabIndex = ch === firstActiveChapter ? 0 : -1;
+      return `<button type="button" class="card-fate-cell ${active ? 'active' : 'inactive'}" data-chapter="${ch}" data-title="${this._escapeHtmlAttr(chapterTitle)}" data-summary="${this._escapeHtmlAttr(chapterSummary)}" style="${active ? `background:${familyColor}` : ''}" tabindex="${tabIndex}" aria-label="${active ? `第${ch}回：${this._escapeHtmlAttr(chapterTitle)}` : `第${ch}回暂无记录`}"${active ? '' : ' aria-disabled="true"'}></button>`;
     }).join('');
     const fateSectionHtml = character.chapters?.length ? `
       <div class="card-section">
@@ -3060,7 +3360,7 @@ _createFontAndThemeControls() {
         <div class="card-tab-panel active" data-tab-panel="overview">
           ${character.description ? `<div class="card-section"><div class="card-section-title">人物简介</div><div class="card-description">${character.description}</div></div>` : ''}
           ${character.sourceNote ? `<div class="card-section"><div class="card-section-title">版本说明</div><div class="card-source-note">${character.sourceNote}</div></div>` : ''}
-          ${character.outcomeVersion ? `<div class="card-section"><div class="card-section-title">结局版本</div><div class="card-source-note"><div class="card-version-row"><strong>前八十回</strong><span>${character.outcomeVersion.original || '未注明'}</span></div><div class="card-version-row"><strong>后四十回</strong><span>${character.outcomeVersion.continuation || '未注明'}</span></div></div></div>` : ''}
+          ${character.outcomeVersion ? `<div class="card-section"><div class="card-section-title">结局：两个版本</div><div class="card-source-note"><div class="card-version-row"><strong>前八十回</strong><span>${this._escapeHtml(character.outcomeVersion.original || '未注明')}</span></div><div class="card-version-row"><strong>后四十回（续书）</strong><span>${this._escapeHtml(character.outcomeVersion.continuation || '未注明')}</span></div></div></div>` : ''}
           ${character.personality ? `<div class="card-section"><div class="card-section-title">性格特征</div><div class="card-personality">${character.personality}</div></div>` : ''}
           ${character.keyEvents?.length ? `<div class="card-section"><div class="card-section-title">关键事迹</div><ul class="card-events">${character.keyEvents.map((event) => `<li>${event}</li>`).join('')}</ul></div>` : ''}
           ${character.chapters?.length ? `<div class="card-section"><div class="card-section-title">相关章节</div><div class="card-chapters">${character.chapters.slice(0, 5).map((chapter) => `
@@ -3068,7 +3368,7 @@ _createFontAndThemeControls() {
               <div class="card-chapter-header"><span class="card-chapter-number">第${chapter.chapter}回</span><span class="card-chapter-title">${chapter.title}</span></div>
               <div class="card-chapter-summary">${chapter.summary}</div>
             </div>`).join('')}</div></div>` : ''}
-          ${character.quotes?.length ? `<div class="card-section"><div class="card-section-title">经典语录</div>${character.quotes.slice(0, 2).map((quote) => `<div class="card-quote">${quote}</div>`).join('')}</div>` : ''}
+          ${this._renderQuotesSection(character)}
         </div>
 
         <div class="card-tab-panel" data-tab-panel="relations">
@@ -3163,37 +3463,121 @@ _createFontAndThemeControls() {
       }));
     });
 
-    const fateDetailEl = this.els.cardContent.querySelector('[data-fate-detail]');
-    if (fateDetailEl) {
-      this.els.cardContent.querySelectorAll('.card-fate-cell.active').forEach((cell) => {
-        const renderDetail = () => {
-          const chapter = cell.dataset.chapter || '';
-          const title = cell.dataset.title || '';
-          const summary = cell.dataset.summary || '';
-          const summaryText = summary ? ` · ${summary}` : '';
-          fateDetailEl.textContent = `第${chapter}回 · ${title}${summaryText}`;
-          fateDetailEl.classList.add('visible');
-        };
+    const fateTimelineEl = this.els.cardContent.querySelector('.card-fate-timeline');
+    if (fateTimelineEl) this._bindFateTimeline(fateTimelineEl);
 
-        const resetDetail = () => {
-          fateDetailEl.textContent = '悬停高亮格子查看回目详情';
-        };
+    this._openCardOverlay();
+  }
 
-        cell.addEventListener('mouseenter', renderDetail);
-        cell.addEventListener('focus', renderDetail);
+  /**
+   * 出场时间线的键盘导航：整条时间线一个 Tab 位，左右键逐回移动，
+   * Home/End 跳到首尾。焦点所在格同时更新下方的回目详情。
+   */
+  _bindFateTimeline(container) {
+    const cells = [...container.querySelectorAll('.card-fate-cell')];
+    if (!cells.length) return;
+    const detailEl = this.els.cardContent.querySelector('[data-fate-detail]');
+
+    const showDetail = (cell) => {
+      if (!detailEl) return;
+      const chapter = cell.dataset.chapter || '';
+      const title = cell.dataset.title || '';
+      const summary = cell.dataset.summary || '';
+      detailEl.textContent = `第${chapter}回 · ${title}${summary ? ` · ${summary}` : ''}`;
+      detailEl.classList.add('visible');
+    };
+    const resetDetail = () => {
+      if (detailEl) detailEl.textContent = '悬停或聚焦格子查看回目详情';
+    };
+
+    const focusCell = (index) => {
+      const cell = cells[Math.max(0, Math.min(cells.length - 1, index))];
+      if (!cell) return;
+      cells.forEach((item) => { item.tabIndex = item === cell ? 0 : -1; });
+      cell.focus({ preventScroll: true });
+      showDetail(cell);
+    };
+
+    cells.forEach((cell, index) => {
+      if (cell.classList.contains('active')) {
+        cell.addEventListener('mouseenter', () => showDetail(cell));
         cell.addEventListener('mouseleave', resetDetail);
-        cell.addEventListener('blur', resetDetail);
+      }
+      cell.addEventListener('focus', () => {
+        cells.forEach((item) => { item.tabIndex = item === cell ? 0 : -1; });
+        showDetail(cell);
       });
-    }
+      cell.addEventListener('blur', resetDetail);
+      cell.addEventListener('keydown', (event) => {
+        const step = { ArrowLeft: -1, ArrowRight: 1 }[event.key];
+        if (step) {
+          event.preventDefault();
+          focusCell(index + step);
+        } else if (event.key === 'Home') {
+          event.preventDefault();
+          focusCell(0);
+        } else if (event.key === 'End') {
+          event.preventDefault();
+          focusCell(cells.length - 1);
+        }
+      });
+    });
+  }
 
+  _getFocusableElements(container) {
+    return Array.from(container.querySelectorAll(
+      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )).filter((el) => el.getClientRects().length > 0);
+  }
+
+  /**
+   * 在模态容器内循环 Tab。调用方只应在容器打开时调用。
+   */
+  _trapTabKey(container, event) {
+    const focusables = this._getFocusableElements(container);
+    if (!focusables.length) {
+      event.preventDefault();
+      return;
+    }
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    const current = document.activeElement;
+    const inTabOrder = focusables.includes(current);
+    if (event.shiftKey) {
+      if (!inTabOrder || current === first) {
+        event.preventDefault();
+        last.focus();
+      }
+    } else if (!inTabOrder || current === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
+  /**
+   * 卡片是覆盖在内容之上的模态面板：打开时记住来源焦点并把焦点移进面板，
+   * 关闭时还原。仅移动焦点不做 inert，是因为图谱需要保持可拖拽。
+   */
+  _openCardOverlay() {
+    // 来源可能是 SVG 的 <g>（图谱节点），所以按 Element 判断而不是 HTMLElement，
+    // 否则键盘打开卡片后焦点无法回到原来的节点上。
+    const active = document.activeElement;
+    this._cardReturnFocus = active && active !== document.body && typeof active.focus === 'function' ? active : null;
     this.els.cardOverlay.classList.add('active');
+    this.els.cardOverlay.setAttribute('aria-hidden', 'false');
+    // 焦点先落在面板容器上：读屏会播报 aria-label，且不会跳过标题直接落到关闭按钮。
+    this.els.cardContent?.focus({ preventScroll: true });
   }
 
   _closeCard() {
     this.isCardOpen = false;
     document.body.classList.remove('card-open');
     this.els.cardOverlay.classList.remove('active');
+    this.els.cardOverlay.setAttribute('aria-hidden', 'true');
     this._setHtml(this.els.cardContent, '');
+    const returnTo = this._cardReturnFocus;
+    this._cardReturnFocus = null;
+    if (returnTo && returnTo.isConnected) returnTo.focus({ preventScroll: true });
     // No need to resumeSimulation — panel no longer pauses it
   }
 
@@ -3280,7 +3664,7 @@ _createFontAndThemeControls() {
     `);
 
     this.els.cardContent.querySelector('[data-close-card="true"]').addEventListener('click', () => this._closeCard());
-    this.els.cardOverlay.classList.add('active');
+    this._openCardOverlay();
   }
 
   _setFacetState(nextState = {}, sourceView = 'graph') {
@@ -3464,8 +3848,7 @@ _createFontAndThemeControls() {
     
     // Close any open overlays
     this._closeCard();
-    this._closeDrawer();
-    
+
     // Exit focus mode if active
     if (this.graph && this.graph.focusMode) {
       this.graph.exitFocusMode();
@@ -3501,7 +3884,7 @@ _createFontAndThemeControls() {
       graph: '关系图谱',
       tree: '家族谱系',
       list: '人物名录',
-      chapter: '章节视图',
+      chapter: '回目视图',
       knowledge: '知识库'
     };
     const viewIcons = {
@@ -3566,15 +3949,17 @@ _createFontAndThemeControls() {
       this.els.btnClearContext.classList.toggle('hidden', !hasSelection);
     }
     
-    // Always show context bar
-    this.els.globalContextBar.classList.add('active');
+    // 没有探索上下文时整条隐藏：它只会重复一遍当前激活的视图 Tab，白占 46px 高度。
+    this.els.globalContextBar.classList.toggle('active', Boolean(hasSelection));
 
     // Keep main container offset in sync with context bar actual height.
     if (this.els.body) {
-      this.els.body.classList.add('context-bar-active');
+      this.els.body.classList.toggle('context-bar-active', Boolean(hasSelection));
     }
-    const contextHeight = Math.ceil(this.els.globalContextBar.getBoundingClientRect().height || 0);
-    const resolvedHeight = Math.max(40, contextHeight || 46);
+    const contextHeight = hasSelection
+      ? Math.ceil(this.els.globalContextBar.getBoundingClientRect().height || 0)
+      : 0;
+    const resolvedHeight = hasSelection ? Math.max(40, contextHeight || 46) : 0;
     document.documentElement.style.setProperty('--context-bar-height', `${resolvedHeight}px`);
   }
 
@@ -3721,6 +4106,27 @@ _createFontAndThemeControls() {
       if (e.target === overlay) this._hideDiscovery();
     });
 
+    this.els.discoveryOverlay?.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        e.stopPropagation();
+        this._hideDiscovery();
+        return;
+      }
+      if (e.key !== 'Tab' || !this.isDiscoveryOpen) return;
+      const focusables = this._getDiscoveryFocusables();
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && (document.activeElement === first || !this.els.discoveryOverlay.contains(document.activeElement))) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+
     // Show on first visit (no prior state)
     const hasVisited = localStorage.getItem('hlm-discovery-shown');
     const hasUrlState = new URLSearchParams(location.search).has('char') ||
@@ -3735,14 +4141,13 @@ _createFontAndThemeControls() {
     const container = this.els.discoveryCards;
     if (!container) return;
     const jinchais = this._getTwelveJinchais();
-    const familyColors = this.graph ? {
-      '贾家': '#C0392B', '史家': '#2980B9', '王家': '#27AE60',
-      '薛家': '#8E44AD', '林家': '#16A085', '其他': '#E67E22'
-    } : {};
+    const familyColors = this.graph ? this.graph.familyColors : {};
+    const colorFor = (family) => familyColors[family] || familyColors['其他'] || '#C49A2A';
 
     container.innerHTML = jinchais.map(({ character, rank }) => {
-      const color = familyColors[character.family] || '#E67E22';
-      const identity = (character.identity || '').slice(0, 16);
+      const color = colorFor(character.family);
+      // 交给 CSS 两行截断（带省略号），字符串硬切会在句中留下无提示的断口。
+      const identity = character.identity || '';
       return `
         <button class="discovery-char-card" data-char-id="${character.id}" aria-label="探索人物：${character.name}">
           <div class="discovery-char-avatar" style="background:${color}">${character.name.charAt(0)}</div>
@@ -3774,19 +4179,46 @@ _createFontAndThemeControls() {
     return importantChars[dayNum % importantChars.length];
   }
 
+  _getDiscoveryFocusables() {
+    const overlay = this.els.discoveryOverlay;
+    if (!overlay) return [];
+    return Array.from(overlay.querySelectorAll(
+      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )).filter((el) => el.getClientRects().length > 0);
+  }
+
   _showDiscovery() {
     if (!this.els.discoveryOverlay) return;
+    // 移动端侧边栏是抽屉层；发现面板打开前先收起，避免两个遮罩层叠在一起。
+    this._toggleSidebar(false);
+    if (!this.isDiscoveryOpen) {
+      const active = document.activeElement;
+      this._discoveryReturnFocus = active && active !== document.body && !this.els.discoveryOverlay.contains(active)
+        ? active
+        : null;
+    }
     this.isDiscoveryOpen = true;
     this.els.discoveryOverlay.classList.add('active');
-    this.els.discoveryOverlay.querySelector('.discovery-skip-btn')?.focus();
+    this.els.discoveryOverlay.setAttribute('aria-hidden', 'false');
+    this.els.discoveryOverlay.querySelector('.discovery-skip-btn')?.focus({ preventScroll: true });
     // Mark as shown so it doesn't auto-show again
     try { localStorage.setItem('hlm-discovery-shown', '1'); } catch (e) { /* ignore */ }
   }
 
   _hideDiscovery() {
     if (!this.els.discoveryOverlay) return;
+    const wasOpen = this.isDiscoveryOpen;
     this.isDiscoveryOpen = false;
     this.els.discoveryOverlay.classList.remove('active');
+    this.els.discoveryOverlay.setAttribute('aria-hidden', 'true');
+    if (!wasOpen) return;
+    const returnTo = this._discoveryReturnFocus;
+    this._discoveryReturnFocus = null;
+    if (returnTo && returnTo.isConnected) {
+      returnTo.focus({ preventScroll: true });
+      return;
+    }
+    document.querySelector('.view-nav-tab.active')?.focus({ preventScroll: true });
   }
 
   // ────────────────────────────────────────────────────────────────────────────
@@ -3879,6 +4311,23 @@ _createFontAndThemeControls() {
       <div class="loading-title">加载失败</div>
       <div class="loading-subtitle">${message}</div>
     `);
+  }
+
+  /**
+   * 聚焦当前视图自己的搜索框。每个视图各有独立输入框，快捷键必须按视图分发，
+   * 否则隐藏容器里的 input 拿到 focus 也不会出现光标。
+   */
+  _focusActiveViewSearch() {
+    const panel = document.querySelector('.view-panel.active');
+    const candidates = panel
+      ? [...panel.querySelectorAll('input[type="search"], input[type="text"], .knowledge-search-input, .list-search-input, .tree-search-input, .chapter-search-input')]
+      : [];
+    const input = candidates.find((el) => el.getBoundingClientRect().width > 0)
+      || this.els.graphSearchInput
+      || null;
+    if (!input) return;
+    input.focus({ preventScroll: true });
+    input.select?.();
   }
 }
 

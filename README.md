@@ -6,12 +6,13 @@
 
 ### 主要特性
 
-- **丰富的人物数据**：收录 60+ 核心人物，涵盖四大家族、丫鬟仆人、僧道皇室等
-- **多维度关系**：支持血缘、婚姻、主仆、情感、社交等多种关系类型
-- **力导向图谱**：基于 D3.js 的交互式力导向图，支持拖拽、缩放
-- **人物信息卡片**：点击人物查看详细信息，包括别名、身份、性格、事迹、语录等
-- **搜索与筛选**：支持按姓名搜索、按家族/关系类型筛选
+- **丰富的人物数据**：收录 111 位人物、151 条关系、515 条知识条目（判词、诗词、回目、生僻字、器物、建筑等）
+- **多维度关系**：支持血缘、婚姻、主仆、情感、社交、敌对六类关系
+- **力导向图谱**：基于 D3.js 的交互式力导向图，支持拖拽、缩放、按章回时间轴回放
+- **人物信息卡片**：点击人物查看详细信息，包括别名、身份、性格、事迹、语录、命运线等
+- **搜索与筛选**：每个视图各有独立检索框，`Cmd/Ctrl+K` 或 `/` 直接聚焦当前视图搜索
 - **聚焦模式**：双击人物可聚焦查看其直接关系网络
+- **五个视图**：关系图谱、家族谱系、人物名录、回目视图、知识库
 - **中国古典美学**：红木色调、水墨元素、古典字体
 - **响应式设计**：兼容桌面端和移动端
 
@@ -26,17 +27,34 @@
 
 ```
 honglou-graph/
-├── index.html          # 主页面
+├── index.html            # 主页面（五视图 + 弹层 + 脚本加载顺序）
 ├── css/
-│   └── style.css       # 样式文件（古典美学风格）
+│   ├── fonts.css         # @font-face，指向 assets/fonts/subset/*.woff2
+│   └── style.css         # 全局样式（古典美学风格）
 ├── js/
-│   ├── app.js          # 主应用逻辑（搜索、筛选、UI控制）
-│   └── graph.js        # D3.js 图谱可视化核心代码
+│   ├── app.js            # 主应用：路由、搜索、侧边栏、人物卡、专题/阶段
+│   ├── graph.js          # RelationshipGraph：D3 力导向图、聚焦、缩放、时间轴
+│   ├── tree-view.js      # TreeView：家族谱系
+│   ├── list-view.js      # ListView：人物名录
+│   ├── chapter-view.js   # ChapterView：回目视图
+│   ├── knowledge-view.js # KnowledgeView：知识库检索
+│   ├── facet-store.js    # FacetStore：跨视图状态
+│   ├── text-layout.js    # 文本排版（vendor/pretext）
+│   ├── audio-preload-cache.js / edge-tts.js  # 朗读
+│   └── fuse.min.mjs      # 本地化的模糊检索库
 ├── data/
-│   ├── characters.json # 人物数据（姓名、别名、身份、事迹等）
-│   └── relationships.json # 关系数据（血缘、婚姻、主仆等）
-├── assets/             # 静态资源目录
-└── README.md           # 项目说明
+│   ├── characters.json   # 人物数据
+│   ├── relationships.json # 关系数据
+│   ├── knowledge.json    # 知识条目
+│   └── provenance.json   # 来源与审计队列（校验脚本依赖）
+├── scripts/
+│   ├── validate-data.mjs        # 数据校验
+│   ├── stamp-assets.mjs         # 资源版本号（内容哈希）
+│   ├── sync-chapter-titles.mjs  # 回目标题同步校验
+│   ├── check-audio.mjs          # 预生成语音与文案一致性校验
+│   └── subset-fonts.py          # 字体子集化（TTF → WOFF2）
+├── assets/fonts/         # 完整 TTF（源文件）与 subset/（实际加载的 WOFF2）
+└── audio/                # 朗读音频
 ```
 
 ## 本地运行
@@ -56,19 +74,33 @@ python3 -m http.server 8080
 npx serve .
 ```
 
-### 方法三：使用 VS Code Live Server
-
-安装 VS Code 的 Live Server 扩展，右键 `index.html` 选择 "Open with Live Server"。
-
 > **注意**：由于使用了 `fetch` 加载 JSON 数据，直接双击打开 HTML 文件会遇到跨域限制，必须通过 HTTP 服务器访问。
 
-## 部署到 GitHub Pages
+## 常用脚本
 
-1. 创建 GitHub 仓库
-2. 将所有文件推送到 `main` 分支
-3. 进入仓库 Settings → Pages
-4. Source 选择 `main` 分支，目录选择 `/ (root)`
-5. 保存后等待部署完成，即可通过 `https://<username>.github.io/<repo>/` 访问
+```bash
+npm run validate:data   # 校验人物/关系/知识的结构与来源范围
+npm run stamp           # 改动 js/css 后刷新 index.html 的资源版本号（内容哈希）
+npm run check:assets    # 校验资源版本号是否与内容一致
+npm run check:chapters  # 校验人物回目与 knowledge.json 的章回标题一致
+npm run check:audio     # 校验预生成语音是否存在、文案是否已过期
+npm run subset:fonts    # 数据或文案新增字符后重建 WOFF2 子集（需 fonttools + brotli）
+```
+
+`subset:fonts` 调用项目内的 `.venv/bin/python`，首次使用时先建环境：
+
+```bash
+python3 -m venv .venv
+.venv/bin/pip install fonttools brotli
+```
+
+## 部署到 Cloudflare Pages
+
+`wrangler.jsonc` 已配置 `assets.directory: "."`，推送到 `main` 分支即自动部署静态资源，无需构建步骤。
+
+> 修改 `js/` 或 `css/` 后务必运行 `npm run stamp`：版本号是内容哈希，缓存靠它失效。
+
+> 修改 `knowledge.json` 的 `content` 后运行 `npm run check:audio`。清单里的 `textHash` 对应生成音频时的文案，不一致的条目会回退实时 TTS，并需要重新生成语音。
 
 ## 数据模型
 
@@ -107,12 +139,12 @@ npx serve .
 
 | 类型 | 英文标识 | 连线颜色 | 说明 |
 |------|----------|----------|------|
-| 血缘 | blood | #4A90D9 蓝色 | 父子、母女、兄弟姐妹等 |
-| 婚姻 | marriage | #E74C3C 红色 | 夫妻、通房、妾室等 |
-| 主仆 | master_servant | #95A5A6 灰色 | 主人与丫鬟/仆人 |
-| 情感 | romance | #E91E8C 粉色 | 恋人、暧昧、情愫 |
-| 社交 | social | #F39C12 橙色 | 朋友、同窗、结拜等 |
-| 敌对 | rivalry | #8E44AD 紫色 | 对手、仇敌、冲突 |
+| 血缘 | blood | #4A6B8A 蓝灰 | 父子、母女、兄弟姐妹、祖孙等 |
+| 婚姻 | marriage | #B83232 红 | 夫妻、通房、妾室等 |
+| 主仆 | master_servant | #95A5A6 灰 | 主人与丫鬟/仆人 |
+| 情感 | romance | #C75B6E 粉红（虚线） | 恋人、暧昧、情愫 |
+| 社交 | social | #C49A2A 赭黄（虚线） | 朋友、同窗、结拜等 |
+| 敌对 | rivalry | #8E44AD 紫（点线） | 对手、仇敌、冲突 |
 
 ## 交互说明
 
@@ -120,16 +152,20 @@ npx serve .
 - **缩放画布**：鼠标滚轮或触摸板双指缩放
 - **查看详情**：单击人物节点弹出信息卡片
 - **聚焦模式**：双击人物节点进入聚焦模式，仅显示相关人物
-- **搜索人物**：在搜索框输入姓名或别名快速定位
+- **搜索**：`Cmd/Ctrl+K` 或 `/` 聚焦当前视图的搜索框，输入姓名、别名、回目或知识关键词
 - **筛选关系**：使用侧边栏按家族或关系类型筛选显示
-- **全图模式**：点击"全图模式"按钮恢复显示所有人物
+- **显示全部**：点击"显示全部"按钮恢复所有人物关系网
+- **键盘**：`1`–`5` 切换视图，`Esc` 逐层关闭弹层，`?` 查看快捷键
 
 ## 浏览器兼容性
 
-- Chrome 80+
-- Firefox 75+
-- Safari 13+
-- Edge 80+
+- Chrome 90+
+- Edge 90+
+- Firefox 90+
+- Safari 15+
+
+> 代码使用 `replaceChildren`、`ResizeObserver`、`?.`/`??`、动态 `import()` 与顶层 `await`（模块脚本），
+> Safari 13/14 不支持 `replaceChildren`，不足以运行本项目。
 
 ## 许可证
 

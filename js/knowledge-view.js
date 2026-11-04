@@ -146,6 +146,27 @@ class KnowledgeView {
     this.characters.forEach((character) => this.characterMap.set(character.id, character));
     this._buildIndexes();
     this._buildFuseIndex();
+    this._awaitFuseModule();
+  }
+
+  /**
+   * fuse.js 现在是本地 ESM，由 index.html 的模块脚本异步加载到 window.Fuse。
+   * 如果 setData 时它还没就绪，等加载完成后补建索引并刷新当前结果。
+   */
+  _awaitFuseModule() {
+    if (this.fuse || typeof Fuse !== 'undefined') return;
+    const started = Date.now();
+    const retry = () => {
+      if (typeof Fuse !== 'undefined') {
+        this._buildFuseIndex();
+        this._invalidateFilterCache();
+        this._updateContent();
+        return;
+      }
+      if (Date.now() - started > 5000) return;
+      window.setTimeout(retry, 50);
+    };
+    window.setTimeout(retry, 50);
   }
 
   setFacetContext(facetState = {}) {
@@ -222,50 +243,57 @@ class KnowledgeView {
               </div>
             </div>
 
-            <div class="knowledge-sidebar-section">
-              <div class="knowledge-sidebar-title">细分主题</div>
-              <div class="knowledge-chip-group">
-                <button class="knowledge-chip ${this.activeSubcategory === 'all' ? 'active' : ''}" data-subcategory="all">全部主题</button>
-                ${subcategories.map((subcategory) => `
-                  <button class="knowledge-chip ${this.activeSubcategory === subcategory ? 'active' : ''}" data-subcategory="${subcategory}">${subcategory}</button>
-                `).join('')}
+            <button type="button" class="knowledge-more-toggle" data-action="toggle-more-filters" aria-expanded="false" aria-controls="knowledge-secondary-filters">
+              <span class="knowledge-more-label">更多筛选</span>
+              <span class="knowledge-more-icon" aria-hidden="true">▾</span>
+            </button>
+
+            <div class="knowledge-secondary-filters" id="knowledge-secondary-filters">
+              <div class="knowledge-sidebar-section">
+                <div class="knowledge-sidebar-title">细分主题</div>
+                <div class="knowledge-chip-group">
+                  <button class="knowledge-chip ${this.activeSubcategory === 'all' ? 'active' : ''}" data-subcategory="all">全部主题</button>
+                  ${subcategories.map((subcategory) => `
+                    <button class="knowledge-chip ${this.activeSubcategory === subcategory ? 'active' : ''}" data-subcategory="${subcategory}">${subcategory}</button>
+                  `).join('')}
+                </div>
               </div>
-            </div>
 
-            <div class="knowledge-sidebar-section">
-              <div class="knowledge-sidebar-title">章节范围</div>
-              <select id="knowledge-chapter-filter" name="knowledge-chapter-filter" class="knowledge-select" data-filter="chapter">
-                <option value="all">全部回目</option>
-                ${chapterOptions.map((chapter) => `
-                  <option value="${chapter}" ${String(this.chapterFilter) === String(chapter) ? 'selected' : ''}>第${chapter}回</option>
-                `).join('')}
-              </select>
-            </div>
+              <div class="knowledge-sidebar-section">
+                <div class="knowledge-sidebar-title">章节范围</div>
+                <select id="knowledge-chapter-filter" name="knowledge-chapter-filter" class="knowledge-select" data-filter="chapter" aria-label="章节范围">
+                  <option value="all">全部回目</option>
+                  ${chapterOptions.map((chapter) => `
+                    <option value="${chapter}" ${String(this.chapterFilter) === String(chapter) ? 'selected' : ''}>第${chapter}回</option>
+                  `).join('')}
+                </select>
+              </div>
 
-            <div class="knowledge-sidebar-section">
-              <div class="knowledge-sidebar-title">排序方式</div>
-              <select id="knowledge-sort-filter" name="knowledge-sort-filter" class="knowledge-select" data-filter="sort">
-                <option value="relevance" ${this.sortBy === 'relevance' ? 'selected' : ''}>按相关度</option>
-                <option value="chapter" ${this.sortBy === 'chapter' ? 'selected' : ''}>按回目</option>
-                <option value="category" ${this.sortBy === 'category' ? 'selected' : ''}>按类别</option>
-                <option value="title" ${this.sortBy === 'title' ? 'selected' : ''}>按标题</option>
-              </select>
-            </div>
+              <div class="knowledge-sidebar-section">
+                <div class="knowledge-sidebar-title">排序方式</div>
+                <select id="knowledge-sort-filter" name="knowledge-sort-filter" class="knowledge-select" data-filter="sort" aria-label="排序方式">
+                  <option value="relevance" ${this.sortBy === 'relevance' ? 'selected' : ''}>按相关度</option>
+                  <option value="chapter" ${this.sortBy === 'chapter' ? 'selected' : ''}>按回目</option>
+                  <option value="category" ${this.sortBy === 'category' ? 'selected' : ''}>按类别</option>
+                  <option value="title" ${this.sortBy === 'title' ? 'selected' : ''}>按标题</option>
+                </select>
+              </div>
 
-            <div class="knowledge-sidebar-section">
-              <div class="knowledge-sidebar-title">语音引擎</div>
-              <select id="knowledge-voice-filter" name="knowledge-voice-filter" class="knowledge-select" data-filter="voice">
-                <option value="mimo_白桦" selected>白桦（男声·沉稳）</option>
-                <option value="mimo_苏打">苏打（男声·清朗）</option>
-                <option value="mimo_茉莉">茉莉（女声·知性）</option>
-              </select>
-              <div id="knowledge-voice-status" class="knowledge-voice-status" style="font-size:11px;color:#999;margin-top:4px;">加载中…</div>
-            </div>
+              <div class="knowledge-sidebar-section">
+                <div class="knowledge-sidebar-title">语音引擎</div>
+                <select id="knowledge-voice-filter" name="knowledge-voice-filter" class="knowledge-select" data-filter="voice" aria-label="语音引擎">
+                  <option value="mimo_白桦" selected>白桦（男声·沉稳）</option>
+                  <option value="mimo_苏打">苏打（男声·清朗）</option>
+                  <option value="mimo_茉莉">茉莉（女声·知性）</option>
+                </select>
+                <div id="knowledge-voice-status" class="knowledge-voice-status" style="font-size:11px;color:var(--color-ink-light);margin-top:4px;">音频清单加载中…</div>
+              </div>
 
-            <div class="knowledge-sidebar-section">
-              <div class="knowledge-sidebar-title">高频标签</div>
-              <div class="knowledge-chip-group">
-                ${hotTags.map((tag) => `<button class="knowledge-chip" data-tag="${tag.name}">${tag.name}<span>${tag.count}</span></button>`).join('') || '<span class="knowledge-muted">暂无高频标签</span>'}
+              <div class="knowledge-sidebar-section">
+                <div class="knowledge-sidebar-title">高频标签</div>
+                <div class="knowledge-chip-group">
+                  ${hotTags.map((tag) => `<button class="knowledge-chip" data-tag="${tag.name}">${tag.name}<span>${tag.count}</span></button>`).join('') || '<span class="knowledge-muted">暂无高频标签</span>'}
+                </div>
               </div>
             </div>
           </aside>
@@ -297,7 +325,24 @@ class KnowledgeView {
     this._initResizeHandle();
     this._observeLayoutResize();
     this._scheduleTextLayoutPass();
-    this._loadVoiceEngines();
+    this._bindLazyVoiceEngines();
+  }
+
+  /**
+   * 音频清单 317 KB，只有真正要播放语音时才需要。
+   * 先绑定一次交互（鼠标进入 / 聚焦 / 改选项），避免每个进入知识库的用户都白下载。
+   */
+  _bindLazyVoiceEngines() {
+    const selectEl = this.container.querySelector('#knowledge-voice-filter');
+    if (!selectEl || selectEl.dataset.lazyVoiceBound === '1') return;
+    selectEl.dataset.lazyVoiceBound = '1';
+    const trigger = () => {
+      selectEl.removeEventListener('pointerenter', trigger);
+      selectEl.removeEventListener('focus', trigger);
+      this._loadVoiceEngines();
+    };
+    selectEl.addEventListener('pointerenter', trigger);
+    selectEl.addEventListener('focus', trigger);
   }
 
   _updateContent(options = {}) {
@@ -307,6 +352,8 @@ class KnowledgeView {
 
     if (!contentEl) return;
 
+    // 本地 fuse 模块可能晚于首个 render 就绪，这时补建索引再算相关度。
+    if (!this.fuse && typeof Fuse !== 'undefined') this._buildFuseIndex();
     this._clearDeferredRender();
     this._clearKeyboardNavState();
 
@@ -326,6 +373,13 @@ class KnowledgeView {
     if (scrollToTop) this._scrollToTop();
     this._observeLayoutResize();
     this._scheduleTextLayoutPass(true);
+  }
+
+  _syncFilterControls() {
+    const chapterSelect = this.container.querySelector('[data-filter="chapter"]');
+    if (chapterSelect) chapterSelect.value = this.chapterFilter;
+    const sortSelect = this.container.querySelector('[data-filter="sort"]');
+    if (sortSelect) sortSelect.value = this.sortBy;
   }
 
   _updateCategoryActiveState() {
@@ -534,18 +588,20 @@ class KnowledgeView {
     const relatedCharacters = (item.relatedCharacters || [])
       .map((id) => this.characterMap.get(id))
       .filter(Boolean);
-    const expanded = true;
+    // 默认展开（符合“边读边查”的主场景），点击标题可折叠；折叠状态记在 expandedIds 里，
+    // 重新筛选/渲染后仍然保持，不会突然全部弹开。
+    const expanded = !this.expandedIds.has(item.id);
     const relatedCharacterLimit = this._isLowPerformanceMode() ? 3 : 4;
     const displayContent = item.content || '';
 
     return `
       <article class="knowledge-card ${expanded ? 'expanded' : ''}" data-id="${item.id}">
-        <div class="knowledge-card-header">
-          <span class="knowledge-card-icon" style="background:${categoryConfig.color}15;color:${categoryConfig.color}">${categoryConfig.icon}</span>
+        <div class="knowledge-card-header" role="button" tabindex="0" aria-expanded="${expanded ? 'true' : 'false'}" title="${expanded ? '点击收起' : '点击展开'}">
+          <span class="knowledge-card-icon" aria-hidden="true" style="background:${categoryConfig.color}15;color:${categoryConfig.color}">${categoryConfig.icon}</span>
           <div class="knowledge-card-title-group">
             <div class="knowledge-card-title">${this._highlightText(item.title || '')}</div>
             <div class="knowledge-card-meta">
-              <span class="knowledge-card-category" style="color:${categoryConfig.color}">${item.category || '其他'}</span>
+              <span class="knowledge-card-category" style="color:${HLMUtils.darkenForText(categoryConfig.color)}">${item.category || '其他'}</span>
               ${item.subcategory ? `<span class="knowledge-card-subcategory">${item.subcategory}</span>` : ''}
               ${item.chapter ? `<span class="knowledge-card-chapter">第${item.chapter}回</span>` : ''}
             </div>
@@ -555,6 +611,8 @@ class KnowledgeView {
         <div class="knowledge-card-content">${this._highlightText(displayContent || '')}</div>
 
         ${item.versionNote ? `<div class="knowledge-card-version">${this._highlightText(item.versionNote)}</div>` : ''}
+
+        ${(item.titleVariants || []).length ? `<div class="knowledge-card-version knowledge-card-variants">${item.titleVariants.map((variant) => `<div class="knowledge-variant-row"><strong>${this._escapeHtml(variant.edition)}</strong><span>${this._escapeHtml(variant.title)}</span></div>`).join('')}</div>` : ''}
 
         ${item.analysis ? `<div class="knowledge-card-analysis ${expanded ? 'visible' : ''}">${this._highlightText(item.analysis)}</div>` : ''}
         ${item.notes ? `<div class="knowledge-card-analysis note-box ${expanded ? 'visible' : ''}">${this._highlightText(item.notes)}</div>` : ''}
@@ -594,6 +652,17 @@ class KnowledgeView {
     `;
   }
 
+  /**
+   * 切换单张卡片的展开状态，返回切换后是否展开。
+   * expandedIds 存的是「被折叠」的 id，因为默认是展开的。
+   */
+  _toggleCardExpanded(cardId) {
+    const collapsed = this.expandedIds.has(cardId);
+    if (collapsed) this.expandedIds.delete(cardId);
+    else this.expandedIds.add(cardId);
+    return collapsed;
+  }
+
   _canSpeak(text) {
     return (typeof window.edgeTTS !== 'undefined' || typeof speechSynthesis !== 'undefined') && text && text.trim().length > 0;
   }
@@ -627,6 +696,21 @@ class KnowledgeView {
     }
 
     this.container.addEventListener('click', (event) => {
+      // 卡片标题栏负责展开/收起：内容默认展开，点击后只隐藏正文与分析，
+      // 保留标题行与人物标签，便于在长列表里一屏扫过更多条目。
+      const cardHeader = event.target.closest('.knowledge-card-header');
+      if (cardHeader) {
+        const card = cardHeader.closest('.knowledge-card');
+        const cardId = card?.dataset.id;
+        if (cardId) {
+          const nowExpanded = this._toggleCardExpanded(cardId);
+          card.classList.toggle('expanded', nowExpanded);
+          cardHeader.setAttribute('aria-expanded', String(nowExpanded));
+          cardHeader.title = nowExpanded ? '点击收起' : '点击展开';
+        }
+        return;
+      }
+
       const categoryButton = event.target.closest('[data-cat]');
       if (categoryButton) {
         this.activeCategory = categoryButton.dataset.cat;
@@ -649,7 +733,16 @@ class KnowledgeView {
       const tagButton = event.target.closest('[data-tag]');
       if (tagButton) {
         const tagValue = tagButton.dataset.tag || '';
+        if (!tagValue) return;
         this.searchQuery = tagValue;
+        // 侧栏热门标签是全局统计（数字即全局条目数），点进后保留类别/回目
+        // 筛选会出现「点了 73 条却显示 0 条」的矛盾，因此一并清空。
+        if (tagButton.classList.contains('knowledge-chip')) {
+          this.activeCategory = 'all';
+          this.activeSubcategory = 'all';
+          this.chapterFilter = 'all';
+          this._syncFilterControls();
+        }
         this._invalidateFilterCache();
         const input = this.container.querySelector('.knowledge-search-input');
         if (input) input.value = tagValue;
@@ -685,6 +778,14 @@ class KnowledgeView {
         this._loadMore();
         return;
       }
+      if (actionButton.dataset.action === 'toggle-more-filters') {
+        const panel = this.container.querySelector('#knowledge-secondary-filters');
+        const open = panel ? panel.classList.toggle('is-open') : false;
+        actionButton.setAttribute('aria-expanded', String(open));
+        const label = actionButton.querySelector('.knowledge-more-label');
+        if (label) label.textContent = open ? '收起筛选' : '更多筛选';
+        return;
+      }
       if (actionButton.dataset.action === 'clear-filters') {
         this.activeCategory = 'all';
         this.activeSubcategory = 'all';
@@ -694,7 +795,8 @@ class KnowledgeView {
         this._invalidateFilterCache();
         const input = this.container.querySelector('.knowledge-search-input');
         if (input) input.value = '';
-        this._updateContent();
+        this._syncFilterControls();
+        this._updateContent({ scrollToTop: false });
         this._scrollToTop();
       }
     });
@@ -714,7 +816,20 @@ class KnowledgeView {
     });
 
     this.container.addEventListener('keydown', (event) => {
-      if (event.target.closest('.knowledge-search-input')) return;
+      if (event.defaultPrevented) return;
+      const target = event.target;
+      if (target.closest('.knowledge-search-input')) return;
+      // 标题栏是 role=button，键盘需能展开/收起；Arrow 导航只处理其余位置。
+      if (target.classList.contains('knowledge-card-header')
+          && (event.key === 'Enter' || event.key === ' ')) {
+        event.preventDefault();
+        target.click();
+        return;
+      }
+      // 只接管条目网格内部的浏览键。筛选按钮、下拉框、标签和卡片内按钮
+      // 必须保留原生键盘行为，否则 Enter/方向键会被这里的“卡片导航”吞掉。
+      if (!target.closest('#knowledge-items-content')) return;
+      if (target.closest('button, a, input, select, textarea, [contenteditable="true"]')) return;
       this._handleKeyboardNavigation(event);
     });
   }
@@ -836,15 +951,19 @@ class KnowledgeView {
 
   _scrollToTop() {
     const main = this.container.querySelector('.knowledge-main');
-    if (main) {
+    if (!main) return;
+    if (main.scrollHeight > main.clientHeight + 1) {
       main.scrollTo({ top: 0, behavior: 'instant' });
+      const sidebar = this.container.querySelector('.knowledge-sidebar');
+      if (sidebar) {
+        sidebar.scrollTo({ top: 0, behavior: 'instant' });
+      }
+      return;
     }
-
-    const sidebar = this.container.querySelector('.knowledge-sidebar');
-    if (sidebar) {
-      sidebar.scrollTo({ top: 0, behavior: 'instant' });
-    }
+    // 手机端条目区不单独滚动，跳到结果列表顶部
+    HLMUtils.scrollElementIntoViewTop(main);
   }
+
 
   navigateToFirstMatch() {
     const firstMatch = this._getFilteredItems()[0];
@@ -992,7 +1111,8 @@ class KnowledgeView {
     // 优先尝试预生成音频（毫秒级响应）
     if (speakId && window.__audioPreloadCache) {
       try {
-        await window.__audioPreloadCache.play(speakId, speakText);
+        // 传完整文案做指纹校验；回退 TTS 仍用截断后的 speakText。
+        await window.__audioPreloadCache.play(speakId, text);
         // 播放成功，正常结束
         if (this._currentSpeakButton === button) {
           this._currentSpeakButton = null;
@@ -1001,7 +1121,7 @@ class KnowledgeView {
         return;
       } catch (e) {
         // cache_miss 或 audio_load_error → 继续走到 edgeTTS 回退
-        if (e.message !== 'cache_miss' && e.message !== 'audio_load_error') {
+        if (e.message !== 'cache_miss' && e.message !== 'audio_load_error' && e.message !== 'stale_text') {
           console.warn('[KnowledgeView] AudioPreloadCache error:', e.message);
         }
       }
@@ -1034,6 +1154,7 @@ class KnowledgeView {
       const label = this._getEngineLabel(engine);
       statusEl.textContent = `当前：${label}`;
     }
+    this._loadVoiceEngines();
   }
 
   /**

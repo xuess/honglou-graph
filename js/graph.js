@@ -80,6 +80,7 @@ class RelationshipGraph {
     this.onNodeClick = null;
     this.onNodeDblClick = null;
     this.onBackgroundClick = null;
+    this._lastNodeClick = null;
 
     this._init();
   }
@@ -94,7 +95,7 @@ _init() {
       .attr('width', '100%')
       .attr('height', '100%')
       .attr('viewBox', `0 0 ${this.width} ${this.height}`)
-      .attr('role', 'img')
+      .attr('role', 'group')
       .attr('aria-label', '红楼梦人物关系图谱');
 
     const defs = this.svg.append('defs');
@@ -319,15 +320,24 @@ _init() {
             .attr('dy', d => d.radius + 15)
             .text(d => d.character.name);
 
-          group.on('click', (event, d) => {
+          // d3.drag 在 pointerdown 上 preventDefault，浏览器因此不会合成 dblclick，且 click 的 detail
+          // 始终为 1。这里自行判定双击，并把单击延后一个双击窗口再执行，避免双击先弹出人物卡。
+          group
+          .on('click', (event, d) => {
             event.stopPropagation();
-            this._selectNode(d);
-            if (this.onNodeClick) this.onNodeClick(d.character);
-          })
-          .on('dblclick', (event, d) => {
-            event.stopPropagation();
-            event.preventDefault();
-            if (this.onNodeDblClick) this.onNodeDblClick(d.character);
+            if (this._isDoubleClick(event, d)) {
+              this._lastNodeClick = null;
+              window.clearTimeout(this._singleClickTimer);
+              this._singleClickTimer = null;
+              if (this.onNodeDblClick) this.onNodeDblClick(d.character);
+              return;
+            }
+            window.clearTimeout(this._singleClickTimer);
+            this._singleClickTimer = window.setTimeout(() => {
+              this._singleClickTimer = null;
+              this._selectNode(d);
+              if (this.onNodeClick) this.onNodeClick(d.character);
+            }, 260);
           })
           .on('mouseenter', (event, d) => {
             if (this._highlightRaf) return;
@@ -569,6 +579,21 @@ _init() {
       const targetId = d.target.id || d.target;
       return sourceId === node.id || targetId === node.id;
     });
+  }
+
+  /**
+   * 判定两次点击是否构成双击。
+   * d3.drag 在 pointerdown 上 preventDefault，浏览器不会合成 dblclick，click.detail 也恒为 1，
+   * 因此这里按「同一节点 + 时间间隔」自行判定。
+   */
+  _isDoubleClick(event, node) {
+    const now = event.timeStamp || performance.now();
+    const last = this._lastNodeClick;
+    this._lastNodeClick = { id: node.id, at: now };
+    if (!last || last.id !== node.id) return false;
+    // 只比较节点与时间：力导向图在两次点击之间仍在微调位置（drag 的 fx/fy 会临时钉住再释放），
+    // 例如按下时把节点固定、抬起时解除，屏幕位移会超过任何合理的双击阈值，据此判定必然误判。
+    return now - last.at <= 450;
   }
 
   _clearHighlight() {
@@ -889,6 +914,10 @@ _init() {
 
     this.nodeElements.selectAll('.node-label').style('display', d => shouldSmartShow(d) ? null : 'none');
 
+    // 圆内是姓名的截断（两字或一字），圆下是全名。两者同时出现＝同一信息画两遍，
+    // 而且截断后常读成别的名字（贾宝/薛宝/王熙）。有全名标签时就把圆内文字收起来。
+    this.nodeElements.selectAll('.node-text').style('display', d => shouldSmartShow(d) ? 'none' : null);
+
     this.linkLabelElements
       .classed('visible', d => {
         if (!this.showLabels) return false;
@@ -1003,7 +1032,8 @@ _init() {
   }
 
   applyFacetSelection(characterIds = []) {
-    const ids = new Set(characterIds || []);
+    const visibleIds = this.currentVisibleNodeIds || new Set(this.nodes.map(node => node.id));
+    const ids = new Set((characterIds || []).filter(id => visibleIds.has(id)));
     if (!ids.size) {
       this.selectNodes([]);
       return;

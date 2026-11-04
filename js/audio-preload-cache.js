@@ -31,6 +31,8 @@ class AudioPreloadCache {
     this._currentId = null;
     this._currentAudio = null;
     this._manifestUrl = 'audio/audio-manifest.json';
+    // 音频重新生成时递增，用来让浏览器/边缘缓存失效；不递增则复用缓存。
+    this._manifestVersion = '2026-11-04';
     this._onEngineChange = null;   // 外部注册的回调
   }
 
@@ -107,6 +109,16 @@ class AudioPreloadCache {
 
     if (!this.has(id)) {
       throw new Error('cache_miss');
+    }
+
+    // 清单里的 textHash 对应「实际生成音频时的文案」。文案改过就拒绝播放旧音频，
+    // 交给上层回退到实时 TTS，避免念出与屏幕不一致的内容。
+    const entry = this._manifest[id];
+    if (entry?.textHash && text) {
+      const actual = await this._speechHash(text);
+      if (actual && actual !== entry.textHash) {
+        throw new Error('stale_text');
+      }
     }
 
     const audio = this._getAudio(id, this._currentEngine);
@@ -187,6 +199,22 @@ class AudioPreloadCache {
   // ─── private ────────────────────────────────────────────────────────────────
 
   /**
+   * 与 scripts/check-audio.mjs 完全一致的 TTS 文案指纹：
+   * NFKC 归一化后去掉空白与标点，只保留会被读出的字词。
+   * crypto.subtle 不可用（非安全上下文）时返回 null，跳过校验。
+   */
+  async _speechHash(text) {
+    if (!globalThis.crypto?.subtle || typeof TextEncoder === 'undefined') return null;
+    const normalized = String(text || '')
+      .normalize('NFKC')
+      .replace(/[\p{P}\p{Z}\s]+/gu, '');
+    const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(normalized));
+    return Array.from(new Uint8Array(digest))
+      .map((byte) => byte.toString(16).padStart(2, '0'))
+      .join('');
+  }
+
+  /**
    * 解析引擎特定的 manifest 条目
    * @param {Object} entry - 单个知识条目的 manifest 对象
    * @param {string} engine - 引擎标识
@@ -218,7 +246,10 @@ class AudioPreloadCache {
 
   async _fetchManifest() {
     try {
-      const resp = await fetch(this._manifestUrl, { cache: 'no-store' });
+      // 清单 324 KB，内容只在重新生成音频时变化。原来写死 cache:'no-store'，
+      // 让每次进入知识库都重新下载一遍；改为默认缓存，靠内容指纹失效（见下方 stamp）。
+      const url = `${this._manifestUrl}?v=${encodeURIComponent(this._manifestVersion || '1')}`;
+      const resp = await fetch(url);
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
       const data = await resp.json();
       this._manifest = data.manifest || {};

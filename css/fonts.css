@@ -1,63 +1,78 @@
+/*
+ * 字体声明。
+ *
+ * 全部使用 assets/fonts/subset/ 下的 WOFF2 子集（由 scripts/subset-fonts.py 生成）：
+ * 完整 TTF 合计约 103 MB，首屏实际会拉取其中 4 个（约 49 MB）；子集后同样 4 个约 2.5 MB。
+ * 字符集覆盖 index.html / js / css / data 里的全部字符，够用且不会出现豆腐块。
+ *
+ * 修改了数据或文案后，重跑：npm run subset:fonts  （需要 fonttools + brotli）
+ */
+
+/* ── Noto Sans SC（正文字体，界面文字） ───────────────────────── */
 @font-face {
   font-family: 'Noto Sans SC';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(../assets/fonts/font-0.ttf) format('truetype');
+  src: url(../assets/fonts/subset/noto-sans-sc-400.woff2?v=6ced01aff4) format('woff2');
 }
 @font-face {
   font-family: 'Noto Sans SC';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(../assets/fonts/font-1.ttf) format('truetype');
+  src: url(../assets/fonts/subset/noto-sans-sc-500.woff2?v=6ced01aff4) format('woff2');
 }
 @font-face {
   font-family: 'Noto Sans SC';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url(../assets/fonts/font-2.ttf) format('truetype');
+  src: url(../assets/fonts/subset/noto-sans-sc-600.woff2?v=6ced01aff4) format('woff2');
 }
 @font-face {
   font-family: 'Noto Sans SC';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url(../assets/fonts/font-3.ttf) format('truetype');
+  src: url(../assets/fonts/subset/noto-sans-sc-700.woff2?v=6ced01aff4) format('woff2');
 }
+
+/* ── Noto Serif SC（标题与正文宋体） ──────────────────────────── */
 @font-face {
   font-family: 'Noto Serif SC';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(../assets/fonts/font-4.ttf) format('truetype');
+  src: url(../assets/fonts/subset/noto-serif-sc-400.woff2?v=6ced01aff4) format('woff2');
 }
 @font-face {
   font-family: 'Noto Serif SC';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url(../assets/fonts/font-5.ttf) format('truetype');
+  src: url(../assets/fonts/subset/noto-serif-sc-600.woff2?v=6ced01aff4) format('woff2');
 }
 @font-face {
   font-family: 'Noto Serif SC';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url(../assets/fonts/font-6.ttf) format('truetype');
+  src: url(../assets/fonts/subset/noto-serif-sc-700.woff2?v=6ced01aff4) format('woff2');
 }
 @font-face {
   font-family: 'Noto Serif SC';
   font-style: normal;
   font-weight: 900;
   font-display: swap;
-  src: url(../assets/fonts/font-7.ttf) format('truetype');
+  src: url(../assets/fonts/subset/noto-serif-sc-900.woff2?v=6ced01aff4) format('woff2');
 }
+
+/* ── ZCOOL XiaoWei（图谱节点字、印章式标题） ──────────────────── */
 @font-face {
   font-family: 'ZCOOL XiaoWei';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(../assets/fonts/font-8.ttf) format('truetype');
+  src: url(../assets/fonts/subset/zcool-xiaowei-400.woff2?v=6ced01aff4) format('woff2');
 }

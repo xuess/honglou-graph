@@ -30,6 +30,19 @@ class ListView {
       '林家': '#16A085',
       '其他': '#C49A2A'
     };
+    // 头像/标签文字需要更高的对比度；深色版本保留家族色相，亮色版本只用于描边和点状装饰。
+    this.familyContrastColors = {
+      '贾家': '#8B2500',
+      '史家': '#2E4B66',
+      '王家': '#2F5E3F',
+      '薛家': '#6B2D86',
+      '林家': '#0F6B5A',
+      '其他': '#7A5A00'
+    };
+  }
+
+  _contrastColor(familyGroup) {
+    return this.familyContrastColors[familyGroup] || this.familyColors[familyGroup];
   }
 
   setData(characters, relationships) {
@@ -81,7 +94,7 @@ class ListView {
           <span class="list-search-icon">🔍</span>
           <input id="list-search-input" name="list-search" class="list-search-input" type="text" placeholder="筛选人物…" value="${this._escapeHtml(this.searchQuery)}">
         </div>
-        <select id="list-family-filter" name="list-family-filter" class="list-filter-select" data-filter="family">
+        <select id="list-family-filter" name="list-family-filter" class="list-filter-select" data-filter="family" aria-label="按家族筛选">
           <option value="all">全部家族</option>
           <option value="贾家" ${this.filterFamily === '贾家' ? 'selected' : ''}>贾家</option>
           <option value="史家" ${this.filterFamily === '史家' ? 'selected' : ''}>史家</option>
@@ -90,14 +103,14 @@ class ListView {
           <option value="林家" ${this.filterFamily === '林家' ? 'selected' : ''}>林家</option>
           <option value="其他" ${this.filterFamily === '其他' ? 'selected' : ''}>其他</option>
         </select>
-        <select id="list-gender-filter" name="list-gender-filter" class="list-filter-select" data-filter="gender">
+        <select id="list-gender-filter" name="list-gender-filter" class="list-filter-select" data-filter="gender" aria-label="按性别筛选">
           <option value="all">全部性别</option>
           <option value="男" ${this.filterGender === '男' ? 'selected' : ''}>男</option>
           <option value="女" ${this.filterGender === '女' ? 'selected' : ''}>女</option>
         </select>
       </div>
       <div class="list-controls-right">
-        <select id="list-sort-select" name="list-sort-select" class="list-sort-select">
+        <select id="list-sort-select" name="list-sort-select" class="list-sort-select" aria-label="排序方式">
           <option value="importance" ${this.sortBy === 'importance' ? 'selected' : ''}>按重要度</option>
           <option value="family" ${this.sortBy === 'family' ? 'selected' : ''}>按家族</option>
           <option value="name" ${this.sortBy === 'name' ? 'selected' : ''}>按姓名</option>
@@ -180,7 +193,13 @@ class ListView {
 
   _scrollToTop() {
     const listEl = this.container.querySelector('.list-content');
-    if (listEl) listEl.scrollTo({ top: 0, behavior: 'instant' });
+    if (!listEl) return;
+    if (listEl.scrollHeight > listEl.clientHeight + 1) {
+      listEl.scrollTo({ top: 0, behavior: 'instant' });
+      return;
+    }
+    // 手机端列表不单独滚动，改为把结果区顶端对齐到可视区
+    HLMUtils.scrollElementIntoViewTop(listEl);
   }
 
   _getFilteredCharacters() {
@@ -285,6 +304,8 @@ class ListView {
             this.filterFamily = tagValue;
             this._invalidateFilterCache();
             this.visibleCount = 48;
+            const familySelect = this.container.querySelector('#list-family-filter');
+            if (familySelect) familySelect.value = this.filterFamily;
             this._renderList();
             this._scrollToTop();
           }
@@ -313,45 +334,66 @@ class ListView {
   _renderCardItem(c) {
     const familyGroup = this.familyColors[c.family] ? c.family : '其他';
     const color = this.familyColors[familyGroup];
+    const contrastColor = this._contrastColor(familyGroup);
     const relCount = this.relationCountMap.get(c.id) || 0;
     const isRelated = this.relatedCharacterIds.has(c.id);
     const outcomeText = this._formatOutcome(c);
+    const outcomeScoped = /^（?前八十回/.test(outcomeText);
+    const outcomeLabel = outcomeScoped ? '前八十回' : '结局';
+    const outcomeDisplay = outcomeText
+      .replace(/^（前八十回）/, '')
+      .replace(/^前八十回[，,]?/, '');
 
     return `
       <div class="list-card-item ${isRelated ? 'is-related' : ''}" data-char-id="${c.id}">
-        <div class="list-card-avatar" style="background:${color}">${c.name.substring(0, 1)}</div>
+        <div class="list-card-avatar" style="background:${contrastColor}">${c.name.substring(0, 1)}</div>
         <div class="list-card-body">
-          <div class="list-card-name">${c.name}${c.pinyin ? `<span class="list-card-pinyin">${c.pinyin}</span>` : ''}</div>
+          <div class="list-card-name"><button type="button" class="list-card-name-btn" aria-label="查看${c.name}${c.identity ? `，${c.identity}` : ''}">${c.name}</button>${c.pinyin ? `<span class="list-card-pinyin">${c.pinyin}</span>` : ''}</div>
           <div class="list-card-identity">${c.identity || ''}</div>
           <div class="list-card-meta">
-            <button class="list-card-tag" data-tag-type="family" data-tag-value="${familyGroup}" style="color:${color};border-color:${color}40">${familyGroup}</button>
+            <button class="list-card-tag" data-tag-type="family" data-tag-value="${familyGroup}" style="color:${contrastColor};border-color:${color}40">${familyGroup}</button>
             <span class="list-card-tag ${c.gender === '女' ? 'female' : 'male'}">${c.gender}</span>
             <span class="list-card-tag soft">★${c.importance || 1}</span>
             <span class="list-card-tag soft">${relCount}条关系</span>
             <button class="list-card-tag knowledge" data-knowledge-id="${c.id}">相关知识</button>
           </div>
-          ${outcomeText ? `<div class="list-card-outcome">结局：${outcomeText}</div>` : ''}
+          ${outcomeText ? `<div class="list-card-outcome">${outcomeLabel}：${outcomeDisplay}</div>` : ''}
         </div>
       </div>
     `;
   }
 
+  /**
+   * 结局展示遵守 provenance.policy.displayRules：
+   * 只有带 outcomeSources 的结局才是底本可定位的事实；其余一律加“（续书）”或“（待校）”。
+   */
   _formatOutcome(character) {
     if (!character?.outcome) return '';
-    if (character.outcomeVersion || character.sourceNote) return character.outcome;
+    // 底本可定位的结局：直接展示，不加任何前缀。
+    if (character.outcomeSources?.length) return character.outcome;
+
+    const outcome = character.outcome;
+    // 已拆分过版本的人物，outcome 只装前八十回状态；续书结局在卡片“结局：两个版本”里。
+    // 若文案本身已写明“前八十回”，不再叠前缀。
+    if (character.outcomeVersion?.continuation) {
+      return outcome.startsWith('前八十回') ? outcome : `（前八十回）${outcome}`;
+    }
+    if (/续书|高鹗|后四十回/.test(outcome)) return outcome;
+    if (/续书|高鹗|后四十回/.test(character.sourceNote || '')) return `（续书）${outcome}`;
+
     const hasLateChapter = (character.chapters || []).some((chapter) => Number(chapter.chapter) > 80);
-    return hasLateChapter ? `通行120回本：${character.outcome}` : character.outcome;
+    return hasLateChapter ? `（续书）${outcome}` : `（待校）${outcome}`;
   }
 
   _renderCompactItem(c) {
     const familyGroup = this.familyColors[c.family] ? c.family : '其他';
-    const color = this.familyColors[familyGroup];
+    const contrastColor = this._contrastColor(familyGroup);
 
     return `
       <div class="list-compact-row" data-char-id="${c.id}">
-        <span class="list-compact-avatar" style="background:${color}">${c.name.substring(0, 1)}</span>
-        <span class="list-compact-name">${c.name}</span>
-        <span class="list-compact-family" style="color:${color}">${familyGroup}</span>
+        <span class="list-compact-avatar" style="background:${contrastColor}">${c.name.substring(0, 1)}</span>
+        <button type="button" class="list-compact-name list-compact-name-btn" aria-label="查看${c.name}${c.identity ? `，${c.identity}` : ''}">${c.name}</button>
+        <span class="list-compact-family" style="color:${contrastColor}">${familyGroup}</span>
         <span class="list-compact-identity">${c.identity || ''}</span>
         <span class="list-compact-importance">★${c.importance || 1}</span>
         <span class="list-compact-gender ${c.gender === '女' ? 'female' : 'male'}">${c.gender}</span>

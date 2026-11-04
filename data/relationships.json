@@ -883,8 +883,8 @@
     "source": "xue_ke",
     "target": "xing_xiuyan",
     "type": "marriage",
-    "label": "夫妻",
-    "description": "薛蝌娶邢岫烟为妻",
+    "label": "定亲",
+    "description": "第57回薛姨妈提亲、贾母作保山，两家定亲；成婚情节见于后四十回续书",
     "weight": 1
   },
   {
@@ -899,8 +899,8 @@
     "source": "wei_ruolan",
     "target": "shi_xiangyun",
     "type": "marriage",
-    "label": "夫妻",
-    "description": "卫若兰与史湘云成婚，与金麒麟伏笔相关",
+    "label": "夫妻（推测）",
+    "description": "据判词与脂批推测卫若兰与史湘云成婚，前八十回未正面明写",
     "weight": 4
   },
   {
@@ -1024,8 +1024,8 @@
     "weight": 4
   },
   {
-    "source": "shi_xiangyun",
-    "target": "shi_nai",
+    "source": "shi_nai",
+    "target": "shi_xiangyun",
     "type": "blood",
     "label": "叔侄",
     "description": "史鼐是史湘云的叔父",
@@ -1190,5 +1190,21 @@
     "label": "父女",
     "description": "薛父之女薛宝钗",
     "weight": 4
+  },
+  {
+    "source": "jia_mu",
+    "target": "jia_baoyu",
+    "type": "blood",
+    "label": "祖孙",
+    "description": "贾母是贾宝玉的祖母，视宝玉为掌上明珠，溺爱有加",
+    "weight": 5
+  },
+  {
+    "source": "jia_mu",
+    "target": "lin_daiyu",
+    "type": "blood",
+    "label": "外祖母",
+    "description": "贾母是林黛玉的外祖母，黛玉入府后极受贾母怜爱",
+    "weight": 5
   }
 ]

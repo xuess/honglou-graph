@@ -1,4 +1,12 @@
 {
+  "scripts": {
+    "validate:data": "node scripts/validate-data.mjs",
+    "stamp": "node scripts/stamp-assets.mjs",
+    "check:assets": "node scripts/stamp-assets.mjs --check",
+    "subset:fonts": "./.venv/bin/python scripts/subset-fonts.py",
+    "check:chapters": "node scripts/sync-chapter-titles.mjs --check",
+    "check:audio": "node scripts/check-audio.mjs"
+  },
   "devDependencies": {
     "playwright": "^1.61.1"
   },

@@ -28,6 +28,40 @@ const HLMUtils = {
   },
 
   /**
+   * 复位视图滚动位置。
+   * 桌面端各区各自滚动；手机端非图谱视图改由 .main-container 整页滚动，
+   * 因此切换条目/筛选后需同时复位该容器。两处一起处理，空操作无副作用。
+   */
+  scrollViewToTop() {
+    const viewport = document.querySelector('.main-container');
+    if (viewport) viewport.scrollTo({ top: 0, behavior: 'instant' });
+  },
+
+  /**
+   * 把元素顶端对齐到当前视图滚动层的可视区顶部（仅整页滚动时生效）。
+   * @param {Element} el
+   * @param {number} gap - 与视口顶部留白
+   * @returns {boolean} 是否发生了整页滚动
+   */
+  scrollElementIntoViewTop(el, gap = 8) {
+    if (!el) return false;
+    const viewport = document.querySelector('.main-container');
+    if (!viewport || viewport.scrollHeight <= viewport.clientHeight + 1) return false;
+    const viewportTop = viewport.getBoundingClientRect().top;
+    // 页头/上下文条固定覆盖在滚动区上方，对齐时要让开这段高度
+    let inset = 0;
+    for (const fixed of document.querySelectorAll('.header, .global-context-bar')) {
+      const rect = fixed.getBoundingClientRect();
+      if (rect.height > 0 && rect.bottom > inset && rect.top <= viewportTop + 1) {
+        inset = rect.bottom - viewportTop;
+      }
+    }
+    const target = el.getBoundingClientRect().top - viewportTop + viewport.scrollTop - inset - gap;
+    viewport.scrollTo({ top: Math.max(0, target), behavior: 'instant' });
+    return true;
+  },
+
+  /**
    * Debounce a function call
    * @param {Function} fn - The function to debounce
    * @param {number} delay - Delay in milliseconds
@@ -142,6 +176,23 @@ const HLMUtils = {
     const identity = (character.identity || '').toLowerCase();
     const servantKeywords = ['丫鬟', '丫环', '仆人', '仆妇', '小厮', '管家', '嬷嬷', '陪房', '通房', '粗使', '戏子', '奴'];
     return servantKeywords.some((keyword) => identity.includes(keyword));
+  },
+
+  /**
+   * 类别色是装饰色，直接用作小字号文字时对比度常低于 4.5:1。
+   * 按固定比例向墨色 #2C1810 靠拢，既保留色相区分，又保证浅底可读。
+   * @param {string} hex - #RRGGBB 颜色
+   * @param {number} ratio - 向墨色混合的比例，0.4 可让现有类别色全部达到 4.5:1
+   * @returns {string} 加深后的 #RRGGBB
+   */
+  darkenForText(hex, ratio = 0.4) {
+    const match = /^#?([0-9a-f]{6})$/i.exec(String(hex || ''));
+    if (!match) return hex;
+    const value = parseInt(match[1], 16);
+    const ink = [0x2c, 0x18, 0x10];
+    const channels = [(value >> 16) & 0xff, (value >> 8) & 0xff, value & 0xff]
+      .map((channel, index) => Math.round(channel * (1 - ratio) + ink[index] * ratio));
+    return `#${channels.map((channel) => channel.toString(16).padStart(2, '0')).join('')}`;
   },
 
   /**

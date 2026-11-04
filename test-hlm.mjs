@@ -225,7 +225,9 @@ const xifengCheck = await page.evaluate(async () => {
   };
 });
 assert(xifengCheck.xifengFamily === '王家', `王熙凤 family should be '王家', got '${xifengCheck.xifengFamily}'`);
-assert(xifengCheck.xifengParents?.includes('wang_ziteng'), `王熙凤 parentIds should include wang_ziteng`);
+// 原著只写“王夫人之大兄凤姐之父”，未言明王子腾即其父；叔侄关系已在
+// relationships.json 中单独建模，此处不得回退成父子（parentIds）。
+assert(!(xifengCheck.xifengParents || []).includes('wang_ziteng'), `王熙凤 parentIds must not fabricate wang_ziteng as father`);
 assert(xifengCheck.wfurenChildren?.includes('jia_baoyu'), `王夫人 childrenIds should include jia_baoyu`);
 assert(xifengCheck.wfurenChildren?.includes('jia_yuanchun'), `王夫人 childrenIds should include jia_yuanchun`);
 assert(xifengCheck.baoyuParents?.includes('wang_furen'), `贾宝玉 parentIds should include wang_furen`);

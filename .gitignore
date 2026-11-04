@@ -80,7 +80,6 @@ web_modules/
 # Next.js build output
 .next
 out
-scripts
 
 # Nuxt.js build / generate output
 .nuxt
@@ -153,3 +152,14 @@ pretext-main
 .planning
 # Test results
 test-results/
+
+# 字体子集化中间产物（由 scripts/subset-fonts.py 生成）
+.font-charset.txt
+
+# scripts/ 内是构建与校验工具，需入库；语音生成脚本含 API Key，只保留本地
+scripts/*
+!scripts/stamp-assets.mjs
+!scripts/validate-data.mjs
+!scripts/sync-chapter-titles.mjs
+!scripts/check-audio.mjs
+!scripts/subset-fonts.py

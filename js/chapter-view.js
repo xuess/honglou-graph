@@ -137,7 +137,20 @@ class ChapterView {
     if (!this._eventsBound) this._bindEvents();
     this._initResizeHandle();
     this._observeLayoutResize();
+    this._bindDirectoryBreakpoint();
     this._scheduleTextLayoutPass();
+  }
+
+  _bindDirectoryBreakpoint() {
+    if (this._directoryMq || typeof window === 'undefined' || !window.matchMedia) return;
+    const mq = window.matchMedia('(max-width: 560px)');
+    this._directoryMq = mq;
+    const sync = (e) => {
+      const details = this.container.querySelector('.chapter-directory-details');
+      if (details) details.open = !e.matches;
+    };
+    if (mq.addEventListener) mq.addEventListener('change', sync);
+    else if (mq.addListener) mq.addListener(sync);
   }
 
   _renderShell() {
@@ -181,14 +194,16 @@ class ChapterView {
             </div>
 
             <div class="chapter-sidebar-section">
-              <div class="chapter-sidebar-title">回目目录</div>
-              <div class="chapter-quick-jump">
-                <input type="number" id="chapter-quick-jump-input" class="chapter-quick-jump-input" min="1" max="120" placeholder="输入回目号…">
-                <button id="chapter-quick-jump-btn" class="chapter-quick-jump-btn">跳转</button>
-              </div>
-              <div class="chapter-directory" id="chapter-directory-content">
-                ${this._renderDirectory(visibleProfiles, currentProfile)}
-              </div>
+              <details class="chapter-directory-details" ${typeof window !== 'undefined' && window.innerWidth > 560 ? 'open' : ''}>
+                <summary class="chapter-sidebar-title chapter-directory-summary">回目目录</summary>
+                <div class="chapter-quick-jump">
+                  <input type="number" id="chapter-quick-jump-input" class="chapter-quick-jump-input" min="1" max="120" placeholder="输入回目号…">
+                  <button id="chapter-quick-jump-btn" class="chapter-quick-jump-btn">跳转</button>
+                </div>
+                <div class="chapter-directory" id="chapter-directory-content">
+                  ${this._renderDirectory(visibleProfiles, currentProfile)}
+                </div>
+              </details>
             </div>
           </aside>
 
@@ -236,7 +251,7 @@ class ChapterView {
       const isFavorite = favorites.has(profile.chapter);
       return `
         <div class="chapter-directory-item ${isActive ? 'active' : ''}" data-chapter="${profile.chapter}">
-          <button class="chapter-directory-fav ${isFavorite ? 'active' : ''}" data-fav-chapter="${profile.chapter}" title="${isFavorite ? '取消收藏' : '收藏本回'}">${isFavorite ? '★' : '☆'}</button>
+          <button class="chapter-directory-fav ${isFavorite ? 'active' : ''}" data-fav-chapter="${profile.chapter}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? '取消收藏' : '收藏'}第${profile.chapter}回" title="${isFavorite ? '取消收藏' : '收藏本回'}">${isFavorite ? '★' : '☆'}</button>
           <button class="chapter-directory-content" data-chapter="${profile.chapter}">
             <span class="chapter-directory-number">第${profile.chapter}回</span>
             <span class="chapter-directory-title">${this._escapeHtml(profile.titleShort || profile.entry.title || '')}</span>
@@ -325,7 +340,7 @@ class ChapterView {
               </div>
             </div>
             <div class="chapter-point-group">
-              ${(parsed.points.length ? parsed.points : (profile.entry.tags || [])).slice(0, 12).map((point) => `
+              ${this._getChapterPointLabels(profile, parsed).map((point) => `
                 <button class="chapter-point-chip" data-tag="${this._escapeHtmlAttr(point)}">${this._escapeHtml(point)}</button>
               `).join('') || '<span class="chapter-muted">暂无知识点标签</span>'}
             </div>
@@ -510,11 +525,11 @@ class ChapterView {
     return `
       <article class="chapter-knowledge-card" data-id="${item.id}">
         <div class="chapter-knowledge-head">
-          <span class="chapter-knowledge-icon" style="background:${config.color}15;color:${config.color}">${config.icon}</span>
+          <span class="chapter-knowledge-icon" aria-hidden="true" style="background:${config.color}15;color:${config.color}">${config.icon}</span>
           <div>
             <div class="chapter-knowledge-title">${this._escapeHtml(item.title || '')}</div>
             <div class="chapter-knowledge-meta">
-              <span style="color:${config.color}">${this._escapeHtml(item.category || '其他')}</span>
+              <span style="color:${HLMUtils.darkenForText(config.color)}">${this._escapeHtml(item.category || '其他')}</span>
               ${item.subcategory ? `<span>${this._escapeHtml(item.subcategory)}</span>` : ''}
             </div>
           </div>
@@ -620,6 +635,8 @@ class ChapterView {
         const isNowFavorite = this._toggleFavoriteChapter(chapter);
         favButton.textContent = isNowFavorite ? '★' : '☆';
         favButton.classList.toggle('active', isNowFavorite);
+        favButton.setAttribute('aria-pressed', String(isNowFavorite));
+        favButton.setAttribute('aria-label', `${isNowFavorite ? '取消收藏' : '收藏'}第${chapter}回`);
         favButton.title = isNowFavorite ? '取消收藏' : '收藏本回';
         return;
       }
@@ -942,17 +959,36 @@ class ChapterView {
     return '这一回更像一枚结构性锚点：先抓住回目与知识点，再向外延展人物和后续情节。';
   }
 
+  /**
+   * 知识骨架里的标签要短：优先用条目自带的 tags，
+   * 没有 tags 时取知识点冒号前的主题词，避免把整段解释塞进胶囊。
+   */
+  _getChapterPointLabels(profile, parsed) {
+    const tags = Array.isArray(profile.entry.tags) ? profile.entry.tags.filter(Boolean) : [];
+    if (tags.length) return tags.slice(0, 12);
+    const labels = parsed.points
+      .map((point) => point.split(/[：:]/)[0].trim())
+      .filter((label) => label && label.length <= 24);
+    return [...new Set(labels)].slice(0, 12);
+  }
+
   _parseChapterEntry(entry) {
     const content = String(entry?.content || '');
-    const titleMatch = content.match(/【回目】([^\n]+)/);
-    const pointsMatch = content.match(/【主要知识点】([^\n]+)/);
-    const summary = titleMatch ? titleMatch[1].trim() : (entry?.title || '');
-    const points = pointsMatch
-      ? pointsMatch[1].split(/[、，,]/).map((item) => item.trim()).filter(Boolean)
-      : [];
+    const section = (label) => {
+      const match = content.match(new RegExp(`【${label}】([\\s\\S]*?)(?=【|$)`));
+      return match ? match[1].trim() : '';
+    };
+    const titleText = section('回目') || entry?.title || '';
+    // 【回目】与条目 title 相同，再用它当导语等于重复标题；
+    // 真正概括本回情节走向的是【人物动向】。
+    const summary = section('人物动向');
+    const points = section('主要知识点')
+      .split('\n')
+      .map((line) => line.replace(/^\s*\d+[.、]\s*/, '').trim())
+      .filter(Boolean);
 
     return {
-      titleShort: summary.replace(/^第\d+回\s*/, ''),
+      titleShort: titleText.replace(/^第\d+回\s*/, ''),
       summary,
       points
     };
@@ -966,7 +1002,13 @@ class ChapterView {
 
   _scrollMainToTop() {
     const main = this.container.querySelector('.chapter-main');
-    if (main) main.scrollTo({ top: 0, behavior: 'instant' });
+    if (!main) return;
+    if (main.scrollHeight > main.clientHeight + 1) {
+      main.scrollTo({ top: 0, behavior: 'instant' });
+      return;
+    }
+    // 手机端正文不单独滚动，跳到正文顶部，让选中的回目立即可读
+    HLMUtils.scrollElementIntoViewTop(main);
   }
 
   _truncate(text, limit = 80) {

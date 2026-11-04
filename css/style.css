@@ -146,11 +146,14 @@
   position: relative;
   width: 36px;
   height: 36px;
+  padding: 0;
   border-radius: 50%;
   cursor: pointer;
   border: 2.5px solid transparent;
   transition: var(--transition-fast);
   flex-shrink: 0;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 .settings-theme-option:hover {
@@ -559,10 +562,20 @@ body.theme-purple-gold .header {
   border-bottom: 1px solid rgba(240,230,140,0.4);
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
 .header-title {
+  margin: 0;
   font-family: var(--font-title);
   color: var(--color-gold-light);
   font-size: 1.55rem;
+  font-weight: 600;
+  line-height: 1.2;
   letter-spacing: 2px;
 }
 
@@ -2280,6 +2293,33 @@ body:not(.view-graph) .sidebar-resize-handle {
 .card-quote {
   font-style: italic;
   line-height: 1.8;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+}
+
+/* 引语出处：与正文同排但视觉弱化，标明版本与回目，可核查。 */
+.card-quote-source {
+  flex-basis: 100%;
+  font-style: normal;
+  font-size: 0.72rem;
+  letter-spacing: 0.01em;
+  color: var(--color-ink-light);
+  opacity: 0.85;
+}
+
+/* 待校摘录：虚线边 + 更浅的字色，与已核对的“经典语录”明确区分。 */
+.card-quote-pending {
+  border-style: dashed;
+  background: rgba(196,168,130,0.10);
+  color: var(--color-ink-light);
+}
+
+.card-section-title-sub {
+  margin-top: 14px;
+  font-size: 0.8rem;
+  opacity: 0.8;
 }
 
 .card-chapter-header {
@@ -2537,12 +2577,13 @@ body.fullscreen .graph-floating-bar {
 
 @media (max-width: 768px) {
   :root {
-    --header-height: 56px;
+    /* 两行头部：标题行 56px + 页签行（见下方 5729 起的 768px 规则）。 */
+    --header-height: 104px;
   }
 
   .header {
     padding: 0 12px;
-    gap: 10px;
+    gap: 0 10px;
   }
 
   .header-title {
@@ -2694,12 +2735,11 @@ body.fullscreen .graph-floating-bar {
 }
 
 @media (max-width: 560px) {
+  /* 头部高度由内容决定：标题行 52px + 页签行 48px。
+     原来这里把 --header-height 固定 52px 且 .header-center 直接 display:none，
+     结果手机上五个视图入口整块消失，只能靠记忆数字键切视图。 */
   :root {
-    --header-height: 52px;
-  }
-
-  .header-center {
-    display: none;
+    --header-height: 104px;
   }
 
   .main-container {
@@ -2944,7 +2984,11 @@ body.view-tree .btn-sidebar-toggle,
 body.view-list .btn-sidebar-toggle,
 body.view-chapter .btn-sidebar-toggle,
 body.view-knowledge .btn-sidebar-toggle {
-  display: none !important;
+  /* Non-graph views have no sidebar; keep the mobile header title from
+     jumping left when the toggle disappears. visibility (not display)
+     reserves its 44px slot without leaving a focusable control. */
+  visibility: hidden;
+  pointer-events: none;
 }
 
 body.view-tree .main-container,
@@ -3196,6 +3240,17 @@ body.view-knowledge .main-container {
   padding: 60px 20px;
   color: var(--color-ink-light);
   font-size: 1rem;
+}
+
+.tree-empty p {
+  margin: 0 0 14px;
+}
+
+.tree-empty-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
 }
 
 /* ============================================================
@@ -3770,7 +3825,7 @@ body.view-knowledge .main-container {
 
 .tree-person-badge.mainline {
   background: rgba(212,160,23,0.15);
-  color: #9A7D1A;
+  color: #7E6412;
   border-color: rgba(212,160,23,0.35);
 }
 
@@ -4079,6 +4134,31 @@ body.view-knowledge .main-container {
   font-weight: 700;
 }
 
+/* 姓名是卡片里唯一的键盘入口；重置按钮外观使其保持原有标题排版。 */
+.list-card-name-btn,
+.list-compact-name-btn {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.list-card-name-btn:hover,
+.list-compact-name-btn:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.list-card-name-btn:focus-visible,
+.list-compact-name-btn:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
 .list-card-pinyin {
   font-size: 0.78rem;
   color: var(--color-ink-light);
@@ -4112,8 +4192,8 @@ body.view-knowledge .main-container {
 }
 
 .list-card-tag.female {
-  color: #C75B6E;
-  border-color: rgba(199,91,110,0.3);
+  color: #A3374C;
+  border-color: rgba(163,55,76,0.35);
 }
 
 .list-card-tag.male {
@@ -4502,6 +4582,23 @@ body.view-knowledge .main-container {
   line-height: 1.6;
 }
 
+/* 版本异文：同一回在不同底本下的回目写法，弱显示、可核对。 */
+.knowledge-variant-row {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.knowledge-variant-row + .knowledge-variant-row {
+  margin-top: 4px;
+}
+
+.knowledge-variant-row strong {
+  flex: 0 0 auto;
+  font-weight: 600;
+  opacity: 0.75;
+}
+
 .knowledge-card-analysis {
   font-size: 0.84rem;
   line-height: 1.7;
@@ -4516,6 +4613,32 @@ body.view-knowledge .main-container {
 
 .knowledge-card.expanded .knowledge-card-analysis {
   display: block;
+}
+
+/* 折叠态：只留标题行，正文、版本说明、解析与页脚全部收起。 */
+.knowledge-card:not(.expanded) .knowledge-card-content,
+.knowledge-card:not(.expanded) .knowledge-card-version,
+.knowledge-card:not(.expanded) .knowledge-card-footer {
+  display: none;
+}
+
+.knowledge-card-header {
+  cursor: pointer;
+  border-radius: 12px;
+  margin: -6px -8px 6px;
+  padding: 6px 8px;
+}
+
+.knowledge-card-header:hover {
+  background: rgba(139, 37, 0, 0.04);
+}
+
+.knowledge-card:not(.expanded) .knowledge-card-header {
+  margin-bottom: 0;
+}
+
+.knowledge-card:not(.expanded) {
+  padding-bottom: 12px;
 }
 
 .knowledge-card-chars {
@@ -5240,7 +5363,7 @@ body.performance-low .chapter-hero-stats {
 
 .chapter-source-chip.is-text {
   background: rgba(196,154,42,0.12);
-  color: #a36812;
+  color: #8C5608;
 }
 
 .chapter-knowledge-icon {
@@ -5414,10 +5537,26 @@ body.panel-resizing * {
   overflow-y: auto;
   overscroll-behavior: contain;
   scroll-padding-bottom: 24px;
+  min-width: 0;
   min-height: 0;
 }
 
 .knowledge-sidebar-section + .knowledge-sidebar-section {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(196,168,130,0.22);
+}
+
+/* 手机端把低频筛选收进“更多筛选”，首屏优先露出知识条目。 */
+.knowledge-more-toggle {
+  display: none;
+}
+
+.knowledge-secondary-filters {
+  min-width: 0;
+}
+
+.knowledge-secondary-filters .knowledge-sidebar-section:first-child {
   margin-top: 16px;
   padding-top: 16px;
   border-top: 1px solid rgba(196,168,130,0.22);
@@ -5453,7 +5592,8 @@ body.panel-resizing * {
   overscroll-behavior: contain;
 }
 
-.knowledge-sidebar-section:last-child .knowledge-chip-group {
+.knowledge-sidebar-section:last-child .knowledge-chip-group,
+.knowledge-secondary-filters .knowledge-sidebar-section:last-child .knowledge-chip-group {
   max-height: none;
   overflow: visible;
 }
@@ -5701,23 +5841,68 @@ body.panel-resizing * {
    ============================================================ */
 
 @media (max-width: 768px) {
+  /* 手机端原来把页签文字整块隐藏，只剩五个图标——五个 emoji 无法自解释，
+     也不可能记住。改为「图标 + 两字简称」的整行可滚动页签，并让头部让出整行。 */
+  .header {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: var(--header-height);
+    padding: 6px 12px 0;
+    gap: 4px 10px;
+  }
+
+  .header-center {
+    order: 3;
+    flex: 1 0 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+  }
+
+  .header-center::-webkit-scrollbar {
+    display: none;
+  }
+
   .view-nav {
     gap: 2px;
     padding: 3px;
+    min-width: max-content;
   }
 
   .view-nav-tab {
-    padding: 6px 10px;
-    font-size: 0.8rem;
-    gap: 4px;
+    flex: 1 0 auto;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 62px;
+    padding: 6px 8px;
+    font-size: 0.78rem;
+    gap: 3px;
+    white-space: nowrap;
   }
 
+  /* 窄屏用两字简称：真文案放进 .view-nav-label 的 ::after 会重复朗读，
+     所以由 data-short 提供视觉文案，原 label 内容继续留在无障碍树里。
+     注意：全局 button::after 是点击涟漪（绝对定位 + opacity:0），这里必须显式覆盖，
+     否则简称会变成 0×0 的透明层，屏幕上只剩图标。 */
   .view-nav-label {
     display: none;
   }
 
+  .view-nav-tab::after {
+    content: attr(data-short);
+    position: static;
+    width: auto;
+    height: auto;
+    background: none;
+    border-radius: 0;
+    opacity: 1;
+    transform: none;
+    transition: none;
+    font-size: 0.78rem;
+  }
+
   .view-nav-icon {
-    font-size: 1.15rem;
+    font-size: 1rem;
   }
 
   .tree-controls {
@@ -5758,7 +5943,7 @@ body.panel-resizing * {
   }
 
   .knowledge-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .knowledge-layout .panel-resize-handle {
@@ -5863,6 +6048,126 @@ body.panel-resizing * {
   .list-compact-identity,
   .list-compact-gender {
     display: none;
+  }
+
+  /* 手机首屏只有 ~844px：摘要卡竖排会把树谱/回目/知识库的第一条内容推到屏幕之外。
+     统计卡压成单行、说明文字限两行，让可操作内容出现在首屏。 */
+  .tree-family-tabs {
+    width: 100%;
+    flex-wrap: nowrap;
+    gap: 4px;
+  }
+
+  .tree-family-tab {
+    flex: 1 1 0;
+    min-width: 0;
+    justify-content: center;
+    padding: 7px 4px;
+    font-size: 0.78rem;
+    gap: 4px;
+    white-space: nowrap;
+  }
+
+  .tree-tab-dot {
+    width: 8px;
+    height: 8px;
+    flex: 0 0 8px;
+  }
+
+  .tree-summary-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .tree-summary-card {
+    padding: 7px 8px;
+    gap: 1px;
+  }
+
+  .tree-summary-card strong {
+    font-size: 1rem;
+  }
+
+  .tree-summary-card span,
+  .tree-summary-card .tree-summary-label {
+    font-size: 0.68rem;
+    letter-spacing: 0;
+  }
+
+  /* 手机上隐藏区的标题会和根人物卡重复（同一个人名、辈分、身份），
+     并因纵向排布把「查看人物」挤成第三行；根卡片本身可点，直接省略。 */
+  .tree-section-header {
+    display: none;
+  }
+
+  /* 三条操作提示在 360px 下只能横向滑动，反而像被裁切的内容；
+     树里的箭头和整卡点击已经足够自解释，手机端不占首屏高度。 */
+  .tree-hint-row {
+    display: none;
+  }
+
+  .importance-quick-btn {
+    padding: 5px 9px;
+  }
+
+  .chapter-hero,
+  .knowledge-hero {
+    padding: 16px 14px;
+    gap: 12px;
+    margin-bottom: 12px;
+    /* 基类是 align-items:flex-start，竖排后子块不会撑满，统计卡只剩内容宽度。 */
+    align-items: stretch;
+  }
+
+  .chapter-hero-copy,
+  .knowledge-hero-copy {
+    min-width: 0;
+  }
+
+  .chapter-hero-stats,
+  .knowledge-hero-stats {
+    width: 100%;
+  }
+
+  .chapter-hero-title,
+  .knowledge-hero-title {
+    font-size: 1.08rem;
+    line-height: 1.45;
+  }
+
+  .chapter-hero-desc,
+  .knowledge-hero-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.8rem;
+  }
+
+  .chapter-hero-stats,
+  .knowledge-hero-stats,
+  body.performance-low .chapter-hero-stats,
+  body.performance-low .knowledge-hero-stats {
+    min-width: 0;
+    width: 100%;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .chapter-stat-card,
+  .knowledge-stat-card {
+    padding: 7px 4px;
+  }
+
+  .chapter-stat-card span,
+  .knowledge-stat-card span {
+    font-size: 0.64rem;
+  }
+
+  .chapter-stat-card strong,
+  .knowledge-stat-card strong {
+    font-size: 1rem;
+    line-height: 1.25;
   }
 }
 
@@ -6529,7 +6834,8 @@ button {
   overflow: hidden;
 }
 
-button::after {
+/* 涟漪只针对没有自定义 ::after 内容的按钮：.view-nav-tab 的 ::after 承担窄屏简称文案。 */
+button:not(.view-nav-tab)::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -6541,9 +6847,10 @@ button::after {
   transform: translate(-50%, -50%);
   transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
   opacity: 0;
+  pointer-events: none;
 }
 
-button:active::after {
+button:not(.view-nav-tab):active::after {
   width: 200%;
   height: 200%;
   opacity: 1;
@@ -6655,11 +6962,26 @@ select:focus-visible {
 
   .graph-search-area {
     width: 100%;
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  /* 手机上把搜索框单独放一行：和「显示全部 / 随缘」并排会把输入框压到
+     只剩一个字符宽，placeholder 完全不可读。 */
+  .graph-search-box {
+    flex: 1 0 100%;
   }
 
   .graph-floating-info {
     width: 100%;
     justify-content: center;
+    gap: 8px;
+  }
+
+  .graph-floating-label {
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-size: 0.78rem;
   }
 
   /* Hide overflow menu on mobile - show all core controls inline */
@@ -6675,7 +6997,8 @@ select:focus-visible {
 
   .controls-panel {
     right: 10px;
-    bottom: 10px;
+    /* 章回时间线占了底部 ~103px，缩放按钮再放 bottom:10px 会压住滑块刻度。 */
+    bottom: 136px;
     flex-direction: row;
     align-items: center;
   }
@@ -6869,6 +7192,8 @@ input[type="number"]:focus {
 
 .view-nav-tab.active {
   background: rgba(255, 255, 255, 0.2);
+  /* 这里覆盖了上面的金色渐变，必须同时把文字改回浅色，否则深红字压在深红底上不可读。 */
+  color: var(--color-cream);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -6963,12 +7288,14 @@ input[type="number"]:focus {
   overflow-y: auto;
   padding: 24px 16px;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .discovery-overlay.active {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 
@@ -7254,6 +7581,13 @@ input[type="number"]:focus {
 
 .card-fate-cell.inactive {
   opacity: 0.08;
+}
+
+/* 无记录的回也能被方向键停留，聚焦时必须能看见——否则键盘用户会「消失」在 0.08 透明度里。 */
+.card-fate-cell.inactive:focus-visible {
+  opacity: 0.55;
+  outline: 2px solid var(--color-gold);
+  outline-offset: -1px;
 }
 
 .card-fate-timeline-wrap {
@@ -7703,3 +8037,214 @@ body.fullscreen .path-display-panel {
   display: none !important;
 }
 
+
+/* ============================================================
+   Chapter directory — collapsible block (mobile defaults closed)
+   ============================================================ */
+
+.chapter-directory-details > .chapter-directory-summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding: 2px 0;
+  user-select: none;
+}
+
+.chapter-directory-summary::-webkit-details-marker {
+  display: none;
+}
+
+.chapter-directory-summary::after {
+  content: '▾';
+  font-size: 0.72rem;
+  color: var(--color-ink-light);
+  transition: transform 0.2s ease;
+}
+
+.chapter-directory-details:not([open]) > .chapter-directory-summary {
+  margin-bottom: 0;
+}
+
+.chapter-directory-details:not([open]) > .chapter-directory-summary::after {
+  transform: rotate(-90deg);
+}
+
+.chapter-directory-summary:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   Mobile single-flow layout for list / chapter / knowledge
+   Desktop keeps fixed panes with their own scrollbars; on phones
+   that model squeezes the reading area into a few hundred pixels,
+   so the whole workspace scrolls as one column instead.
+   ============================================================ */
+
+@media (max-width: 560px) {
+  .chapter-focus-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .chapter-focus-actions {
+    justify-content: flex-start;
+  }
+
+  .chapter-focus-title {
+    font-size: 1.18rem;
+  }
+
+  body.view-list .main-container,
+  body.view-chapter .main-container,
+  body.view-knowledge .main-container {
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body.view-list .content-area,
+  body.view-chapter .content-area,
+  body.view-knowledge .content-area {
+    display: block;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  body.view-list .view-panel.active,
+  body.view-chapter .view-panel.active,
+  body.view-knowledge .view-panel.active {
+    display: block;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  body.view-list .list-container,
+  body.view-chapter .chapter-container,
+  body.view-knowledge .knowledge-container,
+  body.view-chapter .chapter-shell,
+  body.view-knowledge .knowledge-shell,
+  body.view-chapter .chapter-layout,
+  body.view-knowledge .knowledge-layout {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  body.view-list .list-content,
+  body.view-chapter .chapter-main,
+  body.view-knowledge .knowledge-main {
+    height: auto;
+    overflow: visible;
+  }
+
+  body.view-chapter .chapter-sidebar {
+    max-height: none;
+    overflow: visible;
+  }
+
+  body.view-knowledge .knowledge-sidebar {
+    max-height: none;
+    overflow: visible;
+    overscroll-behavior: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  /* 首屏空间优先给知识条目：说明文字和统计卡在手机上可省略。 */
+  .chapter-hero-desc,
+  .knowledge-hero-desc,
+  .chapter-hero-stats,
+  .knowledge-hero-stats {
+    display: none;
+  }
+
+  .chapter-hero-title,
+  .knowledge-hero-title {
+    margin-bottom: 0;
+  }
+
+  /* 18 个类别排成一行横滑，避免占掉整屏高度。 */
+  body.view-knowledge .knowledge-tabs-block {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body.view-knowledge .knowledge-tabs-block::-webkit-scrollbar {
+    display: none;
+  }
+
+  body.view-knowledge .knowledge-tabs-block .knowledge-tab {
+    flex: 0 0 auto;
+    width: auto;
+    white-space: nowrap;
+  }
+
+  body.view-knowledge .knowledge-more-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    margin-top: 8px;
+    padding: 9px 12px;
+    border: 1px dashed var(--color-border-alpha-50);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--color-primary);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+  body.view-knowledge .knowledge-more-toggle:hover,
+  body.view-knowledge .knowledge-more-toggle:focus-visible {
+    background: var(--color-primary-alpha-06);
+  }
+
+  body.view-knowledge .knowledge-more-icon {
+    transition: transform 0.18s ease;
+  }
+
+  body.view-knowledge .knowledge-more-toggle[aria-expanded="true"] .knowledge-more-icon {
+    transform: rotate(180deg);
+  }
+
+  body.view-knowledge .knowledge-secondary-filters {
+    display: none;
+  }
+
+  body.view-knowledge .knowledge-secondary-filters.is-open {
+    display: block;
+  }
+
+  body.view-chapter .chapter-directory {
+    max-height: 50vh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* 触控/窄屏上给头部图标按钮足够大的命中区域；视觉尺寸仍由图标本身控制。 */
+@media (max-width: 768px), (pointer: coarse) {
+  #sidebar-toggle,
+  .header-settings-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
