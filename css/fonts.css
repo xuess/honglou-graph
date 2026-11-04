@@ -14,28 +14,28 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(../assets/fonts/subset/noto-sans-sc-400.woff2?v=6ced01aff4) format('woff2');
+  src: url(../assets/fonts/subset/noto-sans-sc-400.woff2?v=9067b9a581) format('woff2');
 }
 @font-face {
   font-family: 'Noto Sans SC';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(../assets/fonts/subset/noto-sans-sc-500.woff2?v=6ced01aff4) format('woff2');
+  src: url(../assets/fonts/subset/noto-sans-sc-500.woff2?v=9067b9a581) format('woff2');
 }
 @font-face {
   font-family: 'Noto Sans SC';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url(../assets/fonts/subset/noto-sans-sc-600.woff2?v=6ced01aff4) format('woff2');
+  src: url(../assets/fonts/subset/noto-sans-sc-600.woff2?v=9067b9a581) format('woff2');
 }
 @font-face {
   font-family: 'Noto Sans SC';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url(../assets/fonts/subset/noto-sans-sc-700.woff2?v=6ced01aff4) format('woff2');
+  src: url(../assets/fonts/subset/noto-sans-sc-700.woff2?v=9067b9a581) format('woff2');
 }
 
 /* ── Noto Serif SC（标题与正文宋体） ──────────────────────────── */
@@ -44,28 +44,28 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(../assets/fonts/subset/noto-serif-sc-400.woff2?v=6ced01aff4) format('woff2');
+  src: url(../assets/fonts/subset/noto-serif-sc-400.woff2?v=9067b9a581) format('woff2');
 }
 @font-face {
   font-family: 'Noto Serif SC';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url(../assets/fonts/subset/noto-serif-sc-600.woff2?v=6ced01aff4) format('woff2');
+  src: url(../assets/fonts/subset/noto-serif-sc-600.woff2?v=9067b9a581) format('woff2');
 }
 @font-face {
   font-family: 'Noto Serif SC';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url(../assets/fonts/subset/noto-serif-sc-700.woff2?v=6ced01aff4) format('woff2');
+  src: url(../assets/fonts/subset/noto-serif-sc-700.woff2?v=9067b9a581) format('woff2');
 }
 @font-face {
   font-family: 'Noto Serif SC';
   font-style: normal;
   font-weight: 900;
   font-display: swap;
-  src: url(../assets/fonts/subset/noto-serif-sc-900.woff2?v=6ced01aff4) format('woff2');
+  src: url(../assets/fonts/subset/noto-serif-sc-900.woff2?v=9067b9a581) format('woff2');
 }
 
 /* ── ZCOOL XiaoWei（图谱节点字、印章式标题） ──────────────────── */
@@ -74,5 +74,5 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(../assets/fonts/subset/zcool-xiaowei-400.woff2?v=6ced01aff4) format('woff2');
+  src: url(../assets/fonts/subset/zcool-xiaowei-400.woff2?v=9067b9a581) format('woff2');
 }

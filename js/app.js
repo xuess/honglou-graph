@@ -1004,6 +1004,7 @@ class HongLouMengApp {
     this.graph.onNodeClick = (character) => this._handleNodeClick(character);
     this.graph.onNodeDblClick = (character) => this._enterFocusMode(character);
     this.graph.onBackgroundClick = () => this._handleGraphBackgroundClick();
+    this.graph.onLinkClick = (link) => this._showRelationshipCard(link);
     this.graph.setData(this.characters, this.relationships);
   }
 
@@ -3285,6 +3286,102 @@ _createFontAndThemeControls() {
       : `<div class="card-section">${pendingHtml}</div>`;
   }
 
+  _showRelationshipCard(link) {
+    const sourceId = link.source.id || link.source;
+    const targetId = link.target.id || link.target;
+    const source = this.characterMap.get(sourceId);
+    const target = this.characterMap.get(targetId);
+    if (!source || !target) return;
+
+    const wasOpen = this.isCardOpen;
+    this.isCardOpen = true;
+    document.body.classList.add('card-open');
+
+    const relationColors = {
+      blood: '#4A6B8A', marriage: '#B83232', master_servant: '#95A5A6',
+      romance: '#C75B6E', social: '#C49A2A', rivalry: '#8E44AD'
+    };
+    const relationLabels = {
+      blood: '血缘', marriage: '婚姻', master_servant: '主仆',
+      romance: '情感', social: '社交', rivalry: '敌对'
+    };
+    const typeColor = relationColors[link.type] || '#8B2500';
+    const typeLabel = relationLabels[link.type] || link.type;
+    const evidence = Array.isArray(link.evidence) ? link.evidence : [];
+    const evidenceHtml = evidence.length
+      ? `<div class="relation-evidence-list">${evidence.map((item) => {
+          const version = item.version || '前八十回';
+          const isContinuation = version.includes('续');
+          return `
+            <button type="button" class="relation-evidence-item" data-evidence-chapter="${Number(item.chapter)}" aria-label="查看第${Number(item.chapter)}回：${this._escapeHtmlAttr(item.scene || '')}">
+              <span class="relation-evidence-chapter">第${Number(item.chapter)}回</span>
+              <span class="relation-evidence-main">
+                <span class="relation-evidence-scene">${this._escapeHtml(item.scene || '回目依据')}</span>
+                <span class="relation-evidence-summary">${this._escapeHtml(item.summary || '')}</span>
+              </span>
+              <span class="relation-evidence-version${isContinuation ? ' is-continuation' : ''}">${this._escapeHtml(version)}</span>
+            </button>`;
+        }).join('')}</div>`
+      : '<div class="relation-evidence-empty">这条关系尚未整理回目依据。可先查看两侧人物卡片，或沿图谱继续探索。</div>';
+
+    this._setHtml(this.els.cardContent, `
+      <button class="card-close-btn" data-close-card="true" aria-label="关闭关系考据">✕</button>
+      <div class="relation-card-head">
+        <div class="relation-card-kicker">关系考据</div>
+        <div class="relation-card-title">
+          <button type="button" class="relation-name-btn" data-open-char="${source.id}">${this._escapeHtml(source.name)}</button>
+          <span class="relation-arrow" aria-hidden="true">→</span>
+          <button type="button" class="relation-name-btn" data-open-char="${target.id}">${this._escapeHtml(target.name)}</button>
+        </div>
+        <div class="relation-card-meta">
+          <span class="relation-type-badge" style="background:${typeColor}">${typeLabel}</span>
+          <span class="relation-label-text">${this._escapeHtml(link.label || '')}</span>
+        </div>
+      </div>
+      <div class="card-body relation-card-body">
+        ${link.description ? `<div class="relation-description">${this._escapeHtml(link.description)}</div>` : ''}
+        <div class="card-section">
+          <div class="card-section-title">回目依据</div>
+          ${evidenceHtml}
+          ${evidence.length ? '<div class="relation-evidence-footnote">依据定位到回目与情节梗概；原文异文与版本差异待校。</div>' : ''}
+          ${link.evidenceNote ? `<div class="relation-evidence-note">${this._escapeHtml(link.evidenceNote)}</div>` : ''}
+        </div>
+        <div class="relation-card-actions">
+          <button type="button" class="secondary-action" data-open-char="${source.id}">查看${this._escapeHtml(source.name)}</button>
+          <button type="button" class="secondary-action" data-open-char="${target.id}">查看${this._escapeHtml(target.name)}</button>
+          <button type="button" class="primary-action" data-show-relation-path>查看关系路径</button>
+        </div>
+      </div>
+    `);
+
+    this.els.cardContent.querySelector('[data-close-card="true"]').addEventListener('click', () => this._closeCard());
+    this.els.cardContent.querySelectorAll('[data-open-char]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const characterId = button.dataset.openChar;
+        if (!this.characterMap.has(characterId)) return;
+        this._closeCard();
+        this._openCharacter(characterId, { focusNeighbors: true, showCard: true });
+      });
+    });
+    this.els.cardContent.querySelectorAll('[data-evidence-chapter]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const chapter = Number(button.dataset.evidenceChapter);
+        if (!Number.isInteger(chapter)) return;
+        this._closeCard();
+        this._openChapterView(chapter);
+      });
+    });
+    const pathButton = this.els.cardContent.querySelector('[data-show-relation-path]');
+    if (pathButton) {
+      pathButton.addEventListener('click', () => {
+        this._closeCard();
+        this._findAndHighlightPath(sourceId, targetId);
+      });
+    }
+
+    this._openCardOverlay(`关系考据：${source.name} → ${target.name}`, { keepReturnFocus: wasOpen });
+  }
+
   _showCard(character) {
     this.isCardOpen = true;
     document.body.classList.add('card-open');
@@ -3466,7 +3563,7 @@ _createFontAndThemeControls() {
     const fateTimelineEl = this.els.cardContent.querySelector('.card-fate-timeline');
     if (fateTimelineEl) this._bindFateTimeline(fateTimelineEl);
 
-    this._openCardOverlay();
+    this._openCardOverlay(`人物详情：${character.name}`);
   }
 
   /**
@@ -3558,11 +3655,14 @@ _createFontAndThemeControls() {
    * 卡片是覆盖在内容之上的模态面板：打开时记住来源焦点并把焦点移进面板，
    * 关闭时还原。仅移动焦点不做 inert，是因为图谱需要保持可拖拽。
    */
-  _openCardOverlay() {
+  _openCardOverlay(label = '详情', { keepReturnFocus = false } = {}) {
     // 来源可能是 SVG 的 <g>（图谱节点），所以按 Element 判断而不是 HTMLElement，
     // 否则键盘打开卡片后焦点无法回到原来的节点上。
-    const active = document.activeElement;
-    this._cardReturnFocus = active && active !== document.body && typeof active.focus === 'function' ? active : null;
+    if (!keepReturnFocus) {
+      const active = document.activeElement;
+      this._cardReturnFocus = active && active !== document.body && typeof active.focus === 'function' ? active : null;
+    }
+    this.els.cardOverlay.setAttribute('aria-label', label);
     this.els.cardOverlay.classList.add('active');
     this.els.cardOverlay.setAttribute('aria-hidden', 'false');
     // 焦点先落在面板容器上：读屏会播报 aria-label，且不会跳过标题直接落到关闭按钮。
@@ -3664,7 +3764,7 @@ _createFontAndThemeControls() {
     `);
 
     this.els.cardContent.querySelector('[data-close-card="true"]').addEventListener('click', () => this._closeCard());
-    this._openCardOverlay();
+    this._openCardOverlay('人物对比');
   }
 
   _setFacetState(nextState = {}, sourceView = 'graph') {

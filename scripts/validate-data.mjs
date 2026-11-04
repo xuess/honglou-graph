@@ -153,6 +153,41 @@ if (characters && relationships && knowledge && provenance) {
     if (relationship.source === relationship.target) {
       fail(`${context} 的起点与终点相同：“${relationship.source}”`);
     }
+
+    if (relationship.evidence !== undefined) {
+      if (!Array.isArray(relationship.evidence)) {
+        fail(`${context} 的 evidence 必须是数组`);
+      } else {
+        const seenEvidence = new Set();
+        relationship.evidence.forEach((item, evidenceIndex) => {
+          const evidenceContext = `${context} 的 evidence[${evidenceIndex}]`;
+          if (!Number.isInteger(item.chapter) || item.chapter < 1 || item.chapter > 120) {
+            fail(`${evidenceContext} 的 chapter 必须为第 1–120 回之间的整数`);
+          }
+          if (!String(item.scene || '').trim() || !String(item.summary || '').trim()) {
+            fail(`${evidenceContext} 必须包含 scene 和 summary`);
+          }
+          if (item.status !== 'chapter') {
+            fail(`${evidenceContext} 的 status 必须为 chapter（只能引用回目级证据）`);
+          }
+          if (item.chapter <= 80 && item.version !== '前八十回') {
+            fail(`${evidenceContext} 的第 ${item.chapter} 回属于前八十回，version 必须为“前八十回”`);
+          }
+          if (item.chapter > 80 && !String(item.version || '').includes('续书')) {
+            fail(`${evidenceContext} 的第 ${item.chapter} 回属于后四十回，version 必须标注续书`);
+          }
+          const key = `${item.chapter}|${item.scene || ''}`;
+          if (seenEvidence.has(key)) {
+            fail(`${evidenceContext} 重复引用了同一回目依据：${key}`);
+          }
+          seenEvidence.add(key);
+        });
+      }
+    }
+    if (relationship.evidenceNote && !(relationship.evidence || []).length) {
+      fail(`${context} 有 evidenceNote 但没有 evidence`);
+    }
+
     if (relationship.type !== 'blood') return;
 
     const from = byId.get(relationship.source);

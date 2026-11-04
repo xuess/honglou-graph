@@ -80,7 +80,9 @@ class RelationshipGraph {
     this.onNodeClick = null;
     this.onNodeDblClick = null;
     this.onBackgroundClick = null;
+    this.onLinkClick = null;
     this._lastNodeClick = null;
+    this._activeLinkKey = null;
 
     this._init();
   }
@@ -118,6 +120,8 @@ _init() {
     this.g = this.svg.append('g');
     this.linkGroup = this.g.append('g').attr('class', 'links');
     this.linkLabelGroup = this.g.append('g').attr('class', 'link-labels');
+    // 透明加宽连线只负责点击/键盘命中；可见连线仍保持原线宽与透明度。
+    this.linkHitGroup = this.g.append('g').attr('class', 'link-hits');
     this.nodeGroup = this.g.append('g').attr('class', 'nodes');
 
     this._tooltipEl = document.createElement('div');
@@ -199,6 +203,10 @@ _init() {
         type: rel.type,
         label: rel.label,
         description: rel.description,
+        evidence: Array.isArray(rel.evidence) ? rel.evidence : [],
+        evidenceNote: rel.evidenceNote || '',
+        sourceName: this.characterMap.get(rel.source)?.name || rel.source,
+        targetName: this.characterMap.get(rel.target)?.name || rel.target,
         weight: rel.weight || 1,
         color: this.relationColors[rel.type] || '#999',
         key: `${rel.source}-${rel.target}-${rel.type}`
@@ -285,6 +293,67 @@ _init() {
         update => update.text(d => d.label),
         exit => exit.remove()
       );
+
+    this.linkHitElements = this.linkHitGroup
+      .selectAll('.link-hit')
+      .data(this.links, d => d.key)
+      .join(
+        enter => enter.append('line')
+          .attr('class', 'link-hit')
+          .attr('fill', 'none')
+          .attr('stroke', 'transparent')
+          .attr('stroke-width', 18)
+          .attr('pointer-events', 'stroke')
+          .on('mouseenter', (event, d) => {
+            this._highlightSingleLink(d);
+            this._showLinkTooltip(event, d);
+          })
+          .on('mousemove', (event) => this._positionTooltip(event))
+          .on('mouseleave', () => {
+            this._restoreHighlight();
+            this._hideTooltip();
+          })
+          .on('click', (event, d) => {
+            event.stopPropagation();
+            this._selectLink(d);
+            this._hideTooltip();
+            if (this.onLinkClick) this.onLinkClick(d);
+          })
+          .on('focus', (event, d) => {
+            this._highlightSingleLink(d);
+            const rect = event.currentTarget.getBoundingClientRect();
+            this._positionTooltip({
+              clientX: rect.left + rect.width / 2,
+              clientY: rect.top + rect.height / 2
+            });
+            this._showLinkTooltip(event, d, true);
+          })
+          .on('blur', () => {
+            this._restoreHighlight();
+            this._hideTooltip();
+          })
+          .on('keydown', (event, d) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              event.stopPropagation();
+              this._selectLink(d);
+              this._hideTooltip();
+              if (this.onLinkClick) this.onLinkClick(d);
+            }
+          }),
+        update => update,
+        exit => exit.remove()
+      )
+      .attr('class', d => `link-hit${d.evidence.length ? ' has-evidence' : ''}`)
+      .attr('data-link-key', d => d.key)
+      .attr('role', d => d.evidence.length ? 'button' : null)
+      .attr('tabindex', d => d.evidence.length ? '0' : null)
+      .attr('aria-hidden', d => d.evidence.length ? null : 'true')
+      .attr('aria-label', d => {
+        if (!d.evidence.length) return null;
+        const chapters = d.evidence.map(item => `第${item.chapter}回`).join('、');
+        return `关系考据：${d.sourceName}与${d.targetName}，${d.label}；${chapters}。按回车查看`;
+      });
 
     const nodeGroups = this.nodeGroup
       .selectAll('.node-group')
@@ -401,6 +470,14 @@ _init() {
           this.setAttribute('y2', d.target.y);
         });
 
+        this.linkHitElements.each(function(d) {
+          if (!visibleLinkKeys.has(d.key)) return;
+          this.setAttribute('x1', d.source.x);
+          this.setAttribute('y1', d.source.y);
+          this.setAttribute('x2', d.target.x);
+          this.setAttribute('y2', d.target.y);
+        });
+
         this.linkLabelElements.each(function(d) {
           if (!visibleLinkKeys.has(d.key)) return;
           this.setAttribute('x', (d.source.x + d.target.x) / 2);
@@ -414,6 +491,14 @@ _init() {
       } else {
         // No filter - update all (but skip hidden ones)
         this.linkElements.each(function(d) {
+          if (this.style.display === 'none') return;
+          this.setAttribute('x1', d.source.x);
+          this.setAttribute('y1', d.source.y);
+          this.setAttribute('x2', d.target.x);
+          this.setAttribute('y2', d.target.y);
+        });
+
+        this.linkHitElements.each(function(d) {
           if (this.style.display === 'none') return;
           this.setAttribute('x1', d.source.x);
           this.setAttribute('y1', d.source.y);
@@ -596,14 +681,56 @@ _init() {
     return now - last.at <= 450;
   }
 
+  _highlightSingleLink(link) {
+    const sourceId = link.source.id || link.source;
+    const targetId = link.target.id || link.target;
+    this.nodeElements
+      .classed('dimmed', d => d.id !== sourceId && d.id !== targetId)
+      .classed('highlighted', d => d.id === sourceId || d.id === targetId);
+    this.linkElements
+      .classed('dimmed', d => d.key !== link.key)
+      .classed('highlighted', d => d.key === link.key)
+      .classed('selected', d => d.key === link.key && this._activeLinkKey === link.key);
+    this.linkHitElements
+      .classed('selected', d => d.key === link.key && this._activeLinkKey === link.key);
+    this.linkLabelElements.classed('visible', d => d.key === link.key);
+  }
+
+  _restoreHighlight() {
+    if (this.selectedNode) {
+      this._highlightConnected(this.selectedNode);
+      return;
+    }
+    if (this._activeLinkKey) {
+      const link = this._linkMap.get(this._activeLinkKey);
+      if (link) {
+        this._highlightSingleLink(link);
+        return;
+      }
+    }
+    this._clearHighlight();
+  }
+
+  _selectLink(link) {
+    this.selectedNode = null;
+    this.nodeElements.selectAll('.node-circle').classed('selected', false);
+    this._activeLinkKey = link.key;
+    this._highlightSingleLink(link);
+  }
+
   _clearHighlight() {
+    this._activeLinkKey = null;
     this.nodeElements.classed('dimmed', false).classed('highlighted', false);
-    this.linkElements.classed('dimmed', false).classed('highlighted', false);
+    this.linkElements.classed('dimmed', false).classed('highlighted', false).classed('selected', false);
+    this.linkHitElements?.classed('selected', false);
     this._updateLabelVisibility();
   }
 
   _selectNode(node) {
     this.selectedNode = node;
+    this._activeLinkKey = null;
+    this.linkElements.classed('selected', false);
+    this.linkHitElements?.classed('selected', false);
     this.nodeElements.selectAll('.node-circle').classed('selected', d => node && d.id === node.id);
     if (node) this._highlightConnected(node);
     else this._clearHighlight();
@@ -649,7 +776,27 @@ _init() {
       <span class="tooltip-meta">${family} · ${stars} · ${relCount}条关系</span>
     `;
     this._tooltipEl.classList.add('visible');
+    this._positionTooltip(event);
+  }
 
+  _showLinkTooltip(event, link, fromKeyboard = false) {
+    if (!this._tooltipEl) return;
+
+    const chapters = link.evidence.map(item => `第${item.chapter}回`).join('、');
+    const hint = link.evidence.length
+      ? `${chapters} · ${fromKeyboard ? '按回车查看' : '点击查看考据'}`
+      : '点击查看关系详情';
+    this._tooltipEl.innerHTML = `
+      <strong>${link.sourceName} → ${link.targetName}</strong>
+      <span class="tooltip-identity">${this.relationLabels[link.type] || link.type} · ${link.label}</span>
+      <span class="tooltip-meta">${hint}</span>
+    `;
+    this._tooltipEl.classList.add('visible');
+    if (!fromKeyboard) this._positionTooltip(event);
+  }
+
+  _positionTooltip(event) {
+    if (!this._tooltipEl) return;
     const x = event.clientX;
     const y = event.clientY;
     this._tooltipEl.style.transform = `translate(${x}px, ${y - 68}px) translateX(-50%)`;
@@ -682,6 +829,7 @@ _init() {
 
     this.nodeElements.style('display', d => this.currentVisibleNodeIds.has(d.id) ? null : 'none');
     this.linkElements.style('display', d => this.currentVisibleLinkKeys.has(this._getLinkKey(d)) ? null : 'none');
+    this.linkHitElements.style('display', d => this.currentVisibleLinkKeys.has(this._getLinkKey(d)) ? null : 'none');
     this.linkLabelElements.style('display', d => this.currentVisibleLinkKeys.has(this._getLinkKey(d)) ? null : 'none');
 
     this._updateLabelVisibility();

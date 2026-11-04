@@ -755,6 +755,35 @@ if (modeToggleCheck.cardModeInitial) {
 }
 
 // ============================================================
+// TC-33: Relationship evidence card and chapter jump
+// ============================================================
+await page.click('[data-view="graph"]');
+await page.waitForTimeout(1200);
+const edgeCardCheck = await page.evaluate(async () => {
+  const hit = document.querySelector('.link-hit[data-link-key="jia_baoyu-lin_daiyu-romance"]');
+  if (!hit) return { ok: false, reason: 'edge hit target missing' };
+  hit.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+  await new Promise(r => setTimeout(r, 250));
+  const overlay = document.getElementById('character-card-overlay');
+  const evidence = [...document.querySelectorAll('.relation-evidence-item')];
+  const opened = overlay.classList.contains('active')
+    && overlay.getAttribute('aria-label') === '关系考据：贾宝玉 → 林黛玉'
+    && evidence.length === 3;
+  if (!opened) return { ok: false, reason: 'evidence card not rendered', evidence: evidence.length };
+  evidence[0].click();
+  await new Promise(r => setTimeout(r, 700));
+  const activeTab = document.querySelector('.view-nav-tab.active')?.textContent || '';
+  const chapterHeading = document.querySelector('.chapter-main h2, .chapter-main')?.textContent || '';
+  return {
+    ok: activeTab.includes('回目') && chapterHeading.includes('第3回'),
+    activeTab,
+    chapterHeading: chapterHeading.slice(0, 40)
+  };
+});
+assert(edgeCardCheck.ok, `Relationship evidence should open and jump to chapter 3: ${JSON.stringify(edgeCardCheck)}`);
+console.log('✓ TC-33: Relationship evidence card opens and jumps to chapter');
+
+// ============================================================
 // TC-13: No console errors
 // ============================================================
 if (errors.length) {
