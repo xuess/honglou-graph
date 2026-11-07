@@ -8,10 +8,10 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏮</text></svg>">
   <!-- 数据文件的内容版本：由 npm run stamp 与资源版本号一起更新，
        否则浏览器会一直复用旧的 characters.json / knowledge.json。 -->
-  <meta name="hlm-asset-version" content="7436f72936">
-  <link rel="stylesheet" href="css/fonts.css?v=7436f72936">
-  <link rel="stylesheet" href="css/style.css?v=7436f72936">
-  <script src="js/d3.v7.min.js?v=7436f72936"></script>
+  <meta name="hlm-asset-version" content="c51cc63185">
+  <link rel="stylesheet" href="css/fonts.css?v=c51cc63185">
+  <link rel="stylesheet" href="css/style.css?v=c51cc63185">
+  <script src="js/d3.v7.min.js?v=c51cc63185"></script>
 </head>
 <body>
   <div id="loading-overlay" class="loading-overlay">
@@ -185,7 +185,8 @@
           </div>
 
           <div id="graph-hint" class="graph-hint">
-            <span>拖拽移动 · 滚轮缩放 · 点击连线看考据 · 双击聚焦</span>
+            <span class="graph-hint-copy graph-hint-copy-desktop">拖拽移动 · 滚轮缩放 · 点击连线看考据 · 双击聚焦</span>
+            <span class="graph-hint-copy graph-hint-copy-touch">单指拖动 · 双指缩放 · 点按节点看人物 · 双击聚焦</span>
             <button id="graph-hint-dismiss" class="graph-hint-dismiss">知道了</button>
           </div>
 
@@ -268,26 +269,26 @@
   <div id="card-content" class="character-card" tabindex="-1"></div>
 </div>
 
-  <script src="js/edge-tts.js?v=7436f72936"></script>
-  <script src="js/audio-preload-cache.js?v=7436f72936"></script>
-  <script src="js/utils.js?v=7436f72936"></script>
-  <script src="js/facet-store.js?v=7436f72936"></script>
-  <script src="js/text-layout.js?v=7436f72936"></script>
-  <script src="js/graph.js?v=7436f72936"></script>
-  <script src="js/tree-view.js?v=7436f72936"></script>
-  <script src="js/list-view.js?v=7436f72936"></script>
-  <script src="js/chapter-view.js?v=7436f72936"></script>
+  <script src="js/edge-tts.js?v=c51cc63185"></script>
+  <script src="js/audio-preload-cache.js?v=c51cc63185"></script>
+  <script src="js/utils.js?v=c51cc63185"></script>
+  <script src="js/facet-store.js?v=c51cc63185"></script>
+  <script src="js/text-layout.js?v=c51cc63185"></script>
+  <script src="js/graph.js?v=c51cc63185"></script>
+  <script src="js/tree-view.js?v=c51cc63185"></script>
+  <script src="js/list-view.js?v=c51cc63185"></script>
+  <script src="js/chapter-view.js?v=c51cc63185"></script>
   <!-- fuse.js 本地化：原先是唯一的外部运行时依赖，断网/公司网络下会静默降级为关键词匹配。
        用模块脚本加载，把默认导出挂到 window.Fuse，其余视图沿用全局访问方式。 -->
   <script type="module">
     try {
-      const module = await import('./js/fuse.min.mjs?v=7436f72936');
+      const module = await import('./js/fuse.min.mjs?v=c51cc63185');
       window.Fuse = module.default;
     } catch (err) {
       console.warn('[fuse] 本地模块加载失败，知识库检索将退回关键词匹配', err);
     }
   </script>
-  <script src="js/knowledge-view.js?v=7436f72936"></script>
-  <script src="js/app.js?v=7436f72936"></script>
+  <script src="js/knowledge-view.js?v=c51cc63185"></script>
+  <script src="js/app.js?v=c51cc63185"></script>
 </body>
 </html>

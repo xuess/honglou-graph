@@ -428,7 +428,7 @@ class HongLouMengApp {
       this.els.btnClearContext.addEventListener('click', () => this._clearFacetContext());
     }
 
-    this.els.btnFullView.addEventListener('click', () => this._showFullGraph());
+    this.els.btnFullView.addEventListener('click', () => this._showFullGraph(false, { expandAll: true }));
     if (this.els.btnRandom) {
       this.els.btnRandom.addEventListener('click', () => this._randomExplore());
     }
@@ -719,8 +719,8 @@ class HongLouMengApp {
     });
 
     // 浏览器前进/后退：地址栏是唯一真源，回放时不再写历史栈。
-    window.addEventListener('popstate', () => {
-      this._applyStateFromUrl();
+    window.addEventListener('popstate', (event) => {
+      this._applyStateFromUrl(event.state?.hlm || null);
     });
 
     // Timeline slider + controls
@@ -1229,14 +1229,28 @@ class HongLouMengApp {
     }
 
     const newUrl = `${location.pathname}?${params.toString()}`;
-    if (newUrl === `${location.pathname}${location.search}`) return;
+    const navState = {
+      hlm: {
+        view: { ...this.currentView },
+        graph: this._captureGraphFilterState()
+      }
+    };
+
+    if (newUrl === `${location.pathname}${location.search}`) {
+      // 站内返回可能只改变视图状态而不改变 URL（如“显示全部”→“概览”）。
+      // 当前历史条目的快照仍要同步，否则下一次浏览器后退会恢复错状态。
+      history.replaceState(navState, '', newUrl);
+      return;
+    }
 
     // 初始化与 popstate 回放期间只替换当前条目，避免把「恢复」也算作一次新的用户导航。
     // 其余情况写入历史栈，浏览器的前进/后退才能逐步回退视图与人物选择。
+    // 同时把视图和筛选快照写入 history.state：地址栏只表达 char/topic/stage，
+    // 无法表达「显示全部」以及用户显式设置的筛选，后退时需要靠快照还原。
     if (this._suppressHistoryPush) {
-      history.replaceState(null, '', newUrl);
+      history.replaceState(navState, '', newUrl);
     } else {
-      history.pushState(null, '', newUrl);
+      history.pushState(navState, '', newUrl);
     }
   }
 
@@ -1244,7 +1258,7 @@ class HongLouMengApp {
    * 把地址栏里的 ?view/?char/?topic/?stage 还原成界面状态。
    * 只在 popstate 时调用；初始化路径由 _init 自己解析一次参数。
    */
-  _applyStateFromUrl() {
+  _applyStateFromUrl(historyNav = null) {
     const urlParams = new URLSearchParams(location.search);
     const validViews = ['graph', 'tree', 'list', 'chapter', 'knowledge'];
     const viewParam = urlParams.get('view');
@@ -1252,25 +1266,52 @@ class HongLouMengApp {
     const topicParam = urlParams.get('topic');
     const stageParam = urlParams.get('stage');
 
+    const applyGraphSnapshot = () => {
+      if (historyNav?.graph) this._applyGraphFilterSnapshot(historyNav.graph);
+    };
+    const restoreAfterContext = () => {
+      if (!historyNav?.graph) return;
+      applyGraphSnapshot();
+      this._refreshViewAfterFilterChange();
+    };
+
     this._suppressHistoryPush = true;
     try {
       // 没有 ?view 时按默认图谱处理，否则后退到首条历史记录会停在当前视图不响应。
       this._switchView(viewParam && validViews.includes(viewParam) ? viewParam : 'graph');
+      applyGraphSnapshot();
 
       if (charParam && this.characterMap.has(charParam)) {
         this._openCharacter(charParam, { focusNeighbors: true, showCard: true, _fromRestore: true });
       } else if (topicParam) {
         this._openTopic(topicParam, true);
+        restoreAfterContext();
       } else if (stageParam) {
         this._openStage(stageParam, true);
+        restoreAfterContext();
+      } else if (this.activeView === 'graph' && historyNav?.view?.type === 'family' && historyNav.view.family) {
+        this._openFamily(historyNav.view.family, true);
+        restoreAfterContext();
+      } else if (this.activeView === 'graph' && historyNav?.view?.type === 'relationship') {
+        this._openRelationshipView(historyNav.view.leftId, historyNav.view.rightId, true);
+        restoreAfterContext();
+      } else if (this.activeView === 'graph' && historyNav?.view?.type === 'fullgraph') {
+        // “显示全部”不改变地址栏；后退时靠 history.state 里的视图快照还原。
+        this._showFullGraph(true);
       } else {
         this.currentCharacterId = null;
         this.currentTopic = null;
         this.currentStage = null;
         this.currentView = { type: 'overview' };
         this._closeCard();
-        this._renderGlobalContextBar();
-        this._updateActionStates();
+        if (this.activeView === 'graph' && this.graph) {
+          // 地址栏只记录 ?view=graph，不记录历史筛选；后退时保留当前筛选，
+          // 但必须重绘为概览，避免 currentView 与画布仍停在人物邻域。
+          this._showOverview({ preserveGraphState: true });
+        } else {
+          this._renderGlobalContextBar();
+          this._updateActionStates();
+        }
       }
     } finally {
       this._suppressHistoryPush = false;
@@ -1505,6 +1546,31 @@ class HongLouMengApp {
     ];
   }
 
+  _captureGraphFilterState() {
+    if (!this.graph) return null;
+    return {
+      importanceThreshold: this.graph.importanceThreshold,
+      activeFamilies: Array.from(this.graph.activeFamilies || []),
+      activeRelationTypes: Array.from(this.graph.activeRelationTypes || []),
+      interactionMode: this.graph.interactionMode
+    };
+  }
+
+  _applyGraphFilterSnapshot(snapshot) {
+    if (!this.graph || !snapshot) return;
+    if (Array.isArray(snapshot.activeFamilies)) {
+      this.graph.activeFamilies = new Set(snapshot.activeFamilies);
+    }
+    if (Array.isArray(snapshot.activeRelationTypes)) {
+      this.graph.activeRelationTypes = new Set(snapshot.activeRelationTypes);
+    }
+    if (Number.isFinite(snapshot.importanceThreshold)) {
+      this.graph.importanceThreshold = snapshot.importanceThreshold;
+    }
+    this._syncGraphFilterUi();
+    this._syncImportanceQuickUI();
+  }
+
   _syncGraphFilterUi() {
     if (!this.graph) return;
 
@@ -1539,15 +1605,15 @@ class HongLouMengApp {
     const activeFamilyCount = allFamilies.filter((family) => this.graph.activeFamilies.has(family.key)).length;
     const activeRelationCount = allRelations.filter((relation) => this.graph.activeRelationTypes.has(relation.key)).length;
     const hasCustomFilters = activeFamilyCount !== allFamilies.length || activeRelationCount !== allRelations.length || Number(this.graph.importanceThreshold) !== 4;
-    const familySummary = activeFamilyCount === allFamilies.length ? '家族：全部可见' : `家族：${activeFamilyCount}/${allFamilies.length}`;
-    const relationSummary = activeRelationCount === allRelations.length ? '关系：全部可见' : `关系：${activeRelationCount}/${allRelations.length}`;
-    const importanceSummary = `人物：重要度 ${this.graph.importanceThreshold} 以上`;
+    const familySummary = activeFamilyCount === allFamilies.length ? '家族 全部' : `家族 ${activeFamilyCount}/${allFamilies.length}`;
+    const relationSummary = activeRelationCount === allRelations.length ? '关系 全部' : `关系 ${activeRelationCount}/${allRelations.length}`;
+    const importanceSummary = `重要度 ${this.graph.importanceThreshold} 以上`;
 
     this._setHtml(this.els.graphFilterSummary, `
       <div class="filter-summary-card${hasCustomFilters ? ' is-filtered' : ''}">
         <div class="filter-summary-main">
           <div class="filter-summary-title">当前图谱筛选</div>
-          <div class="filter-summary-text">${familySummary} · ${relationSummary} · ${importanceSummary}</div>
+          <div class="filter-summary-text"><span>${familySummary}</span><span>${relationSummary}</span><span>${importanceSummary}</span></div>
           <div class="filter-summary-note">默认先看重要人物；需要考据边缘人物时，可放宽到“全部有名人物”。</div>
         </div>
         ${hasCustomFilters ? '<button type="button" id="btn-reset-graph-filters" class="secondary-action filter-summary-reset">恢复全部</button>' : '<span class="filter-summary-state">当前是完整视图</span>'}
@@ -1644,7 +1710,13 @@ class HongLouMengApp {
     });
   }
 
-  _showOverview() {
+  /**
+   * 回到默认概览。
+   * preserveGraphState 用于“返回上一视图”：人物/专题等上下文返回概览时，
+   * 用户此前在侧栏设置的家族、关系类型和重要度筛选必须原样保留；
+   * 只有显式点击“默认概览/清空上下文”才重置为默认阅读筛选。
+   */
+  _showOverview({ preserveGraphState = false } = {}) {
     this._closeCard();
     this.currentCharacterId = null;
     this.currentTopic = null;
@@ -1652,10 +1724,17 @@ class HongLouMengApp {
     this.currentRelationshipPair = null;
     this.currentFamily = null;
     this.currentView = { type: 'overview' };
-    this._setReadingGraphState();
+    if (!preserveGraphState) {
+      this._setReadingGraphState();
+      // “默认概览”必须回到默认的重要度门槛；否则从“显示全部”返回后
+      // 概览仍保持 1，标题和筛选摘要都不再是默认状态。
+      this.graph.importanceThreshold = 4;
+    }
     this.graph.exitFocusMode();
+    this.graph.setInteractionMode('reading');
     this.graph.showImportantOverview();
     this._updateFloatingContext('默认概览');
+    this._syncGraphFilterUi();
     this._syncImportanceQuickUI();
     this._setFacetState({
       selectedCharacterIds: [],
@@ -1986,7 +2065,7 @@ _createFontAndThemeControls() {
     headerRight.appendChild(dropdown);
   }
 
-  _showFullGraph(skipHistory) {
+  _showFullGraph(skipHistory, { expandAll = false } = {}) {
     if (!skipHistory) this._pushView();
     this.currentCharacterId = null;
     this.currentTopic = null;
@@ -1994,9 +2073,14 @@ _createFontAndThemeControls() {
     this.currentRelationshipPair = null;
     this.currentFamily = null;
     this.currentView = { type: 'fullgraph' };
+    // 只有用户显式点“显示全部”才放宽重要度；历史恢复和后退必须保留
+    // 进入该状态时的筛选，否则从默认概览打开人物再返回会突然显示全部 111 人。
+    if (expandAll) this.graph.importanceThreshold = 1;
     this.graph.exitFocusMode();
     this.graph.setInteractionMode('explore');
     this.graph.showFullGraph();
+    this._syncGraphFilterUi();
+    this._syncImportanceQuickUI();
     this._updateFloatingContext('显示全部');
     this._setFacetState({
       selectedCharacterIds: [],
@@ -2187,7 +2271,8 @@ _createFontAndThemeControls() {
 
     const isGraphView = this.activeView === 'graph';
     if (isGraphView) {
-      if (this.currentView.type !== 'fullgraph') this._setReadingGraphState();
+      // 打开人物是阅读动作，不应重置用户在侧栏显式设置的家族/关系筛选。
+      this.graph.setInteractionMode('reading');
       if (options.focusNeighbors) this.graph.showNeighborhood(characterId, { center: true, includeSecondDegree: false });
       else this.graph.focusOnNode(characterId);
     }
@@ -3108,15 +3193,33 @@ _createFontAndThemeControls() {
 
   // View history management
   _pushView() {
-    if (this.currentView && this.currentView.type !== 'overview') {
-      this.viewHistory.push({ ...this.currentView });
-      if (this.viewHistory.length > 20) this.viewHistory.shift();
+    if (!this.currentView) return;
+    // 连同筛选快照一起入栈：返回时不能把用户显式设置的家族/关系/重要度
+    // 重置成默认阅读筛选，也不能让“显示全部”返回后突然变回核心人物。
+    const snapshot = {
+      ...this.currentView,
+      graph: this._captureGraphFilterState()
+    };
+    this.viewHistory.push(snapshot);
+    if (this.viewHistory.length > 20) this.viewHistory.shift();
+
+    // 当前地址条目在导航前保存快照。浏览器后退回到这个条目时，
+    // ?view=graph 无法表达“显示全部”和筛选条件，只能依赖 history.state。
+    try {
+      history.replaceState(
+        { ...(history.state || {}), hlm: { view: { ...this.currentView }, graph: snapshot.graph } },
+        '',
+        location.href
+      );
+    } catch (err) {
+      // 个别浏览器/沙箱会限制 replaceState；站内历史仍可工作。
     }
   }
 
   _goBack() {
     if (!this.viewHistory.length) {
-      this._showOverview();
+      // 直接打开人物深链时没有站内历史；返回概览仍应保留当前筛选条件。
+      this._showOverview({ preserveGraphState: true });
       // 站内返回不是一次新的用户导航：替换当前历史条目，避免 URL 仍指向
       // 刚关闭的人物，也避免浏览器后退又回到同一个人物。
       this._suppressHistoryPush = true;
@@ -3133,6 +3236,9 @@ _createFontAndThemeControls() {
     this._suppressHistoryPush = true;
     try {
       this._navigateToView(prev);
+      // 站内返回不是新的用户导航：替换当前条目，让地址栏不再停留在
+      // 刚关闭的人物/专题上，浏览器前进后退也不会回放已经退出的状态。
+      this._updateUrlParams();
     } finally {
       this._suppressHistoryPush = wasSuppressed;
     }
@@ -3140,9 +3246,18 @@ _createFontAndThemeControls() {
   }
 
   _navigateToView(view) {
+    // 站内返回会切到非人物视图；人物卡是上一个视图的浮层，必须一起收起。
+    // 目标是人物时 _openCharacter 会按 showCard 重新打开，不会误关。
+    this._closeCard();
+    const snapshot = view.graph || null;
+    if (snapshot) this._applyGraphFilterSnapshot(snapshot);
+
     if (view.type === 'character') {
       this._openCharacter(view.characterId, { focusNeighbors: true, showCard: true, _fromRestore: true });
-    } else if (view.type === 'topic') {
+      return;
+    }
+
+    if (view.type === 'topic') {
       this._openTopic(view.topicId, true);
     } else if (view.type === 'stage') {
       this._openStage(view.stageId, true);
@@ -3152,8 +3267,17 @@ _createFontAndThemeControls() {
       this._openRelationshipView(view.leftId, view.rightId, true);
     } else if (view.type === 'fullgraph') {
       this._showFullGraph(true);
+      return;
     } else {
-      this._showOverview();
+      this._showOverview({ preserveGraphState: Boolean(snapshot) });
+      return;
+    }
+
+    // 专题/阶段/家族/关系入口会先套用默认阅读筛选；返回时再恢复用户
+    // 进入该入口前显式设置的筛选，并按当前视图重绘。
+    if (snapshot) {
+      this._applyGraphFilterSnapshot(snapshot);
+      this._refreshViewAfterFilterChange();
     }
   }
 
@@ -4410,7 +4534,9 @@ _createFontAndThemeControls() {
     this._setHtml(this.els.loading, `
       <div class="loading-title">加载失败</div>
       <div class="loading-subtitle">${message}</div>
+      <button type="button" id="btn-retry-load" class="loading-retry">重新加载</button>
     `);
+    this.els.loading.querySelector('#btn-retry-load')?.addEventListener('click', () => window.location.reload());
   }
 
   /**

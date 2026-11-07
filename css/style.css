@@ -1301,6 +1301,11 @@ body.performance-low .tree-person-card.highlighted {
   font-size: 0.75rem;
 }
 
+.family-filter-item.active .family-filter-count,
+.relation-filter-item.active .relation-filter-count {
+  color: rgba(255,248,238,0.78);
+}
+
 .custom-checkbox {
   width: 18px;
   height: 18px;
@@ -1351,10 +1356,10 @@ body.performance-low .tree-person-card.highlighted {
 
 .filter-summary-card {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 6px 8px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  padding: 8px;
   border-radius: 16px;
   border: 1px solid var(--color-border-alpha-28);
   background: linear-gradient(135deg, rgba(255,255,255,0.74), rgba(248,239,228,0.92));
@@ -1378,10 +1383,18 @@ body.performance-low .tree-person-card.highlighted {
 }
 
 .filter-summary-text {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px 8px;
   margin-top: 4px;
   color: var(--color-text);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
+  line-height: 1.5;
   font-weight: 600;
+}
+
+.filter-summary-text span {
+  white-space: nowrap;
 }
 
 .filter-summary-note {
@@ -1389,14 +1402,12 @@ body.performance-low .tree-person-card.highlighted {
 }
 
 .filter-summary-state {
-  flex-shrink: 0;
   color: var(--color-ink-light);
-  font-size: 0.78rem;
-  white-space: nowrap;
+  font-size: 0.76rem;
 }
 
 .filter-summary-reset {
-  flex-shrink: 0;
+  align-self: flex-start;
   white-space: nowrap;
 }
 
@@ -1958,6 +1969,20 @@ body.performance-low .tree-person-card.highlighted {
 .graph-hint.hidden {
   opacity: 0;
   pointer-events: none;
+}
+
+.graph-hint-copy-touch {
+  display: none;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .graph-hint-copy-desktop {
+    display: none;
+  }
+
+  .graph-hint-copy-touch {
+    display: inline;
+  }
 }
 
 .graph-hint-dismiss {
@@ -2673,6 +2698,23 @@ body:not(.view-graph) .sidebar-resize-handle {
   margin-bottom: 24px;
 }
 
+.loading-retry {
+  border: 1px solid var(--color-primary);
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-cream);
+  padding: 9px 20px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.loading-retry:hover {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary-light);
+}
+
 .loading-spinner {
   width: 46px;
   height: 46px;
@@ -2738,12 +2780,6 @@ body.fullscreen .controls-panel {
 
 body.fullscreen .graph-floating-bar {
   display: flex;
-}
-
-@media (max-width: 1180px) {
-  .graph-stage {
-    grid-template-columns: 1fr 340px;
-  }
 }
 
 @media (max-width: 1024px) {
@@ -4779,9 +4815,28 @@ body.view-knowledge .main-container {
 
 .knowledge-card-meta {
   display: flex;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 4px 8px;
   align-items: center;
   margin-top: 4px;
+}
+
+/* 知识条目的出处。前八十回原作保持低调，续书内容必须一眼可辨。 */
+.knowledge-card-source {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(196,168,130,0.16);
+  border: 1px solid rgba(196,168,130,0.24);
+  color: var(--color-ink-light);
+  font-size: 0.7rem;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.knowledge-card-source.is-continuation {
+  background: rgba(199,91,110,0.12);
+  border-color: rgba(163,58,70,0.24);
+  color: #A33A46;
 }
 
 .knowledge-card-category {
@@ -5928,6 +5983,10 @@ body.panel-resizing * {
   overflow: hidden;
 }
 
+.knowledge-results-head > div {
+  min-width: 0;
+}
+
 .knowledge-results-title {
   font-family: var(--font-title);
   color: var(--color-primary);
@@ -5942,6 +6001,7 @@ body.panel-resizing * {
 }
 
 .knowledge-clear-btn {
+  flex-shrink: 0;
   padding: 7px 14px;
   border: 1px solid rgba(139,37,0,0.25);
   border-radius: 999px;
@@ -6085,6 +6145,55 @@ body.panel-resizing * {
 /* ============================================================
    Responsive: View Nav & New Views
    ============================================================ */
+
+/* 769–960px 是桌面头部最挤的区间：完整五字标签会把导航挤到标题上。
+   这一段只收窄标题、隐藏副标题并换用两字简称，避免重叠。 */
+@media (min-width: 769px) and (max-width: 960px) {
+  .header {
+    gap: 10px;
+    padding: 0 16px;
+  }
+
+  .header-title {
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  .header-subtitle {
+    display: none;
+  }
+
+  .view-nav {
+    gap: 2px;
+  }
+
+  .view-nav-tab {
+    min-width: 0;
+    padding: 7px 9px;
+    font-size: 0.82rem;
+    gap: 3px;
+    white-space: nowrap;
+  }
+
+  .view-nav-label {
+    display: none;
+  }
+
+  /* 覆盖全局 button::after 的点击涟漪，否则简称会变成透明层。 */
+  .view-nav-tab::after {
+    content: attr(data-short);
+    position: static;
+    width: auto;
+    height: auto;
+    background: none;
+    border-radius: 0;
+    opacity: 1;
+    transform: none;
+    transition: none;
+    font-size: 0.82rem;
+  }
+}
 
 @media (max-width: 768px) {
   /* 手机端原来把页签文字整块隐藏，只剩五个图标——五个 emoji 无法自解释，
@@ -7264,6 +7373,85 @@ select:focus-visible {
   /* Graph touch: disable page scroll within graph */
   .graph-container {
     touch-action: none;
+  }
+}
+
+/* 小屏图谱工具栏压成两行：搜索独占一行，随缘与重要度并排。
+   原三行布局约 190px 高，在 320px 屏上会把可视图压缩到不足 200px。 */
+@media (max-width: 600px) {
+  .graph-floating-bar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 6px 8px;
+    padding: 8px;
+  }
+
+  .graph-search-area,
+  .graph-floating-info {
+    display: contents;
+  }
+
+  .graph-search-box {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    min-width: 0;
+  }
+
+  .graph-search-input {
+    padding: 9px 12px 9px 34px;
+    font-size: 0.86rem;
+  }
+
+  .graph-search-icon {
+    left: 12px;
+    font-size: 0.86rem;
+  }
+
+  /* 「显示全部」与重要度里的「全部」重复；聚焦模式另有退出按钮。 */
+  #btn-full-view {
+    display: none;
+  }
+
+  #btn-random {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start;
+    padding: 6px 9px;
+    font-size: 0.78rem;
+  }
+
+  .graph-importance-quick {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
+  }
+
+  .importance-quick-btn {
+    padding: 4px 8px;
+    font-size: 0.74rem;
+  }
+
+  .graph-floating-label {
+    display: none;
+  }
+
+  /* 返回/退出聚焦只在对应状态出现，单独占第三行，避免和随缘重叠。 */
+  #btn-back,
+  #btn-exit-focus-bar {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    justify-self: start;
+  }
+
+  .controls-panel {
+    bottom: 122px;
+  }
+
+  .control-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    font-size: 0.86rem;
   }
 }
 
@@ -8492,5 +8680,110 @@ body.fullscreen .path-display-panel {
   .header-settings-btn {
     min-width: 44px;
     min-height: 44px;
+  }
+}
+
+/* 窄屏修正：320px 仍使用两行头部，标题与设置必须保持同一行，
+   否则 --header-height 固定为 104px 而头部实际换行到 151px，内容会被盖住。 */
+@media (max-width: 360px) {
+  .header {
+    padding-left: 8px;
+    padding-right: 8px;
+    gap: 0 6px;
+  }
+
+  .header-title {
+    font-size: 1rem;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 560px) {
+  /* 首次提示与时间线、缩放按钮都固定在底部，手机上会完全重叠；
+     把提示抬到控制条上方，并限制宽度避免贴边。 */
+  .graph-hint {
+    bottom: 182px;
+    width: max-content;
+    max-width: calc(100% - 24px);
+    padding: 8px 12px;
+    gap: 8px;
+    font-size: 0.78rem;
+  }
+
+  .graph-hint-dismiss {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* 时间线浮层在 320px 仍按 80% 宽只有 245px，标题和“全部”都会折行。 */
+  .timeline-slider {
+    width: calc(100% - 24px);
+    bottom: 12px;
+    padding: 10px 12px;
+  }
+
+  .timeline-header {
+    gap: 8px;
+  }
+
+  .timeline-label,
+  .timeline-chapter {
+    white-space: nowrap;
+  }
+
+  .timeline-controls {
+    gap: 5px;
+    flex-wrap: nowrap;
+  }
+
+  .timeline-select {
+    padding: 3px 7px;
+    font-size: 0.7rem;
+  }
+
+  /* 回目详情两张摘要卡在手机上并排时，每张内宽只剩约 120px，
+     三列 KPI 会被压到 34px 并截成单字。改为单列，KPI 恢复可读。 */
+  .chapter-focus-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* 族谱每层同时叠加 level 缩进与 children 的 margin/padding，
+     第四、五代卡片在手机上只剩 122px。手机端改为扁平缩进：
+     层级只靠 10px 的递进和左侧连线表达，文字区不再逐层变窄。 */
+  .tree-item.level-1,
+  .tree-item.level-2,
+  .tree-item.level-3,
+  .tree-item.level-4,
+  .tree-item.level-5 {
+    padding-left: 0;
+  }
+
+  .tree-item-children {
+    margin-left: 4px;
+    padding-left: 6px;
+    border-left-width: 1px;
+  }
+
+  .tree-item-row {
+    gap: 4px;
+  }
+
+  .tree-item-toggle.is-leaf {
+    display: none;
+  }
+
+  .tree-person-card {
+    padding: 6px 10px;
+  }
+
+  .tree-person-avatar {
+    width: 26px;
+    height: 26px;
+    font-size: 0.76rem;
+  }
+
+  .tree-spouse-row {
+    padding-left: 32px;
   }
 }

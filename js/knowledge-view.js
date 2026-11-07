@@ -17,6 +17,7 @@ class KnowledgeView {
     this._deferredRenderTimer = null;
     this._deferredRenderToken = 0;
     this._eventsBound = false;
+    this._eventController = null;
     this.onTagClick = null;
     this.relatedCharacterIds = new Set();
     this.characterKnowledgeMap = new Map();
@@ -195,7 +196,7 @@ class KnowledgeView {
         <div class="knowledge-hero card-surface">
           <div class="knowledge-hero-copy">
             <span class="knowledge-hero-eyebrow">红楼梦百科索引</span>
-            <h2 class="knowledge-hero-title">不是摘要，而是可检索、可浏览、可扩充的知识库</h2>
+            <h2 class="knowledge-hero-title">不是摘要，而是可检索、可浏览、可追溯的知识库</h2>
             <p class="knowledge-hero-desc">覆盖判词、诗词、曲文、对联、灯谜、建筑园林、礼俗制度、器物饮食与回目知识点，支持按类别、章节、关键词多维检索。</p>
           </div>
           <div class="knowledge-hero-stats">
@@ -593,6 +594,8 @@ class KnowledgeView {
     const expanded = !this.expandedIds.has(item.id);
     const relatedCharacterLimit = this._isLowPerformanceMode() ? 3 : 4;
     const displayContent = item.content || '';
+    const sourceNote = item.sourceNote || '';
+    const sourceClass = sourceNote === '后四十回续书' ? 'is-continuation' : 'is-whole';
 
     return `
       <article class="knowledge-card ${expanded ? 'expanded' : ''}" data-id="${item.id}">
@@ -604,6 +607,7 @@ class KnowledgeView {
               <span class="knowledge-card-category" style="color:${HLMUtils.darkenForText(categoryConfig.color)}">${item.category || '其他'}</span>
               ${item.subcategory ? `<span class="knowledge-card-subcategory">${item.subcategory}</span>` : ''}
               ${item.chapter ? `<span class="knowledge-card-chapter">第${item.chapter}回</span>` : ''}
+              ${sourceNote ? `<span class="knowledge-card-source ${sourceClass}">${this._escapeHtml(sourceNote)}</span>` : ''}
             </div>
           </div>
         </div>
@@ -668,6 +672,12 @@ class KnowledgeView {
   }
 
   _bindEvents() {
+    // 视图容器在切走时只清空 innerHTML，容器本身不会销毁；若重复绑定，
+    // 一次点击会执行两次展开/收起，表现为“第一次点击没反应”。每次渲染先
+    // 中止上一批监听，保证容器上始终只有一组委托事件。
+    this._eventController?.abort();
+    this._eventController = new AbortController();
+    const { signal } = this._eventController;
     this._eventsBound = true;
     const searchInput = this.container.querySelector('.knowledge-search-input');
     if (searchInput) {
@@ -685,14 +695,14 @@ class KnowledgeView {
 
       searchInput.addEventListener('compositionstart', () => {
         searchIsComposing = true;
-      });
+      }, { signal });
 
       searchInput.addEventListener('compositionend', (event) => {
         searchIsComposing = false;
         handleSearch(event);
-      });
+      }, { signal });
 
-      searchInput.addEventListener('input', handleSearch);
+      searchInput.addEventListener('input', handleSearch, { signal });
     }
 
     this.container.addEventListener('click', (event) => {
@@ -799,7 +809,7 @@ class KnowledgeView {
         this._updateContent({ scrollToTop: false });
         this._scrollToTop();
       }
-    });
+    }, { signal });
 
     this.container.addEventListener('change', (event) => {
       const select = event.target.closest('.knowledge-select');
@@ -813,7 +823,7 @@ class KnowledgeView {
       this._invalidateFilterCache();
       this._updateContent();
       this._scrollToTop();
-    });
+    }, { signal });
 
     this.container.addEventListener('keydown', (event) => {
       if (event.defaultPrevented) return;
@@ -831,7 +841,7 @@ class KnowledgeView {
       if (!target.closest('#knowledge-items-content')) return;
       if (target.closest('button, a, input, select, textarea, [contenteditable="true"]')) return;
       this._handleKeyboardNavigation(event);
-    });
+    }, { signal });
   }
 
   _handleKeyboardNavigation(event) {
@@ -1448,6 +1458,8 @@ class KnowledgeView {
       this._layoutResizeObserver = null;
     }
     this._eventsBound = false;
+    this._eventController?.abort();
+    this._eventController = null;
     this._invalidateFilterCache();
     this.container.innerHTML = '';
   }

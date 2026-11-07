@@ -32,6 +32,7 @@ class RelationshipGraph {
     this.currentVisibleLinkKeys = new Set();
     this._highlightRaf = null;
     this._resizeTimer = null;
+    this._settledFitTimer = null;
     this._tooltipEl = null;
     this._tickPending = false;
     this._subSimulationMode = false;
@@ -110,13 +111,18 @@ _init() {
     merge.append('feMergeNode').attr('in', 'SourceGraphic');
 
     this.zoom = d3.zoom()
-      .scaleExtent([0.5, 4])
+      .scaleExtent([0.35, 4])
       .on('zoom', (event) => {
         this.g.attr('transform', event.transform);
         this._updateLinkLabelVisibilityOnZoom(event.transform.k);
       });
 
     this.svg.call(this.zoom);
+    // 首次布局的 fit 发生在力导向模拟稳定之前，之后节点会继续漂移出画布。
+    // 用户一旦自己缩放、拖拽或选人，就取消这次补偿性 fit，避免抢回镜头。
+    this.svg.on('mousedown.initial-fit', () => this._cancelSettledFit());
+    this.svg.on('touchstart.initial-fit', () => this._cancelSettledFit());
+    this.svg.on('wheel.initial-fit', () => this._cancelSettledFit());
     this.g = this.svg.append('g');
     this.linkGroup = this.g.append('g').attr('class', 'links');
     this.linkLabelGroup = this.g.append('g').attr('class', 'link-labels');
@@ -147,6 +153,7 @@ _init() {
       this.simulation.force('center', d3.forceCenter(this.width / 2, this.height / 2));
       this._warmSimulation(0.18);
       this._coolDownSimulation();
+      this._scheduleSettledFit(900);
     }
   }
 
@@ -162,10 +169,16 @@ _init() {
     this._setupSimulation();
     this.resetAllFilters();
     this.showImportantOverview();
+    this._scheduleSettledFit();
   }
 
   _getFamilyGroup(character) {
     return this.familyColors[character.family] ? character.family : '其他';
+  }
+
+  _isNodeVisibleByFamily(nodeId) {
+    const character = this.characterMap.get(nodeId);
+    return Boolean(character && this.activeFamilies.has(this._getFamilyGroup(character)));
   }
 
   _getNodeColor(character) {
@@ -616,11 +629,13 @@ _init() {
     return link.key || `${link.source.id || link.source}-${link.target.id || link.target}-${link.type}`;
   }
 
-  _getConnectedIds(nodeId, includeSecondDegree = false) {
+  _getConnectedIds(nodeId, includeSecondDegree = false, { activeTypesOnly = false } = {}) {
     const connected = new Set([nodeId]);
     const firstDegree = new Set();
+    const isActiveLink = (link) => !activeTypesOnly || this.activeRelationTypes.has(link.type);
 
     this.links.forEach(link => {
+      if (!isActiveLink(link)) return;
       const sourceId = link.source.id || link.source;
       const targetId = link.target.id || link.target;
       if (sourceId === nodeId) firstDegree.add(targetId);
@@ -631,6 +646,7 @@ _init() {
 
     if (includeSecondDegree) {
       this.links.forEach(link => {
+        if (!isActiveLink(link)) return;
         const sourceId = link.source.id || link.source;
         const targetId = link.target.id || link.target;
         if (firstDegree.has(sourceId)) connected.add(targetId);
@@ -727,6 +743,7 @@ _init() {
   }
 
   _selectNode(node) {
+    if (node) this._cancelSettledFit();
     this.selectedNode = node;
     this._activeLinkKey = null;
     this.linkElements.classed('selected', false);
@@ -845,10 +862,78 @@ _init() {
     return this._cachedVisibleNodes.length ? this._cachedVisibleNodes : this.nodes.filter(node => this.currentVisibleNodeIds.has(node.id));
   }
 
+  _cancelSettledFit() {
+    window.clearTimeout(this._settledFitTimer);
+    this._settledFitTimer = null;
+  }
+
+  /**
+   * setData 里的首次 fit 只能看到随机初始坐标；模拟继续运行后节点会漂移，
+   * 手机上最容易把边缘节点挤出画布。等布局基本稳定后再 fit 一次。
+   * 这是补偿性动作，用户任何主动缩放/拖拽/选人都优先。
+   */
+  _scheduleSettledFit(delay = 1500) {
+    this._cancelSettledFit();
+    let attemptsLeft = 3;
+
+    const fitWhenSettled = (wait) => {
+      this._settledFitTimer = window.setTimeout(() => {
+        this._settledFitTimer = null;
+        if (!this.simulation || this._simulationPaused || this.focusMode) return;
+        if (this._getVisibleNodes().length < 2) return;
+        this.fitVisibleGraph({ padding: 52, maxScale: 1.2, minScale: 0.62, duration: 420 });
+        attemptsLeft -= 1;
+
+        // 力导向布局在 1.5s 时往往还没收敛，过早 fit 会把图缩得很小；
+        // 再等一会儿按最终坐标补一次 fit，用户主动缩放/拖拽会取消后续尝试。
+        if (attemptsLeft > 0 && this.simulation.alpha() > 0.015) {
+          fitWhenSettled(1200);
+        }
+      }, wait);
+    };
+
+    fitWhenSettled(delay);
+  }
+
+  _getFitOverlayInsets() {
+    if (!(this.width <= 768 || this.height < 560)) return { top: 0, bottom: 0, compact: false };
+
+    const containerRect = this.container.getBoundingClientRect();
+    const visibleRect = (selector) => {
+      const el = this.container.querySelector(selector);
+      if (!el) return null;
+      const style = window.getComputedStyle(el);
+      if (style.display === 'none' || style.visibility === 'hidden') return null;
+      const rect = el.getBoundingClientRect();
+      return rect.height > 0 ? rect : null;
+    };
+
+    const barRect = visibleRect('.graph-floating-bar');
+    const timelineRect = visibleRect('.timeline-slider');
+    const controlsRect = visibleRect('.controls-panel');
+    let top = barRect ? Math.max(0, barRect.bottom - containerRect.top + 10) : 0;
+    const bottomOverlayTops = [timelineRect, controlsRect]
+      .filter(Boolean)
+      .map(rect => rect.top);
+    let bottom = bottomOverlayTops.length
+      ? Math.max(0, containerRect.bottom - Math.min(...bottomOverlayTops) + 10)
+      : 0;
+
+    // 极端矮屏也给图谱留出约 45% 高度，避免 fit 后只剩一条缝。
+    const maxOverlay = this.height * 0.55;
+    if (top + bottom > maxOverlay) {
+      const factor = maxOverlay / (top + bottom);
+      top *= factor;
+      bottom *= factor;
+    }
+
+    return { top, bottom, compact: true };
+  }
+
   fitVisibleGraph({ padding = 72, maxScale = 1.08, minScale = 0.62, duration = 520 } = {}) {
     const visibleNodes = this._getVisibleNodes();
     if (!visibleNodes.length) {
-      this.resetView();
+      this.svg.interrupt().transition().duration(duration).call(this.zoom.transform, d3.zoomIdentity);
       return;
     }
 
@@ -872,14 +957,21 @@ _init() {
 
     const boundsWidth = Math.max(bounds.maxX - bounds.minX, 1);
     const boundsHeight = Math.max(bounds.maxY - bounds.minY, 1);
-    const contentWidth = Math.max(this.width - padding * 2, this.width * 0.45);
-    const contentHeight = Math.max(this.height - padding * 2, this.height * 0.45);
-    const scale = Math.max(minScale, Math.min(maxScale, contentWidth / boundsWidth, contentHeight / boundsHeight));
+    const insets = this._getFitOverlayInsets();
+    const effectivePadding = insets.compact ? Math.min(padding, 14) : padding;
+    const contentWidth = Math.max(this.width - effectivePadding * 2, this.width * 0.35);
+    const contentHeight = Math.max(
+      this.height - insets.top - insets.bottom - effectivePadding * 2,
+      this.height * 0.28
+    );
+    const effectiveMinScale = insets.compact ? Math.min(minScale, 0.45) : minScale;
+    const scale = Math.max(effectiveMinScale, Math.min(maxScale, contentWidth / boundsWidth, contentHeight / boundsHeight));
     const centerX = (bounds.minX + bounds.maxX) / 2;
     const centerY = (bounds.minY + bounds.maxY) / 2;
+    const screenCenterY = insets.top + (this.height - insets.top - insets.bottom) / 2;
 
     const transform = d3.zoomIdentity
-      .translate(this.width / 2, this.height / 2)
+      .translate(this.width / 2, screenCenterY)
       .scale(scale)
       .translate(-centerX, -centerY);
 
@@ -937,12 +1029,13 @@ _init() {
   }
 
   showImportantOverview() {
-    const important = this.nodes.filter(node => (node.character.importance || 1) >= this.importanceThreshold);
+    const important = this.nodes.filter(node => this.activeFamilies.has(node.family)
+      && (node.character.importance || 1) >= this.importanceThreshold);
     const nodeIds = new Set(important.map(node => node.id));
     const linkKeys = this._collectLinksForNodeSet(nodeIds);
-    this._setVisibility(nodeIds, linkKeys, { centerId: 'jia_baoyu' });
+    this._setVisibility(nodeIds, linkKeys, { centerId: nodeIds.has('jia_baoyu') ? 'jia_baoyu' : null });
     this._selectNode(null);
-    this.fitVisibleGraph({ padding: 52, maxScale: 1.2, minScale: 0.78, duration: 420 });
+    this.fitVisibleGraph({ padding: 52, maxScale: 1.2, minScale: 0.62, duration: 420 });
   }
 
   showFullGraph() {
@@ -953,11 +1046,13 @@ _init() {
     const linkKeys = this._collectLinksForNodeSet(nodeIds);
     this._setVisibility(nodeIds, linkKeys);
     this._selectNode(null);
-    this.fitVisibleGraph({ padding: 44, maxScale: 1.08, minScale: 0.72, duration: 520 });
+    this.fitVisibleGraph({ padding: 44, maxScale: 1.08, minScale: 0.6, duration: 520 });
   }
 
   showNeighborhood(characterId, options = {}) {
-    const nodeIds = this._getConnectedIds(characterId, options.includeSecondDegree);
+    const connected = this._getConnectedIds(characterId, options.includeSecondDegree, { activeTypesOnly: true });
+    // 当前人物是用户显式打开的锚点，始终保留；家族筛选只作用于它的关系网。
+    const nodeIds = new Set([...connected].filter(id => id === characterId || this._isNodeVisibleByFamily(id)));
     const linkKeys = this._collectLinksForNodeSet(nodeIds);
     this._setVisibility(nodeIds, linkKeys, { centerId: options.center ? characterId : null });
     const node = this.nodes.find(item => item.id === characterId);
@@ -988,6 +1083,7 @@ _init() {
   }
 
   _centerOnNode(node, scale = 1.4) {
+    this._cancelSettledFit();
     const transform = d3.zoomIdentity
       .translate(this.width / 2, this.height / 2)
       .scale(scale)
@@ -1004,14 +1100,23 @@ _init() {
   }
 
   resetView() {
-    this.svg.interrupt().transition().duration(450).call(this.zoom.transform, d3.zoomIdentity);
+    this._cancelSettledFit();
+    const visibleNodes = this._getVisibleNodes();
+    if (!visibleNodes.length) {
+      this.svg.interrupt().transition().duration(450).call(this.zoom.transform, d3.zoomIdentity);
+      return;
+    }
+    // 重置回“能看全当前节点”的视角，而不是 scale=1；手机上原始比例会把节点挤出画布。
+    this.fitVisibleGraph({ padding: 52, maxScale: 1.2, minScale: 0.45, duration: 450 });
   }
 
   zoomIn() {
+    this._cancelSettledFit();
     this.svg.interrupt().transition().duration(250).call(this.zoom.scaleBy, 1.2);
   }
 
   zoomOut() {
+    this._cancelSettledFit();
     this.svg.interrupt().transition().duration(250).call(this.zoom.scaleBy, 0.85);
   }
 
@@ -1471,6 +1576,7 @@ _init() {
   }
 
   destroy() {
+    this._cancelSettledFit();
     window.clearTimeout(this._coolDownTimer);
     window.clearTimeout(this._resizeTimer);
     window.clearTimeout(this._resumeTimer);

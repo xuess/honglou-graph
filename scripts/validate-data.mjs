@@ -213,6 +213,26 @@ if (characters && relationships && knowledge && provenance) {
     });
   });
 
+  // parentIds/childrenIds 与 relationships 必须互相对应：图谱只读 relationships，
+  // 家谱树只读数组字段。两处不一致时，人物会在一个视图里有父母、在另一个视图里没有。
+  const bloodEdges = new Set(
+    relationships
+      .filter((relationship) => relationship.type === 'blood')
+      .map((relationship) => `${relationship.source}->${relationship.target}`)
+  );
+  characters.forEach((character) => {
+    (character.parentIds || []).forEach((parentId) => {
+      if (!bloodEdges.has(`${parentId}->${character.id}`)) {
+        fail(`人物“${character.id}”的 parentIds 包含“${parentId}”，但缺少对应的 blood 关系`);
+      }
+    });
+    (character.childrenIds || []).forEach((childId) => {
+      if (!bloodEdges.has(`${character.id}->${childId}`)) {
+        fail(`人物“${character.id}”的 childrenIds 包含“${childId}”，但缺少对应的 blood 关系`);
+      }
+    });
+  });
+
   (provenance.evidence || []).forEach((entry, index) => {
     const context = `证据[${index}]`;
     if (!characterIds.has(entry.entityId)) {

@@ -1007,6 +1007,23 @@
     "evidenceNote": "刘姥姥搭救巧姐见于后四十回续书，未作为前八十回事实依据。"
   },
   {
+    "source": "zhen_shiyin",
+    "target": "xiang_ling",
+    "type": "blood",
+    "label": "父女",
+    "description": "甄士隐是香菱（甄英莲）之父，英莲幼年元宵被拐，后辗转为薛蟠之妾",
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 1,
+        "scene": "甄士隐梦幻识通灵 贾雨村风尘怀闺秀",
+        "summary": "甄士隐之女英莲（后名香菱）在元宵灯节被拐走，甄家由此败落。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
     "source": "jia_yucun",
     "target": "zhen_shiyin",
     "type": "social",
@@ -1305,6 +1322,40 @@
     "label": "母子",
     "description": "王夫人是贾珠之母，贾珠为其嫡长子",
     "weight": 4
+  },
+  {
+    "source": "wang_furen",
+    "target": "jia_baoyu",
+    "type": "blood",
+    "label": "母子",
+    "description": "王夫人是贾宝玉之母，宝玉为其嫡次子，衔玉而生",
+    "weight": 5,
+    "evidence": [
+      {
+        "chapter": 3,
+        "scene": "黛玉初进荣国府",
+        "summary": "王夫人向黛玉介绍宝玉是自己所生之子，并叮嘱黛玉不要理会这个“孽根祸胎”。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "wang_furen",
+    "target": "jia_yuanchun",
+    "type": "blood",
+    "label": "母女",
+    "description": "王夫人是贾元春之母，元春入宫封妃",
+    "weight": 5,
+    "evidence": [
+      {
+        "chapter": 18,
+        "scene": "元妃省亲",
+        "summary": "元春省亲回府，与母亲王夫人相见，母女垂泪叙别后之情。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_zhu",

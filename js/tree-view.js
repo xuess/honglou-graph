@@ -11,6 +11,7 @@ class TreeView {
     this.familyTrees = new Map();
     this._searchTimer = null;
     this._eventsBound = false;
+    this._eventController = null;
     this.onTagClick = null;
     this.relatedCharacterIds = new Set();
     this._currentTreeData = null;
@@ -513,6 +514,11 @@ class TreeView {
   }
 
   _bindEvents() {
+    // 容器会被复用，切回本视图时只清空 innerHTML。重复 addEventListener
+    // 会让展开/收起等点击执行两次，因此每次绑定先中止上一批监听。
+    this._eventController?.abort();
+    this._eventController = new AbortController();
+    const { signal } = this._eventController;
     this._eventsBound = true;
     const searchInput = this.container.querySelector('.tree-search-input');
     if (searchInput) {
@@ -529,14 +535,14 @@ class TreeView {
 
       searchInput.addEventListener('compositionstart', () => {
         searchIsComposing = true;
-      });
+      }, { signal });
 
       searchInput.addEventListener('compositionend', (event) => {
         searchIsComposing = false;
         handleSearch(event);
-      });
+      }, { signal });
 
-      searchInput.addEventListener('input', handleSearch);
+      searchInput.addEventListener('input', handleSearch, { signal });
     }
 
     this.container.addEventListener('click', (event) => {
@@ -612,7 +618,7 @@ class TreeView {
         const character = this.characterMap.get(charBtn.dataset.charId);
         if (character && this.onCharacterClick) this.onCharacterClick(character);
       }
-    });
+    }, { signal });
   }
 
   _visitTreeNodes(callback) {
@@ -719,6 +725,8 @@ class TreeView {
   destroy() {
     window.clearTimeout(this._searchTimer);
     this._eventsBound = false;
+    this._eventController?.abort();
+    this._eventController = null;
     this.container.innerHTML = '';
   }
 

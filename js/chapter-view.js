@@ -18,6 +18,7 @@ class ChapterView {
     this._deferredMainTimer = null;
     this._deferredMainToken = 0;
     this._eventsBound = false;
+    this._eventController = null;
     this._textLayoutFrame = null;
     this._textLayoutToken = 0;
     this._layoutResizeObserver = null;
@@ -555,6 +556,10 @@ class ChapterView {
   }
 
   _bindEvents() {
+    // 容器会被复用；重复绑定会让收藏、筛选等操作执行两次。
+    this._eventController?.abort();
+    this._eventController = new AbortController();
+    const { signal } = this._eventController;
     this._eventsBound = true;
 
     const searchInput = this.container.querySelector('.chapter-search-input');
@@ -572,12 +577,12 @@ class ChapterView {
 
       searchInput.addEventListener('compositionstart', () => {
         searchIsComposing = true;
-      });
+      }, { signal });
       searchInput.addEventListener('compositionend', (event) => {
         searchIsComposing = false;
         handleSearch(event);
-      });
-      searchInput.addEventListener('input', handleSearch);
+      }, { signal });
+      searchInput.addEventListener('input', handleSearch, { signal });
     }
 
     // Quick jump functionality
@@ -593,10 +598,10 @@ class ChapterView {
           quickJumpInput.value = '';
         }
       };
-      quickJumpBtn.addEventListener('click', handleJump);
+      quickJumpBtn.addEventListener('click', handleJump, { signal });
       quickJumpInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') handleJump();
-      });
+      }, { signal });
     }
 
     this.container.addEventListener('click', (event) => {
@@ -690,7 +695,7 @@ class ChapterView {
       if (actionButton.dataset.action === 'toggle-auto-read') {
         this._toggleAutoRead(actionButton);
       }
-    });
+    }, { signal });
   }
 
   _buildChapterProfiles() {
@@ -1279,6 +1284,8 @@ class ChapterView {
       this._miniSim = null;
     }
     this._eventsBound = false;
+    this._eventController?.abort();
+    this._eventController = null;
     this.searchInput = null;
     this.container.innerHTML = '';
   }
