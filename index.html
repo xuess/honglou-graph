@@ -8,10 +8,10 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏮</text></svg>">
   <!-- 数据文件的内容版本：由 npm run stamp 与资源版本号一起更新，
        否则浏览器会一直复用旧的 characters.json / knowledge.json。 -->
-  <meta name="hlm-asset-version" content="c51cc63185">
-  <link rel="stylesheet" href="css/fonts.css?v=c51cc63185">
-  <link rel="stylesheet" href="css/style.css?v=c51cc63185">
-  <script src="js/d3.v7.min.js?v=c51cc63185"></script>
+  <meta name="hlm-asset-version" content="9c1447ea5e">
+  <link rel="stylesheet" href="css/fonts.css?v=9c1447ea5e">
+  <link rel="stylesheet" href="css/style.css?v=9c1447ea5e">
+  <script src="js/d3.v7.min.js?v=9c1447ea5e"></script>
 </head>
 <body>
   <div id="loading-overlay" class="loading-overlay">
@@ -166,6 +166,7 @@
                 <div id="graph-search-results" class="graph-search-results"></div>
               </div>
               <button id="btn-back" class="graph-action-btn hidden" title="返回上一视图">← 返回</button>
+              <button id="btn-explore-start" class="graph-action-btn" title="从一个人物开始探索">从人物开始</button>
               <button id="btn-exit-focus-bar" class="graph-action-btn hidden" title="退出聚焦模式">退出聚焦</button>
               <button id="btn-full-view" class="graph-action-btn" title="显示全部人物关系网">显示全部</button>
               <button id="btn-random" class="graph-action-btn" title="随机探索一个人物或知识条目">🎲 随缘</button>
@@ -264,31 +265,36 @@
   <div id="path-chain" class="path-chain"></div>
 </div>
 
+<!-- Exploration Dialog (first-visit path, data policy, character pages) -->
+<div id="exploration-overlay" class="exploration-overlay" role="dialog" aria-modal="true" aria-labelledby="exploration-title" aria-hidden="true">
+  <div class="exploration-dialog" id="exploration-dialog" tabindex="-1"></div>
+</div>
+
 <!-- Character Detail Panel (slides in from right) -->
 <div id="character-card-overlay" class="character-card-overlay" role="dialog" aria-modal="true" aria-label="人物详情" aria-hidden="true">
   <div id="card-content" class="character-card" tabindex="-1"></div>
 </div>
 
-  <script src="js/edge-tts.js?v=c51cc63185"></script>
-  <script src="js/audio-preload-cache.js?v=c51cc63185"></script>
-  <script src="js/utils.js?v=c51cc63185"></script>
-  <script src="js/facet-store.js?v=c51cc63185"></script>
-  <script src="js/text-layout.js?v=c51cc63185"></script>
-  <script src="js/graph.js?v=c51cc63185"></script>
-  <script src="js/tree-view.js?v=c51cc63185"></script>
-  <script src="js/list-view.js?v=c51cc63185"></script>
-  <script src="js/chapter-view.js?v=c51cc63185"></script>
+  <script src="js/edge-tts.js?v=9c1447ea5e"></script>
+  <script src="js/audio-preload-cache.js?v=9c1447ea5e"></script>
+  <script src="js/utils.js?v=9c1447ea5e"></script>
+  <script src="js/facet-store.js?v=9c1447ea5e"></script>
+  <script src="js/text-layout.js?v=9c1447ea5e"></script>
+  <script src="js/graph.js?v=9c1447ea5e"></script>
+  <script src="js/tree-view.js?v=9c1447ea5e"></script>
+  <script src="js/list-view.js?v=9c1447ea5e"></script>
+  <script src="js/chapter-view.js?v=9c1447ea5e"></script>
   <!-- fuse.js 本地化：原先是唯一的外部运行时依赖，断网/公司网络下会静默降级为关键词匹配。
        用模块脚本加载，把默认导出挂到 window.Fuse，其余视图沿用全局访问方式。 -->
   <script type="module">
     try {
-      const module = await import('./js/fuse.min.mjs?v=c51cc63185');
+      const module = await import('./js/fuse.min.mjs?v=9c1447ea5e');
       window.Fuse = module.default;
     } catch (err) {
       console.warn('[fuse] 本地模块加载失败，知识库检索将退回关键词匹配', err);
     }
   </script>
-  <script src="js/knowledge-view.js?v=c51cc63185"></script>
-  <script src="js/app.js?v=c51cc63185"></script>
+  <script src="js/knowledge-view.js?v=9c1447ea5e"></script>
+  <script src="js/app.js?v=9c1447ea5e"></script>
 </body>
 </html>

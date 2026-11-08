@@ -23,6 +23,8 @@ class HongLouMengApp {
     this.isCardOpen = false;
     this.isDiscoveryOpen = false;
     this._discoveryReturnFocus = null;
+    this.isExplorationOpen = false;
+    this._explorationReturnFocus = null;
     this.performanceMode = 'auto';
     this.els = {};
     this.viewInitialized = { graph: true, tree: false, list: false, chapter: false, knowledge: false };
@@ -151,39 +153,14 @@ class HongLouMengApp {
       this._renderComparisonTools();
       this._showOverview();
 
-      // Parse URL params for deep linking
-      const urlParams = new URLSearchParams(location.search);
-      const viewParam = urlParams.get('view');
-      const charParam = urlParams.get('char');
-      const topicParam = urlParams.get('topic');
-      const stageParam = urlParams.get('stage');
-
-      // Hash-based routing (legacy)
-      const hashView = (location.hash || '').replace('#', '');
-      const validViews = ['graph', 'tree', 'list', 'chapter', 'knowledge'];
-      const initialView = viewParam || (validViews.includes(hashView) ? hashView : 'graph');
-      this.els.body.classList.add(`view-${initialView}`);
-
-      // 首屏还原不算用户导航，只替换当前历史条目。
-      this._suppressHistoryPush = true;
-      try {
-        this._switchView(initialView);
-
-        // Restore state from URL params
-        if (charParam && this.characterMap.has(charParam)) {
-          this._openCharacter(charParam, { focusNeighbors: true, showCard: true });
-        } else if (topicParam) {
-          this._openTopic(topicParam, true);
-        } else if (stageParam) {
-          this._openStage(stageParam, true);
-        }
-      } finally {
-        this._suppressHistoryPush = false;
-      }
+      // 首次加载同样按地址栏还原，避免 ?char/?topic 被末尾的兜底概览覆盖。
+      // 首屏恢复不算用户导航，只替换当前历史条目。
+      this._applyStateFromUrl(history.state?.hlm || null);
 
       this._renderSearchState();
       this._initGraphHint();
       this._initDiscovery();
+      this._initExploration();
       this._initPathPanel();
       this._restoreRecentBrowsing();
       this._hideLoading();
@@ -222,6 +199,7 @@ class HongLouMengApp {
       modeName: document.getElementById('mode-name'),
       btnFullView: document.getElementById('btn-full-view'),
       btnRandom: document.getElementById('btn-random'),
+      btnExploreStart: document.getElementById('btn-explore-start'),
       btnHeaderFullscreen: document.getElementById('btn-header-fullscreen'),
       btnZoomIn: document.getElementById('btn-zoom-in'),
       btnZoomOut: document.getElementById('btn-zoom-out'),
@@ -264,6 +242,8 @@ class HongLouMengApp {
       discoveryOverlay: document.getElementById('discovery-overlay'),
       discoveryCards: document.getElementById('discovery-cards'),
       discoveryDaily: document.getElementById('discovery-daily'),
+      explorationOverlay: document.getElementById('exploration-overlay'),
+      explorationDialog: document.getElementById('exploration-dialog'),
       pathDisplayPanel: document.getElementById('path-display-panel'),
       pathChain: document.getElementById('path-chain'),
       pathPanelLabel: document.getElementById('path-panel-label'),
@@ -422,6 +402,10 @@ class HongLouMengApp {
     // Back button
     if (this.els.btnBack) {
       this.els.btnBack.addEventListener('click', () => this._goBack());
+    }
+
+    if (this.els.btnExploreStart) {
+      this.els.btnExploreStart.addEventListener('click', () => this._showExploration('start'));
     }
 
     if (this.els.btnClearContext) {
@@ -594,7 +578,11 @@ class HongLouMengApp {
       const isTyping = Boolean(eventTarget?.closest('input, select, textarea'));
       
       if (e.key === 'Escape') {
-        // Close discovery panel first
+        // 探索弹层叠在最上层，先于其他面板关闭。
+        if (this.isExplorationOpen) {
+          this._closeExploration();
+          return;
+        }
         if (this.isDiscoveryOpen) {
           this._hideDiscovery();
           return;
@@ -647,7 +635,7 @@ class HongLouMengApp {
 
       // 弹层打开时，除 Escape（上方已处理）外不再响应全局快捷键，
       // 否则 ⌘K/数字键会把焦点或视图切到弹层背后。
-      if (this.isCardOpen || this.isDiscoveryOpen || document.querySelector('.keyboard-help-modal')) {
+      if (this.isExplorationOpen || this.isCardOpen || this.isDiscoveryOpen || document.querySelector('.keyboard-help-modal')) {
         return;
       }
 
@@ -683,6 +671,20 @@ class HongLouMengApp {
           this._forceCloseOverlays();
           this._switchView(tab.dataset.view);
         }
+      });
+
+      // 各视图的人物入口统一进人物主页：列表卡片、族谱节点、回目人物、知识库人物标签
+      // 走同一条覆盖层，不必先切到图谱或打开右侧抽屉。图谱节点有自己的点击处理，
+      // 这里只委托非 SVG 的 data-char-id 元素。
+      this.els.body.addEventListener('click', (event) => {
+        if (this.isExplorationOpen || event.defaultPrevented) return;
+        const target = event.target instanceof Element ? event.target.closest('[data-char-id]') : null;
+        if (!target || target.closest('.discovery-overlay, .path-display-panel')) return;
+        if (target.closest('svg, .graph-container')) return;
+        const characterId = target.dataset.charId;
+        if (!characterId || !this.characterMap.has(characterId)) return;
+        event.preventDefault();
+        this._openCharacterPage(characterId);
       });
 
       this.els.viewNav.addEventListener('keydown', (e) => {
@@ -1012,14 +1014,14 @@ class HongLouMengApp {
     if (this.els.treeContainer) {
       this.treeView = new TreeView(this.els.treeContainer);
       this.treeView.setData(this.characters, this.relationships);
-      this.treeView.onCharacterClick = (character) => this._openCharacter(character.id, { focusNeighbors: true });
+      this.treeView.onCharacterClick = (character) => this._openCharacterPage(character.id);
       this._subscribeViewToFacetStore('tree');
     }
 
     if (this.els.listContainer) {
       this.listView = new ListView(this.els.listContainer);
       this.listView.setData(this.characters, this.relationships);
-      this.listView.onCharacterClick = (character) => this._openCharacter(character.id, { focusNeighbors: true });
+      this.listView.onCharacterClick = (character) => this._openCharacterPage(character.id);
       this.listView.onKnowledgeClick = (character) => this._openCharacterKnowledge(character);
       this._subscribeViewToFacetStore('list');
     }
@@ -1027,7 +1029,7 @@ class HongLouMengApp {
     if (this.els.chapterContainer) {
       this.chapterView = new ChapterView(this.els.chapterContainer);
       this.chapterView.setData(this.knowledge, this.characters, this.relationships);
-      this.chapterView.onCharacterClick = (characterId) => this._openCharacter(characterId, { focusNeighbors: true });
+      this.chapterView.onCharacterClick = (characterId) => this._openCharacterPage(characterId);
       this.chapterView.onTagClick = (payload) => this._handleFacetTagSelection(payload);
       this.chapterView.onKnowledgeNavigate = (payload) => this._openKnowledgeContext(payload);
       this._subscribeViewToFacetStore('chapter');
@@ -1036,7 +1038,7 @@ class HongLouMengApp {
     if (this.els.knowledgeContainer) {
       this.knowledgeView = new KnowledgeView(this.els.knowledgeContainer);
       this.knowledgeView.setData(this.knowledge, this.characters);
-      this.knowledgeView.onCharacterClick = (characterId) => this._openCharacter(characterId, { focusNeighbors: true });
+      this.knowledgeView.onCharacterClick = (characterId) => this._openCharacterPage(characterId);
       this.knowledgeView.onTagClick = (payload) => this._handleFacetTagSelection(payload);
       this._subscribeViewToFacetStore('knowledge');
     }
@@ -1256,9 +1258,47 @@ class HongLouMengApp {
 
   /**
    * 把地址栏里的 ?view/?char/?topic/?stage 还原成界面状态。
-   * 只在 popstate 时调用；初始化路径由 _init 自己解析一次参数。
+   * 初始化与 popstate 共用同一份解析逻辑：初始化也要经过这里，
+   * 否则 ?char 打开卡片后初始化末尾的兜底恢复会把它关掉（深链闪一下就消失）。
    */
   _applyStateFromUrl(historyNav = null) {
+    const urlParams = new URLSearchParams(location.search);
+    const exploreParam = urlParams.get('explore');
+    const aboutParam = urlParams.get('about');
+
+    if (aboutParam) {
+      this._suppressHistoryPush = true;
+      try {
+        this._applyUrlState(historyNav);
+      } finally {
+        this._suppressHistoryPush = false;
+      }
+      this._showExploration('data', { skipHistory: true });
+      return;
+    }
+    if (exploreParam) {
+      this._suppressHistoryPush = true;
+      try {
+        this._switchView('graph');
+      } finally {
+        this._suppressHistoryPush = false;
+      }
+      this._showExploration('start', { skipHistory: true });
+      return;
+    }
+
+    this._suppressHistoryPush = true;
+    try {
+      this._applyUrlState(historyNav);
+    } finally {
+      this._suppressHistoryPush = false;
+    }
+  }
+
+  /**
+   * 只负责视图与人物/专题状态，不处理弹层参数。调用方负责 _suppressHistoryPush。
+   */
+  _applyUrlState(historyNav = null) {
     const urlParams = new URLSearchParams(location.search);
     const validViews = ['graph', 'tree', 'list', 'chapter', 'knowledge'];
     const viewParam = urlParams.get('view');
@@ -1274,48 +1314,56 @@ class HongLouMengApp {
       applyGraphSnapshot();
       this._refreshViewAfterFilterChange();
     };
-
-    this._suppressHistoryPush = true;
-    try {
-      // 没有 ?view 时按默认图谱处理，否则后退到首条历史记录会停在当前视图不响应。
-      this._switchView(viewParam && validViews.includes(viewParam) ? viewParam : 'graph');
-      applyGraphSnapshot();
-
-      if (charParam && this.characterMap.has(charParam)) {
-        this._openCharacter(charParam, { focusNeighbors: true, showCard: true, _fromRestore: true });
-      } else if (topicParam) {
-        this._openTopic(topicParam, true);
-        restoreAfterContext();
-      } else if (stageParam) {
-        this._openStage(stageParam, true);
-        restoreAfterContext();
-      } else if (this.activeView === 'graph' && historyNav?.view?.type === 'family' && historyNav.view.family) {
-        this._openFamily(historyNav.view.family, true);
-        restoreAfterContext();
-      } else if (this.activeView === 'graph' && historyNav?.view?.type === 'relationship') {
-        this._openRelationshipView(historyNav.view.leftId, historyNav.view.rightId, true);
-        restoreAfterContext();
-      } else if (this.activeView === 'graph' && historyNav?.view?.type === 'fullgraph') {
-        // “显示全部”不改变地址栏；后退时靠 history.state 里的视图快照还原。
-        this._showFullGraph(true);
+    const forceOverview = () => {
+      this.currentCharacterId = null;
+      this.currentTopic = null;
+      this.currentStage = null;
+      this.currentView = { type: 'overview' };
+      this._closeCard();
+      if (this.activeView === 'graph' && this.graph) {
+        // 地址栏只记录 ?view=graph，不记录历史筛选；后退时保留当前筛选，
+        // 但必须重绘为概览，避免 currentView 与画布仍停在人物邻域。
+        this._showOverview({ preserveGraphState: true });
       } else {
-        this.currentCharacterId = null;
-        this.currentTopic = null;
-        this.currentStage = null;
-        this.currentView = { type: 'overview' };
-        this._closeCard();
-        if (this.activeView === 'graph' && this.graph) {
-          // 地址栏只记录 ?view=graph，不记录历史筛选；后退时保留当前筛选，
-          // 但必须重绘为概览，避免 currentView 与画布仍停在人物邻域。
-          this._showOverview({ preserveGraphState: true });
-        } else {
-          this._renderGlobalContextBar();
-          this._updateActionStates();
-        }
+        this._renderGlobalContextBar();
+        this._updateActionStates();
       }
-    } finally {
-      this._suppressHistoryPush = false;
+    };
+
+    // 没有 ?view 时按默认图谱处理，否则后退到首条历史记录会停在当前视图不响应。
+    this._switchView(viewParam && validViews.includes(viewParam) ? viewParam : 'graph');
+    applyGraphSnapshot();
+
+    if (charParam && this.characterMap.has(charParam)) {
+      this._openCharacter(charParam, { focusNeighbors: true, showCard: true, _fromRestore: true });
+      return;
     }
+    if (topicParam) {
+      this._openTopic(topicParam, true);
+      restoreAfterContext();
+      return;
+    }
+    if (stageParam) {
+      this._openStage(stageParam, true);
+      restoreAfterContext();
+      return;
+    }
+    if (this.activeView === 'graph' && historyNav?.view?.type === 'family' && historyNav.view.family) {
+      this._openFamily(historyNav.view.family, true);
+      restoreAfterContext();
+      return;
+    }
+    if (this.activeView === 'graph' && historyNav?.view?.type === 'relationship') {
+      this._openRelationshipView(historyNav.view.leftId, historyNav.view.rightId, true);
+      restoreAfterContext();
+      return;
+    }
+    if (this.activeView === 'graph' && historyNav?.view?.type === 'fullgraph') {
+      // “显示全部”不改变地址栏；后退时靠 history.state 里的视图快照还原。
+      this._showFullGraph(true);
+      return;
+    }
+    forceOverview();
   }
 
   _forceCloseOverlays() {
@@ -2021,10 +2069,26 @@ _createFontAndThemeControls() {
     });
     helpSection.appendChild(helpButton);
 
+    // 数据说明：可信度是产品的一部分，不能只藏在 JSON 和警告里。
+    const dataSection = document.createElement('div');
+    dataSection.className = 'settings-section';
+    const dataButton = document.createElement('button');
+    dataButton.type = 'button';
+    dataButton.className = 'settings-font-option settings-help-option';
+    dataButton.innerHTML = '<span class="font-preview">校</span><span class="font-label">数据说明</span><span class="font-check">→</span>';
+    dataButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setSettingsOpen(false);
+      settingsBtn.focus({ preventScroll: true });
+      this._showAboutData();
+    });
+    dataSection.appendChild(dataButton);
+
     dropdown.appendChild(themeSection);
     dropdown.appendChild(fontSection);
     dropdown.appendChild(performanceSection);
     dropdown.appendChild(helpSection);
+    dropdown.appendChild(dataSection);
 
     settingsBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -2179,7 +2243,7 @@ _createFontAndThemeControls() {
           .sort(() => Math.random() - 0.5);
         const character = weighted[0] || this.characters[Math.floor(Math.random() * this.characters.length)];
         if (character) {
-          this._openCharacter(character.id, { focusNeighbors: true, showCard: true });
+          this._openCharacterPage(character.id);
           this._updateFloatingContext(`随缘：${character.name}`);
           return;
         }
@@ -2198,7 +2262,7 @@ _createFontAndThemeControls() {
         .sort(() => Math.random() - 0.5);
       const character = weighted[0] || this.characters[Math.floor(Math.random() * this.characters.length)];
       if (character) {
-        this._openCharacter(character.id, { focusNeighbors: true, showCard: true });
+        this._openCharacterPage(character.id);
         this._updateFloatingContext(`随缘：${character.name}`);
         return;
       }
@@ -4261,6 +4325,548 @@ _createFontAndThemeControls() {
   }
 
   // ────────────────────────────────────────────────────────────────────────────
+  // Exploration Flow (first-visit path / data policy / character page)
+  // ────────────────────────────────────────────────────────────────────────────
+
+  _initExploration() {
+    const overlay = this.els.explorationOverlay;
+    if (!overlay) return;
+
+    overlay.addEventListener('click', (event) => {
+      if (event.target === overlay) {
+        this._closeExploration();
+        return;
+      }
+      this._handleExplorationAction(event);
+    });
+    overlay.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        event.stopPropagation();
+        this._closeExploration();
+        return;
+      }
+      if (event.key === 'Tab') this._trapTabKey(overlay, event);
+    });
+
+    const hasVisited = localStorage.getItem('hlm-exploration-seen');
+    const hasUrlState = ['char', 'topic', 'stage', 'view', 'explore', 'about']
+      .some((key) => new URLSearchParams(location.search).has(key));
+    if (!hasVisited && !hasUrlState) {
+      // 等加载遮罩退场后再出现，避免两层遮罩叠在一起。
+      window.setTimeout(() => this._showExploration('start'), 650);
+    }
+  }
+
+  _handleExplorationAction(event) {
+    const target = event.target.closest('[data-explore-action], [data-open-char], [data-explore-view], [data-explore-chapter]');
+    if (!target) return;
+
+    if (target.dataset.openChar) {
+      this._openCharacterPage(target.dataset.openChar);
+      return;
+    }
+    if (target.dataset.exploreView) {
+      this._closeExploration();
+      this._switchView(target.dataset.exploreView);
+      return;
+    }
+    if (target.dataset.exploreChapter) {
+      const chapter = Number(target.dataset.exploreChapter);
+      this._closeExploration();
+      if (Number.isInteger(chapter)) this._openChapterView(chapter);
+      return;
+    }
+
+    switch (target.dataset.exploreAction) {
+      case 'start':
+        this._showExploration('start');
+        break;
+      case 'data':
+        this._showExploration('data');
+        break;
+      case 'character':
+        if (target.dataset.characterId) this._openCharacterPage(target.dataset.characterId);
+        break;
+      case 'daily':
+        this._openCharacterPage(this._getExplorationSeed().id);
+        break;
+      case 'random':
+        this._closeExploration();
+        this._randomExplore();
+        break;
+      case 'close':
+        this._closeExploration();
+        break;
+      default:
+        break;
+    }
+  }
+
+  _getExplorationSeed() {
+    const preferred = ['lin_daiyu', 'jia_baoyu', 'xue_baochai']
+      .map((id) => this.characterMap.get(id))
+      .find(Boolean);
+    return preferred || this.characters.slice().sort((a, b) => (b.importance || 1) - (a.importance || 1))[0];
+  }
+
+  _getExplorationStats() {
+    const characters = this.characters || [];
+    const relationships = this.relationships || [];
+    const knowledge = this.knowledge || [];
+    const verifiedQuoteLines = characters.reduce((count, character) => {
+      const quotes = Array.isArray(character.quotes) ? character.quotes : [];
+      const sources = Array.isArray(character.quoteSources) ? character.quoteSources : [];
+      return count + quotes.filter((_, index) => Boolean(sources[index])).length;
+    }, 0);
+    const verifiedQuoteCharacters = characters.filter((character) => {
+      const quotes = Array.isArray(character.quotes) ? character.quotes : [];
+      const sources = Array.isArray(character.quoteSources) ? character.quoteSources : [];
+      return quotes.some((_, index) => Boolean(sources[index]));
+    }).length;
+    const pendingQuoteLines = characters.reduce(
+      (count, character) => count + (Array.isArray(character.quotesPendingVerified) ? character.quotesPendingVerified.length : 0),
+      0
+    );
+    const pendingQuoteCharacters = characters.filter(
+      (character) => (character.quotesPendingVerified || []).length
+    ).length;
+    const continuationRecords = characters.filter((character) => {
+      const hasLateChapter = (character.chapters || []).some((entry) => Number(entry.chapter) > 80);
+      return Boolean(character.outcomeVersion?.continuation) || hasLateChapter;
+    }).length;
+
+    return {
+      characters: characters.length,
+      relationships: relationships.length,
+      knowledge: knowledge.length,
+      verifiedQuoteLines,
+      verifiedQuoteCharacters,
+      pendingQuoteLines,
+      pendingQuoteCharacters,
+      continuationRecords
+    };
+  }
+
+  _getCharacterQuoteStats(character) {
+    const quotes = Array.isArray(character.quotes) ? character.quotes : [];
+    const sources = Array.isArray(character.quoteSources) ? character.quoteSources : [];
+    const verified = quotes.filter((_, index) => Boolean(sources[index])).length;
+    const pending = (character.quotesPendingVerified || []).length;
+    return {
+      verified,
+      pending,
+      label: verified
+        ? `${verified} 条已定位${pending ? ` · ${pending} 条待校` : ''}`
+        : (pending ? `${pending} 条待校` : '暂无引语')
+    };
+  }
+
+  _getCharacterChapterEntries(character, limit = 3) {
+    const chapters = (character.chapters || [])
+      .filter((entry) => Number.isFinite(Number(entry.chapter)))
+      .slice()
+      .sort((a, b) => Number(a.chapter) - Number(b.chapter));
+    if (!chapters.length) return [];
+    const important = chapters
+      .filter((entry) => Number(entry.chapter) <= 80)
+      .slice(0, limit);
+    return important.length ? important : chapters.slice(0, limit);
+  }
+
+  _renderExplorationStart() {
+    const seed = this._getExplorationSeed();
+    if (!seed) return '';
+    const relations = this.graph?.getCharacterRelations(seed.id) || [];
+    const relationPaths = relations
+      .slice()
+      .sort((a, b) => (b.character.importance || 0) - (a.character.importance || 0))
+      .slice(0, 3);
+    const familyColor = this.graph?._getNodeColor(seed) || 'var(--color-primary)';
+    const chapterEntries = this._getCharacterChapterEntries(seed, 2);
+    const quoteStats = this._getCharacterQuoteStats(seed);
+
+    return `
+      <div class="exploration-start" aria-labelledby="exploration-title">
+        <div class="exploration-start-top">
+          <div class="exploration-eyebrow">红楼梦 · 知识探索</div>
+          <h2 class="exploration-heading" id="exploration-title">从一个人物开始</h2>
+          <p class="exploration-lede">先认识一个人，再看她与谁相连、在哪几回出场、判词与诗从何而来。</p>
+          <form class="exploration-ask" data-exploration-form>
+            <label class="sr-only" for="exploration-person-input">输入人物名</label>
+            <input id="exploration-person-input" class="exploration-ask-input" type="search" autocomplete="off" placeholder="输入人物名，如：黛玉、宝玉、凤姐" />
+            <button type="submit" class="exploration-ask-submit">开始探索</button>
+          </form>
+          <div class="exploration-quick-picks" aria-label="常用人物">
+            ${['lin_daiyu', 'jia_baoyu', 'xue_baochai', 'wang_xifeng', 'shi_xiangyun']
+              .map((id) => this.characterMap.get(id))
+              .filter(Boolean)
+              .map((character) => `<button type="button" class="exploration-quick-pick" data-open-char="${character.id}">${character.name}</button>`)
+              .join('')}
+            <button type="button" class="exploration-quick-pick exploration-quick-pick-daily" data-explore-action="daily">看看今天读谁</button>
+          </div>
+        </div>
+
+        <div class="exploration-start-body">
+          <section class="exploration-seed" aria-label="示例人物">
+            <div class="exploration-seed-kicker">第一次可以这样读</div>
+            <button type="button" class="exploration-seed-card" data-open-char="${seed.id}">
+              <span class="exploration-seed-avatar" style="background:${familyColor}">${seed.name.slice(0, 1)}</span>
+              <span class="exploration-seed-main">
+                <span class="exploration-seed-name">${seed.name}</span>
+                <span class="exploration-seed-identity">${seed.identity || ''}</span>
+                <span class="exploration-seed-meta">
+                  <span>${seed.family || '其他'}</span>
+                  <span>${relations.length} 条关系</span>
+                  <span>${chapterEntries.length ? `第${chapterEntries[0].chapter}回出场` : '出场待补'}</span>
+                </span>
+              </span>
+              <span class="exploration-seed-cta">打开人物页 →</span>
+            </button>
+            <ol class="exploration-path">
+              <li>
+                <span class="exploration-path-step">01</span>
+                <span class="exploration-path-text">她是${seed.identity || '书中人物'}。</span>
+              </li>
+              <li>
+                <span class="exploration-path-step">02</span>
+                <span class="exploration-path-text">先看 ${relationPaths.length ? relationPaths.map((rel) => rel.character.name).join('、') : '最近的关系'}，再沿关系走到贾府其他人。</span>
+              </li>
+              <li>
+                <span class="exploration-path-step">03</span>
+                <span class="exploration-path-text">${chapterEntries.length ? `从第 ${chapterEntries[0].chapter} 回读起，${quoteStats.verified ? `已定位 ${quoteStats.verified} 条语录` : '引语仍待校'}，能核对出处。` : '先看相关回目，再核对引语出处。'}</span>
+              </li>
+            </ol>
+          </section>
+
+          <aside class="exploration-alternatives" aria-label="其他入口">
+            <div class="exploration-alternatives-title">也可以换一种入口</div>
+            <button type="button" class="exploration-alt-btn" data-explore-view="chapter"><span class="exploration-alt-icon">📚</span><span><strong>从一回开始</strong><small>先看回目，再认识这一回的人</small></span></button>
+            <button type="button" class="exploration-alt-btn" data-explore-view="knowledge"><span class="exploration-alt-icon">📖</span><span><strong>从判词开始</strong><small>查判词、诗、典故的出处</small></span></button>
+            <button type="button" class="exploration-alt-btn" data-explore-action="random"><span class="exploration-alt-icon">🎲</span><span><strong>随缘一探</strong><small>交给偶然，遇到一个陌生人物</small></span></button>
+            <button type="button" class="exploration-alt-btn" data-explore-action="data"><span class="exploration-alt-icon">🔍</span><span><strong>数据说明</strong><small>看书里哪些内容已核对、哪些待校</small></span></button>
+          </aside>
+        </div>
+      </div>
+      <button type="button" class="exploration-close" data-explore-action="close" aria-label="关闭探索入口">✕</button>
+    `;
+  }
+
+  _renderExplorationData() {
+    const stats = this._getExplorationStats();
+    const seed = this._getExplorationSeed();
+    const verifiedPercent = stats.characters
+      ? Math.round((stats.verifiedQuoteCharacters / stats.characters) * 100)
+      : 0;
+    const pendingPercent = stats.characters
+      ? Math.round((stats.pendingQuoteCharacters / stats.characters) * 100)
+      : 0;
+    const sampleCharacter = this.characters.find((character) => (character.quotes || []).length) || seed;
+    const sampleQuote = sampleCharacter?.quotes?.[0];
+    const sampleSource = sampleCharacter?.quoteSources?.[0];
+
+    return `
+      <div class="exploration-data" aria-labelledby="exploration-title">
+        <div class="exploration-data-head">
+          <div class="exploration-eyebrow">数据说明 · 可追溯的知识</div>
+          <h2 class="exploration-heading" id="exploration-title">哪些内容已核对，哪些还在待校</h2>
+          <p class="exploration-lede">这里的“经典语录”不是文学评价，而是“能在底本中定位的原文”。核对不到的内容仍然显示，但不会冒充定本。</p>
+        </div>
+
+        <div class="exploration-metrics">
+          <div class="exploration-metric"><strong>${stats.characters}</strong><span>人物</span></div>
+          <div class="exploration-metric"><strong>${stats.relationships}</strong><span>关系</span></div>
+          <div class="exploration-metric"><strong>${stats.knowledge}</strong><span>知识条目</span></div>
+          <div class="exploration-metric"><strong>${verifiedPercent}%</strong><span>有已定位引语的人物</span></div>
+        </div>
+
+        <div class="exploration-data-grid">
+          <section class="exploration-policy" aria-label="底本范围">
+            <h3 class="exploration-subtitle">底本范围</h3>
+            <p>人物、关系、引语与结局，只以甲戌本、庚辰本为事实层依据。第八十一回及以后、程高系统与续书内容，只能作为版本比较材料，不能写成前八十回事实。</p>
+            <ul class="exploration-policy-list">
+              <li><span class="exploration-status-dot is-verified"></span><strong>已定位</strong>：有版本、回目、原文位置，可在人物页标为“经典语录”。</li>
+              <li><span class="exploration-status-dot is-pending"></span><strong>待校</strong>：引语已录入，但尚未在底本中定位，人物页只标“待校摘录”。</li>
+              <li><span class="exploration-status-dot is-continuation"></span><strong>续书</strong>：第 81–120 回或程高本内容，必须在标题或字段中明示，不混入前八十回叙事。</li>
+            </ul>
+          </section>
+
+          <aside class="exploration-status-card" aria-label="当前校勘进度">
+            <h3 class="exploration-subtitle">当前进度</h3>
+            <div class="exploration-progress-row">
+              <span>已定位引语</span><strong>${stats.verifiedQuoteLines} 条 · ${stats.verifiedQuoteCharacters} 人</strong>
+            </div>
+            <div class="exploration-progress-row">
+              <span>待校引语</span><strong>${stats.pendingQuoteLines} 条 · ${stats.pendingQuoteCharacters} 人</strong>
+            </div>
+            <div class="exploration-progress-row">
+              <span>续书／八十回后记录</span><strong>${stats.continuationRecords} 人</strong>
+            </div>
+            <div class="exploration-progress-note">约 ${pendingPercent}% 的人物仍有待校引语。引语是否出自甲戌本／庚辰本、是否属于续书，都会影响它能否被引用。</div>
+          </aside>
+        </div>
+
+        ${sampleQuote ? `
+        <section class="exploration-example" aria-label="引语示例">
+          <h3 class="exploration-subtitle">引语在人物页里怎么标</h3>
+          <div class="exploration-example-grid">
+            <div class="exploration-example-quote">
+              <div class="exploration-example-label">已定位 · 经典语录</div>
+              <blockquote>${this._escapeHtml(sampleQuote)}</blockquote>
+              <div class="exploration-example-source">${sampleSource ? `${this._escapeHtml(sampleSource.edition)} · 第${sampleSource.chapter}回` : ''}</div>
+            </div>
+            <div class="exploration-example-quote is-pending">
+              <div class="exploration-example-label">待校摘录</div>
+              <blockquote>${this._escapeHtml((sampleCharacter?.quotesPendingVerified || [])[0] || '尚未在底本中定位的摘录会保留在这里。')}</blockquote>
+              <div class="exploration-example-source">尚未在甲戌本／庚辰本中定位</div>
+            </div>
+          </div>
+        </section>` : ''}
+
+        <div class="exploration-data-actions">
+          <button type="button" class="exploration-primary" data-explore-action="start">从一个人物开始</button>
+          <button type="button" class="exploration-secondary" data-explore-action="close">返回当前页面</button>
+        </div>
+      </div>
+      <button type="button" class="exploration-close" data-explore-action="close" aria-label="关闭数据说明">✕</button>
+    `;
+  }
+
+  _renderCharacterPage(character) {
+    if (!character) return '';
+    const relations = this.graph?.getCharacterRelations(character.id) || [];
+    const summary = this._buildRelationshipSummary(character.id);
+    const recommendations = this._buildCharacterRecommendations(character.id);
+    const relatedKnowledge = this.knowledgeView?.getCharacterKnowledge(character.id) || [];
+    const familyColor = this.graph?._getNodeColor(character) || 'var(--color-primary)';
+    const chapters = this._getCharacterChapterEntries(character, 3);
+    const quoteStats = this._getCharacterQuoteStats(character);
+    const relationTypeLabels = {
+      blood: '血缘', marriage: '婚姻', master_servant: '主仆', romance: '情感', social: '社交', rivalry: '敌对'
+    };
+
+    const relationCards = summary.length
+      ? summary.slice(0, 3).map((rel) => `
+          <button type="button" class="exploration-relation-card" data-open-char="${rel.character.id}" aria-label="查看${rel.character.name}的人物页">
+            <span class="exploration-relation-name">${rel.character.name}</span>
+            <span class="exploration-relation-label">${relationTypeLabels[rel.type] || rel.type} · ${rel.label || ''}</span>
+            <span class="exploration-relation-desc">${rel.description || ''}</span>
+          </button>`).join('')
+      : '<div class="exploration-empty">这条人物关系还没有整理考据。</div>';
+
+    const chapterCards = chapters.length
+      ? chapters.map((entry) => `
+          <button type="button" class="exploration-chapter-card" data-explore-chapter="${Number(entry.chapter)}">
+            <span class="exploration-chapter-number">第${Number(entry.chapter)}回</span>
+            <span class="exploration-chapter-title">${entry.title || ''}</span>
+            <span class="exploration-chapter-summary">${entry.summary || ''}</span>
+          </button>`).join('')
+      : '<div class="exploration-empty">尚未录入可定位的出场回目。</div>';
+
+    const knowledgeCards = relatedKnowledge.length
+      ? relatedKnowledge.slice(0, 4).map((item) => `
+          <button type="button" class="exploration-knowledge-card" data-explore-view="knowledge">
+            <span class="exploration-knowledge-title">${item.title || '知识条目'}</span>
+            <span class="exploration-knowledge-meta">${item.category || item.type || ''}${item.chapter ? ` · 第${item.chapter}回` : ''}</span>
+          </button>`).join('')
+      : '<div class="exploration-empty">暂无关联知识条目。</div>';
+
+    const outcome = character.outcomeVersion
+      ? `<div class="exploration-outcome">
+          <div class="exploration-outcome-row"><strong>前八十回</strong><span>${this._escapeHtml(character.outcomeVersion.original || '未注明')}</span></div>
+          <div class="exploration-outcome-row is-continuation"><strong>后四十回 · 续书</strong><span>${this._escapeHtml(character.outcomeVersion.continuation || '未注明')}</span></div>
+        </div>`
+      : (character.outcome ? `<div class="exploration-outcome-single">${this._escapeHtml(character.outcome)}</div>` : '<div class="exploration-empty">结局仍待校。</div>');
+
+    return `
+      <article class="exploration-person" aria-labelledby="exploration-title">
+        <header class="exploration-person-head">
+          <div class="exploration-person-avatar" style="background:${familyColor}">${character.name.slice(0, 1)}</div>
+          <div class="exploration-person-title">
+            <div class="exploration-person-kicker">${character.family || '其他'} · 人物主页</div>
+            <h2 class="exploration-heading" id="exploration-title">${character.name}${character.pinyin ? `<span class="exploration-person-pinyin">${character.pinyin}</span>` : ''}</h2>
+            <p class="exploration-person-identity">${character.identity || ''}</p>
+            <div class="exploration-person-meta">
+              <span>${relations.length} 条关系</span>
+              <span>${chapters.length ? `关键回目 ${chapters.map((entry) => `第${entry.chapter}回`).join('、')}` : '回目待补'}</span>
+              <span>${quoteStats.label}</span>
+            </div>
+          </div>
+          <div class="exploration-person-actions">
+            <button type="button" class="exploration-secondary" data-explore-action="close">返回</button>
+            <button type="button" class="exploration-primary" data-explore-action="data">数据说明</button>
+          </div>
+        </header>
+
+        <div class="exploration-person-grid">
+          <section class="exploration-person-main">
+            <h3 class="exploration-subtitle">先认识她</h3>
+            <p class="exploration-description">${character.description || '暂无简介'}</p>
+            ${character.personality ? `<div class="exploration-personality"><span>性格</span>${character.personality}</div>` : ''}
+            ${character.keyEvents?.length ? `<ol class="exploration-events">${character.keyEvents.slice(0, 3).map((event) => `<li>${event}</li>`).join('')}</ol>` : ''}
+
+            <h3 class="exploration-subtitle">看完这三条关系，就懂她的一半</h3>
+            <div class="exploration-relation-list">${relationCards}</div>
+
+            <h3 class="exploration-subtitle">从这几回读她</h3>
+            <div class="exploration-chapter-list">${chapterCards}</div>
+          </section>
+
+          <aside class="exploration-person-aside">
+            <section class="exploration-aside-block">
+              <h3 class="exploration-subtitle">引语可信度</h3>
+              <div class="exploration-quote-stats">
+                <div><strong>${quoteStats.verified}</strong><span>已定位</span></div>
+                <div><strong>${quoteStats.pending}</strong><span>待校</span></div>
+              </div>
+              <p class="exploration-aside-note">${quoteStats.verified ? '已定位引语可在人物卡片中按版本与回目引用。' : '当前引语尚未在甲戌本／庚辰本中定位，暂不标为经典语录。'}</p>
+              <button type="button" class="exploration-text-link" data-explore-action="data">为什么有的引语是待校？</button>
+            </section>
+
+            <section class="exploration-aside-block">
+              <h3 class="exploration-subtitle">结局</h3>
+              ${outcome}
+            </section>
+
+            <section class="exploration-aside-block">
+              <h3 class="exploration-subtitle">相关知识</h3>
+              <div class="exploration-knowledge-list">${knowledgeCards}</div>
+            </section>
+          </aside>
+        </div>
+
+        <footer class="exploration-person-footer">
+          <div class="exploration-footer-title">下一站</div>
+          <div class="exploration-next-list">
+            ${recommendations.slice(0, 4).map((relChar) => `<button type="button" class="exploration-next-pill" data-open-char="${relChar.id}">${relChar.name}</button>`).join('')}
+            <button type="button" class="exploration-next-pill is-ghost" data-explore-view="graph">回到图谱</button>
+          </div>
+        </footer>
+      </article>
+      <button type="button" class="exploration-close" data-explore-action="close" aria-label="关闭人物主页">✕</button>
+    `;
+  }
+
+  _showExploration(mode = 'start', { skipHistory = false } = {}) {
+    const overlay = this.els.explorationOverlay;
+    const dialog = this.els.explorationDialog;
+    if (!overlay || !dialog) return;
+
+    if (mode === 'character' && !this._explorationCharacterId) mode = 'start';
+    const character = mode === 'character' ? this.characterMap.get(this._explorationCharacterId) : null;
+    const html = mode === 'data'
+      ? this._renderExplorationData()
+      : mode === 'character' && character
+        ? this._renderCharacterPage(character)
+        : this._renderExplorationStart();
+    if (!html) return;
+
+    const wasOpen = this.isExplorationOpen;
+    this.isExplorationOpen = true;
+    this._explorationMode = mode;
+    this._setHtml(dialog, html);
+
+    if (!wasOpen) {
+      const active = document.activeElement;
+      this._explorationReturnFocus = active && active !== document.body && !overlay.contains(active)
+        ? active
+        : null;
+    }
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+    this.els.body.classList.add('exploration-open');
+
+    const title = dialog.querySelector('.exploration-heading');
+    if (title) overlay.setAttribute('aria-labelledby', title.id);
+    requestAnimationFrame(() => {
+      const focusTarget = dialog.querySelector('input, button, [tabindex]:not([tabindex="-1"])') || dialog;
+      focusTarget?.focus({ preventScroll: true });
+    });
+
+    if (!skipHistory) this._updateExplorationUrl(mode);
+    this._bindExplorationForm();
+    try { localStorage.setItem('hlm-exploration-seen', '1'); } catch (e) { /* ignore */ }
+  }
+
+  _bindExplorationForm() {
+    const form = this.els.explorationDialog?.querySelector('[data-exploration-form]');
+    if (!form) return;
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const input = form.querySelector('input');
+      const query = input?.value?.trim();
+      if (!query) return;
+      const character = this._findCharacterByLooseName(query);
+      if (!character) {
+        input?.classList.add('is-error');
+        input?.setAttribute('aria-invalid', 'true');
+        input?.setAttribute('placeholder', '没找到这个人，试试“黛玉”或“宝玉”');
+        input?.focus();
+        return;
+      }
+      this._openCharacterPage(character.id);
+    });
+  }
+
+  _updateExplorationUrl(mode) {
+    const params = new URLSearchParams(location.search);
+    params.delete('explore');
+    params.delete('about');
+    const newUrl = `${location.pathname}?${params.toString()}`;
+    if (this._suppressHistoryPush || mode === 'character') {
+      // 人物主页是覆盖层，关闭后应回到原页面，不额外写一条历史记录。
+      history.replaceState(history.state, '', newUrl);
+      return;
+    }
+    const navState = {
+      hlm: {
+        view: { ...this.currentView },
+        graph: this._captureGraphFilterState()
+      }
+    };
+    history.pushState(navState, '', newUrl);
+  }
+
+  _closeExploration({ skipHistory = false } = {}) {
+    const overlay = this.els.explorationOverlay;
+    if (!overlay || !this.isExplorationOpen) return;
+    this.isExplorationOpen = false;
+    this._explorationMode = null;
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+    this.els.body.classList.remove('exploration-open');
+    this._setHtml(this.els.explorationDialog, '');
+
+    if (!skipHistory) {
+      const params = new URLSearchParams(location.search);
+      if (params.has('explore') || params.has('about')) {
+        params.delete('explore');
+        params.delete('about');
+        history.replaceState(history.state, '', `${location.pathname}?${params.toString()}`);
+      }
+    }
+
+    const returnTo = this._explorationReturnFocus;
+    this._explorationReturnFocus = null;
+    if (returnTo && returnTo.isConnected) {
+      returnTo.focus({ preventScroll: true });
+      return;
+    }
+    document.querySelector('.view-nav-tab.active')?.focus({ preventScroll: true });
+  }
+
+  _openCharacterPage(characterId) {
+    const character = this.characterMap.get(characterId);
+    if (!character) return;
+    this._explorationCharacterId = character.id;
+    this._showExploration('character');
+  }
+
+  _showAboutData() {
+    this._showExploration('data');
+  }
+
+  // ────────────────────────────────────────────────────────────────────────────
   // Discovery Panel (12金钗首页)
   // ────────────────────────────────────────────────────────────────────────────
 
@@ -4351,14 +4957,7 @@ _createFontAndThemeControls() {
       }
     });
 
-    // Show on first visit (no prior state)
-    const hasVisited = localStorage.getItem('hlm-discovery-shown');
-    const hasUrlState = new URLSearchParams(location.search).has('char') ||
-                        new URLSearchParams(location.search).has('topic') ||
-                        new URLSearchParams(location.search).has('stage');
-    if (!hasVisited && !hasUrlState) {
-      setTimeout(() => this._showDiscovery(), 400);
-    }
+    // 首次访问由 exploration 流程承担，十二钗面板只保留为可手动打开的入口。
   }
 
   _renderDiscoveryCards() {
