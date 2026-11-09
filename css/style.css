@@ -9982,12 +9982,13 @@ body.fullscreen .path-display-panel {
   }
 }
 
-/* dialog 是滚动容器，关闭按钮 absolute 在内容坐标里；滚动后它会跟内容一起移出视口。
-   标记为 fixed，使其相对视口定位，任何滚动位置都能关闭。 */
+/* 关闭按钮：dialog 内部是可滚动内容，absolute 会随内容滚走。
+   固定在 dialog 右上角、页头下方，任何滚动位置都能关闭。 */
 .exploration-close {
   position: fixed;
-  top: 36px;
+  top: calc(var(--header-height) + 14px);
   right: calc(50% - min(520px, 50vw) + 18px);
+  z-index: 3001;
 }
 
 @media (max-width: 1040px) {
@@ -10003,15 +10004,95 @@ body.fullscreen .path-display-panel {
   }
 }
 
-/* 顶部 fixed 关闭按钮会落到 header 的点击层级下；dialog 从 header 下方开始，
-   关闭按钮跟着 dialog 顶边下移，避免与固定页头抢点击。 */
-.exploration-close {
-  top: calc(var(--header-height) + 14px);
-  z-index: 3001;
+/* 首次提示与时间线都锚在底部，桌面端会叠在同一块画布上。
+   将提示抬到时间线上方；手机端已在 560px 规则里单独处理。 */
+@media (min-width: 561px) {
+  .graph-hint {
+    bottom: 132px;
+  }
 }
 
+/* 1025–1200px：侧栏仍占 260px + 18px 拖拽条，图谱工具栏的单行空间不够，
+   搜索框会被压到 80–110px，placeholder 直接被截断。
+   这一区间把工具栏改成两行：搜索独占一行，按钮与重要度并排。 */
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .graph-floating-bar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px 12px;
+    padding: 10px 12px;
+  }
+
+  .graph-search-area {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: none;
+  }
+
+  .graph-search-box {
+    flex: 1 1 auto;
+    min-width: 220px;
+  }
+
+  .graph-floating-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-self: end;
+  }
+
+  .graph-floating-label {
+    display: none;
+  }
+
+  .graph-action-btn {
+    padding: 7px 11px;
+    font-size: 0.82rem;
+  }
+}
+
+/* 两行工具栏下，第二行只放重要度会显得左下角空；把「随缘」留在搜索行，
+   重要度单独靠右，视觉重心仍落在工具栏右侧。 */
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .graph-search-area {
+    flex-wrap: nowrap;
+  }
+
+  .graph-floating-info {
+    grid-column: 1 / -1;
+    justify-self: end;
+  }
+
+  #btn-explore-start,
+  #btn-full-view,
+  #btn-random {
+    flex-shrink: 0;
+  }
+}
+
+/* 手机上关闭按钮与导语右端重叠（导语正好铺满内容宽）。
+   给导语预留右侧 36px，关闭按钮不再压住文字。 */
 @media (max-width: 640px) {
-  .exploration-close {
-    top: calc(var(--header-height) + 12px);
+  .exploration-lede {
+    padding-right: 36px;
+  }
+
+  .exploration-data .exploration-lede,
+  .exploration-person .exploration-lede {
+    padding-right: 0;
+  }
+}
+
+/* 关闭按钮固定在右上角时，导语/标题不要伸到按钮下方。
+   在小屏上为标题区右侧留出按钮宽度，避免视觉重叠。 */
+@media (max-width: 640px) {
+  .exploration-start-top {
+    padding-right: 24px;
+  }
+  .exploration-lede {
+    max-width: calc(100% - 24px);
   }
 }

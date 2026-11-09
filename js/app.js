@@ -1084,7 +1084,10 @@ class HongLouMengApp {
 
   _switchView(viewName, options = {}) {
     const { preserveScroll = false } = options;
-    if (this.activeView === viewName) return;
+    // 首次加载时 activeView 已在构造函数里预设为 graph，但 body 还没有 view-graph。
+    // 只比较 activeView 会直接 return，导致 body 停留在“非图谱”布局：
+    // 侧栏被压到图谱上方，图谱只剩 300px 高。必须同时确认视图类已落地。
+    if (this.activeView === viewName && this.els.body?.classList.contains(`view-${viewName}`)) return;
 
     this._closeCard();
     if (this.isFullscreen && viewName !== 'graph') {
@@ -1171,7 +1174,9 @@ class HongLouMengApp {
     // 统一使用视图内容容器作为滚动层，避免 window 级滚动与内层滚动打架。
     this._resetViewScrollPosition(viewName, { preserveScroll });
 
-    this._updateUrlParams();
+    // 初始化时不要抢先写 ?view=graph：地址栏一旦出现 view 参数，
+    // _initExploration 会把它当成深链，首次访问的探索入口就不再出现。
+    if (!this._suppressHistoryPush) this._updateUrlParams();
   }
 
   _resetViewScrollPosition(viewName, options = {}) {
@@ -1690,8 +1695,12 @@ class HongLouMengApp {
   }
 
   _initSidebarResize() {
-    const savedWidth = Number(localStorage.getItem('hlm-sidebar-width'));
-    if (Number.isFinite(savedWidth)) {
+    // Number(null) 是 0，Number.isFinite(0) 为真，首次访问会被钳到最小宽度 260px，
+    // 覆盖 CSS 默认的 360px，侧栏一进来就是最窄状态。只有真正保存过才恢复。
+    const saved = localStorage.getItem('hlm-sidebar-width');
+    if (saved === null) return;
+    const savedWidth = Number(saved);
+    if (Number.isFinite(savedWidth) && savedWidth > 0) {
       this._applySidebarWidth(savedWidth);
     }
   }
