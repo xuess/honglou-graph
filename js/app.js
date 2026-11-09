@@ -161,6 +161,7 @@ class HongLouMengApp {
       this._initGraphHint();
       this._initDiscovery();
       this._initExploration();
+      this._initScrollPassthrough();
       this._initPathPanel();
       this._restoreRecentBrowsing();
       this._hideLoading();
@@ -5051,6 +5052,38 @@ _createFontAndThemeControls() {
       return;
     }
     document.querySelector('.view-nav-tab.active')?.focus({ preventScroll: true });
+  }
+
+  /**
+   * 非图谱视图的 hero/工具栏是固定区，滚轮落在上面时不会传给下方主内容，
+   * 用户会以为页面卡住。把滚轮事件转发给当前视图的主滚动区。
+   * 只在目标自身不可滚动、且事件未被处理时转发，避免影响侧栏/下拉。
+   */
+  _initScrollPassthrough() {
+    const map = {
+      tree: '.tree-container',
+      list: '.list-content',
+      chapter: '.chapter-main',
+      knowledge: '.knowledge-main'
+    };
+    const selectors = [
+      '.chapter-hero',
+      '.knowledge-hero',
+      '.list-controls',
+      '.tree-toolbar'
+    ].join(',');
+
+    document.addEventListener('wheel', (event) => {
+      if (event.defaultPrevented || Math.abs(event.deltaY) < 1) return;
+      const target = event.target instanceof Element ? event.target : null;
+      if (!target?.closest(selectors)) return;
+      const view = document.body.className.match(/view-(tree|list|chapter|knowledge)/)?.[1];
+      const scroller = view ? document.querySelector(map[view]) : null;
+      if (!scroller || scroller.scrollHeight <= scroller.clientHeight + 1) return;
+      if (target.closest('.chapter-sidebar, .knowledge-sidebar, .sidebar, input, select, textarea')) return;
+      scroller.scrollBy({ top: event.deltaY, behavior: 'auto' });
+      event.preventDefault();
+    }, { passive: false });
   }
 
   // ────────────────────────────────────────────────────────────────────────────

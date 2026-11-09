@@ -8669,7 +8669,8 @@ body.fullscreen .path-display-panel {
   body.view-chapter .chapter-directory {
     max-height: 50vh;
     overflow-y: auto;
-    overscroll-behavior: contain;
+    /* 目录自身滚到底后要能把滚动交给整页，否则手指停在目录上像被卡住。 */
+    overscroll-behavior: auto;
     -webkit-overflow-scrolling: touch;
   }
 }
@@ -9929,47 +9930,33 @@ body.fullscreen .path-display-panel {
   }
 }
 
-/* 人物主页的右栏内容比左栏短时，页脚「下一站」可能被长左栏推得很远；
-   让右栏粘在页面滚动区顶部，阅读左栏长文时仍能随时看到引语可信度与结局。 */
+/* 人物主页的右栏在桌面粘在 dialog 可视区顶部；右栏自身超长时独立滚动，
+   滚到边界后把滚轮交还给 dialog（overscroll-behavior:auto），不会吞掉整页滚动。 */
 @media (min-width: 861px) {
+  .exploration-person-grid {
+    align-items: start;
+    overflow: visible;
+  }
+
   .exploration-person-aside {
     position: sticky;
-    top: 18px;
+    top: 10px;
     align-self: start;
-    max-height: calc(100vh - 96px);
+    max-height: calc(100% - 20px);
     overflow-y: auto;
-    overscroll-behavior: contain;
+    overscroll-behavior: auto;
     padding-right: 2px;
   }
 }
 
-/* 人物页滚动时右栏使用 sticky；但 sticky 在滚动容器顶部会被裁掉 18px。
-   给容器上下留出呼吸位，避免第一张卡贴边。 */
-.exploration-person-grid {
-  overflow: visible;
-}
-@media (min-width: 861px) {
+/* 窗口高度不足时，sticky 右栏会超过 dialog 可视区并遮住下半段；取消 sticky，
+   让左右两栏跟着整页一起滚动。 */
+@media (min-width: 861px) and (max-height: 740px) {
   .exploration-person-aside {
-    top: 8px;
-    max-height: calc(100% - 16px);
-  }
-}
-@media (min-width: 861px) {
-  .exploration-person-grid {
-    align-items: start;
-  }
-  .exploration-person-aside {
-    top: 0;
-    max-height: 100%;
-  }
-}
-
-/* 滚动容器没有独立的内边距时，sticky 子项会与容器上沿齐平；
-   留 10px 让右栏在滚动中不贴边。 */
-@media (min-width: 861px) {
-  .exploration-person-aside {
-    top: 10px;
-    max-height: calc(100% - 20px);
+    position: static;
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
   }
 }
 
@@ -10095,4 +10082,37 @@ body.fullscreen .path-display-panel {
   .exploration-lede {
     max-width: calc(100% - 24px);
   }
+}
+
+
+/* 章节/知识库的 hero 区是固定表头，但滚轮落在它上面时不会传给下方滚动区。
+   让 hero 把滚轮交给主内容，避免顶栏变成“死区”。 */
+body.view-chapter .chapter-hero,
+body.view-knowledge .knowledge-hero {
+  overscroll-behavior: auto;
+}
+
+/* 手机端回目目录自己设了 max-height + overflow，但外层 .main-container 也在滚动。
+   手指落在目录上时浏览器先滚目录，目录到底后滚轮/手势没有继续传给页面，
+   看起来像“整个回目页卡住”。目录内部滚到边界后允许滚动链继续向外。 */
+@media (max-width: 560px) {
+  .chapter-directory {
+    overscroll-behavior: auto;
+  }
+}
+
+/* <details> 关闭时，浏览器默认隐藏非 summary 子项；但 .chapter-directory
+   显式设置了 display:grid，会覆盖 UA 规则，导致收起的回目目录仍占布局、
+   在手机上撑出隐藏的滚动区。这里显式跟随 details 的开关状态。 */
+.chapter-directory-details:not([open]) > .chapter-directory,
+.chapter-directory-details:not([open]) > .chapter-quick-jump {
+  display: none;
+}
+
+/* 设置下拉在矮窗口会超出视口（top 61 + 618 > 600），底部的“数据说明”点不到。
+   限制最大高度并允许内部滚动。 */
+.settings-dropdown {
+  max-height: calc(100vh - var(--header-height) - 20px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
