@@ -1240,7 +1240,10 @@ class HongLouMengApp {
     const navState = {
       hlm: {
         view: { ...this.currentView },
-        graph: this._captureGraphFilterState()
+        graph: this._captureGraphFilterState(),
+        exploration: this.isExplorationOpen
+          ? { mode: this._explorationMode, characterId: this._explorationCharacterId || null }
+          : null
       }
     };
 
@@ -1298,6 +1301,18 @@ class HongLouMengApp {
       this._applyUrlState(historyNav);
     } finally {
       this._suppressHistoryPush = false;
+    }
+
+    // 弹层不是独立 URL，但会写进 history.state。后退到普通条目时关闭，
+    // 前进回探索条目时按快照恢复，避免“URL 已变而弹层还盖着”。
+    const snapshot = historyNav?.exploration;
+    if (snapshot?.mode) {
+      if (snapshot.mode === 'character' && snapshot.characterId) {
+        this._explorationCharacterId = snapshot.characterId;
+      }
+      this._showExploration(snapshot.mode, { skipHistory: true });
+    } else if (this.isExplorationOpen) {
+      this._closeExploration({ skipHistory: true });
     }
   }
 
@@ -3551,14 +3566,13 @@ _createFontAndThemeControls() {
         </div>
       </div>
     `);
-
     this.els.cardContent.querySelector('[data-close-card="true"]').addEventListener('click', () => this._closeCard());
     this.els.cardContent.querySelectorAll('[data-open-char]').forEach((button) => {
       button.addEventListener('click', () => {
         const characterId = button.dataset.openChar;
         if (!this.characterMap.has(characterId)) return;
         this._closeCard();
-        this._openCharacter(characterId, { focusNeighbors: true, showCard: true });
+        this._openCharacterPage(characterId);
       });
     });
     this.els.cardContent.querySelectorAll('[data-evidence-chapter]').forEach((button) => {
@@ -4369,21 +4383,29 @@ _createFontAndThemeControls() {
   }
 
   _handleExplorationAction(event) {
-    const target = event.target.closest('[data-explore-action], [data-open-char], [data-explore-view], [data-explore-chapter]');
+    const target = event.target.closest('[data-explore-action], [data-open-char], [data-explore-view], [data-explore-chapter], [data-explore-knowledge]');
     if (!target) return;
 
     if (target.dataset.openChar) {
       this._openCharacterPage(target.dataset.openChar);
       return;
     }
+    if (target.dataset.exploreKnowledge) {
+      const character = this.characterMap.get(target.dataset.exploreKnowledge);
+      // 这些动作会立刻切视图；不能走 history.back()，否则异步 popstate
+      // 会把刚切到的知识库/回目再改回原视图。
+      this._closeExploration({ skipHistory: true });
+      if (character) this._openCharacterKnowledge(character);
+      return;
+    }
     if (target.dataset.exploreView) {
-      this._closeExploration();
+      this._closeExploration({ skipHistory: true });
       this._switchView(target.dataset.exploreView);
       return;
     }
     if (target.dataset.exploreChapter) {
       const chapter = Number(target.dataset.exploreChapter);
-      this._closeExploration();
+      this._closeExploration({ skipHistory: true });
       if (Number.isInteger(chapter)) this._openChapterView(chapter);
       return;
     }
@@ -4402,7 +4424,7 @@ _createFontAndThemeControls() {
         this._openCharacterPage(this._getExplorationSeed().id);
         break;
       case 'random':
-        this._closeExploration();
+        this._closeExploration({ skipHistory: true });
         this._randomExplore();
         break;
       case 'close':
@@ -4675,7 +4697,7 @@ _createFontAndThemeControls() {
 
     const knowledgeCards = relatedKnowledge.length
       ? relatedKnowledge.slice(0, 4).map((item) => `
-          <button type="button" class="exploration-knowledge-card" data-explore-view="knowledge">
+          <button type="button" class="exploration-knowledge-card" data-explore-knowledge="${character.id}" data-explore-knowledge-id="${item.id || ''}">
             <span class="exploration-knowledge-title">${item.title || '知识条目'}</span>
             <span class="exploration-knowledge-meta">${item.category || item.type || ''}${item.chapter ? ` · 第${item.chapter}回` : ''}</span>
           </button>`).join('')
@@ -4775,6 +4797,7 @@ _createFontAndThemeControls() {
     this.isExplorationOpen = true;
     this._explorationMode = mode;
     this._setHtml(dialog, html);
+    dialog.scrollTop = 0;
 
     if (!wasOpen) {
       const active = document.activeElement;
@@ -4788,12 +4811,24 @@ _createFontAndThemeControls() {
 
     const title = dialog.querySelector('.exploration-heading');
     if (title) overlay.setAttribute('aria-labelledby', title.id);
+    // 等一帧确保内容已挂载且可见；若 RAF 被节流（后台标签页），再补一次。
+    const focusDialog = () => {
+      if (!this.isExplorationOpen) return;
+      // 触屏设备上自动聚焦搜索框会立刻弹出软键盘，盖住首屏内容；
+      // 把初始焦点放在 dialog 容器上，由读屏播报标题，用户再点输入框。
+      const isTouch = window.matchMedia?.('(pointer: coarse)').matches
+        || window.matchMedia?.('(max-width: 640px)').matches;
+      const target = isTouch
+        ? dialog
+        : (dialog.querySelector('input, button, [tabindex]:not([tabindex="-1"])') || dialog);
+      target.focus({ preventScroll: true });
+    };
     requestAnimationFrame(() => {
-      const focusTarget = dialog.querySelector('input, button, [tabindex]:not([tabindex="-1"])') || dialog;
-      focusTarget?.focus({ preventScroll: true });
+      focusDialog();
+      window.setTimeout(focusDialog, 60);
     });
 
-    if (!skipHistory) this._updateExplorationUrl(mode);
+    if (!skipHistory) this._updateExplorationUrl(mode, { replace: wasOpen });
     this._bindExplorationForm();
     try { localStorage.setItem('hlm-exploration-seen', '1'); } catch (e) { /* ignore */ }
   }
@@ -4818,22 +4853,24 @@ _createFontAndThemeControls() {
     });
   }
 
-  _updateExplorationUrl(mode) {
+  _updateExplorationUrl(mode, { replace = false } = {}) {
     const params = new URLSearchParams(location.search);
     params.delete('explore');
     params.delete('about');
     const newUrl = `${location.pathname}?${params.toString()}`;
-    if (this._suppressHistoryPush || mode === 'character') {
-      // 人物主页是覆盖层，关闭后应回到原页面，不额外写一条历史记录。
-      history.replaceState(history.state, '', newUrl);
-      return;
-    }
+    // 弹层内的模式切换不是独立页面：replace 当前条目。
+    // 首次打开（wasOpen=false）会 push 一条同 URL 的条目，Back 关闭弹层。
     const navState = {
       hlm: {
         view: { ...this.currentView },
-        graph: this._captureGraphFilterState()
+        graph: this._captureGraphFilterState(),
+        exploration: { mode, characterId: this._explorationCharacterId || null }
       }
     };
+    if (this._suppressHistoryPush || replace) {
+      history.replaceState(navState, '', newUrl);
+      return;
+    }
     history.pushState(navState, '', newUrl);
   }
 
@@ -4848,6 +4885,12 @@ _createFontAndThemeControls() {
     this._setHtml(this.els.explorationDialog, '');
 
     if (!skipHistory) {
+      // 弹层条目是 push 出来的：Back 回到打开前的页面。
+      // 深链 ?explore/?about 没有前一页，只清理 URL。
+      if (history.state?.hlm?.exploration) {
+        history.back();
+        return;
+      }
       const params = new URLSearchParams(location.search);
       if (params.has('explore') || params.has('about')) {
         params.delete('explore');

@@ -8808,7 +8808,8 @@ body.fullscreen .path-display-panel {
 .exploration-overlay {
   position: fixed;
   inset: 0;
-  z-index: 3000;
+  /* 页头 z-index 3001；弹层必须压住页头，否则打开后仍能点视图页签换页。 */
+  z-index: 3100;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9797,10 +9798,12 @@ body.fullscreen .path-display-panel {
 
 @media (max-width: 640px) {
   .exploration-overlay {
-    top: var(--header-height);
+    /* 弹层要覆盖页头才能阻止页签点击；用 padding-top 把 dialog 让到页头下方，
+       而不是把 overlay 整体下移。 */
+    top: 0;
     bottom: 0;
     align-items: flex-end;
-    padding: 0;
+    padding: var(--header-height) 0 0;
   }
 
   .exploration-dialog {
