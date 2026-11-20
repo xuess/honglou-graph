@@ -2854,13 +2854,20 @@
     "isMainline": false,
     "outcome": "贾母死后，为免遭贾赦逼婚，悬梁自尽，以死明志。",
     "quotesPendingVerified": [
-      "大老爷如今为这件事叫我好几遭了。我是横了心的，当着众人在这里说明白。",
       "纵到了那阴间地狱，我也跟着太那边去了。"
     ],
     "quotes": [
-      "别说大老爷要我做小老婆，就是太太这会子死了，他三媒六聘的娶我去做大老婆，我也不能去！"
+      "别说大老爷要我做小老婆，就是太太这会子死了，他三媒六聘的娶我去做大老婆，我也不能去！",
+      "大老爷如今为这件事叫我好几遭了。我是横了心的，当着众人在这里说明白。"
     ],
     "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 46,
+        "locator": "第46回",
+        "matchType": "prefix"
+      },
       {
         "sourceId": "jiaxu-wikisource",
         "edition": "庚辰本",
@@ -2995,13 +3002,19 @@
     "generation": 0,
     "isMainline": false,
     "outcome": "被王夫人撵出后投井自尽",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
+      "你忙什么！'金簪子掉在井里头，有你的只是有你的'。",
       "你去东小院子里拿环哥儿和彩云去。"
     ],
-    "quotes": [
-      "你忙什么！'金簪子掉在井里头，有你的只是有你的'。"
-    ],
     "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 30,
+        "locator": "第30回",
+        "matchType": "prefix"
+      },
       {
         "sourceId": "jiaxu-wikisource",
         "edition": "庚辰本",
