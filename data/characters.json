@@ -2709,7 +2709,9 @@
       "我倒是一片真心为姑娘。姑娘倒把我当外人看了。",
       "姑娘和宝二爷的事，我是看在眼里的。何不趁老太太还硬朗，求了这门亲事？",
       "妹妹别怕。我就是个傻丫头罢了。你的心事，我都知道。"
-    ]
+    ],
+    "quotes": [],
+    "quoteSources": []
   },
   {
     "id": "pinger",
@@ -3387,7 +3389,9 @@
       "被绑住嘴堵了塞马粪"
     ],
     "quotes": [
-      "每日家偷狗戏鸡，爬灰的爬灰，养小叔子的养小叔子！"
+      "每日家偷狗戏鸡，爬灰的爬灰，养小叔子的养小叔子！",
+      "我要往祠堂里哭太爷去！那里承望到如今生下这些畜生来！",
+      "红刀子进去白刀子出来。"
     ],
     "description": "焦大是宁国府的老仆，曾在战场上救过宁国公的命。他仗着旧功经常喝醉酒大骂主子们的丑事，一句'爬灰的爬灰，养小叔子的养小叔子'揭开了宁府的龌龊内幕。他虽地位低下，却是全书中少有的敢说真话之人。",
     "chapters": [
@@ -3415,12 +3419,23 @@
         "chapter": 7,
         "locator": "第7回“每日家偷狗戲雞，爬灰的爬灰”",
         "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 7,
+        "locator": "第7回",
+        "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 7,
+        "locator": "第7回",
+        "matchType": "prefix"
       }
     ],
-    "quotesPendingVerified": [
-      "我要往祠堂里哭太爷去！那里承望到如今生下这些畜生来！",
-      "红刀子进去白刀子出来。"
-    ]
+    "quotesPendingVerified": []
   },
   {
     "id": "lai_da",
@@ -3668,7 +3683,8 @@
       "点化甄士隐"
     ],
     "quotes": [
-      "施主，你把这有命无运、累及爹娘之物，抱在怀内作甚？"
+      "施主，你把这有命无运、累及爹娘之物，抱在怀内作甚？",
+      "好防佳节元宵后，便是烟消火灭时。"
     ],
     "description": "癞头和尚是小说中贯穿始终的神秘僧人，与跛足道人是一对度世的仙人。他们点化甄士隐、为英莲预言命运、为通灵宝玉刻字。他们是串联全书情节的超自然线索，象征着命运的不可抗拒和红尘的虚幻无常。",
     "chapters": [
@@ -3696,11 +3712,16 @@
         "chapter": 1,
         "locator": "第1回“施主，你把這有命無運，累及爹娘之物，抱在懷内作甚”",
         "matchType": "verbatim"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 1,
+        "locator": "第1回",
+        "matchType": "prefix"
       }
     ],
-    "quotesPendingVerified": [
-      "好防佳节元宵后，便是烟消火灭时。"
-    ]
+    "quotesPendingVerified": []
   },
   {
     "id": "bo_zu_daoren",
@@ -4212,8 +4233,19 @@
     "isMainline": false,
     "outcome": "被凤姐折磨后吞金自尽",
     "quotesPendingVerified": [
-      "倒不如一死，倒还干净。",
       "我如今是一心一意服侍你的，再不敢有二心了。"
+    ],
+    "quotes": [
+      "倒不如一死，倒还干净。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 69,
+        "locator": "第69回",
+        "matchType": "prefix"
+      }
     ]
   },
   {
@@ -4387,8 +4419,18 @@
     "generation": 0,
     "isMainline": false,
     "outcome": "与宝玉交厚，后不详",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
       "令郎真乃龙驹凤雏，非小王在贵人前唐突，将来'雏凤清于老凤声'，未可量也。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 15,
+        "locator": "第15回",
+        "matchType": "prefix"
+      }
     ]
   },
   {
