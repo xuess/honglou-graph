@@ -418,14 +418,20 @@
       "original": "工部员外郎，贾府家长；结局未明",
       "continuation": "蒙圣恩复职，晚年凄凉"
     },
-    "quotesPendingVerified": [
-      "该死的奴才！你在家不读书也就罢了，怎么又做出这些无法无天的事来！"
-    ],
+    "quotesPendingVerified": [],
     "quotes": [
       "自祖宗以来，皆是宽柔以待下人。",
-      "不肖种种大承笞挞！"
+      "不肖种种大承笞挞！",
+      "该死的奴才！你在家不读书也就罢了，怎么又做出这些无法无天的事来！"
     ],
     "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 33,
+        "locator": "第33回",
+        "matchType": "prefix"
+      },
       {
         "sourceId": "jiaxu-wikisource",
         "edition": "庚辰本",
@@ -708,7 +714,8 @@
     ],
     "quotes": [
       "女儿是水作的骨肉，男人是泥作的骨肉。我见了女儿，我便清爽；见了男子，便觉浊臭逼人。",
-      "你放心，别说这样话。我便为这些人死了，也是情愿的！"
+      "你放心，别说这样话。我便为这些人死了，也是情愿的！",
+      "任凭弱水三千，我只取一瓢饮。"
     ],
     "description": "贾宝玉是《红楼梦》的男主角，衔通灵宝玉而生，是女娲补天所遗之石幻化而成。他天性纯真多情，视女子为清净之物，厌恶功名利禄和仕途经济。他与黛玉心心相印却终不能相守；续书写他在宝钗怀孕后看破红尘、悬崖撒手出家为僧。",
     "chapters": [
@@ -769,11 +776,17 @@
         "chapter": 34,
         "locator": "第34回",
         "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "程甲本",
+        "chapter": 91,
+        "locator": "第91回 程甲本",
+        "matchType": "prefix"
       }
     ],
     "quotesPendingVerified": [
-      "弱水三千，我只取一瓢饮。",
-      "任凭弱水三千，我只取一瓢饮。"
+      "弱水三千，我只取一瓢饮。"
     ],
     "outcomeVersion": {
       "original": "荣国府公子，结局未明（判词伏“悬崖撒手”）",
@@ -1128,8 +1141,19 @@
       "continuation": "在宫中薨逝，死因成谜（第95回）"
     },
     "quotesPendingVerified": [
-      "当日既送我到那不得见人的去处……",
+      "当日既送我到那不得见人的去处……"
+    ],
+    "quotes": [
       "田舍之家，虽齑盐布帛，终能聚天伦之乐；今虽富贵已极，骨肉各方，然终无意趣。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 18,
+        "locator": "第18回",
+        "matchType": "prefix"
+      }
     ]
   },
   {
@@ -1189,7 +1213,9 @@
     "quotesPendingVerified": [
       "我又不是管事的人，何苦来操这些心。",
       "凭他怎么糟蹋我，我也不说什么了。"
-    ]
+    ],
+    "quotes": [],
+    "quoteSources": []
   },
   {
     "id": "jia_tanchun",
@@ -1326,9 +1352,26 @@
       "original": "判词已伏出家为尼（“缁衣顿改昔年妆”）",
       "continuation": "削发为尼，独伴青灯古佛（第115回）"
     },
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
       "我清清白白一个人，为什么叫你们带累坏了？",
       "不作狠心人，难得自了汉。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 74,
+        "locator": "第74回",
+        "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 74,
+        "locator": "第74回",
+        "matchType": "prefix"
+      }
     ]
   },
   {
@@ -1551,7 +1594,8 @@
     ],
     "quotes": [
       "月满则亏，水满则溢。登高必跌重。",
-      "三春去后诸芳尽，各自须寻各自门。"
+      "三春去后诸芳尽，各自须寻各自门。",
+      "趁今日富贵，将祖茔附近多置田庄房舍地亩，以备祭祀供给之费。"
     ],
     "description": "秦可卿是宁国府贾蓉之妻，容貌兼具黛钗之美。她与公公贾珍的关系在书中由焦大醉骂、判词和脂批暗示；通行本写她病亡，脂本批语有“淫丧天香楼”自缢之说，死因存争议。她死前托梦王熙凤，提出“盛宴必散”的警示和保全家族的远见之策，是小说中极具象征意义的人物。关于她的真实身世，红学界亦有养生堂弃婴、废太子之女等不同说法。",
     "chapters": [
@@ -1595,11 +1639,16 @@
         "chapter": 13,
         "locator": "第13回“三春去後諸芳盡，各自須尋各自門”",
         "matchType": "verbatim"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 13,
+        "locator": "第13回",
+        "matchType": "prefix"
       }
     ],
-    "quotesPendingVerified": [
-      "趁今日富贵，将祖茔附近多置田庄房舍地亩，以备祭祀供给之费。"
-    ],
+    "quotesPendingVerified": [],
     "outcomeSources": [
       {
         "edition": "庚辰本",
@@ -1727,16 +1776,15 @@
     "isMainline": true,
     "outcome": "薛家小姐，结局未明（判词伏“金簪雪里埋”）",
     "sourceNote": "前八十回为主线人物；与宝玉成婚的“调包计”情节见于后四十回续书。",
-    "quotesPendingVerified": [
-      "淡极始知花更艳，愁多焉得玉无痕。",
-      "珍重芳姿昼掩门，自携手瓮灌苔盆。"
-    ],
+    "quotesPendingVerified": [],
     "outcomeVersion": {
       "original": "薛家小姐，结局未明（判词伏“金簪雪里埋”）",
       "continuation": "与宝玉成婚后独守空房"
     },
     "quotes": [
-      "好风凭借力，送我上青云。"
+      "好风凭借力，送我上青云。",
+      "珍重芳姿昼掩门，自携手瓮灌苔盆。",
+      "淡极始知花更艳，愁多焉得玉无痕。"
     ],
     "quoteSources": [
       {
@@ -1744,6 +1792,20 @@
         "edition": "庚辰本",
         "chapter": 70,
         "locator": "第70回 临江仙·柳絮",
+        "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 37,
+        "locator": "第37回 咏白海棠",
+        "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 37,
+        "locator": "第37回 咏白海棠",
         "matchType": "prefix"
       }
     ]
@@ -1776,7 +1838,9 @@
     "quotes": [
       "花谢花飞花满天，红消香断有谁怜？",
       "一朝春尽红颜老，花落人亡两不知。",
-      "质本洁来还洁去，强于污淖陷渠沟。"
+      "质本洁来还洁去，强于污淖陷渠沟。",
+      "偷来梨蕊三分白，借得梅花一缕魂。",
+      "孤标傲世偕谁隐，一样花开为底迟？"
     ],
     "description": "林黛玉是《红楼梦》的灵魂女主角，前世为绛珠仙草，今生以泪还情。她天资聪慧、诗才无双，是大观园中最出色的才女。她与宝玉两情相悦，却因封建家长的阻挠未能成婚。在宝玉被骗娶宝钗的当晚，她焚稿断情、泪尽而亡，是中国文学史上最动人的悲剧形象。",
     "chapters": [
@@ -1842,12 +1906,23 @@
         "chapter": 27,
         "locator": "第27回“質本潔來還潔去，強”",
         "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 37,
+        "locator": "第37回 咏白海棠",
+        "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 38,
+        "locator": "第38回 问菊",
+        "matchType": "prefix"
       }
     ],
-    "quotesPendingVerified": [
-      "偷来梨蕊三分白，借得梅花一缕魂。",
-      "孤标傲世偕谁隐，一样花开为底迟？"
-    ],
+    "quotesPendingVerified": [],
     "outcomeVersion": {
       "original": "寄居贾府的世外仙姝，结局未明（判词伏“玉带林中挂”）",
       "continuation": "泪尽而亡，焚稿断痴情"
@@ -2285,10 +2360,28 @@
       "continuation": "后四十回亦未坐实；嫁卫若兰、守寡等说法多属探佚推测"
     },
     "quotesPendingVerified": [
-      "是真名士自风流！你们都是假清高。",
-      "寒塘渡鹤影。",
       "且住，且住，莫使春光别去！",
       "这鹿肉不要了？好无趣！"
+    ],
+    "quotes": [
+      "是真名士自风流！你们都是假清高。",
+      "寒塘渡鹤影。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 49,
+        "locator": "第49回",
+        "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 76,
+        "locator": "第76回 凹晶馆联诗",
+        "matchType": "prefix"
+      }
     ]
   },
   {
@@ -3525,12 +3618,11 @@
       "continuation": "被强盗掳走，终陷淖泥中"
     },
     "sourceNote": "前八十回为栊翠庵尼姑；被劫的结局见于后四十回续书。",
-    "quotesPendingVerified": [
-      "你这么个人，竟是大俗人，连水也尝不出来。"
-    ],
+    "quotesPendingVerified": [],
     "quotes": [
       "古人自汉晋五代唐宋以来，皆无好诗，只有两句好：纵有千年铁门槛，终须一个土馒头。",
-      "槛外人妙玉恭肃遥叩芳辰。"
+      "槛外人妙玉恭肃遥叩芳辰。",
+      "你这么个人，竟是大俗人，连水也尝不出来。"
     ],
     "quoteSources": [
       {
@@ -3545,6 +3637,13 @@
         "edition": "庚辰本",
         "chapter": 63,
         "locator": "第63回",
+        "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 41,
+        "locator": "第41回",
         "matchType": "prefix"
       }
     ]
