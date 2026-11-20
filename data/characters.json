@@ -2118,8 +2118,19 @@
     "isMainline": true,
     "outcome": "薛家衰落后寄居贾府，后随宝钗度日，含饴弄孙。",
     "quotesPendingVerified": [
-      "我的儿，你这是怎么了？好好的何苦？",
+      "我的儿，你这是怎么了？好好的何苦？"
+    ],
+    "quotes": [
       "自古道，千里姻缘一线牵。管姻缘的有一位月老，预先注定的，暗里只用一根红丝把这两个人的脚绊住了。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 57,
+        "locator": "第57回",
+        "matchType": "prefix"
+      }
     ]
   },
   {
