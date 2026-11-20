@@ -354,7 +354,11 @@ class HongLouMengApp {
         } else {
           // Show search history when input is empty
           this._renderSearchHistory(this.els.graphSearchResults);
-          this.els.graphSearchResults?.classList.add('active');
+          if (this.els.graphSearchResults?.children.length) {
+            this.els.graphSearchResults.classList.add('active');
+          } else {
+            this.els.graphSearchResults?.classList.remove('active');
+          }
         }
       });
       this.els.graphSearchInput.closest('.search-input-wrapper')?.querySelector('.btn-clear-search')?.addEventListener('click', () => {
@@ -1272,10 +1276,7 @@ class HongLouMengApp {
    */
   _applyStateFromUrl(historyNav = null) {
     const urlParams = new URLSearchParams(location.search);
-    const exploreParam = urlParams.get('explore');
-    const aboutParam = urlParams.get('about');
-
-    if (aboutParam) {
+    if (urlParams.has('about')) {
       this._suppressHistoryPush = true;
       try {
         this._applyUrlState(historyNav);
@@ -1285,7 +1286,7 @@ class HongLouMengApp {
       this._showExploration('data', { skipHistory: true });
       return;
     }
-    if (exploreParam) {
+    if (urlParams.has('explore')) {
       this._suppressHistoryPush = true;
       try {
         this._switchView('graph');
@@ -2067,6 +2068,8 @@ _createFontAndThemeControls() {
     )).filter((el) => el.getClientRects().length > 0);
 
     const setSettingsOpen = (open, { focusToggle = false } = {}) => {
+      // 探索弹层是最高层模态；打开期间不展开设置面板，避免下拉盖住弹层。
+      if (open && this.isExplorationOpen) open = false;
       dropdown.classList.toggle('active', open);
       settingsBtn.classList.toggle('is-open', open);
       settingsBtn.setAttribute('aria-expanded', String(open));
@@ -2864,7 +2867,10 @@ _createFontAndThemeControls() {
 
   _renderSearchHistory(resultsEl) {
     const history = this._getSearchHistory();
-    if (!history.length) return;
+    if (!history.length) {
+      this._setHtml(resultsEl, '');
+      return;
+    }
     
     const historyHtml = `
       <div class="search-history-section">
@@ -4533,7 +4539,7 @@ _createFontAndThemeControls() {
             ${['lin_daiyu', 'jia_baoyu', 'xue_baochai', 'wang_xifeng', 'shi_xiangyun']
               .map((id) => this.characterMap.get(id))
               .filter(Boolean)
-              .map((character) => `<button type="button" class="exploration-quick-pick" data-open-char="${character.id}">${character.name}</button>`)
+              .map((character) => `<button type="button" class="exploration-quick-pick" data-open-char="${character.id}">${this._escapeHtml(character.name)}</button>`)
               .join('')}
             <button type="button" class="exploration-quick-pick exploration-quick-pick-daily" data-explore-action="daily">看看今天读谁</button>
           </div>
@@ -4543,12 +4549,12 @@ _createFontAndThemeControls() {
           <section class="exploration-seed" aria-label="示例人物">
             <div class="exploration-seed-kicker">第一次可以这样读</div>
             <button type="button" class="exploration-seed-card" data-open-char="${seed.id}">
-              <span class="exploration-seed-avatar" style="background:${familyColor}">${seed.name.slice(0, 1)}</span>
+              <span class="exploration-seed-avatar" style="background:${familyColor}">${this._escapeHtml(seed.name.slice(0, 1))}</span>
               <span class="exploration-seed-main">
-                <span class="exploration-seed-name">${seed.name}</span>
-                <span class="exploration-seed-identity">${seed.identity || ''}</span>
+                <span class="exploration-seed-name">${this._escapeHtml(seed.name)}</span>
+                <span class="exploration-seed-identity">${this._escapeHtml(seed.identity || '')}</span>
                 <span class="exploration-seed-meta">
-                  <span>${seed.family || '其他'}</span>
+                  <span>${this._escapeHtml(seed.family || '其他')}</span>
                   <span>${relations.length} 条关系</span>
                   <span>${chapterEntries.length ? `第${chapterEntries[0].chapter}回出场` : '出场待补'}</span>
                 </span>
@@ -4558,11 +4564,11 @@ _createFontAndThemeControls() {
             <ol class="exploration-path">
               <li>
                 <span class="exploration-path-step">01</span>
-                <span class="exploration-path-text">她是${seed.identity || '书中人物'}。</span>
+                <span class="exploration-path-text">她是${this._escapeHtml(seed.identity || '书中人物')}。</span>
               </li>
               <li>
                 <span class="exploration-path-step">02</span>
-                <span class="exploration-path-text">先看 ${relationPaths.length ? relationPaths.map((rel) => rel.character.name).join('、') : '最近的关系'}，再沿关系走到贾府其他人。</span>
+                <span class="exploration-path-text">先看 ${relationPaths.length ? relationPaths.map((rel) => this._escapeHtml(rel.character.name)).join('、') : '最近的关系'}，再沿关系走到贾府其他人。</span>
               </li>
               <li>
                 <span class="exploration-path-step">03</span>
@@ -4679,10 +4685,10 @@ _createFontAndThemeControls() {
 
     const relationCards = summary.length
       ? summary.slice(0, 3).map((rel) => `
-          <button type="button" class="exploration-relation-card" data-open-char="${rel.character.id}" aria-label="查看${rel.character.name}的人物页">
-            <span class="exploration-relation-name">${rel.character.name}</span>
-            <span class="exploration-relation-label">${relationTypeLabels[rel.type] || rel.type} · ${rel.label || ''}</span>
-            <span class="exploration-relation-desc">${rel.description || ''}</span>
+          <button type="button" class="exploration-relation-card" data-open-char="${rel.character.id}" aria-label="查看${this._escapeHtml(rel.character.name)}的人物页">
+            <span class="exploration-relation-name">${this._escapeHtml(rel.character.name)}</span>
+            <span class="exploration-relation-label">${this._escapeHtml(relationTypeLabels[rel.type] || rel.type)} · ${this._escapeHtml(rel.label || '')}</span>
+            <span class="exploration-relation-desc">${this._escapeHtml(rel.description || '')}</span>
           </button>`).join('')
       : '<div class="exploration-empty">这条人物关系还没有整理考据。</div>';
 
@@ -4690,16 +4696,16 @@ _createFontAndThemeControls() {
       ? chapters.map((entry) => `
           <button type="button" class="exploration-chapter-card" data-explore-chapter="${Number(entry.chapter)}">
             <span class="exploration-chapter-number">第${Number(entry.chapter)}回</span>
-            <span class="exploration-chapter-title">${entry.title || ''}</span>
-            <span class="exploration-chapter-summary">${entry.summary || ''}</span>
+            <span class="exploration-chapter-title">${this._escapeHtml(entry.title || '')}</span>
+            <span class="exploration-chapter-summary">${this._escapeHtml(entry.summary || '')}</span>
           </button>`).join('')
       : '<div class="exploration-empty">尚未录入可定位的出场回目。</div>';
 
     const knowledgeCards = relatedKnowledge.length
       ? relatedKnowledge.slice(0, 4).map((item) => `
           <button type="button" class="exploration-knowledge-card" data-explore-knowledge="${character.id}" data-explore-knowledge-id="${item.id || ''}">
-            <span class="exploration-knowledge-title">${item.title || '知识条目'}</span>
-            <span class="exploration-knowledge-meta">${item.category || item.type || ''}${item.chapter ? ` · 第${item.chapter}回` : ''}</span>
+            <span class="exploration-knowledge-title">${this._escapeHtml(item.title || '知识条目')}</span>
+            <span class="exploration-knowledge-meta">${this._escapeHtml(item.category || item.type || '')}${item.chapter ? ` · 第${item.chapter}回` : ''}</span>
           </button>`).join('')
       : '<div class="exploration-empty">暂无关联知识条目。</div>';
 
@@ -4713,11 +4719,11 @@ _createFontAndThemeControls() {
     return `
       <article class="exploration-person" aria-labelledby="exploration-title">
         <header class="exploration-person-head">
-          <div class="exploration-person-avatar" style="background:${familyColor}">${character.name.slice(0, 1)}</div>
+          <div class="exploration-person-avatar" style="background:${familyColor}">${this._escapeHtml(character.name.slice(0, 1))}</div>
           <div class="exploration-person-title">
-            <div class="exploration-person-kicker">${character.family || '其他'} · 人物主页</div>
-            <h2 class="exploration-heading" id="exploration-title">${character.name}${character.pinyin ? `<span class="exploration-person-pinyin">${character.pinyin}</span>` : ''}</h2>
-            <p class="exploration-person-identity">${character.identity || ''}</p>
+            <div class="exploration-person-kicker">${this._escapeHtml(character.family || '其他')} · 人物主页</div>
+            <h2 class="exploration-heading" id="exploration-title">${this._escapeHtml(character.name)}${character.pinyin ? `<span class="exploration-person-pinyin">${this._escapeHtml(character.pinyin)}</span>` : ''}</h2>
+            <p class="exploration-person-identity">${this._escapeHtml(character.identity || '')}</p>
             <div class="exploration-person-meta">
               <span>${relations.length} 条关系</span>
               <span>${chapters.length ? `关键回目 ${chapters.map((entry) => `第${entry.chapter}回`).join('、')}` : '回目待补'}</span>
@@ -4733,9 +4739,9 @@ _createFontAndThemeControls() {
         <div class="exploration-person-grid">
           <section class="exploration-person-main">
             <h3 class="exploration-subtitle">先认识她</h3>
-            <p class="exploration-description">${character.description || '暂无简介'}</p>
-            ${character.personality ? `<div class="exploration-personality"><span>性格</span>${character.personality}</div>` : ''}
-            ${character.keyEvents?.length ? `<ol class="exploration-events">${character.keyEvents.slice(0, 3).map((event) => `<li>${event}</li>`).join('')}</ol>` : ''}
+            <p class="exploration-description">${this._escapeHtml(character.description || '暂无简介')}</p>
+            ${character.personality ? `<div class="exploration-personality"><span>性格</span>${this._escapeHtml(character.personality)}</div>` : ''}
+            ${character.keyEvents?.length ? `<ol class="exploration-events">${character.keyEvents.slice(0, 3).map((event) => `<li>${this._escapeHtml(event)}</li>`).join('')}</ol>` : ''}
 
             <h3 class="exploration-subtitle">看完这三条关系，就懂她的一半</h3>
             <div class="exploration-relation-list">${relationCards}</div>
@@ -4770,7 +4776,7 @@ _createFontAndThemeControls() {
         <footer class="exploration-person-footer">
           <div class="exploration-footer-title">下一站</div>
           <div class="exploration-next-list">
-            ${recommendations.slice(0, 4).map((relChar) => `<button type="button" class="exploration-next-pill" data-open-char="${relChar.id}">${relChar.name}</button>`).join('')}
+            ${recommendations.slice(0, 4).map((relChar) => `<button type="button" class="exploration-next-pill" data-open-char="${relChar.id}">${this._escapeHtml(relChar.name)}</button>`).join('')}
             <button type="button" class="exploration-next-pill is-ghost" data-explore-view="graph">回到图谱</button>
           </div>
         </footer>
@@ -4794,6 +4800,14 @@ _createFontAndThemeControls() {
     if (!html) return;
 
     const wasOpen = this.isExplorationOpen;
+    // 打开 / 切换弹层前收起页头下拉与搜索建议，避免两层浮层叠在一起。
+    if (!wasOpen) {
+      document.getElementById('settings-dropdown')?.classList.remove('active');
+      document.getElementById('settings-toggle')?.setAttribute('aria-expanded', 'false');
+      this.els.graphSearchResults?.classList.remove('active');
+      this.els.searchResults?.classList.remove('active');
+      this._toggleSidebar(false);
+    }
     this.isExplorationOpen = true;
     this._explorationMode = mode;
     this._setHtml(dialog, html);
@@ -5023,11 +5037,11 @@ _createFontAndThemeControls() {
     container.innerHTML = jinchais.map(({ character, rank }) => {
       const color = colorFor(character.family);
       // 交给 CSS 两行截断（带省略号），字符串硬切会在句中留下无提示的断口。
-      const identity = character.identity || '';
+      const identity = this._escapeHtml(character.identity || '');
       return `
-        <button class="discovery-char-card" data-char-id="${character.id}" aria-label="探索人物：${character.name}">
-          <div class="discovery-char-avatar" style="background:${color}">${character.name.charAt(0)}</div>
-          <div class="discovery-char-name">${character.name}</div>
+        <button class="discovery-char-card" data-char-id="${character.id}" aria-label="探索人物：${this._escapeHtml(character.name)}">
+          <div class="discovery-char-avatar" style="background:${color}">${this._escapeHtml(character.name.charAt(0))}</div>
+          <div class="discovery-char-name">${this._escapeHtml(character.name)}</div>
           <div class="discovery-char-identity">${identity}</div>
           <div class="discovery-char-rank">${rank}</div>
         </button>
@@ -5043,7 +5057,7 @@ _createFontAndThemeControls() {
     container.innerHTML = `
       <div class="discovery-daily-label">今日推荐探索</div>
       <button class="discovery-daily-char" data-char-id="${char.id}">
-        ${char.name}　${(char.identity || '').slice(0, 12)}
+        ${this._escapeHtml(char.name)}　${this._escapeHtml((char.identity || '').slice(0, 12))}
       </button>
     `;
   }
