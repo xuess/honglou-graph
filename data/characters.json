@@ -1150,13 +1150,19 @@
       "original": "已封贤德妃，省亲后回宫（第18回）",
       "continuation": "在宫中薨逝，死因成谜（第95回）"
     },
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
+      "田舍之家，虽齑盐布帛，终能聚天伦之乐；今虽富贵已极，骨肉各方，然终无意趣。",
       "当日既送我到那不得见人的去处……"
     ],
-    "quotes": [
-      "田舍之家，虽齑盐布帛，终能聚天伦之乐；今虽富贵已极，骨肉各方，然终无意趣。"
-    ],
     "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 18,
+        "locator": "第18回",
+        "matchType": "prefix"
+      },
       {
         "sourceId": "jiaxu-wikisource",
         "edition": "庚辰本",
@@ -1287,12 +1293,11 @@
       "original": "前八十回已议及远嫁（判词“千里东风一梦遥”）",
       "continuation": "远嫁海疆镇海总制周琼之子（第100回）"
     },
-    "quotesPendingVerified": [
-      "你们别忒欺负人，打量我是好惹的！"
-    ],
+    "quotesPendingVerified": [],
     "quotes": [
       "我但凡是个男人，可以出得去，我必早走了，立一番事业，那时自有我一番道理。",
-      "百足之虫，死而不僵，必须先从家里自杀自灭起来，才能一败涂地。"
+      "百足之虫，死而不僵，必须先从家里自杀自灭起来，才能一败涂地。",
+      "你们别忒欺负人，打量我是好惹的！"
     ],
     "quoteSources": [
       {
@@ -1307,6 +1312,13 @@
         "edition": "庚辰本",
         "chapter": 74,
         "locator": "第74回",
+        "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 55,
+        "locator": "第55回",
         "matchType": "prefix"
       }
     ]
@@ -1455,15 +1467,24 @@
     "sourceNote": "前八十回为主线人物；“机关算尽”的结局在后四十回有更完整描写。",
     "quotesPendingVerified": [
       "舍得一身剐，敢把皇帝拉下马。",
-      "我从来不信什么阴司地狱报应的，凭是什么事，我说要行就行。",
       "嘴甜心苦，两面三刀。上头一脸笔，脚下使绊子。明是一盆火，暗是一把刀。"
     ],
     "outcomeVersion": {
       "original": "协理宁国府、弄权铁槛寺、逼死尤二姐，结局未明（判词伏“一从二令三人木”）",
       "continuation": "机关算尽太聪明，反误了卿卿性命"
     },
-    "quotes": [],
-    "quoteSources": [],
+    "quotes": [
+      "我从来不信什么阴司地狱报应的，凭是什么事，我说要行就行。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 15,
+        "locator": "第15回",
+        "matchType": "prefix"
+      }
+    ],
     "outcomeSources": [
       {
         "edition": "庚辰本",
@@ -2864,14 +2885,20 @@
     "generation": 0,
     "isMainline": false,
     "outcome": "贾母死后，为免遭贾赦逼婚，悬梁自尽，以死明志。",
-    "quotesPendingVerified": [
-      "纵到了那阴间地狱，我也跟着太那边去了。"
-    ],
+    "quotesPendingVerified": [],
     "quotes": [
       "别说大老爷要我做小老婆，就是太太这会子死了，他三媒六聘的娶我去做大老婆，我也不能去！",
-      "大老爷如今为这件事叫我好几遭了。我是横了心的，当着众人在这里说明白。"
+      "大老爷如今为这件事叫我好几遭了。我是横了心的，当着众人在这里说明白。",
+      "纵到了那阴间地狱，我也跟着太那边去了。"
     ],
     "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 46,
+        "locator": "第46回",
+        "matchType": "prefix"
+      },
       {
         "sourceId": "jiaxu-wikisource",
         "edition": "庚辰本",
