@@ -246,10 +246,34 @@
       "original": "贾府最高权威",
       "continuation": "寿终正寝，贾府衰败后病逝"
     },
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
       "我们这样人家，别的事自有人料理，我不过受用罢了。",
-      "当日我像凤哥儿这么大年纪，比她还来得呢。",
-      "我这老冤家是那世里的孽障，偏生遇见了这么两个不省事的小冤家。"
+      "我这老冤家是那世里的孽障，偏生遇见了这么两个不省事的小冤家。",
+      "当日我像凤哥儿这么大年纪，比她还来得呢。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 71,
+        "locator": "第71回",
+        "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 29,
+        "locator": "第29回",
+        "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 71,
+        "locator": "第71回",
+        "matchType": "prefix"
+      }
     ]
   },
   {
@@ -305,8 +329,26 @@
     "outcome": "因贪赃枉法被革职查抄，发配边疆",
     "sourceNote": "前八十回为贾赦；因强夺石呆子古扇获罪流放的情节见于后四十回续书。",
     "quotesPendingVerified": [
-      "我说给老太太，鸳鸯她自愿的。",
+      "我说给老太太，鸳鸯她自愿的。"
+    ],
+    "quotes": [
       "凭他嫁到了谁家，也难出我贾家的门。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 46,
+        "locator": "第46回",
+        "matchType": "prefix"
+      }
+    ],
+    "outcomeSources": [
+      {
+        "edition": "程甲本",
+        "chapter": 100,
+        "locator": "第100回 抄家"
+      }
     ]
   },
   {
@@ -377,9 +419,27 @@
       "continuation": "蒙圣恩复职，晚年凄凉"
     },
     "quotesPendingVerified": [
-      "自祖宗以来，皆是宽柔以待下人。",
-      "不肖种种大承笞挞！",
       "该死的奴才！你在家不读书也就罢了，怎么又做出这些无法无天的事来！"
+    ],
+    "quotes": [
+      "自祖宗以来，皆是宽柔以待下人。",
+      "不肖种种大承笞挞！"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 33,
+        "locator": "第33回",
+        "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 33,
+        "locator": "第33回",
+        "matchType": "prefix"
+      }
     ]
   },
   {
@@ -425,6 +485,13 @@
     "quotesPendingVerified": [
       "老爷说了，叫你过去呢。",
       "我不过是个摆设罢了。"
+    ],
+    "outcomeSources": [
+      {
+        "edition": "程甲本",
+        "chapter": 100,
+        "locator": "第100回 抄家"
+      }
     ]
   },
   {
@@ -490,8 +557,19 @@
     },
     "quotesPendingVerified": [
       "宝玉果然是有造化的。",
-      "这样妖精似的东西，怎么留得！",
       "凡是像那个模样儿的，都是狐狸精。"
+    ],
+    "quotes": [
+      "这样妖精似的东西，怎么留得！"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 74,
+        "locator": "第74回",
+        "matchType": "prefix"
+      }
     ]
   },
   {
@@ -538,6 +616,13 @@
     "outcome": "沉迷炼丹修道，吞食丹药中毒而死，死时腹胀如鼓。",
     "quotesPendingVerified": [
       "我只知道保养精神，长生不老，别的我一概不管。"
+    ],
+    "outcomeSources": [
+      {
+        "edition": "庚辰本",
+        "chapter": 63,
+        "locator": "第63回"
+      }
     ]
   },
   {
@@ -585,6 +670,13 @@
     "outcome": "嫁与林如海，生黛玉。后因病早逝，年仅三十余岁。",
     "quotesPendingVerified": [
       "只怕你令妹比这还要好些。"
+    ],
+    "outcomeSources": [
+      {
+        "edition": "庚辰本",
+        "chapter": 2,
+        "locator": "第2回"
+      }
     ]
   },
   {
@@ -615,7 +707,8 @@
       "后四十回续书：出家为僧"
     ],
     "quotes": [
-      "女儿是水作的骨肉，男人是泥作的骨肉。我见了女儿，我便清爽；见了男子，便觉浊臭逼人。"
+      "女儿是水作的骨肉，男人是泥作的骨肉。我见了女儿，我便清爽；见了男子，便觉浊臭逼人。",
+      "你放心，别说这样话。我便为这些人死了，也是情愿的！"
     ],
     "description": "贾宝玉是《红楼梦》的男主角，衔通灵宝玉而生，是女娲补天所遗之石幻化而成。他天性纯真多情，视女子为清净之物，厌恶功名利禄和仕途经济。他与黛玉心心相印却终不能相守；续书写他在宝钗怀孕后看破红尘、悬崖撒手出家为僧。",
     "chapters": [
@@ -669,11 +762,17 @@
         "chapter": 2,
         "locator": "第2回“女兒是水作的骨肉，男人是泥作的骨肉。我見”",
         "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 34,
+        "locator": "第34回",
+        "matchType": "prefix"
       }
     ],
     "quotesPendingVerified": [
       "弱水三千，我只取一瓢饮。",
-      "你放心，别说这样话。我便为这些人死了，也是情愿的！",
       "任凭弱水三千，我只取一瓢饮。"
     ],
     "outcomeVersion": {
@@ -733,6 +832,13 @@
     "sourceNote": "前八十回为宁国府当家人；因奢纵获罪、流放的情节见于后四十回续书。",
     "quotesPendingVerified": [
       "如今请了二婶子来帮忙料理，该怎么办就怎么办。"
+    ],
+    "outcomeSources": [
+      {
+        "edition": "程甲本",
+        "chapter": 100,
+        "locator": "第100回 抄家"
+      }
     ]
   },
   {
@@ -1146,9 +1252,27 @@
       "continuation": "远嫁海疆镇海总制周琼之子（第100回）"
     },
     "quotesPendingVerified": [
+      "你们别忒欺负人，打量我是好惹的！"
+    ],
+    "quotes": [
       "我但凡是个男人，可以出得去，我必早走了，立一番事业，那时自有我一番道理。",
-      "你们别忒欺负人，打量我是好惹的！",
       "百足之虫，死而不僵，必须先从家里自杀自灭起来，才能一败涂地。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 55,
+        "locator": "第55回",
+        "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 74,
+        "locator": "第74回",
+        "matchType": "prefix"
+      }
     ]
   },
   {
@@ -1284,7 +1408,16 @@
     "outcomeVersion": {
       "original": "协理宁国府、弄权铁槛寺、逼死尤二姐，结局未明（判词伏“一从二令三人木”）",
       "continuation": "机关算尽太聪明，反误了卿卿性命"
-    }
+    },
+    "quotes": [],
+    "quoteSources": [],
+    "outcomeSources": [
+      {
+        "edition": "庚辰本",
+        "chapter": 0,
+        "locator": "前八十回伏线"
+      }
+    ]
   },
   {
     "id": "li_wan",
@@ -1386,6 +1519,13 @@
     "outcome": "随贾珍获罪，处境艰难",
     "quotesPendingVerified": [
       "饶这样，我还不得做主呢。"
+    ],
+    "outcomeSources": [
+      {
+        "edition": "程甲本",
+        "chapter": 100,
+        "locator": "第100回 抄家"
+      }
     ]
   },
   {
@@ -1459,6 +1599,13 @@
     ],
     "quotesPendingVerified": [
       "趁今日富贵，将祖茔附近多置田庄房舍地亩，以备祭祀供给之费。"
+    ],
+    "outcomeSources": [
+      {
+        "edition": "庚辰本",
+        "chapter": 13,
+        "locator": "第13回"
+      }
     ]
   },
   {
@@ -1581,14 +1728,25 @@
     "outcome": "薛家小姐，结局未明（判词伏“金簪雪里埋”）",
     "sourceNote": "前八十回为主线人物；与宝玉成婚的“调包计”情节见于后四十回续书。",
     "quotesPendingVerified": [
-      "好风凭借力，送我上青云。",
       "淡极始知花更艳，愁多焉得玉无痕。",
       "珍重芳姿昼掩门，自携手瓮灌苔盆。"
     ],
     "outcomeVersion": {
       "original": "薛家小姐，结局未明（判词伏“金簪雪里埋”）",
       "continuation": "与宝玉成婚后独守空房"
-    }
+    },
+    "quotes": [
+      "好风凭借力，送我上青云。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 70,
+        "locator": "第70回 临江仙·柳絮",
+        "matchType": "prefix"
+      }
+    ]
   },
   {
     "id": "lin_daiyu",
@@ -1744,6 +1902,13 @@
     "outcome": "任职巡盐御史，染病身亡，临终将黛玉托付贾母。",
     "quotesPendingVerified": [
       "汝父年已半百，膝下无儿，此乃命也。且汝多病，年又极小，上无亲母教养，下无姊妹扶持，今去依傍外祖母及舅氏姊妹，正好减我顾盼之忧。"
+    ],
+    "outcomeSources": [
+      {
+        "edition": "庚辰本",
+        "chapter": 14,
+        "locator": "第14回"
+      }
     ]
   },
   {
@@ -2039,9 +2204,26 @@
       "continuation": "难产而死"
     },
     "sourceNote": "前八十回为薛蟠之妾，受夏金桂虐待；高鹗续书写她难产而死。",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
       "大漠孤烟直，长河落日圆。想来烟如何直？日自然是圆的。这'直'字似无理，'圆'字似太俗。合上书一想，倒像是见了这景的。",
       "精华欲掩料应难，影自娟娟魄自寒。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 48,
+        "locator": "第48回",
+        "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 49,
+        "locator": "第49回 第三稿",
+        "matchType": "prefix"
+      }
     ]
   },
   {
@@ -2212,6 +2394,13 @@
     "sourceNote": "第4回升九省统制、第53回升九省都检点均见于前八十回；病故情节见于后四十回续书。",
     "quotesPendingVerified": [
       "王家如今全仗着九省统制大人支撑门面。"
+    ],
+    "outcomeSources": [
+      {
+        "edition": "程甲本",
+        "chapter": 85,
+        "locator": "第85回"
+      }
     ]
   },
   {
@@ -2367,6 +2556,13 @@
       "撕的好，什么东西！我最爱撕这玩意儿。",
       "我虽生得比别人略好些，并没有私情密意勾引你怎样。",
       "早知如此，我当日也另有个道理。"
+    ],
+    "outcomeSources": [
+      {
+        "edition": "庚辰本",
+        "chapter": 78,
+        "locator": "第78回"
+      }
     ]
   },
   {
@@ -2478,8 +2674,19 @@
       "continuation": "被扶正为贾琏之妻"
     },
     "quotesPendingVerified": [
-      "我们奶奶的脾气，你们还不知道？顺着她还好些，犯了性子，什么都不顾了。",
+      "我们奶奶的脾气，你们还不知道？顺着她还好些，犯了性子，什么都不顾了。"
+    ],
+    "quotes": [
       "大事化为小事，小事化为没事，方是兴旺之家的做法。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 62,
+        "locator": "第62回",
+        "matchType": "prefix"
+      }
     ]
   },
   {
@@ -2525,9 +2732,27 @@
     "isMainline": false,
     "outcome": "贾母死后，为免遭贾赦逼婚，悬梁自尽，以死明志。",
     "quotesPendingVerified": [
-      "别说大老爷要我做小老婆，就是太太这会子死了，他三媒六聘的娶我去做大老婆，我也不能去！",
       "大老爷如今为这件事叫我好几遭了。我是横了心的，当着众人在这里说明白。",
       "纵到了那阴间地狱，我也跟着太那边去了。"
+    ],
+    "quotes": [
+      "别说大老爷要我做小老婆，就是太太这会子死了，他三媒六聘的娶我去做大老婆，我也不能去！"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 46,
+        "locator": "第46回",
+        "matchType": "prefix"
+      }
+    ],
+    "outcomeSources": [
+      {
+        "edition": "程甲本",
+        "chapter": 100,
+        "locator": "第100回"
+      }
     ]
   },
   {
@@ -2649,8 +2874,26 @@
     "isMainline": false,
     "outcome": "被王夫人撵出后投井自尽",
     "quotesPendingVerified": [
-      "你忙什么！'金簪子掉在井里头，有你的只是有你的'。",
       "你去东小院子里拿环哥儿和彩云去。"
+    ],
+    "quotes": [
+      "你忙什么！'金簪子掉在井里头，有你的只是有你的'。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 30,
+        "locator": "第30回",
+        "matchType": "prefix"
+      }
+    ],
+    "outcomeSources": [
+      {
+        "edition": "庚辰本",
+        "chapter": 30,
+        "locator": "第30回"
+      }
     ]
   },
   {
@@ -2725,6 +2968,13 @@
     "outcome": "因私通潘又安事发，被逐出大观园，后撞墙自尽。",
     "quotesPendingVerified": [
       "我已是不中用的人了。"
+    ],
+    "outcomeSources": [
+      {
+        "edition": "庚辰本",
+        "chapter": 62,
+        "locator": "第62回"
+      }
     ]
   },
   {
@@ -3276,9 +3526,27 @@
     },
     "sourceNote": "前八十回为栊翠庵尼姑；被劫的结局见于后四十回续书。",
     "quotesPendingVerified": [
-      "你这么个人，竟是大俗人，连水也尝不出来。",
+      "你这么个人，竟是大俗人，连水也尝不出来。"
+    ],
+    "quotes": [
       "古人自汉晋五代唐宋以来，皆无好诗，只有两句好：纵有千年铁门槛，终须一个土馒头。",
       "槛外人妙玉恭肃遥叩芳辰。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 63,
+        "locator": "第63回",
+        "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 63,
+        "locator": "第63回",
+        "matchType": "prefix"
+      }
     ]
   },
   {
@@ -3580,7 +3848,8 @@
       "充当贾府被抄的导火索之一"
     ],
     "quotes": [
-      "大丈夫相时而动。"
+      "大丈夫相时而动。",
+      "玉在椟中求善价，钗于奁内待时飞。"
     ],
     "description": "贾雨村，名化，字时飞。他本是穷困书生，受甄士隐资助后中进士为官。他忘恩负义、趋炎附势，审理薛蟠打死人命案时徇情枉法。其名谐音'假语村言'，是全书照应真假关系的线索人物，也是忘恩负义的文人典型。",
     "chapters": [
@@ -3625,11 +3894,16 @@
         "chapter": 4,
         "locator": "第4回“大丈夫相時而動”",
         "matchType": "verbatim"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 1,
+        "locator": "第1回",
+        "matchType": "prefix"
       }
     ],
-    "quotesPendingVerified": [
-      "玉在椟中求善价，钗于奁内待时飞。"
-    ]
+    "quotesPendingVerified": []
   },
   {
     "id": "zhen_shiyin",
@@ -3737,8 +4011,19 @@
     "isMainline": false,
     "outcome": "尤三姐自刎后随道士出家",
     "quotesPendingVerified": [
-      "你们东府里除了那两个石头狮子干净，只怕连猫儿狗儿都不干净。",
       "大丈夫一言既出，驷马难追。"
+    ],
+    "quotes": [
+      "你们东府里除了那两个石头狮子干净，只怕连猫儿狗儿都不干净。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 66,
+        "locator": "第66回",
+        "matchType": "prefix"
+      }
     ]
   },
   {
@@ -3877,7 +4162,9 @@
     "quotesPendingVerified": [
       "你们不必以为我是那等人，我心里早有了主意。",
       "终身大事，一生至一死，非同儿戏。我定了主意，等着他。"
-    ]
+    ],
+    "quotes": [],
+    "quoteSources": []
   },
   {
     "id": "qin_zhong",
