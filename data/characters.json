@@ -568,11 +568,11 @@
       "continuation": "晚年丧子出家，孤独终老"
     },
     "quotesPendingVerified": [
-      "宝玉果然是有造化的。",
       "凡是像那个模样儿的，都是狐狸精。"
     ],
     "quotes": [
-      "这样妖精似的东西，怎么留得！"
+      "这样妖精似的东西，怎么留得！",
+      "宝玉果然是有造化的。"
     ],
     "quoteSources": [
       {
@@ -581,6 +581,13 @@
         "chapter": 74,
         "locator": "第74回",
         "matchType": "prefix"
+      },
+      {
+        "sourceId": "wikisource-gengchen",
+        "edition": "庚辰本",
+        "chapter": 36,
+        "locator": "第36回",
+        "matchType": "exact"
       }
     ]
   },
@@ -720,8 +727,7 @@
     ],
     "quotes": [
       "女儿是水作的骨肉，男人是泥作的骨肉。我见了女儿，我便清爽；见了男子，便觉浊臭逼人。",
-      "你放心，别说这样话。我便为这些人死了，也是情愿的！",
-      "任凭弱水三千，我只取一瓢饮。"
+      "你放心，别说这样话。我便为这些人死了，也是情愿的！"
     ],
     "description": "贾宝玉是《红楼梦》的男主角，衔通灵宝玉而生，是女娲补天所遗之石幻化而成。他天性纯真多情，视女子为清净之物，厌恶功名利禄和仕途经济。他与黛玉心心相印却终不能相守；续书写他在宝钗怀孕后看破红尘、悬崖撒手出家为僧。",
     "chapters": [
@@ -782,16 +788,10 @@
         "chapter": 34,
         "locator": "第34回",
         "matchType": "prefix"
-      },
-      {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "程甲本",
-        "chapter": 91,
-        "locator": "第91回 程甲本",
-        "matchType": "prefix"
       }
     ],
     "quotesPendingVerified": [
+      "任凭弱水三千，我只取一瓢饮。",
       "弱水三千，我只取一瓢饮。"
     ],
     "outcomeVersion": {
@@ -1472,7 +1472,6 @@
     "outcome": "协理宁国府、弄权铁槛寺、逼死尤二姐，结局未明（判词伏“一从二令三人木”）",
     "sourceNote": "前八十回为主线人物；“机关算尽”的结局在后四十回有更完整描写。",
     "quotesPendingVerified": [
-      "舍得一身剐，敢把皇帝拉下马。",
       "嘴甜心苦，两面三刀。上头一脸笔，脚下使绊子。明是一盆火，暗是一把刀。"
     ],
     "outcomeVersion": {
@@ -1480,7 +1479,8 @@
       "continuation": "机关算尽太聪明，反误了卿卿性命"
     },
     "quotes": [
-      "我从来不信什么阴司地狱报应的，凭是什么事，我说要行就行。"
+      "我从来不信什么阴司地狱报应的，凭是什么事，我说要行就行。",
+      "拼著一身剐，敢把皇帝拉下马。"
     ],
     "quoteSources": [
       {
@@ -1489,6 +1489,13 @@
         "chapter": 15,
         "locator": "第15回",
         "matchType": "prefix"
+      },
+      {
+        "sourceId": "wikisource-gengchen",
+        "edition": "庚辰本",
+        "chapter": 68,
+        "locator": "第68回",
+        "matchType": "exact"
       }
     ],
     "outcomeSources": [
@@ -2435,12 +2442,12 @@
       "continuation": "后四十回亦未坐实；嫁卫若兰、守寡等说法多属探佚推测"
     },
     "quotesPendingVerified": [
-      "且住，且住，莫使春光别去！",
       "这鹿肉不要了？好无趣！"
     ],
     "quotes": [
       "是真名士自风流！你们都是假清高。",
-      "寒塘渡鹤影。"
+      "寒塘渡鹤影。",
+      "且住，且住，莫使春光别去！"
     ],
     "quoteSources": [
       {
@@ -2456,6 +2463,13 @@
         "chapter": 76,
         "locator": "第76回 凹晶馆联诗",
         "matchType": "prefix"
+      },
+      {
+        "sourceId": "wikisource-gengchen",
+        "edition": "庚辰本",
+        "chapter": 70,
+        "locator": "第70回",
+        "matchType": "exact"
       }
     ]
   },
@@ -2997,8 +3011,18 @@
     "generation": 0,
     "isMainline": false,
     "outcome": "贾府败落后随宝玉流落，后嫁与他人，平稳度日。",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
       "公然又是一个袭人。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "wikisource-gengchen",
+        "edition": "庚辰本",
+        "chapter": 20,
+        "locator": "第20回",
+        "matchType": "exact"
+      }
     ]
   },
   {

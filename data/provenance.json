@@ -47,6 +47,13 @@
       "kind": "facsimile-pending",
       "citation": "《脂砚斋重评石头记庚辰本》",
       "note": "待补入可复核的馆藏或影印本页码；在补齐定位前，不得以此目录项单独支撑展示事实。"
+    },
+    {
+      "id": "wikisource-zhengding",
+      "edition": "通行本(维基文库转录)",
+      "kind": "online-transcription",
+      "citation": "维基文库《紅樓夢》全文转录(含程甲本后四十回)，https://zh.wikisource.org/wiki/紅樓夢",
+      "note": "用于引语是否逐字存在于《红楼梦》的核查工具。前八十回为程乙本文字，与庚辰本/甲戌本存在版本异文(如「如牛/似牛」「便/我」)，故凡以此来源标注的引语，均须经影印本校勘复核后方可作为事实层定本。"
     }
   ],
   "evidence": [
