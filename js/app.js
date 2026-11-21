@@ -3497,12 +3497,33 @@ _createFontAndThemeControls() {
     }).join('');
 
     const pendingHtml = unverified.length
-      ? `<div class="card-section-title card-section-title-sub">待校摘录</div>${unverified.slice(0, 2).map((quote) => `<div class="card-quote card-quote-pending">${this._escapeHtml(quote)}</div>`).join('')}<div class="card-note-hint">尚未在甲戌本／庚辰本中定位，暂不作为经典语录引用</div>`
+      ? `<div class="card-section-title card-section-title-sub">待校摘录</div>${unverified.slice(0, 2).map((item) => this._renderPendingQuote(item)).join('')}<div class="card-note-hint">已对照《红楼梦》前八十回全本逐字核对；未标「经典语录」者不作为定本引用。</div>`
       : '';
 
     return verified.length
       ? `<div class="card-section"><div class="card-section-title">经典语录</div>${verifiedHtml}${pendingHtml}</div>`
       : `<div class="card-section">${pendingHtml}</div>`;
+  }
+
+  /**
+   * 渲染单条待校摘录。兼容字符串与 {text, sourceAudit} 对象两种格式。
+   * 全本核查后给出明确结论，避免无限期「待校」：
+   * - likely-verbatim：实词核心在前80回高度重合，疑版本异文，待影印本校勘；
+   * - variant-or-fragment：仅个别实词片段重合，措辞与底本不符；
+   * - not-in-source：前80回全本逐字核对未找到，非原著逐字引语；
+   * - 无 sourceAudit（旧数据）：退回「尚未核对」。
+   */
+  _renderPendingQuote(item) {
+    const text = typeof item === 'string' ? item : (item && item.text) || '';
+    if (!text) return '';
+    const audit = (item && item.sourceAudit) || null;
+    let note = '尚未核对';
+    if (audit) {
+      if (audit.status === 'likely-verbatim') note = '疑似版本异文，待影印本校勘';
+      else if (audit.status === 'variant-or-fragment') note = '措辞与底本不符，非逐字原文';
+      else if (audit.status === 'not-in-source') note = '全本逐字核对未见，非原著引语';
+    }
+    return `<div class="card-quote card-quote-pending">${this._escapeHtml(text)}<span class="card-quote-source">${this._escapeHtml(note)}</span></div>`;
   }
 
   _showRelationshipCard(link) {
@@ -4655,8 +4676,8 @@ _createFontAndThemeControls() {
             </div>
             <div class="exploration-example-quote is-pending">
               <div class="exploration-example-label">待校摘录</div>
-              <blockquote>${this._escapeHtml((sampleCharacter?.quotesPendingVerified || [])[0] || '尚未在底本中定位的摘录会保留在这里。')}</blockquote>
-              <div class="exploration-example-source">尚未在甲戌本／庚辰本中定位</div>
+              <blockquote>${this._escapeHtml(((sampleCharacter?.quotesPendingVerified || [])[0] || {}).text || '尚未在底本中定位的摘录会保留在这里。')}</blockquote>
+              <div class="exploration-example-source">已对照前八十回全本核对</div>
             </div>
           </div>
         </section>` : ''}

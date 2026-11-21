@@ -31,7 +31,14 @@
     "isMainline": false,
     "outcome": "在贾府闹事后得银离去，后不知所终。",
     "quotesPendingVerified": [
-      "我家里艰难，把金荣送进义学，也是指望他读些书，日后好有个出身。"
+      {
+        "text": "我家里艰难，把金荣送进义学，也是指望他读些书，日后好有个出身。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -66,7 +73,14 @@
     "isMainline": false,
     "outcome": "诊病后离去，后不知所终。",
     "quotesPendingVerified": [
-      "先生的方子，只怕吃不得。"
+      {
+        "text": "先生的方子，只怕吃不得。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -101,7 +115,14 @@
     "isMainline": false,
     "outcome": "卷入贾琏凤姐风波",
     "quotesPendingVerified": [
-      "二爷待我极好的。"
+      {
+        "text": "二爷待我极好的。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -136,7 +157,14 @@
     "isMainline": false,
     "outcome": "后文无重笔",
     "quotesPendingVerified": [
-      "只要二爷心里有我，什么都依你。"
+      {
+        "text": "只要二爷心里有我，什么都依你。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.44,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -171,7 +199,14 @@
     "isMainline": false,
     "sourceNote": "前八十回仅在清虚观打醮时出场，未交代最终结局。",
     "quotesPendingVerified": [
-      "前生注定，金玉良缘。"
+      {
+        "text": "前生注定，金玉良缘。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.5,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -495,8 +530,22 @@
     "isMainline": true,
     "outcome": "随贾赦获罪，处境凄凉",
     "quotesPendingVerified": [
-      "老爷说了，叫你过去呢。",
-      "我不过是个摆设罢了。"
+      {
+        "text": "老爷说了，叫你过去呢。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      },
+      {
+        "text": "我不过是个摆设罢了。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ],
     "outcomeSources": [
       {
@@ -568,7 +617,14 @@
       "continuation": "晚年丧子出家，孤独终老"
     },
     "quotesPendingVerified": [
-      "凡是像那个模样儿的，都是狐狸精。"
+      {
+        "text": "凡是像那个模样儿的，都是狐狸精。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ],
     "quotes": [
       "这样妖精似的东西，怎么留得！",
@@ -634,7 +690,14 @@
     "isMainline": true,
     "outcome": "沉迷炼丹修道，吞食丹药中毒而死，死时腹胀如鼓。",
     "quotesPendingVerified": [
-      "我只知道保养精神，长生不老，别的我一概不管。"
+      {
+        "text": "我只知道保养精神，长生不老，别的我一概不管。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.25,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ],
     "outcomeSources": [
       {
@@ -688,7 +751,14 @@
     "isMainline": true,
     "outcome": "嫁与林如海，生黛玉。后因病早逝，年仅三十余岁。",
     "quotesPendingVerified": [
-      "只怕你令妹比这还要好些。"
+      {
+        "text": "只怕你令妹比这还要好些。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ],
     "outcomeSources": [
       {
@@ -791,8 +861,22 @@
       }
     ],
     "quotesPendingVerified": [
-      "任凭弱水三千，我只取一瓢饮。",
-      "弱水三千，我只取一瓢饮。"
+      {
+        "text": "任凭弱水三千，我只取一瓢饮。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      },
+      {
+        "text": "弱水三千，我只取一瓢饮。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ],
     "outcomeVersion": {
       "original": "荣国府公子，结局未明（判词伏“悬崖撒手”）",
@@ -935,8 +1019,22 @@
       "continuation": "贾府败落后被发配，后遇赦归家，与平儿相依为命"
     },
     "quotesPendingVerified": [
-      "也不知是哪辈子的孽障！",
-      "我要和她离了，只是面子上不好看。"
+      {
+        "text": "也不知是哪辈子的孽障！",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      },
+      {
+        "text": "我要和她离了，只是面子上不好看。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.44,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -987,7 +1085,14 @@
     "outcome": "贾府败落后随赵姨娘流落街头，后不知所终。",
     "sourceNote": "前八十回为庶出公子；参与谋害宝玉等情节见于后四十回续书。",
     "quotesPendingVerified": [
-      "我是主子，她是奴才，凭什么要她来管我？"
+      {
+        "text": "我是主子，她是奴才，凭什么要她来管我？",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.44,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -1039,7 +1144,14 @@
     "outcome": "贾府抄家后被发配，妻子秦可卿已死，续娶胡氏，家道中落。",
     "sourceNote": "前八十回为贾蓉；后四十回中随父获罪。",
     "quotesPendingVerified": [
-      "这都是父亲的意思，我也不敢违拗。"
+      {
+        "text": "这都是父亲的意思，我也不敢违拗。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.5,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -1089,7 +1201,14 @@
       "continuation": "后四十回续书写其中举，光耀门楣"
     },
     "quotesPendingVerified": [
-      "这算什么？等我大了，做了官，替母亲争口气。"
+      {
+        "text": "这算什么？等我大了，做了官，替母亲争口气。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -1233,8 +1352,22 @@
       "continuation": "被孙绍祖虐待致死（第109回）"
     },
     "quotesPendingVerified": [
-      "我又不是管事的人，何苦来操这些心。",
-      "凭他怎么糟蹋我，我也不说什么了。"
+      {
+        "text": "我又不是管事的人，何苦来操这些心。",
+        "sourceAudit": {
+          "status": "likely-verbatim",
+          "ratio": 0.6,
+          "note": "实词核心在前80回高度重合，疑为版本异文，待影印本校勘"
+        }
+      },
+      {
+        "text": "凭他怎么糟蹋我，我也不说什么了。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ],
     "quotes": [],
     "quoteSources": []
@@ -1472,7 +1605,14 @@
     "outcome": "协理宁国府、弄权铁槛寺、逼死尤二姐，结局未明（判词伏“一从二令三人木”）",
     "sourceNote": "前八十回为主线人物；“机关算尽”的结局在后四十回有更完整描写。",
     "quotesPendingVerified": [
-      "嘴甜心苦，两面三刀。上头一脸笔，脚下使绊子。明是一盆火，暗是一把刀。"
+      {
+        "text": "嘴甜心苦，两面三刀。上头一脸笔，脚下使绊子。明是一盆火，暗是一把刀。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.48,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ],
     "outcomeVersion": {
       "original": "协理宁国府、弄权铁槛寺、逼死尤二姐，结局未明（判词伏“一从二令三人木”）",
@@ -1561,8 +1701,22 @@
       "continuation": "贾兰高中，诰命加身"
     },
     "quotesPendingVerified": [
-      "我只知道保养身子，看守着我那哥儿读书罢了。",
-      "你们只管你们的，我是不中用的人。"
+      {
+        "text": "我只知道保养身子，看守着我那哥儿读书罢了。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.27,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      },
+      {
+        "text": "你们只管你们的，我是不中用的人。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -1605,7 +1759,14 @@
     "isMainline": true,
     "outcome": "随贾珍获罪，处境艰难",
     "quotesPendingVerified": [
-      "饶这样，我还不得做主呢。"
+      {
+        "text": "饶这样，我还不得做主呢。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ],
     "outcomeSources": [
       {
@@ -1749,7 +1910,14 @@
       "continuation": "被刘姥姥搭救，嫁入乡野"
     },
     "quotesPendingVerified": [
-      "巧姐儿名字是刘姥姥起的，取个巧字儿，日后遇难呈祥，逢凶化吉。"
+      {
+        "text": "巧姐儿名字是刘姥姥起的，取个巧字儿，日后遇难呈祥，逢凶化吉。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.22,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -2020,7 +2188,14 @@
     "isMainline": true,
     "outcome": "任职巡盐御史，染病身亡，临终将黛玉托付贾母。",
     "quotesPendingVerified": [
-      "汝父年已半百，膝下无儿，此乃命也。且汝多病，年又极小，上无亲母教养，下无姊妹扶持，今去依傍外祖母及舅氏姊妹，正好减我顾盼之忧。"
+      {
+        "text": "汝父年已半百，膝下无儿，此乃命也。且汝多病，年又极小，上无亲母教养，下无姊妹扶持，今去依傍外祖母及舅氏姊妹，正好减我顾盼之忧。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.29,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ],
     "outcomeSources": [
       {
@@ -2152,7 +2327,14 @@
     "isMainline": true,
     "outcome": "薛家衰落后寄居贾府，后随宝钗度日，含饴弄孙。",
     "quotesPendingVerified": [
-      "我的儿，你这是怎么了？好好的何苦？"
+      {
+        "text": "我的儿，你这是怎么了？好好的何苦？",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ],
     "quotes": [
       "自古道，千里姻缘一线牵。管姻缘的有一位月老，预先注定的，暗里只用一根红丝把这两个人的脚绊住了。"
@@ -2253,7 +2435,14 @@
     "isMainline": false,
     "outcome": "随薛家度日，后娶邢岫烟，安稳一生。",
     "quotesPendingVerified": [
-      "妹妹年纪尚小，还要仰仗贾府照应。"
+      {
+        "text": "妹妹年纪尚小，还要仰仗贾府照应。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.31,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -2303,8 +2492,22 @@
     },
     "sourceNote": "前八十回写其嫁入薛家、虐待香菱；误饮毒药而死见于后四十回续书。",
     "quotesPendingVerified": [
-      "我倒要看看，这家里倒底谁说了算！",
-      "嫁鸡随鸡，嫁狗随狗，嫁了个呆子，我就是呆子的老婆了不成？"
+      {
+        "text": "我倒要看看，这家里倒底谁说了算！",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.36,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      },
+      {
+        "text": "嫁鸡随鸡，嫁狗随狗，嫁了个呆子，我就是呆子的老婆了不成？",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -2442,7 +2645,14 @@
       "continuation": "后四十回亦未坐实；嫁卫若兰、守寡等说法多属探佚推测"
     },
     "quotesPendingVerified": [
-      "这鹿肉不要了？好无趣！"
+      {
+        "text": "这鹿肉不要了？好无趣！",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ],
     "quotes": [
       "是真名士自风流！你们都是假清高。",
@@ -2502,7 +2712,14 @@
     "isMainline": false,
     "outcome": "史家败落后不知所终。",
     "quotesPendingVerified": [
-      "史家如今虽不如从前，也不至于丢了祖宗的脸面。"
+      {
+        "text": "史家如今虽不如从前，也不至于丢了祖宗的脸面。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.24,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -2535,7 +2752,14 @@
     "isMainline": false,
     "outcome": "史家败落后不知所终。",
     "quotesPendingVerified": [
-      "我们史家与贾家是老亲，理当往来走动。"
+      {
+        "text": "我们史家与贾家是老亲，理当往来走动。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -2575,7 +2799,14 @@
     "outcome": "升任九省都检点后，于赴任途中病故。",
     "sourceNote": "第4回升九省统制、第53回升九省都检点均见于前八十回；病故情节见于后四十回续书。",
     "quotesPendingVerified": [
-      "王家如今全仗着九省统制大人支撑门面。"
+      {
+        "text": "王家如今全仗着九省统制大人支撑门面。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.24,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ],
     "outcomeSources": [
       {
@@ -2616,7 +2847,14 @@
     "isMainline": false,
     "outcome": "贾府败落后不知所终。",
     "quotesPendingVerified": [
-      "凤丫头在贾府管家，手面大得很。"
+      {
+        "text": "凤丫头在贾府管家，手面大得很。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -2680,9 +2918,30 @@
       "continuation": "贾府败落后嫁与蒋玉菡，安度余生"
     },
     "quotesPendingVerified": [
-      "姑娘快别说这话。上次也是那样说，不知怎么又好了。",
-      "你只知道玩，也不想想你这一辈子该怎么过。",
-      "我们做奴才的，不过是伺候主子罢了。"
+      {
+        "text": "姑娘快别说这话。上次也是那样说，不知怎么又好了。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.5,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      },
+      {
+        "text": "你只知道玩，也不想想你这一辈子该怎么过。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      },
+      {
+        "text": "我们做奴才的，不过是伺候主子罢了。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -2819,9 +3078,30 @@
     },
     "sourceNote": "前八十回随侍黛玉；黛玉死后随惜春修行的情节见于后四十回续书。",
     "quotesPendingVerified": [
-      "我倒是一片真心为姑娘。姑娘倒把我当外人看了。",
-      "姑娘和宝二爷的事，我是看在眼里的。何不趁老太太还硬朗，求了这门亲事？",
-      "妹妹别怕。我就是个傻丫头罢了。你的心事，我都知道。"
+      {
+        "text": "我倒是一片真心为姑娘。姑娘倒把我当外人看了。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.53,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      },
+      {
+        "text": "姑娘和宝二爷的事，我是看在眼里的。何不趁老太太还硬朗，求了这门亲事？",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.24,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      },
+      {
+        "text": "妹妹别怕。我就是个傻丫头罢了。你的心事，我都知道。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ],
     "quotes": [],
     "quoteSources": []
@@ -2882,7 +3162,14 @@
       "continuation": "被扶正为贾琏之妻"
     },
     "quotesPendingVerified": [
-      "我们奶奶的脾气，你们还不知道？顺着她还好些，犯了性子，什么都不顾了。"
+      {
+        "text": "我们奶奶的脾气，你们还不知道？顺着她还好些，犯了性子，什么都不顾了。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.24,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ],
     "quotes": [
       "大事化为小事，小事化为没事，方是兴旺之家的做法。"
@@ -3063,8 +3350,22 @@
     "isMainline": false,
     "outcome": "贾府败落后随宝钗度日，后嫁与一殷实人家。",
     "quotesPendingVerified": [
-      "你还不知道我们姑娘有几样世上的人没有的好处呢。",
-      "我们姑娘那金锁上的字，和你那玉上的字是一对儿。"
+      {
+        "text": "你还不知道我们姑娘有几样世上的人没有的好处呢。",
+        "sourceAudit": {
+          "status": "likely-verbatim",
+          "ratio": 0.6,
+          "note": "实词核心在前80回高度重合，疑为版本异文，待影印本校勘"
+        }
+      },
+      {
+        "text": "我们姑娘那金锁上的字，和你那玉上的字是一对儿。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -3165,7 +3466,14 @@
     "isMainline": false,
     "outcome": "金钏死后顶替其位，后不知所终。",
     "quotesPendingVerified": [
-      "姐姐死得冤枉，我替她报仇。"
+      {
+        "text": "姐姐死得冤枉，我替她报仇。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -3204,7 +3512,14 @@
     "isMainline": false,
     "outcome": "因私通潘又安事发，被逐出大观园，后撞墙自尽。",
     "quotesPendingVerified": [
-      "我已是不中用的人了。"
+      {
+        "text": "我已是不中用的人了。",
+        "sourceAudit": {
+          "status": "likely-verbatim",
+          "ratio": 0.8,
+          "note": "实词核心在前80回高度重合，疑为版本异文，待影印本校勘"
+        }
+      }
     ],
     "outcomeSources": [
       {
@@ -3244,7 +3559,14 @@
     "isMainline": false,
     "outcome": "贾府败落后不知所终。",
     "quotesPendingVerified": [
-      "姑娘待我极好，我怎能辜负姑娘。"
+      {
+        "text": "姑娘待我极好，我怎能辜负姑娘。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.36,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -3277,7 +3599,14 @@
     "isMainline": false,
     "outcome": "贾府败落后不知所终。",
     "quotesPendingVerified": [
-      "三姑娘最是明理公正的。"
+      {
+        "text": "三姑娘最是明理公正的。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.5,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -3310,7 +3639,14 @@
     "isMainline": false,
     "outcome": "随湘云度日",
     "quotesPendingVerified": [
-      "姑娘，你说这荷花是阴还是阳？"
+      {
+        "text": "姑娘，你说这荷花是阴还是阳？",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -3344,7 +3680,14 @@
     "isMainline": false,
     "outcome": "贾府败落后不知所终。",
     "quotesPendingVerified": [
-      "环三爷待我极好的。"
+      {
+        "text": "环三爷待我极好的。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -3449,8 +3792,22 @@
     "isMainline": false,
     "outcome": "被王夫人逐出大观园，后出家为尼，法名智通。",
     "quotesPendingVerified": [
-      "你们欺负人太甚了！",
-      "凭她是谁，我就不怕！"
+      {
+        "text": "你们欺负人太甚了！",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      },
+      {
+        "text": "凭她是谁，我就不怕！",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -3483,7 +3840,14 @@
     "isMainline": false,
     "outcome": "贾府败落后不知所终。",
     "quotesPendingVerified": [
-      "我方才回了太太，太太很喜欢呢。"
+      {
+        "text": "我方才回了太太，太太很喜欢呢。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.4,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -3518,7 +3882,14 @@
     "isMainline": false,
     "outcome": "贾府败落后不知所终。",
     "quotesPendingVerified": [
-      "妈妈别闹了，叫人笑话。"
+      {
+        "text": "妈妈别闹了，叫人笑话。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.5,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -3617,7 +3988,14 @@
     "isMainline": false,
     "outcome": "贾府败落后被发配。",
     "quotesPendingVerified": [
-      "奴才们都是仰仗主子的恩典过活。"
+      {
+        "text": "奴才们都是仰仗主子的恩典过活。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.4,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -3650,7 +4028,14 @@
     "isMainline": false,
     "outcome": "贾府败落后不知所终。",
     "quotesPendingVerified": [
-      "管家办事，不敢有丝毫懈怠。"
+      {
+        "text": "管家办事，不敢有丝毫懈怠。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -3683,7 +4068,14 @@
     "isMainline": false,
     "outcome": "贾府败落后不知所终。",
     "quotesPendingVerified": [
-      "这是太太的意思，小的们哪敢不从。"
+      {
+        "text": "这是太太的意思，小的们哪敢不从。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.44,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -3725,7 +4117,14 @@
     "isMainline": false,
     "outcome": "随宝玉",
     "quotesPendingVerified": [
-      "我知道二爷想要什么，我去弄来便是。"
+      {
+        "text": "我知道二爷想要什么，我去弄来便是。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.36,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -3978,7 +4377,14 @@
     "isMainline": false,
     "outcome": "与秦钟有私情，后不知所终",
     "quotesPendingVerified": [
-      "我见了秦钟，心里便乱了。"
+      {
+        "text": "我见了秦钟，心里便乱了。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.57,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -4011,7 +4417,14 @@
     "isMainline": false,
     "outcome": "因巫蛊事败露，被官府捉拿处死。",
     "quotesPendingVerified": [
-      "只要舍得银子，没有不灵的。"
+      {
+        "text": "只要舍得银子，没有不灵的。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.4,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -4291,7 +4704,14 @@
     "isMainline": false,
     "outcome": "尤三姐自刎后随道士出家",
     "quotesPendingVerified": [
-      "大丈夫一言既出，驷马难追。"
+      {
+        "text": "大丈夫一言既出，驷马难追。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ],
     "quotes": [
       "你们东府里除了那两个石头狮子干净，只怕连猫儿狗儿都不干净。"
@@ -4344,7 +4764,14 @@
     "isMainline": false,
     "outcome": "贾府败落后娶袭人为妻，夫妻恩爱，安稳度日。",
     "quotesPendingVerified": [
-      "多承公子错爱，愧不敢当。"
+      {
+        "text": "多承公子错爱，愧不敢当。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -4393,7 +4820,14 @@
     "isMainline": false,
     "outcome": "被凤姐折磨后吞金自尽",
     "quotesPendingVerified": [
-      "我如今是一心一意服侍你的，再不敢有二心了。"
+      {
+        "text": "我如今是一心一意服侍你的，再不敢有二心了。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ],
     "quotes": [
       "倒不如一死，倒还干净。"
@@ -4451,8 +4885,22 @@
     "isMainline": false,
     "outcome": "自刎于柳湘莲面前，以死明志",
     "quotesPendingVerified": [
-      "你们不必以为我是那等人，我心里早有了主意。",
-      "终身大事，一生至一死，非同儿戏。我定了主意，等着他。"
+      {
+        "text": "你们不必以为我是那等人，我心里早有了主意。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      },
+      {
+        "text": "终身大事，一生至一死，非同儿戏。我定了主意，等着他。",
+        "sourceAudit": {
+          "status": "likely-verbatim",
+          "ratio": 0.72,
+          "note": "实词核心在前80回高度重合，疑为版本异文，待影印本校勘"
+        }
+      }
     ],
     "quotes": [],
     "quoteSources": []
@@ -4502,7 +4950,14 @@
     "isMainline": false,
     "outcome": "与智能儿相恋，被其父责打，后染病身亡，年仅十六。",
     "quotesPendingVerified": [
-      "你我都是读书人家的子弟，何必拘这些俗礼。"
+      {
+        "text": "你我都是读书人家的子弟，何必拘这些俗礼。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.33,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -4539,7 +4994,14 @@
     "isMainline": false,
     "outcome": "因秦钟事气愤成病，后身亡。",
     "quotesPendingVerified": [
-      "我这女儿，与贾府有些瓜葛。"
+      {
+        "text": "我这女儿，与贾府有些瓜葛。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.44,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -4642,9 +5104,30 @@
     "isMainline": true,
     "outcome": "贾府败落后处境凄凉",
     "quotesPendingVerified": [
-      "我这么一个人，在这府里算什么？连猫儿狗儿都不如。",
-      "你的兄弟是宝玉，你舅舅是王子腾，你怎么不去银子堆里找去？",
-      "正经叫你那宝贝去！叫他替你出气！"
+      {
+        "text": "我这么一个人，在这府里算什么？连猫儿狗儿都不如。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.46,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      },
+      {
+        "text": "你的兄弟是宝玉，你舅舅是王子腾，你怎么不去银子堆里找去？",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.22,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      },
+      {
+        "text": "正经叫你那宝贝去！叫他替你出气！",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -4685,7 +5168,14 @@
     "isMainline": false,
     "outcome": "贾府败落后不知所终。",
     "quotesPendingVerified": [
-      "那瑞大爷也该打，哄我说是婶子叫他去呢。"
+      {
+        "text": "那瑞大爷也该打，哄我说是婶子叫他去呢。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -4726,7 +5216,14 @@
     "isMainline": false,
     "outcome": "迷恋王熙凤，被骗受冻挨饿，后照风月宝鉴而亡。",
     "quotesPendingVerified": [
-      "只求奶奶疼我这一回。"
+      {
+        "text": "只求奶奶疼我这一回。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.57,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -4772,7 +5269,14 @@
     "isMainline": false,
     "outcome": "贾府败落后流落市井，后靠做小生意度日。",
     "quotesPendingVerified": [
-      "舅舅说得有理，只是我也没办法。求舅舅借我些银子，改日加倍奉还。"
+      {
+        "text": "舅舅说得有理，只是我也没办法。求舅舅借我些银子，改日加倍奉还。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.18,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -4811,7 +5315,14 @@
     "isMainline": false,
     "outcome": "贾府败落后流落市井，后不知所终。",
     "quotesPendingVerified": [
-      "龄官，你安心罢，我再也不敢了。"
+      {
+        "text": "龄官，你安心罢，我再也不敢了。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.5,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -4850,7 +5361,14 @@
     "isMainline": false,
     "outcome": "与贾蔷相恋，后因事被逐，不知所终。",
     "quotesPendingVerified": [
-      "我不会唱。"
+      {
+        "text": "我不会唱。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -4893,7 +5411,14 @@
     "outcome": "早逝，不到二十岁病故",
     "sourceNote": "前八十回已故（故事开始前）；仅在回忆中提及。",
     "quotesPendingVerified": [
-      "这孩子读书很用心，日后必有出息。"
+      {
+        "text": "这孩子读书很用心，日后必有出息。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -4996,7 +5521,14 @@
     "isMainline": false,
     "outcome": "由丫鬟成为知府夫人",
     "quotesPendingVerified": [
-      "这丫头倒有造化，偶因一着错，便为人上人。"
+      {
+        "text": "这丫头倒有造化，偶因一着错，便为人上人。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.38,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -5090,7 +5622,14 @@
     "isMainline": false,
     "outcome": "因偷窃被逐出贾府",
     "quotesPendingVerified": [
-      "坠儿不敢，坠儿再也不敢了。"
+      {
+        "text": "坠儿不敢，坠儿再也不敢了。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -5125,7 +5664,14 @@
     "isMainline": false,
     "outcome": "被王夫人逐出",
     "quotesPendingVerified": [
-      "二爷待我极好的。"
+      {
+        "text": "二爷待我极好的。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -5162,7 +5708,14 @@
     "isMainline": false,
     "outcome": "继续在贾府服役",
     "quotesPendingVerified": [
-      "这园子里的事，我都知道。"
+      {
+        "text": "这园子里的事，我都知道。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -5195,7 +5748,14 @@
     "isMainline": false,
     "outcome": "香菱被卖后不知所终。",
     "quotesPendingVerified": [
-      "我的儿，你舅母也没说什么，只是你姨娘说道：'你又没有事情，借了银子做什么？'"
+      {
+        "text": "我的儿，你舅母也没说什么，只是你姨娘说道：'你又没有事情，借了银子做什么？'",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -5230,7 +5790,14 @@
     "isMainline": false,
     "outcome": "后改邪归正，随贾芸度日。",
     "quotesPendingVerified": [
-      "罢了，你也不用说了，银子我借给你！"
+      {
+        "text": "罢了，你也不用说了，银子我借给你！",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.5,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -5271,7 +5838,14 @@
     "outcome": "前八十回未正面出场；据判词、脂批推测娶湘云后早逝",
     "sourceNote": "根据判词和脂批推断，前八十回未正面出场",
     "quotesPendingVerified": [
-      "湘云是个豪爽人，我极敬重她。"
+      {
+        "text": "湘云是个豪爽人，我极敬重她。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -5304,7 +5878,14 @@
     "isMainline": false,
     "outcome": "后文不详",
     "quotesPendingVerified": [
-      "林姑娘待我极好。"
+      {
+        "text": "林姑娘待我极好。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -5339,7 +5920,14 @@
     "isMainline": false,
     "outcome": "捐官后不知所终。",
     "quotesPendingVerified": [
-      "借主子的恩典，我也做了官了。"
+      {
+        "text": "借主子的恩典，我也做了官了。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.57,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -5379,7 +5967,14 @@
     "isMainline": false,
     "outcome": "后不知所终。",
     "quotesPendingVerified": [
-      "这药吃下去，保准见效。"
+      {
+        "text": "这药吃下去，保准见效。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -5412,7 +6007,14 @@
     "isMainline": false,
     "outcome": "卷入薛家纷争",
     "quotesPendingVerified": [
-      "奶奶要什么，我都依你。"
+      {
+        "text": "奶奶要什么，我都依你。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -5452,7 +6054,14 @@
     "isMainline": false,
     "outcome": "命运多舛，逐渐退场",
     "quotesPendingVerified": [
-      "冤枉啊，那玫瑰露真不是我偷的。"
+      {
+        "text": "冤枉啊，那玫瑰露真不是我偷的。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -5487,7 +6096,14 @@
     "isMainline": false,
     "outcome": "贾府败落后不知所终。",
     "quotesPendingVerified": [
-      "老爷赏我给二爷做妾，我好歹也是个主子。"
+      {
+        "text": "老爷赏我给二爷做妾，我好歹也是个主子。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -5520,7 +6136,14 @@
     "isMainline": false,
     "outcome": "被逐后出家为尼，不知所终。",
     "quotesPendingVerified": [
-      "菂官死了，我心里很难过。"
+      {
+        "text": "菂官死了，我心里很难过。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -5553,7 +6176,14 @@
     "isMainline": false,
     "outcome": "病逝于大观园。",
     "quotesPendingVerified": [
-      "藕官待我极好的。"
+      {
+        "text": "藕官待我极好的。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -5586,7 +6216,14 @@
     "isMainline": false,
     "outcome": "作为甄家命运线被提及",
     "quotesPendingVerified": [
-      "甄贾两家本是同宗。"
+      {
+        "text": "甄贾两家本是同宗。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -5619,7 +6256,14 @@
     "isMainline": false,
     "outcome": "仍是庄头体系中的一员",
     "quotesPendingVerified": [
-      "今年收成不好，请主子宽限几日。"
+      {
+        "text": "今年收成不好，请主子宽限几日。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -5654,7 +6298,14 @@
     "isMainline": false,
     "outcome": "仍附着权势行事",
     "quotesPendingVerified": [
-      "太太放心，这事交给我办。"
+      {
+        "text": "太太放心，这事交给我办。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.5,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
@@ -5689,7 +6340,14 @@
     "isMainline": false,
     "outcome": "点到即止",
     "quotesPendingVerified": [
-      "书中自有黄金屋，书中自有颜如玉。"
+      {
+        "text": "书中自有黄金屋，书中自有颜如玉。",
+        "sourceAudit": {
+          "status": "not-in-source",
+          "ratio": 0.0,
+          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+        }
+      }
     ]
   },
   {
@@ -5724,7 +6382,14 @@
     "isMainline": false,
     "outcome": "流离投靠",
     "quotesPendingVerified": [
-      "老爷打发我来请安。"
+      {
+        "text": "老爷打发我来请安。",
+        "sourceAudit": {
+          "status": "variant-or-fragment",
+          "ratio": 0.57,
+          "note": "仅个别实词片段重合，措辞与底本不符"
+        }
+      }
     ]
   },
   {
