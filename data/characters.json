@@ -2198,8 +2198,18 @@
     "isMainline": false,
     "outcome": "前八十回已许配梅翰林之子，后事未明",
     "sourceNote": "前八十回只写其已许配梅翰林之子，未写成婚及婚后；梅家获罪、随夫流放等说法无前八十回依据。",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
       "昨夜朱楼梦，今宵水国吟。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 52,
+        "locator": "第52回",
+        "matchType": "prefix"
+      }
     ]
   },
   {
@@ -4907,8 +4917,18 @@
     "generation": 3,
     "isMainline": false,
     "outcome": "第57回与薛蝌定亲（前八十回）；成婚及以后情节无前八十回依据",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
       "浓淡由他冰雪中。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 50,
+        "locator": "第50回",
+        "matchType": "prefix"
+      }
     ]
   },
   {
