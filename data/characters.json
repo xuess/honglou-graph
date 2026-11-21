@@ -328,13 +328,19 @@
     "isMainline": true,
     "outcome": "因贪赃枉法被革职查抄，发配边疆",
     "sourceNote": "前八十回为贾赦；因强夺石呆子古扇获罪流放的情节见于后四十回续书。",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
+      "凭他嫁到了谁家，也难出我贾家的门。",
       "我说给老太太，鸳鸯她自愿的。"
     ],
-    "quotes": [
-      "凭他嫁到了谁家，也难出我贾家的门。"
-    ],
     "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 46,
+        "locator": "第46回",
+        "matchType": "prefix"
+      },
       {
         "sourceId": "jiaxu-wikisource",
         "edition": "庚辰本",
@@ -2704,16 +2710,40 @@
     "generation": 0,
     "isMainline": false,
     "outcome": "被撵出贾府后抱屈夭亡",
-    "quotesPendingVerified": [
-      "撕的好，什么东西！我最爱撕这玩意儿。",
-      "我虽生得比别人略好些，并没有私情密意勾引你怎样。",
-      "早知如此，我当日也另有个道理。"
-    ],
+    "quotesPendingVerified": [],
     "outcomeSources": [
       {
         "edition": "庚辰本",
         "chapter": 78,
         "locator": "第78回"
+      }
+    ],
+    "quotes": [
+      "撕的好，什么东西！我最爱撕这玩意儿。",
+      "我虽生得比别人略好些，并没有私情密意勾引你怎样。",
+      "早知如此，我当日也另有个道理。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 31,
+        "locator": "第31回",
+        "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 77,
+        "locator": "第77回",
+        "matchType": "prefix"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 77,
+        "locator": "第77回",
+        "matchType": "prefix"
       }
     ]
   },
@@ -3972,7 +4002,8 @@
     ],
     "quotes": [
       "瘦死的骆驼比马大。",
-      "谋事在人，成事在天。"
+      "谋事在人，成事在天。",
+      "老刘老刘，食量大如牛，吃个老母猪不抬头。"
     ],
     "description": "刘姥姥是一位乡间老妪，与王家有远亲关系。她第一次进荣国府为打秋风求助，第二次被贾母留下游玩大观园，以诙谐表演逗乐众人。续书写她第三次在贾府败落后挺身而出搭救巧姐。她是全书中最有反差感的人物——以卑微之身行高义之事，知恩图报的品德在薄情的末世中格外闪光。",
     "chapters": [
@@ -4032,11 +4063,16 @@
         "chapter": 6,
         "locator": "第6回“謀事在人，成事在天”",
         "matchType": "verbatim"
+      },
+      {
+        "sourceId": "jiaxu-wikisource",
+        "edition": "庚辰本",
+        "chapter": 40,
+        "locator": "第40回",
+        "matchType": "prefix"
       }
     ],
-    "quotesPendingVerified": [
-      "老刘老刘，食量大如牛，吃个老母猪不抬头。"
-    ]
+    "quotesPendingVerified": []
   },
   {
     "id": "jia_yucun",
