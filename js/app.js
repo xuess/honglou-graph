@@ -3506,11 +3506,10 @@ _createFontAndThemeControls() {
   }
 
   /**
-   * 渲染单条待校摘录。兼容字符串与 {text, sourceAudit} 对象两种格式。
-   * 全本核查后给出明确结论，避免无限期「待校」：
-   * - likely-verbatim：实词核心在前80回高度重合，疑版本异文，待影印本校勘；
-   * - variant-or-fragment：仅个别实词片段重合，措辞与底本不符；
-   * - not-in-source：前80回全本逐字核对未找到，非原著逐字引语；
+   * 经《红楼梦》前80回全本逐字核对(连续≥5字原文片段+上下文比对)给出结论：
+   * - variant-close-paraphrase：与原文高度重合但非逐字，属改写；
+   * - not-in-source：前80回全本逐字核对未见，非原著引语；
+   * - 旧状态(likely-verbatim/variant-or-fragment)向后兼容；
    * - 无 sourceAudit（旧数据）：退回「尚未核对」。
    */
   _renderPendingQuote(item) {
@@ -3519,9 +3518,10 @@ _createFontAndThemeControls() {
     const audit = (item && item.sourceAudit) || null;
     let note = '尚未核对';
     if (audit) {
-      if (audit.status === 'likely-verbatim') note = '疑似版本异文，待影印本校勘';
-      else if (audit.status === 'variant-or-fragment') note = '措辞与底本不符，非逐字原文';
-      else if (audit.status === 'not-in-source') note = '全本逐字核对未见，非原著引语';
+      const status = audit.status;
+      if (status === 'variant-close-paraphrase' || status === 'variant-or-fragment') note = '与前80回原文重合，但非逐字原文（改写）';
+      else if (status === 'not-in-source') note = '前80回全本逐字核对未见，非原著引语';
+      else if (status === 'likely-verbatim') note = '疑似版本异文，待影印本校勘';
     }
     return `<div class="card-quote card-quote-pending">${this._escapeHtml(text)}<span class="card-quote-source">${this._escapeHtml(note)}</span></div>`;
   }

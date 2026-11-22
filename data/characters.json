@@ -35,8 +35,8 @@
         "text": "我家里艰难，把金荣送进义学，也是指望他读些书，日后好有个出身。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -77,8 +77,8 @@
         "text": "先生的方子，只怕吃不得。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -119,8 +119,8 @@
         "text": "二爷待我极好的。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -160,9 +160,9 @@
       {
         "text": "只要二爷心里有我，什么都依你。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.44,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -202,9 +202,9 @@
       {
         "text": "前生注定，金玉良缘。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.5,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -534,16 +534,16 @@
         "text": "老爷说了，叫你过去呢。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       },
       {
         "text": "我不过是个摆设罢了。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ],
@@ -621,8 +621,8 @@
         "text": "凡是像那个模样儿的，都是狐狸精。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ],
@@ -694,8 +694,8 @@
         "text": "我只知道保养精神，长生不老，别的我一概不管。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.25,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ],
@@ -755,8 +755,8 @@
         "text": "只怕你令妹比这还要好些。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ],
@@ -865,16 +865,16 @@
         "text": "任凭弱水三千，我只取一瓢饮。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       },
       {
         "text": "弱水三千，我只取一瓢饮。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ],
@@ -1023,16 +1023,16 @@
         "text": "也不知是哪辈子的孽障！",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       },
       {
         "text": "我要和她离了，只是面子上不好看。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.44,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -1088,9 +1088,9 @@
       {
         "text": "我是主子，她是奴才，凭什么要她来管我？",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.44,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -1147,9 +1147,9 @@
       {
         "text": "这都是父亲的意思，我也不敢违拗。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.5,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -1205,8 +1205,8 @@
         "text": "这算什么？等我大了，做了官，替母亲争口气。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -1353,24 +1353,26 @@
     },
     "quotesPendingVerified": [
       {
-        "text": "我又不是管事的人，何苦来操这些心。",
-        "sourceAudit": {
-          "status": "likely-verbatim",
-          "ratio": 0.6,
-          "note": "实词核心在前80回高度重合，疑为版本异文，待影印本校勘"
-        }
-      },
-      {
         "text": "凭他怎么糟蹋我，我也不说什么了。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ],
-    "quotes": [],
-    "quoteSources": []
+    "quotes": [
+      "我又不是管事的人，何苦来操这些心。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 72,
+        "locator": "第72回",
+        "matchType": "variant-confirmed"
+      }
+    ]
   },
   {
     "id": "jia_tanchun",
@@ -1604,23 +1606,15 @@
     "isMainline": true,
     "outcome": "协理宁国府、弄权铁槛寺、逼死尤二姐，结局未明（判词伏“一从二令三人木”）",
     "sourceNote": "前八十回为主线人物；“机关算尽”的结局在后四十回有更完整描写。",
-    "quotesPendingVerified": [
-      {
-        "text": "嘴甜心苦，两面三刀。上头一脸笔，脚下使绊子。明是一盆火，暗是一把刀。",
-        "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.48,
-          "note": "仅个别实词片段重合，措辞与底本不符"
-        }
-      }
-    ],
+    "quotesPendingVerified": [],
     "outcomeVersion": {
       "original": "协理宁国府、弄权铁槛寺、逼死尤二姐，结局未明（判词伏“一从二令三人木”）",
       "continuation": "机关算尽太聪明，反误了卿卿性命"
     },
     "quotes": [
       "我从来不信什么阴司地狱报应的，凭是什么事，我说要行就行。",
-      "拼著一身剐，敢把皇帝拉下马。"
+      "拼著一身剐，敢把皇帝拉下马。",
+      "嘴甜心苦，两面三刀。上头一脸笔，脚下使绊子。明是一盆火，暗是一把刀。"
     ],
     "quoteSources": [
       {
@@ -1636,6 +1630,13 @@
         "chapter": 68,
         "locator": "第68回",
         "matchType": "exact"
+      },
+      {
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 65,
+        "locator": "第65回",
+        "matchType": "variant-confirmed"
       }
     ],
     "outcomeSources": [
@@ -1705,16 +1706,16 @@
         "text": "我只知道保养身子，看守着我那哥儿读书罢了。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.27,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       },
       {
         "text": "你们只管你们的，我是不中用的人。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -1763,8 +1764,8 @@
         "text": "饶这样，我还不得做主呢。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ],
@@ -1914,8 +1915,8 @@
         "text": "巧姐儿名字是刘姥姥起的，取个巧字儿，日后遇难呈祥，逢凶化吉。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.22,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -2187,21 +2188,24 @@
     "generation": 2,
     "isMainline": true,
     "outcome": "任职巡盐御史，染病身亡，临终将黛玉托付贾母。",
-    "quotesPendingVerified": [
-      {
-        "text": "汝父年已半百，膝下无儿，此乃命也。且汝多病，年又极小，上无亲母教养，下无姊妹扶持，今去依傍外祖母及舅氏姊妹，正好减我顾盼之忧。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "ratio": 0.29,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
-        }
-      }
-    ],
+    "quotesPendingVerified": [],
     "outcomeSources": [
       {
         "edition": "庚辰本",
         "chapter": 14,
         "locator": "第14回"
+      }
+    ],
+    "quotes": [
+      "汝父年已半百，膝下无儿，此乃命也。且汝多病，年又极小，上无亲母教养，下无姊妹扶持，今去依傍外祖母及舅氏姊妹，正好减我顾盼之忧。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 3,
+        "locator": "第3回",
+        "matchType": "variant-confirmed"
       }
     ]
   },
@@ -2331,8 +2335,8 @@
         "text": "我的儿，你这是怎么了？好好的何苦？",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ],
@@ -2439,8 +2443,8 @@
         "text": "妹妹年纪尚小，还要仰仗贾府照应。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.31,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -2495,17 +2499,17 @@
       {
         "text": "我倒要看看，这家里倒底谁说了算！",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.36,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       },
       {
         "text": "嫁鸡随鸡，嫁狗随狗，嫁了个呆子，我就是呆子的老婆了不成？",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -2649,8 +2653,8 @@
         "text": "这鹿肉不要了？好无趣！",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ],
@@ -2716,8 +2720,8 @@
         "text": "史家如今虽不如从前，也不至于丢了祖宗的脸面。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.24,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -2756,8 +2760,8 @@
         "text": "我们史家与贾家是老亲，理当往来走动。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -2803,8 +2807,8 @@
         "text": "王家如今全仗着九省统制大人支撑门面。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.24,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ],
@@ -2851,8 +2855,8 @@
         "text": "凤丫头在贾府管家，手面大得很。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -2921,25 +2925,25 @@
       {
         "text": "姑娘快别说这话。上次也是那样说，不知怎么又好了。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.5,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "variant-close-paraphrase",
+          "maxRun": 8,
+          "note": "与前80回原文高度重合但非逐字，属改写"
         }
       },
       {
         "text": "你只知道玩，也不想想你这一辈子该怎么过。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       },
       {
         "text": "我们做奴才的，不过是伺候主子罢了。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -3079,32 +3083,34 @@
     "sourceNote": "前八十回随侍黛玉；黛玉死后随惜春修行的情节见于后四十回续书。",
     "quotesPendingVerified": [
       {
-        "text": "我倒是一片真心为姑娘。姑娘倒把我当外人看了。",
-        "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.53,
-          "note": "仅个别实词片段重合，措辞与底本不符"
-        }
-      },
-      {
         "text": "姑娘和宝二爷的事，我是看在眼里的。何不趁老太太还硬朗，求了这门亲事？",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.24,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       },
       {
         "text": "妹妹别怕。我就是个傻丫头罢了。你的心事，我都知道。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ],
-    "quotes": [],
-    "quoteSources": []
+    "quotes": [
+      "我倒是一片真心为姑娘。姑娘倒把我当外人看了。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 57,
+        "locator": "第57回",
+        "matchType": "variant-confirmed"
+      }
+    ]
   },
   {
     "id": "pinger",
@@ -3165,9 +3171,9 @@
       {
         "text": "我们奶奶的脾气，你们还不知道？顺着她还好些，犯了性子，什么都不顾了。",
         "sourceAudit": {
-          "status": "not-in-source",
-          "ratio": 0.24,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "status": "variant-close-paraphrase",
+          "maxRun": 6,
+          "note": "与前80回原文高度重合但非逐字，属改写"
         }
       }
     ],
@@ -3351,20 +3357,24 @@
     "outcome": "贾府败落后随宝钗度日，后嫁与一殷实人家。",
     "quotesPendingVerified": [
       {
-        "text": "你还不知道我们姑娘有几样世上的人没有的好处呢。",
-        "sourceAudit": {
-          "status": "likely-verbatim",
-          "ratio": 0.6,
-          "note": "实词核心在前80回高度重合，疑为版本异文，待影印本校勘"
-        }
-      },
-      {
         "text": "我们姑娘那金锁上的字，和你那玉上的字是一对儿。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
+      }
+    ],
+    "quotes": [
+      "你还不知道我们姑娘有几样世上的人没有的好处呢。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 35,
+        "locator": "第35回",
+        "matchType": "variant-confirmed"
       }
     ]
   },
@@ -3470,8 +3480,8 @@
         "text": "姐姐死得冤枉，我替她报仇。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -3515,9 +3525,9 @@
       {
         "text": "我已是不中用的人了。",
         "sourceAudit": {
-          "status": "likely-verbatim",
-          "ratio": 0.8,
-          "note": "实词核心在前80回高度重合，疑为版本异文，待影印本校勘"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ],
@@ -3562,9 +3572,9 @@
       {
         "text": "姑娘待我极好，我怎能辜负姑娘。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.36,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -3602,9 +3612,9 @@
       {
         "text": "三姑娘最是明理公正的。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.5,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -3643,8 +3653,8 @@
         "text": "姑娘，你说这荷花是阴还是阳？",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -3684,8 +3694,8 @@
         "text": "环三爷待我极好的。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -3796,16 +3806,16 @@
         "text": "你们欺负人太甚了！",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       },
       {
         "text": "凭她是谁，我就不怕！",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -3843,9 +3853,9 @@
       {
         "text": "我方才回了太太，太太很喜欢呢。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.4,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -3885,9 +3895,9 @@
       {
         "text": "妈妈别闹了，叫人笑话。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.5,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -3991,9 +4001,9 @@
       {
         "text": "奴才们都是仰仗主子的恩典过活。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.4,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -4032,8 +4042,8 @@
         "text": "管家办事，不敢有丝毫懈怠。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -4071,9 +4081,9 @@
       {
         "text": "这是太太的意思，小的们哪敢不从。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.44,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -4120,9 +4130,9 @@
       {
         "text": "我知道二爷想要什么，我去弄来便是。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.36,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -4380,9 +4390,9 @@
       {
         "text": "我见了秦钟，心里便乱了。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.57,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -4420,9 +4430,9 @@
       {
         "text": "只要舍得银子，没有不灵的。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.4,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -4708,8 +4718,8 @@
         "text": "大丈夫一言既出，驷马难追。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ],
@@ -4768,8 +4778,8 @@
         "text": "多承公子错爱，愧不敢当。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -4824,8 +4834,8 @@
         "text": "我如今是一心一意服侍你的，再不敢有二心了。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ],
@@ -4889,21 +4899,23 @@
         "text": "你们不必以为我是那等人，我心里早有了主意。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
-        }
-      },
-      {
-        "text": "终身大事，一生至一死，非同儿戏。我定了主意，等着他。",
-        "sourceAudit": {
-          "status": "likely-verbatim",
-          "ratio": 0.72,
-          "note": "实词核心在前80回高度重合，疑为版本异文，待影印本校勘"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ],
-    "quotes": [],
-    "quoteSources": []
+    "quotes": [
+      "终身大事，一生至一死，非同儿戏。我定了主意，等着他。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 65,
+        "locator": "第65回",
+        "matchType": "variant-confirmed"
+      }
+    ]
   },
   {
     "id": "qin_zhong",
@@ -4954,8 +4966,8 @@
         "text": "你我都是读书人家的子弟，何必拘这些俗礼。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.33,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -4997,9 +5009,9 @@
       {
         "text": "我这女儿，与贾府有些瓜葛。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.44,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -5105,28 +5117,32 @@
     "outcome": "贾府败落后处境凄凉",
     "quotesPendingVerified": [
       {
-        "text": "我这么一个人，在这府里算什么？连猫儿狗儿都不如。",
-        "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.46,
-          "note": "仅个别实词片段重合，措辞与底本不符"
-        }
-      },
-      {
         "text": "你的兄弟是宝玉，你舅舅是王子腾，你怎么不去银子堆里找去？",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.22,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       },
       {
         "text": "正经叫你那宝贝去！叫他替你出气！",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
+      }
+    ],
+    "quotes": [
+      "我这么一个人，在这府里算什么？连猫儿狗儿都不如。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 66,
+        "locator": "第66回",
+        "matchType": "variant-confirmed"
       }
     ]
   },
@@ -5172,8 +5188,8 @@
         "text": "那瑞大爷也该打，哄我说是婶子叫他去呢。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -5219,9 +5235,9 @@
       {
         "text": "只求奶奶疼我这一回。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.57,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -5273,8 +5289,8 @@
         "text": "舅舅说得有理，只是我也没办法。求舅舅借我些银子，改日加倍奉还。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.18,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -5318,9 +5334,9 @@
       {
         "text": "龄官，你安心罢，我再也不敢了。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.5,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -5365,8 +5381,8 @@
         "text": "我不会唱。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -5415,8 +5431,8 @@
         "text": "这孩子读书很用心，日后必有出息。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -5524,9 +5540,9 @@
       {
         "text": "这丫头倒有造化，偶因一着错，便为人上人。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.38,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "variant-close-paraphrase",
+          "maxRun": 6,
+          "note": "与前80回原文高度重合但非逐字，属改写"
         }
       }
     ]
@@ -5626,8 +5642,8 @@
         "text": "坠儿不敢，坠儿再也不敢了。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -5668,8 +5684,8 @@
         "text": "二爷待我极好的。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -5712,8 +5728,8 @@
         "text": "这园子里的事，我都知道。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -5752,8 +5768,8 @@
         "text": "我的儿，你舅母也没说什么，只是你姨娘说道：'你又没有事情，借了银子做什么？'",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -5793,9 +5809,9 @@
       {
         "text": "罢了，你也不用说了，银子我借给你！",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.5,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -5842,8 +5858,8 @@
         "text": "湘云是个豪爽人，我极敬重她。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -5882,8 +5898,8 @@
         "text": "林姑娘待我极好。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -5923,9 +5939,9 @@
       {
         "text": "借主子的恩典，我也做了官了。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.57,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -5971,8 +5987,8 @@
         "text": "这药吃下去，保准见效。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -6011,8 +6027,8 @@
         "text": "奶奶要什么，我都依你。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -6058,8 +6074,8 @@
         "text": "冤枉啊，那玫瑰露真不是我偷的。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -6100,8 +6116,8 @@
         "text": "老爷赏我给二爷做妾，我好歹也是个主子。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -6140,8 +6156,8 @@
         "text": "菂官死了，我心里很难过。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -6180,8 +6196,8 @@
         "text": "藕官待我极好的。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -6220,8 +6236,8 @@
         "text": "甄贾两家本是同宗。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -6260,8 +6276,8 @@
         "text": "今年收成不好，请主子宽限几日。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -6301,9 +6317,9 @@
       {
         "text": "太太放心，这事交给我办。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.5,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -6344,8 +6360,8 @@
         "text": "书中自有黄金屋，书中自有颜如玉。",
         "sourceAudit": {
           "status": "not-in-source",
-          "ratio": 0.0,
-          "note": "前80回全本逐字核对未找到，非原著逐字引语"
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
@@ -6385,9 +6401,9 @@
       {
         "text": "老爷打发我来请安。",
         "sourceAudit": {
-          "status": "variant-or-fragment",
-          "ratio": 0.57,
-          "note": "仅个别实词片段重合，措辞与底本不符"
+          "status": "not-in-source",
+          "maxRun": 0,
+          "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
     ]
