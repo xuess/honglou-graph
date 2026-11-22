@@ -616,19 +616,11 @@
       "original": "贾政之妻，荣国府二房太太；结局未明",
       "continuation": "晚年丧子出家，孤独终老"
     },
-    "quotesPendingVerified": [
-      {
-        "text": "凡是像那个模样儿的，都是狐狸精。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
-      }
-    ],
+    "quotesPendingVerified": [],
     "quotes": [
       "这样妖精似的东西，怎么留得！",
-      "宝玉果然是有造化的。"
+      "宝玉果然是有造化的。",
+      "这样妖精似的东西竟没看见。只怕这样的还有，明日倒得查查。"
     ],
     "quoteSources": [
       {
@@ -644,6 +636,13 @@
         "chapter": 36,
         "locator": "第36回",
         "matchType": "exact"
+      },
+      {
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 74,
+        "locator": "第74回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -1018,22 +1017,25 @@
       "original": "凤姐之夫，荣国府管事少爷；结局未明",
       "continuation": "贾府败落后被发配，后遇赦归家，与平儿相依为命"
     },
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
+      "你只好生收著罢，千万别叫他知道。",
+      "我竟不知平儿这么利害，从此倒伏他了。"
+    ],
+    "quoteSources": [
       {
-        "text": "也不知是哪辈子的孽障！",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 21,
+        "locator": "第21回",
+        "matchType": "verbatim"
       },
       {
-        "text": "我要和她离了，只是面子上不好看。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 21,
+        "locator": "第21回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -1084,14 +1086,17 @@
     "isMainline": true,
     "outcome": "贾府败落后随赵姨娘流落街头，后不知所终。",
     "sourceNote": "前八十回为庶出公子；参与谋害宝玉等情节见于后四十回续书。",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
+      "我拿什么比宝玉呢。你们怕他，都和他好，都欺负我不是太太养的。"
+    ],
+    "quoteSources": [
       {
-        "text": "我是主子，她是奴才，凭什么要她来管我？",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 20,
+        "locator": "第20回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -1143,14 +1148,17 @@
     "isMainline": true,
     "outcome": "贾府抄家后被发配，妻子秦可卿已死，续娶胡氏，家道中落。",
     "sourceNote": "前八十回为贾蓉；后四十回中随父获罪。",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
+      "婶子若不借，又说我不会说话了，又挨一顿好打呢。婶子只当可怜侄儿罢。"
+    ],
+    "quoteSources": [
       {
-        "text": "这都是父亲的意思，我也不敢违拗。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 6,
+        "locator": "第6回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -1703,20 +1711,24 @@
     },
     "quotesPendingVerified": [
       {
-        "text": "我只知道保养身子，看守着我那哥儿读书罢了。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
-      },
-      {
         "text": "你们只管你们的，我是不中用的人。",
         "sourceAudit": {
           "status": "not-in-source",
           "maxRun": 0,
           "note": "前80回全本逐字核对未见，非原著引语"
         }
+      }
+    ],
+    "quotes": [
+      "好生著，别慌慌张张鬼赶来似的，仔细碰了牙子。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 40,
+        "locator": "第40回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -1759,21 +1771,24 @@
     "generation": 3,
     "isMainline": true,
     "outcome": "随贾珍获罪，处境艰难",
-    "quotesPendingVerified": [
-      {
-        "text": "饶这样，我还不得做主呢。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
-      }
-    ],
+    "quotesPendingVerified": [],
     "outcomeSources": [
       {
         "edition": "程甲本",
         "chapter": 100,
         "locator": "第100回 抄家"
+      }
+    ],
+    "quotes": [
+      "有什么好东西孝敬我，就快献上来，我还有事呢。"
+    ],
+    "quoteSources": [
+      {
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 7,
+        "locator": "第7回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -2330,18 +2345,10 @@
     "generation": 2,
     "isMainline": true,
     "outcome": "薛家衰落后寄居贾府，后随宝钗度日，含饴弄孙。",
-    "quotesPendingVerified": [
-      {
-        "text": "我的儿，你这是怎么了？好好的何苦？",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
-      }
-    ],
+    "quotesPendingVerified": [],
     "quotes": [
-      "自古道，千里姻缘一线牵。管姻缘的有一位月老，预先注定的，暗里只用一根红丝把这两个人的脚绊住了。"
+      "自古道，千里姻缘一线牵。管姻缘的有一位月老，预先注定的，暗里只用一根红丝把这两个人的脚绊住了。",
+      "我的儿，你们女孩家那里知道，自古道：“千里姻缘一线牵”，少不得信他。"
     ],
     "quoteSources": [
       {
@@ -2350,6 +2357,13 @@
         "chapter": 57,
         "locator": "第57回",
         "matchType": "prefix"
+      },
+      {
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 57,
+        "locator": "第57回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -2648,20 +2662,12 @@
       "original": "前八十回未明写婚配；判词伏“白首双星”",
       "continuation": "后四十回亦未坐实；嫁卫若兰、守寡等说法多属探佚推测"
     },
-    "quotesPendingVerified": [
-      {
-        "text": "这鹿肉不要了？好无趣！",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
-      }
-    ],
+    "quotesPendingVerified": [],
     "quotes": [
       "是真名士自风流！你们都是假清高。",
       "寒塘渡鹤影。",
-      "且住，且住，莫使春光别去！"
+      "且住，且住，莫使春光别去！",
+      "傻子，过来尝尝。"
     ],
     "quoteSources": [
       {
@@ -2684,6 +2690,13 @@
         "chapter": 70,
         "locator": "第70回",
         "matchType": "exact"
+      },
+      {
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 49,
+        "locator": "第49回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -2921,30 +2934,33 @@
       "original": "宝玉身边第一大丫鬟，准姨娘；结局未明",
       "continuation": "贾府败落后嫁与蒋玉菡，安度余生"
     },
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
+      "你吃饭不吃饭，到底老太太、太太跟前坐一会子，和姑娘们顽一会子再回来。我就静静的躺一躺也好。",
+      "好姐姐，千万别告诉人。",
+      "姑娘快休如此，将来只怕比这个更奇怪的笑话儿还有呢！若为他这种行止，你多心伤感，只怕你伤感不了呢。快别多心！"
+    ],
+    "quoteSources": [
       {
-        "text": "姑娘快别说这话。上次也是那样说，不知怎么又好了。",
-        "sourceAudit": {
-          "status": "variant-close-paraphrase",
-          "maxRun": 8,
-          "note": "与前80回原文高度重合但非逐字，属改写"
-        }
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 20,
+        "locator": "第20回",
+        "matchType": "verbatim"
       },
       {
-        "text": "你只知道玩，也不想想你这一辈子该怎么过。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 6,
+        "locator": "第6回",
+        "matchType": "verbatim"
       },
       {
-        "text": "我们做奴才的，不过是伺候主子罢了。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 3,
+        "locator": "第3回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -3081,26 +3097,11 @@
       "continuation": "黛玉死后请求跟随惜春修行，终身服侍惜春"
     },
     "sourceNote": "前八十回随侍黛玉；黛玉死后随惜春修行的情节见于后四十回续书。",
-    "quotesPendingVerified": [
-      {
-        "text": "姑娘和宝二爷的事，我是看在眼里的。何不趁老太太还硬朗，求了这门亲事？",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
-      },
-      {
-        "text": "妹妹别怕。我就是个傻丫头罢了。你的心事，我都知道。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
-      }
-    ],
+    "quotesPendingVerified": [],
     "quotes": [
-      "我倒是一片真心为姑娘。姑娘倒把我当外人看了。"
+      "我倒是一片真心为姑娘。姑娘倒把我当外人看了。",
+      "趁早儿老太太还明白硬朗的时节，作定了大事要紧。",
+      "我倒是一片真心为姑娘。替你愁了这几年了，无父母无兄弟，谁是知疼著热的人？"
     ],
     "quoteSources": [
       {
@@ -3109,6 +3110,20 @@
         "chapter": 57,
         "locator": "第57回",
         "matchType": "variant-confirmed"
+      },
+      {
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 57,
+        "locator": "第57回",
+        "matchType": "verbatim"
+      },
+      {
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 57,
+        "locator": "第57回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -3167,18 +3182,10 @@
       "original": "凤姐贴身丫鬟兼贾琏通房，结局未明",
       "continuation": "被扶正为贾琏之妻"
     },
-    "quotesPendingVerified": [
-      {
-        "text": "我们奶奶的脾气，你们还不知道？顺着她还好些，犯了性子，什么都不顾了。",
-        "sourceAudit": {
-          "status": "variant-close-paraphrase",
-          "maxRun": 6,
-          "note": "与前80回原文高度重合但非逐字，属改写"
-        }
-      }
-    ],
+    "quotesPendingVerified": [],
     "quotes": [
-      "大事化为小事，小事化为没事，方是兴旺之家的做法。"
+      "大事化为小事，小事化为没事，方是兴旺之家的做法。",
+      "大事化为小事，小事化为没事，方是兴旺之家。"
     ],
     "quoteSources": [
       {
@@ -3187,6 +3194,13 @@
         "chapter": 62,
         "locator": "第62回",
         "matchType": "prefix"
+      },
+      {
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 62,
+        "locator": "第62回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -3689,14 +3703,17 @@
     "generation": 0,
     "isMainline": false,
     "outcome": "贾府败落后不知所终。",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
+      "这又何苦生事，不管怎样，忍耐些罢了。"
+    ],
+    "quoteSources": [
       {
-        "text": "环三爷待我极好的。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 60,
+        "locator": "第60回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -3801,22 +3818,25 @@
     "generation": 0,
     "isMainline": false,
     "outcome": "被王夫人逐出大观园，后出家为尼，法名智通。",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
+      "你说他祭的是谁？祭的是死了的菂官。",
+      "你也学著些伏侍，别一味呆憨呆睡。口劲轻著，别吹上唾沫星儿。"
+    ],
+    "quoteSources": [
       {
-        "text": "你们欺负人太甚了！",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 58,
+        "locator": "第58回",
+        "matchType": "verbatim"
       },
       {
-        "text": "凭她是谁，我就不怕！",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 58,
+        "locator": "第58回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -3849,14 +3869,17 @@
     "generation": 0,
     "isMainline": false,
     "outcome": "贾府败落后不知所终。",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
+      "你怎不同他们顽去？"
+    ],
+    "quoteSources": [
       {
-        "text": "我方才回了太太，太太很喜欢呢。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 20,
+        "locator": "第20回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -3891,14 +3914,17 @@
     "generation": 2,
     "isMainline": false,
     "outcome": "贾府败落后不知所终。",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
+      "你老又使我，又怕，这会子反说我。难道把我劈做八瓣子不成？"
+    ],
+    "quoteSources": [
       {
-        "text": "妈妈别闹了，叫人笑话。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 59,
+        "locator": "第59回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -4386,14 +4412,17 @@
     "generation": 0,
     "isMainline": false,
     "outcome": "与秦钟有私情，后不知所终",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
+      "我们一早就来了。我师父见了太太，就往于老爷府内去了，叫我在这里等他呢。"
+    ],
+    "quoteSources": [
       {
-        "text": "我见了秦钟，心里便乱了。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 7,
+        "locator": "第7回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -4894,18 +4923,10 @@
     "generation": 3,
     "isMainline": false,
     "outcome": "自刎于柳湘莲面前，以死明志",
-    "quotesPendingVerified": [
-      {
-        "text": "你们不必以为我是那等人，我心里早有了主意。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
-      }
-    ],
+    "quotesPendingVerified": [],
     "quotes": [
-      "终身大事，一生至一死，非同儿戏。我定了主意，等着他。"
+      "终身大事，一生至一死，非同儿戏。我定了主意，等着他。",
+      "终身大事，一生至一死，非同儿戏。我如今改过守分，只要我拣一个素日可心如意者。"
     ],
     "quoteSources": [
       {
@@ -4914,6 +4935,13 @@
         "chapter": 65,
         "locator": "第65回",
         "matchType": "variant-confirmed"
+      },
+      {
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 65,
+        "locator": "第65回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -4961,14 +4989,17 @@
     "generation": 3,
     "isMainline": false,
     "outcome": "与智能儿相恋，被其父责打，后染病身亡，年仅十六。",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
+      "可恨我偏生于清寒之家，不能与他耳鬓交接，可知『贫窭』二字，亦非良因。"
+    ],
+    "quoteSources": [
       {
-        "text": "你我都是读书人家的子弟，何必拘这些俗礼。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 7,
+        "locator": "第7回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -5117,14 +5148,6 @@
     "outcome": "贾府败落后处境凄凉",
     "quotesPendingVerified": [
       {
-        "text": "你的兄弟是宝玉，你舅舅是王子腾，你怎么不去银子堆里找去？",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
-      },
-      {
         "text": "正经叫你那宝贝去！叫他替你出气！",
         "sourceAudit": {
           "status": "not-in-source",
@@ -5134,7 +5157,8 @@
       }
     ],
     "quotes": [
-      "我这么一个人，在这府里算什么？连猫儿狗儿都不如。"
+      "我这么一个人，在这府里算什么？连猫儿狗儿都不如。",
+      "又是那里垫了踹窝来了？"
     ],
     "quoteSources": [
       {
@@ -5143,6 +5167,13 @@
         "chapter": 66,
         "locator": "第66回",
         "matchType": "variant-confirmed"
+      },
+      {
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 20,
+        "locator": "第20回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -5231,14 +5262,17 @@
     "generation": 3,
     "isMainline": false,
     "outcome": "迷恋王熙凤，被骗受冻挨饿，后照风月宝鉴而亡。",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
+      "嫂子天天也闷的很。"
+    ],
+    "quoteSources": [
       {
-        "text": "只求奶奶疼我这一回。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 12,
+        "locator": "第12回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -5330,14 +5364,17 @@
     "generation": 4,
     "isMainline": false,
     "outcome": "贾府败落后流落市井，后不知所终。",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
+      "买了雀儿你顽，省得天天闷闷的无个开心。我先顽个你看。"
+    ],
+    "quoteSources": [
       {
-        "text": "龄官，你安心罢，我再也不敢了。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 36,
+        "locator": "第36回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -5376,14 +5413,17 @@
     "generation": 0,
     "isMainline": false,
     "outcome": "与贾蔷相恋，后因事被逐，不知所终。",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
+      "嗓子哑了。前儿娘娘传进我们去，我还没有唱呢。"
+    ],
+    "quoteSources": [
       {
-        "text": "我不会唱。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 36,
+        "locator": "第36回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -5536,14 +5576,17 @@
     "generation": 0,
     "isMainline": false,
     "outcome": "由丫鬟成为知府夫人",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
+      "偶因一著错，便为人上人。"
+    ],
+    "quoteSources": [
       {
-        "text": "这丫头倒有造化，偶因一着错，便为人上人。",
-        "sourceAudit": {
-          "status": "variant-close-paraphrase",
-          "maxRun": 6,
-          "note": "与前80回原文高度重合但非逐字，属改写"
-        }
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 2,
+        "locator": "第2回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -6078,7 +6121,9 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
-    ]
+    ],
+    "quotes": [],
+    "quoteSources": []
   },
   {
     "id": "qiutong",
@@ -6151,14 +6196,17 @@
     "generation": 0,
     "isMainline": false,
     "outcome": "被逐后出家为尼，不知所终。",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [
+      "我已经回了奶奶们了，奶奶气的了不得。"
+    ],
+    "quoteSources": [
       {
-        "text": "菂官死了，我心里很难过。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
+        "sourceId": "wikisource-zhengding",
+        "edition": "异文待复核(维基文库程乙本)",
+        "chapter": 58,
+        "locator": "第58回",
+        "matchType": "verbatim"
       }
     ]
   },
@@ -6200,7 +6248,9 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
-    ]
+    ],
+    "quotes": [],
+    "quoteSources": []
   },
   {
     "id": "zhen_yingjia",
