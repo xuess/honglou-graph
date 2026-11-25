@@ -1421,6 +1421,15 @@ _init() {
     this.linkLabelElements.classed('visible', d => pathEdges.has(d.key));
   }
 
+  // 取消尚未触发的延迟单击，避免切视图/点空白后人物卡“晚到”。
+  cancelPendingNodeClick() {
+    if (this._singleClickTimer) {
+      window.clearTimeout(this._singleClickTimer);
+      this._singleClickTimer = null;
+    }
+    this._lastNodeClick = null;
+  }
+
   // Clear path highlighting
   clearPath() {
     this.nodeElements.classed('path-node', false);

@@ -43,6 +43,7 @@ class HongLouMengApp {
     };
 
     this.graphState = null;
+    this._skipGraphFacetOnce = false;
     this.recentBrowsingHistory = [];
     this.RECENT_MAX = 8;
     this.timelineFilterMode = 'single';
@@ -1075,11 +1076,11 @@ class HongLouMengApp {
         view.syncFacetHighlights?.();
       }
       if (viewName === 'chapter' && this.viewInitialized.chapter) {
-        view._updateContent?.();
+        // 人物高亮变化只影响卡片状态，不应重建目录/正文，避免阅读位置被拉走。
+        view._syncCharacterHighlights?.();
       }
       if (viewName === 'knowledge' && this.viewInitialized.knowledge) {
-        view._invalidateFilterCache?.();
-        view._updateContent?.();
+        view.syncFacetHighlights?.();
       }
       if (viewName === 'graph') {
         view.applyFacetSelection?.(state.selectedCharacterIds);
@@ -1103,6 +1104,8 @@ class HongLouMengApp {
 
     // Save graph state when leaving graph view
     if (previousView === 'graph' && viewName !== 'graph') {
+      this.graph?.cancelPendingNodeClick?.();
+      this._hidePathPanel();
       this._saveGraphState();
     }
 
@@ -1169,6 +1172,8 @@ class HongLouMengApp {
     // Restore graph state when returning to graph view
     if (viewName === 'graph' && previousView !== 'graph' && this.graphState) {
       this._restoreGraphState();
+      // 已经恢复“人物 + 邻域”高亮时，别让后面的 facet 高亮把它压成孤立单点。
+      if (this.graphState.selectedNodeId) this._skipGraphFacetOnce = true;
     }
 
     this._teardownInactiveViews(viewName, previousView);
@@ -1178,6 +1183,7 @@ class HongLouMengApp {
 
     // 统一使用视图内容容器作为滚动层，避免 window 级滚动与内层滚动打架。
     this._resetViewScrollPosition(viewName, { preserveScroll });
+    this._revealCurrentContextInView(viewName);
 
     // 初始化时不要抢先写 ?view=graph：地址栏一旦出现 view 参数，
     // _initExploration 会把它当成深链，首次访问的探索入口就不再出现。
@@ -1205,7 +1211,7 @@ class HongLouMengApp {
     reset('.main-container');
 
     if (viewName === 'tree') {
-      reset('.tree-outline');
+      reset('.tree-container');
       return;
     }
 
@@ -1216,6 +1222,7 @@ class HongLouMengApp {
 
     if (viewName === 'chapter') {
       reset('.chapter-main');
+      reset('.chapter-sidebar');
       reset('.chapter-directory');
       return;
     }
@@ -1228,11 +1235,43 @@ class HongLouMengApp {
 
   }
 
+  /**
+   * 视图切换后把已有的人物/回目上下文带到画面里，避免“顶部写着选了谁，列表还停在开头”。
+   * scroll=false 用于普通视图切换：只保证目标被渲染/高亮，不把视图顶部顶出屏幕。
+   * scroll=true 用于显式人物导航/深链恢复：直接把目标滚进视口。
+   */
+  _revealCurrentContextInView(viewName, { scroll = false } = {}) {
+    const selectedId = this.facetState?.selectedCharacterIds?.[0] || null;
+
+    if (viewName === 'list' && selectedId) {
+      if (scroll) this.listView?.revealCharacter?.(selectedId);
+      else this.listView?.ensureCharacterRendered?.(selectedId);
+      return;
+    }
+    if (viewName === 'tree' && selectedId && scroll) {
+      this.treeView?.revealCharacter?.(selectedId);
+      return;
+    }
+    if (viewName === 'chapter') {
+      this.chapterView?._scrollDirectoryActiveIntoView?.({ align: 'nearest' });
+    }
+  }
+
   _updateUrlParams() {
     const params = new URLSearchParams();
     params.set('view', this.activeView);
 
-    if (this.currentCharacterId) {
+    // 按 currentView 的类型写参数：专题/阶段虽然也有 focusId，但深链应恢复到专题本身。
+    const viewType = this.currentView?.type;
+    if (viewType === 'topic' && this.currentTopic) {
+      params.set('topic', this.currentTopic.id);
+    } else if (viewType === 'stage' && this.currentStage) {
+      params.set('stage', this.currentStage.id);
+    } else if (viewType === 'family' && this.currentFamily) {
+      params.set('family', this.currentFamily);
+    } else if (viewType === 'relationship' && this.currentRelationshipPair) {
+      params.set('rel', `${this.currentRelationshipPair.leftId},${this.currentRelationshipPair.rightId}`);
+    } else if (this.currentCharacterId) {
       params.set('char', this.currentCharacterId);
     } else if (this.currentTopic) {
       params.set('topic', this.currentTopic.id);
@@ -1327,6 +1366,8 @@ class HongLouMengApp {
     const charParam = urlParams.get('char');
     const topicParam = urlParams.get('topic');
     const stageParam = urlParams.get('stage');
+    const familyParam = urlParams.get('family');
+    const relationshipParam = urlParams.get('rel');
 
     const applyGraphSnapshot = () => {
       if (historyNav?.graph) this._applyGraphFilterSnapshot(historyNav.graph);
@@ -1356,6 +1397,19 @@ class HongLouMengApp {
     this._switchView(viewParam && validViews.includes(viewParam) ? viewParam : 'graph');
     applyGraphSnapshot();
 
+    if (this.activeView === 'graph' && familyParam) {
+      this._openFamily(familyParam, true);
+      restoreAfterContext();
+      return;
+    }
+    if (this.activeView === 'graph' && relationshipParam) {
+      const [leftId, rightId] = relationshipParam.split(',');
+      if (leftId && rightId && this.characterMap.has(leftId) && this.characterMap.has(rightId)) {
+        this._openRelationshipView(leftId, rightId, true);
+        restoreAfterContext();
+        return;
+      }
+    }
     if (charParam && this.characterMap.has(charParam)) {
       this._openCharacter(charParam, { focusNeighbors: true, showCard: true, _fromRestore: true });
       return;
@@ -1410,6 +1464,8 @@ class HongLouMengApp {
         // Cleanup timers and observers before clearing DOM
         const view = prevViewInfo.view;
         if (view) {
+          // 自动阅读离开回目视图后必须停止，否则会在隐藏容器里继续翻章。
+          view._stopAutoRead?.();
           // Clear timers
           if (view._searchTimer) window.clearTimeout(view._searchTimer);
           if (view._deferredRenderTimer) window.clearTimeout(view._deferredRenderTimer);
@@ -1791,6 +1847,7 @@ class HongLouMengApp {
    * 只有显式点击“默认概览/清空上下文”才重置为默认阅读筛选。
    */
   _showOverview({ preserveGraphState = false } = {}) {
+    this._hidePathPanel();
     this._closeCard();
     this.currentCharacterId = null;
     this.currentTopic = null;
@@ -2158,6 +2215,7 @@ _createFontAndThemeControls() {
   }
 
   _showFullGraph(skipHistory, { expandAll = false } = {}) {
+    this._hidePathPanel();
     if (!skipHistory) this._pushView();
     this.currentCharacterId = null;
     this.currentTopic = null;
@@ -2326,6 +2384,7 @@ _createFontAndThemeControls() {
       if (chapters.length) {
         const chapter = chapters[Math.floor(Math.random() * chapters.length)];
         this.chapterView.activeChapter = chapter;
+        this.chapterView._ensureChapterVisible?.(chapter);
         this._switchView('chapter');
         if (!this.viewInitialized.chapter) {
           this.chapterView.render();
@@ -2343,9 +2402,30 @@ _createFontAndThemeControls() {
   }
 
   _handleGraphBackgroundClick() {
-    // 背景点击只清空当前人物选中；卡片由 _closeCard 负责，无需额外关闭抽屉。
+    // 背景点击等价于“取消当前人物选择”：卡片、上下文、FacetStore、URL 必须一起清。
+    this.graph?.cancelPendingNodeClick?.();
+    this._hidePathPanel();
+    this._closeCard();
     this.currentCharacterId = null;
+    this.currentTopic = null;
+    this.currentStage = null;
+    this.currentFamily = null;
+    this.currentRelationshipPair = null;
+    if (this.currentView.type === 'character') this.currentView = { type: 'fullgraph' };
+
+    this._setFacetState({
+      selectedCharacterIds: [],
+      selectedTags: [],
+      selectedFamily: null,
+      selectedChapter: null,
+      selectedCategory: null,
+      query: '',
+      breadcrumb: [{ label: '关系图谱', type: 'graph' }],
+      sourceView: 'graph'
+    });
     this._updateActionStates();
+    this._updateBackButton();
+    this._updateUrlParams();
   }
 
   _openCharacter(characterId, options = {}) {
@@ -2395,6 +2475,8 @@ _createFontAndThemeControls() {
     this._updateActionStates();
     this._updateBackButton();
     if (isGraphView) this._toggleSidebar(false);
+    // 深链/站内显式选人时，名录或族谱应直接定位到该人物。
+    this._revealCurrentContextInView(this.activeView, { scroll: true });
     this._updateUrlParams();
   }
 
@@ -2406,6 +2488,13 @@ _createFontAndThemeControls() {
     this.currentFamily = null;
     this.currentRelationshipPair = null;
     this.currentView = { type: 'character', characterId: character.id };
+    // 名录“相关知识”也是显式人物导航，必须同步 FacetStore，后续切图谱/名录才能延续上下文。
+    this._setFacetState({
+      selectedCharacterIds: [character.id],
+      selectedFamily: character.family || null,
+      breadcrumb: [{ label: '默认概览', type: 'overview' }, { label: character.name, type: 'character', characterId: character.id }],
+      sourceView: this.activeView
+    });
     this._openKnowledgeContext({ query: character.name, selectedCharacterIds: [character.id] });
     this._renderGlobalContextBar();
     this._updateFloatingContext(`知识：${character.name}`);
@@ -2538,6 +2627,7 @@ _createFontAndThemeControls() {
     this._updateActionStates();
     this._updateBackButton();
     this._toggleSidebar(false);
+    this._updateUrlParams();
   }
 
   _openRelationshipView(leftId, rightId, skipHistory) {
@@ -2575,6 +2665,7 @@ _createFontAndThemeControls() {
     this._updateActionStates();
     this._updateBackButton();
     this._toggleSidebar(false);
+    this._updateUrlParams();
   }
 
   _findAndHighlightPath(leftId, rightId) {
@@ -3122,10 +3213,12 @@ _createFontAndThemeControls() {
       this.viewInitialized.knowledge = true;
       this.viewEverRendered.knowledge = true;
     }
-    this.knowledgeView.searchQuery = '';
+    // 打开单条知识时收敛到它所属回目；没有回目的条目用标题检索收敛，
+    // 既保留上下文，也避免为定位目标一次渲染整库。
+    this.knowledgeView.searchQuery = item.chapter ? '' : (item.title || '');
     this.knowledgeView.activeCategory = 'all';
     this.knowledgeView.activeSubcategory = 'all';
-    this.knowledgeView.chapterFilter = 'all';
+    this.knowledgeView.chapterFilter = item.chapter ? String(item.chapter) : 'all';
     this.knowledgeView.sortBy = 'relevance';
     this.knowledgeView.expandedIds.clear();
     this.knowledgeView._activeJumpTargetId = itemId;
@@ -3139,6 +3232,8 @@ _createFontAndThemeControls() {
     // 先写入目标回目，首次渲染就能直接显示正确内容；
     // 切换完成后再把左侧目录滚动到当前回目，避免右侧已是第66回、左侧还停在开头。
     this.chapterView.activeChapter = chapterNum;
+    // 显式跳转优先于上一次留下的搜索/版本筛选，否则目标回目可能根本不在可见目录里。
+    this.chapterView._ensureChapterVisible?.(chapterNum);
     this._switchView('chapter');
     if (!this.viewInitialized.chapter) {
       this.chapterView.render();
@@ -4059,7 +4154,7 @@ _createFontAndThemeControls() {
         selectedCharacterIds: state.selectedCharacterIds
       });
       if (this.viewInitialized.chapter) {
-        this.chapterView._updateContent?.();
+        this.chapterView._syncCharacterHighlights?.();
       }
     }
     
@@ -4068,14 +4163,17 @@ _createFontAndThemeControls() {
         selectedCharacterIds: state.selectedCharacterIds
       });
       if (this.viewInitialized.knowledge) {
-        this.knowledgeView._invalidateFilterCache?.();
         // Keep viewport stable when switching top-level views.
-        this.knowledgeView._updateContent?.({ scrollToTop: false });
+        this.knowledgeView.syncFacetHighlights?.();
       }
     }
     
     if (this.graph) {
-      this.graph.applyFacetSelection?.(state.selectedCharacterIds);
+      if (this._skipGraphFacetOnce) {
+        this._skipGraphFacetOnce = false;
+      } else {
+        this.graph.applyFacetSelection?.(state.selectedCharacterIds);
+      }
     }
   }
 
@@ -4144,6 +4242,7 @@ _createFontAndThemeControls() {
   _clearFacetContext() {
     // Per D-05: Clear all selections
     const previousView = this.activeView;
+    this._hidePathPanel();
     
     // Clear character selections
     this.currentCharacterId = null;
@@ -5218,6 +5317,7 @@ _createFontAndThemeControls() {
 
   _hidePathPanel() {
     this.els.pathDisplayPanel?.classList.remove('active');
+    this.graph?.clearPath?.();
   }
 
   _updateSearchInputState() {

@@ -189,9 +189,9 @@ class ChapterView {
             <div class="chapter-sidebar-section">
               <div class="chapter-sidebar-title">版本范围</div>
               <div class="chapter-filter-group">
-                <button class="chapter-filter-chip ${this.versionFilter === 'all' ? 'active' : ''}" data-version="all">全部回目</button>
-                <button class="chapter-filter-chip ${this.versionFilter === 'original' ? 'active' : ''}" data-version="original">前八十回</button>
-                <button class="chapter-filter-chip ${this.versionFilter === 'continuation' ? 'active' : ''}" data-version="continuation">后四十回</button>
+                <button class="chapter-filter-chip ${this.versionFilter === 'all' ? 'active' : ''}" data-version="all" aria-pressed="${this.versionFilter === 'all'}">全部回目</button>
+                <button class="chapter-filter-chip ${this.versionFilter === 'original' ? 'active' : ''}" data-version="original" aria-pressed="${this.versionFilter === 'original'}">前八十回</button>
+                <button class="chapter-filter-chip ${this.versionFilter === 'continuation' ? 'active' : ''}" data-version="continuation" aria-pressed="${this.versionFilter === 'continuation'}">后四十回</button>
               </div>
             </div>
 
@@ -219,9 +219,10 @@ class ChapterView {
     `;
   }
 
-  _updateContent() {
-    const liveInput = this.container.querySelector('.chapter-search-input');
-    if (liveInput && liveInput.value !== this.searchQuery) liveInput.value = this.searchQuery;
+  _updateContent(options = {}) {
+    const { scrollMain = true } = options;
+    this._stopAutoRead();
+    this._syncFilterControls();
     const directoryEl = this.container.querySelector('#chapter-directory-content');
     this._clearDeferredMainRender();
     const visibleProfiles = this._getVisibleProfiles();
@@ -235,6 +236,41 @@ class ChapterView {
     this._syncCharacterHighlights();
     this._observeLayoutResize();
     this._scheduleTextLayoutPass();
+    // 筛选/搜索后正文换了内容，滚动位置必须回到新内容顶部。
+    if (scrollMain) this._scrollMainToTop();
+  }
+
+  _syncFilterControls() {
+    const liveInput = this.container.querySelector('.chapter-search-input');
+    if (liveInput && liveInput.value !== this.searchQuery) liveInput.value = this.searchQuery;
+    // 版本筛选按钮不在 _updateContent 的重渲染范围内，必须显式同步 active。
+    this.container.querySelectorAll('[data-version]').forEach((button) => {
+      const isActive = button.dataset.version === this.versionFilter;
+      button.classList.toggle('active', isActive);
+      button.setAttribute('aria-pressed', String(isActive));
+    });
+  }
+
+  // 显式跳到某一回时，不能被上一次留下的搜索/版本筛选挡住。
+  _ensureChapterVisible(chapter) {
+    const target = Number(chapter);
+    if (!Number.isFinite(target) || !this.chapterProfileMap.has(target)) return false;
+    if (this._getVisibleProfiles().some((profile) => profile.chapter === target)) return false;
+
+    let changed = false;
+    if (this.versionFilter !== 'all') {
+      this.versionFilter = 'all';
+      changed = true;
+    }
+    if (this.searchQuery) {
+      this.searchQuery = '';
+      changed = true;
+    }
+    if (changed) {
+      this._syncFilterControls();
+      this._updateContent({ scrollMain: false });
+    }
+    return changed;
   }
 
   // 只更新右侧正文，左侧目录保持原 DOM 和滚动位置。
@@ -257,15 +293,29 @@ class ChapterView {
   }
 
   _selectChapter(chapter, options = {}) {
-    const { scrollMain = true, revealDirectory = true, align = 'nearest' } = options;
+    const {
+      scrollMain = true,
+      revealDirectory = true,
+      align = 'nearest',
+      keepAutoRead = false
+    } = options;
     const target = Number(chapter);
     if (!Number.isFinite(target)) return;
 
+    // 用户手动选回目时立刻接管自动阅读，避免 5 秒后又被定时器翻走。
+    if (!keepAutoRead) this._stopAutoRead();
     this.activeChapter = target;
     this._updateMainContent();
     this._syncDirectoryActive();
     if (scrollMain) this._scrollMainToTop();
     if (revealDirectory) this._scrollDirectoryActiveIntoView({ align });
+  }
+
+  // 层级/来源筛选按钮位于正文内，整块重渲染后要把焦点还给新按钮。
+  _focusFilterAfterRender(selector) {
+    window.requestAnimationFrame(() => {
+      this.container.querySelector(selector)?.focus({ preventScroll: true });
+    });
   }
 
   _syncDirectoryActive() {
@@ -285,27 +335,31 @@ class ChapterView {
     const details = active.closest('.chapter-directory-details');
     if (details && !details.open) return;
 
+    // 桌面端滚动容器是 .chapter-sidebar；手机上目录自身限高并可滚动。
     const sidebar = this.container.querySelector('.chapter-sidebar');
-    if (!sidebar) return;
-    if (sidebar.scrollHeight <= sidebar.clientHeight + 1) return;
+    const directory = this.container.querySelector('#chapter-directory-content');
+    const scroller = [sidebar, directory].find((element) => (
+      element && element.scrollHeight > element.clientHeight + 1
+    ));
+    if (!scroller) return;
 
-    const sidebarRect = sidebar.getBoundingClientRect();
+    const scrollerRect = scroller.getBoundingClientRect();
     const activeRect = active.getBoundingClientRect();
     if (!activeRect.height) return;
 
-    const activeTop = sidebar.scrollTop + activeRect.top - sidebarRect.top;
+    const activeTop = scroller.scrollTop + activeRect.top - scrollerRect.top;
     let targetTop = null;
     if (align === 'center') {
-      targetTop = activeTop - (sidebar.clientHeight - activeRect.height) / 2;
-    } else if (activeRect.top < sidebarRect.top) {
+      targetTop = activeTop - (scroller.clientHeight - activeRect.height) / 2;
+    } else if (activeRect.top < scrollerRect.top) {
       targetTop = activeTop - 8;
-    } else if (activeRect.bottom > sidebarRect.bottom) {
-      targetTop = activeTop + activeRect.height - sidebar.clientHeight + 8;
+    } else if (activeRect.bottom > scrollerRect.bottom) {
+      targetTop = activeTop + activeRect.height - scroller.clientHeight + 8;
     }
     if (targetTop === null) return;
 
-    const maxTop = sidebar.scrollHeight - sidebar.clientHeight;
-    sidebar.scrollTo({
+    const maxTop = scroller.scrollHeight - scroller.clientHeight;
+    scroller.scrollTo({
       top: Math.max(0, Math.min(maxTop, targetTop)),
       behavior: 'instant'
     });
@@ -393,7 +447,7 @@ class ChapterView {
           <div class="chapter-focus-actions">
             ${previous ? `<button class="chapter-nav-btn" data-jump-chapter="${previous.chapter}">← 上一回</button>` : ''}
             <button class="chapter-nav-btn primary" data-action="open-knowledge" data-chapter="${profile.chapter}">在知识库查看本回</button>
-            <button class="chapter-nav-btn" data-action="toggle-auto-read" title="自动连续阅读">▶ 自动阅读</button>
+            <button class="chapter-nav-btn ${this._autoReadTimer ? 'active' : ''}" data-action="toggle-auto-read" title="自动连续阅读">${this._autoReadTimer ? '⏸ 停止' : '▶ 自动阅读'}</button>
             ${next ? `<button class="chapter-nav-btn" data-jump-chapter="${next.chapter}">下一回 →</button>` : ''}
           </div>
         </div>
@@ -564,7 +618,7 @@ class ChapterView {
       { key: 'peripheral', label: '只看旁及' }
     ];
     return options.map((option) => `
-      <button class="chapter-filter-mini ${this.characterTierFilter === option.key ? 'active' : ''}" data-character-tier="${option.key}">${option.label}</button>
+      <button class="chapter-filter-mini ${this.characterTierFilter === option.key ? 'active' : ''}" data-character-tier="${option.key}" aria-pressed="${this.characterTierFilter === option.key}">${option.label}</button>
     `).join('');
   }
 
@@ -578,7 +632,7 @@ class ChapterView {
       { key: 'textMention', label: '文本提及' }
     ];
     return options.map((option) => `
-      <button class="chapter-filter-mini ${this.sourceFilter === option.key ? 'active' : ''}" data-source-filter="${option.key}">${option.label}</button>
+      <button class="chapter-filter-mini ${this.sourceFilter === option.key ? 'active' : ''}" data-source-filter="${option.key}" aria-pressed="${this.sourceFilter === option.key}">${option.label}</button>
     `).join('');
   }
 
@@ -642,7 +696,9 @@ class ChapterView {
         window.clearTimeout(this._searchTimer);
         this._searchTimer = window.setTimeout(() => {
           this.searchQuery = event.target.value;
-          this._updateContent();
+          // 手机上正文不单独滚动，搜索时不要把整页滚到正文，否则输入框会离开视口。
+          const isMobile = window.matchMedia?.('(max-width: 560px)').matches;
+          this._updateContent({ scrollMain: !isMobile });
         }, 180);
       };
 
@@ -656,6 +712,14 @@ class ChapterView {
       searchInput.addEventListener('input', handleSearch, { signal });
     }
 
+    // 手机端目录默认收起；用户展开时补一次当前回目的定位。
+    const directoryDetails = this.container.querySelector('.chapter-directory-details');
+    if (directoryDetails) {
+      directoryDetails.addEventListener('toggle', () => {
+        if (directoryDetails.open) this._scrollDirectoryActiveIntoView({ align: 'nearest' });
+      }, { signal });
+    }
+
     // Quick jump functionality
     const quickJumpInput = this.container.querySelector('#chapter-quick-jump-input');
     const quickJumpBtn = this.container.querySelector('#chapter-quick-jump-btn');
@@ -663,6 +727,7 @@ class ChapterView {
       const handleJump = () => {
         const chapter = parseInt(quickJumpInput.value);
         if (chapter >= 1 && chapter <= 120) {
+          this._ensureChapterVisible(chapter);
           this._selectChapter(chapter, { align: 'center' });
           quickJumpInput.value = '';
         }
@@ -683,15 +748,19 @@ class ChapterView {
 
       const tierButton = event.target.closest('[data-character-tier]');
       if (tierButton) {
-        this.characterTierFilter = tierButton.dataset.characterTier || 'all';
+        const tier = tierButton.dataset.characterTier || 'all';
+        this.characterTierFilter = tier;
         this._updateContent();
+        this._focusFilterAfterRender(`[data-character-tier="${tier}"]`);
         return;
       }
 
       const sourceButton = event.target.closest('[data-source-filter]');
       if (sourceButton) {
-        this.sourceFilter = sourceButton.dataset.sourceFilter || 'all';
+        const source = sourceButton.dataset.sourceFilter || 'all';
+        this.sourceFilter = source;
         this._updateContent();
+        this._focusFilterAfterRender(`[data-source-filter="${source}"]`);
         return;
       }
 
@@ -1151,29 +1220,36 @@ class ChapterView {
     });
   }
 
-  _toggleAutoRead(button) {
-    if (this._autoReadTimer) {
-      // Stop auto reading
-      clearInterval(this._autoReadTimer);
-      this._autoReadTimer = null;
+  _stopAutoRead() {
+    if (!this._autoReadTimer) return;
+    clearInterval(this._autoReadTimer);
+    this._autoReadTimer = null;
+    const button = this.container.querySelector('[data-action="toggle-auto-read"]');
+    if (button) {
       button.textContent = '▶ 自动阅读';
       button.classList.remove('active');
-    } else {
-      // Start auto reading
-      button.textContent = '⏸ 停止';
-      button.classList.add('active');
-      this._autoReadTimer = setInterval(() => {
-        const visibleProfiles = this._getVisibleProfiles();
-        const currentIndex = visibleProfiles.findIndex(p => p.chapter === this.activeChapter);
-        const nextProfile = visibleProfiles[currentIndex + 1];
-        if (nextProfile) {
-          this._selectChapter(nextProfile.chapter, { align: 'nearest' });
-        } else {
-          // Reached the end, stop
-          this._toggleAutoRead(button);
-        }
-      }, 5000); // 5 seconds per chapter
     }
+  }
+
+  _toggleAutoRead(button) {
+    if (this._autoReadTimer) {
+      this._stopAutoRead();
+      return;
+    }
+
+    button.textContent = '⏸ 停止';
+    button.classList.add('active');
+    this._autoReadTimer = setInterval(() => {
+      const visibleProfiles = this._getVisibleProfiles();
+      // 与“下一回”按钮保持一致：只沿连续回目推进，不跨过搜索/筛选留下的空档。
+      const nextProfile = visibleProfiles.find(p => p.chapter === this.activeChapter + 1);
+      if (nextProfile) {
+        this._selectChapter(nextProfile.chapter, { align: 'nearest', keepAutoRead: true });
+      } else {
+        // Reached the end, stop
+        this._stopAutoRead();
+      }
+    }, 5000); // 5 seconds per chapter
   }
 
   _renderMiniGraph(container) {

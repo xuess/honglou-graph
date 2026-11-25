@@ -4326,6 +4326,8 @@ body.view-knowledge .main-container {
   padding-bottom: 24px;
   flex: 1;
   min-height: 0;
+  /* 列表模式切换会整体换 DOM；禁用滚动锚定，避免浏览器把程序化定位又拽回去。 */
+  overflow-anchor: none;
   overflow-y: auto;
   overflow-x: hidden;
   overscroll-behavior: contain;
@@ -4357,8 +4359,6 @@ body.view-knowledge .main-container {
   position: relative;
   overflow: hidden;
   contain: layout paint;
-  content-visibility: auto;
-  contain-intrinsic-size: 120px;
 }
 
 .list-card-item::before {
@@ -4727,6 +4727,7 @@ body.view-knowledge .main-container {
 .knowledge-card {
   border: 1px solid rgba(196,168,130,0.38);
   border-radius: 20px;
+  scroll-margin-top: 14px;
   padding: 20px;
   background: var(--color-cream);
   backdrop-filter: none;
@@ -4734,8 +4735,6 @@ body.view-knowledge .main-container {
   position: relative;
   overflow: hidden;
   contain: layout paint;
-  content-visibility: auto;
-  contain-intrinsic-size: 240px;
 }
 
 .knowledge-card::before {
@@ -5373,6 +5372,12 @@ body.view-knowledge .main-container {
   border-color: var(--color-primary);
   color: var(--color-primary);
   background: var(--color-primary-alpha-06);
+}
+
+.chapter-nav-btn.active {
+  border-color: var(--color-primary);
+  color: var(--color-cream);
+  background: var(--color-primary);
 }
 
 .chapter-focus-grid {

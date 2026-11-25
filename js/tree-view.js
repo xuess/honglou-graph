@@ -50,12 +50,21 @@ class TreeView {
     const previousIds = this.relatedCharacterIds;
     this.relatedCharacterIds = new Set(facetState.selectedCharacterIds || []);
     
-    // If there's a new single character selected, scroll to it
+    // If there's a new single character selected, reveal it in the current family tree.
     const newIds = facetState.selectedCharacterIds || [];
     if (newIds.length === 1 && !previousIds.has(newIds[0])) {
       // Defer scroll to allow DOM to update
-      setTimeout(() => this._scrollToCharacter(newIds[0]), 100);
+      setTimeout(() => this.revealCharacter(newIds[0]), 100);
     }
+  }
+
+  revealCharacter(characterId) {
+    if (!characterId) return false;
+    if (!this.container.querySelector('.tree-shell')) return false;
+    const card = this.container.querySelector(`.tree-person-card[data-char-id="${characterId}"]`);
+    if (!card) return false;
+    this._scrollToCharacter(characterId);
+    return true;
   }
 
   render(family) {
@@ -143,7 +152,7 @@ class TreeView {
         <span class="tree-hint-pill">点击姓名查看人物卡片</span>
         <span class="tree-hint-pill">点击箭头展开后代分支</span>
         <span class="tree-hint-pill">配偶会以内联标签显示</span>
-        ${this.relatedCharacterIds.size ? `<span class="tree-hint-pill">当前仅高亮 ${this.relatedCharacterIds.size} 位关联人物，不会自动切换家族</span>` : ''}
+        <span class="tree-hint-pill" data-related-count ${this.relatedCharacterIds.size ? '' : 'hidden'}>当前仅高亮 ${this.relatedCharacterIds.size} 位关联人物，不会自动切换家族</span>
       </div>
 
       <div class="tree-outline" id="tree-outline-content">
@@ -195,7 +204,7 @@ class TreeView {
         <span class="tree-hint-pill">点击姓名查看人物卡片</span>
         <span class="tree-hint-pill">点击箭头展开后代分支</span>
         <span class="tree-hint-pill">配偶会以内联标签显示</span>
-        ${this.relatedCharacterIds.size ? `<span class="tree-hint-pill">当前仅高亮 ${this.relatedCharacterIds.size} 位关联人物，不会自动切换家族</span>` : ''}
+        <span class="tree-hint-pill" data-related-count ${this.relatedCharacterIds.size ? '' : 'hidden'}>当前仅高亮 ${this.relatedCharacterIds.size} 位关联人物，不会自动切换家族</span>
       `;
     }
 
@@ -548,7 +557,12 @@ class TreeView {
     this.container.addEventListener('click', (event) => {
       const familyTab = event.target.closest('.tree-family-tab');
       if (familyTab) {
+        // 切换家族时搜索条件要真正清空：取消未执行的防抖，并同步输入框。
+        window.clearTimeout(this._searchTimer);
+        this._searchTimer = null;
         this.searchQuery = '';
+        const searchInput = this.container.querySelector('.tree-search-input');
+        if (searchInput) searchInput.value = '';
         this.render(familyTab.dataset.family);
         this._scrollToTop();
         return;
@@ -681,6 +695,12 @@ class TreeView {
     this.container.querySelectorAll('.tree-person-card').forEach((card) => {
       card.classList.toggle('highlighted', this.relatedCharacterIds.has(card.dataset.charId));
     });
+    const hint = this.container.querySelector('[data-related-count]');
+    if (hint) {
+      const count = this.relatedCharacterIds.size;
+      hint.hidden = count === 0;
+      hint.textContent = `当前仅高亮 ${count} 位关联人物，不会自动切换家族`;
+    }
   }
 
   _scrollToCharacter(characterId) {
@@ -718,8 +738,9 @@ class TreeView {
   }
 
   _scrollToTop() {
-    const outline = this.container.querySelector('.tree-outline');
-    if (outline) outline.scrollTo({ top: 0, behavior: 'instant' });
+    // 真正的滚动层是 .tree-container；.tree-outline 自身 overflow: visible。
+    const treeContainer = this.container.querySelector('.tree-container') || this.container;
+    treeContainer.scrollTo({ top: 0, behavior: 'instant' });
   }
 
   destroy() {

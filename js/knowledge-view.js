@@ -189,7 +189,9 @@ class KnowledgeView {
     const subcategories = this._getSubcategories();
     const chapterOptions = this._getChapterOptions();
     const hotTags = this._getHotTags(filteredItems);
-    const initialDisplayCount = this._getBaseDisplayCount();
+    this.displayCount = this._getBaseDisplayCount();
+    this._ensureJumpTargetRendered(filteredItems);
+    const initialDisplayCount = this.displayCount;
 
     this.container.innerHTML = `
       <section class="knowledge-shell">
@@ -252,7 +254,7 @@ class KnowledgeView {
             <div class="knowledge-secondary-filters" id="knowledge-secondary-filters">
               <div class="knowledge-sidebar-section">
                 <div class="knowledge-sidebar-title">细分主题</div>
-                <div class="knowledge-chip-group">
+                <div class="knowledge-chip-group" data-subcategory-group>
                   <button class="knowledge-chip ${this.activeSubcategory === 'all' ? 'active' : ''}" data-subcategory="all">全部主题</button>
                   ${subcategories.map((subcategory) => `
                     <button class="knowledge-chip ${this.activeSubcategory === subcategory ? 'active' : ''}" data-subcategory="${subcategory}">${subcategory}</button>
@@ -360,15 +362,18 @@ class KnowledgeView {
 
     this.displayCount = this._getBaseDisplayCount();
     const filteredItems = this._getFilteredItems();
+    this._ensureJumpTargetRendered(filteredItems);
     const visibleItems = filteredItems.slice(0, this.displayCount);
     this._visibleItems = visibleItems;
-    
+
+    this._syncFilterControls();
     this._renderVisibleItems(contentEl, filteredItems, visibleItems, { append: false });
     
     if (subtitleEl) {
       subtitleEl.innerHTML = this._buildResultsSubtitle(Math.min(this.displayCount, filteredItems.length), filteredItems.length);
     }
 
+    this._syncSubcategoryChips();
     this._updateCategoryActiveState();
     this._syncKnowledgeHighlights();
     if (scrollToTop) this._scrollToTop();
@@ -377,10 +382,33 @@ class KnowledgeView {
   }
 
   _syncFilterControls() {
+    const searchInput = this.container.querySelector('.knowledge-search-input');
+    if (searchInput && searchInput.value !== this.searchQuery) searchInput.value = this.searchQuery;
     const chapterSelect = this.container.querySelector('[data-filter="chapter"]');
     if (chapterSelect) chapterSelect.value = this.chapterFilter;
     const sortSelect = this.container.querySelector('[data-filter="sort"]');
     if (sortSelect) sortSelect.value = this.sortBy;
+  }
+
+  // 分类变化后细分主题也要跟着换，否则会留下上一分类的子类并筛出 0 条。
+  _syncSubcategoryChips() {
+    const group = this.container.querySelector('[data-subcategory-group]');
+    if (!group) return;
+    const subcategories = this._getSubcategories();
+    if (this.activeSubcategory !== 'all' && !subcategories.includes(this.activeSubcategory)) {
+      this.activeSubcategory = 'all';
+    }
+    group.innerHTML = ['all', ...subcategories].map((subcategory) => {
+      const label = subcategory === 'all' ? '全部主题' : this._escapeHtml(subcategory);
+      const active = this.activeSubcategory === subcategory ? 'active' : '';
+      return `<button class="knowledge-chip ${active}" data-subcategory="${this._escapeHtml(subcategory)}" aria-pressed="${this.activeSubcategory === subcategory}">${label}</button>`;
+    }).join('');
+  }
+
+  _focusFilterAfterRender(selector) {
+    window.requestAnimationFrame(() => {
+      this.container.querySelector(selector)?.focus({ preventScroll: true });
+    });
   }
 
   _updateCategoryActiveState() {
@@ -689,7 +717,10 @@ class KnowledgeView {
         this._searchTimer = setTimeout(() => {
           this.searchQuery = event.target.value;
           this._invalidateFilterCache();
-          this._updateContent();
+          this._clearKnowledgeJumpState();
+          // 手机上滚动发生在整页：输入时不要把搜索框滚出视口。
+          const isMobile = window.matchMedia?.('(max-width: 560px)').matches;
+          this._updateContent({ scrollToTop: !isMobile });
         }, 180);
       };
 
@@ -706,6 +737,8 @@ class KnowledgeView {
     }
 
     this.container.addEventListener('click', (event) => {
+      // 用户主动操作后，上一轮“定位到某条知识”的临时目标就失效了。
+      this._clearKnowledgeJumpState();
       // 卡片标题栏负责展开/收起：内容默认展开，点击后只隐藏正文与分析，
       // 保留标题行与人物标签，便于在长列表里一屏扫过更多条目。
       const cardHeader = event.target.closest('.knowledge-card-header');
@@ -717,6 +750,13 @@ class KnowledgeView {
           card.classList.toggle('expanded', nowExpanded);
           cardHeader.setAttribute('aria-expanded', String(nowExpanded));
           cardHeader.title = nowExpanded ? '点击收起' : '点击展开';
+          // 瀑布流卡片是绝对定位的；折叠/展开后必须重排后续卡片，否则会留下大块空洞。
+          const contentEl = this.container.querySelector('#knowledge-items-content');
+          if (contentEl) {
+            window.requestAnimationFrame(() => {
+              if (contentEl.isConnected) this._applyMasonryLayout(contentEl);
+            });
+          }
         }
         return;
       }
@@ -733,10 +773,12 @@ class KnowledgeView {
 
       const subcategoryButton = event.target.closest('[data-subcategory]');
       if (subcategoryButton) {
-        this.activeSubcategory = subcategoryButton.dataset.subcategory;
+        const subcategory = subcategoryButton.dataset.subcategory;
+        this.activeSubcategory = subcategory;
         this._invalidateFilterCache();
         this._updateContent();
         this._scrollToTop();
+        this._focusFilterAfterRender(`[data-subcategory="${subcategory}"]`);
         return;
       }
 
@@ -814,6 +856,7 @@ class KnowledgeView {
     this.container.addEventListener('change', (event) => {
       const select = event.target.closest('.knowledge-select');
       if (!select) return;
+      this._clearKnowledgeJumpState();
       if (select.dataset.filter === 'chapter') this.chapterFilter = select.value;
       if (select.dataset.filter === 'sort') this.sortBy = select.value;
       if (select.dataset.filter === 'voice') {
@@ -851,6 +894,11 @@ class KnowledgeView {
     const cards = Array.from(contentEl.querySelectorAll('.knowledge-card[data-id]'));
     if (!cards.length) return;
 
+    // 从当前聚焦的卡片出发，而不是永远从 -1 开始，否则第一次 ArrowDown 会跳过第一张。
+    const focusedCard = event.target.closest('.knowledge-card[data-id]');
+    const focusedIndex = focusedCard ? cards.indexOf(focusedCard) : -1;
+    if (focusedIndex >= 0) this._keyboardNavIndex = focusedIndex;
+
     const minCardWidth = 380;
     const gap = 14;
     const containerWidth = contentEl.clientWidth;
@@ -859,22 +907,30 @@ class KnowledgeView {
     switch (event.key) {
       case 'ArrowDown':
         event.preventDefault();
-        this._keyboardNavIndex = Math.min(this._keyboardNavIndex + this._keyboardNavColumnCount, cards.length - 1);
+        this._keyboardNavIndex = this._keyboardNavIndex < 0
+          ? 0
+          : Math.min(this._keyboardNavIndex + this._keyboardNavColumnCount, cards.length - 1);
         this._scrollToKeyboardNavCard(cards);
         break;
       case 'ArrowUp':
         event.preventDefault();
-        this._keyboardNavIndex = Math.max(this._keyboardNavIndex - this._keyboardNavColumnCount, 0);
+        this._keyboardNavIndex = this._keyboardNavIndex < 0
+          ? 0
+          : Math.max(this._keyboardNavIndex - this._keyboardNavColumnCount, 0);
         this._scrollToKeyboardNavCard(cards);
         break;
       case 'ArrowRight':
         event.preventDefault();
-        this._keyboardNavIndex = Math.min(this._keyboardNavIndex + 1, cards.length - 1);
+        this._keyboardNavIndex = this._keyboardNavIndex < 0
+          ? 0
+          : Math.min(this._keyboardNavIndex + 1, cards.length - 1);
         this._scrollToKeyboardNavCard(cards);
         break;
       case 'ArrowLeft':
         event.preventDefault();
-        this._keyboardNavIndex = Math.max(this._keyboardNavIndex - 1, 0);
+        this._keyboardNavIndex = this._keyboardNavIndex < 0
+          ? 0
+          : Math.max(this._keyboardNavIndex - 1, 0);
         this._scrollToKeyboardNavCard(cards);
         break;
       case 'Enter':
@@ -902,6 +958,8 @@ class KnowledgeView {
     const card = cards[this._keyboardNavIndex];
     if (card) {
       card.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+      // 让焦点跟着高亮走，Enter 才会作用于当前高亮卡片，而不是原来的卡。
+      card.querySelector('.knowledge-card-header')?.focus({ preventScroll: true });
     }
   }
 
@@ -964,16 +1022,21 @@ class KnowledgeView {
     if (!main) return;
     if (main.scrollHeight > main.clientHeight + 1) {
       main.scrollTo({ top: 0, behavior: 'instant' });
-      const sidebar = this.container.querySelector('.knowledge-sidebar');
-      if (sidebar) {
-        sidebar.scrollTo({ top: 0, behavior: 'instant' });
-      }
       return;
     }
     // 手机端条目区不单独滚动，跳到结果列表顶部
     HLMUtils.scrollElementIntoViewTop(main);
   }
 
+
+  // 从搜索建议/其他视图直接打开某条知识时，目标可能排在第一页之外；
+  // 只扩大渲染范围，不改变用户当前的类别/章回/排序。
+  _ensureJumpTargetRendered(filteredItems) {
+    const targetId = this._activeJumpTargetId;
+    if (!targetId) return;
+    const index = filteredItems.findIndex((item) => item.id === targetId);
+    if (index >= this.displayCount) this.displayCount = index + 1;
+  }
 
   navigateToFirstMatch() {
     const firstMatch = this._getFilteredItems()[0];
@@ -1021,15 +1084,19 @@ class KnowledgeView {
 
     this._clearKnowledgeJumpState({ preserveTarget: true });
 
+    // 知识卡可能比视口还高，居中会把标题顶出可视区；对齐顶部才能先看到标题。
     card.scrollIntoView({
       behavior: 'smooth',
-      block: 'center',
+      block: 'start',
       inline: 'nearest'
     });
 
     card.classList.remove('jump-highlight');
     void card.offsetWidth;
     card.classList.add('jump-highlight');
+
+    // 定位成功后清掉目标，避免后续任意筛选/搜索又被旧目标拽回去。
+    this._activeJumpTargetId = null;
 
     this._jumpHighlightTimer = window.setTimeout(() => {
       if (card.isConnected) card.classList.remove('jump-highlight');
@@ -1267,6 +1334,16 @@ class KnowledgeView {
     this.container.querySelectorAll('.knowledge-char-pill').forEach((button) => {
       button.classList.toggle('is-related', this.relatedCharacterIds.has(button.dataset.charId));
     });
+  }
+
+  // 人物高亮变化不需要重建整张知识卡列表，否则会把用户正在读的位置拉回顶部。
+  syncFacetHighlights() {
+    if (!this.container.querySelector('#knowledge-items-content')) return;
+    this._syncKnowledgeHighlights();
+    const subtitleEl = this.container.querySelector('.knowledge-results-subtitle');
+    if (!subtitleEl) return;
+    const total = this._getFilteredItems().length;
+    subtitleEl.innerHTML = this._buildResultsSubtitle(Math.min(this.displayCount, total), total);
   }
 
   _invalidateFilterCache() {

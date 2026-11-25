@@ -65,11 +65,37 @@ class ListView {
     this.relatedCharacterIds = new Set(ids);
     this.syncFacetHighlights();
     
-    // If there's a new single character selected, scroll to it
+    // If there's a new single character selected, reveal it (may need to render past the first page).
     if (ids.length === 1 && !previousIds.has(ids[0])) {
       // Defer scroll to allow DOM to update
-      setTimeout(() => this._scrollToCharacter(ids[0]), 100);
+      setTimeout(() => this.revealCharacter(ids[0]), 100);
     }
+  }
+
+  /**
+   * 跨视图带人物上下文进入名录时，目标人物可能在“加载更多”之后。
+   * 只扩大当前列表渲染范围，不改动用户显式设置的家族/性别/搜索条件。
+   */
+  ensureCharacterRendered(characterId) {
+    if (!characterId) return false;
+    const listEl = this.container.querySelector('#list-view-content');
+    if (!listEl) return false;
+    if (this.container.querySelector(`[data-char-id="${characterId}"]`)) return true;
+
+    const chars = this._getFilteredCharacters();
+    const index = chars.findIndex((character) => character.id === characterId);
+    if (index < 0) return false;
+    if (index >= this.visibleCount) {
+      this.visibleCount = index + 1;
+      this._renderList();
+    }
+    return !!this.container.querySelector(`[data-char-id="${characterId}"]`);
+  }
+
+  revealCharacter(characterId) {
+    if (!this.ensureCharacterRendered(characterId)) return false;
+    this._scrollToCharacter(characterId);
+    return true;
   }
 
   syncFacetHighlights() {
@@ -80,6 +106,20 @@ class ListView {
       const charId = item.dataset.charId;
       item.classList.toggle('is-related', this.relatedCharacterIds.has(charId));
     });
+    this._updateStats();
+  }
+
+  _updateStats() {
+    const stats = this.container.querySelector('.list-stats');
+    if (!stats) return;
+    const chars = this._getFilteredCharacters();
+    const visibleChars = chars.slice(0, this.visibleCount);
+    stats.outerHTML = this._renderStats(chars, visibleChars);
+  }
+
+  _renderStats(chars, visibleChars) {
+    const visibleRelated = visibleChars.filter((character) => this.relatedCharacterIds.has(character.id)).length;
+    return `<div class="list-stats">共 ${chars.length} 位人物${chars.length > visibleChars.length ? ` · 已显示 ${visibleChars.length}` : ''}${visibleRelated ? ` · 已高亮 ${visibleRelated} 位关联人物，不影响当前筛选` : ''}</div>`;
   }
 
   render() {
@@ -185,9 +225,41 @@ class ListView {
     controls.addEventListener('click', (e) => {
       const btn = e.target.closest('.list-view-btn');
       if (!btn) return;
+      const listEl = this.container.querySelector('.list-content');
+      const listRect = listEl?.getBoundingClientRect();
+      const visibleItems = listEl && listRect
+        ? [...listEl.querySelectorAll('[data-char-id]')]
+        : [];
+      // 优先锚定第一条完整可见的人物；没有时退回第一条露出底部的人物。
+      const anchor = visibleItems.find((item) => item.getBoundingClientRect().top >= listRect.top - 1)
+        || visibleItems.find((item) => item.getBoundingClientRect().bottom > listRect.top + 1)
+        || null;
+      const anchorId = anchor?.dataset.charId || null;
+
       this.viewMode = btn.dataset.mode;
       controls.querySelectorAll('.list-view-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === this.viewMode));
       this._renderList();
+
+      // 卡片/紧凑两种模式行高完全不同；等新布局完成后再把同一个人物对到列表顶部，
+      // 不追求像素级偏移，但保证用户不会突然落到另一批人物。
+      if (listEl && anchorId) {
+        const alignAnchor = () => {
+          if (!listEl.isConnected) return;
+          const nextAnchor = listEl.querySelector(`[data-char-id="${anchorId}"]`);
+          if (!nextAnchor) return;
+          const nextTop = listEl.scrollTop + nextAnchor.getBoundingClientRect().top - listEl.getBoundingClientRect().top;
+          const maxTop = listEl.scrollHeight - listEl.clientHeight;
+          listEl.scrollTo({
+            top: Math.max(0, Math.min(maxTop, nextTop - 8)),
+            behavior: 'instant'
+          });
+        };
+        window.requestAnimationFrame(() => {
+          alignAnchor();
+          // 新列表的行高可能在本帧后仍有一次布局修正，再对齐一次。
+          window.setTimeout(alignAnchor, 80);
+        });
+      }
     });
   }
 
@@ -274,7 +346,7 @@ class ListView {
     }
 
     // Stats bar
-    const statsHtml = `<div class="list-stats">共 ${chars.length} 位人物${chars.length > visibleChars.length ? ` · 已显示 ${visibleChars.length}` : ''}${this.relatedCharacterIds.size ? ` · 已高亮 ${this.relatedCharacterIds.size} 位关联人物，不影响当前筛选` : ''}</div>`;
+    const statsHtml = this._renderStats(chars, visibleChars);
 
     if (this.viewMode === 'card') {
       listEl.innerHTML = statsHtml + `<div class="list-card-grid">${visibleChars.map(c => this._renderCardItem(c)).join('')}</div>${chars.length > visibleChars.length ? `<button class="list-load-more" data-action="load-more">加载更多（${visibleChars.length}/${chars.length}）</button>` : ''}`;
@@ -433,13 +505,23 @@ class ListView {
     
     if (!target) return;
     
-    // Scroll into view only if target is outside viewport to prevent jitter.
+    // 桌面端自己计算 .list-content 的滚动偏移；手机上列表不单独滚动，则按视口判断。
     const listContent = this.container.querySelector('.list-content');
     if (listContent) {
       const containerRect = listContent.getBoundingClientRect();
       const targetRect = target.getBoundingClientRect();
-      const fullyVisible = targetRect.top >= containerRect.top && targetRect.bottom <= containerRect.bottom;
-      if (!fullyVisible) {
+      if (listContent.scrollHeight > listContent.clientHeight + 1) {
+        const fullyVisible = targetRect.top >= containerRect.top && targetRect.bottom <= containerRect.bottom;
+        if (!fullyVisible) {
+          const targetTop = listContent.scrollTop + targetRect.top - containerRect.top;
+          const centered = targetTop - (listContent.clientHeight - targetRect.height) / 2;
+          const maxTop = listContent.scrollHeight - listContent.clientHeight;
+          listContent.scrollTo({
+            top: Math.max(0, Math.min(maxTop, centered)),
+            behavior: 'instant'
+          });
+        }
+      } else if (targetRect.top < 0 || targetRect.bottom > window.innerHeight) {
         target.scrollIntoView({ behavior: 'auto', block: 'center' });
       }
     }
