@@ -1,4 +1,6 @@
-import { chromium } from 'playwright';
+import { loadPlaywright } from './scripts/playwright-loader.mjs';
+
+const { chromium } = await loadPlaywright();
 
 function assert(condition, message) { if (!condition) throw new Error(`FAIL: ${message}`); }
 

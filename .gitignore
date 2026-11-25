@@ -163,3 +163,5 @@ scripts/*
 !scripts/sync-chapter-titles.mjs
 !scripts/check-audio.mjs
 !scripts/subset-fonts.py
+!scripts/playwright-loader.mjs
+!scripts/run-tests.mjs
