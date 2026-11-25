@@ -189,6 +189,7 @@ class HongLouMengApp {
       globalSearchOverlay: document.getElementById('global-search-overlay'),
       globalSearchInput: document.getElementById('global-search-input'),
       globalSearchResults: document.getElementById('global-search-results'),
+      globalSearchStatus: document.getElementById('global-search-status'),
       globalSearchClose: document.getElementById('global-search-close'),
       graphSearchInput: document.getElementById('graph-search-input'),
       graphSearchResults: document.getElementById('graph-search-results'),
@@ -650,6 +651,13 @@ class HongLouMengApp {
       // 弹层打开时，除 Escape（上方已处理）外不再响应全局快捷键，
       // 否则 ⌘K/数字键会把焦点或视图切到弹层背后。
       if (this.isExplorationOpen || this.isCardOpen || this.isDiscoveryOpen || document.querySelector('.keyboard-help-modal')) {
+        return;
+      }
+
+      // Cmd+Shift+K / Ctrl+Shift+K 打开全站搜索。
+      if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        this._openGlobalSearch();
         return;
       }
 
@@ -2280,6 +2288,7 @@ _createFontAndThemeControls() {
             </div>
             <div class="keyboard-help-section">
               <h4>通用操作</h4>
+              <div class="keyboard-shortcut"><kbd>⌘⇧K</kbd><span>打开全站搜索</span></div>
               <div class="keyboard-shortcut"><kbd>⌘K</kbd><span>聚焦当前视图搜索框</span></div>
               <div class="keyboard-shortcut"><kbd>/</kbd><span>聚焦当前视图搜索框</span></div>
               <div class="keyboard-shortcut"><kbd>Esc</kbd><span>逐层关闭弹层</span></div>
@@ -2809,11 +2818,13 @@ _createFontAndThemeControls() {
     this._updateActionStates();
   }
 
-  _onSearch(query, resultsEl) {
+  _onSearch(query, resultsEl, options = {}) {
     this.facetState.query = query;
     this._updateSearchInputState();
 
     const activeResultsEl = resultsEl || this.els.searchResults;
+    const allowedTypes = options.types || null;
+    const allow = (type) => !allowedTypes || allowedTypes.has(type);
     const clean = query.trim();
     if (!clean) {
       activeResultsEl.classList.remove('active');
@@ -2843,7 +2854,7 @@ _createFontAndThemeControls() {
     this.graph.highlightSearch(clean);
 
     const resultGroups = [];
-    if (relationshipQuery) {
+    if (relationshipQuery && allow('relationship')) {
       resultGroups.push({
         title: '关系问题',
         items: [{
@@ -2855,7 +2866,7 @@ _createFontAndThemeControls() {
         }]
       });
     }
-    if (matchedCharacters.length) {
+    if (matchedCharacters.length && allow('character')) {
       resultGroups.push({
         title: '人物',
         items: matchedCharacters.map((character) => {
@@ -2869,7 +2880,7 @@ _createFontAndThemeControls() {
         })
       });
     }
-    if (matchedTopics.length) {
+    if (matchedTopics.length && allow('topic')) {
       resultGroups.push({
         title: '专题',
         items: matchedTopics.map((topic) => ({
@@ -2880,7 +2891,7 @@ _createFontAndThemeControls() {
         }))
       });
     }
-    if (matchedStages.length) {
+    if (matchedStages.length && allow('stage')) {
       resultGroups.push({
         title: '阅读阶段',
         items: matchedStages.map((stage) => ({
@@ -2891,7 +2902,7 @@ _createFontAndThemeControls() {
         }))
       });
     }
-    if (matchedKnowledge.length) {
+    if (matchedKnowledge.length && allow('knowledge')) {
       resultGroups.push({
         title: '知识',
         items: matchedKnowledge.map((item) => ({
@@ -2902,7 +2913,7 @@ _createFontAndThemeControls() {
         }))
       });
     }
-    if (matchedChapters.length) {
+    if (matchedChapters.length && allow('chapter')) {
       resultGroups.push({
         title: '章回',
         items: matchedChapters.map((ch) => ({
@@ -2921,6 +2932,7 @@ _createFontAndThemeControls() {
     if (clean.length >= 2) {
       this._saveSearchHistory(clean);
     }
+    return resultGroups;
   }
 
   _saveSearchHistory(query) {
@@ -4531,6 +4543,7 @@ _createFontAndThemeControls() {
       globalSearchOverlay,
       globalSearchInput,
       globalSearchResults,
+      globalSearchStatus,
       globalSearchClose
     } = this.els;
     if (!globalSearchToggle || !globalSearchOverlay || !globalSearchInput || !globalSearchResults) return;
@@ -4552,17 +4565,27 @@ _createFontAndThemeControls() {
       if (event.key === 'Tab') this._trapTabKey(globalSearchOverlay, event);
     });
 
+    this._globalSearchType = 'all';
+    this.els.globalSearchFilters = [...globalSearchOverlay.querySelectorAll('[data-search-type]')];
+    this.els.globalSearchFilters.forEach((button) => {
+      button.addEventListener('click', () => {
+        this._globalSearchType = button.dataset.searchType || 'all';
+        this.els.globalSearchFilters.forEach((item) => {
+          item.classList.toggle('active', item === button);
+        });
+        if (globalSearchInput.value.trim()) this._runGlobalSearch();
+        else this._renderGlobalSearchHistory();
+      });
+    });
+
     globalSearchInput.addEventListener('input', () => {
       window.clearTimeout(this._globalSearchTimer);
       const query = globalSearchInput.value.trim();
       if (!query) {
-        globalSearchResults.innerHTML = '';
-        globalSearchResults.classList.remove('active');
+        this._renderGlobalSearchHistory();
         return;
       }
-      this._globalSearchTimer = window.setTimeout(() => {
-        this._onSearch(query, globalSearchResults);
-      }, 180);
+      this._globalSearchTimer = window.setTimeout(() => this._runGlobalSearch(), 180);
     });
 
     globalSearchInput.addEventListener('keydown', (event) => {
@@ -4571,7 +4594,7 @@ _createFontAndThemeControls() {
       if (!query) return;
       if (event.key === 'Enter' || !globalSearchResults.querySelector('[data-type]')) {
         window.clearTimeout(this._globalSearchTimer);
-        this._onSearch(query, globalSearchResults);
+        this._runGlobalSearch();
       }
       const first = globalSearchResults.querySelector('[data-type]');
       if (first) {
@@ -4593,6 +4616,66 @@ _createFontAndThemeControls() {
     });
   }
 
+  _getGlobalSearchTypes() {
+    const type = this._globalSearchType || 'all';
+    if (type === 'character') return new Set(['character', 'relationship']);
+    if (type === 'topic') return new Set(['topic', 'stage']);
+    if (type === 'all') return null;
+    return new Set([type]);
+  }
+
+  _runGlobalSearch() {
+    const input = this.els.globalSearchInput;
+    const results = this.els.globalSearchResults;
+    const status = this.els.globalSearchStatus;
+    if (!input || !results) return;
+    const query = input.value.trim();
+    if (!query) {
+      this._renderGlobalSearchHistory();
+      return;
+    }
+    this._onSearch(query, results, { types: this._getGlobalSearchTypes() });
+    const count = results.querySelectorAll('[data-type]').length;
+    if (status) status.textContent = count ? `找到 ${count} 条结果` : '没有找到匹配内容';
+  }
+
+  _renderGlobalSearchHistory() {
+    const results = this.els.globalSearchResults;
+    const status = this.els.globalSearchStatus;
+    if (!results) return;
+    results.innerHTML = '';
+    results.classList.remove('active');
+    if (status) status.textContent = '输入关键词开始搜索，或选择最近搜索';
+
+    const history = this._getSearchHistory().slice(0, 6);
+    if (!history.length) {
+      results.innerHTML = '<div class="global-search-empty">可以试试：葬花吟、第5回、宝玉和黛玉。</div>';
+      return;
+    }
+
+    results.innerHTML = `
+      <div class="search-history-section">
+        <div class="search-history-header">
+          <span class="search-history-title">最近搜索</span>
+          <button type="button" class="search-history-clear" data-clear-global-history>清空</button>
+        </div>
+        ${history.map((query) => `<button type="button" class="search-history-item" data-global-history="${this._escapeHtmlAttr(query)}">${this._escapeHtml(query)}</button>`).join('')}
+      </div>
+    `;
+    results.classList.add('active');
+    results.querySelectorAll('[data-global-history]').forEach((item) => {
+      item.addEventListener('click', () => {
+        this.els.globalSearchInput.value = item.dataset.globalHistory;
+        this._runGlobalSearch();
+        this.els.globalSearchInput.focus({ preventScroll: true });
+      });
+    });
+    results.querySelector('[data-clear-global-history]')?.addEventListener('click', () => {
+      this._clearSearchHistory();
+      this._renderGlobalSearchHistory();
+    });
+  }
+
   _openGlobalSearch() {
     const {
       globalSearchOverlay,
@@ -4605,11 +4688,16 @@ _createFontAndThemeControls() {
     globalSearchOverlay.classList.add('active');
     globalSearchOverlay.setAttribute('aria-hidden', 'false');
     document.body.classList.add('global-search-open');
+    this._globalSearchType = 'all';
+    this.els.globalSearchFilters?.forEach((item) => {
+      item.classList.toggle('active', item.dataset.searchType === 'all');
+    });
     if (globalSearchInput) globalSearchInput.value = '';
     if (globalSearchResults) {
       globalSearchResults.innerHTML = '';
       globalSearchResults.classList.remove('active');
     }
+    this._renderGlobalSearchHistory();
     requestAnimationFrame(() => {
       globalSearchInput?.focus({ preventScroll: true });
       globalSearchToggle?.setAttribute('aria-expanded', 'true');

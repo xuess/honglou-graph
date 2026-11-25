@@ -278,6 +278,14 @@
       <input id="global-search-input" class="global-search-input" type="text" placeholder="搜索人物、知识、章回、专题或阶段…" autocomplete="off" aria-label="全站搜索">
       <button id="global-search-close" class="global-search-close" type="button" aria-label="关闭全站搜索">✕</button>
     </div>
+    <div class="global-search-filters" role="group" aria-label="搜索类型">
+      <button type="button" class="global-search-filter active" data-search-type="all">全部</button>
+      <button type="button" class="global-search-filter" data-search-type="character">人物</button>
+      <button type="button" class="global-search-filter" data-search-type="knowledge">知识</button>
+      <button type="button" class="global-search-filter" data-search-type="chapter">章回</button>
+      <button type="button" class="global-search-filter" data-search-type="topic">专题</button>
+    </div>
+    <div id="global-search-status" class="global-search-status" role="status" aria-live="polite"></div>
     <div id="global-search-results" class="global-search-results" aria-live="polite"></div>
     <div class="global-search-hint">结果来自人物、知识、章回、专题和阅读阶段，点击可直接跳转。</div>
   </div>
