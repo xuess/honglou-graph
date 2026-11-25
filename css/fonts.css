@@ -2,7 +2,8 @@
  * 字体声明。
  *
  * 全部使用 assets/fonts/subset/ 下的 WOFF2 子集（由 scripts/subset-fonts.py 生成）：
- * 完整 TTF 合计约 103 MB，首屏实际会拉取其中 4 个（约 49 MB）；子集后同样 4 个约 2.5 MB。
+ * 完整 TTF 合计约 103 MB，子集后正文/标题字重合计约 1.3 MB。
+ * ZCOOL 装饰字体拆到 display-font.css，通过非阻塞样式表延迟加载。
  * 字符集覆盖 index.html / js / css / data 里的全部字符，够用且不会出现豆腐块。
  *
  * 修改了数据或文案后，重跑：npm run subset:fonts  （需要 fonttools + brotli）
@@ -55,11 +56,4 @@
 }
 /* 600 / 900 不再单独声明：浏览器会用 700 承接 600，减少一个约 600KB 的字体请求。 */
 
-/* ── ZCOOL XiaoWei（图谱节点字、印章式标题） ──────────────────── */
-@font-face {
-  font-family: 'ZCOOL XiaoWei';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(../assets/fonts/subset/zcool-xiaowei-400.woff2?v=a3a442dba3) format('woff2');
-}
+/* ZCOOL XiaoWei 移至 display-font.css，避免 800KB 装饰字体阻塞首屏。 */
