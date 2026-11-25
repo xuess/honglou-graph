@@ -66,11 +66,12 @@ class KnowledgeView {
   }
 
   _getBaseDisplayCount() {
-    return this._isLowPerformanceMode() ? 24 : 40;
+    // 默认折叠卡片后 20/12 条已经够浏览，先让“加载更多”和后续分类保持可达。
+    return this._isLowPerformanceMode() ? 12 : 20;
   }
 
   _getLoadStep() {
-    return this._isLowPerformanceMode() ? 24 : 40;
+    return this._isLowPerformanceMode() ? 12 : 20;
   }
 
   _getDeferredChunkSize() {
@@ -309,7 +310,11 @@ class KnowledgeView {
                 <div class="knowledge-results-title">知识条目</div>
                 <div class="knowledge-results-subtitle">${this._buildResultsSubtitle(Math.min(initialDisplayCount, filteredItems.length), filteredItems.length)}</div>
               </div>
-              <button class="knowledge-clear-btn" data-action="clear-filters">清空筛选</button>
+              <div class="knowledge-results-actions">
+                <button class="knowledge-load-more-top" data-action="load-more" ${filteredItems.length > initialDisplayCount ? '' : 'hidden'}>加载更多</button>
+                <button class="knowledge-expand-btn" data-action="toggle-all-cards">展开全部</button>
+                <button class="knowledge-clear-btn" data-action="clear-filters">清空筛选</button>
+              </div>
             </div>
 
             <div class="knowledge-grid" id="knowledge-items-content">
@@ -372,6 +377,7 @@ class KnowledgeView {
     if (subtitleEl) {
       subtitleEl.innerHTML = this._buildResultsSubtitle(Math.min(this.displayCount, filteredItems.length), filteredItems.length);
     }
+    this._syncResultsActions(filteredItems);
 
     this._syncSubcategoryChips();
     this._updateCategoryActiveState();
@@ -388,6 +394,52 @@ class KnowledgeView {
     if (chapterSelect) chapterSelect.value = this.chapterFilter;
     const sortSelect = this.container.querySelector('[data-filter="sort"]');
     if (sortSelect) sortSelect.value = this.sortBy;
+  }
+
+  _syncResultsActions(filteredItems = this._getFilteredItems()) {
+    const loadMoreButton = this.container.querySelector('.knowledge-load-more-top');
+    if (loadMoreButton) {
+      const remaining = Math.max(0, filteredItems.length - this.displayCount);
+      loadMoreButton.hidden = remaining === 0;
+      loadMoreButton.textContent = remaining ? `加载更多（还剩 ${remaining} 条）` : '加载更多';
+    }
+    this._syncExpandAllLabel();
+  }
+
+  _syncExpandAllLabel() {
+    const button = this.container.querySelector('[data-action="toggle-all-cards"]');
+    if (!button) return;
+    const cards = [...this.container.querySelectorAll('#knowledge-items-content .knowledge-card[data-id]')];
+    const allExpanded = cards.length > 0 && cards.every((card) => this.expandedIds.has(card.dataset.id));
+    button.textContent = allExpanded ? '收起全部' : '展开全部';
+  }
+
+  _setCardExpandedState(card, expanded) {
+    if (!card) return;
+    const id = card.dataset.id;
+    if (!id) return;
+    if (expanded) this.expandedIds.add(id);
+    else this.expandedIds.delete(id);
+    card.classList.toggle('expanded', expanded);
+    const header = card.querySelector('.knowledge-card-header');
+    if (header) {
+      header.setAttribute('aria-expanded', String(expanded));
+      header.title = expanded ? '点击收起' : '点击展开';
+    }
+    const toggle = card.querySelector('.knowledge-card-toggle');
+    if (toggle) toggle.textContent = expanded ? '▾' : '▸';
+  }
+
+  _toggleAllCards() {
+    const contentEl = this.container.querySelector('#knowledge-items-content');
+    if (!contentEl) return;
+    const cards = [...contentEl.querySelectorAll('.knowledge-card[data-id]')];
+    if (!cards.length) return;
+    const shouldExpand = cards.some((card) => !this.expandedIds.has(card.dataset.id));
+    cards.forEach((card) => this._setCardExpandedState(card, shouldExpand));
+    this._syncExpandAllLabel();
+    this._applyMasonryLayout(contentEl);
+    this._scheduleTextLayoutPass();
   }
 
   // 分类变化后细分主题也要跟着换，否则会留下上一分类的子类并筛出 0 条。
@@ -617,9 +669,9 @@ class KnowledgeView {
     const relatedCharacters = (item.relatedCharacters || [])
       .map((id) => this.characterMap.get(id))
       .filter(Boolean);
-    // 默认展开（符合“边读边查”的主场景），点击标题可折叠；折叠状态记在 expandedIds 里，
-    // 重新筛选/渲染后仍然保持，不会突然全部弹开。
-    const expanded = !this.expandedIds.has(item.id);
+    // 默认折叠成摘要，先让用户快速扫过条目；点击标题展开，展开状态记在 expandedIds 里，
+    // 重新筛选/渲染后仍然保持。
+    const expanded = this.expandedIds.has(item.id);
     const relatedCharacterLimit = this._isLowPerformanceMode() ? 3 : 4;
     const displayContent = item.content || '';
     const sourceNote = item.sourceNote || '';
@@ -638,6 +690,7 @@ class KnowledgeView {
               ${sourceNote ? `<span class="knowledge-card-source ${sourceClass}">${this._escapeHtml(sourceNote)}</span>` : ''}
             </div>
           </div>
+          <span class="knowledge-card-toggle" aria-hidden="true">${expanded ? '▾' : '▸'}</span>
         </div>
 
         <div class="knowledge-card-content">${this._highlightText(displayContent || '')}</div>
@@ -686,13 +739,15 @@ class KnowledgeView {
 
   /**
    * 切换单张卡片的展开状态，返回切换后是否展开。
-   * expandedIds 存的是「被折叠」的 id，因为默认是展开的。
+   * expandedIds 存的是「被显式展开」的 id，因为默认是折叠摘要。
    */
   _toggleCardExpanded(cardId) {
-    const collapsed = this.expandedIds.has(cardId);
-    if (collapsed) this.expandedIds.delete(cardId);
-    else this.expandedIds.add(cardId);
-    return collapsed;
+    if (this.expandedIds.has(cardId)) {
+      this.expandedIds.delete(cardId);
+      return false;
+    }
+    this.expandedIds.add(cardId);
+    return true;
   }
 
   _canSpeak(text) {
@@ -747,9 +802,8 @@ class KnowledgeView {
         const cardId = card?.dataset.id;
         if (cardId) {
           const nowExpanded = this._toggleCardExpanded(cardId);
-          card.classList.toggle('expanded', nowExpanded);
-          cardHeader.setAttribute('aria-expanded', String(nowExpanded));
-          cardHeader.title = nowExpanded ? '点击收起' : '点击展开';
+          this._setCardExpandedState(card, nowExpanded);
+          this._syncExpandAllLabel();
           // 瀑布流卡片是绝对定位的；折叠/展开后必须重排后续卡片，否则会留下大块空洞。
           const contentEl = this.container.querySelector('#knowledge-items-content');
           if (contentEl) {
@@ -828,6 +882,10 @@ class KnowledgeView {
       if (!actionButton) return;
       if (actionButton.dataset.action === 'load-more') {
         this._loadMore();
+        return;
+      }
+      if (actionButton.dataset.action === 'toggle-all-cards') {
+        this._toggleAllCards();
         return;
       }
       if (actionButton.dataset.action === 'toggle-more-filters') {
@@ -992,6 +1050,7 @@ class KnowledgeView {
     if (subtitleEl) {
       subtitleEl.innerHTML = this._buildResultsSubtitle(Math.min(this.displayCount, filteredItems.length), filteredItems.length);
     }
+    this._syncResultsActions(filteredItems);
 
     this._syncKnowledgeHighlights();
   }
@@ -1083,6 +1142,10 @@ class KnowledgeView {
     if (!card) return false;
 
     this._clearKnowledgeJumpState({ preserveTarget: true });
+    // 跳转目标自动展开，确保用户看到的是正文而不是一张折叠摘要。
+    this._setCardExpandedState(card, true);
+    this._syncExpandAllLabel();
+    this._scheduleTextLayoutPass();
 
     // 知识卡可能比视口还高，居中会把标题顶出可视区；对齐顶部才能先看到标题。
     card.scrollIntoView({

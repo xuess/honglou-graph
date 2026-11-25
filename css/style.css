@@ -4829,6 +4829,17 @@ body.view-knowledge .main-container {
   min-width: 0;
 }
 
+.knowledge-card-toggle {
+  flex-shrink: 0;
+  align-self: center;
+  width: 24px;
+  text-align: center;
+  color: var(--color-primary);
+  font-size: 1.05rem;
+  line-height: 1;
+  opacity: 0.72;
+}
+
 .knowledge-card-title {
   font-family: var(--font-title);
   color: var(--color-primary);
@@ -6019,8 +6030,17 @@ body.panel-resizing * {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 12px;
   overflow: hidden;
+}
+
+.knowledge-results-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
 }
 
 .knowledge-results-head > div {
@@ -6040,7 +6060,9 @@ body.panel-resizing * {
   margin-top: 2px;
 }
 
-.knowledge-clear-btn {
+.knowledge-clear-btn,
+.knowledge-expand-btn,
+.knowledge-load-more-top {
   flex-shrink: 0;
   padding: 7px 14px;
   border: 1px solid rgba(139,37,0,0.25);
@@ -6055,9 +6077,15 @@ body.panel-resizing * {
   white-space: nowrap;
 }
 
-.knowledge-clear-btn:hover {
+.knowledge-clear-btn:hover,
+.knowledge-expand-btn:hover,
+.knowledge-load-more-top:hover {
   background: var(--color-primary);
   color: var(--color-cream);
+}
+
+.knowledge-load-more-top[hidden] {
+  display: none;
 }
 
 .knowledge-card-subcategory {
