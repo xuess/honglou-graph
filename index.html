@@ -40,6 +40,7 @@
     </div>
 
     <div class="header-right" id="header-right">
+      <button id="global-search-toggle" class="header-search-btn" type="button" aria-label="全站搜索" aria-expanded="false" title="全站搜索">🔍</button>
       <!-- Theme & font controls injected here by JS -->
     </div>
   </header>
@@ -263,6 +264,19 @@
     <button id="path-panel-close" class="path-panel-close" aria-label="关闭路径面板">✕</button>
   </div>
   <div id="path-chain" class="path-chain"></div>
+</div>
+
+<!-- Global search across all views -->
+<div id="global-search-overlay" class="global-search-overlay" role="dialog" aria-modal="true" aria-label="全站搜索" aria-hidden="true">
+  <div class="global-search-dialog">
+    <div class="global-search-bar">
+      <span class="global-search-icon" aria-hidden="true">🔍</span>
+      <input id="global-search-input" class="global-search-input" type="text" placeholder="搜索人物、知识、章回、专题或阶段…" autocomplete="off" aria-label="全站搜索">
+      <button id="global-search-close" class="global-search-close" type="button" aria-label="关闭全站搜索">✕</button>
+    </div>
+    <div id="global-search-results" class="global-search-results" aria-live="polite"></div>
+    <div class="global-search-hint">结果来自人物、知识、章回、专题和阅读阶段，点击可直接跳转。</div>
+  </div>
 </div>
 
 <!-- Exploration Dialog (first-visit path, data policy, character pages) -->

@@ -162,6 +162,7 @@ class HongLouMengApp {
       this._initGraphHint();
       this._initDiscovery();
       this._initExploration();
+      this._initGlobalSearch();
       this._initScrollPassthrough();
       this._initPathPanel();
       this._restoreRecentBrowsing();
@@ -183,6 +184,11 @@ class HongLouMengApp {
       knowledgeContainer: document.getElementById('knowledge-container'),
       searchInput: document.getElementById('search-input'),
       searchResults: document.getElementById('search-results'),
+      globalSearchToggle: document.getElementById('global-search-toggle'),
+      globalSearchOverlay: document.getElementById('global-search-overlay'),
+      globalSearchInput: document.getElementById('global-search-input'),
+      globalSearchResults: document.getElementById('global-search-results'),
+      globalSearchClose: document.getElementById('global-search-close'),
       graphSearchInput: document.getElementById('graph-search-input'),
       graphSearchResults: document.getElementById('graph-search-results'),
       sidebarSearchResults: document.getElementById('sidebar-search-results'),
@@ -3059,6 +3065,7 @@ _createFontAndThemeControls() {
         this.els.graphSearchResults?.classList.remove('active');
         this.els.searchResults?.classList.remove('active');
         this._closeMobileSearch();
+        this._closeGlobalSearch?.({ restoreFocus: false });
       });
     });
   }
@@ -3796,10 +3803,10 @@ _createFontAndThemeControls() {
           ${character.personality ? `<div class="card-section"><div class="card-section-title">性格特征</div><div class="card-personality">${character.personality}</div></div>` : ''}
           ${character.keyEvents?.length ? `<div class="card-section"><div class="card-section-title">关键事迹</div><ul class="card-events">${character.keyEvents.map((event) => `<li>${event}</li>`).join('')}</ul></div>` : ''}
           ${character.chapters?.length ? `<div class="card-section"><div class="card-section-title">相关章节</div><div class="card-chapters">${character.chapters.slice(0, 5).map((chapter) => `
-            <div class="card-chapter-item">
+            <button type="button" class="card-chapter-item" data-chapter-jump="${Number(chapter.chapter)}" title="查看第${Number(chapter.chapter)}回">
               <div class="card-chapter-header"><span class="card-chapter-number">第${chapter.chapter}回</span><span class="card-chapter-title">${chapter.title}</span></div>
               <div class="card-chapter-summary">${chapter.summary}</div>
-            </div>`).join('')}</div></div>` : ''}
+            </button>`).join('')}</div></div>` : ''}
           ${this._renderQuotesSection(character)}
         </div>
 
@@ -3898,6 +3905,15 @@ _createFontAndThemeControls() {
     const fateTimelineEl = this.els.cardContent.querySelector('.card-fate-timeline');
     if (fateTimelineEl) this._bindFateTimeline(fateTimelineEl);
 
+    this.els.cardContent.querySelectorAll('[data-chapter-jump]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const chapter = Number(button.dataset.chapterJump);
+        if (!Number.isInteger(chapter)) return;
+        this._closeCard();
+        this._openChapterView(chapter);
+      });
+    });
+
     this._openCardOverlay(`人物详情：${character.name}`);
   }
 
@@ -3935,6 +3951,13 @@ _createFontAndThemeControls() {
         cell.addEventListener('mouseenter', () => showDetail(cell));
         cell.addEventListener('mouseleave', resetDetail);
       }
+      cell.addEventListener('click', () => {
+        if (!cell.classList.contains('active')) return;
+        const chapter = Number(cell.dataset.chapter);
+        if (!Number.isInteger(chapter)) return;
+        this._closeCard();
+        this._openChapterView(chapter);
+      });
       cell.addEventListener('focus', () => {
         cells.forEach((item) => { item.tabIndex = item === cell ? 0 : -1; });
         showDetail(cell);
@@ -4507,6 +4530,114 @@ _createFontAndThemeControls() {
       // 等加载遮罩退场后再出现，避免两层遮罩叠在一起。
       window.setTimeout(() => this._showExploration('start'), 650);
     }
+  }
+
+  _initGlobalSearch() {
+    const {
+      globalSearchToggle,
+      globalSearchOverlay,
+      globalSearchInput,
+      globalSearchResults,
+      globalSearchClose
+    } = this.els;
+    if (!globalSearchToggle || !globalSearchOverlay || !globalSearchInput || !globalSearchResults) return;
+
+    const open = () => this._openGlobalSearch();
+    const close = () => this._closeGlobalSearch();
+
+    globalSearchToggle.addEventListener('click', open);
+    globalSearchClose?.addEventListener('click', close);
+    globalSearchOverlay.addEventListener('click', (event) => {
+      if (event.target === globalSearchOverlay) close();
+    });
+    globalSearchOverlay.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        close();
+        return;
+      }
+      if (event.key === 'Tab') this._trapTabKey(globalSearchOverlay, event);
+    });
+
+    globalSearchInput.addEventListener('input', () => {
+      window.clearTimeout(this._globalSearchTimer);
+      const query = globalSearchInput.value.trim();
+      if (!query) {
+        globalSearchResults.innerHTML = '';
+        globalSearchResults.classList.remove('active');
+        return;
+      }
+      this._globalSearchTimer = window.setTimeout(() => {
+        this._onSearch(query, globalSearchResults);
+      }, 180);
+    });
+
+    globalSearchInput.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowDown' && event.key !== 'Enter') return;
+      const query = globalSearchInput.value.trim();
+      if (!query) return;
+      if (event.key === 'Enter' || !globalSearchResults.querySelector('[data-type]')) {
+        window.clearTimeout(this._globalSearchTimer);
+        this._onSearch(query, globalSearchResults);
+      }
+      const first = globalSearchResults.querySelector('[data-type]');
+      if (first) {
+        event.preventDefault();
+        if (event.key === 'Enter') first.click();
+        else first.focus();
+      }
+    });
+
+    globalSearchResults.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+      const items = [...globalSearchResults.querySelectorAll('[data-type]')];
+      if (!items.length) return;
+      event.preventDefault();
+      const current = items.indexOf(document.activeElement);
+      if (event.key === 'ArrowDown') items[Math.min(current + 1, items.length - 1)]?.focus();
+      else if (current <= 0) globalSearchInput.focus({ preventScroll: true });
+      else items[current - 1]?.focus();
+    });
+  }
+
+  _openGlobalSearch() {
+    const {
+      globalSearchOverlay,
+      globalSearchInput,
+      globalSearchResults,
+      globalSearchToggle
+    } = this.els;
+    if (!globalSearchOverlay) return;
+    this._globalSearchReturnFocus = document.activeElement;
+    globalSearchOverlay.classList.add('active');
+    globalSearchOverlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('global-search-open');
+    if (globalSearchInput) globalSearchInput.value = '';
+    if (globalSearchResults) {
+      globalSearchResults.innerHTML = '';
+      globalSearchResults.classList.remove('active');
+    }
+    requestAnimationFrame(() => {
+      globalSearchInput?.focus({ preventScroll: true });
+      globalSearchToggle?.setAttribute('aria-expanded', 'true');
+    });
+  }
+
+  _closeGlobalSearch({ restoreFocus = true } = {}) {
+    const { globalSearchOverlay, globalSearchToggle } = this.els;
+    if (!globalSearchOverlay?.classList.contains('active')) return;
+    window.clearTimeout(this._globalSearchTimer);
+    globalSearchOverlay.classList.remove('active');
+    globalSearchOverlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('global-search-open');
+    globalSearchToggle?.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) {
+      const target = this._globalSearchReturnFocus?.isConnected
+        ? this._globalSearchReturnFocus
+        : globalSearchToggle;
+      target?.focus({ preventScroll: true });
+    }
+    this._globalSearchReturnFocus = null;
   }
 
   _handleExplorationAction(event) {
