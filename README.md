@@ -30,6 +30,7 @@ honglou-graph/
 ├── index.html            # 主页面（五视图 + 弹层 + 脚本加载顺序）
 ├── css/
 │   ├── fonts.css         # @font-face，指向 assets/fonts/subset/*.woff2
+│   ├── display-font.css  # 装饰标题字体，非阻塞加载
 │   └── style.css         # 全局样式（古典美学风格）
 ├── js/
 │   ├── app.js            # 主应用：路由、搜索、侧边栏、人物卡、专题/阶段
@@ -54,6 +55,9 @@ honglou-graph/
 │   ├── check-audio.mjs          # 预生成语音与文案一致性校验
 │   └── subset-fonts.py          # 字体子集化（TTF → WOFF2）
 ├── assets/fonts/         # 完整 TTF（源文件）与 subset/（实际加载的 WOFF2）
+├── test-hlm.mjs          # 回归/数据完整性测试
+├── test-scenarios.mjs    # 跨视图场景链路测试
+├── test-ux.mjs           # 交互、无障碍与资源加载测试
 └── audio/                # 朗读音频
 ```
 
@@ -85,6 +89,16 @@ npm run check:assets    # 校验资源版本号是否与内容一致
 npm run check:chapters  # 校验人物回目与 knowledge.json 的章回标题一致
 npm run check:audio     # 校验预生成语音是否存在、文案是否已过期
 npm run subset:fonts    # 数据或文案新增字符后重建 WOFF2 子集（需 fonttools + brotli）
+npm test                # 启动/复用本地服务器并跑三套浏览器回归
+npm run test:regression # 只跑数据与核心回归
+npm run test:scenarios  # 只跑跨视图场景链路
+npm run test:ux         # 只跑交互、无障碍与资源加载
+```
+
+浏览器测试依赖 Playwright（`npm install` 后自动可用）。若当前检出版本没有 `node_modules`，可复用已有环境：
+
+```bash
+PLAYWRIGHT_MODULE=/path/to/node_modules/playwright npm test
 ```
 
 `subset:fonts` 调用项目内的 `.venv/bin/python`，首次使用时先建环境：

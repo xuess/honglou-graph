@@ -1,4 +1,6 @@
-import { chromium } from 'playwright';
+import { loadPlaywright } from './scripts/playwright-loader.mjs';
+
+const { chromium } = await loadPlaywright();
 
 function assert(condition, message) {
   if (!condition) {
@@ -17,12 +19,13 @@ page.on('console', (msg) => {
 });
 
 // ============================================================
-// TC-01: App loads, Discovery visible, nav tabs = 5
+// TC-01: App loads, 首次探索入口可见, nav tabs = 5
 // ============================================================
 await page.goto(`http://localhost:${PORT}`);
-await page.evaluate(() => localStorage.removeItem('hlm-discovery-shown'));
+await page.evaluate(() => localStorage.removeItem('hlm-exploration-seen'));
 await page.reload();
-await page.waitForTimeout(4500);
+await page.waitForSelector('#exploration-overlay.active', { timeout: 8000 });
+await page.waitForTimeout(800);
 
 const outerScrollLocked = await page.evaluate(() => {
   window.scrollTo(0, 300);
@@ -30,19 +33,32 @@ const outerScrollLocked = await page.evaluate(() => {
 });
 assert(outerScrollLocked, 'Window scroll should stay locked to the app shell');
 
-const discoveryVisible = await page.isVisible('#discovery-overlay.active');
+const exploration = await page.evaluate(() => ({
+  visible: document.getElementById('exploration-overlay')?.classList.contains('active'),
+  heading: document.querySelector('.exploration-heading')?.textContent || '',
+  hasQuickPicks: document.querySelectorAll('.exploration-quick-pick').length > 0,
+  seen: localStorage.getItem('hlm-exploration-seen')
+}));
 const navTabsCount = (await page.$$('.view-nav-tab')).length;
-assert(discoveryVisible, 'Discovery panel should be visible on first visit');
+assert(exploration.visible, '探路弹层应在首次访问时可见');
+assert(/从一个人物开始/.test(exploration.heading), `探路弹层标题异常: ${exploration.heading}`);
+assert(exploration.hasQuickPicks, '探路弹层应提供常用人物入口');
+assert(exploration.seen === '1', '探路弹层显示后应记录已访问标记');
 assert(navTabsCount === 5, `Expected 5 nav tabs (timeline removed), got ${navTabsCount}`);
-console.log('✓ TC-01: App loads, Discovery visible, 5 nav tabs');
+console.log('✓ TC-01: App loads, 首次探索入口可见, 5 nav tabs');
 
 // ============================================================
-// TC-02: Character card opens with 4 nav buttons
+// TC-02: Character card opens with 2 nav buttons
 // ============================================================
-const firstDiscoveryCard = await page.$('.discovery-char-card');
-assert(!!firstDiscoveryCard, 'Discovery cards should be rendered');
-await firstDiscoveryCard.click();
-await page.waitForTimeout(1200);
+await page.click('.exploration-close');
+await page.waitForTimeout(400);
+await page.fill('#graph-search-input', '林黛玉');
+await page.waitForTimeout(500);
+await page.evaluate(() => {
+  const item = document.querySelector('.search-result-item[data-type="character"]');
+  if (item) item.click();
+});
+await page.waitForTimeout(1000);
 
 const panelVisible = await page.isVisible('#character-card-overlay.active');
 const cardNavBtnCount = (await page.$$('.card-nav-btn')).length;
@@ -89,7 +105,14 @@ console.log('✓ TC-04: List view no jitter on selection');
 // ============================================================
 // TC-05: Graph sidebar width >= 320px
 // ============================================================
-await page.click('.card-close-btn');
+// 名录点击现在会打开探索人物页；人物卡也可能同时存在，统一切到干净的图谱状态。
+await page.evaluate(() => {
+  if (document.getElementById('exploration-overlay')?.classList.contains('active')) {
+    app._closeExploration?.({ skipHistory: true });
+  }
+  const overlay = document.getElementById('character-card-overlay');
+  if (overlay?.classList.contains('active')) document.querySelector('.card-close-btn')?.click();
+});
 await page.waitForTimeout(200);
 await page.click('[data-view="graph"]');
 await page.waitForTimeout(1200);

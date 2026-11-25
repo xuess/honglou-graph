@@ -1,5 +1,9 @@
 {
   "scripts": {
+    "test": "node scripts/run-tests.mjs",
+    "test:regression": "node test-hlm.mjs",
+    "test:scenarios": "node test-scenarios.mjs",
+    "test:ux": "node test-ux.mjs",
     "validate:data": "node scripts/validate-data.mjs",
     "stamp": "node scripts/stamp-assets.mjs",
     "check:assets": "node scripts/stamp-assets.mjs --check",

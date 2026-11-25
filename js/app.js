@@ -44,6 +44,7 @@ class HongLouMengApp {
 
     this.graphState = null;
     this._skipGraphFacetOnce = false;
+    this.viewScrollPositions = new Map();
     this.recentBrowsingHistory = [];
     this.RECENT_MAX = 8;
     this.timelineFilterMode = 'single';
@@ -162,6 +163,7 @@ class HongLouMengApp {
       this._initGraphHint();
       this._initDiscovery();
       this._initExploration();
+      this._initGlobalSearch();
       this._initScrollPassthrough();
       this._initPathPanel();
       this._restoreRecentBrowsing();
@@ -183,6 +185,12 @@ class HongLouMengApp {
       knowledgeContainer: document.getElementById('knowledge-container'),
       searchInput: document.getElementById('search-input'),
       searchResults: document.getElementById('search-results'),
+      globalSearchToggle: document.getElementById('global-search-toggle'),
+      globalSearchOverlay: document.getElementById('global-search-overlay'),
+      globalSearchInput: document.getElementById('global-search-input'),
+      globalSearchResults: document.getElementById('global-search-results'),
+      globalSearchStatus: document.getElementById('global-search-status'),
+      globalSearchClose: document.getElementById('global-search-close'),
       graphSearchInput: document.getElementById('graph-search-input'),
       graphSearchResults: document.getElementById('graph-search-results'),
       sidebarSearchResults: document.getElementById('sidebar-search-results'),
@@ -255,7 +263,8 @@ class HongLouMengApp {
       timelineChapter: document.getElementById('timeline-chapter'),
       timelineMode: document.getElementById('timeline-mode'),
       timelineSpeed: document.getElementById('timeline-speed'),
-      btnTimelinePlay: document.getElementById('btn-timeline-play')
+      btnTimelinePlay: document.getElementById('btn-timeline-play'),
+      graphHelpBtn: document.getElementById('graph-help-btn')
     };
   }
 
@@ -645,6 +654,13 @@ class HongLouMengApp {
         return;
       }
 
+      // Cmd+Shift+K / Ctrl+Shift+K 打开全站搜索。
+      if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        this._openGlobalSearch();
+        return;
+      }
+
       // Cmd+K / Ctrl+K 与 / 统一聚焦「当前视图」的搜索框。
       // 旧实现只找 #graph-search-input，非图谱视图下它的祖先 display:none，focus() 静默失败。
       if (((e.metaKey || e.ctrlKey) && e.key === 'k') || e.key === '/') {
@@ -730,6 +746,8 @@ class HongLouMengApp {
     window.addEventListener('popstate', (event) => {
       this._applyStateFromUrl(event.state?.hlm || null);
     });
+
+    this.els.graphHelpBtn?.addEventListener('click', () => this._showKeyboardHelp());
 
     // Timeline slider + controls
     if (this.els.timelineRange) {
@@ -1045,6 +1063,7 @@ class HongLouMengApp {
       this.knowledgeView = new KnowledgeView(this.els.knowledgeContainer);
       this.knowledgeView.setData(this.knowledge, this.characters);
       this.knowledgeView.onCharacterClick = (characterId) => this._openCharacterPage(characterId);
+      this.knowledgeView.onChapterClick = (chapter) => this._openChapterView(chapter);
       this.knowledgeView.onTagClick = (payload) => this._handleFacetTagSelection(payload);
       this._subscribeViewToFacetStore('knowledge');
     }
@@ -1101,6 +1120,8 @@ class HongLouMengApp {
     }
 
     const previousView = this.activeView;
+    // 离开前记录当前视图的滚动位置；返回时恢复阅读位置。
+    if (previousView && previousView !== viewName) this._saveViewScrollPosition(previousView);
 
     // Save graph state when leaving graph view
     if (previousView === 'graph' && viewName !== 'graph') {
@@ -1181,8 +1202,8 @@ class HongLouMengApp {
     this._renderSearchState();
     this._renderGlobalContextBar();
 
-    // 统一使用视图内容容器作为滚动层，避免 window 级滚动与内层滚动打架。
-    this._resetViewScrollPosition(viewName, { preserveScroll });
+    // 恢复上一次离开该视图时的阅读位置；首次进入仍从顶部开始。
+    this._restoreViewScrollPosition(viewName, { preserveScroll });
     this._revealCurrentContextInView(viewName);
 
     // 初始化时不要抢先写 ?view=graph：地址栏一旦出现 view 参数，
@@ -1190,49 +1211,58 @@ class HongLouMengApp {
     if (!this._suppressHistoryPush) this._updateUrlParams();
   }
 
-  _resetViewScrollPosition(viewName, options = {}) {
+  _getViewScrollSelectors(viewName) {
+    return {
+      tree: { tree: '.tree-container' },
+      list: { list: '.list-content' },
+      chapter: {
+        main: '.chapter-main',
+        sidebar: '.chapter-sidebar',
+        directory: '.chapter-directory'
+      },
+      knowledge: {
+        main: '.knowledge-main',
+        sidebar: '.knowledge-sidebar'
+      }
+    }[viewName] || {};
+  }
+
+  _saveViewScrollPosition(viewName) {
+    const selectors = this._getViewScrollSelectors(viewName);
+    if (!Object.keys(selectors).length) return;
+    const state = {
+      mainContainer: document.querySelector('.main-container')?.scrollTop || 0
+    };
+    Object.entries(selectors).forEach(([key, selector]) => {
+      const el = document.querySelector(selector);
+      state[key] = el ? el.scrollTop : 0;
+    });
+    this.viewScrollPositions.set(viewName, state);
+  }
+
+  _restoreViewScrollPosition(viewName, options = {}) {
     const { preserveScroll = false } = options;
     this.els.body.style.minHeight = '';
+    if (viewName === 'graph' || preserveScroll) return;
 
-    if (preserveScroll) return;
+    const state = this.viewScrollPositions.get(viewName);
+    const selectors = this._getViewScrollSelectors(viewName);
+    const mainContainer = document.querySelector('.main-container');
 
-    const reset = (selector) => {
-      const el = document.querySelector(selector);
-      if (!el) return;
-      el.scrollTo({ top: 0, behavior: 'instant' });
-    };
-
-    if (viewName === 'graph') {
+    if (!state) {
+      // 首次进入该视图：保持原有的“从顶部开始”行为。
+      mainContainer?.scrollTo({ top: 0, behavior: 'instant' });
+      Object.values(selectors).forEach((selector) => {
+        document.querySelector(selector)?.scrollTo({ top: 0, behavior: 'instant' });
+      });
       return;
     }
 
-    // 手机上非图谱视图改为整页滚动，滚动发生在 .main-container；
-    // 桌面端该容器不滚动，这一步是空操作。
-    reset('.main-container');
-
-    if (viewName === 'tree') {
-      reset('.tree-container');
-      return;
-    }
-
-    if (viewName === 'list') {
-      reset('.list-content');
-      return;
-    }
-
-    if (viewName === 'chapter') {
-      reset('.chapter-main');
-      reset('.chapter-sidebar');
-      reset('.chapter-directory');
-      return;
-    }
-
-    if (viewName === 'knowledge') {
-      reset('.knowledge-main');
-      reset('.knowledge-sidebar');
-      return;
-    }
-
+    // 手机上滚动发生在 .main-container，桌面端这里是空操作。
+    mainContainer?.scrollTo({ top: state.mainContainer || 0, behavior: 'instant' });
+    Object.entries(selectors).forEach(([key, selector]) => {
+      document.querySelector(selector)?.scrollTo({ top: state[key] || 0, behavior: 'instant' });
+    });
   }
 
   /**
@@ -1448,47 +1478,10 @@ class HongLouMengApp {
   }
 
   _teardownInactiveViews(activeViewName, previousViewName) {
-    // Performance optimization: cleanup DOM of inactive views
-    // Only cleanup if the view was initialized (has content)
-    const viewCleanupMap = {
-      tree: { view: this.treeView, container: this.els.treeContainer, initialized: this.viewInitialized.tree },
-      list: { view: this.listView, container: this.els.listContainer, initialized: this.viewInitialized.list },
-      chapter: { view: this.chapterView, container: this.els.chapterContainer, initialized: this.viewInitialized.chapter },
-      knowledge: { view: this.knowledgeView, container: this.els.knowledgeContainer, initialized: this.viewInitialized.knowledge }
-    };
-
-    // Cleanup previous view if it's not the active one
-    if (previousViewName && previousViewName !== activeViewName && previousViewName !== 'graph') {
-      const prevViewInfo = viewCleanupMap[previousViewName];
-      if (prevViewInfo && prevViewInfo.initialized && prevViewInfo.container) {
-        // Cleanup timers and observers before clearing DOM
-        const view = prevViewInfo.view;
-        if (view) {
-          // 自动阅读离开回目视图后必须停止，否则会在隐藏容器里继续翻章。
-          view._stopAutoRead?.();
-          // Clear timers
-          if (view._searchTimer) window.clearTimeout(view._searchTimer);
-          if (view._deferredRenderTimer) window.clearTimeout(view._deferredRenderTimer);
-          if (view._deferredMainTimer) window.clearTimeout(view._deferredMainTimer);
-          if (view._textLayoutFrame) window.cancelAnimationFrame(view._textLayoutFrame);
-          
-          // Disconnect observers
-          if (view._layoutResizeObserver) {
-            view._layoutResizeObserver.disconnect();
-            view._layoutResizeObserver = null;
-          }
-          
-          // Reset event binding flags so they re-bind on next render
-          if (view._eventsBound !== undefined) view._eventsBound = false;
-          if (view._controlsBound !== undefined) view._controlsBound = false;
-          if (view._listClickBound !== undefined) view._listClickBound = false;
-        }
-        
-        // Clear container content to free DOM nodes
-        prevViewInfo.container.innerHTML = '';
-        // Mark as needing re-render
-        this.viewInitialized[previousViewName] = false;
-      }
+    // 保留非活动视图的 DOM，返回时才能恢复滚动位置、展开状态和筛选结果。
+    // 只停止不应在后台继续的自动阅读。
+    if (previousViewName === 'chapter' && activeViewName !== 'chapter') {
+      this.chapterView?._stopAutoRead?.();
     }
   }
 
@@ -2261,7 +2254,7 @@ _createFontAndThemeControls() {
       <div class="keyboard-help-modal" role="dialog" aria-modal="true" aria-labelledby="keyboard-help-title">
         <div class="keyboard-help-content" tabindex="-1">
           <div class="keyboard-help-header">
-            <h3 id="keyboard-help-title">键盘快捷键</h3>
+            <h3 id="keyboard-help-title">快捷键与图谱说明</h3>
             <button class="keyboard-help-close" data-close-help="true" aria-label="关闭快捷键帮助">✕</button>
           </div>
           <div class="keyboard-help-body">
@@ -2281,7 +2274,22 @@ _createFontAndThemeControls() {
               <div class="keyboard-shortcut"><kbd>Enter</kbd><span>打开当前节点</span></div>
             </div>
             <div class="keyboard-help-section">
+              <h4>图谱模式</h4>
+              <div class="keyboard-shortcut"><kbd>核心</kbd><span>重要度 4–5 的人物</span></div>
+              <div class="keyboard-shortcut"><kbd>主要</kbd><span>重要度 3 及以上的人物</span></div>
+              <div class="keyboard-shortcut"><kbd>扩展</kbd><span>重要度 2 及以上的人物</span></div>
+              <div class="keyboard-shortcut"><kbd>全部</kbd><span>全部有名人物</span></div>
+            </div>
+            <div class="keyboard-help-section">
+              <h4>章回时间线</h4>
+              <div class="keyboard-shortcut"><kbd>单回</kbd><span>只看当前章回</span></div>
+              <div class="keyboard-shortcut"><kbd>累计</kbd><span>从第 1 回到当前章回</span></div>
+              <div class="keyboard-shortcut"><kbd>慢速 / 标准 / 快速</kbd><span>自动播放的推进速度</span></div>
+              <div class="keyboard-shortcut"><kbd>全部</kbd><span>当前不限制章回范围</span></div>
+            </div>
+            <div class="keyboard-help-section">
               <h4>通用操作</h4>
+              <div class="keyboard-shortcut"><kbd>⌘⇧K</kbd><span>打开全站搜索</span></div>
               <div class="keyboard-shortcut"><kbd>⌘K</kbd><span>聚焦当前视图搜索框</span></div>
               <div class="keyboard-shortcut"><kbd>/</kbd><span>聚焦当前视图搜索框</span></div>
               <div class="keyboard-shortcut"><kbd>Esc</kbd><span>逐层关闭弹层</span></div>
@@ -2811,11 +2819,13 @@ _createFontAndThemeControls() {
     this._updateActionStates();
   }
 
-  _onSearch(query, resultsEl) {
+  _onSearch(query, resultsEl, options = {}) {
     this.facetState.query = query;
     this._updateSearchInputState();
 
     const activeResultsEl = resultsEl || this.els.searchResults;
+    const allowedTypes = options.types || null;
+    const allow = (type) => !allowedTypes || allowedTypes.has(type);
     const clean = query.trim();
     if (!clean) {
       activeResultsEl.classList.remove('active');
@@ -2845,7 +2855,7 @@ _createFontAndThemeControls() {
     this.graph.highlightSearch(clean);
 
     const resultGroups = [];
-    if (relationshipQuery) {
+    if (relationshipQuery && allow('relationship')) {
       resultGroups.push({
         title: '关系问题',
         items: [{
@@ -2857,7 +2867,7 @@ _createFontAndThemeControls() {
         }]
       });
     }
-    if (matchedCharacters.length) {
+    if (matchedCharacters.length && allow('character')) {
       resultGroups.push({
         title: '人物',
         items: matchedCharacters.map((character) => {
@@ -2871,7 +2881,7 @@ _createFontAndThemeControls() {
         })
       });
     }
-    if (matchedTopics.length) {
+    if (matchedTopics.length && allow('topic')) {
       resultGroups.push({
         title: '专题',
         items: matchedTopics.map((topic) => ({
@@ -2882,7 +2892,7 @@ _createFontAndThemeControls() {
         }))
       });
     }
-    if (matchedStages.length) {
+    if (matchedStages.length && allow('stage')) {
       resultGroups.push({
         title: '阅读阶段',
         items: matchedStages.map((stage) => ({
@@ -2893,7 +2903,7 @@ _createFontAndThemeControls() {
         }))
       });
     }
-    if (matchedKnowledge.length) {
+    if (matchedKnowledge.length && allow('knowledge')) {
       resultGroups.push({
         title: '知识',
         items: matchedKnowledge.map((item) => ({
@@ -2904,7 +2914,7 @@ _createFontAndThemeControls() {
         }))
       });
     }
-    if (matchedChapters.length) {
+    if (matchedChapters.length && allow('chapter')) {
       resultGroups.push({
         title: '章回',
         items: matchedChapters.map((ch) => ({
@@ -2923,6 +2933,7 @@ _createFontAndThemeControls() {
     if (clean.length >= 2) {
       this._saveSearchHistory(clean);
     }
+    return resultGroups;
   }
 
   _saveSearchHistory(query) {
@@ -3059,6 +3070,7 @@ _createFontAndThemeControls() {
         this.els.graphSearchResults?.classList.remove('active');
         this.els.searchResults?.classList.remove('active');
         this._closeMobileSearch();
+        this._closeGlobalSearch?.({ restoreFocus: false });
       });
     });
   }
@@ -3241,6 +3253,7 @@ _createFontAndThemeControls() {
       this.viewEverRendered.chapter = true;
     }
     this.chapterView._selectChapter(chapterNum, { align: 'center' });
+    window.requestAnimationFrame(() => this.chapterView?.focusTitle?.());
     this._updateFloatingContext(`第${chapterNum}回`);
   }
 
@@ -3795,11 +3808,11 @@ _createFontAndThemeControls() {
           ${character.outcomeVersion ? `<div class="card-section"><div class="card-section-title">结局：两个版本</div><div class="card-source-note"><div class="card-version-row"><strong>前八十回</strong><span>${this._escapeHtml(character.outcomeVersion.original || '未注明')}</span></div><div class="card-version-row"><strong>后四十回（续书）</strong><span>${this._escapeHtml(character.outcomeVersion.continuation || '未注明')}</span></div></div></div>` : ''}
           ${character.personality ? `<div class="card-section"><div class="card-section-title">性格特征</div><div class="card-personality">${character.personality}</div></div>` : ''}
           ${character.keyEvents?.length ? `<div class="card-section"><div class="card-section-title">关键事迹</div><ul class="card-events">${character.keyEvents.map((event) => `<li>${event}</li>`).join('')}</ul></div>` : ''}
-          ${character.chapters?.length ? `<div class="card-section"><div class="card-section-title">相关章节</div><div class="card-chapters">${character.chapters.slice(0, 5).map((chapter) => `
-            <div class="card-chapter-item">
+          ${character.chapters?.length ? `<div class="card-section"><div class="card-section-title">相关章节<span class="card-section-count">${character.chapters.length} 回</span></div><div class="card-chapters">${character.chapters.map((chapter) => `
+            <button type="button" class="card-chapter-item" data-chapter-jump="${Number(chapter.chapter)}" title="查看第${Number(chapter.chapter)}回" aria-label="查看第${Number(chapter.chapter)}回：${this._escapeHtmlAttr(chapter.title || '')}">
               <div class="card-chapter-header"><span class="card-chapter-number">第${chapter.chapter}回</span><span class="card-chapter-title">${chapter.title}</span></div>
               <div class="card-chapter-summary">${chapter.summary}</div>
-            </div>`).join('')}</div></div>` : ''}
+            </button>`).join('')}</div></div>` : ''}
           ${this._renderQuotesSection(character)}
         </div>
 
@@ -3898,6 +3911,15 @@ _createFontAndThemeControls() {
     const fateTimelineEl = this.els.cardContent.querySelector('.card-fate-timeline');
     if (fateTimelineEl) this._bindFateTimeline(fateTimelineEl);
 
+    this.els.cardContent.querySelectorAll('[data-chapter-jump]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const chapter = Number(button.dataset.chapterJump);
+        if (!Number.isInteger(chapter)) return;
+        this._closeCard();
+        this._openChapterView(chapter);
+      });
+    });
+
     this._openCardOverlay(`人物详情：${character.name}`);
   }
 
@@ -3935,6 +3957,13 @@ _createFontAndThemeControls() {
         cell.addEventListener('mouseenter', () => showDetail(cell));
         cell.addEventListener('mouseleave', resetDetail);
       }
+      cell.addEventListener('click', () => {
+        if (!cell.classList.contains('active')) return;
+        const chapter = Number(cell.dataset.chapter);
+        if (!Number.isInteger(chapter)) return;
+        this._closeCard();
+        this._openChapterView(chapter);
+      });
       cell.addEventListener('focus', () => {
         cells.forEach((item) => { item.tabIndex = item === cell ? 0 : -1; });
         showDetail(cell);
@@ -4507,6 +4536,190 @@ _createFontAndThemeControls() {
       // 等加载遮罩退场后再出现，避免两层遮罩叠在一起。
       window.setTimeout(() => this._showExploration('start'), 650);
     }
+  }
+
+  _initGlobalSearch() {
+    const {
+      globalSearchToggle,
+      globalSearchOverlay,
+      globalSearchInput,
+      globalSearchResults,
+      globalSearchStatus,
+      globalSearchClose
+    } = this.els;
+    if (!globalSearchToggle || !globalSearchOverlay || !globalSearchInput || !globalSearchResults) return;
+
+    const open = () => this._openGlobalSearch();
+    const close = () => this._closeGlobalSearch();
+
+    globalSearchToggle.addEventListener('click', open);
+    globalSearchClose?.addEventListener('click', close);
+    globalSearchOverlay.addEventListener('click', (event) => {
+      if (event.target === globalSearchOverlay) close();
+    });
+    globalSearchOverlay.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        close();
+        return;
+      }
+      if (event.key === 'Tab') this._trapTabKey(globalSearchOverlay, event);
+    });
+
+    this._globalSearchType = 'all';
+    this.els.globalSearchFilters = [...globalSearchOverlay.querySelectorAll('[data-search-type]')];
+    this.els.globalSearchFilters.forEach((button) => {
+      button.addEventListener('click', () => {
+        this._globalSearchType = button.dataset.searchType || 'all';
+        this.els.globalSearchFilters.forEach((item) => {
+          item.classList.toggle('active', item === button);
+        });
+        if (globalSearchInput.value.trim()) this._runGlobalSearch();
+        else this._renderGlobalSearchHistory();
+      });
+    });
+
+    globalSearchInput.addEventListener('input', () => {
+      window.clearTimeout(this._globalSearchTimer);
+      const query = globalSearchInput.value.trim();
+      if (!query) {
+        this._renderGlobalSearchHistory();
+        return;
+      }
+      this._globalSearchTimer = window.setTimeout(() => this._runGlobalSearch(), 180);
+    });
+
+    globalSearchInput.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowDown' && event.key !== 'Enter') return;
+      const query = globalSearchInput.value.trim();
+      if (!query) return;
+      if (event.key === 'Enter' || !globalSearchResults.querySelector('[data-type]')) {
+        window.clearTimeout(this._globalSearchTimer);
+        this._runGlobalSearch();
+      }
+      const first = globalSearchResults.querySelector('[data-type]');
+      if (first) {
+        event.preventDefault();
+        if (event.key === 'Enter') first.click();
+        else first.focus();
+      }
+    });
+
+    globalSearchResults.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+      const items = [...globalSearchResults.querySelectorAll('[data-type]')];
+      if (!items.length) return;
+      event.preventDefault();
+      const current = items.indexOf(document.activeElement);
+      if (event.key === 'ArrowDown') items[Math.min(current + 1, items.length - 1)]?.focus();
+      else if (current <= 0) globalSearchInput.focus({ preventScroll: true });
+      else items[current - 1]?.focus();
+    });
+  }
+
+  _getGlobalSearchTypes() {
+    const type = this._globalSearchType || 'all';
+    if (type === 'character') return new Set(['character', 'relationship']);
+    if (type === 'topic') return new Set(['topic', 'stage']);
+    if (type === 'all') return null;
+    return new Set([type]);
+  }
+
+  _runGlobalSearch() {
+    const input = this.els.globalSearchInput;
+    const results = this.els.globalSearchResults;
+    const status = this.els.globalSearchStatus;
+    if (!input || !results) return;
+    const query = input.value.trim();
+    if (!query) {
+      this._renderGlobalSearchHistory();
+      return;
+    }
+    this._onSearch(query, results, { types: this._getGlobalSearchTypes() });
+    const count = results.querySelectorAll('[data-type]').length;
+    if (status) status.textContent = count ? `找到 ${count} 条结果` : '没有找到匹配内容';
+  }
+
+  _renderGlobalSearchHistory() {
+    const results = this.els.globalSearchResults;
+    const status = this.els.globalSearchStatus;
+    if (!results) return;
+    results.innerHTML = '';
+    results.classList.remove('active');
+    if (status) status.textContent = '输入关键词开始搜索，或选择最近搜索';
+
+    const history = this._getSearchHistory().slice(0, 6);
+    if (!history.length) {
+      results.innerHTML = '<div class="global-search-empty">可以试试：葬花吟、第5回、宝玉和黛玉。</div>';
+      return;
+    }
+
+    results.innerHTML = `
+      <div class="search-history-section">
+        <div class="search-history-header">
+          <span class="search-history-title">最近搜索</span>
+          <button type="button" class="search-history-clear" data-clear-global-history>清空</button>
+        </div>
+        ${history.map((query) => `<button type="button" class="search-history-item" data-global-history="${this._escapeHtmlAttr(query)}">${this._escapeHtml(query)}</button>`).join('')}
+      </div>
+    `;
+    results.classList.add('active');
+    results.querySelectorAll('[data-global-history]').forEach((item) => {
+      item.addEventListener('click', () => {
+        this.els.globalSearchInput.value = item.dataset.globalHistory;
+        this._runGlobalSearch();
+        this.els.globalSearchInput.focus({ preventScroll: true });
+      });
+    });
+    results.querySelector('[data-clear-global-history]')?.addEventListener('click', () => {
+      this._clearSearchHistory();
+      this._renderGlobalSearchHistory();
+    });
+  }
+
+  _openGlobalSearch() {
+    const {
+      globalSearchOverlay,
+      globalSearchInput,
+      globalSearchResults,
+      globalSearchToggle
+    } = this.els;
+    if (!globalSearchOverlay) return;
+    this._globalSearchReturnFocus = document.activeElement;
+    globalSearchOverlay.classList.add('active');
+    globalSearchOverlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('global-search-open');
+    this._globalSearchType = 'all';
+    this.els.globalSearchFilters?.forEach((item) => {
+      item.classList.toggle('active', item.dataset.searchType === 'all');
+    });
+    if (globalSearchInput) globalSearchInput.value = '';
+    if (globalSearchResults) {
+      globalSearchResults.innerHTML = '';
+      globalSearchResults.classList.remove('active');
+    }
+    this._renderGlobalSearchHistory();
+    requestAnimationFrame(() => {
+      globalSearchInput?.focus({ preventScroll: true });
+      globalSearchToggle?.setAttribute('aria-expanded', 'true');
+    });
+  }
+
+  _closeGlobalSearch({ restoreFocus = true } = {}) {
+    const { globalSearchOverlay, globalSearchToggle } = this.els;
+    if (!globalSearchOverlay?.classList.contains('active')) return;
+    window.clearTimeout(this._globalSearchTimer);
+    globalSearchOverlay.classList.remove('active');
+    globalSearchOverlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('global-search-open');
+    globalSearchToggle?.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) {
+      const target = this._globalSearchReturnFocus?.isConnected
+        ? this._globalSearchReturnFocus
+        : globalSearchToggle;
+      target?.focus({ preventScroll: true });
+    }
+    this._globalSearchReturnFocus = null;
   }
 
   _handleExplorationAction(event) {

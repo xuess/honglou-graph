@@ -79,6 +79,7 @@
   flex-shrink: 0;
 }
 
+.header-search-btn,
 .header-settings-btn {
   display: flex;
   align-items: center;
@@ -94,6 +95,7 @@
   transition: var(--transition-fast);
 }
 
+.header-search-btn:hover,
 .header-settings-btn:hover {
   background: rgba(255, 255, 255, 0.22);
   color: #fff;
@@ -120,6 +122,153 @@
 
 .settings-dropdown.active {
   display: block;
+}
+
+/* 全站搜索：不切换当前视图，选中结果后再跳转。 */
+.global-search-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 10vh 16px 24px;
+  background: rgba(44,24,16,0.42);
+  backdrop-filter: blur(4px);
+}
+
+.global-search-overlay.active {
+  display: flex;
+}
+
+body.global-search-open {
+  overflow: hidden;
+}
+
+.global-search-dialog {
+  width: min(720px, 100%);
+  max-height: min(72vh, 640px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-cream);
+  border: 1px solid var(--color-border-alpha-45);
+  border-radius: 20px;
+  box-shadow: 0 24px 70px rgba(44,24,16,0.28);
+}
+
+.global-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(196,168,130,0.28);
+}
+
+.global-search-icon {
+  font-size: 1rem;
+}
+
+.global-search-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.global-search-input::placeholder {
+  color: var(--color-ink-light);
+}
+
+.global-search-close {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(139,37,0,0.08);
+  color: var(--color-primary);
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.global-search-close:hover {
+  background: var(--color-primary);
+  color: var(--color-cream);
+}
+
+.global-search-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 16px 0;
+}
+
+.global-search-filter {
+  border: 1px solid rgba(139,37,0,0.18);
+  border-radius: 999px;
+  padding: 5px 11px;
+  background: rgba(255,255,255,0.55);
+  color: var(--color-ink-light);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.global-search-filter.active,
+.global-search-filter:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-cream);
+}
+
+.global-search-status {
+  padding: 8px 16px 0;
+  color: var(--color-ink-light);
+  font-size: 0.76rem;
+}
+
+.global-search-empty {
+  padding: 28px 16px;
+  color: var(--color-ink-light);
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.global-search-results {
+  flex: 1;
+  min-height: 120px;
+  overflow-y: auto;
+  padding: 4px;
+  overscroll-behavior: contain;
+}
+
+.global-search-hint {
+  padding: 10px 16px;
+  border-top: 1px solid rgba(196,168,130,0.22);
+  color: var(--color-ink-light);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 560px) {
+  .global-search-overlay {
+    padding: 64px 12px 12px;
+  }
+
+  .global-search-dialog {
+    max-height: calc(100vh - 80px);
+  }
+
+  .global-search-close {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .settings-section + .settings-section {
@@ -412,6 +561,45 @@ html, body {
 
 html {
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body,
+  * {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 12px;
+  z-index: 20000;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-160%);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
 }
 
 body {
@@ -1911,10 +2099,30 @@ body.performance-low .tree-person-card.highlighted {
 
 .graph-importance-quick {
   display: flex;
+  align-items: center;
   gap: 2px;
   background: rgba(196,168,130,0.18);
   border-radius: 10px;
   padding: 2px;
+}
+
+.graph-help-btn {
+  width: 26px;
+  height: 26px;
+  margin-left: 3px;
+  border: 1px solid rgba(139,37,0,0.22);
+  border-radius: 50%;
+  background: rgba(255,255,255,0.58);
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.graph-help-btn:hover {
+  background: var(--color-primary);
+  color: var(--color-cream);
 }
 
 .importance-quick-btn {
@@ -2523,6 +2731,26 @@ body:not(.view-graph) .sidebar-resize-handle {
   border: 1px solid rgba(196,168,130,0.26);
 }
 
+button.card-chapter-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-body);
+  color: inherit;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+button.card-chapter-item:hover {
+  border-color: rgba(139,37,0,0.32);
+  background: rgba(255,248,238,0.92);
+}
+
+button.card-chapter-item:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 .card-summary-head {
   display: flex;
   justify-content: space-between;
@@ -2591,6 +2819,15 @@ body:not(.view-graph) .sidebar-resize-handle {
   margin-top: 14px;
   font-size: 0.8rem;
   opacity: 0.8;
+}
+
+.card-section-count {
+  margin-left: 8px;
+  color: var(--color-ink-light);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
 }
 
 .card-chapter-header {
@@ -2877,6 +3114,7 @@ body.fullscreen .graph-floating-bar {
     display: none;
   }
 
+  .header-search-btn,
   .header-settings-btn {
     width: 30px;
     height: 30px;
@@ -3317,6 +3555,73 @@ body.view-knowledge .main-container {
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
+}
+
+/* “其他人物”没有稳定的父子谱系，用人物卡片网格平铺，避免伪装成家族树。 */
+.tree-other-group + .tree-other-group {
+  margin-top: 20px;
+}
+
+.tree-other-group-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tree-other-group-title {
+  font-family: var(--font-title);
+  color: var(--color-primary);
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.tree-other-group-title span {
+  margin-left: 8px;
+  color: var(--color-ink-light);
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 400;
+}
+
+.tree-other-family-link {
+  border: 1px solid rgba(139,37,0,0.18);
+  border-radius: 999px;
+  padding: 6px 12px;
+  background: var(--color-primary-alpha-06);
+  color: var(--color-primary);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tree-other-family-link:hover {
+  background: var(--color-primary);
+  color: var(--color-cream);
+}
+
+.tree-other-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.tree-other-card {
+  border: 1px solid rgba(196,168,130,0.24);
+  border-radius: 16px;
+  background: rgba(255,248,238,0.58);
+  padding: 8px;
+}
+
+.tree-other-card .tree-person-card {
+  width: 100%;
+}
+
+.tree-other-card .tree-spouse-row {
+  padding: 4px 0 0;
 }
 
 .tree-family-tab {
@@ -4323,12 +4628,22 @@ body.view-knowledge .main-container {
   box-shadow: 0 4px 12px rgba(139,37,0,0.2);
 }
 
+/* 各视图的滚动位置由状态恢复逻辑控制，关闭浏览器的滚动锚定以免返回时被重排拽走。 */
+.main-container,
+.tree-container,
+.list-content,
+.chapter-main,
+.chapter-sidebar,
+.chapter-directory,
+.knowledge-main,
+.knowledge-sidebar {
+  overflow-anchor: none;
+}
+
 .list-content {
   padding-bottom: 24px;
   flex: 1;
   min-height: 0;
-  /* 列表模式切换会整体换 DOM；禁用滚动锚定，避免浏览器把程序化定位又拽回去。 */
-  overflow-anchor: none;
   overflow-y: auto;
   overflow-x: hidden;
   overscroll-behavior: contain;
@@ -4804,6 +5119,17 @@ body.view-knowledge .main-container {
 .knowledge-card-title-group {
   flex: 1;
   min-width: 0;
+}
+
+.knowledge-card-toggle {
+  flex-shrink: 0;
+  align-self: center;
+  width: 24px;
+  text-align: center;
+  color: var(--color-primary);
+  font-size: 1.05rem;
+  line-height: 1;
+  opacity: 0.72;
 }
 
 .knowledge-card-title {
@@ -5996,8 +6322,61 @@ body.panel-resizing * {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 12px;
   overflow: hidden;
+}
+
+.knowledge-results-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 769px) {
+  /* 桌面端滚动知识列表时，加载更多/展开/清空筛选始终留在视野内。 */
+  .knowledge-results-head {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+}
+
+.knowledge-back-to-top {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 40;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(139,37,0,0.25);
+  border-radius: 50%;
+  background: var(--color-cream);
+  color: var(--color-primary);
+  box-shadow: 0 8px 24px rgba(44,24,16,0.16);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.knowledge-back-to-top:hover {
+  background: var(--color-primary);
+  color: var(--color-cream);
+}
+
+.knowledge-back-to-top[hidden] {
+  display: none;
+}
+
+@media (max-width: 560px) {
+  .knowledge-back-to-top {
+    right: 16px;
+    bottom: 16px;
+    width: 42px;
+    height: 42px;
+  }
 }
 
 .knowledge-results-head > div {
@@ -6017,7 +6396,37 @@ body.panel-resizing * {
   margin-top: 2px;
 }
 
-.knowledge-clear-btn {
+.knowledge-active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.knowledge-active-filters[hidden] {
+  display: none;
+}
+
+.knowledge-active-filter {
+  padding: 4px 9px;
+  border: 1px solid rgba(139,37,0,0.2);
+  border-radius: 999px;
+  background: rgba(139,37,0,0.06);
+  color: var(--color-primary);
+  font-size: 0.74rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+.knowledge-active-filter:hover {
+  background: var(--color-primary);
+  color: var(--color-cream);
+}
+
+.knowledge-clear-btn,
+.knowledge-expand-btn,
+.knowledge-load-more-top {
   flex-shrink: 0;
   padding: 7px 14px;
   border: 1px solid rgba(139,37,0,0.25);
@@ -6032,9 +6441,15 @@ body.panel-resizing * {
   white-space: nowrap;
 }
 
-.knowledge-clear-btn:hover {
+.knowledge-clear-btn:hover,
+.knowledge-expand-btn:hover,
+.knowledge-load-more-top:hover {
   background: var(--color-primary);
   color: var(--color-cream);
+}
+
+.knowledge-load-more-top[hidden] {
+  display: none;
 }
 
 .knowledge-card-subcategory {
@@ -6069,6 +6484,34 @@ body.panel-resizing * {
   padding: 2px 8px;
   border-radius: 999px;
   background: rgba(196,168,130,0.12);
+}
+
+.knowledge-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.knowledge-chapter-jump {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border: 1px solid rgba(139,37,0,0.25);
+  border-radius: 999px;
+  background: var(--color-primary-alpha-06);
+  color: var(--color-primary);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.knowledge-chapter-jump:hover {
+  background: var(--color-primary);
+  color: var(--color-cream);
 }
 
 .knowledge-info-row {
@@ -8698,9 +9141,106 @@ body.fullscreen .path-display-panel {
 /* 触控/窄屏上给头部图标按钮足够大的命中区域；视觉尺寸仍由图标本身控制。 */
 @media (max-width: 768px), (pointer: coarse) {
   #sidebar-toggle,
+  .header-search-btn,
   .header-settings-btn {
     min-width: 44px;
     min-height: 44px;
+  }
+
+  /* 触屏上次要筛选/标签很容易点偏；在不改变卡片结构的前提下抬高命中区。 */
+  .knowledge-char-pill,
+  .knowledge-tag,
+  .list-card-tag,
+  .tree-spouse-pill,
+  .tree-other-family-link,
+  .chapter-point-chip,
+  .chapter-filter-mini,
+  .chapter-inline-pill,
+  .chapter-source-chip,
+  .knowledge-active-filter,
+  .card-tag.family,
+  .importance-quick-btn,
+  .timeline-select,
+  .timeline-play-btn,
+  .graph-help-btn {
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .graph-help-btn {
+    min-width: 32px;
+  }
+
+  .timeline-play-btn {
+    min-width: 32px;
+  }
+
+  .knowledge-char-pill {
+    padding: 6px 11px;
+    font-size: 0.8rem;
+  }
+
+  .knowledge-tag,
+  .list-card-tag {
+    padding: 5px 9px;
+    font-size: 0.78rem;
+  }
+
+  /* 主操作在手机上至少 40px 高。 */
+  .knowledge-clear-btn,
+  .knowledge-expand-btn,
+  .knowledge-load-more-top,
+  .knowledge-more-toggle,
+  .chapter-filter-chip,
+  .chapter-nav-btn,
+  .chapter-text-action,
+  .chapter-inline-link,
+  .list-view-btn,
+  .tree-family-tab,
+  .tree-action-btn,
+  .family-filter-item,
+  .relation-filter-item,
+  .importance-filter-item {
+    min-height: 40px;
+  }
+
+  .knowledge-more-toggle {
+    min-height: 44px;
+  }
+
+  .list-view-btn {
+    width: 40px;
+  }
+
+  .tree-item-toggle {
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  .chapter-directory-fav {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* 手机端把常见的 11–12px 元数据抬到可读字号。 */
+  .knowledge-active-filter,
+  .knowledge-card-source,
+  .knowledge-card-subcategory,
+  .knowledge-card-chapter,
+  .knowledge-card-meta,
+  .list-card-pinyin,
+  .list-card-meta,
+  .chapter-directory-meta,
+  .chapter-source-chip,
+  .chapter-evidence-chip,
+  .chapter-character-meta,
+  .chapter-knowledge-meta,
+  .tree-person-meta,
+  .tree-person-identity,
+  .tree-summary-label {
+    font-size: 0.78rem;
   }
 }
 
@@ -8717,6 +9257,16 @@ body.fullscreen .path-display-panel {
     font-size: 1rem;
     letter-spacing: 0;
     white-space: nowrap;
+  }
+
+  /* 320px 放不下两枚 44px 圆形按钮，收紧到 36px 以避免头部换行。 */
+  .header-search-btn,
+  .header-settings-btn {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    font-size: 13px;
   }
 }
 

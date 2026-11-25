@@ -8,12 +8,15 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏮</text></svg>">
   <!-- 数据文件的内容版本：由 npm run stamp 与资源版本号一起更新，
        否则浏览器会一直复用旧的 characters.json / knowledge.json。 -->
-  <meta name="hlm-asset-version" content="267cde22b8">
-  <link rel="stylesheet" href="css/fonts.css?v=267cde22b8">
-  <link rel="stylesheet" href="css/style.css?v=267cde22b8">
-  <script src="js/d3.v7.min.js?v=267cde22b8"></script>
+  <meta name="hlm-asset-version" content="6c42fdff64">
+  <link rel="stylesheet" href="css/fonts.css?v=6c42fdff64">
+  <link rel="stylesheet" href="css/style.css?v=6c42fdff64">
+  <!-- 装饰性标题字体不阻塞首屏；加载完成后再应用，正文先用 Noto Serif。 -->
+  <link rel="stylesheet" href="css/display-font.css?v=6c42fdff64" media="print" onload="this.media='all'">
+  <script src="js/d3.v7.min.js?v=6c42fdff64"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">跳到主内容</a>
   <div id="loading-overlay" class="loading-overlay">
     <div class="loading-title">红楼梦</div>
     <div class="loading-subtitle">正在整理人物脉络与关系线索……</div>
@@ -40,6 +43,7 @@
     </div>
 
     <div class="header-right" id="header-right">
+      <button id="global-search-toggle" class="header-search-btn" type="button" aria-label="全站搜索" aria-expanded="false" title="全站搜索">🔍</button>
       <!-- Theme & font controls injected here by JS -->
     </div>
   </header>
@@ -51,7 +55,7 @@
     </div>
   </section>
 
-  <div class="main-container">
+  <div class="main-container" id="main-content" tabindex="-1">
     <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
 
     <aside id="sidebar" class="sidebar">
@@ -177,6 +181,7 @@
                 <button class="importance-quick-btn" data-level="3" title="主要人物（重要度 3+）">主要</button>
                 <button class="importance-quick-btn" data-level="2" title="扩展人物（重要度 2+）">扩展</button>
                 <button class="importance-quick-btn" data-level="1" title="全部有名人物">全部</button>
+                <button id="graph-help-btn" class="graph-help-btn" type="button" aria-label="查看图谱模式与时间线说明" title="查看图谱模式与时间线说明">?</button>
               </div>
               <div id="fullscreen-view-label" class="graph-floating-label">默认概览</div>
             </div>
@@ -195,17 +200,17 @@
             <div class="timeline-header">
               <span class="timeline-label">章回时间线</span>
               <div class="timeline-controls">
-                <select id="timeline-mode" class="timeline-select" aria-label="时间线模式">
+                <select id="timeline-mode" class="timeline-select" aria-label="时间线模式" title="时间线模式：单回 / 累计">
                   <option value="single" selected>单回</option>
                   <option value="cumulative">累计</option>
                 </select>
-                <select id="timeline-speed" class="timeline-select" aria-label="播放速度">
+                <select id="timeline-speed" class="timeline-select" aria-label="播放速度" title="自动播放速度">
                   <option value="1400">慢速</option>
                   <option value="900" selected>标准</option>
                   <option value="500">快速</option>
                 </select>
-                <button id="btn-timeline-play" class="timeline-play-btn" title="自动播放">▶</button>
-                <span id="timeline-chapter" class="timeline-chapter">全部</span>
+                <button id="btn-timeline-play" class="timeline-play-btn" title="自动播放（使用当前速度）">▶</button>
+                <span id="timeline-chapter" class="timeline-chapter" title="当前章回范围">全部</span>
               </div>
             </div>
             <input type="range" id="timeline-range" class="timeline-range" min="0" max="120" value="0" step="1" aria-label="章回时间线滑块">
@@ -265,6 +270,27 @@
   <div id="path-chain" class="path-chain"></div>
 </div>
 
+<!-- Global search across all views -->
+<div id="global-search-overlay" class="global-search-overlay" role="dialog" aria-modal="true" aria-label="全站搜索" aria-hidden="true">
+  <div class="global-search-dialog">
+    <div class="global-search-bar">
+      <span class="global-search-icon" aria-hidden="true">🔍</span>
+      <input id="global-search-input" class="global-search-input" type="text" placeholder="搜索人物、知识、章回、专题或阶段…" autocomplete="off" aria-label="全站搜索">
+      <button id="global-search-close" class="global-search-close" type="button" aria-label="关闭全站搜索">✕</button>
+    </div>
+    <div class="global-search-filters" role="group" aria-label="搜索类型">
+      <button type="button" class="global-search-filter active" data-search-type="all">全部</button>
+      <button type="button" class="global-search-filter" data-search-type="character">人物</button>
+      <button type="button" class="global-search-filter" data-search-type="knowledge">知识</button>
+      <button type="button" class="global-search-filter" data-search-type="chapter">章回</button>
+      <button type="button" class="global-search-filter" data-search-type="topic">专题</button>
+    </div>
+    <div id="global-search-status" class="global-search-status" role="status" aria-live="polite"></div>
+    <div id="global-search-results" class="global-search-results" aria-live="polite"></div>
+    <div class="global-search-hint">结果来自人物、知识、章回、专题和阅读阶段，点击可直接跳转。</div>
+  </div>
+</div>
+
 <!-- Exploration Dialog (first-visit path, data policy, character pages) -->
 <div id="exploration-overlay" class="exploration-overlay" role="dialog" aria-modal="true" aria-labelledby="exploration-title" aria-hidden="true">
   <div class="exploration-dialog" id="exploration-dialog" tabindex="-1"></div>
@@ -275,26 +301,26 @@
   <div id="card-content" class="character-card" tabindex="-1"></div>
 </div>
 
-  <script src="js/edge-tts.js?v=267cde22b8"></script>
-  <script src="js/audio-preload-cache.js?v=267cde22b8"></script>
-  <script src="js/utils.js?v=267cde22b8"></script>
-  <script src="js/facet-store.js?v=267cde22b8"></script>
-  <script src="js/text-layout.js?v=267cde22b8"></script>
-  <script src="js/graph.js?v=267cde22b8"></script>
-  <script src="js/tree-view.js?v=267cde22b8"></script>
-  <script src="js/list-view.js?v=267cde22b8"></script>
-  <script src="js/chapter-view.js?v=267cde22b8"></script>
+  <script src="js/edge-tts.js?v=6c42fdff64"></script>
+  <script src="js/audio-preload-cache.js?v=6c42fdff64"></script>
+  <script src="js/utils.js?v=6c42fdff64"></script>
+  <script src="js/facet-store.js?v=6c42fdff64"></script>
+  <script src="js/text-layout.js?v=6c42fdff64"></script>
+  <script src="js/graph.js?v=6c42fdff64"></script>
+  <script src="js/tree-view.js?v=6c42fdff64"></script>
+  <script src="js/list-view.js?v=6c42fdff64"></script>
+  <script src="js/chapter-view.js?v=6c42fdff64"></script>
   <!-- fuse.js 本地化：原先是唯一的外部运行时依赖，断网/公司网络下会静默降级为关键词匹配。
        用模块脚本加载，把默认导出挂到 window.Fuse，其余视图沿用全局访问方式。 -->
   <script type="module">
     try {
-      const module = await import('./js/fuse.min.mjs?v=267cde22b8');
+      const module = await import('./js/fuse.min.mjs?v=6c42fdff64');
       window.Fuse = module.default;
     } catch (err) {
       console.warn('[fuse] 本地模块加载失败，知识库检索将退回关键词匹配', err);
     }
   </script>
-  <script src="js/knowledge-view.js?v=267cde22b8"></script>
-  <script src="js/app.js?v=267cde22b8"></script>
+  <script src="js/knowledge-view.js?v=6c42fdff64"></script>
+  <script src="js/app.js?v=6c42fdff64"></script>
 </body>
 </html>

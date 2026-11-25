@@ -11,6 +11,7 @@ class ChapterView {
     this.visibleProfiles = [];
     this.activeChapter = null;
     this.versionFilter = 'all';
+    this.favoritesOnly = false;
     this.searchQuery = '';
     this.characterTierFilter = 'all';
     this.sourceFilter = 'all';
@@ -196,6 +197,13 @@ class ChapterView {
             </div>
 
             <div class="chapter-sidebar-section">
+              <div class="chapter-sidebar-title">我的收藏</div>
+              <div class="chapter-filter-group">
+                <button class="chapter-filter-chip ${this.favoritesOnly ? 'active' : ''}" data-favorites-only aria-pressed="${this.favoritesOnly}">${this._favoritesLabel()}</button>
+              </div>
+            </div>
+
+            <div class="chapter-sidebar-section">
               <details class="chapter-directory-details" ${typeof window !== 'undefined' && window.innerWidth > 560 ? 'open' : ''}>
                 <summary class="chapter-sidebar-title chapter-directory-summary">回目目录</summary>
                 <div class="chapter-quick-jump">
@@ -249,6 +257,12 @@ class ChapterView {
       button.classList.toggle('active', isActive);
       button.setAttribute('aria-pressed', String(isActive));
     });
+    const favoritesButton = this.container.querySelector('[data-favorites-only]');
+    if (favoritesButton) {
+      favoritesButton.classList.toggle('active', this.favoritesOnly);
+      favoritesButton.setAttribute('aria-pressed', String(this.favoritesOnly));
+      favoritesButton.textContent = this._favoritesLabel();
+    }
   }
 
   // 显式跳到某一回时，不能被上一次留下的搜索/版本筛选挡住。
@@ -264,6 +278,10 @@ class ChapterView {
     }
     if (this.searchQuery) {
       this.searchQuery = '';
+      changed = true;
+    }
+    if (this.favoritesOnly) {
+      this.favoritesOnly = false;
       changed = true;
     }
     if (changed) {
@@ -367,6 +385,10 @@ class ChapterView {
 
   _renderDirectory(visibleProfiles, currentProfile) {
     if (!visibleProfiles.length) {
+      if (this.favoritesOnly) {
+        const hasFavorites = this._getFavoriteChapters().size > 0;
+        return `<div class="chapter-directory-empty">${hasFavorites ? '收藏的回目里没有符合当前筛选的结果。' : '还没有收藏回目，点回目左侧的星标即可收藏。'}</div>`;
+      }
       return '<div class="chapter-directory-empty">没有符合条件的回目，请试试别的关键词。</div>';
     }
 
@@ -386,6 +408,11 @@ class ChapterView {
         </div>
       `;
     }).join('');
+  }
+
+  _favoritesLabel() {
+    const count = this._getFavoriteChapters().size;
+    return count ? `★ 我的收藏（${count}）` : '★ 我的收藏';
   }
 
   _getFavoriteChapters() {
@@ -441,7 +468,7 @@ class ChapterView {
         <div class="chapter-focus-head">
           <div>
             <div class="chapter-focus-eyebrow">${profile.version === 'continuation' ? '后四十回 · 续书线' : '前八十回 · 原著线'}</div>
-            <h3 class="chapter-focus-title">${this._escapeHtml(profile.entry.title || '')}</h3>
+            <h3 class="chapter-focus-title" tabindex="-1">${this._escapeHtml(profile.entry.title || '')}</h3>
             <p class="chapter-focus-desc">${this._escapeHtml(parsed.summary || '本回以回目知识为中心，联动人物与同回知识条目。')}</p>
           </div>
           <div class="chapter-focus-actions">
@@ -672,6 +699,15 @@ class ChapterView {
   }
 
   _renderEmptyState() {
+    if (this.favoritesOnly) {
+      const hasFavorites = this._getFavoriteChapters().size > 0;
+      return `
+        <div class="chapter-empty card-surface">
+          <div class="chapter-empty-title">${hasFavorites ? '收藏里没有匹配的回目' : '还没有收藏回目'}</div>
+          <div class="chapter-empty-desc">${hasFavorites ? '可以取消“我的收藏”或更换搜索条件。' : '在左侧目录点击星标收藏常看的回目，这里会集中显示。'}</div>
+        </div>
+      `;
+    }
     return `
       <div class="chapter-empty card-surface">
         <div class="chapter-empty-title">没有匹配的回目</div>
@@ -739,6 +775,13 @@ class ChapterView {
     }
 
     this.container.addEventListener('click', (event) => {
+      const favoritesOnlyButton = event.target.closest('[data-favorites-only]');
+      if (favoritesOnlyButton) {
+        this.favoritesOnly = !this.favoritesOnly;
+        this._updateContent();
+        return;
+      }
+
       const versionButton = event.target.closest('[data-version]');
       if (versionButton) {
         this.versionFilter = versionButton.dataset.version || 'all';
@@ -779,6 +822,8 @@ class ChapterView {
         favButton.setAttribute('aria-pressed', String(isNowFavorite));
         favButton.setAttribute('aria-label', `${isNowFavorite ? '取消收藏' : '收藏'}第${chapter}回`);
         favButton.title = isNowFavorite ? '取消收藏' : '收藏本回';
+        this._syncFilterControls();
+        if (this.favoritesOnly && !isNowFavorite) this._updateContent();
         return;
       }
 
@@ -1044,8 +1089,10 @@ class ChapterView {
 
   _getVisibleProfiles() {
     const query = this.searchQuery.trim().toLowerCase();
+    const favorites = this.favoritesOnly ? this._getFavoriteChapters() : null;
     const visible = this.chapterProfiles.filter((profile) => {
       if (this.versionFilter !== 'all' && profile.version !== this.versionFilter) return false;
+      if (favorites && !favorites.has(profile.chapter)) return false;
       if (!query) return true;
 
       const haystack = [
@@ -1137,6 +1184,12 @@ class ChapterView {
     this.container.querySelectorAll('[data-char-id]').forEach((button) => {
       button.classList.toggle('is-related', this.relatedCharacterIds.has(button.dataset.charId));
     });
+  }
+
+  focusTitle() {
+    const title = this.container.querySelector('.chapter-focus-title');
+    if (!title) return;
+    title.focus({ preventScroll: true });
   }
 
   _scrollMainToTop() {
