@@ -308,7 +308,7 @@ class KnowledgeView {
             <div class="knowledge-results-head card-surface">
               <div>
                 <div class="knowledge-results-title">知识条目</div>
-                <div class="knowledge-results-subtitle">${this._buildResultsSubtitle(Math.min(initialDisplayCount, filteredItems.length), filteredItems.length)}</div>
+                <div class="knowledge-results-subtitle" role="status" aria-live="polite">${this._buildResultsSubtitle(Math.min(initialDisplayCount, filteredItems.length), filteredItems.length)}</div>
                 <div class="knowledge-active-filters" data-active-filters hidden></div>
               </div>
               <div class="knowledge-results-actions">
@@ -451,6 +451,7 @@ class KnowledgeView {
     const cards = [...this.container.querySelectorAll('#knowledge-items-content .knowledge-card[data-id]')];
     const allExpanded = cards.length > 0 && cards.every((card) => this.expandedIds.has(card.dataset.id));
     button.textContent = allExpanded ? '收起全部' : '展开全部';
+    button.setAttribute('aria-pressed', String(allExpanded));
   }
 
   _setCardExpandedState(card, expanded) {
@@ -1248,6 +1249,8 @@ class KnowledgeView {
     card.classList.remove('jump-highlight');
     void card.offsetWidth;
     card.classList.add('jump-highlight');
+    // 把焦点交给目标卡标题，键盘/读屏用户能立即知道跳到了哪一条。
+    card.querySelector('.knowledge-card-header')?.focus({ preventScroll: true });
 
     // 定位成功后清掉目标，避免后续任意筛选/搜索又被旧目标拽回去。
     this._activeJumpTargetId = null;

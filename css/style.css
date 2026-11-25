@@ -524,6 +524,45 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body,
+  * {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 12px;
+  z-index: 20000;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-160%);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
 body {
   font-family: var(--font-body);
   background: var(--theme-background, linear-gradient(180deg, #f9efe0 0%, var(--color-parchment) 100%));
@@ -9037,15 +9076,29 @@ body.fullscreen .path-display-panel {
   .knowledge-tag,
   .list-card-tag,
   .tree-spouse-pill,
+  .tree-other-family-link,
   .chapter-point-chip,
   .chapter-filter-mini,
   .chapter-inline-pill,
   .chapter-source-chip,
-  .knowledge-active-filter {
+  .knowledge-active-filter,
+  .card-tag.family,
+  .importance-quick-btn,
+  .timeline-select,
+  .timeline-play-btn,
+  .graph-help-btn {
     min-height: 32px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .graph-help-btn {
+    min-width: 32px;
+  }
+
+  .timeline-play-btn {
+    min-width: 32px;
   }
 
   .knowledge-char-pill {

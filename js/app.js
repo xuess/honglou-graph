@@ -3240,6 +3240,7 @@ _createFontAndThemeControls() {
       this.viewEverRendered.chapter = true;
     }
     this.chapterView._selectChapter(chapterNum, { align: 'center' });
+    window.requestAnimationFrame(() => this.chapterView?.focusTitle?.());
     this._updateFloatingContext(`第${chapterNum}回`);
   }
 

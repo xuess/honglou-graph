@@ -468,7 +468,7 @@ class ChapterView {
         <div class="chapter-focus-head">
           <div>
             <div class="chapter-focus-eyebrow">${profile.version === 'continuation' ? '后四十回 · 续书线' : '前八十回 · 原著线'}</div>
-            <h3 class="chapter-focus-title">${this._escapeHtml(profile.entry.title || '')}</h3>
+            <h3 class="chapter-focus-title" tabindex="-1">${this._escapeHtml(profile.entry.title || '')}</h3>
             <p class="chapter-focus-desc">${this._escapeHtml(parsed.summary || '本回以回目知识为中心，联动人物与同回知识条目。')}</p>
           </div>
           <div class="chapter-focus-actions">
@@ -1184,6 +1184,12 @@ class ChapterView {
     this.container.querySelectorAll('[data-char-id]').forEach((button) => {
       button.classList.toggle('is-related', this.relatedCharacterIds.has(button.dataset.charId));
     });
+  }
+
+  focusTitle() {
+    const title = this.container.querySelector('.chapter-focus-title');
+    if (!title) return;
+    title.focus({ preventScroll: true });
   }
 
   _scrollMainToTop() {
