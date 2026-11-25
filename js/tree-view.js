@@ -194,7 +194,40 @@ class TreeView {
 
   _renderVisibleSections(visibleSections, isOtherGroup = false) {
     if (isOtherGroup) {
-      return `<div class="tree-other-grid">${visibleSections.map((section) => this._renderOtherSection(section)).join('')}</div>`;
+      const groupMeta = {
+        '贾府-丫鬟': { label: '贾府 · 丫鬟', family: '贾家' },
+        '贾府-仆人管家': { label: '贾府 · 仆从与管家', family: '贾家' },
+        '贾府-戏子丫鬟': { label: '贾府 · 戏班', family: '贾家' },
+        '僧道神仙': { label: '僧道神仙', family: null },
+        '其他重要人物': { label: '其他重要人物', family: null },
+        '其他人物': { label: '其他人物', family: null }
+      };
+      const order = ['贾府-丫鬟', '贾府-仆人管家', '贾府-戏子丫鬟', '僧道神仙', '其他重要人物', '其他人物'];
+      const grouped = new Map();
+      visibleSections.forEach((section) => {
+        const key = section.character.group || '其他人物';
+        if (!grouped.has(key)) grouped.set(key, []);
+        grouped.get(key).push(section);
+      });
+      const keys = [
+        ...order.filter((key) => grouped.has(key)),
+        ...[...grouped.keys()].filter((key) => !order.includes(key))
+      ];
+      return keys.map((key) => {
+        const meta = groupMeta[key] || { label: key, family: null };
+        const sections = grouped.get(key);
+        return `
+          <section class="tree-other-group">
+            <div class="tree-other-group-head">
+              <div class="tree-other-group-title">${meta.label}<span>${sections.length} 位</span></div>
+              ${meta.family ? `<button type="button" class="tree-other-family-link" data-family="${meta.family}">查看${this._getFamilyLabel(meta.family)}谱系 →</button>` : ''}
+            </div>
+            <div class="tree-other-grid">
+              ${sections.map((section) => this._renderOtherSection(section)).join('')}
+            </div>
+          </section>
+        `;
+      }).join('');
     }
     return visibleSections.map((section) => this._renderSection(section)).join('');
   }
@@ -635,6 +668,18 @@ class TreeView {
         const searchInput = this.container.querySelector('.tree-search-input');
         if (searchInput) searchInput.value = '';
         this.render(familyTab.dataset.family);
+        this._scrollToTop();
+        return;
+      }
+
+      const otherFamilyLink = event.target.closest('.tree-other-family-link[data-family]');
+      if (otherFamilyLink) {
+        window.clearTimeout(this._searchTimer);
+        this._searchTimer = null;
+        this.searchQuery = '';
+        const searchInput = this.container.querySelector('.tree-search-input');
+        if (searchInput) searchInput.value = '';
+        this.render(otherFamilyLink.dataset.family);
         this._scrollToTop();
         return;
       }
