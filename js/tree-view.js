@@ -26,7 +26,10 @@ class TreeView {
       '其他': '#C49A2A'
     };
 
-    this.familyTabs = ['贾家', '史家', '王家', '薛家', '林家'];
+    this.familyTabs = ['贾家', '史家', '王家', '薛家', '林家', '其他'];
+    this.familyTabLabels = {
+      '其他': '其他人物'
+    };
     this.generationLabels = {
       0: '始祖',
       1: '第一代',
@@ -85,15 +88,11 @@ class TreeView {
       return;
     }
 
-    const isServant = (character) => this._isServant(character);
-
-    const familyMembersOnly = familyChars.filter((c) => !isServant(c));
-    const servantCount = familyChars.length - familyMembersOnly.length;
-
     const treeData = this._getFamilyTree(this.currentFamily, familyChars);
     this._currentTreeData = treeData;
     const visibleSections = this._getVisibleSections(treeData.sections);
     const matchedCount = this._countVisibleNodes(visibleSections);
+    const summaryItems = this._getSummaryItems(treeData, familyChars, matchedCount);
 
     const controls = document.createElement('section');
     controls.className = 'tree-shell';
@@ -104,11 +103,11 @@ class TreeView {
             ${this.familyTabs.map((name) => `
               <button type="button" class="tree-family-tab ${name === this.currentFamily ? 'active' : ''}" data-family="${name}" aria-pressed="${name === this.currentFamily}">
                 <span class="tree-tab-dot" style="background:${this.familyColors[name] || '#999'}"></span>
-                ${name}
+                ${this._getFamilyLabel(name)}
               </button>
             `).join('')}
           </div>
-          <div class="tree-toolbar-actions">
+          <div class="tree-toolbar-actions" ${treeData.isOtherGroup ? 'style="display:none"' : ''}>
             <button class="tree-action-btn" data-action="expand-all">全部展开</button>
             <button class="tree-action-btn" data-action="collapse-all">全部收起</button>
           </div>
@@ -122,48 +121,122 @@ class TreeView {
               name="tree-search"
               class="tree-search-input"
               type="text"
-              aria-label="搜索家族成员"
-              placeholder="搜索家族成员、别名、身份、配偶…"
+              aria-label="${treeData.isOtherGroup ? '搜索其他人物' : '搜索家族成员'}"
+              placeholder="${treeData.isOtherGroup ? '搜索其他人物、别名、身份…' : '搜索家族成员、别名、身份、配偶…'}"
               value="${this._escapeHtml(this.searchQuery)}"
             >
           </div>
 
           <div class="tree-summary-strip">
-            <div class="tree-summary-card accent">
-              <span class="tree-summary-label">当前家族</span>
-              <strong>${this.currentFamily}</strong>
-              <span>${familyMembersOnly.length} 位家族成员${servantCount ? ` + ${servantCount} 位仆从` : ''}</span>
-            </div>
-            <div class="tree-summary-card">
-              <span class="tree-summary-label">谱系分支</span>
-              <strong>${treeData.sections.length}</strong>
-              <span>${this.searchQuery.trim() ? `匹配 ${matchedCount} 位` : '可展开收起'}</span>
-            </div>
-            <div class="tree-summary-card">
-              <span class="tree-summary-label">家族层级</span>
-              <strong>${treeData.maxGenerationLabel}</strong>
-              <span>${treeData.mainlineCount} 位主线人物</span>
-            </div>
+            ${summaryItems.map((item, index) => `
+              <div class="tree-summary-card ${index === 0 ? 'accent' : ''}">
+                <span class="tree-summary-label">${item.label}</span>
+                <strong>${item.value}</strong>
+                <span>${item.detail}</span>
+              </div>
+            `).join('')}
           </div>
         </div>
       </div>
 
       <div class="tree-hint-row">
-        <span class="tree-hint-pill">点击姓名查看人物卡片</span>
-        <span class="tree-hint-pill">点击箭头展开后代分支</span>
-        <span class="tree-hint-pill">配偶会以内联标签显示</span>
-        <span class="tree-hint-pill" data-related-count ${this.relatedCharacterIds.size ? '' : 'hidden'}>当前仅高亮 ${this.relatedCharacterIds.size} 位关联人物，不会自动切换家族</span>
+        ${this._renderHintPills()}
       </div>
 
       <div class="tree-outline" id="tree-outline-content">
         ${visibleSections.length
-          ? visibleSections.map((section) => this._renderSection(section)).join('')
+          ? this._renderVisibleSections(visibleSections, treeData.isOtherGroup)
           : this._renderEmptySearchState()}
       </div>
     `;
 
     this.container.appendChild(controls);
     if (!this._eventsBound) this._bindEvents();
+  }
+
+  _getFamilyLabel(family) {
+    return this.familyTabLabels[family] || family;
+  }
+
+  _getSummaryItems(treeData, familyChars, matchedCount) {
+    if (treeData.isOtherGroup) {
+      return [
+        { label: '当前分组', value: '其他人物', detail: `${familyChars.length} 位非家族人物` },
+        { label: '人物条目', value: String(treeData.sections.length), detail: this.searchQuery.trim() ? `匹配 ${matchedCount} 位` : '可按身份/别名搜索' },
+        { label: '人物归属', value: '非家族', detail: '不进入五大家族谱系' }
+      ];
+    }
+
+    const familyMembers = familyChars.filter((character) => !this._isServant(character));
+    const servantCount = familyChars.length - familyMembers.length;
+    return [
+      { label: '当前家族', value: this.currentFamily, detail: `${familyMembers.length} 位家族成员${servantCount ? ` + ${servantCount} 位仆从` : ''}` },
+      { label: '谱系分支', value: String(treeData.sections.length), detail: this.searchQuery.trim() ? `匹配 ${matchedCount} 位` : '可展开收起' },
+      { label: '家族层级', value: treeData.maxGenerationLabel, detail: `${treeData.mainlineCount} 位主线人物` }
+    ];
+  }
+
+  _renderHintPills() {
+    const pills = this.currentFamily === '其他'
+      ? [
+        '点击姓名查看人物卡片',
+        '其他人物不进入五大家族谱系',
+        '可用搜索按身份、别名定位'
+      ]
+      : [
+        '点击姓名查看人物卡片',
+        '点击箭头展开后代分支',
+        '配偶会以内联标签显示'
+      ];
+    return `${pills.map((text) => `<span class="tree-hint-pill">${text}</span>`).join('')}
+      <span class="tree-hint-pill" data-related-count ${this.relatedCharacterIds.size ? '' : 'hidden'}>当前仅高亮 ${this.relatedCharacterIds.size} 位关联人物，不会自动切换家族</span>`;
+  }
+
+  _renderVisibleSections(visibleSections, isOtherGroup = false) {
+    if (isOtherGroup) {
+      return `<div class="tree-other-grid">${visibleSections.map((section) => this._renderOtherSection(section)).join('')}</div>`;
+    }
+    return visibleSections.map((section) => this._renderSection(section)).join('');
+  }
+
+  _renderOtherSection(section) {
+    const { character, spouses } = section;
+    return `
+      <article class="tree-other-card">
+        ${this._renderPersonCard(character, { showGeneration: false })}
+        ${spouses.length ? `
+          <div class="tree-spouse-row">
+            ${spouses.map((spouse) => `
+              <button class="tree-spouse-pill" data-char-id="${spouse.id}">
+                配偶 · ${this._highlightText(spouse.name)}
+              </button>
+            `).join('')}
+          </div>
+        ` : ''}
+      </article>
+    `;
+  }
+
+  _renderPersonCard(character, { showGeneration = true } = {}) {
+    const familyColor = this.familyColors[this.currentFamily] || '#999';
+    return `
+      <button class="tree-person-card" data-char-id="${character.id}">
+        <span class="tree-person-avatar" style="background:${familyColor}">${character.name.slice(0, 1)}</span>
+        <span class="tree-person-main">
+          <span class="tree-person-name-row">
+            <span class="tree-person-name">${this._highlightText(character.name)}</span>
+            <span class="tree-person-badge ${character.gender === '女' ? 'female' : 'male'}">${character.gender || '未知'}</span>
+            ${character.isMainline ? '<span class="tree-person-badge mainline">主线</span>' : ''}
+          </span>
+          <span class="tree-person-identity">${this._highlightText(character.identity || (showGeneration ? '家族成员' : '其他人物'))}</span>
+          <span class="tree-person-meta">
+            ${showGeneration ? `<span>${this._generationLabel(character.generation || 0)}</span>` : ''}
+            <span>重要度 ${character.importance || 1}</span>
+            ${character.alias && character.alias.length ? `<span>别名 ${this._highlightText(character.alias.slice(0, 2).join('、'))}</span>` : ''}
+          </span>
+        </span>
+      </button>
+    `;
   }
 
   _generationLabel(generation) {
@@ -189,27 +262,26 @@ class TreeView {
     if (!treeOutline) return;
 
     const familyChars = this._getFamilyCharacters(this.currentFamily);
-    const isServant = (character) => this._isServant(character);
-
-    const familyMembersOnly = familyChars.filter((c) => !isServant(c));
-    const servantCount = familyChars.length - familyMembersOnly.length;
-
     const treeData = this._getFamilyTree(this.currentFamily, familyChars);
     this._currentTreeData = treeData;
     const visibleSections = this._getVisibleSections(treeData.sections);
     const matchedCount = this._countVisibleNodes(visibleSections);
+    const summaryItems = this._getSummaryItems(treeData, familyChars, matchedCount);
 
-    if (hintRow) {
-      hintRow.innerHTML = `
-        <span class="tree-hint-pill">点击姓名查看人物卡片</span>
-        <span class="tree-hint-pill">点击箭头展开后代分支</span>
-        <span class="tree-hint-pill">配偶会以内联标签显示</span>
-        <span class="tree-hint-pill" data-related-count ${this.relatedCharacterIds.size ? '' : 'hidden'}>当前仅高亮 ${this.relatedCharacterIds.size} 位关联人物，不会自动切换家族</span>
-      `;
+    const searchInput = this.container.querySelector('.tree-search-input');
+    if (searchInput) {
+      searchInput.setAttribute('aria-label', treeData.isOtherGroup ? '搜索其他人物' : '搜索家族成员');
+      searchInput.placeholder = treeData.isOtherGroup
+        ? '搜索其他人物、别名、身份…'
+        : '搜索家族成员、别名、身份、配偶…';
     }
+    const toolbarActions = this.container.querySelector('.tree-toolbar-actions');
+    if (toolbarActions) toolbarActions.style.display = treeData.isOtherGroup ? 'none' : '';
+
+    if (hintRow) hintRow.innerHTML = this._renderHintPills();
 
     treeOutline.innerHTML = visibleSections.length
-      ? visibleSections.map((section) => this._renderSection(section)).join('')
+      ? this._renderVisibleSections(visibleSections, treeData.isOtherGroup)
       : this._renderEmptySearchState();
 
     // Update family tab active states
@@ -221,24 +293,16 @@ class TreeView {
 
     // Update summary strip
     const summaryCards = this.container.querySelectorAll('.tree-summary-card');
-    if (summaryCards[0]) {
-      const strong = summaryCards[0].querySelector('strong');
-      const span = summaryCards[0].querySelector('span:last-child');
-      if (strong) strong.textContent = this.currentFamily;
-      if (span) span.textContent = `${familyMembersOnly.length} 位家族成员${servantCount ? ` + ${servantCount} 位仆从` : ''}`;
-    }
-    if (summaryCards[1]) {
-      const strong = summaryCards[1].querySelector('strong');
-      const span = summaryCards[1].querySelector('span:last-child');
-      if (strong) strong.textContent = String(treeData.sections.length);
-      if (span) span.textContent = this.searchQuery.trim() ? `匹配 ${matchedCount} 位` : '可展开收起';
-    }
-    if (summaryCards[2]) {
-      const strong = summaryCards[2].querySelector('strong');
-      const span = summaryCards[2].querySelector('span:last-child');
-      if (strong) strong.textContent = treeData.maxGenerationLabel;
-      if (span) span.textContent = `${treeData.mainlineCount} 位主线人物`;
-    }
+    summaryItems.forEach((item, index) => {
+      const card = summaryCards[index];
+      if (!card) return;
+      const label = card.querySelector('.tree-summary-label');
+      const strong = card.querySelector('strong');
+      const span = card.querySelector('span:last-child');
+      if (label) label.textContent = item.label;
+      if (strong) strong.textContent = item.value;
+      if (span) span.textContent = item.detail;
+    });
 
     this._syncTreeHighlights();
   }
@@ -255,6 +319,28 @@ class TreeView {
     if (this.familyTrees.has(cacheKey)) return this.familyTrees.get(cacheKey);
 
     const familySet = new Set(familyChars.map((character) => character.id));
+
+    // 其他人物不属于五大家族，没有稳定的父子谱系；按人物平铺展示，保证 62 人都有入口。
+    if (family === '其他') {
+      const sections = [...familyChars]
+        .sort((a, b) => this._sortCharacters(a, b))
+        .map((character) => ({
+          id: character.id,
+          character,
+          spouses: this._getFamilySpouses(character, familySet),
+          children: [],
+          matched: this._branchMatchesSearch(character, []),
+          descendantCount: 0
+        }));
+      const treeData = {
+        sections,
+        maxGenerationLabel: '其他人物',
+        mainlineCount: familyChars.filter((character) => character.isMainline).length,
+        isOtherGroup: true
+      };
+      this.familyTrees.set(cacheKey, treeData);
+      return treeData;
+    }
     const selectedParentMap = new Map();
     const childrenByParent = new Map();
 
@@ -407,8 +493,9 @@ class TreeView {
    */
   _renderEmptySearchState() {
     const query = this.searchQuery.trim();
+    const currentLabel = this._getFamilyLabel(this.currentFamily);
     if (!query) {
-      return '<div class="tree-empty">没有匹配的家族成员，请尝试更换关键词</div>';
+      return `<div class="tree-empty">没有匹配的${this.currentFamily === '其他' ? '其他人物' : '家族成员'}，请尝试更换关键词</div>`;
     }
     const otherMatches = this.familyTabs
       .filter((family) => family !== this.currentFamily)
@@ -419,14 +506,14 @@ class TreeView {
       .filter((item) => item.count > 0)
       .sort((a, b) => b.count - a.count);
     if (!otherMatches.length) {
-      return `<div class="tree-empty">没有匹配“${this._escapeHtml(query)}”的家族成员，请尝试更换关键词</div>`;
+      return `<div class="tree-empty">没有匹配“${this._escapeHtml(query)}”的${this.currentFamily === '其他' ? '其他人物' : '家族成员'}，请尝试更换关键词</div>`;
     }
     const total = otherMatches.reduce((sum, item) => sum + item.count, 0);
     return `
       <div class="tree-empty">
-        <p>${this.currentFamily}没有匹配“${this._escapeHtml(query)}”的成员，其他家族找到 ${total} 位：</p>
+        <p>${currentLabel}没有匹配“${this._escapeHtml(query)}”的成员，其他分组找到 ${total} 位：</p>
         <div class="tree-empty-actions">
-          ${otherMatches.map((item) => `<button class="tree-action-btn" data-family="${item.family}">${item.family} · ${item.count} 位</button>`).join('')}
+          ${otherMatches.map((item) => `<button class="tree-action-btn" data-family="${item.family}">${this._getFamilyLabel(item.family)} · ${item.count} 位</button>`).join('')}
         </div>
       </div>
     `;
@@ -455,7 +542,7 @@ class TreeView {
             <div class="tree-section-meta">
               <span>${this._generationLabel(character.generation || 0)}</span>
               <span>${character.identity || '家族成员'}</span>
-              <span>${section.descendantCount} 位后辈分支</span>
+              ${section.descendantCount ? `<span>${section.descendantCount} 位后辈分支</span>` : ''}
             </div>
           </div>
           <button class="tree-section-jump" data-char-id="${character.id}">查看人物</button>
@@ -472,7 +559,6 @@ class TreeView {
     const { character, spouses, children } = branch;
     const hasChildren = children && children.some((child) => child.matched);
     const expanded = this.searchQuery.trim() ? true : (this.expandedNodes.has(character.id) || level < 1);
-    const familyColor = this.familyColors[this.currentFamily] || '#999';
 
     return `
       <div class="tree-item level-${Math.min(level, 5)} ${expanded ? 'expanded' : ''}" data-tree-id="${character.id}">
@@ -485,22 +571,7 @@ class TreeView {
             ${hasChildren ? `aria-expanded="${expanded}"` : ''}
           >${hasChildren ? (expanded ? '▾' : '▸') : '·'}</button>
 
-          <button class="tree-person-card" data-char-id="${character.id}">
-            <span class="tree-person-avatar" style="background:${familyColor}">${character.name.slice(0, 1)}</span>
-            <span class="tree-person-main">
-              <span class="tree-person-name-row">
-                <span class="tree-person-name">${this._highlightText(character.name)}</span>
-                <span class="tree-person-badge ${character.gender === '女' ? 'female' : 'male'}">${character.gender || '未知'}</span>
-                ${character.isMainline ? '<span class="tree-person-badge mainline">主线</span>' : ''}
-              </span>
-              <span class="tree-person-identity">${this._highlightText(character.identity || '家族成员')}</span>
-              <span class="tree-person-meta">
-                <span>${this._generationLabel(character.generation || 0)}</span>
-                <span>重要度 ${character.importance || 1}</span>
-                ${character.alias && character.alias.length ? `<span>别名 ${this._highlightText(character.alias.slice(0, 2).join('、'))}</span>` : ''}
-              </span>
-            </span>
-          </button>
+          ${this._renderPersonCard(character)}
         </div>
 
         ${spouses.length ? `

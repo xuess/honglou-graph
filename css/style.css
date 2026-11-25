@@ -3319,6 +3319,29 @@ body.view-knowledge .main-container {
   flex-wrap: wrap;
 }
 
+/* “其他人物”没有稳定的父子谱系，用人物卡片网格平铺，避免伪装成家族树。 */
+.tree-other-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.tree-other-card {
+  border: 1px solid rgba(196,168,130,0.24);
+  border-radius: 16px;
+  background: rgba(255,248,238,0.58);
+  padding: 8px;
+}
+
+.tree-other-card .tree-person-card {
+  width: 100%;
+}
+
+.tree-other-card .tree-spouse-row {
+  padding: 4px 0 0;
+}
+
 .tree-family-tab {
   display: flex;
   align-items: center;
