@@ -44,6 +44,7 @@ class HongLouMengApp {
 
     this.graphState = null;
     this._skipGraphFacetOnce = false;
+    this.viewScrollPositions = new Map();
     this.recentBrowsingHistory = [];
     this.RECENT_MAX = 8;
     this.timelineFilterMode = 'single';
@@ -1110,6 +1111,8 @@ class HongLouMengApp {
     }
 
     const previousView = this.activeView;
+    // 离开前记录当前视图的滚动位置；返回时恢复阅读位置。
+    if (previousView && previousView !== viewName) this._saveViewScrollPosition(previousView);
 
     // Save graph state when leaving graph view
     if (previousView === 'graph' && viewName !== 'graph') {
@@ -1190,8 +1193,8 @@ class HongLouMengApp {
     this._renderSearchState();
     this._renderGlobalContextBar();
 
-    // 统一使用视图内容容器作为滚动层，避免 window 级滚动与内层滚动打架。
-    this._resetViewScrollPosition(viewName, { preserveScroll });
+    // 恢复上一次离开该视图时的阅读位置；首次进入仍从顶部开始。
+    this._restoreViewScrollPosition(viewName, { preserveScroll });
     this._revealCurrentContextInView(viewName);
 
     // 初始化时不要抢先写 ?view=graph：地址栏一旦出现 view 参数，
@@ -1199,49 +1202,58 @@ class HongLouMengApp {
     if (!this._suppressHistoryPush) this._updateUrlParams();
   }
 
-  _resetViewScrollPosition(viewName, options = {}) {
+  _getViewScrollSelectors(viewName) {
+    return {
+      tree: { tree: '.tree-container' },
+      list: { list: '.list-content' },
+      chapter: {
+        main: '.chapter-main',
+        sidebar: '.chapter-sidebar',
+        directory: '.chapter-directory'
+      },
+      knowledge: {
+        main: '.knowledge-main',
+        sidebar: '.knowledge-sidebar'
+      }
+    }[viewName] || {};
+  }
+
+  _saveViewScrollPosition(viewName) {
+    const selectors = this._getViewScrollSelectors(viewName);
+    if (!Object.keys(selectors).length) return;
+    const state = {
+      mainContainer: document.querySelector('.main-container')?.scrollTop || 0
+    };
+    Object.entries(selectors).forEach(([key, selector]) => {
+      const el = document.querySelector(selector);
+      state[key] = el ? el.scrollTop : 0;
+    });
+    this.viewScrollPositions.set(viewName, state);
+  }
+
+  _restoreViewScrollPosition(viewName, options = {}) {
     const { preserveScroll = false } = options;
     this.els.body.style.minHeight = '';
+    if (viewName === 'graph' || preserveScroll) return;
 
-    if (preserveScroll) return;
+    const state = this.viewScrollPositions.get(viewName);
+    const selectors = this._getViewScrollSelectors(viewName);
+    const mainContainer = document.querySelector('.main-container');
 
-    const reset = (selector) => {
-      const el = document.querySelector(selector);
-      if (!el) return;
-      el.scrollTo({ top: 0, behavior: 'instant' });
-    };
-
-    if (viewName === 'graph') {
+    if (!state) {
+      // 首次进入该视图：保持原有的“从顶部开始”行为。
+      mainContainer?.scrollTo({ top: 0, behavior: 'instant' });
+      Object.values(selectors).forEach((selector) => {
+        document.querySelector(selector)?.scrollTo({ top: 0, behavior: 'instant' });
+      });
       return;
     }
 
-    // 手机上非图谱视图改为整页滚动，滚动发生在 .main-container；
-    // 桌面端该容器不滚动，这一步是空操作。
-    reset('.main-container');
-
-    if (viewName === 'tree') {
-      reset('.tree-container');
-      return;
-    }
-
-    if (viewName === 'list') {
-      reset('.list-content');
-      return;
-    }
-
-    if (viewName === 'chapter') {
-      reset('.chapter-main');
-      reset('.chapter-sidebar');
-      reset('.chapter-directory');
-      return;
-    }
-
-    if (viewName === 'knowledge') {
-      reset('.knowledge-main');
-      reset('.knowledge-sidebar');
-      return;
-    }
-
+    // 手机上滚动发生在 .main-container，桌面端这里是空操作。
+    mainContainer?.scrollTo({ top: state.mainContainer || 0, behavior: 'instant' });
+    Object.entries(selectors).forEach(([key, selector]) => {
+      document.querySelector(selector)?.scrollTo({ top: state[key] || 0, behavior: 'instant' });
+    });
   }
 
   /**
@@ -1457,47 +1469,10 @@ class HongLouMengApp {
   }
 
   _teardownInactiveViews(activeViewName, previousViewName) {
-    // Performance optimization: cleanup DOM of inactive views
-    // Only cleanup if the view was initialized (has content)
-    const viewCleanupMap = {
-      tree: { view: this.treeView, container: this.els.treeContainer, initialized: this.viewInitialized.tree },
-      list: { view: this.listView, container: this.els.listContainer, initialized: this.viewInitialized.list },
-      chapter: { view: this.chapterView, container: this.els.chapterContainer, initialized: this.viewInitialized.chapter },
-      knowledge: { view: this.knowledgeView, container: this.els.knowledgeContainer, initialized: this.viewInitialized.knowledge }
-    };
-
-    // Cleanup previous view if it's not the active one
-    if (previousViewName && previousViewName !== activeViewName && previousViewName !== 'graph') {
-      const prevViewInfo = viewCleanupMap[previousViewName];
-      if (prevViewInfo && prevViewInfo.initialized && prevViewInfo.container) {
-        // Cleanup timers and observers before clearing DOM
-        const view = prevViewInfo.view;
-        if (view) {
-          // 自动阅读离开回目视图后必须停止，否则会在隐藏容器里继续翻章。
-          view._stopAutoRead?.();
-          // Clear timers
-          if (view._searchTimer) window.clearTimeout(view._searchTimer);
-          if (view._deferredRenderTimer) window.clearTimeout(view._deferredRenderTimer);
-          if (view._deferredMainTimer) window.clearTimeout(view._deferredMainTimer);
-          if (view._textLayoutFrame) window.cancelAnimationFrame(view._textLayoutFrame);
-          
-          // Disconnect observers
-          if (view._layoutResizeObserver) {
-            view._layoutResizeObserver.disconnect();
-            view._layoutResizeObserver = null;
-          }
-          
-          // Reset event binding flags so they re-bind on next render
-          if (view._eventsBound !== undefined) view._eventsBound = false;
-          if (view._controlsBound !== undefined) view._controlsBound = false;
-          if (view._listClickBound !== undefined) view._listClickBound = false;
-        }
-        
-        // Clear container content to free DOM nodes
-        prevViewInfo.container.innerHTML = '';
-        // Mark as needing re-render
-        this.viewInitialized[previousViewName] = false;
-      }
+    // 保留非活动视图的 DOM，返回时才能恢复滚动位置、展开状态和筛选结果。
+    // 只停止不应在后台继续的自动阅读。
+    if (previousViewName === 'chapter' && activeViewName !== 'chapter') {
+      this.chapterView?._stopAutoRead?.();
     }
   }
 

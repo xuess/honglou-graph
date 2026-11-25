@@ -1579,13 +1579,25 @@ class KnowledgeView {
     });
   }
 
+  _restoreKnowledgeScroll(scroller, scrollTop) {
+    if (!scroller || typeof scrollTop !== 'number') return;
+    if (Math.abs(scroller.scrollTop - scrollTop) > 1) {
+      scroller.scrollTo({ top: scrollTop, behavior: 'instant' });
+    }
+  }
+
   _applyMasonryLayout(contentEl) {
     if (!contentEl) return;
 
+    // 瀑布流会在切换 display:block / 绝对定位时短暂丢失内容高度，
+    // 浏览器会顺手把 .knowledge-main 的 scrollTop 夹到 0；布局结束后恢复。
+    const scroller = this.container.querySelector('.knowledge-main');
+    const scrollTop = scroller?.scrollTop || 0;
     const cards = Array.from(contentEl.querySelectorAll('.knowledge-card'));
     const loadMoreButton = contentEl.querySelector('.knowledge-load-more');
     if (!cards.length) {
       this._clearMasonryLayout(contentEl);
+      this._restoreKnowledgeScroll(scroller, scrollTop);
       return;
     }
 
@@ -1599,6 +1611,7 @@ class KnowledgeView {
 
     if (!shouldUseMasonry) {
       this._clearMasonryLayout(contentEl);
+      this._restoreKnowledgeScroll(scroller, scrollTop);
       return;
     }
 
@@ -1629,6 +1642,7 @@ class KnowledgeView {
     }
 
     contentEl.style.height = `${gridHeight}px`;
+    this._restoreKnowledgeScroll(scroller, scrollTop);
   }
 
   _clearMasonryLayout(contentEl) {

@@ -4497,12 +4497,22 @@ body.view-knowledge .main-container {
   box-shadow: 0 4px 12px rgba(139,37,0,0.2);
 }
 
+/* 各视图的滚动位置由状态恢复逻辑控制，关闭浏览器的滚动锚定以免返回时被重排拽走。 */
+.main-container,
+.tree-container,
+.list-content,
+.chapter-main,
+.chapter-sidebar,
+.chapter-directory,
+.knowledge-main,
+.knowledge-sidebar {
+  overflow-anchor: none;
+}
+
 .list-content {
   padding-bottom: 24px;
   flex: 1;
   min-height: 0;
-  /* 列表模式切换会整体换 DOM；禁用滚动锚定，避免浏览器把程序化定位又拽回去。 */
-  overflow-anchor: none;
   overflow-y: auto;
   overflow-x: hidden;
   overscroll-behavior: contain;
