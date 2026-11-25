@@ -6060,6 +6060,34 @@ body.panel-resizing * {
   margin-top: 2px;
 }
 
+.knowledge-active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.knowledge-active-filters[hidden] {
+  display: none;
+}
+
+.knowledge-active-filter {
+  padding: 4px 9px;
+  border: 1px solid rgba(139,37,0,0.2);
+  border-radius: 999px;
+  background: rgba(139,37,0,0.06);
+  color: var(--color-primary);
+  font-size: 0.74rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+.knowledge-active-filter:hover {
+  background: var(--color-primary);
+  color: var(--color-cream);
+}
+
 .knowledge-clear-btn,
 .knowledge-expand-btn,
 .knowledge-load-more-top {
@@ -8752,6 +8780,88 @@ body.fullscreen .path-display-panel {
   .header-settings-btn {
     min-width: 44px;
     min-height: 44px;
+  }
+
+  /* 触屏上次要筛选/标签很容易点偏；在不改变卡片结构的前提下抬高命中区。 */
+  .knowledge-char-pill,
+  .knowledge-tag,
+  .list-card-tag,
+  .tree-spouse-pill,
+  .chapter-point-chip,
+  .chapter-filter-mini,
+  .chapter-inline-pill,
+  .chapter-source-chip,
+  .knowledge-active-filter {
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .knowledge-char-pill {
+    padding: 6px 11px;
+    font-size: 0.8rem;
+  }
+
+  .knowledge-tag,
+  .list-card-tag {
+    padding: 5px 9px;
+    font-size: 0.78rem;
+  }
+
+  /* 主操作在手机上至少 40px 高。 */
+  .knowledge-clear-btn,
+  .knowledge-expand-btn,
+  .knowledge-load-more-top,
+  .knowledge-more-toggle,
+  .chapter-filter-chip,
+  .chapter-nav-btn,
+  .chapter-text-action,
+  .chapter-inline-link,
+  .list-view-btn,
+  .tree-family-tab,
+  .tree-action-btn,
+  .family-filter-item,
+  .relation-filter-item,
+  .importance-filter-item {
+    min-height: 40px;
+  }
+
+  .knowledge-more-toggle {
+    min-height: 44px;
+  }
+
+  .list-view-btn {
+    width: 40px;
+  }
+
+  .tree-item-toggle {
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  .chapter-directory-fav {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* 手机端把常见的 11–12px 元数据抬到可读字号。 */
+  .knowledge-active-filter,
+  .knowledge-card-source,
+  .knowledge-card-subcategory,
+  .knowledge-card-chapter,
+  .knowledge-card-meta,
+  .list-card-pinyin,
+  .list-card-meta,
+  .chapter-directory-meta,
+  .chapter-source-chip,
+  .chapter-evidence-chip,
+  .chapter-character-meta,
+  .chapter-knowledge-meta,
+  .tree-person-meta,
+  .tree-person-identity,
+  .tree-summary-label {
+    font-size: 0.78rem;
   }
 }
 

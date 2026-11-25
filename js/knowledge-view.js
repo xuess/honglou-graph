@@ -309,6 +309,7 @@ class KnowledgeView {
               <div>
                 <div class="knowledge-results-title">知识条目</div>
                 <div class="knowledge-results-subtitle">${this._buildResultsSubtitle(Math.min(initialDisplayCount, filteredItems.length), filteredItems.length)}</div>
+                <div class="knowledge-active-filters" data-active-filters hidden></div>
               </div>
               <div class="knowledge-results-actions">
                 <button class="knowledge-load-more-top" data-action="load-more" ${filteredItems.length > initialDisplayCount ? '' : 'hidden'}>加载更多</button>
@@ -334,6 +335,8 @@ class KnowledgeView {
     this._observeLayoutResize();
     this._scheduleTextLayoutPass();
     this._bindLazyVoiceEngines();
+    this._syncActiveFilters();
+    this._syncResultsActions(filteredItems);
   }
 
   /**
@@ -378,8 +381,8 @@ class KnowledgeView {
       subtitleEl.innerHTML = this._buildResultsSubtitle(Math.min(this.displayCount, filteredItems.length), filteredItems.length);
     }
     this._syncResultsActions(filteredItems);
-
     this._syncSubcategoryChips();
+    this._syncActiveFilters();
     this._updateCategoryActiveState();
     this._syncKnowledgeHighlights();
     if (scrollToTop) this._scrollToTop();
@@ -394,6 +397,39 @@ class KnowledgeView {
     if (chapterSelect) chapterSelect.value = this.chapterFilter;
     const sortSelect = this.container.querySelector('[data-filter="sort"]');
     if (sortSelect) sortSelect.value = this.sortBy;
+  }
+
+  _getMoreFilterLabel() {
+    const count = [
+      this.activeSubcategory !== 'all',
+      String(this.chapterFilter) !== 'all',
+      this.sortBy !== 'relevance'
+    ].filter(Boolean).length;
+    return count ? `更多筛选 · ${count} 项` : '更多筛选';
+  }
+
+  _syncActiveFilters() {
+    const container = this.container.querySelector('[data-active-filters]');
+    if (!container) return;
+    const sortLabels = { relevance: '按相关度', chapter: '按回目', category: '按类别', title: '按标题' };
+    const chips = [];
+    if (this.activeCategory !== 'all') chips.push({ key: 'category', label: `类别：${this.activeCategory}` });
+    if (this.activeSubcategory !== 'all') chips.push({ key: 'subcategory', label: `主题：${this.activeSubcategory}` });
+    if (String(this.chapterFilter) !== 'all') chips.push({ key: 'chapter', label: `第${this.chapterFilter}回` });
+    if (this.sortBy !== 'relevance') chips.push({ key: 'sort', label: sortLabels[this.sortBy] || this.sortBy });
+
+    container.hidden = chips.length === 0;
+    container.innerHTML = chips.map((chip) => `
+      <button class="knowledge-active-filter" data-filter-key="${chip.key}" title="移除这个筛选">
+        ${this._escapeHtml(chip.label)} <span aria-hidden="true">×</span>
+      </button>
+    `).join('');
+
+    const morePanel = this.container.querySelector('#knowledge-secondary-filters');
+    const moreLabel = this.container.querySelector('.knowledge-more-label');
+    if (moreLabel && !morePanel?.classList.contains('is-open')) {
+      moreLabel.textContent = this._getMoreFilterLabel();
+    }
   }
 
   _syncResultsActions(filteredItems = this._getFilteredItems()) {
@@ -794,8 +830,28 @@ class KnowledgeView {
     this.container.addEventListener('click', (event) => {
       // 用户主动操作后，上一轮“定位到某条知识”的临时目标就失效了。
       this._clearKnowledgeJumpState();
-      // 卡片标题栏负责展开/收起：内容默认展开，点击后只隐藏正文与分析，
-      // 保留标题行与人物标签，便于在长列表里一屏扫过更多条目。
+
+      const activeFilter = event.target.closest('[data-filter-key]');
+      if (activeFilter) {
+        const key = activeFilter.dataset.filterKey;
+        if (key === 'category') {
+          this.activeCategory = 'all';
+          this.activeSubcategory = 'all';
+        } else if (key === 'subcategory') {
+          this.activeSubcategory = 'all';
+        } else if (key === 'chapter') {
+          this.chapterFilter = 'all';
+        } else if (key === 'sort') {
+          this.sortBy = 'relevance';
+        }
+        this._invalidateFilterCache();
+        this._updateContent();
+        this._scrollToTop();
+        return;
+      }
+
+      // 卡片标题栏负责展开/收起：折叠时保留标题、人物与关键词，
+      // 便于在长列表里一屏扫过更多条目。
       const cardHeader = event.target.closest('.knowledge-card-header');
       if (cardHeader) {
         const card = cardHeader.closest('.knowledge-card');
@@ -893,7 +949,7 @@ class KnowledgeView {
         const open = panel ? panel.classList.toggle('is-open') : false;
         actionButton.setAttribute('aria-expanded', String(open));
         const label = actionButton.querySelector('.knowledge-more-label');
-        if (label) label.textContent = open ? '收起筛选' : '更多筛选';
+        if (label) label.textContent = open ? '收起筛选' : this._getMoreFilterLabel();
         return;
       }
       if (actionButton.dataset.action === 'clear-filters') {
