@@ -6204,6 +6204,50 @@ body.panel-resizing * {
   flex-shrink: 0;
 }
 
+@media (min-width: 769px) {
+  /* 桌面端滚动知识列表时，加载更多/展开/清空筛选始终留在视野内。 */
+  .knowledge-results-head {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+}
+
+.knowledge-back-to-top {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 40;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(139,37,0,0.25);
+  border-radius: 50%;
+  background: var(--color-cream);
+  color: var(--color-primary);
+  box-shadow: 0 8px 24px rgba(44,24,16,0.16);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.knowledge-back-to-top:hover {
+  background: var(--color-primary);
+  color: var(--color-cream);
+}
+
+.knowledge-back-to-top[hidden] {
+  display: none;
+}
+
+@media (max-width: 560px) {
+  .knowledge-back-to-top {
+    right: 16px;
+    bottom: 16px;
+    width: 42px;
+    height: 42px;
+  }
+}
+
 .knowledge-results-head > div {
   min-width: 0;
 }

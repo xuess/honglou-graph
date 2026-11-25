@@ -324,6 +324,7 @@ class KnowledgeView {
             </div>
           </div>
         </div>
+        <button type="button" class="knowledge-back-to-top" data-action="back-to-top" aria-label="回到知识列表顶部" hidden>↑</button>
       </section>
     `;
 
@@ -337,6 +338,7 @@ class KnowledgeView {
     this._bindLazyVoiceEngines();
     this._syncActiveFilters();
     this._syncResultsActions(filteredItems);
+    this._updateBackToTopVisibility();
   }
 
   /**
@@ -388,6 +390,7 @@ class KnowledgeView {
     if (scrollToTop) this._scrollToTop();
     this._observeLayoutResize();
     this._scheduleTextLayoutPass(true);
+    this._updateBackToTopVisibility();
   }
 
   _syncFilterControls() {
@@ -827,6 +830,11 @@ class KnowledgeView {
       searchInput.addEventListener('input', handleSearch, { signal });
     }
 
+    const mainScroller = this.container.querySelector('.knowledge-main');
+    mainScroller?.addEventListener('scroll', () => this._updateBackToTopVisibility(), { passive: true, signal });
+    const mainContainer = document.querySelector('.main-container');
+    mainContainer?.addEventListener('scroll', () => this._updateBackToTopVisibility(), { passive: true, signal });
+
     this.container.addEventListener('click', (event) => {
       // 用户主动操作后，上一轮“定位到某条知识”的临时目标就失效了。
       this._clearKnowledgeJumpState();
@@ -937,6 +945,17 @@ class KnowledgeView {
 
       const actionButton = event.target.closest('[data-action]');
       if (!actionButton) return;
+      if (actionButton.dataset.action === 'back-to-top') {
+        const main = this.container.querySelector('.knowledge-main');
+        const resultsHead = this.container.querySelector('.knowledge-results-head');
+        if (main && main.scrollHeight > main.clientHeight + 1) {
+          main.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          resultsHead?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        }
+        this._updateBackToTopVisibility();
+        return;
+      }
       if (actionButton.dataset.action === 'load-more') {
         this._loadMore();
         return;
@@ -1110,6 +1129,7 @@ class KnowledgeView {
     this._syncResultsActions(filteredItems);
 
     this._syncKnowledgeHighlights();
+    this._updateBackToTopVisibility();
   }
 
   _buildResultsSubtitle(visibleCount, totalCount) {
@@ -1131,6 +1151,20 @@ class KnowledgeView {
     parts.push('支持人物跳转、长文展开与多维检索');
     
     return parts.join(' · ');
+  }
+
+  _updateBackToTopVisibility() {
+    const button = this.container.querySelector('[data-action="back-to-top"]');
+    if (!button) return;
+    const main = this.container.querySelector('.knowledge-main');
+    const mainContainer = document.querySelector('.main-container');
+    const resultsHead = this.container.querySelector('.knowledge-results-head');
+    const headTop = resultsHead?.getBoundingClientRect().top ?? 0;
+    // 桌面端看内部滚动；手机端看整页滚动后结果栏是否已经离开视口。
+    const scrolled = (main?.scrollTop || 0) > 420
+      || ((mainContainer?.scrollTop || 0) > 0 && headTop < 0)
+      || ((window.scrollY || 0) > 0 && headTop < 0);
+    button.hidden = !scrolled;
   }
 
   _scrollToTop() {
