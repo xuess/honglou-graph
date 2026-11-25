@@ -5,6 +5,7 @@ class KnowledgeView {
     this.characters = [];
     this.characterMap = new Map();
     this.onCharacterClick = null;
+    this.onChapterClick = null;
 
     this.activeCategory = 'all';
     this.activeSubcategory = 'all';
@@ -771,7 +772,10 @@ class KnowledgeView {
 
         <div class="knowledge-card-footer">
           <div class="knowledge-card-related-events">${(item.relatedEvents || []).slice(0, 3).map((event) => `<span>${this._highlightText(event)}</span>`).join('')}</div>
-          ${this._canSpeak(displayContent) ? `<button class="knowledge-speak-btn" data-speak-id="${this._escapeHtmlAttr(item.id)}" data-speak-text="${this._escapeHtmlAttr(displayContent)}" title="朗读此内容">🔊 朗读</button>` : ''}
+          <div class="knowledge-card-actions">
+            ${item.chapter ? `<button type="button" class="knowledge-chapter-jump" data-chapter-jump="${item.chapter}" title="回到第${item.chapter}回原文与同回人物">第${item.chapter}回 →</button>` : ''}
+            ${this._canSpeak(displayContent) ? `<button class="knowledge-speak-btn" data-speak-id="${this._escapeHtmlAttr(item.id)}" data-speak-text="${this._escapeHtmlAttr(displayContent)}" title="朗读此内容">🔊 朗读</button>` : ''}
+          </div>
         </div>
       </article>
     `;
@@ -856,6 +860,16 @@ class KnowledgeView {
         this._invalidateFilterCache();
         this._updateContent();
         this._scrollToTop();
+        return;
+      }
+
+      // 知识卡 → 回目：把「第X回」作为回到原文与同回人物的入口。
+      const chapterJump = event.target.closest('[data-chapter-jump]');
+      if (chapterJump) {
+        const chapter = Number.parseInt(chapterJump.dataset.chapterJump, 10);
+        if (Number.isInteger(chapter) && chapter > 0 && this.onChapterClick) {
+          this.onChapterClick(chapter);
+        }
         return;
       }
 

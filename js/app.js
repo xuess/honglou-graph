@@ -1063,6 +1063,7 @@ class HongLouMengApp {
       this.knowledgeView = new KnowledgeView(this.els.knowledgeContainer);
       this.knowledgeView.setData(this.knowledge, this.characters);
       this.knowledgeView.onCharacterClick = (characterId) => this._openCharacterPage(characterId);
+      this.knowledgeView.onChapterClick = (chapter) => this._openChapterView(chapter);
       this.knowledgeView.onTagClick = (payload) => this._handleFacetTagSelection(payload);
       this._subscribeViewToFacetStore('knowledge');
     }
@@ -3807,8 +3808,8 @@ _createFontAndThemeControls() {
           ${character.outcomeVersion ? `<div class="card-section"><div class="card-section-title">结局：两个版本</div><div class="card-source-note"><div class="card-version-row"><strong>前八十回</strong><span>${this._escapeHtml(character.outcomeVersion.original || '未注明')}</span></div><div class="card-version-row"><strong>后四十回（续书）</strong><span>${this._escapeHtml(character.outcomeVersion.continuation || '未注明')}</span></div></div></div>` : ''}
           ${character.personality ? `<div class="card-section"><div class="card-section-title">性格特征</div><div class="card-personality">${character.personality}</div></div>` : ''}
           ${character.keyEvents?.length ? `<div class="card-section"><div class="card-section-title">关键事迹</div><ul class="card-events">${character.keyEvents.map((event) => `<li>${event}</li>`).join('')}</ul></div>` : ''}
-          ${character.chapters?.length ? `<div class="card-section"><div class="card-section-title">相关章节</div><div class="card-chapters">${character.chapters.slice(0, 5).map((chapter) => `
-            <button type="button" class="card-chapter-item" data-chapter-jump="${Number(chapter.chapter)}" title="查看第${Number(chapter.chapter)}回">
+          ${character.chapters?.length ? `<div class="card-section"><div class="card-section-title">相关章节<span class="card-section-count">${character.chapters.length} 回</span></div><div class="card-chapters">${character.chapters.map((chapter) => `
+            <button type="button" class="card-chapter-item" data-chapter-jump="${Number(chapter.chapter)}" title="查看第${Number(chapter.chapter)}回" aria-label="查看第${Number(chapter.chapter)}回：${this._escapeHtmlAttr(chapter.title || '')}">
               <div class="card-chapter-header"><span class="card-chapter-number">第${chapter.chapter}回</span><span class="card-chapter-title">${chapter.title}</span></div>
               <div class="card-chapter-summary">${chapter.summary}</div>
             </button>`).join('')}</div></div>` : ''}
