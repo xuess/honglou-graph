@@ -5212,8 +5212,6 @@ body.view-knowledge .main-container {
   cursor: pointer;
   transition: var(--transition);
   contain: layout paint;
-  content-visibility: auto;
-  contain-intrinsic-size: 48px;
 }
 
 .chapter-directory-item:hover,
@@ -5281,6 +5279,9 @@ body.view-knowledge .main-container {
   font-weight: 600;
   line-height: 1.45;
   font-size: 0.9rem;
+  /* 回目上下句之间本来就有空格：优先在空格处换行，避免把“结红楼梦”这类尾句拆成孤行。 */
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
 .chapter-directory-meta {

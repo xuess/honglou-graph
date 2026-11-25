@@ -158,6 +158,7 @@ class ChapterView {
     const overview = this._getOverviewStats();
     const visibleProfiles = this._getVisibleProfiles();
     const currentProfile = this._resolveCurrentProfile(visibleProfiles);
+    this.visibleProfiles = visibleProfiles;
 
     return `
       <section class="chapter-shell">
@@ -222,7 +223,6 @@ class ChapterView {
     const liveInput = this.container.querySelector('.chapter-search-input');
     if (liveInput && liveInput.value !== this.searchQuery) liveInput.value = this.searchQuery;
     const directoryEl = this.container.querySelector('#chapter-directory-content');
-    const mainEl = this.container.querySelector('#chapter-main-content');
     this._clearDeferredMainRender();
     const visibleProfiles = this._getVisibleProfiles();
     const currentProfile = this._resolveCurrentProfile(visibleProfiles);
@@ -230,14 +230,85 @@ class ChapterView {
     this.visibleProfiles = visibleProfiles;
 
     if (directoryEl) directoryEl.innerHTML = this._renderDirectory(visibleProfiles, currentProfile);
-    if (mainEl) {
-      mainEl.innerHTML = currentProfile ? this._renderMain(currentProfile, visibleProfiles) : this._renderEmptyState();
-      this._flushDeferredMain(currentProfile);
-    }
+    this._renderMainContent(currentProfile, visibleProfiles);
 
     this._syncCharacterHighlights();
     this._observeLayoutResize();
     this._scheduleTextLayoutPass();
+  }
+
+  // 只更新右侧正文，左侧目录保持原 DOM 和滚动位置。
+  _updateMainContent() {
+    const visibleProfiles = this.visibleProfiles?.length ? this.visibleProfiles : this._getVisibleProfiles();
+    const currentProfile = this._resolveCurrentProfile(visibleProfiles);
+    this.visibleProfiles = visibleProfiles;
+    this._renderMainContent(currentProfile, visibleProfiles);
+    this._syncCharacterHighlights();
+    this._observeLayoutResize();
+    this._scheduleTextLayoutPass();
+  }
+
+  _renderMainContent(currentProfile, visibleProfiles) {
+    const mainEl = this.container.querySelector('#chapter-main-content');
+    if (!mainEl) return;
+    this._clearDeferredMainRender();
+    mainEl.innerHTML = currentProfile ? this._renderMain(currentProfile, visibleProfiles) : this._renderEmptyState();
+    this._flushDeferredMain(currentProfile);
+  }
+
+  _selectChapter(chapter, options = {}) {
+    const { scrollMain = true, revealDirectory = true, align = 'nearest' } = options;
+    const target = Number(chapter);
+    if (!Number.isFinite(target)) return;
+
+    this.activeChapter = target;
+    this._updateMainContent();
+    this._syncDirectoryActive();
+    if (scrollMain) this._scrollMainToTop();
+    if (revealDirectory) this._scrollDirectoryActiveIntoView({ align });
+  }
+
+  _syncDirectoryActive() {
+    const activeChapter = Number(this.activeChapter);
+    this.container.querySelectorAll('.chapter-directory-item').forEach((item) => {
+      const isActive = Number(item.dataset.chapter) === activeChapter;
+      item.classList.toggle('active', isActive);
+      if (isActive) item.setAttribute('aria-current', 'true');
+      else item.removeAttribute('aria-current');
+    });
+  }
+
+  // 只滚动左侧目录自身，避免从其他视图跳转时把整页或右侧正文一起带走。
+  _scrollDirectoryActiveIntoView({ align = 'nearest' } = {}) {
+    const active = this.container.querySelector('.chapter-directory-item.active');
+    if (!active) return;
+    const details = active.closest('.chapter-directory-details');
+    if (details && !details.open) return;
+
+    const sidebar = this.container.querySelector('.chapter-sidebar');
+    if (!sidebar) return;
+    if (sidebar.scrollHeight <= sidebar.clientHeight + 1) return;
+
+    const sidebarRect = sidebar.getBoundingClientRect();
+    const activeRect = active.getBoundingClientRect();
+    if (!activeRect.height) return;
+
+    const activeTop = sidebar.scrollTop + activeRect.top - sidebarRect.top;
+    let targetTop = null;
+    if (align === 'center') {
+      targetTop = activeTop - (sidebar.clientHeight - activeRect.height) / 2;
+    } else if (activeRect.top < sidebarRect.top) {
+      targetTop = activeTop - 8;
+    } else if (activeRect.bottom > sidebarRect.bottom) {
+      targetTop = activeTop + activeRect.height - sidebar.clientHeight + 8;
+    }
+    if (targetTop === null) return;
+
+    const maxTop = sidebar.scrollHeight - sidebar.clientHeight;
+    sidebar.scrollTo({
+      top: Math.max(0, Math.min(maxTop, targetTop)),
+      behavior: 'instant'
+    });
   }
 
   _renderDirectory(visibleProfiles, currentProfile) {
@@ -251,7 +322,7 @@ class ChapterView {
       const isActive = currentProfile && profile.chapter === currentProfile.chapter;
       const isFavorite = favorites.has(profile.chapter);
       return `
-        <div class="chapter-directory-item ${isActive ? 'active' : ''}" data-chapter="${profile.chapter}">
+        <div class="chapter-directory-item ${isActive ? 'active' : ''}" data-chapter="${profile.chapter}"${isActive ? ' aria-current="true"' : ''}>
           <button class="chapter-directory-fav ${isFavorite ? 'active' : ''}" data-fav-chapter="${profile.chapter}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? '取消收藏' : '收藏'}第${profile.chapter}回" title="${isFavorite ? '取消收藏' : '收藏本回'}">${isFavorite ? '★' : '☆'}</button>
           <button class="chapter-directory-content" data-chapter="${profile.chapter}">
             <span class="chapter-directory-number">第${profile.chapter}回</span>
@@ -592,9 +663,7 @@ class ChapterView {
       const handleJump = () => {
         const chapter = parseInt(quickJumpInput.value);
         if (chapter >= 1 && chapter <= 120) {
-          this.activeChapter = chapter;
-          this._updateContent();
-          this._scrollMainToTop();
+          this._selectChapter(chapter, { align: 'center' });
           quickJumpInput.value = '';
         }
       };
@@ -628,9 +697,7 @@ class ChapterView {
 
       const chapterButton = event.target.closest('[data-chapter]');
       if (chapterButton && chapterButton.classList.contains('chapter-directory-content')) {
-        this.activeChapter = Number(chapterButton.dataset.chapter);
-        this._updateContent();
-        this._scrollMainToTop();
+        this._selectChapter(Number(chapterButton.dataset.chapter), { align: 'nearest' });
         return;
       }
 
@@ -648,9 +715,7 @@ class ChapterView {
 
       const jumpButton = event.target.closest('[data-jump-chapter]');
       if (jumpButton) {
-        this.activeChapter = Number(jumpButton.dataset.jumpChapter);
-        this._updateContent();
-        this._scrollMainToTop();
+        this._selectChapter(Number(jumpButton.dataset.jumpChapter), { align: 'nearest' });
         return;
       }
 
@@ -1102,9 +1167,7 @@ class ChapterView {
         const currentIndex = visibleProfiles.findIndex(p => p.chapter === this.activeChapter);
         const nextProfile = visibleProfiles[currentIndex + 1];
         if (nextProfile) {
-          this.activeChapter = nextProfile.chapter;
-          this._updateContent();
-          this._scrollMainToTop();
+          this._selectChapter(nextProfile.chapter, { align: 'nearest' });
         } else {
           // Reached the end, stop
           this._toggleAutoRead(button);

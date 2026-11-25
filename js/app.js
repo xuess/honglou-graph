@@ -2325,14 +2325,14 @@ _createFontAndThemeControls() {
       const chapters = [...new Set(this.knowledge.map(k => k.chapter).filter(Boolean))];
       if (chapters.length) {
         const chapter = chapters[Math.floor(Math.random() * chapters.length)];
+        this.chapterView.activeChapter = chapter;
         this._switchView('chapter');
         if (!this.viewInitialized.chapter) {
           this.chapterView.render();
           this.viewInitialized.chapter = true;
           this.viewEverRendered.chapter = true;
         }
-        this.chapterView.activeChapter = chapter;
-        this.chapterView._updateContent?.();
+        this.chapterView._selectChapter?.(chapter, { align: 'center' });
         this._updateFloatingContext(`随缘：第${chapter}回`);
       }
     }
@@ -3136,15 +3136,16 @@ _createFontAndThemeControls() {
 
   _openChapterView(chapterNum) {
     if (!this.chapterView) return;
+    // 先写入目标回目，首次渲染就能直接显示正确内容；
+    // 切换完成后再把左侧目录滚动到当前回目，避免右侧已是第66回、左侧还停在开头。
+    this.chapterView.activeChapter = chapterNum;
     this._switchView('chapter');
     if (!this.viewInitialized.chapter) {
       this.chapterView.render();
       this.viewInitialized.chapter = true;
       this.viewEverRendered.chapter = true;
     }
-    this.chapterView.activeChapter = chapterNum;
-    this.chapterView._updateContent();
-    this.chapterView._scrollMainToTop?.();
+    this.chapterView._selectChapter(chapterNum, { align: 'center' });
     this._updateFloatingContext(`第${chapterNum}回`);
   }
 
