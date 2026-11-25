@@ -860,6 +860,7 @@ class KnowledgeView {
           const nowExpanded = this._toggleCardExpanded(cardId);
           this._setCardExpandedState(card, nowExpanded);
           this._syncExpandAllLabel();
+          this._scheduleTextLayoutPass();
           // 瀑布流卡片是绝对定位的；折叠/展开后必须重排后续卡片，否则会留下大块空洞。
           const contentEl = this.container.querySelector('#knowledge-items-content');
           if (contentEl) {

@@ -178,6 +178,7 @@
                 <button class="importance-quick-btn" data-level="3" title="主要人物（重要度 3+）">主要</button>
                 <button class="importance-quick-btn" data-level="2" title="扩展人物（重要度 2+）">扩展</button>
                 <button class="importance-quick-btn" data-level="1" title="全部有名人物">全部</button>
+                <button id="graph-help-btn" class="graph-help-btn" type="button" aria-label="查看图谱模式与时间线说明" title="查看图谱模式与时间线说明">?</button>
               </div>
               <div id="fullscreen-view-label" class="graph-floating-label">默认概览</div>
             </div>
@@ -196,17 +197,17 @@
             <div class="timeline-header">
               <span class="timeline-label">章回时间线</span>
               <div class="timeline-controls">
-                <select id="timeline-mode" class="timeline-select" aria-label="时间线模式">
+                <select id="timeline-mode" class="timeline-select" aria-label="时间线模式" title="时间线模式：单回 / 累计">
                   <option value="single" selected>单回</option>
                   <option value="cumulative">累计</option>
                 </select>
-                <select id="timeline-speed" class="timeline-select" aria-label="播放速度">
+                <select id="timeline-speed" class="timeline-select" aria-label="播放速度" title="自动播放速度">
                   <option value="1400">慢速</option>
                   <option value="900" selected>标准</option>
                   <option value="500">快速</option>
                 </select>
-                <button id="btn-timeline-play" class="timeline-play-btn" title="自动播放">▶</button>
-                <span id="timeline-chapter" class="timeline-chapter">全部</span>
+                <button id="btn-timeline-play" class="timeline-play-btn" title="自动播放（使用当前速度）">▶</button>
+                <span id="timeline-chapter" class="timeline-chapter" title="当前章回范围">全部</span>
               </div>
             </div>
             <input type="range" id="timeline-range" class="timeline-range" min="0" max="120" value="0" step="1" aria-label="章回时间线滑块">

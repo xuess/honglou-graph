@@ -261,7 +261,8 @@ class HongLouMengApp {
       timelineChapter: document.getElementById('timeline-chapter'),
       timelineMode: document.getElementById('timeline-mode'),
       timelineSpeed: document.getElementById('timeline-speed'),
-      btnTimelinePlay: document.getElementById('btn-timeline-play')
+      btnTimelinePlay: document.getElementById('btn-timeline-play'),
+      graphHelpBtn: document.getElementById('graph-help-btn')
     };
   }
 
@@ -736,6 +737,8 @@ class HongLouMengApp {
     window.addEventListener('popstate', (event) => {
       this._applyStateFromUrl(event.state?.hlm || null);
     });
+
+    this.els.graphHelpBtn?.addEventListener('click', () => this._showKeyboardHelp());
 
     // Timeline slider + controls
     if (this.els.timelineRange) {
@@ -2267,7 +2270,7 @@ _createFontAndThemeControls() {
       <div class="keyboard-help-modal" role="dialog" aria-modal="true" aria-labelledby="keyboard-help-title">
         <div class="keyboard-help-content" tabindex="-1">
           <div class="keyboard-help-header">
-            <h3 id="keyboard-help-title">键盘快捷键</h3>
+            <h3 id="keyboard-help-title">快捷键与图谱说明</h3>
             <button class="keyboard-help-close" data-close-help="true" aria-label="关闭快捷键帮助">✕</button>
           </div>
           <div class="keyboard-help-body">
@@ -2285,6 +2288,20 @@ _createFontAndThemeControls() {
               <div class="keyboard-shortcut"><kbd>双击</kbd><span>聚焦其关系网络</span></div>
               <div class="keyboard-shortcut"><kbd>Tab</kbd><span>在节点间移动</span></div>
               <div class="keyboard-shortcut"><kbd>Enter</kbd><span>打开当前节点</span></div>
+            </div>
+            <div class="keyboard-help-section">
+              <h4>图谱模式</h4>
+              <div class="keyboard-shortcut"><kbd>核心</kbd><span>重要度 4–5 的人物</span></div>
+              <div class="keyboard-shortcut"><kbd>主要</kbd><span>重要度 3 及以上的人物</span></div>
+              <div class="keyboard-shortcut"><kbd>扩展</kbd><span>重要度 2 及以上的人物</span></div>
+              <div class="keyboard-shortcut"><kbd>全部</kbd><span>全部有名人物</span></div>
+            </div>
+            <div class="keyboard-help-section">
+              <h4>章回时间线</h4>
+              <div class="keyboard-shortcut"><kbd>单回</kbd><span>只看当前章回</span></div>
+              <div class="keyboard-shortcut"><kbd>累计</kbd><span>从第 1 回到当前章回</span></div>
+              <div class="keyboard-shortcut"><kbd>慢速 / 标准 / 快速</kbd><span>自动播放的推进速度</span></div>
+              <div class="keyboard-shortcut"><kbd>全部</kbd><span>当前不限制章回范围</span></div>
             </div>
             <div class="keyboard-help-section">
               <h4>通用操作</h4>
