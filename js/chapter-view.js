@@ -1030,7 +1030,7 @@ class ChapterView {
       { pattern: /佳蕙/, ids: ['jia_hui'] },
       { pattern: /乌进孝/, ids: ['wu_jinxiao'] },
       { pattern: /来旺妇/, ids: ['laiwang_furen'] },
-      { pattern: /老学究/, ids: ['old_xuejiu'] },
+      { pattern: /老学究/, ids: ['jia_dairu'] },
       { pattern: /甄家仆/, ids: ['zhenjia_servant'] },
       { pattern: /赖尚荣家/, ids: ['lai_da'] },
       { pattern: /胡庸医/, ids: ['hu_yongyi'] },

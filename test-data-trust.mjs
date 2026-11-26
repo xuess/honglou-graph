@@ -157,17 +157,121 @@ await run('TC-47 引语审计队列与数据统计一致', async () => {
   });
   assert.equal(audit.quotes, 17);
   assert.equal(audit.quoteCharacters, 10);
-  assert.equal(audit.pending, 121);
+  assert.equal(audit.pending, 120);
   assert.equal(audit.comparisons, 36);
-  assert.equal(audit.unverifiedCharacters, 107);
-  assert.equal(audit.audit.recordCount, 107);
+  assert.equal(audit.unverifiedCharacters, 106);
+  assert.equal(audit.audit.recordCount, 106);
   assert.equal(audit.audit.verifiedCount, 10);
   assert.equal(audit.audit.verifiedQuoteLines, 17);
-  assert.equal(audit.audit.pendingQuoteLines, 121);
+  assert.equal(audit.audit.pendingQuoteLines, 120);
   assert.equal(audit.audit.comparisonQuoteLines, 36);
 });
 
-await run('TC-48 控制台无错误', async () => {
+// ============================================================
+// TC-49: 缺失人物与孤立节点
+// ============================================================
+await run('TC-49 缺失人物与孤立节点', async () => {
+  const state = await page.evaluate(() => {
+    const requiredIds = [
+      'jia_yan', 'jia_yuan', 'zhen_baoyu', 'jia_cong', 'jin_rong',
+      'li_shen', 'li_wen', 'li_qi', 'liu_saozi', 'bao_er',
+      'duo_hunchong', 'feng_shi', 'huo_qi', 'jia_huang', 'huang_da_nainai'
+    ];
+    const characterIds = new Set(app.characters.map((character) => character.id));
+    const linked = new Set(app.relationships.flatMap((relation) => [relation.source, relation.target]));
+    return {
+      missing: requiredIds.filter((id) => !characterIds.has(id)),
+      isolated: app.characters.filter((character) => !linked.has(character.id)).map((character) => character.name),
+      oldXuejiu: characterIds.has('old_xuejiu'),
+      count: app.characters.length,
+      relationshipCount: app.relationships.length
+    };
+  });
+  assert.deepEqual(state.missing, [], `缺失人物: ${state.missing.join('、')}`);
+  assert.deepEqual(state.isolated, [], `仍有孤立人物: ${state.isolated.join('、')}`);
+  assert.equal(state.oldXuejiu, false, 'old_xuejiu 应与贾代儒合并');
+  assert.ok(state.count >= 125, `人物数量异常: ${state.count}`);
+  assert.ok(state.relationshipCount >= 200, `关系数量异常: ${state.relationshipCount}`);
+});
+
+// ============================================================
+// TC-50: 家族辈分与兄妹方向
+// ============================================================
+await run('TC-50 家族辈分与兄妹方向', async () => {
+  const state = await page.evaluate(() => {
+    const byId = app.characterMap;
+    const edge = (source, target) => app.relationships.find((relation) =>
+      relation.source === source && relation.target === target && relation.type === 'blood');
+    return {
+      daihuaParent: byId.get('jia_daihua')?.parentIds.includes('jia_yan'),
+      daishanParent: byId.get('jia_daishan')?.parentIds.includes('jia_yuan'),
+      qinNatal: byId.get('qin_keqing')?.natalGeneration,
+      qinMarried: byId.get('qin_keqing')?.marriedGeneration,
+      xuePanToBaochai: Boolean(edge('xue_pan', 'xue_baochai')),
+      xueKeToBaoqin: Boolean(edge('xue_ke', 'xue_baoqin')),
+      yuanchunToBaoyu: Boolean(edge('jia_yuanchun', 'jia_baoyu')),
+      xifengFamily: byId.get('wang_xifeng')?.family,
+      xifengMarried: byId.get('wang_xifeng')?.marriedFamily
+    };
+  });
+  assert.equal(state.daihuaParent, true, '贾代化应挂到贾演名下');
+  assert.equal(state.daishanParent, true, '贾代善应挂到贾源名下');
+  assert.equal(state.qinNatal, 3);
+  assert.equal(state.qinMarried, 4);
+  assert.equal(state.xuePanToBaochai, true, '兄妹方向应为薛蟠→薛宝钗');
+  assert.equal(state.xueKeToBaoqin, true, '兄妹方向应为薛蝌→薛宝琴');
+  assert.equal(state.yuanchunToBaoyu, true, '姐弟方向应为贾元春→贾宝玉');
+  assert.equal(state.xifengFamily, '王家');
+  assert.equal(state.xifengMarried, '贾家');
+});
+
+// ============================================================
+// TC-51: 核心关系证据与无证据兜底
+// ============================================================
+await run('TC-51 核心关系证据与无证据兜底', async () => {
+  await page.evaluate(() => app._switchView('graph'));
+  await sleep(900);
+  const state = await page.evaluate(() => {
+    const coreMissing = app.relationships.filter((relation) => {
+      if (relation.evidence?.length || relation.weight < 4) return false;
+      const source = app.characterMap.get(relation.source);
+      const target = app.characterMap.get(relation.target);
+      return Math.max(source?.importance || 0, target?.importance || 0) >= 4;
+    });
+    const linkHits = [...document.querySelectorAll('#graph-container .link-hit')];
+    const noEvidenceLink = app.graph.links.find((link) => !link.evidence.length);
+    if (noEvidenceLink) app._showRelationshipCard(noEvidenceLink);
+    return {
+      coreMissing: coreMissing.length,
+      linkHits: linkHits.length,
+      clickable: linkHits.filter((element) => element.getAttribute('role') === 'button' && element.getAttribute('tabindex') === '0').length,
+      fallbackText: document.querySelector('#character-card-overlay .relation-evidence-empty')?.innerText || ''
+    };
+  });
+  assert.equal(state.coreMissing, 0, `仍有核心关系缺少证据: ${state.coreMissing}`);
+  assert.equal(state.linkHits, state.clickable, `并非所有关系都可点击: ${state.clickable}/${state.linkHits}`);
+  assert.match(state.fallbackText, /尚未整理回目依据/, '无证据关系应显示兜底说明');
+});
+
+// ============================================================
+// TC-52: 新人物进入回目关联
+// ============================================================
+await run('TC-52 新人物进入回目关联', async () => {
+  await page.evaluate(() => app._closeCard());
+  await page.click('[data-view="chapter"]');
+  await sleep(900);
+  const profiles = await page.evaluate(() => [1, 9, 10, 81].map((chapter) => ({
+    chapter,
+    names: app.chapterView.chapterProfileMap.get(chapter).characters.map((item) => item.character.name)
+  })));
+  const names = (chapter) => profiles.find((item) => item.chapter === chapter).names;
+  assert.ok(names(1).includes('封氏') && names(1).includes('霍启'), `第1回应有封氏/霍启: ${names(1).join('、')}`);
+  assert.ok(names(9).includes('金荣'), `第9回应有金荣: ${names(9).join('、')}`);
+  assert.ok(names(10).includes('璜大奶奶'), `第10回应有璜大奶奶: ${names(10).join('、')}`);
+  assert.ok(names(81).includes('李纹') && names(81).includes('李绮'), `第81回应有李纹/李绮: ${names(81).join('、')}`);
+});
+
+await run('TC-53 控制台无错误', async () => {
   assert.equal(errors.length, 0, errors.join('\n'));
 });
 

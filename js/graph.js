@@ -357,15 +357,17 @@ _init() {
         update => update,
         exit => exit.remove()
       )
-      .attr('class', d => `link-hit${d.evidence.length ? ' has-evidence' : ''}`)
+      .attr('class', d => `link-hit${d.evidence.length ? ' has-evidence' : ' no-evidence'}`)
       .attr('data-link-key', d => d.key)
-      .attr('role', d => d.evidence.length ? 'button' : null)
-      .attr('tabindex', d => d.evidence.length ? '0' : null)
-      .attr('aria-hidden', d => d.evidence.length ? null : 'true')
+      // 没有回目依据的关系也可以打开详情卡，卡片内会说明“尚未整理考据”。
+      .attr('role', 'button')
+      .attr('tabindex', '0')
+      .attr('aria-hidden', null)
       .attr('aria-label', d => {
-        if (!d.evidence.length) return null;
-        const chapters = d.evidence.map(item => `第${item.chapter}回`).join('、');
-        return `关系考据：${d.sourceName}与${d.targetName}，${d.label}；${chapters}。按回车查看`;
+        const chapters = d.evidence.length
+          ? `；回目依据：${d.evidence.map(item => `第${item.chapter}回`).join('、')}`
+          : '；暂无回目依据';
+        return `关系详情：${d.sourceName}与${d.targetName}，${d.label}${chapters}。按回车查看`;
       });
 
     const nodeGroups = this.nodeGroup
