@@ -9,6 +9,8 @@ class HongLouMengApp {
     this.characters = [];
     this.relationships = [];
     this.knowledge = [];
+    this.appearances = [];
+    this.appearanceMap = new Map();
     this.provenance = null;
     this._sourceCatalog = new Map();
     this._baseEditions = new Set(['甲戌本', '庚辰本']);
@@ -878,8 +880,11 @@ class HongLouMengApp {
     }
 
     this.characters.forEach((character) => {
-      (character.chapters || []).forEach((entry) => {
-        const chapter = Number.parseInt(entry?.chapter, 10);
+      const records = (character.appearances?.length
+        ? character.appearances
+        : (character.chapters || []).map((entry) => ({ chapter: entry.chapter })));
+      records.forEach((record) => {
+        const chapter = Number.parseInt(record?.chapter, 10);
         if (!Number.isFinite(chapter) || chapter < 1 || chapter > 120) return;
         this.chapterCharacterIndex.get(chapter)?.add(character.id);
       });
@@ -936,11 +941,12 @@ class HongLouMengApp {
     // 导致数据改了但界面还是旧的（本地调试时尤其难排查）。
     const version = document.querySelector('meta[name="hlm-asset-version"]')?.content || '';
     const dataUrl = (file) => (version ? `data/${file}?v=${version}` : `data/${file}`);
-    const [charRes, relRes, knowledgeRes, provenanceRes] = await Promise.all([
+    const [charRes, relRes, knowledgeRes, provenanceRes, appearancesRes] = await Promise.all([
       fetch(dataUrl('characters.json')),
       fetch(dataUrl('relationships.json')),
       fetch(dataUrl('knowledge.json')),
-      fetch(dataUrl('provenance.json'))
+      fetch(dataUrl('provenance.json')),
+      fetch(dataUrl('appearances.json'))
     ]);
 
     if (!charRes.ok || !relRes.ok) throw new Error('无法加载数据文件');
@@ -949,6 +955,13 @@ class HongLouMengApp {
     this.relationships = await relRes.json();
     this.knowledge = knowledgeRes.ok ? await knowledgeRes.json() : [];
     this.provenance = provenanceRes.ok ? await provenanceRes.json() : null;
+    const appearanceData = appearancesRes.ok ? await appearancesRes.json() : { records: [] };
+    this.appearances = Array.isArray(appearanceData.records) ? appearanceData.records : [];
+    this.appearanceMap = new Map();
+    for (const record of this.appearances) {
+      if (!this.appearanceMap.has(record.characterId)) this.appearanceMap.set(record.characterId, []);
+      this.appearanceMap.get(record.characterId).push(record);
+    }
     this._sourceCatalog = new Map((this.provenance?.sourceCatalog || []).map((source) => [source.id, source]));
     this._baseEditions = new Set(this.provenance?.policy?.baseEditions || ['甲戌本', '庚辰本']);
     this._normalizeCharacterChapters();
@@ -1012,6 +1025,9 @@ class HongLouMengApp {
         if (!Number.isFinite(chapter) || chapter < 1 || chapter > 120) continue;
         if (!entry.version) entry.version = chapter > 80 ? 'continuation' : 'original';
       }
+      character.appearances = (this.appearanceMap.get(character.id) || [])
+        .slice()
+        .sort((a, b) => a.chapter - b.chapter);
     }
   }
 
@@ -3770,22 +3786,31 @@ _createFontAndThemeControls() {
 
     // 出场时间线：120 个格子若都做成可聚焦按钮，键盘要按 120 次才能离开这个区块。
     // 改为 roving tabindex——整条时间线只占一个 Tab 位，进入后用方向键逐回移动。
-    const chapSet = new Set((character.chapters || []).map(c => c.chapter));
     const chapterEntryMap = new Map((character.chapters || []).map((entry) => [entry.chapter, entry]));
-    const firstActiveChapter = (character.chapters || []).map((entry) => Number(entry.chapter)).sort((a, b) => a - b)[0] || 1;
+    const appearanceRecords = character.appearances?.length
+      ? character.appearances
+      : (character.chapters || []).map((entry) => ({ ...entry, roles: ['key'], sources: ['character-chapter'] }));
+    const appearanceMap = new Map(appearanceRecords.map((record) => [Number(record.chapter), record]));
+    const chapSet = new Set(appearanceMap.keys());
+    const firstActiveChapter = [...chapSet].sort((a, b) => a - b)[0] || 1;
     const fateTimelineCells = Array.from({ length: 120 }, (_, i) => {
       const ch = i + 1;
       const active = chapSet.has(ch);
+      const appearance = appearanceMap.get(ch);
       const chapterEntry = chapterEntryMap.get(ch);
-      const chapterTitle = chapterEntry?.title || `第${ch}回`;
-      const chapterSummary = chapterEntry?.summary || '';
-      const isContinuation = active && chapterEntry?.version === 'continuation';
+      const chapterTitle = appearance?.title || chapterEntry?.title || `第${ch}回`;
+      const chapterSummary = appearance?.summary || chapterEntry?.summary || '';
+      const isContinuation = active && (appearance?.version === 'continuation' || chapterEntry?.version === 'continuation');
+      const roleLabel = appearance?.roles?.includes('key')
+        ? '关键回目'
+        : appearance?.roles?.includes('entrance') ? '人物出场' : '名场面';
+      const roleClass = active ? (appearance?.roles?.includes('key') ? ' is-key' : ' is-scene') : '';
       const tabIndex = ch === firstActiveChapter ? 0 : -1;
-      return `<button type="button" class="card-fate-cell ${active ? 'active' : 'inactive'}${isContinuation ? ' is-continuation' : ''}" data-chapter="${ch}" data-title="${this._escapeHtmlAttr(chapterTitle)}" data-summary="${this._escapeHtmlAttr(chapterSummary)}" style="${active ? `background:${familyColor}` : ''}" tabindex="${tabIndex}" aria-label="${active ? `第${ch}回${isContinuation ? '（续书）' : ''}：${this._escapeHtmlAttr(chapterTitle)}` : `第${ch}回暂无记录`}"${active ? '' : ' aria-disabled="true"'}></button>`;
+      return `<button type="button" class="card-fate-cell ${active ? 'active' : 'inactive'}${roleClass}${isContinuation ? ' is-continuation' : ''}" data-chapter="${ch}" data-role="${active ? roleLabel : ''}" data-title="${this._escapeHtmlAttr(chapterTitle)}" data-summary="${this._escapeHtmlAttr(chapterSummary)}" style="${active ? `background:${familyColor}` : ''}" tabindex="${tabIndex}" aria-label="${active ? `第${ch}回（${roleLabel}${isContinuation ? '，续书' : ''}）：${this._escapeHtmlAttr(chapterTitle)}` : `第${ch}回暂无记录`}"${active ? '' : ' aria-disabled="true"'}></button>`;
     }).join('');
-    const fateSectionHtml = character.chapters?.length ? `
+    const fateSectionHtml = appearanceRecords.length ? `
       <div class="card-section">
-        <div class="card-section-title">关键回目时间线（第1-120回）</div>
+        <div class="card-section-title">关联回目时间线（第1-120回）</div>
         <div class="card-fate-timeline-wrap">
           <div class="card-fate-timeline">${fateTimelineCells}</div>
           <div class="card-fate-marks"><span>第1回</span><span>第60回</span><span>第120回</span></div>
@@ -3957,7 +3982,8 @@ _createFontAndThemeControls() {
       const chapter = cell.dataset.chapter || '';
       const title = cell.dataset.title || '';
       const summary = cell.dataset.summary || '';
-      detailEl.textContent = `第${chapter}回 · ${title}${summary ? ` · ${summary}` : ''}`;
+      const role = cell.dataset.role || '';
+      detailEl.textContent = `第${chapter}回${role ? `（${role}）` : ''} · ${title}${summary ? ` · ${summary}` : ''}`;
       detailEl.classList.add('visible');
     };
     const resetDetail = () => {

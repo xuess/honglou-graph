@@ -82,6 +82,15 @@
 - `evidenceNote` 可补充版本差异或争议说明，但不得在没有 `evidence` 时单独出现。
 - 关系证据不是事实底本的替代品；卡片脚注保留“原文异文与版本差异待校”。
 
+## 出场索引
+
+`data/appearances.json` 是人物—回目的统一出场索引，由 `npm run build:appearances` 生成。
+
+- 只收两类来源：人物 `chapters`（关键回目）和 `scene`/`entrance` 知识条目（名场面、人物出场）；
+- 不从 `theme`、`character_study`、`allusion`、`poem`、`architecture` 等跨回目内容反推出场；
+- `roles` 可为 `key` / `scene` / `entrance`，`version` 区分前八十回与续书；
+- 时间线和章节人物视图应优先读这套索引，避免再用名字子串或主题条目猜人物。
+
 ## 展示准则
 
 - 只有通过“底本来源 + 版本一致 + 回目覆盖 + locator”四项校验的 `quoteSources` 才能显示为“经典语录”。

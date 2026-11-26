@@ -271,7 +271,74 @@ await run('TC-52 新人物进入回目关联', async () => {
   assert.ok(names(81).includes('李纹') && names(81).includes('李绮'), `第81回应有李纹/李绮: ${names(81).join('、')}`);
 });
 
-await run('TC-53 控制台无错误', async () => {
+// ============================================================
+// TC-54: 出场索引与时间线
+// ============================================================
+await run('TC-54 出场索引与时间线', async () => {
+  const state = await page.evaluate(() => {
+    const daiyu = app.characterMap.get('lin_daiyu');
+    return {
+      records: app.appearances.length,
+      daiyuAppearances: daiyu.appearances?.length || 0,
+      daiyuRoles: [...new Set((daiyu.appearances || []).flatMap((item) => item.roles))],
+      chapter44Characters: [...(app.chapterCharacterIndex.get(44) || [])],
+      chaptersCovered: new Set(app.appearances.map((item) => item.chapter)).size
+    };
+  });
+  assert.ok(state.records >= 400, `出场索引过少: ${state.records}`);
+  assert.ok(state.daiyuAppearances >= 10, `黛玉关联回目过少: ${state.daiyuAppearances}`);
+  assert.ok(state.daiyuRoles.includes('key') && state.daiyuRoles.includes('scene'), `角色类型缺失: ${state.daiyuRoles}`);
+  assert.ok(state.chapter44Characters.length >= 5, `第44回时间线人数异常: ${state.chapter44Characters.length}`);
+  assert.ok(state.chaptersCovered >= 80, `覆盖回目过少: ${state.chaptersCovered}`);
+});
+
+// ============================================================
+// TC-55: 章节知识补全与人物专题
+// ============================================================
+await run('TC-55 章节知识补全与人物专题', async () => {
+  const state = await page.evaluate(() => {
+    const relevant = app.knowledge.filter((item) =>
+      !['chapter', 'character', 'theme', 'character_study'].includes(item.type));
+    const counts = {};
+    for (const item of relevant) {
+      if (item.chapter) counts[item.chapter] = (counts[item.chapter] || 0) + 1;
+    }
+    const emptyChapters = [];
+    for (let chapter = 1; chapter <= 80; chapter += 1) {
+      if (!counts[chapter]) emptyChapters.push(chapter);
+    }
+    const chapter44 = app.chapterView.chapterProfileMap.get(44);
+    return {
+      emptyChapters,
+      chapter44Knowledge: chapter44?.relatedKnowledge?.map((item) => item.title) || [],
+      studies: app.knowledge.filter((item) => item.type === 'character_study').length,
+      total: app.knowledge.length
+    };
+  });
+  assert.deepEqual(state.emptyChapters, [], `仍有空白章回: ${state.emptyChapters.join('、')}`);
+  assert.ok(state.chapter44Knowledge.some((title) => /凤姐泼醋/.test(title)), `第44回缺少名场面: ${state.chapter44Knowledge.join('、')}`);
+  assert.ok(state.studies >= 16, `人物专题不足: ${state.studies}`);
+  assert.ok(state.total >= 570, `知识条目总数异常: ${state.total}`);
+});
+
+// ============================================================
+// TC-56: 人物专题可检索
+// ============================================================
+await run('TC-56 人物专题可检索', async () => {
+  const result = await page.evaluate(() => {
+    const items = app.knowledge.filter((item) => item.type === 'character_study');
+    const target = items.find((item) => /王熙凤/.test(item.title));
+    return {
+      count: items.length,
+      hasXifeng: Boolean(target),
+      title: target?.title || ''
+    };
+  });
+  assert.ok(result.count >= 16, `人物专题数量异常: ${result.count}`);
+  assert.equal(result.hasXifeng, true, '缺少王熙凤人物专题');
+});
+
+await run('TC-57 控制台无错误', async () => {
   assert.equal(errors.length, 0, errors.join('\n'));
 });
 

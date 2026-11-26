@@ -11514,5 +11514,1576 @@
     ],
     "analysis": "女性命运悲歌是红楼梦最重要的主题之一。通过金陵十二钗的命运，展现了封建社会对女性的压迫和摧残。黛玉的泪尽而亡、宝钗的独守空房、元春的宫中薨逝，都是封建社会女性悲剧的缩影。",
     "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch006_liulaolao",
+    "type": "scene",
+    "title": "刘姥姥一进荣国府",
+    "content": "刘姥姥带着板儿到荣国府打秋风，经周瑞家的引荐见到王熙凤。凤姐以二十两银子接济，既显出大家体面，也埋下日后刘姥姥报恩的因缘。",
+    "chapter": 6,
+    "relatedCharacters": [
+      "liu_laolao",
+      "wang_xifeng",
+      "zhou_rui",
+      "pinger"
+    ],
+    "relatedEvents": [
+      "刘姥姥一进荣国府",
+      "凤姐接济刘姥姥"
+    ],
+    "tags": [
+      "刘姥姥",
+      "打秋风",
+      "二十两银子",
+      "周瑞家的",
+      "凤姐"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "本回以村妇求助对照侯门体面，是刘姥姥三进荣府的起点。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch009_xuetang",
+    "type": "scene",
+    "title": "顽童闹学堂",
+    "content": "贾宝玉与秦钟入家塾读书，金荣因秦钟、香怜等事起哄，茗烟冲入打闹，学堂秩序大乱。贾瑞偏袒金荣，贾蔷从中周旋，最后由李贵等人压下。",
+    "chapter": 9,
+    "relatedCharacters": [
+      "jia_baoyu",
+      "qin_zhong",
+      "jin_rong",
+      "ming_yan",
+      "jia_rui",
+      "jia_qiang",
+      "jia_dairu"
+    ],
+    "relatedEvents": [
+      "顽童闹学堂",
+      "金荣受辱"
+    ],
+    "tags": [
+      "家塾",
+      "金荣",
+      "茗烟",
+      "秦钟",
+      "贾瑞"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "学堂风波把嫡庶、贫富和少年意气集中在一间书斋里。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch010_zhangtaiyi",
+    "type": "scene",
+    "title": "张太医论病细穷源",
+    "content": "金寡妇为金荣受辱一事到宁国府找璜大奶奶理论；秦可卿病重，贾珍延请张太医诊病。张太医细论脉案，暗示病势深重，为秦可卿之死埋下伏笔。",
+    "chapter": 10,
+    "relatedCharacters": [
+      "jin_guafu",
+      "huang_da_nainai",
+      "jia_zhen",
+      "qin_keqing",
+      "zhang_taiyi",
+      "jin_rong"
+    ],
+    "relatedEvents": [
+      "金寡妇理论",
+      "张太医诊病"
+    ],
+    "tags": [
+      "金寡妇",
+      "璜大奶奶",
+      "张太医",
+      "秦可卿",
+      "脉案"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "一回来回切换市井纠纷与宁府病榻，写出贾府内外的紧张空气。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch011_jiarui",
+    "type": "scene",
+    "title": "贾瑞起淫心",
+    "content": "宁国府庆寿，贾瑞在园中遇见王熙凤，起意调戏。凤姐表面敷衍，暗中已定下相思局，贾瑞的命运由此走向绝路。",
+    "chapter": 11,
+    "relatedCharacters": [
+      "jia_rui",
+      "wang_xifeng",
+      "pinger",
+      "jia_lian"
+    ],
+    "relatedEvents": [
+      "贾瑞起淫心",
+      "凤姐毒设相思局"
+    ],
+    "tags": [
+      "贾瑞",
+      "王熙凤",
+      "相思局",
+      "宁国府"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "贾瑞的痴妄与凤姐的狠辣在本回正面交锋。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch014_linruhai",
+    "type": "scene",
+    "title": "林如海捐馆，黛玉成孤女",
+    "content": "林如海在扬州病逝，黛玉自此父母双亡、寄居贾府。贾琏护送黛玉南归，北静王路谒宝玉等情节同时展开。",
+    "chapter": 14,
+    "relatedCharacters": [
+      "lin_ruhai",
+      "lin_daiyu",
+      "jia_lian",
+      "wang_xifeng",
+      "bei_jing_wang",
+      "jia_baoyu"
+    ],
+    "relatedEvents": [
+      "林如海病逝",
+      "黛玉寄居贾府"
+    ],
+    "tags": [
+      "林如海",
+      "林黛玉",
+      "贾琏",
+      "北静王"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "黛玉的身世由此彻底落定，寄人篱下的悲剧底色更深。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch019_xiren",
+    "type": "scene",
+    "title": "袭人良宵花解语",
+    "content": "袭人回家探亲后以赎身之语试探宝玉，又借机劝他读书上进、少惹是非。宝玉表面答应，袭人却因此更得信任。",
+    "chapter": 19,
+    "relatedCharacters": [
+      "xiren",
+      "jia_baoyu",
+      "wang_furen"
+    ],
+    "relatedEvents": [
+      "袭人箴宝玉",
+      "良宵花解语"
+    ],
+    "tags": [
+      "袭人",
+      "宝玉",
+      "劝学",
+      "花解语"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "袭人的温柔劝诫里既有真心，也有对自身前途的算计。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch020_xiangyun",
+    "type": "scene",
+    "title": "黛玉俏语谑湘云",
+    "content": "史湘云到荣国府，因咬舌把“二哥哥”叫成“爱哥哥”，黛玉打趣她。宝玉在湘云、黛玉之间周旋，闺阁笑语中见三人亲疏。",
+    "chapter": 20,
+    "relatedCharacters": [
+      "shi_xiangyun",
+      "lin_daiyu",
+      "jia_baoyu",
+      "xue_baochai"
+    ],
+    "relatedEvents": [
+      "湘云来荣府",
+      "黛玉谑湘云"
+    ],
+    "tags": [
+      "史湘云",
+      "林黛玉",
+      "咬舌",
+      "闺阁"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "小儿女的笑语为后文“白首双星”的伏线添了温度。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch021_pinger",
+    "type": "scene",
+    "title": "平儿软语救贾琏",
+    "content": "贾琏与多姑娘私通，平儿发现后替他遮掩，又以软语周旋于凤姐与贾琏之间。凤姐的强势、平儿的机敏和贾琏的荒唐同时显现。",
+    "chapter": 21,
+    "relatedCharacters": [
+      "pinger",
+      "jia_lian",
+      "wang_xifeng",
+      "duo_guniang",
+      "duo_hunchong"
+    ],
+    "relatedEvents": [
+      "平儿救贾琏",
+      "多姑娘与贾琏"
+    ],
+    "tags": [
+      "平儿",
+      "贾琏",
+      "凤姐",
+      "多姑娘"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "平儿的“救”不是纵容，而是她在夹缝中求生的方式。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch024_xiaohong",
+    "type": "scene",
+    "title": "小红遗帕，贾芸种树",
+    "content": "贾芸求凤姐谋得种树差事，又与怡红院丫鬟小红因遗帕传情。倪二仗义借钱给贾芸，市井侠气与园中情事交错。",
+    "chapter": 24,
+    "relatedCharacters": [
+      "jia_yun",
+      "xiaohong",
+      "ni_er",
+      "wang_xifeng",
+      "jia_baoyu"
+    ],
+    "relatedEvents": [
+      "贾芸谋差",
+      "小红遗帕"
+    ],
+    "tags": [
+      "贾芸",
+      "小红",
+      "倪二",
+      "遗帕",
+      "种树"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "小人物的谋生与情愫，为贾府日常补上一条底层视角。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch025_yamofa",
+    "type": "scene",
+    "title": "宝玉凤姐遭魇魔法",
+    "content": "赵姨娘与马道婆合谋，用魇魔法害宝玉、凤姐。二人病势凶险，贾府上下慌乱，最后一僧一道持通灵宝玉诵持，才将二人救回。",
+    "chapter": 25,
+    "relatedCharacters": [
+      "jia_baoyu",
+      "wang_xifeng",
+      "zhao_yiniang",
+      "ma_daopo",
+      "jia_mu",
+      "wang_furen"
+    ],
+    "relatedEvents": [
+      "魇魔法",
+      "通灵宝玉救主"
+    ],
+    "tags": [
+      "赵姨娘",
+      "马道婆",
+      "魇魔法",
+      "通灵宝玉"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "嫡庶之争由暗斗转为巫蛊，贾府内部的裂痕被推到明处。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch026_daiyu",
+    "type": "scene",
+    "title": "黛玉春困发幽情",
+    "content": "宝玉在潇湘馆见黛玉春困，以《西厢记》语打趣，黛玉又羞又恼。小红与贾芸的心事也通过蜂腰桥传话继续推进。",
+    "chapter": 26,
+    "relatedCharacters": [
+      "lin_daiyu",
+      "jia_baoyu",
+      "zijuan",
+      "xiaohong",
+      "jia_yun"
+    ],
+    "relatedEvents": [
+      "潇湘馆春困",
+      "小红传心事"
+    ],
+    "tags": [
+      "林黛玉",
+      "贾宝玉",
+      "西厢记",
+      "小红"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "春困与幽情相映，宝黛情感在玩笑与试探中加深。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch029_qingxu",
+    "type": "scene",
+    "title": "清虚观打醮，张道士提亲",
+    "content": "贾母率众到清虚观打醮，张道士替宝玉提亲，触动黛玉心事。宝玉摔玉、黛玉剪穗，宝黛因“金玉”之说大闹一场。",
+    "chapter": 29,
+    "relatedCharacters": [
+      "jia_mu",
+      "jia_baoyu",
+      "lin_daiyu",
+      "zhang_daoshi",
+      "wang_xifeng"
+    ],
+    "relatedEvents": [
+      "清虚观打醮",
+      "张道士提亲"
+    ],
+    "tags": [
+      "清虚观",
+      "张道士",
+      "提亲",
+      "宝黛"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "外人一句提亲，便把宝黛之间最敏感的身份焦虑挑明。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch030_lingguan",
+    "type": "scene",
+    "title": "宝钗借扇双敲，龄官画蔷",
+    "content": "宝玉因言语冒失被宝钗借扇机带双敲；另一边，龄官在蔷薇花下反复画“蔷”字，宝玉由此悟到情缘分定。",
+    "chapter": 30,
+    "relatedCharacters": [
+      "xue_baochai",
+      "jia_baoyu",
+      "lin_daiyu",
+      "lingguan",
+      "jia_qiang"
+    ],
+    "relatedEvents": [
+      "宝钗借扇双敲",
+      "龄官画蔷"
+    ],
+    "tags": [
+      "薛宝钗",
+      "龄官",
+      "贾蔷",
+      "画蔷",
+      "情悟"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "一冷一痴，写出宝钗的分寸与龄官的痴情。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch032_jinchuan",
+    "type": "scene",
+    "title": "宝玉诉肺腑，金钏投井",
+    "content": "宝玉向黛玉诉肺腑，黛玉深受震动；王夫人因金钏与宝玉调笑而撵出金钏，金钏投井自尽。",
+    "chapter": 32,
+    "relatedCharacters": [
+      "jia_baoyu",
+      "lin_daiyu",
+      "xiren",
+      "jinchuan",
+      "wang_furen"
+    ],
+    "relatedEvents": [
+      "宝玉诉肺腑",
+      "金钏投井"
+    ],
+    "tags": [
+      "宝黛",
+      "金钏",
+      "王夫人",
+      "投井"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "最亲密的倾诉与最惨烈的死亡并置，为宝玉挨打埋下导火索。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch033_jiamu",
+    "type": "scene",
+    "title": "贾母护宝玉，王夫人劝贾政",
+    "content": "贾政因金钏投井、结交蒋玉菡等事痛打宝玉，王夫人赶来哭劝，贾母随后震怒制止。宝玉被抬回怡红院，众人各怀心事。",
+    "chapter": 33,
+    "relatedCharacters": [
+      "jia_zheng",
+      "jia_baoyu",
+      "wang_furen",
+      "jia_mu",
+      "jia_huan",
+      "xiren"
+    ],
+    "relatedEvents": [
+      "宝玉挨打",
+      "贾母护孙"
+    ],
+    "tags": [
+      "贾政",
+      "宝玉挨打",
+      "王夫人",
+      "贾母"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "一场家法把父子、夫妻、婆媳和嫡庶矛盾同时引爆。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch035_yuchuan",
+    "type": "scene",
+    "title": "玉钏尝羹，莺儿结络",
+    "content": "宝玉挨打后想喝莲叶羹，玉钏奉命送来，宝玉借机赔罪；莺儿为宝玉打梅花络，宝钗与金玉之说再次被轻轻点出。",
+    "chapter": 35,
+    "relatedCharacters": [
+      "yuchuan",
+      "jia_baoyu",
+      "yinger",
+      "xue_baochai"
+    ],
+    "relatedEvents": [
+      "玉钏尝羹",
+      "莺儿结络"
+    ],
+    "tags": [
+      "玉钏",
+      "莺儿",
+      "莲叶羹",
+      "梅花络"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "病榻前的琐碎往来，写出丫鬟们各自的委屈与心思。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch036_qingwu",
+    "type": "scene",
+    "title": "宝玉情悟梨香院",
+    "content": "宝玉在梨香院见龄官与贾蔷情深，又听龄官拒唱，悟到“各人得各人的眼泪”。宝钗在绛芸轩绣鸳鸯，梦兆与情悟相互映照。",
+    "chapter": 36,
+    "relatedCharacters": [
+      "jia_baoyu",
+      "lingguan",
+      "jia_qiang",
+      "xue_baochai",
+      "xiren"
+    ],
+    "relatedEvents": [
+      "情悟梨香院",
+      "龄官拒唱"
+    ],
+    "tags": [
+      "宝玉",
+      "龄官",
+      "贾蔷",
+      "情悟",
+      "梨香院"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "宝玉由“博爱”转向“各有所属”的一次重要觉醒。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch039_liulaolao",
+    "type": "scene",
+    "title": "刘姥姥信口开河",
+    "content": "刘姥姥为哄贾母开心，信口编出雪夜抽柴、观音送子等故事，宝玉却认真追问细节，派茗烟去寻庙。",
+    "chapter": 39,
+    "relatedCharacters": [
+      "liu_laolao",
+      "jia_mu",
+      "jia_baoyu",
+      "ming_yan",
+      "xue_baochai",
+      "lin_daiyu"
+    ],
+    "relatedEvents": [
+      "刘姥姥信口开河",
+      "宝玉寻庙"
+    ],
+    "tags": [
+      "刘姥姥",
+      "宝玉",
+      "茗烟",
+      "村话"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "村妇的即兴故事照出宝玉的痴与贾母的寂寞。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch040_yapaiming",
+    "type": "scene",
+    "title": "刘姥姥笑闹宴席，鸳鸯宣牙牌令",
+    "content": "贾母两宴大观园，刘姥姥被凤姐、鸳鸯捉弄，说出“老刘老刘，食量大如牛”等笑话。鸳鸯三宣牙牌令，众人各显性情。",
+    "chapter": 40,
+    "relatedCharacters": [
+      "jia_mu",
+      "liu_laolao",
+      "wang_xifeng",
+      "yuanyang",
+      "lin_daiyu",
+      "xue_baochai"
+    ],
+    "relatedEvents": [
+      "两宴大观园",
+      "牙牌令"
+    ],
+    "tags": [
+      "刘姥姥",
+      "贾母",
+      "鸳鸯",
+      "牙牌令",
+      "宴席"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "一场笑宴把贾府的繁华与刘姥姥的村野智慧并置。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch042_lanyan",
+    "type": "scene",
+    "title": "宝钗兰言解疑癖",
+    "content": "宝钗私下劝黛玉不要沉溺于《西厢记》等杂书，又以自身经历开解，黛玉心服。刘姥姥为巧姐取名，凤姐与刘姥姥的人情继续加深。",
+    "chapter": 42,
+    "relatedCharacters": [
+      "xue_baochai",
+      "lin_daiyu",
+      "jia_qiaojie",
+      "wang_xifeng",
+      "liu_laolao"
+    ],
+    "relatedEvents": [
+      "兰言解疑癖",
+      "刘姥姥取名巧姐"
+    ],
+    "tags": [
+      "薛宝钗",
+      "林黛玉",
+      "兰言",
+      "巧姐",
+      "刘姥姥"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "宝钗的“兰言”既是关心，也显出她与黛玉不同的处世方式。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch043_jinchuan",
+    "type": "scene",
+    "title": "攒金庆寿，宝玉撮土为香",
+    "content": "贾母提议众人凑份子为凤姐庆寿，园中热闹非凡；宝玉却在凤姐生日当天出城，到水仙庵撮土为香祭奠金钏。",
+    "chapter": 43,
+    "relatedCharacters": [
+      "jia_mu",
+      "wang_xifeng",
+      "jia_baoyu",
+      "pinger",
+      "ming_yan",
+      "jinchuan"
+    ],
+    "relatedEvents": [
+      "攒金庆寿",
+      "宝玉祭金钏"
+    ],
+    "tags": [
+      "凤姐生日",
+      "宝玉",
+      "金钏",
+      "水仙庵"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "热闹寿宴与冷清祭奠对照，写出宝玉对女儿之死的愧疚。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch044_pinger",
+    "type": "scene",
+    "title": "凤姐泼醋，平儿理妆",
+    "content": "凤姐生日撞破贾琏与鲍二家的私情，当场大闹；平儿被误打，委屈落泪。宝玉为平儿理妆，凤姐、贾琏、平儿三人关系更显微妙。",
+    "chapter": 44,
+    "relatedCharacters": [
+      "wang_xifeng",
+      "jia_lian",
+      "pinger",
+      "bao_er_jias",
+      "bao_er",
+      "jia_baoyu"
+    ],
+    "relatedEvents": [
+      "凤姐泼醋",
+      "平儿理妆"
+    ],
+    "tags": [
+      "王熙凤",
+      "贾琏",
+      "平儿",
+      "鲍二家的",
+      "泼醋"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "一场醋风波把凤姐的强势、贾琏的荒唐和平儿的委屈写尽。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch046_yuanyang",
+    "type": "scene",
+    "title": "鸳鸯抗婚",
+    "content": "贾赦欲讨鸳鸯为妾，邢夫人出面说合，鸳鸯当众剪发明志，誓死不嫁。贾母得知后大怒，护住鸳鸯，贾赦一房讨了个没趣。",
+    "chapter": 46,
+    "relatedCharacters": [
+      "yuanyang",
+      "jia_she",
+      "xing_furen",
+      "wang_xifeng",
+      "jia_mu"
+    ],
+    "relatedEvents": [
+      "鸳鸯抗婚",
+      "剪发明志"
+    ],
+    "tags": [
+      "鸳鸯",
+      "贾赦",
+      "邢夫人",
+      "抗婚",
+      "贾母"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "丫鬟以死抗主，是前八十回中最有锋芒的尊严时刻之一。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch047_liuxianglian",
+    "type": "scene",
+    "title": "柳湘莲痛打薛蟠",
+    "content": "薛蟠在赖大家宴上调戏柳湘莲，柳湘莲假意应允，将他骗到苇子坑痛打一顿后远走他乡。薛蟠受辱，贾府众人各有反应。",
+    "chapter": 47,
+    "relatedCharacters": [
+      "xue_pan",
+      "liu_xianglian",
+      "jia_baoyu",
+      "xue_yima",
+      "xue_baochai"
+    ],
+    "relatedEvents": [
+      "柳湘莲痛打薛蟠",
+      "薛蟠受辱"
+    ],
+    "tags": [
+      "薛蟠",
+      "柳湘莲",
+      "痛打",
+      "远走"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "呆霸王的蛮横遇到冷二郎的刚烈，形成一场痛快又悲凉的反击。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch048_xiangling",
+    "type": "scene",
+    "title": "香菱学诗",
+    "content": "香菱随薛家进京后向黛玉学诗，苦心吟咏，梦中得句。黛玉、宝钗、探春等各以自己的方式指点她，香菱的诗才被点亮。",
+    "chapter": 48,
+    "relatedCharacters": [
+      "xiang_ling",
+      "lin_daiyu",
+      "xue_baochai",
+      "jia_tanchun"
+    ],
+    "relatedEvents": [
+      "香菱学诗",
+      "苦吟成诗"
+    ],
+    "tags": [
+      "香菱",
+      "林黛玉",
+      "学诗",
+      "苦吟"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "香菱学诗是她短暂一生中最明亮的一段，也写出黛玉为师的一面。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch049_luxuean",
+    "type": "scene",
+    "title": "芦雪庵联句，宝琴立雪",
+    "content": "薛宝琴、李纹、李绮、邢岫烟等进京，大观园又添新客。众人在芦雪庵赏雪烤鹿肉、即景联句，宝琴披凫靥裘立于雪中，光彩照人。",
+    "chapter": 49,
+    "relatedCharacters": [
+      "xue_baoqin",
+      "shi_xiangyun",
+      "jia_baoyu",
+      "lin_daiyu",
+      "xue_baochai",
+      "li_wen",
+      "li_qi",
+      "xing_xiuyan"
+    ],
+    "relatedEvents": [
+      "芦雪庵联句",
+      "宝琴立雪"
+    ],
+    "tags": [
+      "薛宝琴",
+      "芦雪庵",
+      "联句",
+      "烤鹿肉",
+      "诗社"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "大观园诗社的鼎盛一页，也是新人物集中登场的高光时刻。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch053_cizong",
+    "type": "scene",
+    "title": "除夕祭宗祠",
+    "content": "宁国府除夕祭宗祠，贾珍、尤氏、贾蓉等按礼行事；荣国府元宵开夜宴，贾母带领众人赏灯。祭礼的庄重与宴席的繁华写出贾府最后的体面。",
+    "chapter": 53,
+    "relatedCharacters": [
+      "jia_zhen",
+      "you_shi",
+      "jia_rong",
+      "jia_mu",
+      "jia_she",
+      "jia_zheng",
+      "jia_cong"
+    ],
+    "relatedEvents": [
+      "除夕祭宗祠",
+      "元宵开夜宴"
+    ],
+    "tags": [
+      "祭宗祠",
+      "除夕",
+      "元宵",
+      "贾府礼制"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "宗祠与夜宴并置，是贾府盛极而衰前的一次全景式展示。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch056_tanchun",
+    "type": "scene",
+    "title": "探春理家兴利",
+    "content": "探春与李纨、宝钗共同理家，查弊兴利，把园中花木、田地承包给下人，既节流又激励。平儿从中协助，奴仆们各有反应。",
+    "chapter": 56,
+    "relatedCharacters": [
+      "jia_tanchun",
+      "li_wan",
+      "xue_baochai",
+      "pinger",
+      "jia_mu"
+    ],
+    "relatedEvents": [
+      "探春理家",
+      "兴利除弊"
+    ],
+    "tags": [
+      "贾探春",
+      "理家",
+      "承包",
+      "平儿",
+      "宝钗"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "探春的改革是贾府内部最后一次有生气的自救。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch057_zijuan",
+    "type": "scene",
+    "title": "紫鹃试玉",
+    "content": "紫鹃谎称黛玉要回苏州，宝玉信以为真，急痛迷心、旧病复发。黛玉得知后又心疼又感动，薛姨妈以慈语安慰黛玉。",
+    "chapter": 57,
+    "relatedCharacters": [
+      "zijuan",
+      "jia_baoyu",
+      "lin_daiyu",
+      "xue_yima",
+      "xue_baochai"
+    ],
+    "relatedEvents": [
+      "紫鹃试玉",
+      "宝玉急痛迷心"
+    ],
+    "tags": [
+      "紫鹃",
+      "宝玉",
+      "黛玉",
+      "试玉",
+      "薛姨妈"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "一句试探试出宝玉对黛玉的深情，也试出紫鹃的忠心。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch058_ouguan",
+    "type": "scene",
+    "title": "藕官烧纸祭菂官",
+    "content": "藕官在园中烧纸祭奠死去的菂官，被婆子撞见。宝玉出面回护，听藕官讲述戏班中“假凤虚凰”的情谊，对女儿之情有了更深理解。",
+    "chapter": 58,
+    "relatedCharacters": [
+      "ouguan",
+      "diguan",
+      "fangguan",
+      "jia_baoyu"
+    ],
+    "relatedEvents": [
+      "藕官烧纸",
+      "假凤虚凰"
+    ],
+    "tags": [
+      "藕官",
+      "菂官",
+      "芳官",
+      "烧纸",
+      "戏班"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "戏班优伶的情感世界，是宝玉“情不情”思想的重要注脚。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch059_yinger",
+    "type": "scene",
+    "title": "莺儿编柳，春燕受气",
+    "content": "莺儿在柳叶渚采柳编花篮，春燕因母亲和姑妈争利受气，园中丫鬟与婆子的矛盾激化。宝玉、袭人等从中劝解。",
+    "chapter": 59,
+    "relatedCharacters": [
+      "yinger",
+      "chunyan",
+      "ouguan",
+      "jia_baoyu",
+      "xiren"
+    ],
+    "relatedEvents": [
+      "莺儿编柳",
+      "春燕受气"
+    ],
+    "tags": [
+      "莺儿",
+      "春燕",
+      "柳叶渚",
+      "园中纠纷"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "一件编柳小事，写出大观园底层仆妇的利益摩擦。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch060_meigui",
+    "type": "scene",
+    "title": "玫瑰露风波",
+    "content": "芳官将玫瑰露送给柳五儿，赵姨娘又因蔷薇硝与芳官等起冲突。园中物品流转引发猜疑，柳嫂子和五儿被卷入风波。",
+    "chapter": 60,
+    "relatedCharacters": [
+      "fangguan",
+      "liu_saozi",
+      "wu_er",
+      "zhao_yiniang",
+      "caiyun"
+    ],
+    "relatedEvents": [
+      "玫瑰露风波",
+      "蔷薇硝"
+    ],
+    "tags": [
+      "芳官",
+      "柳嫂子",
+      "五儿",
+      "赵姨娘",
+      "玫瑰露"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "一瓶玫瑰露照出园中馈赠、偏私与冤案的连锁反应。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch061_pinger",
+    "type": "scene",
+    "title": "平儿行权，宝玉瞒赃",
+    "content": "茯苓霜失窃，柳五儿被冤枉，平儿细查后行权处置，既保全无辜又敲打真正生事的人。宝玉也为五儿瞒赃，园中风波暂平。",
+    "chapter": 61,
+    "relatedCharacters": [
+      "pinger",
+      "jia_baoyu",
+      "wu_er",
+      "liu_saozi",
+      "caiyun"
+    ],
+    "relatedEvents": [
+      "平儿行权",
+      "宝玉瞒赃"
+    ],
+    "tags": [
+      "平儿",
+      "宝玉",
+      "五儿",
+      "茯苓霜",
+      "行权"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "平儿的处事智慧在本回集中展现，也让读者看到贾府规矩的弹性。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch064_wumeiyin",
+    "type": "scene",
+    "title": "五美吟与九龙佩",
+    "content": "黛玉感于古史中的薄命女子，作《五美吟》寄托身世；贾琏、贾蓉等则在外追逐尤二姐、尤三姐，情事与诗情交错。",
+    "chapter": 64,
+    "relatedCharacters": [
+      "lin_daiyu",
+      "jia_baoyu",
+      "you_erjie",
+      "you_sanjie",
+      "jia_lian",
+      "jia_rong"
+    ],
+    "relatedEvents": [
+      "五美吟",
+      "九龙佩"
+    ],
+    "tags": [
+      "林黛玉",
+      "五美吟",
+      "尤二姐",
+      "尤三姐",
+      "九龙佩"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "女儿的诗心与男子的浪荡并置，形成尖锐对照。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch065_youerjie",
+    "type": "scene",
+    "title": "贾琏偷娶尤二姐",
+    "content": "贾琏瞒着凤姐在外偷娶尤二姐，置办房舍、拨付银钱；尤三姐则表明非柳湘莲不嫁。贾珍、贾蓉父子与尤氏姐妹的关系也在此展开。",
+    "chapter": 65,
+    "relatedCharacters": [
+      "jia_lian",
+      "you_erjie",
+      "you_sanjie",
+      "jia_zhen",
+      "jia_rong",
+      "you_shi"
+    ],
+    "relatedEvents": [
+      "偷娶尤二姐",
+      "尤三姐思嫁"
+    ],
+    "tags": [
+      "贾琏",
+      "尤二姐",
+      "尤三姐",
+      "偷娶",
+      "贾珍"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "尤二姐的温柔与尤三姐的刚烈，为后面的悲剧埋下两种结局。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch066_yousanjie",
+    "type": "scene",
+    "title": "尤三姐自刎，柳湘莲出家",
+    "content": "柳湘莲听信闲言，向尤三姐退婚；尤三姐以鸳鸯剑自刎明志。柳湘莲悔恨交加，斩断尘缘，随跛足道人出家。",
+    "chapter": 66,
+    "relatedCharacters": [
+      "you_sanjie",
+      "liu_xianglian",
+      "you_erjie",
+      "jia_lian"
+    ],
+    "relatedEvents": [
+      "尤三姐自刎",
+      "柳湘莲出家"
+    ],
+    "tags": [
+      "尤三姐",
+      "柳湘莲",
+      "鸳鸯剑",
+      "自刎",
+      "出家"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "一死一出家，把“情”与“冷”推到极致。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch067_daiyu",
+    "type": "scene",
+    "title": "黛玉思乡，凤姐讯家童",
+    "content": "黛玉见土仪而思念故里，宝玉体贴劝慰；凤姐则从家童口中探得贾琏偷娶尤二姐的秘事，开始谋划应对。",
+    "chapter": 67,
+    "relatedCharacters": [
+      "lin_daiyu",
+      "jia_baoyu",
+      "wang_xifeng",
+      "pinger",
+      "jia_lian",
+      "you_erjie"
+    ],
+    "relatedEvents": [
+      "黛玉思乡",
+      "凤姐讯家童"
+    ],
+    "tags": [
+      "林黛玉",
+      "思乡",
+      "王熙凤",
+      "尤二姐"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "一边是女儿的乡愁，一边是主妇的算计，节奏冷暖交错。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch068_youerjie",
+    "type": "scene",
+    "title": "尤二姐被赚入大观园",
+    "content": "凤姐假意贤良，亲自把尤二姐接入大观园，暗中却百般折磨。尤二姐的软弱与凤姐的狠毒形成鲜明对照。",
+    "chapter": 68,
+    "relatedCharacters": [
+      "you_erjie",
+      "wang_xifeng",
+      "jia_lian",
+      "you_shi",
+      "jia_rong"
+    ],
+    "relatedEvents": [
+      "赚入大观园",
+      "凤姐折磨尤二姐"
+    ],
+    "tags": [
+      "尤二姐",
+      "王熙凤",
+      "大观园",
+      "折磨"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "凤姐的“贤良”越逼真，后面的杀机越令人不寒而栗。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch069_youerjie",
+    "type": "scene",
+    "title": "尤二姐吞金自逝",
+    "content": "凤姐借秋桐之手折磨尤二姐，又挑拨贾琏与她反目。尤二姐腹中胎儿被庸医打掉，绝望之下吞金自尽。",
+    "chapter": 69,
+    "relatedCharacters": [
+      "you_erjie",
+      "wang_xifeng",
+      "jia_lian",
+      "qiutong",
+      "pinger"
+    ],
+    "relatedEvents": [
+      "尤二姐吞金",
+      "借剑杀人"
+    ],
+    "tags": [
+      "尤二姐",
+      "王熙凤",
+      "秋桐",
+      "吞金",
+      "悲剧"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "尤二姐之死是凤姐“借剑杀人”的集中体现，也是贾府内宅阴暗的极点。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch071_yuanyang",
+    "type": "scene",
+    "title": "鸳鸯撞破司棋私情",
+    "content": "贾母八旬大寿，园中人多事杂；鸳鸯夜间无意撞见司棋与潘又安私会，答应替她保密。邢夫人与凤姐之间也生出嫌隙。",
+    "chapter": 71,
+    "relatedCharacters": [
+      "yuanyang",
+      "siqi",
+      "jia_mu",
+      "wang_xifeng",
+      "xing_furen",
+      "pinger"
+    ],
+    "relatedEvents": [
+      "贾母八旬大寿",
+      "鸳鸯撞破私情"
+    ],
+    "tags": [
+      "鸳鸯",
+      "司棋",
+      "贾母寿宴",
+      "私情"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "寿宴的体面与园中的私情并置，写出大观园秩序将崩。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch072_laiwang",
+    "type": "scene",
+    "title": "来旺妇倚势霸成亲",
+    "content": "凤姐恃强讳病，仍要撑持家务；来旺妇倚仗凤姐之势，为儿子强娶彩霞。贾琏、林之孝等各有顾忌，奴仆间的权势关系暴露无遗。",
+    "chapter": 72,
+    "relatedCharacters": [
+      "wang_xifeng",
+      "laiwang_furen",
+      "jia_lian",
+      "lin_zhixiao",
+      "caiyun"
+    ],
+    "relatedEvents": [
+      "来旺妇逼婚",
+      "凤姐恃强"
+    ],
+    "tags": [
+      "来旺妇",
+      "王熙凤",
+      "彩霞",
+      "逼婚",
+      "家奴"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "主子病弱、家奴横行，贾府的内部秩序正在失控。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch075_zhongqiu",
+    "type": "scene",
+    "title": "中秋夜宴，异兆悲音",
+    "content": "贾府中秋赏月，贾母强撑兴致，众人却各怀心事。席间笛声凄清、异兆频现，贾政、贾赦等讲笑话也掩不住衰败气象。",
+    "chapter": 75,
+    "relatedCharacters": [
+      "jia_mu",
+      "jia_zheng",
+      "jia_she",
+      "you_shi",
+      "jia_zhen",
+      "jia_baoyu"
+    ],
+    "relatedEvents": [
+      "中秋夜宴",
+      "异兆悲音"
+    ],
+    "tags": [
+      "中秋",
+      "贾母",
+      "贾政",
+      "贾赦",
+      "衰败"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "团圆宴席上的冷清与怪声，是贾府盛衰转折的听觉化写法。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch077_qingwen",
+    "type": "scene",
+    "title": "晴雯之死，芳官出家",
+    "content": "晴雯被王夫人撵出后病重，宝玉偷偷探望，晴雯含冤而逝。芳官等优伶也被撵出，芳官最终出家为尼。",
+    "chapter": 77,
+    "relatedCharacters": [
+      "qingwen",
+      "jia_baoyu",
+      "wang_furen",
+      "xiren",
+      "fangguan"
+    ],
+    "relatedEvents": [
+      "晴雯之死",
+      "芳官出家"
+    ],
+    "tags": [
+      "晴雯",
+      "宝玉",
+      "王夫人",
+      "芳官",
+      "出家"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "晴雯之死是前八十回最惨烈的女儿悲剧之一，也预示大观园的离散。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch079_yingchun",
+    "type": "scene",
+    "title": "迎春误嫁孙绍祖",
+    "content": "贾赦将迎春许配孙绍祖抵债，迎春回门哭诉丈夫凶横。宝玉悲愤却无力，薛蟠则娶了夏金桂，两条婚姻线一悲一闹。",
+    "chapter": 79,
+    "relatedCharacters": [
+      "jia_yingchun",
+      "sun_shaozu",
+      "jia_she",
+      "jia_baoyu",
+      "xue_pan",
+      "xia_jingui"
+    ],
+    "relatedEvents": [
+      "迎春误嫁",
+      "薛蟠娶夏金桂"
+    ],
+    "tags": [
+      "贾迎春",
+      "孙绍祖",
+      "误嫁",
+      "夏金桂"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "迎春的眼泪与夏金桂的泼悍并置，写出两种婚姻困境。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "scene_ch080_xiangling",
+    "type": "scene",
+    "title": "香菱受辱，王道士胡诌",
+    "content": "夏金桂嫉妒香菱，百般折磨；薛蟠又因贪夫棒打香菱。宝玉为香菱不平，向王道士讨要“妒妇方”，王道士胡诌一通。",
+    "chapter": 80,
+    "relatedCharacters": [
+      "xiang_ling",
+      "xue_pan",
+      "xia_jingui",
+      "jia_baoyu",
+      "bao_chan"
+    ],
+    "relatedEvents": [
+      "香菱受辱",
+      "王道士胡诌"
+    ],
+    "tags": [
+      "香菱",
+      "夏金桂",
+      "薛蟠",
+      "妒妇方"
+    ],
+    "versionNote": "前八十回情节，据回目与通行文本整理。",
+    "analysis": "前八十回以香菱受辱收束，女儿的悲剧命运未见尽头。",
+    "category": "名场面",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "character_study_yuanchun",
+    "type": "character_study",
+    "title": "人物专题：贾元春——深宫里的贤德妃",
+    "content": "贾元春入宫封妃，省亲时把大观园的繁华推到顶点，却在亲人面前流露“不得见人的去处”的孤寂。她的荣宠是贾府最后的政治靠山，她的薨逝也被续书写成贾府失势的转折。",
+    "chapter": 18,
+    "relatedCharacters": [
+      "jia_yuanchun",
+      "jia_zheng",
+      "wang_furen",
+      "jia_baoyu",
+      "jia_mu"
+    ],
+    "relatedEvents": [
+      "元妃省亲"
+    ],
+    "tags": [
+      "贾元春",
+      "元妃省亲",
+      "深宫",
+      "贤德妃"
+    ],
+    "versionNote": "前八十回人物专题，综合判词、曲词与情节整理。",
+    "analysis": "元春的分裂处境——家族荣耀的象征与深宫囚徒——是《红楼梦》女儿悲剧的重要一层。",
+    "category": "人物专题",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "character_study_tanchun",
+    "type": "character_study",
+    "title": "人物专题：贾探春——带刺的玫瑰",
+    "content": "探春是贾政与赵姨娘之女，庶出的身份让她比姊妹更早看清人情冷暖。她理家兴利、抄检时掌掴王善保家的，既有治世之才，也有不容侵犯的尊严；判词又预示她远嫁。",
+    "chapter": 56,
+    "relatedCharacters": [
+      "jia_tanchun",
+      "zhao_yiniang",
+      "jia_zheng",
+      "li_wan",
+      "xue_baochai",
+      "pinger"
+    ],
+    "relatedEvents": [
+      "探春理家",
+      "抄检大观园"
+    ],
+    "tags": [
+      "贾探春",
+      "理家",
+      "庶出",
+      "远嫁"
+    ],
+    "versionNote": "前八十回人物专题，综合判词、曲词与情节整理。",
+    "analysis": "探春的“敏”与“刺”来自清醒：她知道自己的位置，也知道贾府正在败落。",
+    "category": "人物专题",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "character_study_xiangyun",
+    "type": "character_study",
+    "title": "人物专题：史湘云——霁月光风耀玉堂",
+    "content": "史湘云是贾母娘家的侄孙女，自幼父母双亡，却养成豪爽大气的性情。她醉眠芍药裀、芦雪庵烤鹿肉、凹晶馆联诗，诗才与名士风度并具；判词“白首双星”又暗示她日后的婚姻。",
+    "chapter": 49,
+    "relatedCharacters": [
+      "shi_xiangyun",
+      "jia_mu",
+      "jia_baoyu",
+      "lin_daiyu",
+      "xue_baochai"
+    ],
+    "relatedEvents": [
+      "芦雪庵联句",
+      "醉眠芍药裀"
+    ],
+    "tags": [
+      "史湘云",
+      "豪爽",
+      "诗才",
+      "白首双星"
+    ],
+    "versionNote": "前八十回人物专题，综合判词、曲词与情节整理。",
+    "analysis": "湘云的豪爽不是不知愁，而是把孤苦压在笑声下面。",
+    "category": "人物专题",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "character_study_miaoyu",
+    "type": "character_study",
+    "title": "人物专题：妙玉——太高人愈妒",
+    "content": "妙玉出身仕宦之家，带发修行于栊翠庵。她以梅花雪水烹茶、以绿玉斗待宝玉，孤高洁癖中藏着无法割舍的尘心；判词“太高人愈妒，过洁世同嫌”正点出她的处境。",
+    "chapter": 41,
+    "relatedCharacters": [
+      "miaoyu",
+      "jia_baoyu",
+      "lin_daiyu",
+      "xue_baochai",
+      "xing_xiuyan"
+    ],
+    "relatedEvents": [
+      "栊翠庵品茶"
+    ],
+    "tags": [
+      "妙玉",
+      "栊翠庵",
+      "孤高",
+      "洁癖"
+    ],
+    "versionNote": "前八十回人物专题，综合判词、曲词与情节整理。",
+    "analysis": "妙玉的“洁”既是精神姿态，也是她与世俗格格不入的原因。",
+    "category": "人物专题",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "character_study_yingchun",
+    "type": "character_study",
+    "title": "人物专题：贾迎春——二木头的沉默",
+    "content": "迎春是贾赦之女，性情懦弱，人称“二木头”。奶娘偷当累金凤她不敢追讨，抄检时也无力自保；最终被父亲嫁与孙绍祖抵债，婚后受虐而亡。",
+    "chapter": 79,
+    "relatedCharacters": [
+      "jia_yingchun",
+      "jia_she",
+      "sun_shaozu",
+      "jia_baoyu"
+    ],
+    "relatedEvents": [
+      "迎春误嫁",
+      "抄检大观园"
+    ],
+    "tags": [
+      "贾迎春",
+      "懦弱",
+      "误嫁",
+      "中山狼"
+    ],
+    "versionNote": "前八十回人物专题，综合判词、曲词与情节整理。",
+    "analysis": "迎春的沉默不是没有痛苦，而是她从未被允许拥有反抗的力量。",
+    "category": "人物专题",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "character_study_xichun",
+    "type": "character_study",
+    "title": "人物专题：贾惜春——冷眼看穿",
+    "content": "惜春是宁国府贾珍之妹，自幼在荣国府长大。抄检大观园时她冷然处置入画，显出孤介心性；判词与续书又把她推向出家，成为贾府女儿中最早“看破”的一个。",
+    "chapter": 74,
+    "relatedCharacters": [
+      "jia_xichun",
+      "jia_zhen",
+      "you_shi",
+      "miaoyu"
+    ],
+    "relatedEvents": [
+      "抄检大观园",
+      "惜春出家"
+    ],
+    "tags": [
+      "贾惜春",
+      "孤介",
+      "抄检",
+      "出家"
+    ],
+    "versionNote": "前八十回人物专题，综合判词、曲词与情节整理。",
+    "analysis": "惜春的冷，是对宁国府污浊与贾府败落的提前退场。",
+    "category": "人物专题",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "character_study_xifeng",
+    "type": "character_study",
+    "title": "人物专题：王熙凤——机关算尽",
+    "content": "王熙凤是荣国府实际管家人，协理宁国府、弄权铁槛寺、逼死尤二姐，才干与狠辣同样惊人。她以笑声撑起贾府体面，也在内宅争斗中耗尽自己；判词“机关算尽太聪明”预示其结局。",
+    "chapter": 68,
+    "relatedCharacters": [
+      "wang_xifeng",
+      "jia_lian",
+      "jia_mu",
+      "wang_furen",
+      "pinger"
+    ],
+    "relatedEvents": [
+      "协理宁国府",
+      "弄权铁槛寺",
+      "逼死尤二姐"
+    ],
+    "tags": [
+      "王熙凤",
+      "管家",
+      "狠辣",
+      "机关算尽"
+    ],
+    "versionNote": "前八十回人物专题，综合判词、曲词与情节整理。",
+    "analysis": "凤姐是贾府权力的执行者，也是这套权力结构最锋利的牺牲品。",
+    "category": "人物专题",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "character_study_qiaojie",
+    "type": "character_study",
+    "title": "人物专题：贾巧姐——从侯门到村野",
+    "content": "巧姐是贾琏与王熙凤之女，名字由刘姥姥所取。贾府败落后她险被王仁等卖入烟花，最终由刘姥姥搭救，嫁入乡间。她的命运从侯门千金落到村妇，是“势败休云贵”的注脚。",
+    "chapter": 42,
+    "relatedCharacters": [
+      "jia_qiaojie",
+      "wang_xifeng",
+      "jia_lian",
+      "liu_laolao"
+    ],
+    "relatedEvents": [
+      "刘姥姥取名",
+      "巧姐被卖获救"
+    ],
+    "tags": [
+      "贾巧姐",
+      "刘姥姥",
+      "名字",
+      "获救"
+    ],
+    "versionNote": "前八十回人物专题，综合判词、曲词与情节整理。",
+    "analysis": "巧姐的结局让刘姥姥的“村野”成为贾府败落后仅存的善意。",
+    "category": "人物专题",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "character_study_liwan",
+    "type": "character_study",
+    "title": "人物专题：李纨——槁木死灰里的诗心",
+    "content": "李纨是贾珠之妻，青年守寡，带着贾兰在稻香村度日。她表面槁木死灰，却在海棠诗社中展现出组织能力与诗心；判词“到头来都是为他人作嫁衣裳”点出她一生的隐忍。",
+    "chapter": 37,
+    "relatedCharacters": [
+      "li_wan",
+      "jia_zhu",
+      "jia_lan",
+      "jia_tanchun",
+      "xue_baochai"
+    ],
+    "relatedEvents": [
+      "海棠诗社",
+      "稻香村"
+    ],
+    "tags": [
+      "李纨",
+      "守寡",
+      "诗社",
+      "稻香村"
+    ],
+    "versionNote": "前八十回人物专题，综合判词、曲词与情节整理。",
+    "analysis": "李纨的“淡”是礼教要求下的生存方式，不等于没有情感。",
+    "category": "人物专题",
+    "sourceNote": "前八十回原作"
+  },
+  {
+    "id": "character_study_qinkeqing",
+    "type": "character_study",
+    "title": "人物专题：秦可卿——风流袅娜的谜",
+    "content": "秦可卿是贾蓉之妻，出身养生堂，却成为宁国府最神秘的少奶奶。她的卧室、判词与脂批中的“淫丧天香楼”留下重重谜团；死后托梦凤姐，预言贾府衰败。",
+    "chapter": 13,
+    "relatedCharacters": [
+      "qin_keqing",
+      "jia_rong",
+      "jia_zhen",
+      "wang_xifeng"
+    ],
+    "relatedEvents": [
+      "秦可卿之死",
+      "托梦凤姐"
+    ],
+    "tags": [
+      "秦可卿",
+      "太虚幻境",
+      "托梦",
+      "谜"
+    ],
+    "versionNote": "前八十回人物专题，综合判词、曲词与情节整理。",
+    "analysis": "秦可卿的故事在原著与脂批之间留下空白，也正因空白而成为全书最复杂的谜。",
+    "category": "人物专题",
+    "sourceNote": "前八十回原作"
   }
 ]
