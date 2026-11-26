@@ -6,6 +6,7 @@ class ListView {
     this.relationships = [];
     this.onCharacterClick = null;
     this.onKnowledgeClick = null;
+    this.isVerifiedSource = null;
 
     this.viewMode = 'card'; // 'card' | 'compact'
     this.sortBy = 'importance'; // 'importance' | 'family' | 'name' | 'generation'
@@ -442,7 +443,10 @@ class ListView {
   _formatOutcome(character) {
     if (!character?.outcome) return '';
     // 底本可定位的结局：直接展示，不加任何前缀。
-    if (character.outcomeSources?.length) return character.outcome;
+    if (character.outcomeSources?.length
+        && character.outcomeSources.every((source) => this.isVerifiedSource?.(source))) {
+      return character.outcome;
+    }
 
     const outcome = character.outcome;
     // 已拆分过版本的人物，outcome 只装前八十回状态；续书结局在卡片“结局：两个版本”里。

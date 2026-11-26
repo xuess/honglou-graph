@@ -39,21 +39,24 @@
         27,
         28
       ],
-      "note": "仅用于线上检索与回目定位；新增事实仍须复核影印本或可靠校勘本的页码。该转录本未覆盖的章回不得引用此条目。"
+      "note": "仅用于线上检索与回目定位；新增事实仍须复核影印本或可靠校勘本的页码。该转录本未覆盖的章回不得引用此条目。",
+      "role": "base"
     },
     {
       "id": "gengchen-facsimile-pending",
       "edition": "庚辰本",
       "kind": "facsimile-pending",
       "citation": "《脂砚斋重评石头记庚辰本》",
-      "note": "待补入可复核的馆藏或影印本页码；在补齐定位前，不得以此目录项单独支撑展示事实。"
+      "note": "待补入可复核的馆藏或影印本页码；在补齐定位前，不得以此目录项单独支撑展示事实。",
+      "role": "pending"
     },
     {
       "id": "wikisource-zhengding",
-      "edition": "通行本(维基文库转录)",
+      "edition": "程乙本（维基文库转录）",
       "kind": "online-transcription",
       "citation": "维基文库《紅樓夢》全文转录(含程甲本后四十回)，https://zh.wikisource.org/wiki/紅樓夢",
-      "note": "用于引语是否逐字存在于《红楼梦》的核查工具。前八十回为程乙本文字，与庚辰本/甲戌本存在版本异文(如「如牛/似牛」「便/我」)，故凡以此来源标注的引语，均须经影印本校勘复核后方可作为事实层定本。"
+      "note": "用于引语是否逐字存在于《红楼梦》的核查工具。前八十回为程乙本文字，与庚辰本/甲戌本存在版本异文(如「如牛/似牛」「便/我」)，故凡以此来源标注的引语，均须经影印本校勘复核后方可作为事实层定本。",
+      "role": "comparison"
     }
   ],
   "evidence": [
@@ -79,11 +82,13 @@
       "field": "quotesPendingVerified",
       "status": "pending",
       "recordCount": 107,
-      "action": "逐条补入 quoteSources（版本、回目、定位）后再显示为“经典语录”。已核对 10 人 17 条（甲戌本可逐字定位），其余 98 人待校；待校引语暂存 quotesPendingVerified，前端标作“待校引语”。",
+      "action": "待核引语分存 quotesPendingVerified（前80回未见或来源/定位待补）与 quoteComparisons（程乙本版本对照）。只有 10 人 17 条通过甲戌本目录校验；前端仅对通过校验者显示“经典语录”。",
       "verifiedCount": 10,
       "verifiedQuoteLines": 17,
-      "pendingQuoteLines": 157,
-      "note": "核对方式：以维基文库甲戌本转录（第 1–8、13–16、25–28 回）为底本，繁转简后逐条字符串比对。甲戌本未收录的章回（9–12、17–24、29–80）无法用该转录本核对，须补庚辰本影印页码后再校。"
+      "pendingQuoteLines": 121,
+      "note": "待核引语分三类：前80回逐字核对未见（quotesPendingVerified）、程乙本异文（quoteComparisons）、庚辰本来源/定位待补。仅 10 人 17 条通过甲戌本目录校验。",
+      "comparisonQuoteLines": 36,
+      "totalUnverifiedQuoteLines": 157
     },
     {
       "id": "later-text-or-continuation-content",
@@ -101,8 +106,11 @@
         "jia_mu",
         "jia_she",
         "jia_zheng",
+        "xing_furen",
+        "wang_furen",
         "jia_baoyu",
         "jia_zhen",
+        "jia_lian",
         "jia_huan",
         "jia_rong",
         "jia_lan",
@@ -112,35 +120,34 @@
         "jia_xichun",
         "wang_xifeng",
         "li_wan",
+        "you_shi",
         "jia_qiaojie",
         "xue_baochai",
         "lin_daiyu",
+        "xue_yima",
+        "xia_jingui",
         "xiang_ling",
         "shi_xiangyun",
         "wang_ziteng",
-        "pinger",
-        "xiaohong",
-        "miaoyu",
-        "bao_chan",
-        "wu_er",
-        "old_xuejiu",
-        "xue_yima",
         "wang_ren",
         "xiren",
         "zijuan",
+        "pinger",
         "yuanyang",
+        "miaoyu",
         "liu_laolao",
         "jia_yucun",
         "zhen_shiyin",
         "jia_yun",
-        "zhen_yingjia",
-        "zhenjia_servant",
-        "xia_jingui",
         "jia_zhu",
-        "jia_lian",
-        "wang_furen"
+        "bao_chan",
+        "wu_er",
+        "zhen_yingjia",
+        "old_xuejiu",
+        "zhenjia_servant"
       ],
-      "action": "按甲戌本、庚辰本逐条拆分可证事实与版本比较材料；续书结局统一移入 outcomeVersion.continuation 并在 outcome 前标注“（续书）”，未定位内容继续保持待核。"
+      "action": "按甲戌本、庚辰本逐条拆分可证事实与版本比较材料；续书结局统一移入 outcomeVersion.continuation 并在 outcome 前标注“（续书）”，未定位内容继续保持待核。",
+      "recordCount": 42
     }
   ]
 }

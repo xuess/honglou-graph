@@ -7,9 +7,11 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const port = process.env.PORT || '8080';
 const baseUrl = `http://localhost:${port}`;
 const suites = [
+  { name: '数据来源校验', file: 'scripts/validate-data.mjs' },
   { name: '回归 / 数据完整性', file: 'test-hlm.mjs' },
   { name: '跨视图场景链路', file: 'test-scenarios.mjs' },
-  { name: '交互与无障碍回归', file: 'test-ux.mjs' }
+  { name: '交互与无障碍回归', file: 'test-ux.mjs' },
+  { name: '数据可信度回归', file: 'test-data-trust.mjs' }
 ];
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));

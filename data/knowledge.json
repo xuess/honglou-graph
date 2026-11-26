@@ -4218,10 +4218,12 @@
     "version": "original",
     "versionNote": "前80回曹雪芹原创内容",
     "relatedCharacters": [
-      "jia_baoyu",
       "zhen_shiyin",
       "jia_yucun",
-      "zhen_yingjia"
+      "jiao_xing",
+      "xiang_ling",
+      "lai_tou_heshang",
+      "bo_zu_daoren"
     ],
     "analysis": "本章重要知识点：女娲补天：大荒山无稽崖炼石补天，剩一块未用；通灵宝玉：石头记下凡间经历，携通灵宝玉入世；木石前盟：绛珠草受甘露之惠，誓愿以泪还债。主要人物动向：甄士隐看破红尘出家；贾雨村进京赶考。",
     "sourceNote": "前八十回原作"
@@ -4811,8 +4813,11 @@
     "versionNote": "前80回曹雪芹原创内容",
     "relatedCharacters": [
       "jia_baoyu",
-      "jia_yun",
-      "xiaohong"
+      "qin_zhong",
+      "jia_rui",
+      "jia_qiang",
+      "jia_dairu",
+      "ming_yan"
     ],
     "analysis": "本章重要知识点：宝玉入家塾：贾代儒授课，宝玉不愿读八股；秦钟与香怜：秦钟与香怜关系亲密，引起闲言碎语；闹学堂：金荣等人起哄闹事，茗烟打砸。主要人物动向：宝玉在学堂中结交秦钟，开始接触社会。",
     "sourceNote": "前八十回原作"
@@ -6635,14 +6640,15 @@
     "id": "chapter_081",
     "type": "chapter",
     "title": "第81回 占旺相四美钓游鱼 奉严词两番入家塾",
-    "content": "【回目】占旺相四美钓游鱼 奉严词两番入家塾\n【回次】第81回\n【主要知识点】\n1. 宝玉入学：宝玉重新入学读书\n2. 四美钓鱼：迎春、探春、惜春、黛玉钓鱼\n3. 马道婆：马道婆再次出现\n4. 贾政管教：贾政教训宝玉\n【人物动向】\n宝玉重新入学",
+    "content": "【回目】占旺相四美钓游鱼 奉严词两番入家塾\n【回次】第81回\n【主要知识点】\n1. 四美钓鱼：探春、李纹、李绮、邢岫烟在蓼溆钓鱼，宝玉顽皮惊鱼\n2. 马道婆案发：马道婆邪术败露，被锦衣府拿送刑部\n3. 宝玉入塾：贾政训诫宝玉，命其重新入家塾读书\n4. 黛玉感伤：宝玉因迎春遭遇悲叹，黛玉亦为之伤心\n【人物动向】\n宝玉重新入学；马道婆案发；大观园冷落",
     "chapter": 81,
     "tags": [
-      "贾代儒授课",
-      "宝玉上学",
       "四美钓鱼",
-      "探春理家延续",
-      "严父"
+      "马道婆案发",
+      "宝玉入塾",
+      "贾政训子",
+      "黛玉感伤",
+      "大观园冷落"
     ],
     "category": "回目知识",
     "version": "continuation",
@@ -6651,9 +6657,17 @@
       "jia_baoyu",
       "jia_zheng",
       "lin_daiyu",
-      "xue_baochai"
+      "jia_tanchun",
+      "xing_xiuyan",
+      "jia_yingchun",
+      "jia_mu",
+      "wang_furen",
+      "xiren",
+      "sheyue",
+      "jia_dairu",
+      "ma_daopo"
     ],
-    "analysis": "本章重要知识点：宝玉入学：宝玉重新入学读书；四美钓鱼：迎春、探春、惜春、黛玉钓鱼；马道婆：马道婆再次出现。主要人物动向：宝玉重新入学。",
+    "analysis": "本章以四美钓鱼的短暂欢愉对照大观园的冷落与宝玉被迫入塾；马道婆邪术案发，进一步写出贾府内外人心的败象。",
     "sourceNote": "后四十回续书"
   },
   {

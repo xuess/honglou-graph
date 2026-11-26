@@ -8,12 +8,12 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏮</text></svg>">
   <!-- 数据文件的内容版本：由 npm run stamp 与资源版本号一起更新，
        否则浏览器会一直复用旧的 characters.json / knowledge.json。 -->
-  <meta name="hlm-asset-version" content="6c42fdff64">
-  <link rel="stylesheet" href="css/fonts.css?v=6c42fdff64">
-  <link rel="stylesheet" href="css/style.css?v=6c42fdff64">
+  <meta name="hlm-asset-version" content="f2499cd457">
+  <link rel="stylesheet" href="css/fonts.css?v=f2499cd457">
+  <link rel="stylesheet" href="css/style.css?v=f2499cd457">
   <!-- 装饰性标题字体不阻塞首屏；加载完成后再应用，正文先用 Noto Serif。 -->
-  <link rel="stylesheet" href="css/display-font.css?v=6c42fdff64" media="print" onload="this.media='all'">
-  <script src="js/d3.v7.min.js?v=6c42fdff64"></script>
+  <link rel="stylesheet" href="css/display-font.css?v=f2499cd457" media="print" onload="this.media='all'">
+  <script src="js/d3.v7.min.js?v=f2499cd457"></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">跳到主内容</a>
@@ -301,26 +301,26 @@
   <div id="card-content" class="character-card" tabindex="-1"></div>
 </div>
 
-  <script src="js/edge-tts.js?v=6c42fdff64"></script>
-  <script src="js/audio-preload-cache.js?v=6c42fdff64"></script>
-  <script src="js/utils.js?v=6c42fdff64"></script>
-  <script src="js/facet-store.js?v=6c42fdff64"></script>
-  <script src="js/text-layout.js?v=6c42fdff64"></script>
-  <script src="js/graph.js?v=6c42fdff64"></script>
-  <script src="js/tree-view.js?v=6c42fdff64"></script>
-  <script src="js/list-view.js?v=6c42fdff64"></script>
-  <script src="js/chapter-view.js?v=6c42fdff64"></script>
+  <script src="js/edge-tts.js?v=f2499cd457"></script>
+  <script src="js/audio-preload-cache.js?v=f2499cd457"></script>
+  <script src="js/utils.js?v=f2499cd457"></script>
+  <script src="js/facet-store.js?v=f2499cd457"></script>
+  <script src="js/text-layout.js?v=f2499cd457"></script>
+  <script src="js/graph.js?v=f2499cd457"></script>
+  <script src="js/tree-view.js?v=f2499cd457"></script>
+  <script src="js/list-view.js?v=f2499cd457"></script>
+  <script src="js/chapter-view.js?v=f2499cd457"></script>
   <!-- fuse.js 本地化：原先是唯一的外部运行时依赖，断网/公司网络下会静默降级为关键词匹配。
        用模块脚本加载，把默认导出挂到 window.Fuse，其余视图沿用全局访问方式。 -->
   <script type="module">
     try {
-      const module = await import('./js/fuse.min.mjs?v=6c42fdff64');
+      const module = await import('./js/fuse.min.mjs?v=f2499cd457');
       window.Fuse = module.default;
     } catch (err) {
       console.warn('[fuse] 本地模块加载失败，知识库检索将退回关键词匹配', err);
     }
   </script>
-  <script src="js/knowledge-view.js?v=6c42fdff64"></script>
-  <script src="js/app.js?v=6c42fdff64"></script>
+  <script src="js/knowledge-view.js?v=f2499cd457"></script>
+  <script src="js/app.js?v=f2499cd457"></script>
 </body>
 </html>

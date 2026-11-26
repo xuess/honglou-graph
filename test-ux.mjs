@@ -264,7 +264,7 @@ await run('TC-39 人物卡章节完整展示并跳转', async () => {
       label: document.querySelector('.card-section-count')?.innerText
     }));
     assert.equal(card.count, expected.count, `人物卡章节被截断: ${card.count}/${expected.count}`);
-    assert.equal(card.label, `${expected.count} 回`);
+    assert.match(card.label, new RegExp(`^${expected.count} 回`), `人物卡章节计数异常: ${card.label}`);
 
     const chapter = await page.evaluate(() => Number(document.querySelector('.card-chapters [data-chapter-jump]')?.dataset.chapterJump));
     await page.click('.card-chapters [data-chapter-jump]');

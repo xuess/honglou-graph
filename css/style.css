@@ -2815,6 +2815,43 @@ button.card-chapter-item:focus-visible {
   color: var(--color-ink-light);
 }
 
+/* 程乙本等版本异文：单独成组，避免和底本“经典语录”混在一起。 */
+.card-quote-comparison {
+  border-style: dashed;
+  border-color: rgba(74,107,138,0.36);
+  background: rgba(74,107,138,0.07);
+}
+
+.card-quote-comparison .card-quote-source {
+  color: #4A6B8A;
+  opacity: 1;
+}
+
+.key-event-version,
+.card-chapter-version,
+.outcome-version-tag {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 7px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(163,58,70,0.28);
+  background: rgba(163,58,70,0.08);
+  color: #A33A46;
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.5;
+  vertical-align: 1px;
+}
+
+button.card-chapter-item.is-continuation {
+  border-style: dashed;
+  border-color: rgba(163,58,70,0.32);
+  background: rgba(163,58,70,0.045);
+}
+
 .card-section-title-sub {
   margin-top: 14px;
   font-size: 0.8rem;
@@ -8476,6 +8513,17 @@ input[type="number"]:focus {
   opacity: 1;
 }
 
+/* 第81回以后：保留时间线位置，但用斜纹提示“续书”，避免和原著回目混读。 */
+.card-fate-cell.active.is-continuation {
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255,255,255,0.42) 0,
+    rgba(255,255,255,0.42) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+}
+
 .card-fate-cell.inactive {
   opacity: 0.08;
 }
@@ -10240,6 +10288,12 @@ body.fullscreen .path-display-panel {
   color: var(--color-ink-light);
   font-size: 0.8rem;
   line-height: 1.75;
+}
+
+.exploration-outcome-single .outcome-version-tag {
+  margin-left: 0;
+  margin-right: 6px;
+  vertical-align: 1px;
 }
 
 .exploration-knowledge-card {

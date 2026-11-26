@@ -21,7 +21,8 @@
       {
         "chapter": 10,
         "title": "金寡妇贪利权受辱 张太医论病细穷源",
-        "summary": "金寡妇为儿子金荣一事奔走求托，既显其护短，也映出贾府周边依附关系。"
+        "summary": "金寡妇为儿子金荣一事奔走求托，既显其护短，也映出贾府周边依附关系。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -39,6 +40,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -63,7 +70,8 @@
       {
         "chapter": 10,
         "title": "金寡妇贪利权受辱 张太医论病细穷源",
-        "summary": "张太医入宁府为秦可卿诊病，细论病源，进一步烘托宁府不祥气氛。"
+        "summary": "张太医入宁府为秦可卿诊病，细论病源，进一步烘托宁府不祥气氛。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -81,6 +89,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -105,7 +119,8 @@
       {
         "chapter": 21,
         "title": "贤袭人娇嗔箴宝玉 俏平儿软语救贾琏",
-        "summary": "贾琏与鲍二家的偷情被凤姐撞破，引出平儿周旋救场。"
+        "summary": "贾琏与鲍二家的偷情被凤姐撞破，引出平儿周旋救场。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -123,6 +138,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -147,7 +168,8 @@
       {
         "chapter": 21,
         "title": "贤袭人娇嗔箴宝玉 俏平儿软语救贾琏",
-        "summary": "回目所涉贾琏偷情线，旁及其与多姑娘等人的旧事。"
+        "summary": "回目所涉贾琏偷情线，旁及其与多姑娘等人的旧事。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -165,6 +187,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -189,7 +217,8 @@
       {
         "chapter": 29,
         "title": "享福人福深还祷福 痴情女情重愈斟情",
-        "summary": "清虚观打醮时张道士替宝玉提亲，触动宝黛之间的敏感心事。"
+        "summary": "清虚观打醮时张道士替宝玉提亲，触动宝黛之间的敏感心事。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -207,6 +236,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -236,32 +271,38 @@
       {
         "chapter": 3,
         "title": "托内兄如海荐西宾 接外孙贾母惜孤女",
-        "summary": "贾母见外孙女黛玉来投，悲喜交加，搂入怀中大哭，安排黛玉在贾府住下，对其疼爱有加。"
+        "summary": "贾母见外孙女黛玉来投，悲喜交加，搂入怀中大哭，安排黛玉在贾府住下，对其疼爱有加。",
+        "version": "original"
       },
       {
         "chapter": 22,
         "title": "听曲文宝玉悟禅机 制灯谜贾政悲谶语",
-        "summary": "贾母带领众人制灯谜、猜灯谜，元宵佳节热闹非凡，但贾政从谜语中隐约感到不祥之兆。"
+        "summary": "贾母带领众人制灯谜、猜灯谜，元宵佳节热闹非凡，但贾政从谜语中隐约感到不祥之兆。",
+        "version": "original"
       },
       {
         "chapter": 40,
         "title": "史太君两宴大观园 金鸳鸯三宣牙牌令",
-        "summary": "贾母在大观园中大摆宴席招待刘姥姥，众人行酒令取乐，贾母兴致极高，尽显其好客豁达的一面。"
+        "summary": "贾母在大观园中大摆宴席招待刘姥姥，众人行酒令取乐，贾母兴致极高，尽显其好客豁达的一面。",
+        "version": "original"
       },
       {
         "chapter": 54,
         "title": "史太君破陈腐旧套 王熙凤效戏彩斑衣",
-        "summary": "元宵夜宴上，贾母评书讲戏破除陈腐旧套才子佳人故事，见解独到，展现其阅历与才识。"
+        "summary": "元宵夜宴上，贾母评书讲戏破除陈腐旧套才子佳人故事，见解独到，展现其阅历与才识。",
+        "version": "original"
       },
       {
         "chapter": 75,
         "title": "开夜宴异兆发悲音 赏中秋新词得佳谶",
-        "summary": "中秋宴上，贾母感慨人少冷清，隐约预感贾府衰败，气氛凄凉，不复往日繁华。"
+        "summary": "中秋宴上，贾母感慨人少冷清，隐约预感贾府衰败，气氛凄凉，不复往日繁华。",
+        "version": "original"
       },
       {
         "chapter": 110,
         "title": "史太君寿终归地府 王凤姐力诎失人心",
-        "summary": "贾母病逝，享尽荣华的一代老太君溘然长逝，贾府上下哀痛不已，其离世标志着贾府彻底失去精神支柱。"
+        "summary": "贾母病逝，享尽荣华的一代老太君溘然长逝，贾府上下哀痛不已，其离世标志着贾府彻底失去精神支柱。",
+        "version": "continuation"
       }
     ],
     "parentIds": [],
@@ -281,34 +322,49 @@
       "original": "贾府最高权威",
       "continuation": "寿终正寝，贾府衰败后病逝"
     },
-    "quotesPendingVerified": [],
-    "quotes": [
-      "我们这样人家，别的事自有人料理，我不过受用罢了。",
-      "我这老冤家是那世里的孽障，偏生遇见了这么两个不省事的小冤家。",
-      "当日我像凤哥儿这么大年纪，比她还来得呢。"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 71,
-        "locator": "第71回",
-        "matchType": "prefix"
+        "text": "我们这样人家，别的事自有人料理，我不过受用罢了。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 71,
+          "locator": "第71回"
+        }
       },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 29,
-        "locator": "第29回",
-        "matchType": "prefix"
+        "text": "我这老冤家是那世里的孽障，偏生遇见了这么两个不省事的小冤家。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 29,
+          "locator": "第29回"
+        }
       },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 71,
-        "locator": "第71回",
-        "matchType": "prefix"
+        "text": "当日我像凤哥儿这么大年纪，比她还来得呢。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 71,
+          "locator": "第71回"
+        }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -335,17 +391,20 @@
       {
         "chapter": 46,
         "title": "尴尬人难免尴尬事 鸳鸯女誓绝鸳鸯偶",
-        "summary": "贾赦贪恋贾母身边大丫鬟鸳鸯的美貌，逼婚不成，被贾母怒斥，颜面扫地。"
+        "summary": "贾赦贪恋贾母身边大丫鬟鸳鸯的美貌，逼婚不成，被贾母怒斥，颜面扫地。",
+        "version": "original"
       },
       {
         "chapter": 48,
         "title": "滥情人情误思游艺 慕雅女雅集苦吟诗",
-        "summary": "贾赦看上石呆子收藏的古扇，让贾琏去买不成，贾雨村用计夺来献给贾赦，贾琏为此挨打。"
+        "summary": "贾赦看上石呆子收藏的古扇，让贾琏去买不成，贾雨村用计夺来献给贾赦，贾琏为此挨打。",
+        "version": "original"
       },
       {
         "chapter": 107,
         "title": "散余资贾母明大义 复世职政老沐天恩",
-        "summary": "贾赦因交通外官、倚势凌弱等罪被革职查抄，受到严厉惩处。"
+        "summary": "贾赦因交通外官、倚势凌弱等罪被革职查抄，受到严厉惩处。",
+        "version": "continuation"
       }
     ],
     "parentIds": [
@@ -363,33 +422,44 @@
     "isMainline": true,
     "outcome": "因贪赃枉法被革职查抄，发配边疆",
     "sourceNote": "前八十回为贾赦；因强夺石呆子古扇获罪流放的情节见于后四十回续书。",
-    "quotesPendingVerified": [],
-    "quotes": [
-      "凭他嫁到了谁家，也难出我贾家的门。",
-      "我说给老太太，鸳鸯她自愿的。"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 46,
-        "locator": "第46回",
-        "matchType": "prefix"
+        "text": "凭他嫁到了谁家，也难出我贾家的门。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 46,
+          "locator": "第46回"
+        }
       },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 46,
-        "locator": "第46回",
-        "matchType": "prefix"
+        "text": "我说给老太太，鸳鸯她自愿的。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 46,
+          "locator": "第46回"
+        }
       }
     ],
-    "outcomeSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "outcomeSourceCandidates": [
       {
         "edition": "程甲本",
         "chapter": 100,
-        "locator": "第100回 抄家"
+        "locator": "第100回 抄家",
+        "status": "continuation"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -418,22 +488,26 @@
       {
         "chapter": 17,
         "title": "大观园试才题对额 荣国府归省庆元宵",
-        "summary": "贾政率众清客及宝玉游览大观园，为各处景致题匾额对联，宝玉才华初显，令贾政又喜又忧。"
+        "summary": "贾政率众清客及宝玉游览大观园，为各处景致题匾额对联，宝玉才华初显，令贾政又喜又忧。",
+        "version": "original"
       },
       {
         "chapter": 33,
         "title": "手足眈眈小动唇舌 不肖种种大承笞挞",
-        "summary": "贾政因宝玉与戏子蒋玉菡交往、金钏投井等事大怒，将宝玉痛打一顿，几乎打死，被贾母王夫人阻止。"
+        "summary": "贾政因宝玉与戏子蒋玉菡交往、金钏投井等事大怒，将宝玉痛打一顿，几乎打死，被贾母王夫人阻止。",
+        "version": "original"
       },
       {
         "chapter": 78,
         "title": "老学士闲征姽婳词 痴公子杜撰芙蓉诔",
-        "summary": "贾政命宝玉等作《姽婳词》，考校文才，宝玉展露诗才。"
+        "summary": "贾政命宝玉等作《姽婳词》，考校文才，宝玉展露诗才。",
+        "version": "original"
       },
       {
         "chapter": 107,
         "title": "散余资贾母明大义 复世职政老沐天恩",
-        "summary": "贾府被抄后，贾政因平素为人端方而蒙圣恩宽免，得以复职。"
+        "summary": "贾府被抄后，贾政因平素为人端方而蒙圣恩宽免，得以复职。",
+        "version": "continuation"
       }
     ],
     "parentIds": [
@@ -459,34 +533,48 @@
       "original": "工部员外郎，贾府家长；结局未明",
       "continuation": "蒙圣恩复职，晚年凄凉"
     },
-    "quotesPendingVerified": [],
-    "quotes": [
-      "自祖宗以来，皆是宽柔以待下人。",
-      "不肖种种大承笞挞！",
-      "该死的奴才！你在家不读书也就罢了，怎么又做出这些无法无天的事来！"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 33,
-        "locator": "第33回",
-        "matchType": "prefix"
+        "text": "自祖宗以来，皆是宽柔以待下人。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 33,
+          "locator": "第33回"
+        }
       },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 33,
-        "locator": "第33回",
-        "matchType": "prefix"
+        "text": "不肖种种大承笞挞！",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 33,
+          "locator": "第33回"
+        }
       },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 33,
-        "locator": "第33回",
-        "matchType": "prefix"
+        "text": "该死的奴才！你在家不读书也就罢了，怎么又做出这些无法无天的事来！",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 33,
+          "locator": "第33回"
+        }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -513,12 +601,14 @@
       {
         "chapter": 46,
         "title": "尴尬人难免尴尬事 鸳鸯女誓绝鸳鸯偶",
-        "summary": "邢夫人受贾赦之命去劝说鸳鸯做妾，被鸳鸯严词拒绝，又被贾母当众训斥，处境尴尬。"
+        "summary": "邢夫人受贾赦之命去劝说鸳鸯做妾，被鸳鸯严词拒绝，又被贾母当众训斥，处境尴尬。",
+        "version": "original"
       },
       {
         "chapter": 71,
         "title": "嫌隙人有心生嫌隙 鸳鸯女无意遇鸳鸯",
-        "summary": "邢夫人因对王熙凤不满，借故挑起矛盾，贾府内部嫌隙渐生。"
+        "summary": "邢夫人因对王熙凤不满，借故挑起矛盾，贾府内部嫌隙渐生。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -547,12 +637,21 @@
         }
       }
     ],
-    "outcomeSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "outcomeSourceCandidates": [
       {
         "edition": "程甲本",
         "chapter": 100,
-        "locator": "第100回 抄家"
+        "locator": "第100回 抄家",
+        "status": "continuation"
       }
+    ],
+    "sourceNote": "前八十回未明确交代结局；随贾赦获罪的情节见于后四十回续书。",
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -581,22 +680,26 @@
       {
         "chapter": 30,
         "title": "宝钗借扇机带双敲 龄官划蔷痴及局外",
-        "summary": "王夫人因金钏与宝玉调笑，怒而掌掴金钏并将其撵出，金钏含羞投井自尽。"
+        "summary": "王夫人因金钏与宝玉调笑，怒而掌掴金钏并将其撵出，金钏含羞投井自尽。",
+        "version": "original"
       },
       {
         "chapter": 33,
         "title": "手足眈眈小动唇舌 不肖种种大承笞挞",
-        "summary": "宝玉被贾政毒打后，王夫人赶来哭求阻拦，又哭亡子贾珠，贾政方才住手。"
+        "summary": "宝玉被贾政毒打后，王夫人赶来哭求阻拦，又哭亡子贾珠，贾政方才住手。",
+        "version": "original"
       },
       {
         "chapter": 74,
         "title": "惑奸谗抄检大观园 矢孤介杜绝宁国府",
-        "summary": "王夫人听信谗言下令抄检大观园，晴雯等丫鬟被逐出，引发轩然大波。"
+        "summary": "王夫人听信谗言下令抄检大观园，晴雯等丫鬟被逐出，引发轩然大波。",
+        "version": "original"
       },
       {
         "chapter": 77,
         "title": "俏丫鬟抱屈夭风流 美优伶斩情归水月",
-        "summary": "王夫人撵走晴雯、芳官等人，亲自查问处置，态度强硬决绝。"
+        "summary": "王夫人撵走晴雯、芳官等人，亲自查问处置，态度强硬决绝。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -616,34 +719,50 @@
       "original": "贾政之妻，荣国府二房太太；结局未明",
       "continuation": "晚年丧子出家，孤独终老"
     },
-    "quotesPendingVerified": [],
-    "quotes": [
-      "这样妖精似的东西，怎么留得！",
-      "宝玉果然是有造化的。",
-      "这样妖精似的东西竟没看见。只怕这样的还有，明日倒得查查。"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 74,
-        "locator": "第74回",
-        "matchType": "prefix"
+        "text": "这样妖精似的东西，怎么留得！",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 74,
+          "locator": "第74回"
+        }
       },
       {
-        "sourceId": "wikisource-gengchen",
-        "edition": "庚辰本",
-        "chapter": 36,
-        "locator": "第36回",
-        "matchType": "exact"
-      },
-      {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 74,
-        "locator": "第74回",
-        "matchType": "verbatim"
+        "text": "宝玉果然是有造化的。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "wikisource-gengchen",
+          "edition": "庚辰本",
+          "chapter": 36,
+          "locator": "第36回"
+        }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
+      {
+        "text": "这样妖精似的东西竟没看见。只怕这样的还有，明日倒得查查。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 74,
+          "locator": "第74回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
+      }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -669,12 +788,14 @@
       {
         "chapter": 10,
         "title": "金寡妇贪利权受辱 张太医论病细穷源",
-        "summary": "贾敬虽为宁国府当家人却不问家事，一心在道观中修炼求仙。"
+        "summary": "贾敬虽为宁国府当家人却不问家事，一心在道观中修炼求仙。",
+        "version": "original"
       },
       {
         "chapter": 63,
         "title": "寿怡红群芳开夜宴 死金丹独艳理亲丧",
-        "summary": "贾敬因吞食丹砂烧胀而死，尤氏等人操办丧事。"
+        "summary": "贾敬因吞食丹砂烧胀而死，尤氏等人操办丧事。",
+        "version": "original"
       }
     ],
     "parentIds": [
@@ -698,12 +819,20 @@
         }
       }
     ],
-    "outcomeSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "outcomeSourceCandidates": [
       {
         "edition": "庚辰本",
         "chapter": 63,
-        "locator": "第63回"
+        "locator": "第63回",
+        "status": "needs-locator"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -728,12 +857,14 @@
       {
         "chapter": 2,
         "title": "贾夫人仙逝扬州城 冷子兴演说荣国府",
-        "summary": "贾敏（贾夫人）在扬州病逝，黛玉从此伶仃无依，为日后进贾府埋下伏笔。"
+        "summary": "贾敏（贾夫人）在扬州病逝，黛玉从此伶仃无依，为日后进贾府埋下伏笔。",
+        "version": "original"
       },
       {
         "chapter": 3,
         "title": "托内兄如海荐西宾 接外孙贾母惜孤女",
-        "summary": "因贾敏亡故，贾母念及骨肉之情，派人去扬州接黛玉入京。"
+        "summary": "因贾敏亡故，贾母念及骨肉之情，派人去扬州接黛玉入京。",
+        "version": "original"
       }
     ],
     "parentIds": [
@@ -759,12 +890,19 @@
         }
       }
     ],
-    "outcomeSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "outcomeSourceCandidates": [
       {
         "edition": "庚辰本",
         "chapter": 2,
-        "locator": "第2回"
+        "locator": "第2回",
+        "status": "needs-locator"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -795,40 +933,45 @@
       "后四十回续书：出家为僧"
     ],
     "quotes": [
-      "女儿是水作的骨肉，男人是泥作的骨肉。我见了女儿，我便清爽；见了男子，便觉浊臭逼人。",
-      "你放心，别说这样话。我便为这些人死了，也是情愿的！"
+      "女儿是水作的骨肉，男人是泥作的骨肉。我见了女儿，我便清爽；见了男子，便觉浊臭逼人。"
     ],
     "description": "贾宝玉是《红楼梦》的男主角，衔通灵宝玉而生，是女娲补天所遗之石幻化而成。他天性纯真多情，视女子为清净之物，厌恶功名利禄和仕途经济。他与黛玉心心相印却终不能相守；续书写他在宝钗怀孕后看破红尘、悬崖撒手出家为僧。",
     "chapters": [
       {
         "chapter": 3,
         "title": "托内兄如海荐西宾 接外孙贾母惜孤女",
-        "summary": "宝玉初见黛玉，觉得似曾相识，问其有无玉，闻说无玉便发狂摔玉，说“家里姐姐妹妹都没有，来了个神仙似的妹妹也没有”。"
+        "summary": "宝玉初见黛玉，觉得似曾相识，问其有无玉，闻说无玉便发狂摔玉，说“家里姐姐妹妹都没有，来了个神仙似的妹妹也没有”。",
+        "version": "original"
       },
       {
         "chapter": 5,
         "title": "游幻境指迷十二钗 饮仙醪曲演红楼梦",
-        "summary": "宝玉在秦氏房中午睡，梦游太虚幻境，翻阅金陵十二钗判词，听闻红楼梦十二支曲，初试云雨之事。"
+        "summary": "宝玉在秦氏房中午睡，梦游太虚幻境，翻阅金陵十二钗判词，听闻红楼梦十二支曲，初试云雨之事。",
+        "version": "original"
       },
       {
         "chapter": 23,
         "title": "西厢记妙词通戏语 牡丹亭艳曲警芳心",
-        "summary": "宝玉与黛玉在桃花树下共读《西厢记》，以书中“我是个多愁多病身，你是个倾国倾城貌”互相打趣传情。"
+        "summary": "宝玉与黛玉在桃花树下共读《西厢记》，以书中“我是个多愁多病身，你是个倾国倾城貌”互相打趣传情。",
+        "version": "original"
       },
       {
         "chapter": 33,
         "title": "手足眈眈小动唇舌 不肖种种大承笞挞",
-        "summary": "贾政因宝玉结交戏子蒋玉菡、逼死金钏等事大怒，将宝玉按在凳上痛打，几乎致命。"
+        "summary": "贾政因宝玉结交戏子蒋玉菡、逼死金钏等事大怒，将宝玉按在凳上痛打，几乎致命。",
+        "version": "original"
       },
       {
         "chapter": 57,
         "title": "慧紫鹃情辞试莽玉 慈姨妈爱语慰痴颦",
-        "summary": "紫鹃谎说黛玉要回苏州，宝玉闻言急痛迷心，犯了旧症，可见对黛玉情深至极。"
+        "summary": "紫鹃谎说黛玉要回苏州，宝玉闻言急痛迷心，犯了旧症，可见对黛玉情深至极。",
+        "version": "original"
       },
       {
         "chapter": 120,
         "title": "甄士隐详说太虚情 贾雨村归结红楼梦",
-        "summary": "宝玉在贾政面前拜别后随僧道飘然而去，了却尘缘，归于大荒山青埂峰。"
+        "summary": "宝玉在贾政面前拜别后随僧道飘然而去，了却尘缘，归于大荒山青埂峰。",
+        "version": "continuation"
       }
     ],
     "parentIds": [
@@ -850,13 +993,6 @@
         "chapter": 2,
         "locator": "第2回“女兒是水作的骨肉，男人是泥作的骨肉。我見”",
         "matchType": "prefix"
-      },
-      {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 34,
-        "locator": "第34回",
-        "matchType": "prefix"
       }
     ],
     "quotesPendingVerified": [
@@ -875,12 +1011,32 @@
           "maxRun": 0,
           "note": "前80回全本逐字核对未见，非原著引语"
         }
+      },
+      {
+        "text": "你放心，别说这样话。我便为这些人死了，也是情愿的！",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 34,
+          "locator": "第34回"
+        }
       }
     ],
     "outcomeVersion": {
       "original": "荣国府公子，结局未明（判词伏“悬崖撒手”）",
       "continuation": "出家为僧，悬崖撒手，归于大荒山青埂峰"
-    }
+    },
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original",
+      "original",
+      "continuation",
+      "continuation"
+    ]
   },
   {
     "id": "jia_zhen",
@@ -906,17 +1062,20 @@
       {
         "chapter": 10,
         "title": "金寡妇贪利权受辱 张太医论病细穷源",
-        "summary": "贾珍对秦可卿的病焦急万分，延请名医张友士诊治，态度极为关切，超乎寻常的翁媳之情。"
+        "summary": "贾珍对秦可卿的病焦急万分，延请名医张友士诊治，态度极为关切，超乎寻常的翁媳之情。",
+        "version": "original"
       },
       {
         "chapter": 13,
         "title": "秦可卿死封龙禁尉 王熙凤协理宁国府",
-        "summary": "秦可卿去世后，贾珍哭得如泪人一般，不惜耗费巨资大办丧事，逾礼逾制。"
+        "summary": "秦可卿去世后，贾珍哭得如泪人一般，不惜耗费巨资大办丧事，逾礼逾制。",
+        "version": "original"
       },
       {
         "chapter": 63,
         "title": "寿怡红群芳开夜宴 死金丹独艳理亲丧",
-        "summary": "贾敬暴死，贾珍从外赶回料理丧事，在丧期中仍与尤二姐尤三姐等人厮混。"
+        "summary": "贾敬暴死，贾珍从外赶回料理丧事，在丧期中仍与尤二姐尤三姐等人厮混。",
+        "version": "original"
       }
     ],
     "parentIds": [
@@ -932,25 +1091,34 @@
     "isMainline": true,
     "outcome": "因聚赌被革职，贾府抄家后被发配，家产充公，身败名裂。",
     "sourceNote": "前八十回为宁国府当家人；因奢纵获罪、流放的情节见于后四十回续书。",
-    "quotesPendingVerified": [],
-    "outcomeSources": [
+    "quotesPendingVerified": [
+      {
+        "text": "如今请了二婶子来帮忙料理，该怎么办就怎么办。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 71,
+          "locator": "第71回"
+        }
+      }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "outcomeSourceCandidates": [
       {
         "edition": "程甲本",
         "chapter": 100,
-        "locator": "第100回 抄家"
+        "locator": "第100回 抄家",
+        "status": "continuation"
       }
     ],
-    "quotes": [
-      "如今请了二婶子来帮忙料理，该怎么办就怎么办。"
-    ],
-    "quoteSources": [
-      {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 71,
-        "locator": "第71回",
-        "matchType": "prefix"
-      }
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -979,22 +1147,26 @@
       {
         "chapter": 12,
         "title": "王熙凤毒设相思局 贾天祥正照风月鉴",
-        "summary": "贾琏随黛玉送林如海灵柩回扬州期间的事务由凤姐独立打理。"
+        "summary": "贾琏随黛玉送林如海灵柩回扬州期间的事务由凤姐独立打理。",
+        "version": "original"
       },
       {
         "chapter": 44,
         "title": "变生不测凤姐泼醋 喜出望外平儿理妆",
-        "summary": "贾琏偷情被凤姐发现，凤姐大闹一场泼醋撒泼，贾母出面调停。"
+        "summary": "贾琏偷情被凤姐发现，凤姐大闹一场泼醋撒泼，贾母出面调停。",
+        "version": "original"
       },
       {
         "chapter": 65,
         "title": "贾二舍偷娶尤二姨 尤三姐思嫁柳二郎",
-        "summary": "贾琏瞒着凤姐在外偷娶尤二姐为妾，安置在小花枝巷，暗中往来。"
+        "summary": "贾琏瞒着凤姐在外偷娶尤二姐为妾，安置在小花枝巷，暗中往来。",
+        "version": "original"
       },
       {
         "chapter": 68,
         "title": "苦尤娘赚入大观园 酸凤姐大闹宁国府",
-        "summary": "凤姐得知贾琏偷娶之事，用计赚尤二姐入大观园，又到宁国府大闹一场。"
+        "summary": "凤姐得知贾琏偷娶之事，用计赚尤二姐入大观园，又到宁国府大闹一场。",
+        "version": "original"
       }
     ],
     "parentIds": [
@@ -1018,25 +1190,36 @@
       "continuation": "贾府败落后被发配，后遇赦归家，与平儿相依为命"
     },
     "quotesPendingVerified": [],
-    "quotes": [
-      "你只好生收著罢，千万别叫他知道。",
-      "我竟不知平儿这么利害，从此倒伏他了。"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 21,
-        "locator": "第21回",
-        "matchType": "verbatim"
+        "text": "你只好生收著罢，千万别叫他知道。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 21,
+          "locator": "第21回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       },
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 21,
-        "locator": "第21回",
-        "matchType": "verbatim"
+        "text": "我竟不知平儿这么利害，从此倒伏他了。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 21,
+          "locator": "第21回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -1063,17 +1246,20 @@
       {
         "chapter": 25,
         "title": "魇魔法姊弟逢五鬼 红楼梦通灵遇双真",
-        "summary": "贾环在赵姨娘指使下故意推倒蜡灯烫伤宝玉的脸，心存加害之意。"
+        "summary": "贾环在赵姨娘指使下故意推倒蜡灯烫伤宝玉的脸，心存加害之意。",
+        "version": "original"
       },
       {
         "chapter": 33,
         "title": "手足眈眈小动唇舌 不肖种种大承笞挞",
-        "summary": "贾环向贾政进谗言告密，说宝玉逼死金钏并与琪官交往等事，导致宝玉被暴打。"
+        "summary": "贾环向贾政进谗言告密，说宝玉逼死金钏并与琪官交往等事，导致宝玉被暴打。",
+        "version": "original"
       },
       {
         "chapter": 60,
         "title": "茉莉粉替去蔷薇硝 玫瑰露引来茯苓霜",
-        "summary": "贾环与彩霞等丫鬟厮混，又因玫瑰露之事牵连出一系列纠葛。"
+        "summary": "贾环与彩霞等丫鬟厮混，又因玫瑰露之事牵连出一系列纠葛。",
+        "version": "original"
       }
     ],
     "parentIds": [
@@ -1087,17 +1273,24 @@
     "outcome": "贾府败落后随赵姨娘流落街头，后不知所终。",
     "sourceNote": "前八十回为庶出公子；参与谋害宝玉等情节见于后四十回续书。",
     "quotesPendingVerified": [],
-    "quotes": [
-      "我拿什么比宝玉呢。你们怕他，都和他好，都欺负我不是太太养的。"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 20,
-        "locator": "第20回",
-        "matchType": "verbatim"
+        "text": "我拿什么比宝玉呢。你们怕他，都和他好，都欺负我不是太太养的。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 20,
+          "locator": "第20回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -1124,17 +1317,20 @@
       {
         "chapter": 7,
         "title": "送宫花贾琏戏熙凤 宴宁府宝玉会秦钟",
-        "summary": "贾蓉来荣府借玻璃炕屏，与凤姐打情骂俏，又引宝玉去宁府结识秦钟。"
+        "summary": "贾蓉来荣府借玻璃炕屏，与凤姐打情骂俏，又引宝玉去宁府结识秦钟。",
+        "version": "original"
       },
       {
         "chapter": 11,
         "title": "庆寿辰宁府排家宴 见熙凤贾瑞起淫心",
-        "summary": "贾蓉在宁府寿宴上为秦可卿的病事与凤姐商议，态度暧昧。"
+        "summary": "贾蓉在宁府寿宴上为秦可卿的病事与凤姐商议，态度暧昧。",
+        "version": "original"
       },
       {
         "chapter": 13,
         "title": "秦可卿死封龙禁尉 王熙凤协理宁国府",
-        "summary": "秦可卿去世，贾蓉得授龙禁尉之职以便出殡时风光体面。"
+        "summary": "秦可卿去世，贾蓉得授龙禁尉之职以便出殡时风光体面。",
+        "version": "original"
       }
     ],
     "parentIds": [
@@ -1149,17 +1345,25 @@
     "outcome": "贾府抄家后被发配，妻子秦可卿已死，续娶胡氏，家道中落。",
     "sourceNote": "前八十回为贾蓉；后四十回中随父获罪。",
     "quotesPendingVerified": [],
-    "quotes": [
-      "婶子若不借，又说我不会说话了，又挨一顿好打呢。婶子只当可怜侄儿罢。"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 6,
-        "locator": "第6回",
-        "matchType": "verbatim"
+        "text": "婶子若不借，又说我不会说话了，又挨一顿好打呢。婶子只当可怜侄儿罢。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 6,
+          "locator": "第6回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -1186,12 +1390,14 @@
       {
         "chapter": 22,
         "title": "听曲文宝玉悟禅机 制灯谜贾政悲谶语",
-        "summary": "贾兰在制灯谜活动中表现出聪慧好学的一面，深得众人赞许。"
+        "summary": "贾兰在制灯谜活动中表现出聪慧好学的一面，深得众人赞许。",
+        "version": "original"
       },
       {
         "chapter": 78,
         "title": "老学士闲征姽婳词 痴公子杜撰芙蓉诔",
-        "summary": "贾兰与宝玉一同奉贾政之命作《姽婳词》，展现其诗文功底。"
+        "summary": "贾兰与宝玉一同奉贾政之命作《姽婳词》，展现其诗文功底。",
+        "version": "original"
       }
     ],
     "parentIds": [
@@ -1217,6 +1423,13 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -1246,27 +1459,32 @@
       {
         "chapter": 16,
         "title": "贾元春才选凤藻宫 秦鲸卿夭逝黄泉路",
-        "summary": "元春被选入宫封为凤藻宫尚书、贤德妃，贾府因此大兴土木修建大观园以迎省亲。"
+        "summary": "元春被选入宫封为凤藻宫尚书、贤德妃，贾府因此大兴土木修建大观园以迎省亲。",
+        "version": "original"
       },
       {
         "chapter": 18,
         "title": "皇恩重元妃省父母 天伦乐宝玉呈才藻",
-        "summary": "元春省亲回家，见祖母父母不禁垂泪叹道“当日既送我到那不得见人的去处”，恩赐众人。"
+        "summary": "元春省亲回家，见祖母父母不禁垂泪叹道“当日既送我到那不得见人的去处”，恩赐众人。",
+        "version": "original"
       },
       {
         "chapter": 22,
         "title": "听曲文宝玉悟禅机 制灯谜贾政悲谶语",
-        "summary": "元春从宫中送出灯谜让众人猜，其谜底为爆竹——“一声震天响，回首是虚无”，暗含悲谶之意。"
+        "summary": "元春从宫中送出灯谜让众人猜，其谜底为爆竹——“一声震天响，回首是虚无”，暗含悲谶之意。",
+        "version": "original"
       },
       {
         "chapter": 83,
         "title": "省宫闱贾元妃染恙 闹闺阃薛宝钗吞声",
-        "summary": "元春在宫中染病，贾府上下忧心忡忡。"
+        "summary": "元春在宫中染病，贾府上下忧心忡忡。",
+        "version": "continuation"
       },
       {
         "chapter": 95,
         "title": "因讹成实元妃薨逝 以假混真宝玉疯颠",
-        "summary": "元春薨逝于宫中，贾府失去最大靠山，衰败之势已不可逆转。"
+        "summary": "元春薨逝于宫中，贾府失去最大靠山，衰败之势已不可逆转。",
+        "version": "continuation"
       }
     ],
     "parentIds": [
@@ -1283,26 +1501,37 @@
       "original": "已封贤德妃，省亲后回宫（第18回）",
       "continuation": "在宫中薨逝，死因成谜（第95回）"
     },
-    "quotesPendingVerified": [],
-    "quotes": [
-      "田舍之家，虽齑盐布帛，终能聚天伦之乐；今虽富贵已极，骨肉各方，然终无意趣。",
-      "当日既送我到那不得见人的去处……"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 18,
-        "locator": "第18回",
-        "matchType": "prefix"
+        "text": "田舍之家，虽齑盐布帛，终能聚天伦之乐；今虽富贵已极，骨肉各方，然终无意趣。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 18,
+          "locator": "第18回"
+        }
       },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 18,
-        "locator": "第18回",
-        "matchType": "prefix"
+        "text": "当日既送我到那不得见人的去处……",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 18,
+          "locator": "第18回"
+        }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -1331,17 +1560,20 @@
       {
         "chapter": 73,
         "title": "痴丫头误拾绣春囊 懦小姐不问累金凤",
-        "summary": "迎春的丫鬟司棋出事，而迎春懦弱无能不闻不问，连自己的累金凤被偷也不追究。"
+        "summary": "迎春的丫鬟司棋出事，而迎春懦弱无能不闻不问，连自己的累金凤被偷也不追究。",
+        "version": "original"
       },
       {
         "chapter": 79,
         "title": "薛文起悔娶河东狮 贾迎春误嫁中山狼",
-        "summary": "迎春被贾赦做主嫁给了“中山狼”孙绍祖，婚后遭受虐待凌辱。"
+        "summary": "迎春被贾赦做主嫁给了“中山狼”孙绍祖，婚后遭受虐待凌辱。",
+        "version": "original"
       },
       {
         "chapter": 80,
         "title": "美香菱屈受贪夫棒 王道士胡诌妒妇方",
-        "summary": "迎春被孙绍祖虐待，回来向贾母等人哭诉，众人怜惜却无可奈何。"
+        "summary": "迎春被孙绍祖虐待，回来向贾母等人哭诉，众人怜惜却无可奈何。",
+        "version": "original"
       }
     ],
     "parentIds": [
@@ -1369,17 +1601,24 @@
         }
       }
     ],
-    "quotes": [
-      "我又不是管事的人，何苦来操这些心。"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 72,
-        "locator": "第72回",
-        "matchType": "variant-confirmed"
+        "text": "我又不是管事的人，何苦来操这些心。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 72,
+          "locator": "第72回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -1410,22 +1649,26 @@
       {
         "chapter": 55,
         "title": "辱亲女愚妾争闲气 欺幼主刁奴蓄险心",
-        "summary": "探春代理管家时被生母赵姨娘为弟弟赵国基丧银之事纠缠，探春秉公处理不徇私情，展现管理才干。"
+        "summary": "探春代理管家时被生母赵姨娘为弟弟赵国基丧银之事纠缠，探春秉公处理不徇私情，展现管理才干。",
+        "version": "original"
       },
       {
         "chapter": 56,
         "title": "敏探春兴利除宿弊 识宝钗小惠全大体",
-        "summary": "探春在管家期间大胆改革，将大观园中花草树木承包出去兴利除弊，颇有远见。"
+        "summary": "探春在管家期间大胆改革，将大观园中花草树木承包出去兴利除弊，颇有远见。",
+        "version": "original"
       },
       {
         "chapter": 74,
         "title": "惑奸谗抄检大观园 矢孤介杜绝宁国府",
-        "summary": "抄检大观园时，探春掌掴王善保家的，怒斥“我们的丫头自然都是些贼”，气概非凡。"
+        "summary": "抄检大观园时，探春掌掴王善保家的，怒斥“我们的丫头自然都是些贼”，气概非凡。",
+        "version": "original"
       },
       {
         "chapter": 100,
         "title": "破好事香菱结深恨 悲远嫁宝玉感离情",
-        "summary": "探春远嫁海疆，宝玉等人伤感不已，她的离去是贾府大厦将倾的又一征兆。"
+        "summary": "探春远嫁海疆，宝玉等人伤感不已，她的离去是贾府大厦将倾的又一征兆。",
+        "version": "continuation"
       }
     ],
     "parentIds": [
@@ -1442,34 +1685,48 @@
       "original": "前八十回已议及远嫁（判词“千里东风一梦遥”）",
       "continuation": "远嫁海疆镇海总制周琼之子（第100回）"
     },
-    "quotesPendingVerified": [],
-    "quotes": [
-      "我但凡是个男人，可以出得去，我必早走了，立一番事业，那时自有我一番道理。",
-      "百足之虫，死而不僵，必须先从家里自杀自灭起来，才能一败涂地。",
-      "你们别忒欺负人，打量我是好惹的！"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 55,
-        "locator": "第55回",
-        "matchType": "prefix"
+        "text": "我但凡是个男人，可以出得去，我必早走了，立一番事业，那时自有我一番道理。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 55,
+          "locator": "第55回"
+        }
       },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 74,
-        "locator": "第74回",
-        "matchType": "prefix"
+        "text": "百足之虫，死而不僵，必须先从家里自杀自灭起来，才能一败涂地。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 74,
+          "locator": "第74回"
+        }
       },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 55,
-        "locator": "第55回",
-        "matchType": "prefix"
+        "text": "你们别忒欺负人，打量我是好惹的！",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 55,
+          "locator": "第55回"
+        }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -1498,17 +1755,20 @@
       {
         "chapter": 42,
         "title": "蘅芜君兰言解疑癖 潇湘子雅谑补余音",
-        "summary": "惜春受贾母之命为大观园作画，刘姥姥游园后贾母提议画园景，惜春领命构思。"
+        "summary": "惜春受贾母之命为大观园作画，刘姥姥游园后贾母提议画园景，惜春领命构思。",
+        "version": "original"
       },
       {
         "chapter": 74,
         "title": "惑奸谗抄检大观园 矢孤介杜绝宁国府",
-        "summary": "抄检大观园后，惜春与嫂子尤氏决裂，誓言与宁国府杜绝往来，心志坚定。"
+        "summary": "抄检大观园后，惜春与嫂子尤氏决裂，誓言与宁国府杜绝往来，心志坚定。",
+        "version": "original"
       },
       {
         "chapter": 118,
         "title": "记微嫌舅兄欺弱女 惊谜语妻妾谏痴人",
-        "summary": "惜春坚定出家之志，最终缁衣乞食，遁入空门。"
+        "summary": "惜春坚定出家之志，最终缁衣乞食，遁入空门。",
+        "version": "continuation"
       }
     ],
     "parentIds": [
@@ -1523,26 +1783,37 @@
       "original": "判词已伏出家为尼（“缁衣顿改昔年妆”）",
       "continuation": "削发为尼，独伴青灯古佛（第115回）"
     },
-    "quotesPendingVerified": [],
-    "quotes": [
-      "我清清白白一个人，为什么叫你们带累坏了？",
-      "不作狠心人，难得自了汉。"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 74,
-        "locator": "第74回",
-        "matchType": "prefix"
+        "text": "我清清白白一个人，为什么叫你们带累坏了？",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 74,
+          "locator": "第74回"
+        }
       },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 74,
-        "locator": "第74回",
-        "matchType": "prefix"
+        "text": "不作狠心人，难得自了汉。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 74,
+          "locator": "第74回"
+        }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -1575,32 +1846,38 @@
       {
         "chapter": 13,
         "title": "秦可卿死封龙禁尉 王熙凤协理宁国府",
-        "summary": "凤姐受贾珍之托协理宁国府丧事，施展铁腕管理才干，将一切安排得井井有条，初露峥嵘。"
+        "summary": "凤姐受贾珍之托协理宁国府丧事，施展铁腕管理才干，将一切安排得井井有条，初露峥嵘。",
+        "version": "original"
       },
       {
         "chapter": 14,
         "title": "林如海捐馆扬州城 贾宝玉路谒北静王",
-        "summary": "凤姐继续协理宁国府，严格管束下人，处罚迟到的仆人以儆效尤，管家能力令众人折服。"
+        "summary": "凤姐继续协理宁国府，严格管束下人，处罚迟到的仆人以儆效尤，管家能力令众人折服。",
+        "version": "original"
       },
       {
         "chapter": 44,
         "title": "变生不测凤姐泼醋 喜出望外平儿理妆",
-        "summary": "凤姐发现贾琏偷情，大打出手泼醋闹事，连平儿也受了委屈，贾母出面才平息。"
+        "summary": "凤姐发现贾琏偷情，大打出手泼醋闹事，连平儿也受了委屈，贾母出面才平息。",
+        "version": "original"
       },
       {
         "chapter": 68,
         "title": "苦尤娘赚入大观园 酸凤姐大闹宁国府",
-        "summary": "凤姐得知贾琏偷娶尤二姐，表面笑脸相迎将其赚入大观园，暗地里施展借剑杀人之计。"
+        "summary": "凤姐得知贾琏偷娶尤二姐，表面笑脸相迎将其赚入大观园，暗地里施展借剑杀人之计。",
+        "version": "original"
       },
       {
         "chapter": 69,
         "title": "弄小巧用借剑杀人 觉大限吞生金自逝",
-        "summary": "凤姐暗中操纵逼死尤二姐，尤二姐吞金自尽，凤姐的狠毒手段令人胆寒。"
+        "summary": "凤姐暗中操纵逼死尤二姐，尤二姐吞金自尽，凤姐的狠毒手段令人胆寒。",
+        "version": "original"
       },
       {
         "chapter": 101,
         "title": "大观园月夜感幽魂 散花寺神签惊异兆",
-        "summary": "凤姐在大观园夜遇秦可卿幽魂，在散花寺求签得警示，心神不安，身体每况愈下。"
+        "summary": "凤姐在大观园夜遇秦可卿幽魂，在散花寺求签得警示，心神不安，身体每况愈下。",
+        "version": "continuation"
       }
     ],
     "parentIds": [],
@@ -1614,45 +1891,64 @@
     "isMainline": true,
     "outcome": "协理宁国府、弄权铁槛寺、逼死尤二姐，结局未明（判词伏“一从二令三人木”）",
     "sourceNote": "前八十回为主线人物；“机关算尽”的结局在后四十回有更完整描写。",
-    "quotesPendingVerified": [],
+    "quotesPendingVerified": [
+      {
+        "text": "我从来不信什么阴司地狱报应的，凭是什么事，我说要行就行。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 15,
+          "locator": "第15回"
+        }
+      },
+      {
+        "text": "拼著一身剐，敢把皇帝拉下马。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "wikisource-gengchen",
+          "edition": "庚辰本",
+          "chapter": 68,
+          "locator": "第68回"
+        }
+      }
+    ],
     "outcomeVersion": {
       "original": "协理宁国府、弄权铁槛寺、逼死尤二姐，结局未明（判词伏“一从二令三人木”）",
       "continuation": "机关算尽太聪明，反误了卿卿性命"
     },
-    "quotes": [
-      "我从来不信什么阴司地狱报应的，凭是什么事，我说要行就行。",
-      "拼著一身剐，敢把皇帝拉下马。",
-      "嘴甜心苦，两面三刀。上头一脸笔，脚下使绊子。明是一盆火，暗是一把刀。"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 15,
-        "locator": "第15回",
-        "matchType": "prefix"
-      },
-      {
-        "sourceId": "wikisource-gengchen",
-        "edition": "庚辰本",
-        "chapter": 68,
-        "locator": "第68回",
-        "matchType": "exact"
-      },
-      {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 65,
-        "locator": "第65回",
-        "matchType": "variant-confirmed"
+        "text": "嘴甜心苦，两面三刀。上头一脸笔，脚下使绊子。明是一盆火，暗是一把刀。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 65,
+          "locator": "第65回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
     ],
-    "outcomeSources": [
+    "outcomeSourceCandidates": [
       {
         "edition": "庚辰本",
         "chapter": 0,
-        "locator": "前八十回伏线"
+        "locator": "前八十回伏线",
+        "status": "invalid"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original",
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -1681,17 +1977,20 @@
       {
         "chapter": 37,
         "title": "秋爽斋偶结海棠社 蘅芜苑夜拟菊花题",
-        "summary": "李纨倡议在大观园中成立诗社，被推为社长掌坛，众姐妹积极响应。"
+        "summary": "李纨倡议在大观园中成立诗社，被推为社长掌坛，众姐妹积极响应。",
+        "version": "original"
       },
       {
         "chapter": 49,
         "title": "琉璃世界白雪红梅 脂粉香娃割腥啖膻",
-        "summary": "下大雪时，李纨和众姐妹在芦雪广赏雪联诗，场景温馨美好。"
+        "summary": "下大雪时，李纨和众姐妹在芦雪广赏雪联诗，场景温馨美好。",
+        "version": "original"
       },
       {
         "chapter": 50,
         "title": "芦雪庵争联即景诗 暖香坞雅制春灯谜",
-        "summary": "李纨主持芦雪广联句活动，评判诸人诗作。"
+        "summary": "李纨主持芦雪广联句活动，评判诸人诗作。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -1719,17 +2018,25 @@
         }
       }
     ],
-    "quotes": [
-      "好生著，别慌慌张张鬼赶来似的，仔细碰了牙子。"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 40,
-        "locator": "第40回",
-        "matchType": "verbatim"
+        "text": "好生著，别慌慌张张鬼赶来似的，仔细碰了牙子。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 40,
+          "locator": "第40回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -1755,12 +2062,14 @@
       {
         "chapter": 13,
         "title": "秦可卿死封龙禁尉 王熙凤协理宁国府",
-        "summary": "秦可卿丧事期间尤氏称病不出，由凤姐代为主持，暴露了宁府管理上的无力。"
+        "summary": "秦可卿丧事期间尤氏称病不出，由凤姐代为主持，暴露了宁府管理上的无力。",
+        "version": "original"
       },
       {
         "chapter": 74,
         "title": "惑奸谗抄检大观园 矢孤介杜绝宁国府",
-        "summary": "惜春在抄检事件后与尤氏断绝往来，尤氏颇感委屈无奈。"
+        "summary": "惜春在抄检事件后与尤氏断绝往来，尤氏颇感委屈无奈。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -1772,24 +2081,33 @@
     "isMainline": true,
     "outcome": "随贾珍获罪，处境艰难",
     "quotesPendingVerified": [],
-    "outcomeSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
+      {
+        "text": "有什么好东西孝敬我，就快献上来，我还有事呢。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 7,
+          "locator": "第7回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
+      }
+    ],
+    "outcomeSourceCandidates": [
       {
         "edition": "程甲本",
         "chapter": 100,
-        "locator": "第100回 抄家"
+        "locator": "第100回 抄家",
+        "status": "continuation"
       }
     ],
-    "quotes": [
-      "有什么好东西孝敬我，就快献上来，我还有事呢。"
-    ],
-    "quoteSources": [
-      {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 7,
-        "locator": "第7回",
-        "matchType": "verbatim"
-      }
+    "sourceNote": "前八十回为贾珍之妻；随贾珍获罪的情节见于后四十回续书。",
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -1815,25 +2133,27 @@
     ],
     "quotes": [
       "月满则亏，水满则溢。登高必跌重。",
-      "三春去后诸芳尽，各自须寻各自门。",
-      "趁今日富贵，将祖茔附近多置田庄房舍地亩，以备祭祀供给之费。"
+      "三春去后诸芳尽，各自须寻各自门。"
     ],
     "description": "秦可卿是宁国府贾蓉之妻，容貌兼具黛钗之美。她与公公贾珍的关系在书中由焦大醉骂、判词和脂批暗示；通行本写她病亡，脂本批语有“淫丧天香楼”自缢之说，死因存争议。她死前托梦王熙凤，提出“盛宴必散”的警示和保全家族的远见之策，是小说中极具象征意义的人物。关于她的真实身世，红学界亦有养生堂弃婴、废太子之女等不同说法。",
     "chapters": [
       {
         "chapter": 5,
         "title": "游幻境指迷十二钗 饮仙醪曲演红楼梦",
-        "summary": "宝玉在秦可卿卧房午睡，秦可卿引领宝玉入梦太虚幻境，她的卧室陈设奢华引人遐想。"
+        "summary": "宝玉在秦可卿卧房午睡，秦可卿引领宝玉入梦太虚幻境，她的卧室陈设奢华引人遐想。",
+        "version": "original"
       },
       {
         "chapter": 10,
         "title": "金寡妇贪利权受辱 张太医论病细穷源",
-        "summary": "秦可卿一病不起，请张太医诊治，贾珍焦急万分，暗示她与公公之间的异常关系。"
+        "summary": "秦可卿一病不起，请张太医诊治，贾珍焦急万分，暗示她与公公之间的异常关系。",
+        "version": "original"
       },
       {
         "chapter": 13,
         "title": "秦可卿死封龙禁尉 王熙凤协理宁国府",
-        "summary": "秦可卿病亡（原稿为自缢），临终托梦凤姐，嘱咐“三春去后诸芳尽，各自须寻各自门”，远见卓识。"
+        "summary": "秦可卿病亡（原稿为自缢），临终托梦凤姐，嘱咐“三春去后诸芳尽，各自须寻各自门”，远见卓识。",
+        "version": "original"
       }
     ],
     "parentIds": [
@@ -1860,22 +2180,34 @@
         "chapter": 13,
         "locator": "第13回“三春去後諸芳盡，各自須尋各自門”",
         "matchType": "verbatim"
-      },
+      }
+    ],
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
+        "text": "趁今日富贵，将祖茔附近多置田庄房舍地亩，以备祭祀供给之费。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 13,
+          "locator": "第13回"
+        }
+      }
+    ],
+    "outcomeSourceCandidates": [
+      {
         "edition": "庚辰本",
         "chapter": 13,
         "locator": "第13回",
-        "matchType": "prefix"
+        "status": "needs-locator"
       }
     ],
-    "quotesPendingVerified": [],
-    "outcomeSources": [
-      {
-        "edition": "庚辰本",
-        "chapter": 13,
-        "locator": "第13回"
-      }
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -1903,12 +2235,14 @@
       {
         "chapter": 42,
         "title": "蘅芜君兰言解疑癖 潇湘子雅谑补余音",
-        "summary": "刘姥姥二进荣国府时为巧姐取名，说“日后遇难呈祥，逢凶化吉”都从这“巧”字上来。"
+        "summary": "刘姥姥二进荣国府时为巧姐取名，说“日后遇难呈祥，逢凶化吉”都从这“巧”字上来。",
+        "version": "original"
       },
       {
         "chapter": 119,
         "title": "中乡魁宝玉却尘缘 沐皇恩贾家延世泽",
-        "summary": "贾府衰败后巧姐险被舅舅王仁卖掉，刘姥姥千里赶来搭救，最终嫁入乡间过上安稳日子。"
+        "summary": "贾府衰败后巧姐险被舅舅王仁卖掉，刘姥姥千里赶来搭救，最终嫁入乡间过上安稳日子。",
+        "version": "continuation"
       }
     ],
     "parentIds": [
@@ -1934,6 +2268,13 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "continuation",
+      "continuation"
     ]
   },
   {
@@ -1964,32 +2305,38 @@
       {
         "chapter": 8,
         "title": "比通灵金莺微露意 探宝钗黛玉半含酸",
-        "summary": "宝玉探望宝钗，两人互看金锁通灵玉上的字，“莫失莫忘，仙寿恒昌”与“不离不弃，芳龄永继”恰好成对，金玉良缘初露端倪。"
+        "summary": "宝玉探望宝钗，两人互看金锁通灵玉上的字，“莫失莫忘，仙寿恒昌”与“不离不弃，芳龄永继”恰好成对，金玉良缘初露端倪。",
+        "version": "original"
       },
       {
         "chapter": 28,
         "title": "蒋玉菡情赠茜香罗 薛宝钗羞笼红麝串",
-        "summary": "元春赐礼物，宝钗与宝玉的一样，黛玉与三春相同。宝钗羞怯地试戴红麝串，宝玉看呆了。"
+        "summary": "元春赐礼物，宝钗与宝玉的一样，黛玉与三春相同。宝钗羞怯地试戴红麝串，宝玉看呆了。",
+        "version": "original"
       },
       {
         "chapter": 34,
         "title": "情中情因情感妹妹 错里错以错劝哥哥",
-        "summary": "宝玉挨打后宝钗送药探望，临走时说“别说老太太、太太心疼，就是我们看着心里也疼”，言辞间流露真情。"
+        "summary": "宝玉挨打后宝钗送药探望，临走时说“别说老太太、太太心疼，就是我们看着心里也疼”，言辞间流露真情。",
+        "version": "original"
       },
       {
         "chapter": 42,
         "title": "蘅芜君兰言解疑癖 潇湘子雅谑补余音",
-        "summary": "宝钗劝导黛玉不要看杂书，一番兰言让黛玉心服口服，两人关系从此融洽，“金兰契互剖金兰语”。"
+        "summary": "宝钗劝导黛玉不要看杂书，一番兰言让黛玉心服口服，两人关系从此融洽，“金兰契互剖金兰语”。",
+        "version": "original"
       },
       {
         "chapter": 97,
         "title": "林黛玉焚稿断痴情 薛宝钗出闺成大礼",
-        "summary": "宝钗在黛玉焚稿断肠之际奉母命嫁给宝玉，以掉包计完婚，新婚之夜宝玉方知娶的不是黛玉。"
+        "summary": "宝钗在黛玉焚稿断肠之际奉母命嫁给宝玉，以掉包计完婚，新婚之夜宝玉方知娶的不是黛玉。",
+        "version": "continuation"
       },
       {
         "chapter": 120,
         "title": "甄士隐详说太虚情 贾雨村归结红楼梦",
-        "summary": "宝玉出家后宝钗独守空房，虽生子延续贾家血脉，却终身孤寂。"
+        "summary": "宝玉出家后宝钗独守空房，虽生子延续贾家血脉，却终身孤寂。",
+        "version": "continuation"
       }
     ],
     "parentIds": [
@@ -2004,38 +2351,54 @@
     "isMainline": true,
     "outcome": "薛家小姐，结局未明（判词伏“金簪雪里埋”）",
     "sourceNote": "前八十回为主线人物；与宝玉成婚的“调包计”情节见于后四十回续书。",
-    "quotesPendingVerified": [],
+    "quotesPendingVerified": [
+      {
+        "text": "好风凭借力，送我上青云。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 70,
+          "locator": "第70回 临江仙·柳絮"
+        }
+      },
+      {
+        "text": "珍重芳姿昼掩门，自携手瓮灌苔盆。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 37,
+          "locator": "第37回 咏白海棠"
+        }
+      },
+      {
+        "text": "淡极始知花更艳，愁多焉得玉无痕。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 37,
+          "locator": "第37回 咏白海棠"
+        }
+      }
+    ],
     "outcomeVersion": {
       "original": "薛家小姐，结局未明（判词伏“金簪雪里埋”）",
       "continuation": "与宝玉成婚后独守空房"
     },
-    "quotes": [
-      "好风凭借力，送我上青云。",
-      "珍重芳姿昼掩门，自携手瓮灌苔盆。",
-      "淡极始知花更艳，愁多焉得玉无痕。"
-    ],
-    "quoteSources": [
-      {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 70,
-        "locator": "第70回 临江仙·柳絮",
-        "matchType": "prefix"
-      },
-      {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 37,
-        "locator": "第37回 咏白海棠",
-        "matchType": "prefix"
-      },
-      {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 37,
-        "locator": "第37回 咏白海棠",
-        "matchType": "prefix"
-      }
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original",
+      "continuation",
+      "continuation"
     ]
   },
   {
@@ -2066,41 +2429,45 @@
     "quotes": [
       "花谢花飞花满天，红消香断有谁怜？",
       "一朝春尽红颜老，花落人亡两不知。",
-      "质本洁来还洁去，强于污淖陷渠沟。",
-      "偷来梨蕊三分白，借得梅花一缕魂。",
-      "孤标傲世偕谁隐，一样花开为底迟？"
+      "质本洁来还洁去，强于污淖陷渠沟。"
     ],
     "description": "林黛玉是《红楼梦》的灵魂女主角，前世为绛珠仙草，今生以泪还情。她天资聪慧、诗才无双，是大观园中最出色的才女。她与宝玉两情相悦，却因封建家长的阻挠未能成婚。在宝玉被骗娶宝钗的当晚，她焚稿断情、泪尽而亡，是中国文学史上最动人的悲剧形象。",
     "chapters": [
       {
         "chapter": 3,
         "title": "托内兄如海荐西宾 接外孙贾母惜孤女",
-        "summary": "黛玉初进贾府，“步步留心，时时在意”，初见宝玉时觉得面善，宝玉赞她“天上掉下个林妹妹”。"
+        "summary": "黛玉初进贾府，“步步留心，时时在意”，初见宝玉时觉得面善，宝玉赞她“天上掉下个林妹妹”。",
+        "version": "original"
       },
       {
         "chapter": 23,
         "title": "西厢记妙词通戏语 牡丹亭艳曲警芳心",
-        "summary": "黛玉与宝玉在桃花树下共读《西厢记》，又听到《牡丹亭》曲词“如花美眷，似水流年”，感怀落泪。"
+        "summary": "黛玉与宝玉在桃花树下共读《西厢记》，又听到《牡丹亭》曲词“如花美眷，似水流年”，感怀落泪。",
+        "version": "original"
       },
       {
         "chapter": 27,
         "title": "滴翠亭杨妃戏彩蝶 埋香冢飞燕泣残红",
-        "summary": "黛玉于芒种节在花冢葬花，吟出“花谢花飞花满天，红消香断有谁怜”的千古名篇《葬花吟》。"
+        "summary": "黛玉于芒种节在花冢葬花，吟出“花谢花飞花满天，红消香断有谁怜”的千古名篇《葬花吟》。",
+        "version": "original"
       },
       {
         "chapter": 57,
         "title": "慧紫鹃情辞试莽玉 慈姨妈爱语慰痴颦",
-        "summary": "紫鹃谎称黛玉要回南方，宝玉急得犯病，黛玉闻知后又是心疼又是感动。"
+        "summary": "紫鹃谎称黛玉要回南方，宝玉急得犯病，黛玉闻知后又是心疼又是感动。",
+        "version": "original"
       },
       {
         "chapter": 76,
         "title": "凸碧堂品笛感凄清 凹晶馆联诗悲寂寞",
-        "summary": "中秋夜黛玉与湘云在凹晶馆联诗，黛玉吟出“冷月葬花魂”的凄绝之句，意境萧索。"
+        "summary": "中秋夜黛玉与湘云在凹晶馆联诗，黛玉吟出“冷月葬花魂”的凄绝之句，意境萧索。",
+        "version": "original"
       },
       {
         "chapter": 97,
         "title": "林黛玉焚稿断痴情 薛宝钗出闺成大礼",
-        "summary": "黛玉得知宝玉将娶宝钗后万念俱灰，焚烧诗稿手帕，含恨而亡，“魂归离恨天”。"
+        "summary": "黛玉得知宝玉将娶宝钗后万念俱灰，焚烧诗稿手帕，含恨而亡，“魂归离恨天”。",
+        "version": "continuation"
       }
     ],
     "parentIds": [
@@ -2134,27 +2501,45 @@
         "chapter": 27,
         "locator": "第27回“質本潔來還潔去，強”",
         "matchType": "prefix"
-      },
-      {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 37,
-        "locator": "第37回 咏白海棠",
-        "matchType": "prefix"
-      },
-      {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 38,
-        "locator": "第38回 问菊",
-        "matchType": "prefix"
       }
     ],
-    "quotesPendingVerified": [],
+    "quotesPendingVerified": [
+      {
+        "text": "偷来梨蕊三分白，借得梅花一缕魂。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 37,
+          "locator": "第37回 咏白海棠"
+        }
+      },
+      {
+        "text": "孤标傲世偕谁隐，一样花开为底迟？",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 38,
+          "locator": "第38回 问菊"
+        }
+      }
+    ],
     "outcomeVersion": {
       "original": "寄居贾府的世外仙姝，结局未明（判词伏“玉带林中挂”）",
       "continuation": "泪尽而亡，焚稿断痴情"
-    }
+    },
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original",
+      "original",
+      "continuation",
+      "continuation"
+    ]
   },
   {
     "id": "lin_ruhai",
@@ -2180,17 +2565,20 @@
       {
         "chapter": 2,
         "title": "贾夫人仙逝扬州城 冷子兴演说荣国府",
-        "summary": "林如海在贾敏去世后独自抚养黛玉，后将黛玉托付给贾母，送入贾府。"
+        "summary": "林如海在贾敏去世后独自抚养黛玉，后将黛玉托付给贾母，送入贾府。",
+        "version": "original"
       },
       {
         "chapter": 3,
         "title": "托内兄如海荐西宾 接外孙贾母惜孤女",
-        "summary": "林如海写信推荐贾雨村，托贾政为其谋复职，又含泪送别黛玉进京。"
+        "summary": "林如海写信推荐贾雨村，托贾政为其谋复职，又含泪送别黛玉进京。",
+        "version": "original"
       },
       {
         "chapter": 14,
         "title": "林如海捐馆扬州城 贾宝玉路谒北静王",
-        "summary": "林如海在扬州病故，贾琏护送黛玉扶灵回去。黛玉自此成了真正的孤儿。"
+        "summary": "林如海在扬州病故，贾琏护送黛玉扶灵回去。黛玉自此成了真正的孤儿。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -2204,24 +2592,33 @@
     "isMainline": true,
     "outcome": "任职巡盐御史，染病身亡，临终将黛玉托付贾母。",
     "quotesPendingVerified": [],
-    "outcomeSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
+      {
+        "text": "汝父年已半百，膝下无儿，此乃命也。且汝多病，年又极小，上无亲母教养，下无姊妹扶持，今去依傍外祖母及舅氏姊妹，正好减我顾盼之忧。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 3,
+          "locator": "第3回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
+      }
+    ],
+    "outcomeSourceCandidates": [
       {
         "edition": "庚辰本",
         "chapter": 14,
-        "locator": "第14回"
+        "locator": "第14回",
+        "status": "needs-locator"
       }
     ],
-    "quotes": [
-      "汝父年已半百，膝下无儿，此乃命也。且汝多病，年又极小，上无亲母教养，下无姊妹扶持，今去依傍外祖母及舅氏姊妹，正好减我顾盼之忧。"
-    ],
-    "quoteSources": [
-      {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 3,
-        "locator": "第3回",
-        "matchType": "variant-confirmed"
-      }
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -2250,17 +2647,20 @@
       {
         "chapter": 4,
         "title": "薄命女偏逢薄命郎 葫芦僧乱判葫芦案",
-        "summary": "薛蟠为抢丫鬟香菱打死冯渊，贾雨村包庇薛家，胡乱判案，薛蟠逍遥法外。"
+        "summary": "薛蟠为抢丫鬟香菱打死冯渊，贾雨村包庇薛家，胡乱判案，薛蟠逍遥法外。",
+        "version": "original"
       },
       {
         "chapter": 47,
         "title": "呆霸王调情遭苦打 冷郎君惧祸走他乡",
-        "summary": "薛蟠调戏柳湘莲，反被柳湘莲痛打一顿。此后薛蟠发誓外出经商。"
+        "summary": "薛蟠调戏柳湘莲，反被柳湘莲痛打一顿。此后薛蟠发誓外出经商。",
+        "version": "original"
       },
       {
         "chapter": 79,
         "title": "薛文起悔娶河东狮 贾迎春误嫁中山狼",
-        "summary": "薛蟠娶了泼辣刁蛮的夏金桂为妻，婚后被其管制得服服帖帖，悔不当初。"
+        "summary": "薛蟠娶了泼辣刁蛮的夏金桂为妻，婚后被其管制得服服帖帖，悔不当初。",
+        "version": "original"
       }
     ],
     "parentIds": [
@@ -2275,26 +2675,37 @@
     "generation": 3,
     "isMainline": true,
     "outcome": "因打死人入狱，后遇赦释放",
-    "quotesPendingVerified": [],
-    "quotes": [
-      "女儿悲，嫁了个男人是乌龟。女儿愁，绣房窜出个大马猴。",
-      "唐寅？不就是'庚黄'嘛！"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 28,
-        "locator": "第28回",
-        "matchType": "prefix"
+        "text": "女儿悲，嫁了个男人是乌龟。女儿愁，绣房窜出个大马猴。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 28,
+          "locator": "第28回"
+        }
       },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 28,
-        "locator": "第28回",
-        "matchType": "prefix"
+        "text": "唐寅？不就是'庚黄'嘛！",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 28,
+          "locator": "第28回"
+        }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -2321,17 +2732,20 @@
       {
         "chapter": 4,
         "title": "薄命女偏逢薄命郎 葫芦僧乱判葫芦案",
-        "summary": "薛姨妈带儿子薛蟠、女儿宝钗进京投靠贾府，住在梨香院。"
+        "summary": "薛姨妈带儿子薛蟠、女儿宝钗进京投靠贾府，住在梨香院。",
+        "version": "original"
       },
       {
         "chapter": 57,
         "title": "慧紫鹃情辞试莽玉 慈姨妈爱语慰痴颦",
-        "summary": "薛姨妈到潇湘馆安慰黛玉，说要将黛玉说给宝玉，“慈姨妈爱语慰痴颦”。"
+        "summary": "薛姨妈到潇湘馆安慰黛玉，说要将黛玉说给宝玉，“慈姨妈爱语慰痴颦”。",
+        "version": "original"
       },
       {
         "chapter": 84,
         "title": "试文字宝玉始提亲 探惊风贾环重结怨",
-        "summary": "薛姨妈与王夫人商议宝钗与宝玉的婚事，金玉良缘逐渐推进。"
+        "summary": "薛姨妈与王夫人商议宝钗与宝玉的婚事，金玉良缘逐渐推进。",
+        "version": "continuation"
       }
     ],
     "parentIds": [],
@@ -2345,26 +2759,37 @@
     "generation": 2,
     "isMainline": true,
     "outcome": "薛家衰落后寄居贾府，后随宝钗度日，含饴弄孙。",
-    "quotesPendingVerified": [],
-    "quotes": [
-      "自古道，千里姻缘一线牵。管姻缘的有一位月老，预先注定的，暗里只用一根红丝把这两个人的脚绊住了。",
-      "我的儿，你们女孩家那里知道，自古道：“千里姻缘一线牵”，少不得信他。"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 57,
-        "locator": "第57回",
-        "matchType": "prefix"
-      },
-      {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 57,
-        "locator": "第57回",
-        "matchType": "verbatim"
+        "text": "自古道，千里姻缘一线牵。管姻缘的有一位月老，预先注定的，暗里只用一根红丝把这两个人的脚绊住了。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 57,
+          "locator": "第57回"
+        }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
+      {
+        "text": "我的儿，你们女孩家那里知道，自古道：“千里姻缘一线牵”，少不得信他。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 57,
+          "locator": "第57回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
+      }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -2390,12 +2815,14 @@
       {
         "chapter": 49,
         "title": "琉璃世界白雪红梅 脂粉香娃割腥啖膻",
-        "summary": "宝琴初到贾府，容貌出众才情横溢，贾母一见便喜爱非常，甚至想为宝玉提亲。"
+        "summary": "宝琴初到贾府，容貌出众才情横溢，贾母一见便喜爱非常，甚至想为宝玉提亲。",
+        "version": "original"
       },
       {
         "chapter": 50,
         "title": "芦雪庵争联即景诗 暖香坞雅制春灯谜",
-        "summary": "宝琴在芦雪广联诗中表现出众，又作了十首怀古诗，才华令众人惊叹。"
+        "summary": "宝琴在芦雪广联诗中表现出众，又作了十首怀古诗，才华令众人惊叹。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -2405,18 +2832,25 @@
     "isMainline": false,
     "outcome": "前八十回已许配梅翰林之子，后事未明",
     "sourceNote": "前八十回只写其已许配梅翰林之子，未写成婚及婚后；梅家获罪、随夫流放等说法无前八十回依据。",
-    "quotesPendingVerified": [],
-    "quotes": [
-      "昨夜朱楼梦，今宵水国吟。"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 52,
-        "locator": "第52回",
-        "matchType": "prefix"
+        "text": "昨夜朱楼梦，今宵水国吟。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 52,
+          "locator": "第52回"
+        }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -2441,7 +2875,8 @@
       {
         "chapter": 79,
         "title": "薛文起悔娶河东狮 贾迎春误嫁中山狼",
-        "summary": "薛蝌与宝琴一同寄居贾府，为人品性温良。"
+        "summary": "薛蝌与宝琴一同寄居贾府，为人品性温良。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -2461,6 +2896,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -2488,12 +2929,14 @@
       {
         "chapter": 79,
         "title": "薛文起悔娶河东狮 贾迎春误嫁中山狼",
-        "summary": "夏金桂嫁给薛蟠后专横跋扈，将丈夫管得服服帖帖，又妒忌香菱百般折磨。"
+        "summary": "夏金桂嫁给薛蟠后专横跋扈，将丈夫管得服服帖帖，又妒忌香菱百般折磨。",
+        "version": "original"
       },
       {
         "chapter": 80,
         "title": "美香菱屈受贪夫棒 王道士胡诌妒妇方",
-        "summary": "夏金桂设计陷害香菱，使薛蟠毒打香菱，又起改名之事彰显其恶毒。"
+        "summary": "夏金桂设计陷害香菱，使薛蟠毒打香菱，又起改名之事彰显其恶毒。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -2526,6 +2969,14 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -2554,17 +3005,20 @@
       {
         "chapter": 4,
         "title": "薄命女偏逢薄命郎 葫芦僧乱判葫芦案",
-        "summary": "香菱原名甄英莲，幼年被拐卖，被薛蟠霸占为妾，命运多舛。"
+        "summary": "香菱原名甄英莲，幼年被拐卖，被薛蟠霸占为妾，命运多舛。",
+        "version": "original"
       },
       {
         "chapter": 48,
         "title": "滥情人情误思游艺 慕雅女雅集苦吟诗",
-        "summary": "香菱慕才好学，拜黛玉为师学诗，从平仄到意境反复练习，“苦吟诗”令人动容。"
+        "summary": "香菱慕才好学，拜黛玉为师学诗，从平仄到意境反复练习，“苦吟诗”令人动容。",
+        "version": "original"
       },
       {
         "chapter": 80,
         "title": "美香菱屈受贪夫棒 王道士胡诌妒妇方",
-        "summary": "香菱受夏金桂虐待迫害，被毒打受辱，委屈不已。"
+        "summary": "香菱受夏金桂虐待迫害，被毒打受辱，委屈不已。",
+        "version": "original"
       }
     ],
     "parentIds": [
@@ -2582,26 +3036,38 @@
       "continuation": "难产而死"
     },
     "sourceNote": "前八十回为薛蟠之妾，受夏金桂虐待；高鹗续书写她难产而死。",
-    "quotesPendingVerified": [],
-    "quotes": [
-      "大漠孤烟直，长河落日圆。想来烟如何直？日自然是圆的。这'直'字似无理，'圆'字似太俗。合上书一想，倒像是见了这景的。",
-      "精华欲掩料应难，影自娟娟魄自寒。"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 48,
-        "locator": "第48回",
-        "matchType": "prefix"
+        "text": "大漠孤烟直，长河落日圆。想来烟如何直？日自然是圆的。这'直'字似无理，'圆'字似太俗。合上书一想，倒像是见了这景的。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 48,
+          "locator": "第48回"
+        }
       },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 49,
-        "locator": "第49回 第三稿",
-        "matchType": "prefix"
+        "text": "精华欲掩料应难，影自娟娟魄自寒。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 49,
+          "locator": "第49回 第三稿"
+        }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -2631,22 +3097,26 @@
       {
         "chapter": 20,
         "title": "王熙凤正言弹妒意 林黛玉俏语谑娇音",
-        "summary": "湘云来贾府做客时咬舌说话，将“二哥哥”说成“爱哥哥”，憨态可掬，与黛玉互相打趣。"
+        "summary": "湘云来贾府做客时咬舌说话，将“二哥哥”说成“爱哥哥”，憨态可掬，与黛玉互相打趣。",
+        "version": "original"
       },
       {
         "chapter": 49,
         "title": "琉璃世界白雪红梅 脂粉香娃割腥啖膻",
-        "summary": "下大雪时湘云与宝玉在芦雪广烤鹿肉吃，大快朵颐不拘小节，被黛玉戏称为“脂粉香娃”。"
+        "summary": "下大雪时湘云与宝玉在芦雪广烤鹿肉吃，大快朵颐不拘小节，被黛玉戏称为“脂粉香娃”。",
+        "version": "original"
       },
       {
         "chapter": 62,
         "title": "憨湘云醉眠芍药裷 呆香菱情解石榴裙",
-        "summary": "湘云在宝玉生日宴上划拳饮酒大醉，卧在石凳上以芍药为枕酣睡，“醉眠芍药裀”堪称经典名场面。"
+        "summary": "湘云在宝玉生日宴上划拳饮酒大醉，卧在石凳上以芍药为枕酣睡，“醉眠芍药裀”堪称经典名场面。",
+        "version": "original"
       },
       {
         "chapter": 76,
         "title": "凸碧堂品笛感凄清 凹晶馆联诗悲寂寞",
-        "summary": "中秋之夜湘云与黛玉在凹晶馆联诗，湘云对出“寒塘渡鹤影”的佳句，诗意苍凉。"
+        "summary": "中秋之夜湘云与黛玉在凹晶馆联诗，湘云对出“寒塘渡鹤影”的佳句，诗意苍凉。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -2662,42 +3132,61 @@
       "original": "前八十回未明写婚配；判词伏“白首双星”",
       "continuation": "后四十回亦未坐实；嫁卫若兰、守寡等说法多属探佚推测"
     },
-    "quotesPendingVerified": [],
-    "quotes": [
-      "是真名士自风流！你们都是假清高。",
-      "寒塘渡鹤影。",
-      "且住，且住，莫使春光别去！",
-      "傻子，过来尝尝。"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 49,
-        "locator": "第49回",
-        "matchType": "prefix"
+        "text": "是真名士自风流！你们都是假清高。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 49,
+          "locator": "第49回"
+        }
       },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 76,
-        "locator": "第76回 凹晶馆联诗",
-        "matchType": "prefix"
+        "text": "寒塘渡鹤影。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 76,
+          "locator": "第76回 凹晶馆联诗"
+        }
       },
       {
-        "sourceId": "wikisource-gengchen",
-        "edition": "庚辰本",
-        "chapter": 70,
-        "locator": "第70回",
-        "matchType": "exact"
-      },
-      {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 49,
-        "locator": "第49回",
-        "matchType": "verbatim"
+        "text": "且住，且住，莫使春光别去！",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "wikisource-gengchen",
+          "edition": "庚辰本",
+          "chapter": 70,
+          "locator": "第70回"
+        }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
+      {
+        "text": "傻子，过来尝尝。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 49,
+          "locator": "第49回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
+      }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -2719,7 +3208,8 @@
       {
         "chapter": 71,
         "title": "嫌隙人有心生嫌隙 鸳鸯女无意遇鸳鸯",
-        "summary": "史鼎等史家人虽与贾府是世交，但随着各家势力消长，来往渐稀。"
+        "summary": "史鼎等史家人虽与贾府是世交，但随着各家势力消长，来往渐稀。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -2737,6 +3227,11 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original"
     ]
   },
   {
@@ -2759,7 +3254,8 @@
       {
         "chapter": 71,
         "title": "嫌隙人有心生嫌隙 鸳鸯女无意遇鸳鸯",
-        "summary": "史鼐等史家人在贾母寿辰时前来祝寿，维持世家大族之间的礼尚往来。"
+        "summary": "史鼐等史家人在贾母寿辰时前来祝寿，维持世家大族之间的礼尚往来。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -2777,6 +3273,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -2800,12 +3302,14 @@
       {
         "chapter": 4,
         "title": "薄命女偏逢薄命郎 葫芦僧乱判葫芦案",
-        "summary": "王子腾时任京营节度使，权势显赫，薛家正是仰仗他的威势才顺利进京。"
+        "summary": "王子腾时任京营节度使，权势显赫，薛家正是仰仗他的威势才顺利进京。",
+        "version": "original"
       },
       {
         "chapter": 53,
         "title": "宁国府除夕祭宗祠 荣国府元宵开夜宴",
-        "summary": "王子腾升任九省都检点，王家权势更盛，是四大家族在朝中最有力的外援。"
+        "summary": "王子腾升任九省都检点，王家权势更盛，是四大家族在朝中最有力的外援。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -2825,12 +3329,20 @@
         }
       }
     ],
-    "outcomeSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "outcomeSourceCandidates": [
       {
         "edition": "程甲本",
         "chapter": 85,
-        "locator": "第85回"
+        "locator": "第85回",
+        "status": "continuation"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -2854,7 +3366,8 @@
       {
         "chapter": 119,
         "title": "中乡魁宝玉却尘缘 沐皇恩贾家延世泽",
-        "summary": "王仁在贾府衰落后与贾芸等人密谋卖掉外甥女巧姐，为人忘恩负义。"
+        "summary": "王仁在贾府衰落后与贾芸等人密谋卖掉外甥女巧姐，为人忘恩负义。",
+        "version": "continuation"
       }
     ],
     "parentIds": [],
@@ -2872,6 +3385,11 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original"
     ]
   },
   {
@@ -2900,27 +3418,32 @@
       {
         "chapter": 6,
         "title": "贾宝玉初试云雨情 刘姥姥一进荣国府",
-        "summary": "袭人与宝玉在梦后初试云雨之事，从此对宝玉更加尽心伏侍，视同终身依靠。"
+        "summary": "袭人与宝玉在梦后初试云雨之事，从此对宝玉更加尽心伏侍，视同终身依靠。",
+        "version": "original"
       },
       {
         "chapter": 19,
         "title": "情切切良宵花解语 意绵绵静日玉生香",
-        "summary": "袭人回家探亲时以“赎身”之语试探宝玉，又设法规劝宝玉用功读书少惹事端，“良宵花解语”。"
+        "summary": "袭人回家探亲时以“赎身”之语试探宝玉，又设法规劝宝玉用功读书少惹事端，“良宵花解语”。",
+        "version": "original"
       },
       {
         "chapter": 34,
         "title": "情中情因情感妹妹 错里错以错劝哥哥",
-        "summary": "宝玉挨打后袭人向王夫人进言建议让宝玉搬出大观园，由此得到王夫人信任和嘉许。"
+        "summary": "宝玉挨打后袭人向王夫人进言建议让宝玉搬出大观园，由此得到王夫人信任和嘉许。",
+        "version": "original"
       },
       {
         "chapter": 77,
         "title": "俏丫鬟抱屈夭风流 美优伶斩情归水月",
-        "summary": "晴雯被撵后袭人心中不安，既为晴雯难过又担心自己的处境。"
+        "summary": "晴雯被撵后袭人心中不安，既为晴雯难过又担心自己的处境。",
+        "version": "original"
       },
       {
         "chapter": 120,
         "title": "甄士隐详说太虚情 贾雨村归结红楼梦",
-        "summary": "宝玉出家后袭人被安排嫁给蒋玉菡，初时寻死觅活，后终从命。"
+        "summary": "宝玉出家后袭人被安排嫁给蒋玉菡，初时寻死觅活，后终从命。",
+        "version": "continuation"
       }
     ],
     "parentIds": [],
@@ -2935,33 +3458,45 @@
       "continuation": "贾府败落后嫁与蒋玉菡，安度余生"
     },
     "quotesPendingVerified": [],
-    "quotes": [
-      "你吃饭不吃饭，到底老太太、太太跟前坐一会子，和姑娘们顽一会子再回来。我就静静的躺一躺也好。",
-      "好姐姐，千万别告诉人。",
-      "姑娘快休如此，将来只怕比这个更奇怪的笑话儿还有呢！若为他这种行止，你多心伤感，只怕你伤感不了呢。快别多心！"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 20,
-        "locator": "第20回",
-        "matchType": "verbatim"
+        "text": "你吃饭不吃饭，到底老太太、太太跟前坐一会子，和姑娘们顽一会子再回来。我就静静的躺一躺也好。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 20,
+          "locator": "第20回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       },
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 6,
-        "locator": "第6回",
-        "matchType": "verbatim"
+        "text": "好姐姐，千万别告诉人。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 6,
+          "locator": "第6回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       },
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 3,
-        "locator": "第3回",
-        "matchType": "verbatim"
+        "text": "姑娘快休如此，将来只怕比这个更奇怪的笑话儿还有呢！若为他这种行止，你多心伤感，只怕你伤感不了呢。快别多心！",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 3,
+          "locator": "第3回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -2989,22 +3524,26 @@
       {
         "chapter": 31,
         "title": "撕扇子作千金一笑 因麒麟伏白首双星",
-        "summary": "晴雯与宝玉拌嘴赌气，宝玉让她撕扇子取乐，晴雯将名贵扇子撕得粉碎，“千金一笑”。"
+        "summary": "晴雯与宝玉拌嘴赌气，宝玉让她撕扇子取乐，晴雯将名贵扇子撕得粉碎，“千金一笑”。",
+        "version": "original"
       },
       {
         "chapter": 52,
         "title": "俏平儿情掩虾须镯 勇晴雯病补雀金裘",
-        "summary": "宝玉的雀金裘烧了一个洞，晴雯带病连夜修补，用孔雀金线织补完美无缺，第二天几乎虚脱。"
+        "summary": "宝玉的雀金裘烧了一个洞，晴雯带病连夜修补，用孔雀金线织补完美无缺，第二天几乎虚脱。",
+        "version": "original"
       },
       {
         "chapter": 74,
         "title": "惑奸谗抄检大观园 矢孤介杜绝宁国府",
-        "summary": "抄检大观园时，晴雯怒斥检抄之人，将箱子倒扣抖落以示清白，性情刚烈。"
+        "summary": "抄检大观园时，晴雯怒斥检抄之人，将箱子倒扣抖落以示清白，性情刚烈。",
+        "version": "original"
       },
       {
         "chapter": 77,
         "title": "俏丫鬟抱屈夭风流 美优伶斩情归水月",
-        "summary": "晴雯被王夫人以“狐媚”之名逐出大观园，带病强撑被抬回家后含冤而死，宝玉悲痛作《芙蓉女儿诔》。"
+        "summary": "晴雯被王夫人以“狐媚”之名逐出大观园，带病强撑被抬回家后含冤而死，宝玉悲痛作《芙蓉女儿诔》。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -3013,41 +3552,56 @@
     "generation": 0,
     "isMainline": false,
     "outcome": "被撵出贾府后抱屈夭亡",
-    "quotesPendingVerified": [],
-    "outcomeSources": [
+    "quotesPendingVerified": [
+      {
+        "text": "撕的好，什么东西！我最爱撕这玩意儿。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 31,
+          "locator": "第31回"
+        }
+      },
+      {
+        "text": "我虽生得比别人略好些，并没有私情密意勾引你怎样。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 77,
+          "locator": "第77回"
+        }
+      },
+      {
+        "text": "早知如此，我当日也另有个道理。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 77,
+          "locator": "第77回"
+        }
+      }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "outcomeSourceCandidates": [
       {
         "edition": "庚辰本",
         "chapter": 78,
-        "locator": "第78回"
+        "locator": "第78回",
+        "status": "needs-locator"
       }
     ],
-    "quotes": [
-      "撕的好，什么东西！我最爱撕这玩意儿。",
-      "我虽生得比别人略好些，并没有私情密意勾引你怎样。",
-      "早知如此，我当日也另有个道理。"
-    ],
-    "quoteSources": [
-      {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 31,
-        "locator": "第31回",
-        "matchType": "prefix"
-      },
-      {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 77,
-        "locator": "第77回",
-        "matchType": "prefix"
-      },
-      {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 77,
-        "locator": "第77回",
-        "matchType": "prefix"
-      }
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -3073,17 +3627,20 @@
       {
         "chapter": 57,
         "title": "慧紫鹃情辞试莽玉 慈姨妈爱语慰痴颦",
-        "summary": "紫鹃为试探宝玉对黛玉的真心，谎称黛玉要回苏州，宝玉闻言发狂犯病，足见其情深。"
+        "summary": "紫鹃为试探宝玉对黛玉的真心，谎称黛玉要回苏州，宝玉闻言发狂犯病，足见其情深。",
+        "version": "original"
       },
       {
         "chapter": 89,
         "title": "人亡物在公子填词 蛇影杯弓颦卿绝粒",
-        "summary": "紫鹃忠心照顾黛玉，在黛玉绝食时百般劝慰，陪伴左右。"
+        "summary": "紫鹃忠心照顾黛玉，在黛玉绝食时百般劝慰，陪伴左右。",
+        "version": "continuation"
       },
       {
         "chapter": 97,
         "title": "林黛玉焚稿断痴情 薛宝钗出闺成大礼",
-        "summary": "黛玉临终时紫鹃守在身边，悲痛欲绝，是黛玉最忠实的知己和陪伴者。"
+        "summary": "黛玉临终时紫鹃守在身边，悲痛欲绝，是黛玉最忠实的知己和陪伴者。",
+        "version": "continuation"
       }
     ],
     "parentIds": [],
@@ -3098,33 +3655,44 @@
     },
     "sourceNote": "前八十回随侍黛玉；黛玉死后随惜春修行的情节见于后四十回续书。",
     "quotesPendingVerified": [],
-    "quotes": [
-      "我倒是一片真心为姑娘。姑娘倒把我当外人看了。",
-      "趁早儿老太太还明白硬朗的时节，作定了大事要紧。",
-      "我倒是一片真心为姑娘。替你愁了这几年了，无父母无兄弟，谁是知疼著热的人？"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 57,
-        "locator": "第57回",
-        "matchType": "variant-confirmed"
+        "text": "我倒是一片真心为姑娘。姑娘倒把我当外人看了。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 57,
+          "locator": "第57回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       },
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 57,
-        "locator": "第57回",
-        "matchType": "verbatim"
+        "text": "趁早儿老太太还明白硬朗的时节，作定了大事要紧。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 57,
+          "locator": "第57回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       },
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 57,
-        "locator": "第57回",
-        "matchType": "verbatim"
+        "text": "我倒是一片真心为姑娘。替你愁了这几年了，无父母无兄弟，谁是知疼著热的人？",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 57,
+          "locator": "第57回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -3151,22 +3719,26 @@
       {
         "chapter": 21,
         "title": "贤袭人娇嗔箴宝玉 俏平儿软语救贾琏",
-        "summary": "平儿巧妙周旋在凤姐和贾琏之间，用软语化解矛盾，处事圆融。"
+        "summary": "平儿巧妙周旋在凤姐和贾琏之间，用软语化解矛盾，处事圆融。",
+        "version": "original"
       },
       {
         "chapter": 44,
         "title": "变生不测凤姐泼醋 喜出望外平儿理妆",
-        "summary": "凤姐泼醋大闹时平儿无辜受辱挨打，宝玉为平儿理妆，感叹平儿的委屈处境。"
+        "summary": "凤姐泼醋大闹时平儿无辜受辱挨打，宝玉为平儿理妆，感叹平儿的委屈处境。",
+        "version": "original"
       },
       {
         "chapter": 52,
         "title": "俏平儿情掩虾须镯 勇晴雯病补雀金裘",
-        "summary": "平儿发现坠儿偷了虾须镯，为保全大家颜面悄悄处理不声张，做事情厚。"
+        "summary": "平儿发现坠儿偷了虾须镯，为保全大家颜面悄悄处理不声张，做事情厚。",
+        "version": "original"
       },
       {
         "chapter": 61,
         "title": "投鼠忌器宝玉瞒赃 判冤决狱平儿行权",
-        "summary": "平儿在凤姐病中代行管家之权，秉公办事且宽厚待人，处理柳五儿偷窃案手法老到。"
+        "summary": "平儿在凤姐病中代行管家之权，秉公办事且宽厚待人，处理柳五儿偷窃案手法老到。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -3182,26 +3754,38 @@
       "original": "凤姐贴身丫鬟兼贾琏通房，结局未明",
       "continuation": "被扶正为贾琏之妻"
     },
-    "quotesPendingVerified": [],
-    "quotes": [
-      "大事化为小事，小事化为没事，方是兴旺之家的做法。",
-      "大事化为小事，小事化为没事，方是兴旺之家。"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 62,
-        "locator": "第62回",
-        "matchType": "prefix"
-      },
-      {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 62,
-        "locator": "第62回",
-        "matchType": "verbatim"
+        "text": "大事化为小事，小事化为没事，方是兴旺之家的做法。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 62,
+          "locator": "第62回"
+        }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
+      {
+        "text": "大事化为小事，小事化为没事，方是兴旺之家。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 62,
+          "locator": "第62回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
+      }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -3227,17 +3811,20 @@
       {
         "chapter": 38,
         "title": "林潇湘魁夺菊花诗 薛蘅芜讽和螃蟹咏",
-        "summary": "鸳鸯在螃蟹宴上行酒令，出题考众人，行事落落大方。"
+        "summary": "鸳鸯在螃蟹宴上行酒令，出题考众人，行事落落大方。",
+        "version": "original"
       },
       {
         "chapter": 46,
         "title": "尴尬人难免尴尬事 鸳鸯女誓绝鸳鸯偶",
-        "summary": "鸳鸯面对贾赦逼婚毅然拒绝，当着贾母的面剪发明誓绝不为妾，性格刚烈忠贞。"
+        "summary": "鸳鸯面对贾赦逼婚毅然拒绝，当着贾母的面剪发明誓绝不为妾，性格刚烈忠贞。",
+        "version": "original"
       },
       {
         "chapter": 111,
         "title": "鸳鸯女殉主登太虚 狗彘奴欺天招伙盗",
-        "summary": "贾母去世后鸳鸯殉主自缢，追随老太太而去，义烈忠诚。"
+        "summary": "贾母去世后鸳鸯殉主自缢，追随老太太而去，义烈忠诚。",
+        "version": "continuation"
       }
     ],
     "parentIds": [],
@@ -3246,41 +3833,56 @@
     "generation": 0,
     "isMainline": false,
     "outcome": "贾母死后，为免遭贾赦逼婚，悬梁自尽，以死明志。",
-    "quotesPendingVerified": [],
-    "quotes": [
-      "别说大老爷要我做小老婆，就是太太这会子死了，他三媒六聘的娶我去做大老婆，我也不能去！",
-      "大老爷如今为这件事叫我好几遭了。我是横了心的，当着众人在这里说明白。",
-      "纵到了那阴间地狱，我也跟着太那边去了。"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 46,
-        "locator": "第46回",
-        "matchType": "prefix"
+        "text": "别说大老爷要我做小老婆，就是太太这会子死了，他三媒六聘的娶我去做大老婆，我也不能去！",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 46,
+          "locator": "第46回"
+        }
       },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 46,
-        "locator": "第46回",
-        "matchType": "prefix"
+        "text": "大老爷如今为这件事叫我好几遭了。我是横了心的，当着众人在这里说明白。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 46,
+          "locator": "第46回"
+        }
       },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 46,
-        "locator": "第46回",
-        "matchType": "prefix"
+        "text": "纵到了那阴间地狱，我也跟着太那边去了。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 46,
+          "locator": "第46回"
+        }
       }
     ],
-    "outcomeSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "outcomeSourceCandidates": [
       {
         "edition": "程甲本",
         "chapter": 100,
-        "locator": "第100回"
+        "locator": "第100回",
+        "status": "continuation"
       }
+    ],
+    "sourceNote": "前八十回已有抗婚情节；自缢殉主见于后四十回续书。",
+    "keyEventVersions": [
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -3304,12 +3906,14 @@
       {
         "chapter": 20,
         "title": "王熙凤正言弹妒意 林黛玉俏语谑娇音",
-        "summary": "麝月替宝玉篦头时与宝玉闲话家常，性情温和安分守己。"
+        "summary": "麝月替宝玉篦头时与宝玉闲话家常，性情温和安分守己。",
+        "version": "original"
       },
       {
         "chapter": 77,
         "title": "俏丫鬟抱屈夭风流 美优伶斩情归水月",
-        "summary": "晴雯等被撵走后麝月留在宝玉身边，成为主要侍候丫鬟。"
+        "summary": "晴雯等被撵走后麝月留在宝玉身边，成为主要侍候丫鬟。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -3318,18 +3922,25 @@
     "generation": 0,
     "isMainline": false,
     "outcome": "贾府败落后随宝玉流落，后嫁与他人，平稳度日。",
-    "quotesPendingVerified": [],
-    "quotes": [
-      "公然又是一个袭人。"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "wikisource-gengchen",
-        "edition": "庚辰本",
-        "chapter": 20,
-        "locator": "第20回",
-        "matchType": "exact"
+        "text": "公然又是一个袭人。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "wikisource-gengchen",
+          "edition": "庚辰本",
+          "chapter": 20,
+          "locator": "第20回"
+        }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -3355,12 +3966,14 @@
       {
         "chapter": 8,
         "title": "比通灵金莺微露意 探宝钗黛玉半含酸",
-        "summary": "莺儿在宝玉看宝钗金锁时暗示金锁上的字与通灵玉是一对，“金莺微露意”。"
+        "summary": "莺儿在宝玉看宝钗金锁时暗示金锁上的字与通灵玉是一对，“金莺微露意”。",
+        "version": "original"
       },
       {
         "chapter": 35,
         "title": "白玉钏亲尝莲叶羹 黄金莺巧结梅花络",
-        "summary": "莺儿手巧为宝玉结梅花络子系在通灵玉上，两人说笑间气氛融洽。"
+        "summary": "莺儿手巧为宝玉结梅花络子系在通灵玉上，两人说笑间气氛融洽。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -3379,17 +3992,24 @@
         }
       }
     ],
-    "quotes": [
-      "你还不知道我们姑娘有几样世上的人没有的好处呢。"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 35,
-        "locator": "第35回",
-        "matchType": "variant-confirmed"
+        "text": "你还不知道我们姑娘有几样世上的人没有的好处呢。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 35,
+          "locator": "第35回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -3415,12 +4035,14 @@
       {
         "chapter": 30,
         "title": "宝钗借扇机带双敲 龄官划蔷痴及局外",
-        "summary": "金钏在王夫人午睡时与宝玉调笑，被王夫人掌掴逐出，含羞不忍。"
+        "summary": "金钏在王夫人午睡时与宝玉调笑，被王夫人掌掴逐出，含羞不忍。",
+        "version": "original"
       },
       {
         "chapter": 32,
         "title": "诉肺腑心迷活宝玉 含耻辱情烈死金钏",
-        "summary": "金钏被撵后感到耻辱万分，跳井自尽，死后宝玉深感愧疚。"
+        "summary": "金钏被撵后感到耻辱万分，跳井自尽，死后宝玉深感愧疚。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -3429,33 +4051,44 @@
     "generation": 0,
     "isMainline": false,
     "outcome": "被王夫人撵出后投井自尽",
-    "quotesPendingVerified": [],
-    "quotes": [
-      "你忙什么！'金簪子掉在井里头，有你的只是有你的'。",
-      "你去东小院子里拿环哥儿和彩云去。"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 30,
-        "locator": "第30回",
-        "matchType": "prefix"
+        "text": "你忙什么！'金簪子掉在井里头，有你的只是有你的'。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 30,
+          "locator": "第30回"
+        }
       },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 30,
-        "locator": "第30回",
-        "matchType": "prefix"
+        "text": "你去东小院子里拿环哥儿和彩云去。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 30,
+          "locator": "第30回"
+        }
       }
     ],
-    "outcomeSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "outcomeSourceCandidates": [
       {
         "edition": "庚辰本",
         "chapter": 30,
-        "locator": "第30回"
+        "locator": "第30回",
+        "status": "needs-locator"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -3480,7 +4113,8 @@
       {
         "chapter": 35,
         "title": "白玉钏亲尝莲叶羹 黄金莺巧结梅花络",
-        "summary": "玉钏因姐姐金钏之死与宝玉互动时态度冷淡，后被宝玉的关怀所感化，“亲尝莲叶羹”暗含和解。"
+        "summary": "玉钏因姐姐金钏之死与宝玉互动时态度冷淡，后被宝玉的关怀所感化，“亲尝莲叶羹”暗含和解。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -3498,6 +4132,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -3521,12 +4161,14 @@
       {
         "chapter": 71,
         "title": "嫌隙人有心生嫌隙 鸳鸯女无意遇鸳鸯",
-        "summary": "鸳鸯无意间撞见司棋与表弟潘又安在大观园中幽会，为其来掩。"
+        "summary": "鸳鸯无意间撞见司棋与表弟潘又安在大观园中幽会，为其来掩。",
+        "version": "original"
       },
       {
         "chapter": 73,
         "title": "痴丫头误拾绣春囊 懦小姐不问累金凤",
-        "summary": "司棋的绣春囊被拾获引发抄检大观园，司棋和潘又安的私情败露。"
+        "summary": "司棋的绣春囊被拾获引发抄检大观园，司棋和潘又安的私情败露。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -3545,12 +4187,20 @@
         }
       }
     ],
-    "outcomeSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "outcomeSourceCandidates": [
       {
         "edition": "庚辰本",
         "chapter": 62,
-        "locator": "第62回"
+        "locator": "第62回",
+        "status": "needs-locator"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -3573,7 +4223,8 @@
       {
         "chapter": 74,
         "title": "惑奸谗抄检大观园 矢孤介杜绝宁国府",
-        "summary": "抄检大观园时入画被查出私藏哥哥寄存的财物，受到追问处置。"
+        "summary": "抄检大观园时入画被查出私藏哥哥寄存的财物，受到追问处置。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -3591,6 +4242,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -3613,7 +4270,8 @@
       {
         "chapter": 74,
         "title": "惑奸谗抄检大观园 矢孤介杜绝宁国府",
-        "summary": "抄检大观园时侍书跟随探春，见证了探春掌掴王善保家的名场面。"
+        "summary": "抄检大观园时侍书跟随探春，见证了探春掌掴王善保家的名场面。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -3631,6 +4289,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "continuation"
     ]
   },
   {
@@ -3653,7 +4317,8 @@
       {
         "chapter": 31,
         "title": "撕扇子作千金一笑 因麒麟伏白首双星",
-        "summary": "翠缕陪湘云在大观园闲逛时捡到金麒麟，引发了关于“阴阳”的有趣对话。"
+        "summary": "翠缕陪湘云在大观园闲逛时捡到金麒麟，引发了关于“阴阳”的有趣对话。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -3671,6 +4336,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -3694,7 +4365,8 @@
       {
         "chapter": 60,
         "title": "茉莉粉替去蔷薇硝 玫瑰露引来茯苓霜",
-        "summary": "彩云将王夫人房中的玫瑰露偷给贾环，被发现后引出茯苓霜等一系列连锁事件。"
+        "summary": "彩云将王夫人房中的玫瑰露偷给贾环，被发现后引出茯苓霜等一系列连锁事件。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -3704,17 +4376,24 @@
     "isMainline": false,
     "outcome": "贾府败落后不知所终。",
     "quotesPendingVerified": [],
-    "quotes": [
-      "这又何苦生事，不管怎样，忍耐些罢了。"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 60,
-        "locator": "第60回",
-        "matchType": "verbatim"
+        "text": "这又何苦生事，不管怎样，忍耐些罢了。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 60,
+          "locator": "第60回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -3738,20 +4417,21 @@
       "贾府败后与贾芸救助凤姐巧姐"
     ],
     "quotes": [
-      "千里搭长棚，没有个不散的筵席。",
-      "也不过三年五载，各人干各人的去了。那时谁还管谁呢？"
+      "千里搭长棚，没有个不散的筵席。"
     ],
     "description": "小红原名林红玉，是管家林之孝的女儿，因犯了宝玉和黛玉的名讳而改名。她在怡红院做粗活，心有不甘，凭借出色口才得到凤姐赏识调至凤姐身边。她与贾芸互赠手帕定情，是贾府丫鬟中少有的敢于主动追求爱情和前途的女子。\n\n【后续事迹】贾府败落后，小红与贾芸成婚。二人念旧情，在凤姐死后设法周全巧姐，帮助刘姥姥搭救巧姐，是贾府败落时少有的义举。",
     "chapters": [
       {
         "chapter": 24,
         "title": "醉金刚轻财尚义侠 痴女儿遗帕惹相思",
-        "summary": "小红为宝玉倒茶想要亲近主子，因秩序被排挤。后遗落手帕被贾芸拾走，暗生情愫。"
+        "summary": "小红为宝玉倒茶想要亲近主子，因秩序被排挤。后遗落手帕被贾芸拾走，暗生情愫。",
+        "version": "original"
       },
       {
         "chapter": 27,
         "title": "滴翠亭杨妃戏彩蝶 埋香冢飞燕泣残红",
-        "summary": "小红在滴翠亭与坠儿私语传帕之事，被宝钗无意听前后机敏应对。"
+        "summary": "小红在滴翠亭与坠儿私语传帕之事，被宝钗无意听前后机敏应对。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -3771,16 +4451,27 @@
         "chapter": 26,
         "locator": "第26回“千里搭長棚，没有個不散的筵席”",
         "matchType": "verbatim"
-      },
-      {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 26,
-        "locator": "第26回",
-        "matchType": "prefix"
       }
     ],
-    "quotesPendingVerified": []
+    "quotesPendingVerified": [
+      {
+        "text": "也不过三年五载，各人干各人的去了。那时谁还管谁呢？",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 26,
+          "locator": "第26回"
+        }
+      }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "continuation"
+    ]
   },
   {
     "id": "fangguan",
@@ -3804,12 +4495,14 @@
       {
         "chapter": 58,
         "title": "杏子阴假凤泣虚凰 茜纱窗真情揆痴理",
-        "summary": "芳官等优伶解散后留在大观园分配给各房，芳官被拨到宝玉房中。"
+        "summary": "芳官等优伶解散后留在大观园分配给各房，芳官被拨到宝玉房中。",
+        "version": "original"
       },
       {
         "chapter": 77,
         "title": "俏丫鬟抱屈夭风流 美优伶斩情归水月",
-        "summary": "芳官被王夫人逐出，发配到尼姑庵出家，“美优伶斩情归水月”。"
+        "summary": "芳官被王夫人逐出，发配到尼姑庵出家，“美优伶斩情归水月”。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -3819,25 +4512,35 @@
     "isMainline": false,
     "outcome": "被王夫人逐出大观园，后出家为尼，法名智通。",
     "quotesPendingVerified": [],
-    "quotes": [
-      "你说他祭的是谁？祭的是死了的菂官。",
-      "你也学著些伏侍，别一味呆憨呆睡。口劲轻著，别吹上唾沫星儿。"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 58,
-        "locator": "第58回",
-        "matchType": "verbatim"
+        "text": "你说他祭的是谁？祭的是死了的菂官。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 58,
+          "locator": "第58回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       },
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 58,
-        "locator": "第58回",
-        "matchType": "verbatim"
+        "text": "你也学著些伏侍，别一味呆憨呆睡。口劲轻著，别吹上唾沫星儿。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 58,
+          "locator": "第58回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -3860,7 +4563,8 @@
       {
         "chapter": 51,
         "title": "薛小妹新编怀古诗 胡庸医乱用虎狼药",
-        "summary": "秋纹在怡红院中伺候宝玉日常起居，与其他丫鬟一起照料宝玉生活。"
+        "summary": "秋纹在怡红院中伺候宝玉日常起居，与其他丫鬟一起照料宝玉生活。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -3870,17 +4574,23 @@
     "isMainline": false,
     "outcome": "贾府败落后不知所终。",
     "quotesPendingVerified": [],
-    "quotes": [
-      "你怎不同他们顽去？"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 20,
-        "locator": "第20回",
-        "matchType": "verbatim"
+        "text": "你怎不同他们顽去？",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 20,
+          "locator": "第20回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -3903,7 +4613,8 @@
       {
         "chapter": 59,
         "title": "柳叶渚边嗔莺咤燕 绛芸轩里召将飞符",
-        "summary": "春燕因其母在大观园中惹事而受牵连，向宝玉等人求情化解。"
+        "summary": "春燕因其母在大观园中惹事而受牵连，向宝玉等人求情化解。",
+        "version": "original"
       }
     ],
     "parentIds": [
@@ -3915,17 +4626,23 @@
     "isMainline": false,
     "outcome": "贾府败落后不知所终。",
     "quotesPendingVerified": [],
-    "quotes": [
-      "你老又使我，又怕，这会子反说我。难道把我劈做八瓣子不成？"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 59,
-        "locator": "第59回",
-        "matchType": "verbatim"
+        "text": "你老又使我，又怕，这会子反说我。难道把我劈做八瓣子不成？",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 59,
+          "locator": "第59回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -3944,21 +4661,21 @@
       "被绑住嘴堵了塞马粪"
     ],
     "quotes": [
-      "每日家偷狗戏鸡，爬灰的爬灰，养小叔子的养小叔子！",
-      "我要往祠堂里哭太爷去！那里承望到如今生下这些畜生来！",
-      "红刀子进去白刀子出来。"
+      "每日家偷狗戏鸡，爬灰的爬灰，养小叔子的养小叔子！"
     ],
     "description": "焦大是宁国府的老仆，曾在战场上救过宁国公的命。他仗着旧功经常喝醉酒大骂主子们的丑事，一句'爬灰的爬灰，养小叔子的养小叔子'揭开了宁府的龌龊内幕。他虽地位低下，却是全书中少有的敢说真话之人。",
     "chapters": [
       {
         "chapter": 7,
         "title": "送宫花贾琏戏熙凤 宴宁府宝玉会秦钟",
-        "summary": "焦大是宁府老仆，因酒后当众大骂贾珍等人“爬灰的爬灰，养小叔子的养小叔子”，揭露宁府丑事。"
+        "summary": "焦大是宁府老仆，因酒后当众大骂贾珍等人“爬灰的爬灰，养小叔子的养小叔子”，揭露宁府丑事。",
+        "version": "original"
       },
       {
         "chapter": 10,
         "title": "金寡妇贪利权受辱 张太医论病细穷源",
-        "summary": "焦大的醉骂在宁府中引起不小波澜，暗示了贾珍与秦可卿之间的丑闻。"
+        "summary": "焦大的醉骂在宁府中引起不小波澜，暗示了贾珍与秦可卿之间的丑闻。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -3974,23 +4691,36 @@
         "chapter": 7,
         "locator": "第7回“每日家偷狗戲雞，爬灰的爬灰”",
         "matchType": "prefix"
-      },
-      {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 7,
-        "locator": "第7回",
-        "matchType": "prefix"
-      },
-      {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 7,
-        "locator": "第7回",
-        "matchType": "prefix"
       }
     ],
-    "quotesPendingVerified": []
+    "quotesPendingVerified": [
+      {
+        "text": "我要往祠堂里哭太爷去！那里承望到如今生下这些畜生来！",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 7,
+          "locator": "第7回"
+        }
+      },
+      {
+        "text": "红刀子进去白刀子出来。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 7,
+          "locator": "第7回"
+        }
+      }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original"
+    ]
   },
   {
     "id": "lai_da",
@@ -4012,7 +4742,8 @@
       {
         "chapter": 45,
         "title": "金兰契互剖金兰语 风雨夕闷制风雨词",
-        "summary": "赖大之母赖嬷嬷在贾府中颇有体面，赖大承管外府事务。"
+        "summary": "赖大之母赖嬷嬷在贾府中颇有体面，赖大承管外府事务。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -4032,6 +4763,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -4054,7 +4791,8 @@
       {
         "chapter": 61,
         "title": "投鼠忌器宝玉瞒赃 判冤决狱平儿行权",
-        "summary": "林之孝家的在管理大观园内务中向凤姐汇报各项事务，是贾府中层管事。"
+        "summary": "林之孝家的在管理大观园内务中向凤姐汇报各项事务，是贾府中层管事。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -4072,6 +4810,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -4094,7 +4838,8 @@
       {
         "chapter": 7,
         "title": "送宫花贾琏戏熙凤 宴宁府宝玉会秦钟",
-        "summary": "周瑞家的受薛姨妈之托为各房送宫花，借此串联出各房人物和关系。"
+        "summary": "周瑞家的受薛姨妈之托为各房送宫花，借此串联出各房人物和关系。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -4112,6 +4857,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -4138,12 +4889,14 @@
       {
         "chapter": 9,
         "title": "恋风流情友入家塾 起嫌疑顽童闹学堂",
-        "summary": "茗烟跟随宝玉在家塾读书，学堂中起冲突时茗烟冲上去帮宝玉打架，忠心耿耿。"
+        "summary": "茗烟跟随宝玉在家塾读书，学堂中起冲突时茗烟冲上去帮宝玉打架，忠心耿耿。",
+        "version": "original"
       },
       {
         "chapter": 26,
         "title": "蜂腰桥设言传心事 潇湘馆春困发幽情",
-        "summary": "茗烟为宝玉从外面搜罗《西厢记》《牡丹亭》等禁书带进园来。"
+        "summary": "茗烟为宝玉从外面搜罗《西厢记》《牡丹亭》等禁书带进园来。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -4161,6 +4914,14 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -4187,22 +4948,26 @@
       {
         "chapter": 41,
         "title": "栊翠庵茶品梅花雪 怡红院劫遇母蝗虫",
-        "summary": "妙玉在栊翠庵以旧年梅花上收的雪水为宝钗黛玉烹茶，却将自己日常用的绿玉斗给宝玉用，用情暗藏。"
+        "summary": "妙玉在栊翠庵以旧年梅花上收的雪水为宝钗黛玉烹茶，却将自己日常用的绿玉斗给宝玉用，用情暗藏。",
+        "version": "original"
       },
       {
         "chapter": 50,
         "title": "芦雪庵争联即景诗 暖香坞雅制春灯谜",
-        "summary": "宝玉去栊翠庵讨红梅，妙玉折了一枝给他，众人赞赏梅花之美。"
+        "summary": "宝玉去栊翠庵讨红梅，妙玉折了一枝给他，众人赞赏梅花之美。",
+        "version": "original"
       },
       {
         "chapter": 63,
         "title": "寿怡红群芳开夜宴 死金丹独艳理亲丧",
-        "summary": "妙玉在宝玉生日时遣人送来生日帖，署名“槛外人”，宝玉回帖“槛内人”，彼此以知己相待。"
+        "summary": "妙玉在宝玉生日时遣人送来生日帖，署名“槛外人”，宝玉回帖“槛内人”，彼此以知己相待。",
+        "version": "original"
       },
       {
         "chapter": 76,
         "title": "凸碧堂品笛感凄清 凹晶馆联诗悲寂寞",
-        "summary": "湘云与黛玉联诗到绝妙处，妙玉悄然出现续完全篇，展露非凡诗才。"
+        "summary": "湘云与黛玉联诗到绝妙处，妙玉悄然出现续完全篇，展露非凡诗才。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -4216,34 +4981,48 @@
       "continuation": "被强盗掳走，终陷淖泥中"
     },
     "sourceNote": "前八十回为栊翠庵尼姑；被劫的结局见于后四十回续书。",
-    "quotesPendingVerified": [],
-    "quotes": [
-      "古人自汉晋五代唐宋以来，皆无好诗，只有两句好：纵有千年铁门槛，终须一个土馒头。",
-      "槛外人妙玉恭肃遥叩芳辰。",
-      "你这么个人，竟是大俗人，连水也尝不出来。"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 63,
-        "locator": "第63回",
-        "matchType": "prefix"
+        "text": "古人自汉晋五代唐宋以来，皆无好诗，只有两句好：纵有千年铁门槛，终须一个土馒头。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 63,
+          "locator": "第63回"
+        }
       },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 63,
-        "locator": "第63回",
-        "matchType": "prefix"
+        "text": "槛外人妙玉恭肃遥叩芳辰。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 63,
+          "locator": "第63回"
+        }
       },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 41,
-        "locator": "第41回",
-        "matchType": "prefix"
+        "text": "你这么个人，竟是大俗人，连水也尝不出来。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 41,
+          "locator": "第41回"
+        }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -4266,20 +5045,21 @@
       "点化甄士隐"
     ],
     "quotes": [
-      "施主，你把这有命无运、累及爹娘之物，抱在怀内作甚？",
-      "好防佳节元宵后，便是烟消火灭时。"
+      "施主，你把这有命无运、累及爹娘之物，抱在怀内作甚？"
     ],
     "description": "癞头和尚是小说中贯穿始终的神秘僧人，与跛足道人是一对度世的仙人。他们点化甄士隐、为英莲预言命运、为通灵宝玉刻字。他们是串联全书情节的超自然线索，象征着命运的不可抗拒和红尘的虚幻无常。",
     "chapters": [
       {
         "chapter": 1,
         "title": "甄士隐梦幻识通灵 贾雨村风尘怀闺秀",
-        "summary": "癞头和尚与跛足道人现身，点化甄士隐，要度化英莲（香菱），遭甄士隐拒绝。"
+        "summary": "癞头和尚与跛足道人现身，点化甄士隐，要度化英莲（香菱），遭甄士隐拒绝。",
+        "version": "original"
       },
       {
         "chapter": 25,
         "title": "魇魔法姊弟逢五鬼 红楼梦通灵遇双真",
-        "summary": "宝玉和凤姐被马道婆施魇魔法害得奄奄一息，癞头和尚前来持诵通灵宝玉救治。"
+        "summary": "宝玉和凤姐被马道婆施魇魔法害得奄奄一息，癞头和尚前来持诵通灵宝玉救治。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -4295,16 +5075,27 @@
         "chapter": 1,
         "locator": "第1回“施主，你把這有命無運，累及爹娘之物，抱在懷内作甚”",
         "matchType": "verbatim"
-      },
-      {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 1,
-        "locator": "第1回",
-        "matchType": "prefix"
       }
     ],
-    "quotesPendingVerified": []
+    "quotesPendingVerified": [
+      {
+        "text": "好防佳节元宵后，便是烟消火灭时。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 1,
+          "locator": "第1回"
+        }
+      }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original"
+    ]
   },
   {
     "id": "bo_zu_daoren",
@@ -4327,20 +5118,21 @@
     "quotes": [
       "世人都晓神仙好，惟有功名忘不了。古今将相在何方？荒冢一堆草没了。",
       "世人都晓神仙好，只有金银忘不了。终朝只恨聚无多，及到多时眼闭了。",
-      "世人都晓神仙好，只有儿孙忘不了。痴心父母古来多，孝顺儿孙谁见了？",
-      "世人都晓神仙好，只有娇妻忘不了。君生日日说恩情，君死又随人去了。"
+      "世人都晓神仙好，只有儿孙忘不了。痴心父母古来多，孝顺儿孙谁见了？"
     ],
     "description": "跛足道人与癞头和尚是一体两面的度世者。他以一曲《好了歌》点醒甄士隐，道出人生功名、金银、妻子、儿孙皆为虚妄的大彻大悟。他们在小说中以超然的姿态出现，是天意与命运的象征。",
     "chapters": [
       {
         "chapter": 1,
         "title": "甄士隐梦幻识通灵 贾雨村风尘怀闺秀",
-        "summary": "跛足道人与癞头和尚一同现身甄士隐面前，二人来历神秘，贯穿全书。"
+        "summary": "跛足道人与癞头和尚一同现身甄士隐面前，二人来历神秘，贯穿全书。",
+        "version": "original"
       },
       {
         "chapter": 66,
         "title": "情小妹耻情归地府 冷二郎一冷入空门",
-        "summary": "尤三姐自刎后，柳湘莲悔恨交加，跛足道人点化他出家为道。"
+        "summary": "尤三姐自刎后，柳湘莲悔恨交加，跛足道人点化他出家为道。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -4370,16 +5162,26 @@
         "chapter": 1,
         "locator": "第1回“世人都曉神仙好，只有兒孫忘不了！痴心父母古來多，孝順兒孫誰見了”",
         "matchType": "verbatim"
-      },
-      {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 1,
-        "locator": "第1回",
-        "matchType": "prefix"
       }
     ],
-    "quotesPendingVerified": []
+    "quotesPendingVerified": [
+      {
+        "text": "世人都晓神仙好，只有娇妻忘不了。君生日日说恩情，君死又随人去了。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 1,
+          "locator": "第1回"
+        }
+      }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
+    ]
   },
   {
     "id": "zhineng",
@@ -4403,7 +5205,8 @@
       {
         "chapter": 15,
         "title": "王凤姐弄权铁槛寺 秦鲸卿得趣馒头庵",
-        "summary": "智能儿是馒头庵（水月庵）的小尼姑，与秦钟暗中相好幽会。"
+        "summary": "智能儿是馒头庵（水月庵）的小尼姑，与秦钟暗中相好幽会。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -4413,17 +5216,23 @@
     "isMainline": false,
     "outcome": "与秦钟有私情，后不知所终",
     "quotesPendingVerified": [],
-    "quotes": [
-      "我们一早就来了。我师父见了太太，就往于老爷府内去了，叫我在这里等他呢。"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 7,
-        "locator": "第7回",
-        "matchType": "verbatim"
+        "text": "我们一早就来了。我师父见了太太，就往于老爷府内去了，叫我在这里等他呢。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 7,
+          "locator": "第7回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -4446,7 +5255,8 @@
       {
         "chapter": 25,
         "title": "魇魔法姊弟逢五鬼 红楼梦通灵遇双真",
-        "summary": "马道婆受赵姨娘贿赂，用巫术对宝玉和凤姐施魇魔法，致二人几近丧命。"
+        "summary": "马道婆受赵姨娘贿赂，用巫术对宝玉和凤姐施魇魔法，致二人几近丧命。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -4464,6 +5274,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -4488,40 +5304,45 @@
     ],
     "quotes": [
       "瘦死的骆驼比马大。",
-      "谋事在人，成事在天。",
-      "老刘老刘，食量大如牛，吃个老母猪不抬头。"
+      "谋事在人，成事在天。"
     ],
     "description": "刘姥姥是一位乡间老妪，与王家有远亲关系。她第一次进荣国府为打秋风求助，第二次被贾母留下游玩大观园，以诙谐表演逗乐众人。续书写她第三次在贾府败落后挺身而出搭救巧姐。她是全书中最有反差感的人物——以卑微之身行高义之事，知恩图报的品德在薄情的末世中格外闪光。",
     "chapters": [
       {
         "chapter": 6,
         "title": "贾宝玉初试云雨情 刘姥姥一进荣国府",
-        "summary": "刘姥姥带着外孙板儿第一次进荣国府打秋风，靠着远亲关系见到凤姐，得了二十两银子。"
+        "summary": "刘姥姥带着外孙板儿第一次进荣国府打秋风，靠着远亲关系见到凤姐，得了二十两银子。",
+        "version": "original"
       },
       {
         "chapter": 39,
         "title": "村姥姥是信口开河 情哥哥偏寻根究底",
-        "summary": "刘姥姥二进荣国府讲乡间故事信口开河，逗得众人开心，“村姥姥是信口开合”。"
+        "summary": "刘姥姥二进荣国府讲乡间故事信口开河，逗得众人开心，“村姥姥是信口开合”。",
+        "version": "original"
       },
       {
         "chapter": 40,
         "title": "史太君两宴大观园 金鸳鸯三宣牙牌令",
-        "summary": "刘姥姥在大观园宴席上被凤姐鸳鸯戏弄，头戴满头花插科打诨，“老刘老刘，食量大如牛”。"
+        "summary": "刘姥姥在大观园宴席上被凤姐鸳鸯戏弄，头戴满头花插科打诨，“老刘老刘，食量大如牛”。",
+        "version": "original"
       },
       {
         "chapter": 41,
         "title": "栊翠庵茶品梅花雪 怡红院劫遇母蝗虫",
-        "summary": "刘姥姥酒醉误入怡红院，在宝玉床上酣睡，被称为“母蝗虫”。"
+        "summary": "刘姥姥酒醉误入怡红院，在宝玉床上酣睡，被称为“母蝗虫”。",
+        "version": "original"
       },
       {
         "chapter": 113,
         "title": "忏宿冤凤姐托村妪 释旧憾情婢感痴郎",
-        "summary": "凤姐弥留之际托孤于刘姥姥，求她照看巧姐。"
+        "summary": "凤姐弥留之际托孤于刘姥姥，求她照看巧姐。",
+        "version": "continuation"
       },
       {
         "chapter": 119,
         "title": "中乡魁宝玉却尘缘 沐皇恩贾家延世泽",
-        "summary": "刘姥姥信守承诺，将被拐卖的巧姐搭救出来，报答当年凤姐的恩情。"
+        "summary": "刘姥姥信守承诺，将被拐卖的巧姐搭救出来，报答当年凤姐的恩情。",
+        "version": "continuation"
       }
     ],
     "parentIds": [],
@@ -4549,16 +5370,28 @@
         "chapter": 6,
         "locator": "第6回“謀事在人，成事在天”",
         "matchType": "verbatim"
-      },
-      {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 40,
-        "locator": "第40回",
-        "matchType": "prefix"
       }
     ],
-    "quotesPendingVerified": []
+    "quotesPendingVerified": [
+      {
+        "text": "老刘老刘，食量大如牛，吃个老母猪不抬头。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 40,
+          "locator": "第40回"
+        }
+      }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original",
+      "continuation"
+    ]
   },
   {
     "id": "jia_yucun",
@@ -4580,30 +5413,33 @@
       "充当贾府被抄的导火索之一"
     ],
     "quotes": [
-      "大丈夫相时而动。",
-      "玉在椟中求善价，钗于奁内待时飞。"
+      "大丈夫相时而动。"
     ],
     "description": "贾雨村，名化，字时飞。他本是穷困书生，受甄士隐资助后中进士为官。他忘恩负义、趋炎附势，审理薛蟠打死人命案时徇情枉法。其名谐音'假语村言'，是全书照应真假关系的线索人物，也是忘恩负义的文人典型。",
     "chapters": [
       {
         "chapter": 1,
         "title": "甄士隐梦幻识通灵 贾雨村风尘怀闺秀",
-        "summary": "贾雨村寄居葫芦庙，落魄时得到甄士隐资助赶考，对甄家丫鬟娇杏心生爱慕。"
+        "summary": "贾雨村寄居葫芦庙，落魄时得到甄士隐资助赶考，对甄家丫鬟娇杏心生爱慕。",
+        "version": "original"
       },
       {
         "chapter": 2,
         "title": "贾夫人仙逝扬州城 冷子兴演说荣国府",
-        "summary": "贾雨村中进士任知府后被革职，受聘为黛玉的家庭教师。"
+        "summary": "贾雨村中进士任知府后被革职，受聘为黛玉的家庭教师。",
+        "version": "original"
       },
       {
         "chapter": 4,
         "title": "薄命女偏逢薄命郎 葫芦僧乱判葫芦案",
-        "summary": "贾雨村复职后审理薛蟠打死冯渊案，为攀附权贵徇私枉法草草结案。"
+        "summary": "贾雨村复职后审理薛蟠打死冯渊案，为攀附权贵徇私枉法草草结案。",
+        "version": "original"
       },
       {
         "chapter": 120,
         "title": "甄士隐详说太虚情 贾雨村归结红楼梦",
-        "summary": "贾雨村最终被削职为民，遇甄士隐点化，了悟前因后果，全书以他的故事收束。"
+        "summary": "贾雨村最终被削职为民，遇甄士隐点化，了悟前因后果，全书以他的故事收束。",
+        "version": "continuation"
       }
     ],
     "parentIds": [],
@@ -4626,16 +5462,26 @@
         "chapter": 4,
         "locator": "第4回“大丈夫相時而動”",
         "matchType": "verbatim"
-      },
-      {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 1,
-        "locator": "第1回",
-        "matchType": "prefix"
       }
     ],
-    "quotesPendingVerified": []
+    "quotesPendingVerified": [
+      {
+        "text": "玉在椟中求善价，钗于奁内待时飞。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 1,
+          "locator": "第1回"
+        }
+      }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "continuation"
+    ]
   },
   {
     "id": "zhen_shiyin",
@@ -4667,17 +5513,20 @@
       {
         "chapter": 1,
         "title": "甄士隐梦幻识通灵 贾雨村风尘怀闺秀",
-        "summary": "甄士隐梦中见一僧一道携通灵宝玉下凡，资助贾雨村赶考。后女儿英莲被拐，家遭火灾。"
+        "summary": "甄士隐梦中见一僧一道携通灵宝玉下凡，资助贾雨村赶考。后女儿英莲被拐，家遭火灾。",
+        "version": "original"
       },
       {
         "chapter": 25,
         "title": "魇魔法姊弟逢五鬼 红楼梦通灵遇双真",
-        "summary": "甄士隐出家后的经历在全书中多次被提及，他的遭遇是“真事隐去”的隐喻线索。"
+        "summary": "甄士隐出家后的经历在全书中多次被提及，他的遭遇是“真事隐去”的隐喻线索。",
+        "version": "original"
       },
       {
         "chapter": 120,
         "title": "甄士隐详说太虚情 贾雨村归结红楼梦",
-        "summary": "甄士隐在最终回中出现，详细解说太虚幻境的前因后果，揭示全书因果主题。"
+        "summary": "甄士隐在最终回中出现，详细解说太虚幻境的前因后果，揭示全书因果主题。",
+        "version": "continuation"
       }
     ],
     "parentIds": [],
@@ -4703,6 +5552,14 @@
         "locator": "第1回“好便是了，了便是好”",
         "matchType": "verbatim"
       }
+    ],
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -4728,12 +5585,14 @@
       {
         "chapter": 47,
         "title": "呆霸王调情遭苦打 冷郎君惧祸走他乡",
-        "summary": "柳湘莲将调戏自己的薛蟠痛打一顿，因怕薛家报复而远走他乡。"
+        "summary": "柳湘莲将调戏自己的薛蟠痛打一顿，因怕薛家报复而远走他乡。",
+        "version": "original"
       },
       {
         "chapter": 66,
         "title": "情小妹耻情归地府 冷二郎一冷入空门",
-        "summary": "柳湘莲与尤三姐订婚后又因误听闲言退婚，尤三姐自刎，柳湘莲追悔莫及随道人出家。"
+        "summary": "柳湘莲与尤三姐订婚后又因误听闲言退婚，尤三姐自刎，柳湘莲追悔莫及随道人出家。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -4750,19 +5609,25 @@
           "maxRun": 0,
           "note": "前80回全本逐字核对未见，非原著引语"
         }
-      }
-    ],
-    "quotes": [
-      "你们东府里除了那两个石头狮子干净，只怕连猫儿狗儿都不干净。"
-    ],
-    "quoteSources": [
+      },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 66,
-        "locator": "第66回",
-        "matchType": "prefix"
+        "text": "你们东府里除了那两个石头狮子干净，只怕连猫儿狗儿都不干净。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 66,
+          "locator": "第66回"
+        }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -4788,12 +5653,14 @@
       {
         "chapter": 28,
         "title": "蒋玉菡情赠茜香罗 薛宝钗羞笼红麝串",
-        "summary": "蒋玉菡与宝玉在酒宴上互生好感，互赠汗巾（茜香罗与松花绿汗巾），结交为知己。"
+        "summary": "蒋玉菡与宝玉在酒宴上互生好感，互赠汗巾（茜香罗与松花绿汗巾），结交为知己。",
+        "version": "original"
       },
       {
         "chapter": 33,
         "title": "手足眈眈小动唇舌 不肖种种大承笞挞",
-        "summary": "蒋玉菡从忠顺王府出逃一事牵连到宝玉，成为贾政暴打宝玉的导火索之一。"
+        "summary": "蒋玉菡从忠顺王府出逃一事牵连到宝玉，成为贾政暴打宝玉的导火索之一。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -4811,6 +5678,13 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -4837,17 +5711,20 @@
       {
         "chapter": 65,
         "title": "贾二舍偷娶尤二姨 尤三姐思嫁柳二郎",
-        "summary": "尤二姐被贾琏偷娶为妾，安置在小花枝巷。她性格温柔软弱，容貌美丽。"
+        "summary": "尤二姐被贾琏偷娶为妾，安置在小花枝巷。她性格温柔软弱，容貌美丽。",
+        "version": "original"
       },
       {
         "chapter": 68,
         "title": "苦尤娘赚入大观园 酸凤姐大闹宁国府",
-        "summary": "凤姐设计将尤二姐骗入大观园，表面热情款待，暗地里百般折磨。"
+        "summary": "凤姐设计将尤二姐骗入大观园，表面热情款待，暗地里百般折磨。",
+        "version": "original"
       },
       {
         "chapter": 69,
         "title": "弄小巧用借剑杀人 觉大限吞生金自逝",
-        "summary": "尤二姐在凤姐的重重毒计下身心俱疲、流产丧子，最终吞金自尽。"
+        "summary": "尤二姐在凤姐的重重毒计下身心俱疲、流产丧子，最终吞金自尽。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -4866,19 +5743,26 @@
           "maxRun": 0,
           "note": "前80回全本逐字核对未见，非原著引语"
         }
-      }
-    ],
-    "quotes": [
-      "倒不如一死，倒还干净。"
-    ],
-    "quoteSources": [
+      },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 69,
-        "locator": "第69回",
-        "matchType": "prefix"
+        "text": "倒不如一死，倒还干净。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 69,
+          "locator": "第69回"
+        }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -4904,17 +5788,20 @@
       {
         "chapter": 65,
         "title": "贾二舍偷娶尤二姨 尤三姐思嫁柳二郎",
-        "summary": "尤三姐自定要嫁柳湘莲，性格刚烈泼辣，不同于姐姐的软弱。"
+        "summary": "尤三姐自定要嫁柳湘莲，性格刚烈泼辣，不同于姐姐的软弱。",
+        "version": "original"
       },
       {
         "chapter": 66,
         "title": "情小妹耻情归地府 冷二郎一冷入空门",
-        "summary": "得知柳湘莲退婚后，尤三姐不堪受辱用鸳鸯剑自刎身亡，刚烈殉情。"
+        "summary": "得知柳湘莲退婚后，尤三姐不堪受辱用鸳鸯剑自刎身亡，刚烈殉情。",
+        "version": "original"
       },
       {
         "chapter": 64,
         "title": "幽淑女悲题五美吟 浪荡子情遗九龙佩",
-        "summary": "尤三姐在宁国府中以泼辣态度对待贾珍贾蓉的轻薄，令人刮目相看。"
+        "summary": "尤三姐在宁国府中以泼辣态度对待贾珍贾蓉的轻薄，令人刮目相看。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -4924,25 +5811,34 @@
     "isMainline": false,
     "outcome": "自刎于柳湘莲面前，以死明志",
     "quotesPendingVerified": [],
-    "quotes": [
-      "终身大事，一生至一死，非同儿戏。我定了主意，等着他。",
-      "终身大事，一生至一死，非同儿戏。我如今改过守分，只要我拣一个素日可心如意者。"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 65,
-        "locator": "第65回",
-        "matchType": "variant-confirmed"
+        "text": "终身大事，一生至一死，非同儿戏。我定了主意，等着他。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 65,
+          "locator": "第65回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       },
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 65,
-        "locator": "第65回",
-        "matchType": "verbatim"
+        "text": "终身大事，一生至一死，非同儿戏。我如今改过守分，只要我拣一个素日可心如意者。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 65,
+          "locator": "第65回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -4968,17 +5864,20 @@
       {
         "chapter": 7,
         "title": "送宫花贾琏戏熙凤 宴宁府宝玉会秦钟",
-        "summary": "秦钟随姐姐秦可卿来荣府做客时与宝玉初识，两人一见如故情谊深厚。"
+        "summary": "秦钟随姐姐秦可卿来荣府做客时与宝玉初识，两人一见如故情谊深厚。",
+        "version": "original"
       },
       {
         "chapter": 9,
         "title": "恋风流情友入家塾 起嫌疑顽童闹学堂",
-        "summary": "秦钟与宝玉同入贾府家塾读书，因金荣等人挑衅引发学堂大闹。"
+        "summary": "秦钟与宝玉同入贾府家塾读书，因金荣等人挑衅引发学堂大闹。",
+        "version": "original"
       },
       {
         "chapter": 16,
         "title": "贾元春才选凤藻宫 秦鲸卿夭逝黄泉路",
-        "summary": "秦钟因伤风加上与智能的情事牵累，不久病重夭亡，宝玉悲恸不已。"
+        "summary": "秦钟因伤风加上与智能的情事牵累，不久病重夭亡，宝玉悲恸不已。",
+        "version": "original"
       }
     ],
     "parentIds": [
@@ -4990,17 +5889,24 @@
     "isMainline": false,
     "outcome": "与智能儿相恋，被其父责打，后染病身亡，年仅十六。",
     "quotesPendingVerified": [],
-    "quotes": [
-      "可恨我偏生于清寒之家，不能与他耳鬓交接，可知『贫窭』二字，亦非良因。"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 7,
-        "locator": "第7回",
-        "matchType": "verbatim"
+        "text": "可恨我偏生于清寒之家，不能与他耳鬓交接，可知『贫窭』二字，亦非良因。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 7,
+          "locator": "第7回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -5024,7 +5930,8 @@
       {
         "chapter": 7,
         "title": "送宫花贾琏戏熙凤 宴宁府宝玉会秦钟",
-        "summary": "秦业是秦钟和秦可卿的养父，为宁国府的营缮郎，家境清寒。"
+        "summary": "秦业是秦钟和秦可卿的养父，为宁国府的营缮郎，家境清寒。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -5045,6 +5952,13 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -5070,12 +5984,14 @@
       {
         "chapter": 14,
         "title": "林如海捐馆扬州城 贾宝玉路谒北静王",
-        "summary": "北静王水溶在秦可卿出殡路上与宝玉初见，一见倾心赏识其气度，将皇帝所赐鹡鸰手串赠予宝玉。"
+        "summary": "北静王水溶在秦可卿出殡路上与宝玉初见，一见倾心赏识其气度，将皇帝所赐鹡鸰手串赠予宝玉。",
+        "version": "original"
       },
       {
         "chapter": 15,
         "title": "王凤姐弄权铁槛寺 秦鲸卿得趣馒头庵",
-        "summary": "北静王与宝玉交好的描写延续，显示出二人之间的知交之谊。"
+        "summary": "北静王与宝玉交好的描写延续，显示出二人之间的知交之谊。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -5084,18 +6000,25 @@
     "generation": 0,
     "isMainline": false,
     "outcome": "与宝玉交厚，后不详",
-    "quotesPendingVerified": [],
-    "quotes": [
-      "令郎真乃龙驹凤雏，非小王在贵人前唐突，将来'雏凤清于老凤声'，未可量也。"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 15,
-        "locator": "第15回",
-        "matchType": "prefix"
+        "text": "令郎真乃龙驹凤雏，非小王在贵人前唐突，将来'雏凤清于老凤声'，未可量也。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 15,
+          "locator": "第15回"
+        }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -5122,17 +6045,20 @@
       {
         "chapter": 25,
         "title": "魇魔法姊弟逢五鬼 红楼梦通灵遇双真",
-        "summary": "赵姨娘暗中贿赂马道婆施魇魔法加害宝玉和凤姐，险些将二人害死。"
+        "summary": "赵姨娘暗中贿赂马道婆施魇魔法加害宝玉和凤姐，险些将二人害死。",
+        "version": "original"
       },
       {
         "chapter": 55,
         "title": "辱亲女愚妾争闲气 欺幼主刁奴蓄险心",
-        "summary": "赵姨娘因弟弟赵国基丧银之事找探春闹事争闲气，被探春严词驳斥。"
+        "summary": "赵姨娘因弟弟赵国基丧银之事找探春闹事争闲气，被探春严词驳斥。",
+        "version": "original"
       },
       {
         "chapter": 60,
         "title": "茉莉粉替去蔷薇硝 玫瑰露引来茯苓霜",
-        "summary": "赵姨娘与芳官等发生冲突，被众小戏子嘲弄奚落，颜面尽失。"
+        "summary": "赵姨娘与芳官等发生冲突，被众小戏子嘲弄奚落，颜面尽失。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -5156,25 +6082,35 @@
         }
       }
     ],
-    "quotes": [
-      "我这么一个人，在这府里算什么？连猫儿狗儿都不如。",
-      "又是那里垫了踹窝来了？"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 66,
-        "locator": "第66回",
-        "matchType": "variant-confirmed"
+        "text": "我这么一个人，在这府里算什么？连猫儿狗儿都不如。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 66,
+          "locator": "第66回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       },
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 20,
-        "locator": "第20回",
-        "matchType": "verbatim"
+        "text": "又是那里垫了踹窝来了？",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 20,
+          "locator": "第20回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -5200,12 +6136,14 @@
       {
         "chapter": 9,
         "title": "恋风流情友入家塾 起嫌疑顽童闹学堂",
-        "summary": "贾代儒主持贾家义学，宝玉、秦钟等都在其门下读书，学堂中却因顽童口角闹得乌烟瘴气。"
+        "summary": "贾代儒主持贾家义学，宝玉、秦钟等都在其门下读书，学堂中却因顽童口角闹得乌烟瘴气。",
+        "version": "original"
       },
       {
         "chapter": 12,
         "title": "王熙凤毒设相思局 贾天祥正照风月鉴",
-        "summary": "贾瑞病重后，贾代儒焦急万分，请医问药，却终究没能挽回孙儿性命。"
+        "summary": "贾瑞病重后，贾代儒焦急万分，请医问药，却终究没能挽回孙儿性命。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -5223,6 +6161,13 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -5248,12 +6193,14 @@
       {
         "chapter": 11,
         "title": "庆寿辰宁府排家宴 见熙凤贾瑞起淫心",
-        "summary": "贾瑞在宁府寿宴上见凤姐风姿绰约，顿生邪念，埋下后患。"
+        "summary": "贾瑞在宁府寿宴上见凤姐风姿绰约，顿生邪念，埋下后患。",
+        "version": "original"
       },
       {
         "chapter": 12,
         "title": "王熙凤毒设相思局 贾天祥正照风月鉴",
-        "summary": "凤姐两次设局整治贾瑞，贾瑞痴心不改，终因照风月鉴纵欲伤身而死。"
+        "summary": "凤姐两次设局整治贾瑞，贾瑞痴心不改，终因照风月鉴纵欲伤身而死。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -5263,17 +6210,24 @@
     "isMainline": false,
     "outcome": "迷恋王熙凤，被骗受冻挨饿，后照风月宝鉴而亡。",
     "quotesPendingVerified": [],
-    "quotes": [
-      "嫂子天天也闷的很。"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 12,
-        "locator": "第12回",
-        "matchType": "verbatim"
+        "text": "嫂子天天也闷的很。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 12,
+          "locator": "第12回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -5299,17 +6253,20 @@
       {
         "chapter": 24,
         "title": "醉金刚轻财尚义侠 痴女儿遗帕惹相思",
-        "summary": "贾芸为谋差事四处奔走，既得凤姐应允，又因拾得小红手帕而暗生情愫。"
+        "summary": "贾芸为谋差事四处奔走，既得凤姐应允，又因拾得小红手帕而暗生情愫。",
+        "version": "original"
       },
       {
         "chapter": 26,
         "title": "蜂腰桥设言传心事 潇湘馆春困发幽情",
-        "summary": "贾芸借机与小红传递心意，二人情愫渐深。"
+        "summary": "贾芸借机与小红传递心意，二人情愫渐深。",
+        "version": "original"
       },
       {
         "chapter": 119,
         "title": "中乡魁宝玉却尘缘 沐皇恩贾家延世泽",
-        "summary": "贾府败后，贾芸仍奔走照应旧人，在巧姐脱险等事上有所周旋。"
+        "summary": "贾府败后，贾芸仍奔走照应旧人，在巧姐脱险等事上有所周旋。",
+        "version": "continuation"
       }
     ],
     "parentIds": [],
@@ -5327,6 +6284,13 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -5350,12 +6314,14 @@
       {
         "chapter": 18,
         "title": "皇恩重元妃省父母 天伦乐宝玉呈才藻",
-        "summary": "元妃省亲前后，贾蔷参与管理戏班与园中应承事务。"
+        "summary": "元妃省亲前后，贾蔷参与管理戏班与园中应承事务。",
+        "version": "original"
       },
       {
         "chapter": 30,
         "title": "宝钗借扇机带双敲 龄官划蔷痴及局外",
-        "summary": "龄官在地上反复划'蔷'字，贾蔷对她的病情与情绪百般体贴，二人情意可见。"
+        "summary": "龄官在地上反复划'蔷'字，贾蔷对她的病情与情绪百般体贴，二人情意可见。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -5365,17 +6331,24 @@
     "isMainline": false,
     "outcome": "贾府败落后流落市井，后不知所终。",
     "quotesPendingVerified": [],
-    "quotes": [
-      "买了雀儿你顽，省得天天闷闷的无个开心。我先顽个你看。"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 36,
-        "locator": "第36回",
-        "matchType": "verbatim"
+        "text": "买了雀儿你顽，省得天天闷闷的无个开心。我先顽个你看。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 36,
+          "locator": "第36回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -5399,12 +6372,14 @@
       {
         "chapter": 18,
         "title": "皇恩重元妃省父母 天伦乐宝玉呈才藻",
-        "summary": "龄官作为小戏班中出色伶人入贾府演戏，因唱做俱佳而被看重。"
+        "summary": "龄官作为小戏班中出色伶人入贾府演戏，因唱做俱佳而被看重。",
+        "version": "original"
       },
       {
         "chapter": 30,
         "title": "宝钗借扇机带双敲 龄官划蔷痴及局外",
-        "summary": "龄官在蔷薇花下划写'蔷'字，宝玉由此看见她对贾蔷的深情与病中的愁苦。"
+        "summary": "龄官在蔷薇花下划写'蔷'字，宝玉由此看见她对贾蔷的深情与病中的愁苦。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -5414,17 +6389,24 @@
     "isMainline": false,
     "outcome": "与贾蔷相恋，后因事被逐，不知所终。",
     "quotesPendingVerified": [],
-    "quotes": [
-      "嗓子哑了。前儿娘娘传进我们去，我还没有唱呢。"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 36,
-        "locator": "第36回",
-        "matchType": "verbatim"
+        "text": "嗓子哑了。前儿娘娘传进我们去，我还没有唱呢。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 36,
+          "locator": "第36回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -5449,7 +6431,8 @@
       {
         "chapter": 2,
         "title": "贾夫人仙逝扬州城 冷子兴演说荣国府",
-        "summary": "冷子兴提及贾珠早逝，遗下一子贾兰。"
+        "summary": "冷子兴提及贾珠早逝，遗下一子贾兰。",
+        "version": "original"
       }
     ],
     "parentIds": [
@@ -5475,6 +6458,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -5501,17 +6490,20 @@
       {
         "chapter": 49,
         "title": "琉璃世界白雪红梅 脂粉香娃割腥啖膻",
-        "summary": "邢岫烟随父母进京投靠邢夫人，因举止端庄被贾母喜爱，安排住进大观园。"
+        "summary": "邢岫烟随父母进京投靠邢夫人，因举止端庄被贾母喜爱，安排住进大观园。",
+        "version": "original"
       },
       {
         "chapter": 50,
         "title": "芦雪庵争联即景诗 暖香坞雅制春灯谜",
-        "summary": "邢岫烟在芦雪广联诗中表现不俗，其咏红梅诗“浓淡由他冰雪中”颇有风骨。"
+        "summary": "邢岫烟在芦雪广联诗中表现不俗，其咏红梅诗“浓淡由他冰雪中”颇有风骨。",
+        "version": "original"
       },
       {
         "chapter": 57,
         "title": "慧紫鹃情辞试莽玉 慈姨妈爱语慰痴颦",
-        "summary": "薛姨妈提起邢岫烟与薛蝌的亲事，赞其是个好女儿。"
+        "summary": "薛姨妈提起邢岫烟与薛蝌的亲事，赞其是个好女儿。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -5522,18 +6514,26 @@
     "generation": 3,
     "isMainline": false,
     "outcome": "第57回与薛蝌定亲（前八十回）；成婚及以后情节无前八十回依据",
-    "quotesPendingVerified": [],
-    "quotes": [
-      "浓淡由他冰雪中。"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 50,
-        "locator": "第50回",
-        "matchType": "prefix"
+        "text": "浓淡由他冰雪中。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 50,
+          "locator": "第50回"
+        }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -5560,12 +6560,14 @@
       {
         "chapter": 1,
         "title": "甄士隐梦幻识通灵 贾雨村风尘怀闺秀",
-        "summary": "贾雨村寄居葫芦庙时，娇杏在门前回首看了他一眼，贾雨村以为她有意于己，暗记在心。"
+        "summary": "贾雨村寄居葫芦庙时，娇杏在门前回首看了他一眼，贾雨村以为她有意于己，暗记在心。",
+        "version": "original"
       },
       {
         "chapter": 2,
         "title": "贾夫人仙逝扬州城 冷子兴演说荣国府",
-        "summary": "贾雨村发达后，将娇杏纳为妾室，后扶正为妻，'侥幸'成为夫人。"
+        "summary": "贾雨村发达后，将娇杏纳为妾室，后扶正为妻，'侥幸'成为夫人。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -5577,17 +6579,25 @@
     "isMainline": false,
     "outcome": "由丫鬟成为知府夫人",
     "quotesPendingVerified": [],
-    "quotes": [
-      "偶因一著错，便为人上人。"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 2,
-        "locator": "第2回",
-        "matchType": "verbatim"
+        "text": "偶因一著错，便为人上人。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 2,
+          "locator": "第2回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original"
     ]
   },
   {
@@ -5613,12 +6623,14 @@
       {
         "chapter": 79,
         "title": "薛文起悔娶河东狮 贾迎春误嫁中山狼",
-        "summary": "贾赦做主将迎春嫁给孙绍祖，孙绍祖原是贾府旧部，发迹后娶迎春为妻。"
+        "summary": "贾赦做主将迎春嫁给孙绍祖，孙绍祖原是贾府旧部，发迹后娶迎春为妻。",
+        "version": "original"
       },
       {
         "chapter": 80,
         "title": "美香菱屈受贪夫棒 王道士胡诌妒妇方",
-        "summary": "迎春回贾府哭诉孙绍祖的虐待，说其'一味好色，好赌酗酒'，众人无法救助。"
+        "summary": "迎春回贾府哭诉孙绍祖的虐待，说其'一味好色，好赌酗酒'，众人无法救助。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -5629,26 +6641,36 @@
     "generation": 3,
     "isMainline": false,
     "outcome": "迎春之夫，中山狼，虐待迎春致死，后因罪被革职。",
-    "quotesPendingVerified": [],
-    "quotes": [
-      "你老子使了我五千银子，把你准折卖给我的。",
-      "好不好，打一顿撵在下房里睡去。"
-    ],
-    "quoteSources": [
+    "quotesPendingVerified": [
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 80,
-        "locator": "第80回",
-        "matchType": "prefix"
+        "text": "你老子使了我五千银子，把你准折卖给我的。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 80,
+          "locator": "第80回"
+        }
       },
       {
-        "sourceId": "jiaxu-wikisource",
-        "edition": "庚辰本",
-        "chapter": 80,
-        "locator": "第80回",
-        "matchType": "prefix"
+        "text": "好不好，打一顿撵在下房里睡去。",
+        "sourceAudit": {
+          "status": "needs-gengchen",
+          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
+          "sourceId": "jiaxu-wikisource",
+          "edition": "庚辰本",
+          "chapter": 80,
+          "locator": "第80回"
+        }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "continuation"
     ]
   },
   {
@@ -5671,7 +6693,8 @@
       {
         "chapter": 52,
         "title": "俏平儿情掩虾须镯 勇晴雯病补雀金裘",
-        "summary": "坠儿偷了平儿的虾须镯被发现，平儿为保全怡红院颜面暗中处理，但晴雯得知后将坠儿逐出。"
+        "summary": "坠儿偷了平儿的虾须镯被发现，平儿为保全怡红院颜面暗中处理，但晴雯得知后将坠儿逐出。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -5689,6 +6712,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -5713,7 +6742,8 @@
       {
         "chapter": 77,
         "title": "俏丫鬟抱屈夭风流 美优伶斩情归水月",
-        "summary": "王夫人以'勾引'之名将四儿等丫鬟逐出怡红院，四儿被遣送回家。"
+        "summary": "王夫人以'勾引'之名将四儿等丫鬟逐出怡红院，四儿被遣送回家。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -5731,6 +6761,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -5755,7 +6791,8 @@
       {
         "chapter": 59,
         "title": "柳叶渚边嗔莺咤燕 绛芸轩里召将飞符",
-        "summary": "何婆子因采摘花草与莺儿争吵，又打骂女儿春燕，被宝玉等人训斥。"
+        "summary": "何婆子因采摘花草与莺儿争吵，又打骂女儿春燕，被宝玉等人训斥。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -5775,6 +6812,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -5797,7 +6840,8 @@
       {
         "chapter": 24,
         "title": "醉金刚轻财尚义侠 痴女儿遗帕惹相思",
-        "summary": "贾芸向舅舅卜世仁借钱被拒，倪二仗义相助，形成亲疏对比。"
+        "summary": "贾芸向舅舅卜世仁借钱被拒，倪二仗义相助，形成亲疏对比。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -5815,6 +6859,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -5839,7 +6889,8 @@
       {
         "chapter": 24,
         "title": "醉金刚轻财尚义侠 痴女儿遗帕惹相思",
-        "summary": "倪二虽是泼皮，却仗义疏财帮助贾芸，被赞'醉金刚轻财尚义侠'。"
+        "summary": "倪二虽是泼皮，却仗义疏财帮助贾芸，被赞'醉金刚轻财尚义侠'。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -5857,6 +6908,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -5879,12 +6936,14 @@
       {
         "chapter": 5,
         "title": "游幻境指迷十二钗 饮仙醪曲演红楼梦",
-        "summary": "湘云判词“湘江水逝楚云飞”常被解为暗示其婚姻不幸，属探佚推断。"
+        "summary": "湘云判词“湘江水逝楚云飞”常被解为暗示其婚姻不幸，属探佚推断。",
+        "version": "original"
       },
       {
         "chapter": 31,
         "title": "撕扇子作千金一笑 因麒麟伏白首双星",
-        "summary": "回目“因麒麟伏白首双星”常被解为湘云与卫若兰的姻缘伏笔，属探佚推断。"
+        "summary": "回目“因麒麟伏白首双星”常被解为湘云与卫若兰的姻缘伏笔，属探佚推断。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -5905,6 +6964,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -5927,7 +6992,8 @@
       {
         "chapter": 26,
         "title": "蜂腰桥设言传心事 潇湘馆春困发幽情",
-        "summary": "佳蕙在潇湘馆随侍，衬出黛玉春困、宝玉探望一段的日常氛围。"
+        "summary": "佳蕙在潇湘馆随侍，衬出黛玉春困、宝玉探望一段的日常氛围。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -5945,6 +7011,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -5967,7 +7039,8 @@
       {
         "chapter": 47,
         "title": "呆霸王调情遭苦打 冷郎君惧祸走他乡",
-        "summary": "赖尚荣家宴乐、串戏等热闹场面，映出贾府外缘势力之盛。"
+        "summary": "赖尚荣家宴乐、串戏等热闹场面，映出贾府外缘势力之盛。",
+        "version": "original"
       }
     ],
     "parentIds": [
@@ -5987,6 +7060,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -6011,12 +7090,14 @@
       {
         "chapter": 69,
         "title": "弄小巧用借剑杀人 觉大限吞生金自逝",
-        "summary": "尤二姐病中误用医药，胡庸医之流也象征着无能误人的医疗环境。"
+        "summary": "尤二姐病中误用医药，胡庸医之流也象征着无能误人的医疗环境。",
+        "version": "original"
       },
       {
         "chapter": 80,
         "title": "美香菱屈受贪夫棒 王道士胡诌妒妇方",
-        "summary": "胡庸医与胡乱方药一类情节并列，强化庸医误人的讽刺意味。"
+        "summary": "胡庸医与胡乱方药一类情节并列，强化庸医误人的讽刺意味。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -6034,6 +7115,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -6056,7 +7143,8 @@
       {
         "chapter": 91,
         "title": "纵淫心宝蟾工设计 布疑阵宝玉妄谈禅",
-        "summary": "宝蟾主动设局，推动薛家内外纠葛继续恶化。"
+        "summary": "宝蟾主动设局，推动薛家内外纠葛继续恶化。",
+        "version": "continuation"
       }
     ],
     "parentIds": [],
@@ -6074,6 +7162,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -6098,12 +7192,14 @@
       {
         "chapter": 61,
         "title": "投鼠忌器宝玉瞒赃 判冤决狱平儿行权",
-        "summary": "柳五儿被疑与盗窃案有关，又牵扯出与宝玉相关的流言，平儿秉公断理。"
+        "summary": "柳五儿被疑与盗窃案有关，又牵扯出与宝玉相关的流言，平儿秉公断理。",
+        "version": "original"
       },
       {
         "chapter": 109,
         "title": "候芳魂五儿承错爱 还孽债迎女返真元",
-        "summary": "五儿被误认、误爱，成为后四十回错认错配情节中的一环。"
+        "summary": "五儿被误认、误爱，成为后四十回错认错配情节中的一环。",
+        "version": "continuation"
       }
     ],
     "parentIds": [],
@@ -6123,7 +7219,11 @@
       }
     ],
     "quotes": [],
-    "quoteSources": []
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
+    ]
   },
   {
     "id": "qiutong",
@@ -6145,7 +7245,8 @@
       {
         "chapter": 69,
         "title": "弄小巧用借剑杀人 觉大限吞生金自逝",
-        "summary": "秋桐辱骂、逼迫尤二姐，与凤姐的借刀杀人之计互相配合。"
+        "summary": "秋桐辱骂、逼迫尤二姐，与凤姐的借刀杀人之计互相配合。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -6165,6 +7266,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -6187,7 +7294,8 @@
       {
         "chapter": 58,
         "title": "杏子阴假凤泣虚凰 茜纱窗真情揆痴理",
-        "summary": "藕官为亡友烧纸，宝玉替她分辩，显出边缘人物也有真情。"
+        "summary": "藕官为亡友烧纸，宝玉替她分辩，显出边缘人物也有真情。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -6197,17 +7305,23 @@
     "isMainline": false,
     "outcome": "被逐后出家为尼，不知所终。",
     "quotesPendingVerified": [],
-    "quotes": [
-      "我已经回了奶奶们了，奶奶气的了不得。"
-    ],
-    "quoteSources": [
+    "quotes": [],
+    "quoteSources": [],
+    "quoteComparisons": [
       {
-        "sourceId": "wikisource-zhengding",
-        "edition": "异文待复核(维基文库程乙本)",
-        "chapter": 58,
-        "locator": "第58回",
-        "matchType": "verbatim"
+        "text": "我已经回了奶奶们了，奶奶气的了不得。",
+        "source": {
+          "sourceId": "wikisource-zhengding",
+          "edition": "程乙本（维基文库转录）",
+          "chapter": 58,
+          "locator": "第58回"
+        },
+        "note": "程乙本异文，待甲戌／庚辰影印本校勘"
       }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -6230,7 +7344,8 @@
       {
         "chapter": 58,
         "title": "杏子阴假凤泣虚凰 茜纱窗真情揆痴理",
-        "summary": "菂官虽已不在场，但其身影通过藕官祭奠被重新召回文本。"
+        "summary": "菂官虽已不在场，但其身影通过藕官祭奠被重新召回文本。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -6250,7 +7365,11 @@
       }
     ],
     "quotes": [],
-    "quoteSources": []
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
+    ]
   },
   {
     "id": "zhen_yingjia",
@@ -6272,7 +7391,8 @@
       {
         "chapter": 114,
         "title": "王熙凤历幻返金陵 甄应嘉蒙恩还玉阙",
-        "summary": "甄应嘉再被提起，使甄贾两家的命运呼应更为明显。"
+        "summary": "甄应嘉再被提起，使甄贾两家的命运呼应更为明显。",
+        "version": "continuation"
       }
     ],
     "parentIds": [],
@@ -6290,6 +7410,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -6312,7 +7438,8 @@
       {
         "chapter": 53,
         "title": "宁国府除夕祭宗祠 荣国府元宵开夜宴",
-        "summary": "乌进孝进府缴租送礼，反衬贾府外强中干、年景渐坏。"
+        "summary": "乌进孝进府缴租送礼，反衬贾府外强中干、年景渐坏。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -6330,6 +7457,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -6354,7 +7487,8 @@
       {
         "chapter": 72,
         "title": "王熙凤恃强羞说病 来旺妇倚势霸成亲",
-        "summary": "来旺妇凭借主家势力横行霸道，映出贾府内部秩序进一步败坏。"
+        "summary": "来旺妇凭借主家势力横行霸道，映出贾府内部秩序进一步败坏。",
+        "version": "original"
       }
     ],
     "parentIds": [],
@@ -6372,6 +7506,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -6396,7 +7536,8 @@
       {
         "chapter": 82,
         "title": "老学究讲义警顽心 病潇湘痴魂惊恶梦",
-        "summary": "老学究讲书说道，意在规劝宝玉收心向学，回到正统道路。"
+        "summary": "老学究讲书说道，意在规劝宝玉收心向学，回到正统道路。",
+        "version": "continuation"
       }
     ],
     "parentIds": [],
@@ -6414,6 +7555,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -6438,7 +7585,8 @@
       {
         "chapter": 93,
         "title": "甄家仆投靠贾家门 水月庵掀翻风月案",
-        "summary": "甄家仆投靠贾家，把甄府衰败的消息带入贾府内部。"
+        "summary": "甄家仆投靠贾家，把甄府衰败的消息带入贾府内部。",
+        "version": "continuation"
       }
     ],
     "parentIds": [],
@@ -6456,6 +7604,12 @@
           "note": "前80回全本逐字核对未见，非原著引语"
         }
       }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original"
     ]
   },
   {
@@ -6489,7 +7643,13 @@
     ],
     "generation": 1,
     "isMainline": true,
-    "outcome": "在故事开始前已故，贾母常追念其生前。"
+    "outcome": "在故事开始前已故，贾母常追念其生前。",
+    "quoteSources": [],
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original",
+      "original"
+    ]
   },
   {
     "id": "jia_daihua",
@@ -6518,7 +7678,13 @@
     "spouseIds": [],
     "generation": 1,
     "isMainline": true,
-    "outcome": "在故事开始前已故。"
+    "outcome": "在故事开始前已故。",
+    "quoteSources": [],
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original",
+      "original"
+    ]
   },
   {
     "id": "xue_fu",
@@ -6549,6 +7715,11 @@
     ],
     "generation": 2,
     "isMainline": true,
-    "outcome": "在故事开始前已故。"
+    "outcome": "在故事开始前已故。",
+    "quoteSources": [],
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original"
+    ]
   }
 ]
