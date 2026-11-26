@@ -6,7 +6,7 @@
 
 ### 主要特性
 
-- **丰富的人物数据**：收录 125 位人物、208 条关系、515 条知识条目（判词、诗词、回目、生僻字、器物、建筑等）
+- **丰富的人物数据**：收录 125 位人物、208 条关系、570 条知识条目（判词、诗词、回目、名场面、生僻字、器物、建筑等）
 - **多维度关系**：支持血缘、婚姻、主仆、情感、社交、敌对六类关系
 - **力导向图谱**：基于 D3.js 的交互式力导向图，支持拖拽、缩放、按章回时间轴回放
 - **人物信息卡片**：点击人物查看详细信息，包括别名、身份、性格、事迹、语录、命运线等
@@ -47,9 +47,11 @@ honglou-graph/
 │   ├── characters.json   # 人物数据
 │   ├── relationships.json # 关系数据
 │   ├── knowledge.json    # 知识条目
+│   ├── appearances.json  # 人物—回目出场/名场面索引
 │   └── provenance.json   # 来源与审计队列（校验脚本依赖）
 ├── scripts/
 │   ├── validate-data.mjs        # 数据校验
+│   ├── build-appearances.mjs    # 从人物回目与 scene/entrance 生成出场索引
 │   ├── stamp-assets.mjs         # 资源版本号（内容哈希）
 │   ├── sync-chapter-titles.mjs  # 回目标题同步校验
 │   ├── check-audio.mjs          # 预生成语音与文案一致性校验
@@ -84,7 +86,8 @@ npx serve .
 ## 常用脚本
 
 ```bash
-npm run validate:data   # 校验人物/关系/知识的结构与来源范围
+npm run validate:data   # 校验人物/关系/知识/出场索引的结构与来源范围
+npm run build:appearances # 更新人物出场索引（人物章节 + 名场面/人物出场）
 npm run stamp           # 改动 js/css 后刷新 index.html 的资源版本号（内容哈希）
 npm run check:assets    # 校验资源版本号是否与内容一致
 npm run check:chapters  # 校验人物回目与 knowledge.json 的章回标题一致
@@ -135,10 +138,22 @@ python3 -m venv .venv
   "importance": 5,
   "personality": "多情、叛逆、厌恶仕途经济、尊重女性",
   "keyEvents": ["衔玉而生", "神游太虚幻境", "共读西厢", "雀金裘"],
+  "keyEventVersions": ["original", "original", "original", "original"],
+  "chapters": [
+    { "chapter": 3, "title": "接外孙贾母惜孤女", "summary": "...", "version": "original" }
+  ],
   "quotes": ["女儿是水作的骨肉，男人是泥作的骨肉"],
+  "quoteSources": [
+    { "sourceId": "jiaxu-wikisource", "edition": "甲戌本", "chapter": 2, "locator": "第2回..." }
+  ],
+  "quoteComparisons": [],
+  "quotesPendingVerified": [],
+  "outcomeSourceCandidates": [],
   "description": "贾政与王夫人之次子..."
 }
 ```
+
+`chapters[].version` 与 `keyEventVersions` 区分 `original`（前八十回）和 `continuation`（后四十回续书）。引语、结局的展示规则见 `data/SOURCES.md`。
 
 ### 关系数据结构 (relationships.json)
 
@@ -163,6 +178,22 @@ python3 -m venv .venv
 ```
 
 `evidence` 为可选字段：用于关系考据卡，按回目列出情节依据。`version` 区分“前八十回 / 后四十回续书 / 通篇”，`status: "chapter"` 表示当前只定位到回目与情节梗概，原文异文与版本差异待逐条校勘。
+
+### 出场索引 (appearances.json)
+
+```json
+{
+  "characterId": "lin_daiyu",
+  "chapter": 34,
+  "roles": ["scene"],
+  "sources": ["knowledge:scene"],
+  "title": "黛玉题帕诗",
+  "summary": "宝玉挨打后遣晴雯送帕，黛玉在帕上题诗。",
+  "version": "original"
+}
+```
+
+出场索引只从人物关键回目和 `scene`/`entrance` 知识生成，不从主题、人物专题、典故等跨回目内容反推。运行 `npm run build:appearances` 重建。
 
 ### 关系类型
 

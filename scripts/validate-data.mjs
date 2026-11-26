@@ -113,11 +113,12 @@ function containsContinuationContent(character) {
   return (character.chapters || []).some((chapter) => Number(chapter.chapter) > 80);
 }
 
-const [characters, relationships, knowledge, provenance] = await Promise.all([
+const [characters, relationships, knowledge, provenance, appearances] = await Promise.all([
   readJson(dataUrl('characters.json')),
   readJson(dataUrl('relationships.json')),
   readJson(dataUrl('knowledge.json')),
   readJson(dataUrl('provenance.json')),
+  readJson(dataUrl('appearances.json')),
 ]);
 
 if (characters && relationships && knowledge && provenance) {
@@ -211,6 +212,37 @@ if (characters && relationships && knowledge && provenance) {
       }
     });
   });
+
+  const appearanceRecords = appearances?.records;
+  if (!Array.isArray(appearanceRecords)) {
+    fail('data/appearances.json 缺少 records 数组');
+  } else {
+    const seenAppearanceKeys = new Set();
+    const allowedRoles = new Set(['key', 'scene', 'entrance']);
+    appearanceRecords.forEach((record, index) => {
+      const context = `出场索引[${index}]`;
+      if (!characterIds.has(record.characterId)) {
+        fail(`${context} 引用了不存在的人物“${record.characterId || ''}”`);
+      }
+      if (!Number.isInteger(record.chapter) || record.chapter < 1 || record.chapter > 120) {
+        fail(`${context} 的 chapter 必须为第 1–120 回之间的整数`);
+      }
+      if (!Array.isArray(record.roles) || !record.roles.length
+          || record.roles.some((role) => !allowedRoles.has(role))) {
+        fail(`${context} 的 roles 必须是 key/scene/entrance 的非空子集`);
+      }
+      if (!['original', 'continuation'].includes(record.version)) {
+        fail(`${context} 的 version 必须为 original 或 continuation`);
+      } else if (Number(record.chapter) > 80 && record.version !== 'continuation') {
+        fail(`${context} 的第 ${record.chapter} 回应标记 continuation`);
+      } else if (Number(record.chapter) <= 80 && record.version !== 'original') {
+        fail(`${context} 的第 ${record.chapter} 回应标记 original`);
+      }
+      const key = `${record.characterId}|${record.chapter}`;
+      if (seenAppearanceKeys.has(key)) fail(`${context} 与同一人物回目重复：${key}`);
+      seenAppearanceKeys.add(key);
+    });
+  }
 
   // 血缘/婚姻边的方向约定：长辈→晚辈、配偶之间按「男→女」、同辈按出生先后。
   // 这条不变量以前没有人检查，导致出现「史湘云→史鼐/叔侄」这种长辈在后端的反向边。

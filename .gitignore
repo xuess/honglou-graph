@@ -165,3 +165,4 @@ scripts/*
 !scripts/subset-fonts.py
 !scripts/playwright-loader.mjs
 !scripts/run-tests.mjs
+!scripts/build-appearances.mjs

@@ -8513,6 +8513,15 @@ input[type="number"]:focus {
   opacity: 1;
 }
 
+/* 关键回目与名场面用不同强度区分；两者都可点击进入回目。 */
+.card-fate-cell.active.is-scene {
+  opacity: 0.55;
+}
+
+.card-fate-cell.active.is-key {
+  opacity: 1;
+}
+
 /* 第81回以后：保留时间线位置，但用斜纹提示“续书”，避免和原著回目混读。 */
 .card-fate-cell.active.is-continuation {
   background-image: repeating-linear-gradient(
