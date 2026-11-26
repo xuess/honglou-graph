@@ -263,8 +263,13 @@ console.log('✓ TC-09: 王熙凤 family=王家, 王夫人-宝玉/元春 parent-
 const servantCheck = await page.evaluate(async () => {
   const res = await fetch('data/characters.json');
   const chars = await res.json();
-  const jiaGen0 = chars.filter(c => c.family === '贾家' && c.generation === 0);
-  return { count: jiaGen0.length, names: jiaGen0.map(c => c.name) };
+  // 贾家第0代现在包含宁荣二公始祖；只检查被错误归入贾家的仆役/丫鬟。
+  const polluted = chars.filter((c) =>
+    c.family === '贾家'
+    && c.generation === 0
+    && !['jia_yan', 'jia_yuan'].includes(c.id)
+    && /仆|丫鬟|管家|小厮|婆子/.test(`${c.group || ''} ${c.identity || ''}`));
+  return { count: polluted.length, names: polluted.map(c => c.name) };
 });
 assert(servantCheck.count === 0, `No servants should have family='贾家' at gen0, found ${servantCheck.count}: ${servantCheck.names.join(', ')}`);
 console.log('✓ TC-10: No servant family pollution in 贾家');

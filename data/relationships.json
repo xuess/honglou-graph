@@ -5,7 +5,16 @@
     "type": "blood",
     "label": "母子",
     "description": "贾母是贾赦之母，贾赦为荣国府长子",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 46,
+        "scene": "贾母护鸳鸯，斥贾赦",
+        "summary": "贾赦欲讨鸳鸯为妾，贾母得知后大怒，护住鸳鸯并斥责贾赦。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_mu",
@@ -13,7 +22,16 @@
     "type": "blood",
     "label": "母子",
     "description": "贾母是贾政之母，贾政为荣国府次子",
-    "weight": 5
+    "weight": 5,
+    "evidence": [
+      {
+        "chapter": 33,
+        "scene": "宝玉挨打，贾母护孙",
+        "summary": "贾政痛打宝玉，贾母赶来制止，以母亲身份压住贾政。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_mu",
@@ -21,7 +39,16 @@
     "type": "blood",
     "label": "母女",
     "description": "贾母是贾敏之母，贾敏是贾母最疼爱的小女儿",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 3,
+        "scene": "黛玉进府，贾母念亡女",
+        "summary": "黛玉初进荣国府，贾母提及最疼的小女儿贾敏，悲喜交加。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_she",
@@ -29,7 +56,16 @@
     "type": "blood",
     "label": "父子",
     "description": "贾赦是贾琏之父",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 2,
+        "scene": "冷子兴演说荣国府",
+        "summary": "冷子兴向贾雨村介绍荣国府世系，说明贾赦之子为贾琏。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_she",
@@ -79,7 +115,16 @@
     "type": "blood",
     "label": "父女",
     "description": "贾政是探春之父，探春为庶出（赵姨娘所生）",
-    "weight": 5
+    "weight": 5,
+    "evidence": [
+      {
+        "chapter": 2,
+        "scene": "冷子兴演说荣国府",
+        "summary": "冷子兴介绍贾政儿女，探春为贾政与赵姨娘之女。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_zheng",
@@ -87,7 +132,16 @@
     "type": "blood",
     "label": "父子",
     "description": "贾政是贾环之父，贾环为庶出（赵姨娘所生）",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 33,
+        "scene": "贾环挑唆，宝玉挨打",
+        "summary": "贾环在金钏投井等事上挑唆，贾政怒打宝玉，显出父子冲突。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "li_wan",
@@ -156,12 +210,21 @@
     "weight": 2
   },
   {
-    "source": "jia_baoyu",
-    "target": "jia_yuanchun",
+    "source": "jia_yuanchun",
+    "target": "jia_baoyu",
     "type": "blood",
     "label": "姐弟",
-    "description": "元春是宝玉的亲姐姐，曾亲自教宝玉读书识字",
-    "weight": 5
+    "description": "元春是宝玉的亲姐姐，入宫后仍牵挂宝玉。",
+    "weight": 5,
+    "evidence": [
+      {
+        "chapter": 18,
+        "scene": "元妃省亲",
+        "summary": "元春省亲时与宝玉等姐弟相见，勉励宝玉读书。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_baoyu",
@@ -169,7 +232,16 @@
     "type": "blood",
     "label": "兄妹",
     "description": "宝玉与探春为同父异母的兄妹",
-    "weight": 5
+    "weight": 5,
+    "evidence": [
+      {
+        "chapter": 3,
+        "scene": "黛玉初进贾府",
+        "summary": "黛玉初见贾府姊妹，宝玉与探春等兄妹相见。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_baoyu",
@@ -177,7 +249,16 @@
     "type": "blood",
     "label": "兄弟",
     "description": "宝玉与贾环为同父异母兄弟，贾环为庶出",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 33,
+        "scene": "贾环挑唆，宝玉挨打",
+        "summary": "贾环在金钏投井等事上挑唆，贾政怒打宝玉，显出兄弟冲突。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_yuanchun",
@@ -185,7 +266,16 @@
     "type": "blood",
     "label": "姐妹",
     "description": "元春与探春为同父异母的姐妹",
-    "weight": 5
+    "weight": 5,
+    "evidence": [
+      {
+        "chapter": 18,
+        "scene": "元妃省亲",
+        "summary": "元春省亲，与探春等姊妹相见。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_yingchun",
@@ -193,7 +283,16 @@
     "type": "blood",
     "label": "姐妹",
     "description": "迎春与探春为贾府四春中的二姐三妹",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 3,
+        "scene": "三春出场",
+        "summary": "黛玉初进贾府，迎春、探春、惜春三姊妹出场。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_tanchun",
@@ -201,7 +300,16 @@
     "type": "blood",
     "label": "姐妹",
     "description": "探春与惜春为堂姐妹，分属荣宁二府",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 3,
+        "scene": "三春出场",
+        "summary": "黛玉初进贾府，迎春、探春、惜春三姊妹出场。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "xue_yima",
@@ -229,12 +337,21 @@
     "weight": 2
   },
   {
-    "source": "xue_baochai",
-    "target": "xue_pan",
+    "source": "xue_pan",
+    "target": "xue_baochai",
     "type": "blood",
     "label": "兄妹",
-    "description": "薛蟠是宝钗的哥哥",
-    "weight": 4
+    "description": "薛蟠是宝钗的哥哥，性情豪横，宝钗常从中劝解。",
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 34,
+        "scene": "宝钗劝兄",
+        "summary": "薛蟠因宝玉挨打一事被宝钗劝诫，兄妹性情对照鲜明。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "wang_furen",
@@ -242,7 +359,16 @@
     "type": "blood",
     "label": "姐妹",
     "description": "王夫人与薛姨妈为同胞姐妹，同出金陵王家",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 4,
+        "scene": "薛家进京投亲",
+        "summary": "薛姨妈携子女进京，投奔姐姐王夫人，住入梨香院。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "wang_furen",
@@ -267,14 +393,23 @@
     "type": "blood",
     "label": "叔侄",
     "description": "王子腾是王夫人之兄，亦是王熙凤的叔父（伯父），同出金陵王家",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 4,
+        "scene": "薛家进京，王子腾外任",
+        "summary": "王子腾是王夫人之兄、王熙凤叔父，王家权势由此点出。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
-    "source": "xue_baoqin",
-    "target": "xue_ke",
+    "source": "xue_ke",
+    "target": "xue_baoqin",
     "type": "blood",
     "label": "兄妹",
-    "description": "薛蝌是薛宝琴的哥哥",
+    "description": "薛蝌是宝琴的哥哥，兄妹随薛家进京。",
     "weight": 1
   },
   {
@@ -340,7 +475,16 @@
     "type": "blood",
     "label": "侄孙女",
     "description": "史湘云是贾母娘家史侯的侄孙女",
-    "weight": 5
+    "weight": 5,
+    "evidence": [
+      {
+        "chapter": 20,
+        "scene": "湘云来荣府",
+        "summary": "史湘云到荣国府，贾母念其娘家侄孙女身份，留她住下。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "you_erjie",
@@ -372,7 +516,16 @@
     "type": "marriage",
     "label": "夫妻",
     "description": "贾政与王夫人为夫妻",
-    "weight": 5
+    "weight": 5,
+    "evidence": [
+      {
+        "chapter": 33,
+        "scene": "宝玉挨打，王夫人劝贾政",
+        "summary": "贾政痛打宝玉，王夫人赶来哭劝，夫妻在教子问题上冲突。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_zheng",
@@ -380,7 +533,16 @@
     "type": "marriage",
     "label": "妾室",
     "description": "赵姨娘为贾政之妾",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 25,
+        "scene": "魇魔法",
+        "summary": "赵姨娘与马道婆设计魇魔法，妾室身份与嫡庶矛盾显现。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_lian",
@@ -405,7 +567,16 @@
     "type": "marriage",
     "label": "妾室",
     "description": "贾琏瞒着凤姐偷娶尤二姐为二房",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 65,
+        "scene": "偷娶尤二姐",
+        "summary": "贾琏瞒着凤姐偷娶尤二姐为二房。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_lian",
@@ -413,7 +584,16 @@
     "type": "marriage",
     "label": "通房",
     "description": "平儿是贾琏的通房大丫头，名义上的准妾",
-    "weight": 5
+    "weight": 5,
+    "evidence": [
+      {
+        "chapter": 44,
+        "scene": "平儿理妆",
+        "summary": "凤姐泼醋后，宝玉为平儿理妆，平儿通房身份与处境显现。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_zhen",
@@ -788,7 +968,16 @@
     "type": "romance",
     "label": "青梅竹马",
     "description": "宝玉与湘云自幼一同在贾母身边长大",
-    "weight": 5
+    "weight": 5,
+    "evidence": [
+      {
+        "chapter": 20,
+        "scene": "湘云来荣府",
+        "summary": "宝玉与湘云自幼在贾母身边相伴，重逢亲厚。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_baoyu",
@@ -813,7 +1002,16 @@
     "type": "romance",
     "label": "挚友",
     "description": "宝玉与秦钟同窗密友，感情深厚",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 9,
+        "scene": "家塾同窗",
+        "summary": "宝玉与秦钟同入家塾，亲密同窗。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_zhen",
@@ -839,7 +1037,16 @@
     "type": "romance",
     "label": "情人",
     "description": "贾琏偷娶尤二姐，情意绵绵",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 65,
+        "scene": "偷娶尤二姐",
+        "summary": "贾琏瞒着凤姐偷娶尤二姐，情意绵绵。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "liu_xianglian",
@@ -855,7 +1062,16 @@
     "type": "romance",
     "label": "情缘",
     "description": "蒋玉菡与袭人后来结为夫妻，互赠汗巾为伏笔",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 28,
+        "scene": "茜香罗汗巾",
+        "summary": "蒋玉菡与宝玉互赠汗巾，袭人之物转到蒋玉菡手中，为后文姻缘伏笔。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_rong",
@@ -863,7 +1079,16 @@
     "type": "romance",
     "label": "暧昧",
     "description": "书中暗示贾蓉与凤姐关系暧昧",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 6,
+        "scene": "贾蓉借炕屏",
+        "summary": "刘姥姥一进荣国府时，贾蓉来向凤姐借玻璃炕屏，言语亲昵。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "wang_xifeng",
@@ -978,7 +1203,16 @@
     "type": "social",
     "label": "社交",
     "description": "刘姥姥三进荣国府，贾母热情接待",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 40,
+        "scene": "两宴大观园",
+        "summary": "贾母在大观园设宴招待刘姥姥，众人行酒令取乐。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "wang_xifeng",
@@ -986,7 +1220,16 @@
     "type": "social",
     "label": "恩人",
     "description": "凤姐曾接济刘姥姥，刘姥姥后搭救巧姐报恩",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 6,
+        "scene": "刘姥姥一进荣国府",
+        "summary": "刘姥姥求助，凤姐接济二十两银子，结下后文报恩之因。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "liu_laolao",
@@ -1109,7 +1352,16 @@
     "type": "rivalry",
     "label": "情敌",
     "description": "金玉良缘与木石前盟之争，二人暗中较量",
-    "weight": 5
+    "weight": 5,
+    "evidence": [
+      {
+        "chapter": 8,
+        "scene": "探宝钗黛玉半含酸",
+        "summary": "宝玉探宝钗，黛玉随后而至，见二人亲近而含酸。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "wang_xifeng",
@@ -1208,7 +1460,16 @@
     "type": "blood",
     "label": "母女",
     "description": "王熙凤是巧姐之母",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 42,
+        "scene": "刘姥姥为巧姐取名",
+        "summary": "刘姥姥二进荣国府，为凤姐之女取名巧姐。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_lian",
@@ -1216,7 +1477,16 @@
     "type": "blood",
     "label": "父女",
     "description": "贾琏是巧姐之父",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 42,
+        "scene": "刘姥姥为巧姐取名",
+        "summary": "刘姥姥二进荣国府，为凤姐之女取名巧姐。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_yucun",
@@ -1265,7 +1535,16 @@
     "type": "marriage",
     "label": "夫妻（推测）",
     "description": "据判词与脂批推测卫若兰与史湘云成婚，前八十回未正面明写",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 31,
+        "scene": "因麒麟伏白首双星",
+        "summary": "宝玉得金麒麟，回目以“白首双星”伏卫若兰与史湘云后缘。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_baoyu",
@@ -1313,7 +1592,16 @@
     "type": "blood",
     "label": "父子",
     "description": "贾政是贾珠之父，贾珠为贾政长子，早逝",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 2,
+        "scene": "冷子兴演说荣国府",
+        "summary": "冷子兴介绍贾政长子贾珠早逝，遗有贾兰。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "wang_furen",
@@ -1321,7 +1609,16 @@
     "type": "blood",
     "label": "母子",
     "description": "王夫人是贾珠之母，贾珠为其嫡长子",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 2,
+        "scene": "冷子兴演说荣国府",
+        "summary": "冷子兴介绍贾政长子贾珠早逝，遗有贾兰。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "wang_furen",
@@ -1412,7 +1709,16 @@
     "type": "blood",
     "label": "兄妹",
     "description": "王仁是王熙凤之兄，后贪财将巧姐卖入烟花巷",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 119,
+        "scene": "王仁卖巧姐",
+        "summary": "王仁为贪财参与变卖巧姐，暴露其与王熙凤的兄妹关系。",
+        "version": "后四十回续书",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_mu",
@@ -1420,7 +1726,16 @@
     "type": "blood",
     "label": "族亲",
     "description": "史鼎是贾母娘家史家后人，现袭忠靖侯",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 71,
+        "scene": "贾母八旬大寿",
+        "summary": "史鼎来贺贾母寿辰，见史家与贾母娘家的族亲关系。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_mu",
@@ -1428,7 +1743,16 @@
     "type": "blood",
     "label": "族亲",
     "description": "史鼐是贾母娘家的侄儿，保龄侯",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 71,
+        "scene": "贾母八旬大寿",
+        "summary": "史鼐来贺贾母寿辰，见史家与贾母娘家的族亲关系。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "shi_nai",
@@ -1436,7 +1760,16 @@
     "type": "blood",
     "label": "叔侄",
     "description": "史鼐是史湘云的叔父",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 71,
+        "scene": "史鼐贺寿",
+        "summary": "史鼐以叔父身份出现在贾母寿宴，与史湘云同属史家。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "bu_shiren",
@@ -1492,7 +1825,16 @@
     "type": "blood",
     "label": "堂姐",
     "description": "薛宝琴是宝钗的堂妹，才貌双全，贾母极为喜爱",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 49,
+        "scene": "宝琴进京",
+        "summary": "薛宝琴随兄进京，宝钗与堂妹相见。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_mu",
@@ -1525,7 +1867,16 @@
     "type": "blood",
     "label": "兄妹",
     "description": "王子腾与王夫人是兄妹关系",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 4,
+        "scene": "薛家进京",
+        "summary": "薛姨妈投奔王夫人，信中提及兄长王子腾升任外任。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "lai_da",
@@ -1541,7 +1892,16 @@
     "type": "marriage",
     "label": "妾室",
     "description": "秋桐是贾赦赏给贾琏的妾室，与尤二姐之事相互牵连",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 69,
+        "scene": "秋桐为妾",
+        "summary": "贾赦将秋桐赏给贾琏为妾，与尤二姐同处。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_daishan",
@@ -1549,7 +1909,16 @@
     "type": "marriage",
     "label": "夫妻",
     "description": "贾代善与史太君（贾母）为荣国府夫妇",
-    "weight": 5
+    "weight": 5,
+    "evidence": [
+      {
+        "chapter": 2,
+        "scene": "冷子兴演说荣国府",
+        "summary": "冷子兴介绍荣国府世系，贾代善娶史太君为妻。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_daishan",
@@ -1565,7 +1934,16 @@
     "type": "blood",
     "label": "父子",
     "description": "贾代善次子贾政",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 2,
+        "scene": "冷子兴演说荣国府",
+        "summary": "冷子兴介绍荣国府世系，贾代善次子为贾政。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_daishan",
@@ -1605,7 +1983,16 @@
     "type": "blood",
     "label": "父女",
     "description": "薛父之女薛宝钗",
-    "weight": 4
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 4,
+        "scene": "薛家进京",
+        "summary": "薛姨妈携宝钗、薛蟠进京，薛父已亡，家世由薛姨妈支撑。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
   },
   {
     "source": "jia_mu",
@@ -1643,6 +2030,618 @@
         "chapter": 3,
         "scene": "黛玉进府",
         "summary": "黛玉初进荣国府，贾母把她搂在怀里大哭，称其为心肝肉儿，安排她与宝玉同住。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "jia_yan",
+    "target": "jia_daihua",
+    "type": "blood",
+    "label": "父子",
+    "description": "宁国公贾演之子为贾代化，宁国府世系由此相传。",
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 2,
+        "scene": "冷子兴演说宁荣二府",
+        "summary": "冷子兴向贾雨村介绍宁国府世系，宁国公贾演之后为贾代化。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "jia_yuan",
+    "target": "jia_daishan",
+    "type": "blood",
+    "label": "父子",
+    "description": "荣国公贾源之子为贾代善，荣国府世系由此相传。",
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 2,
+        "scene": "冷子兴演说宁荣二府",
+        "summary": "冷子兴向贾雨村介绍荣国府世系，荣国公贾源之后为贾代善。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "jia_she",
+    "target": "jia_cong",
+    "type": "blood",
+    "label": "父子",
+    "description": "贾琮是贾赦之子、贾琏之弟。",
+    "weight": 3
+  },
+  {
+    "source": "jia_lian",
+    "target": "jia_cong",
+    "type": "blood",
+    "label": "兄弟",
+    "description": "贾琏与贾琮为同父兄弟。",
+    "weight": 2
+  },
+  {
+    "source": "jin_guafu",
+    "target": "jin_rong",
+    "type": "blood",
+    "label": "母子",
+    "description": "金寡妇是金荣之母，为儿子学堂受辱一事奔走。",
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 10,
+        "scene": "金寡妇为子奔走",
+        "summary": "金荣在学堂受辱后，其母金寡妇为儿子奔走求情。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "jin_rong",
+    "target": "qin_zhong",
+    "type": "rivalry",
+    "label": "学堂冲突",
+    "description": "金荣与秦钟、香怜等人在家塾起冲突。",
+    "weight": 2,
+    "evidence": [
+      {
+        "chapter": 9,
+        "scene": "顽童闹学堂",
+        "summary": "金荣因秦钟、香怜等事起哄，引发家塾顽童大闹。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "jin_rong",
+    "target": "jia_baoyu",
+    "type": "social",
+    "label": "同窗",
+    "description": "金荣与宝玉同在家塾附读。",
+    "weight": 1
+  },
+  {
+    "source": "jin_rong",
+    "target": "ming_yan",
+    "type": "rivalry",
+    "label": "学堂冲突",
+    "description": "学堂风波中金荣与宝玉小厮茗烟发生冲突。",
+    "weight": 2
+  },
+  {
+    "source": "jin_rong",
+    "target": "jia_rui",
+    "type": "social",
+    "label": "同窗",
+    "description": "金荣与贾瑞同在贾家家塾。",
+    "weight": 1
+  },
+  {
+    "source": "jia_huang",
+    "target": "huang_da_nainai",
+    "type": "marriage",
+    "label": "夫妻",
+    "description": "贾璜与璜大奶奶为夫妻，璜大奶奶为金荣家长辈。",
+    "weight": 2,
+    "evidence": [
+      {
+        "chapter": 10,
+        "scene": "璜大奶奶宁府理论",
+        "summary": "璜大奶奶为金荣受辱一事到宁国府理论。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "huang_da_nainai",
+    "target": "jin_rong",
+    "type": "social",
+    "label": "亲戚",
+    "description": "璜大奶奶是金荣家长辈，学堂风波后为其出面。",
+    "weight": 1,
+    "evidence": [
+      {
+        "chapter": 10,
+        "scene": "璜大奶奶宁府理论",
+        "summary": "璜大奶奶为金荣受辱一事到宁国府理论。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "huang_da_nainai",
+    "target": "jin_guafu",
+    "type": "social",
+    "label": "亲戚",
+    "description": "璜大奶奶与金寡妇为亲戚，金荣受辱后两家商议。",
+    "weight": 1
+  },
+  {
+    "source": "zhen_yingjia",
+    "target": "zhen_baoyu",
+    "type": "blood",
+    "label": "父子",
+    "description": "甄应嘉是甄宝玉之父。",
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 114,
+        "scene": "甄应嘉蒙恩还朝",
+        "summary": "后四十回写甄应嘉蒙恩还朝，甄家人物再次进入贾府视野。",
+        "version": "后四十回续书",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "zhen_yingjia",
+    "target": "zhenjia_servant",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "甄家仆投靠贾家，带来南边甄家败落消息。",
+    "weight": 2
+  },
+  {
+    "source": "jia_zheng",
+    "target": "zhen_yingjia",
+    "type": "social",
+    "label": "世交",
+    "description": "甄家与贾家为世交，甄应嘉与贾政同朝为官。",
+    "weight": 2
+  },
+  {
+    "source": "zhen_baoyu",
+    "target": "jia_baoyu",
+    "type": "social",
+    "label": "互为镜像",
+    "description": "甄宝玉与贾宝玉同名同貌、性情相似，构成甄贾互照。",
+    "weight": 2,
+    "evidence": [
+      {
+        "chapter": 115,
+        "scene": "证同类宝玉失相知",
+        "summary": "后四十回甄宝玉与贾宝玉相会，证同类而失相知。",
+        "version": "后四十回续书",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "li_shen",
+    "target": "li_wen",
+    "type": "blood",
+    "label": "母女",
+    "description": "李婶是李纹之母。",
+    "weight": 3,
+    "evidence": [
+      {
+        "chapter": 49,
+        "scene": "李婶带女进京",
+        "summary": "李婶带李纹、李绮进京投亲，入住大观园。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "li_shen",
+    "target": "li_qi",
+    "type": "blood",
+    "label": "母女",
+    "description": "李婶是李绮之母。",
+    "weight": 3,
+    "evidence": [
+      {
+        "chapter": 49,
+        "scene": "李婶带女进京",
+        "summary": "李婶带李纹、李绮进京投亲，入住大观园。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "li_wan",
+    "target": "li_wen",
+    "type": "blood",
+    "label": "堂姐妹",
+    "description": "李纹是李纨的堂妹。",
+    "weight": 2
+  },
+  {
+    "source": "li_wan",
+    "target": "li_qi",
+    "type": "blood",
+    "label": "堂姐妹",
+    "description": "李绮是李纨的堂妹。",
+    "weight": 2
+  },
+  {
+    "source": "li_wen",
+    "target": "jia_tanchun",
+    "type": "social",
+    "label": "诗社",
+    "description": "李纹与探春同在大观园诗社活动。",
+    "weight": 1
+  },
+  {
+    "source": "li_qi",
+    "target": "jia_tanchun",
+    "type": "social",
+    "label": "诗社",
+    "description": "李绮与探春同在大观园诗社活动。",
+    "weight": 1
+  },
+  {
+    "source": "liu_saozi",
+    "target": "wu_er",
+    "type": "blood",
+    "label": "母女",
+    "description": "柳嫂子是五儿之母，母女同在园中当差。",
+    "weight": 3,
+    "evidence": [
+      {
+        "chapter": 60,
+        "scene": "厨房风波",
+        "summary": "柳嫂子掌管大观园厨房，五儿因玫瑰露、茯苓霜等事被卷入风波。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "liu_saozi",
+    "target": "fangguan",
+    "type": "social",
+    "label": "交好",
+    "description": "柳嫂子与芳官交好，五儿因此与怡红院往来。",
+    "weight": 1
+  },
+  {
+    "source": "fangguan",
+    "target": "wu_er",
+    "type": "social",
+    "label": "好友",
+    "description": "芳官与五儿交好，曾替五儿在宝玉面前周旋。",
+    "weight": 1
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "wu_er",
+    "type": "social",
+    "label": "照看",
+    "description": "五儿被卷入玫瑰露、茯苓霜案，宝玉曾为她瞒赃。",
+    "weight": 1
+  },
+  {
+    "source": "bao_er",
+    "target": "bao_er_jias",
+    "type": "marriage",
+    "label": "夫妻",
+    "description": "鲍二与鲍二家的为夫妻。",
+    "weight": 2
+  },
+  {
+    "source": "jia_lian",
+    "target": "bao_er",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "鲍二是贾琏身边仆人。",
+    "weight": 2
+  },
+  {
+    "source": "jia_lian",
+    "target": "bao_er_jias",
+    "type": "romance",
+    "label": "私通",
+    "description": "贾琏与鲍二家的私通，凤姐生日时被撞破。",
+    "weight": 3,
+    "evidence": [
+      {
+        "chapter": 44,
+        "scene": "凤姐泼醋",
+        "summary": "凤姐生日撞破贾琏与鲍二家的私情，平儿理妆收场。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "wang_xifeng",
+    "target": "bao_er_jias",
+    "type": "rivalry",
+    "label": "泼醋",
+    "description": "凤姐撞破贾琏与鲍二家的私情后大闹。",
+    "weight": 2,
+    "evidence": [
+      {
+        "chapter": 44,
+        "scene": "凤姐泼醋",
+        "summary": "凤姐生日撞破贾琏与鲍二家的私情，平儿理妆收场。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "duo_hunchong",
+    "target": "duo_guniang",
+    "type": "marriage",
+    "label": "夫妻",
+    "description": "多浑虫与多姑娘为夫妻。",
+    "weight": 2
+  },
+  {
+    "source": "jia_lian",
+    "target": "duo_guniang",
+    "type": "romance",
+    "label": "私通",
+    "description": "贾琏与多姑娘有染。",
+    "weight": 3,
+    "evidence": [
+      {
+        "chapter": 21,
+        "scene": "多姑娘与贾琏",
+        "summary": "多姑娘与贾琏有染，多浑虫被蒙在鼓里。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "zhang_taiyi",
+    "target": "qin_keqing",
+    "type": "social",
+    "label": "诊治",
+    "description": "张太医为秦可卿诊病，细论病源。",
+    "weight": 3,
+    "evidence": [
+      {
+        "chapter": 10,
+        "scene": "张太医论病",
+        "summary": "张太医入宁府为秦可卿诊病，细论病源。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "jia_zhen",
+    "target": "zhang_taiyi",
+    "type": "social",
+    "label": "延医",
+    "description": "贾珍为秦可卿延请张太医诊病。",
+    "weight": 1
+  },
+  {
+    "source": "zhang_daoshi",
+    "target": "jia_mu",
+    "type": "social",
+    "label": "清虚观",
+    "description": "张道士在清虚观打醮时与贾母往来。",
+    "weight": 2,
+    "evidence": [
+      {
+        "chapter": 29,
+        "scene": "清虚观打醮",
+        "summary": "贾母率众到清虚观打醮，张道士接待并替宝玉提亲。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "zhang_daoshi",
+    "target": "jia_baoyu",
+    "type": "social",
+    "label": "提亲",
+    "description": "张道士在清虚观替宝玉提亲，引发宝黛争执。",
+    "weight": 2,
+    "evidence": [
+      {
+        "chapter": 29,
+        "scene": "清虚观提亲",
+        "summary": "张道士在清虚观替宝玉提亲，触动宝黛敏感心事。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "jia_hui",
+    "target": "lin_daiyu",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "佳蕙是潇湘馆小丫鬟，服侍黛玉。",
+    "weight": 1
+  },
+  {
+    "source": "jia_hui",
+    "target": "xiaohong",
+    "type": "social",
+    "label": "丫鬟",
+    "description": "佳蕙与小红同为园中丫鬟，往来亲近。",
+    "weight": 1
+  },
+  {
+    "source": "hu_yongyi",
+    "target": "qingwen",
+    "type": "social",
+    "label": "诊治",
+    "description": "胡庸医为晴雯诊病，乱用虎狼药。",
+    "weight": 2,
+    "evidence": [
+      {
+        "chapter": 51,
+        "scene": "胡庸医乱用虎狼药",
+        "summary": "晴雯病中请胡庸医诊治，胡庸医乱用虎狼药。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "jia_baoyu",
+    "target": "hu_yongyi",
+    "type": "social",
+    "label": "延医",
+    "description": "宝玉为晴雯请胡庸医诊治。",
+    "weight": 1
+  },
+  {
+    "source": "xia_jingui",
+    "target": "bao_chan",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "宝蟾是夏金桂的陪嫁丫鬟。",
+    "weight": 2
+  },
+  {
+    "source": "xue_pan",
+    "target": "bao_chan",
+    "type": "marriage",
+    "label": "妾室",
+    "description": "宝蟾后被薛蟠收为妾室。",
+    "weight": 2
+  },
+  {
+    "source": "bao_chan",
+    "target": "xiang_ling",
+    "type": "rivalry",
+    "label": "排挤",
+    "description": "宝蟾与夏金桂一同排挤香菱。",
+    "weight": 2
+  },
+  {
+    "source": "ouguan",
+    "target": "diguan",
+    "type": "social",
+    "label": "同伴",
+    "description": "藕官与菂官同为戏班优伶，情感深厚。",
+    "weight": 1
+  },
+  {
+    "source": "fangguan",
+    "target": "ouguan",
+    "type": "social",
+    "label": "戏班",
+    "description": "芳官与藕官同为贾府戏班出身。",
+    "weight": 1
+  },
+  {
+    "source": "fangguan",
+    "target": "diguan",
+    "type": "social",
+    "label": "戏班",
+    "description": "芳官与菂官同为贾府戏班出身。",
+    "weight": 1
+  },
+  {
+    "source": "wu_jinxiao",
+    "target": "jia_zhen",
+    "type": "master_servant",
+    "label": "庄头",
+    "description": "乌进孝是宁荣二府庄头，年节向贾珍送租。",
+    "weight": 2
+  },
+  {
+    "source": "wu_jinxiao",
+    "target": "jia_rong",
+    "type": "social",
+    "label": "交租",
+    "description": "乌进孝年节送租，贾蓉在旁协助料理。",
+    "weight": 1
+  },
+  {
+    "source": "laiwang_furen",
+    "target": "wang_xifeng",
+    "type": "master_servant",
+    "label": "陪房",
+    "description": "来旺妇是王熙凤的陪房仆妇，倚势行事。",
+    "weight": 2
+  },
+  {
+    "source": "zhenjia_servant",
+    "target": "jia_zheng",
+    "type": "social",
+    "label": "投靠",
+    "description": "甄家败落后，甄家仆投靠贾家。",
+    "weight": 1
+  },
+  {
+    "source": "feng_shi",
+    "target": "xiang_ling",
+    "type": "blood",
+    "label": "母女",
+    "description": "封氏是英莲（香菱）之母。",
+    "weight": 4,
+    "evidence": [
+      {
+        "chapter": 1,
+        "scene": "英莲被拐",
+        "summary": "元宵节霍启带英莲看灯，英莲被拐，封氏痛失女儿。",
+        "version": "前八十回",
+        "status": "chapter"
+      }
+    ]
+  },
+  {
+    "source": "zhen_shiyin",
+    "target": "feng_shi",
+    "type": "marriage",
+    "label": "夫妻",
+    "description": "甄士隐与封氏为夫妻。",
+    "weight": 3
+  },
+  {
+    "source": "zhen_shiyin",
+    "target": "huo_qi",
+    "type": "master_servant",
+    "label": "主仆",
+    "description": "霍启是甄家仆人。",
+    "weight": 2
+  },
+  {
+    "source": "huo_qi",
+    "target": "xiang_ling",
+    "type": "social",
+    "label": "失散",
+    "description": "霍启因疏忽丢失英莲，导致甄家骨肉分离。",
+    "weight": 2,
+    "evidence": [
+      {
+        "chapter": 1,
+        "scene": "英莲被拐",
+        "summary": "元宵节霍启带英莲看灯，因小解离开导致英莲被拐。",
         "version": "前八十回",
         "status": "chapter"
       }

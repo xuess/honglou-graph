@@ -81,14 +81,14 @@
       "scope": "data/characters.json",
       "field": "quotesPendingVerified",
       "status": "pending",
-      "recordCount": 107,
+      "recordCount": 106,
       "action": "待核引语分存 quotesPendingVerified（前80回未见或来源/定位待补）与 quoteComparisons（程乙本版本对照）。只有 10 人 17 条通过甲戌本目录校验；前端仅对通过校验者显示“经典语录”。",
       "verifiedCount": 10,
       "verifiedQuoteLines": 17,
-      "pendingQuoteLines": 121,
+      "pendingQuoteLines": 120,
       "note": "待核引语分三类：前80回逐字核对未见（quotesPendingVerified）、程乙本异文（quoteComparisons）、庚辰本来源/定位待补。仅 10 人 17 条通过甲戌本目录校验。",
       "comparisonQuoteLines": 36,
-      "totalUnverifiedQuoteLines": 157
+      "totalUnverifiedQuoteLines": 156
     },
     {
       "id": "later-text-or-continuation-content",
@@ -143,11 +143,13 @@
         "bao_chan",
         "wu_er",
         "zhen_yingjia",
-        "old_xuejiu",
-        "zhenjia_servant"
+        "zhenjia_servant",
+        "zhen_baoyu",
+        "li_wen",
+        "li_qi"
       ],
       "action": "按甲戌本、庚辰本逐条拆分可证事实与版本比较材料；续书结局统一移入 outcomeVersion.continuation 并在 outcome 前标注“（续书）”，未定位内容继续保持待核。",
-      "recordCount": 42
+      "recordCount": 44
     }
   ]
 }

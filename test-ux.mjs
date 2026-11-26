@@ -117,6 +117,8 @@ await run('TC-36 其他人物按身份分组', async () => {
       await sleep(page, 500);
       const state = await page.evaluate(() => ({
         cards: document.querySelectorAll('.tree-other-card').length,
+        expected: app.characters.filter((character) =>
+          !['贾家', '史家', '王家', '薛家', '林家'].includes(character.family)).length,
         groups: [...document.querySelectorAll('.tree-other-group')].map((group) => ({
           title: group.querySelector('.tree-other-group-title')?.innerText || '',
           count: group.querySelectorAll('.tree-other-card').length,
@@ -124,9 +126,10 @@ await run('TC-36 其他人物按身份分组', async () => {
         })),
         overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
       }));
-      assert.equal(state.cards, 62, `其他人物数量异常: ${state.cards}`);
+      assert.equal(state.cards, state.expected, `其他人物数量异常: ${state.cards}/${state.expected}`);
+      assert.ok(state.expected >= 65, `其他人物数量异常: ${state.expected}`);
       assert.ok(state.groups.length >= 5, `身份分组不足: ${state.groups.length}`);
-      assert.equal(state.groups.reduce((sum, group) => sum + group.count, 0), 62);
+      assert.equal(state.groups.reduce((sum, group) => sum + group.count, 0), state.expected);
       assert.ok(state.groups.some((group) => /丫鬟/.test(group.title) && group.hasFamilyLink), '贾府丫鬟组应有主家谱系入口');
       assert.ok(state.groups.some((group) => /僧道神仙/.test(group.title)), '应有僧道神仙分组');
       assert.ok(state.overflow <= 1, `横幅溢出: ${state.overflow}`);

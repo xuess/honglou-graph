@@ -26,7 +26,9 @@
       }
     ],
     "parentIds": [],
-    "childrenIds": [],
+    "childrenIds": [
+      "jin_rong"
+    ],
     "spouseIds": [],
     "generation": 0,
     "isMainline": false,
@@ -125,7 +127,9 @@
     ],
     "parentIds": [],
     "childrenIds": [],
-    "spouseIds": [],
+    "spouseIds": [
+      "bao_er"
+    ],
     "generation": 0,
     "isMainline": false,
     "outcome": "卷入贾琏凤姐风波",
@@ -174,7 +178,9 @@
     ],
     "parentIds": [],
     "childrenIds": [],
-    "spouseIds": [],
+    "spouseIds": [
+      "duo_hunchong"
+    ],
     "generation": 0,
     "isMainline": false,
     "outcome": "后文无重笔",
@@ -413,7 +419,8 @@
     ],
     "childrenIds": [
       "jia_lian",
-      "jia_yingchun"
+      "jia_yingchun",
+      "jia_cong"
     ],
     "spouseIds": [
       "xing_furen"
@@ -1949,7 +1956,9 @@
       "original",
       "original",
       "continuation"
-    ]
+    ],
+    "natalFamily": "王家",
+    "marriedFamily": "贾家"
   },
   {
     "id": "li_wan",
@@ -2208,7 +2217,11 @@
       "original",
       "original",
       "original"
-    ]
+    ],
+    "natalFamily": "其他",
+    "marriedFamily": "贾家",
+    "natalGeneration": 3,
+    "marriedGeneration": 4
   },
   {
     "id": "jia_qiaojie",
@@ -3022,7 +3035,8 @@
       }
     ],
     "parentIds": [
-      "zhen_shiyin"
+      "zhen_shiyin",
+      "feng_shi"
     ],
     "childrenIds": [],
     "spouseIds": [
@@ -3786,7 +3800,8 @@
       "original",
       "original",
       "continuation"
-    ]
+    ],
+    "marriedFamily": "贾家"
   },
   {
     "id": "yuanyang",
@@ -5533,7 +5548,9 @@
     "childrenIds": [
       "xiang_ling"
     ],
-    "spouseIds": [],
+    "spouseIds": [
+      "feng_shi"
+    ],
     "generation": 0,
     "isMainline": false,
     "outcome": "家破人亡后出家修道，后随跛足道人云游，不知所终。",
@@ -5763,7 +5780,8 @@
       "original",
       "original",
       "original"
-    ]
+    ],
+    "marriedFamily": "贾家"
   },
   {
     "id": "you_sanjie",
@@ -7202,7 +7220,9 @@
         "version": "continuation"
       }
     ],
-    "parentIds": [],
+    "parentIds": [
+      "liu_saozi"
+    ],
     "childrenIds": [],
     "spouseIds": [],
     "generation": 0,
@@ -7272,7 +7292,8 @@
     "keyEventVersions": [
       "original",
       "original"
-    ]
+    ],
+    "marriedFamily": "贾家"
   },
   {
     "id": "ouguan",
@@ -7396,9 +7417,11 @@
       }
     ],
     "parentIds": [],
-    "childrenIds": [],
+    "childrenIds": [
+      "zhen_baoyu"
+    ],
     "spouseIds": [],
-    "generation": 0,
+    "generation": 2,
     "isMainline": false,
     "outcome": "作为甄家命运线被提及",
     "quotesPendingVerified": [
@@ -7515,55 +7538,6 @@
     ]
   },
   {
-    "id": "old_xuejiu",
-    "name": "老学究",
-    "pinyin": "Lǎo Xuéjiū",
-    "alias": [
-      "老先生"
-    ],
-    "gender": "男",
-    "family": "其他",
-    "group": "其他人物",
-    "identity": "讲书论义的老儒生",
-    "importance": 1,
-    "personality": "迂正持重、以义理劝人",
-    "keyEvents": [
-      "讲义规劝宝玉",
-      "对应宝玉顽心与科举正统的冲突"
-    ],
-    "description": "老学究出现在后四十回中，承担的是以传统义理规劝宝玉的角色。他虽不属于情感主线人物，却是理解宝玉与正统人生道路冲突的一类功能人物。",
-    "chapters": [
-      {
-        "chapter": 82,
-        "title": "老学究讲义警顽心 病潇湘痴魂惊恶梦",
-        "summary": "老学究讲书说道，意在规劝宝玉收心向学，回到正统道路。",
-        "version": "continuation"
-      }
-    ],
-    "parentIds": [],
-    "childrenIds": [],
-    "spouseIds": [],
-    "generation": 0,
-    "isMainline": false,
-    "outcome": "点到即止",
-    "quotesPendingVerified": [
-      {
-        "text": "书中自有黄金屋，书中自有颜如玉。",
-        "sourceAudit": {
-          "status": "not-in-source",
-          "maxRun": 0,
-          "note": "前80回全本逐字核对未见，非原著引语"
-        }
-      }
-    ],
-    "quotes": [],
-    "quoteSources": [],
-    "keyEventVersions": [
-      "original",
-      "original"
-    ]
-  },
-  {
     "id": "zhenjia_servant",
     "name": "甄家仆",
     "pinyin": "Zhēn Jiā Pú",
@@ -7632,7 +7606,9 @@
     "quotes": [],
     "description": "贾代善是荣国公贾源之子，承袭荣国府爵职。其妻为史太君（贾母），育有贾赦、贾政、贾敏三子女。在原著中已故，主要作为家族背景出现。",
     "chapters": [],
-    "parentIds": [],
+    "parentIds": [
+      "jia_yuan"
+    ],
     "childrenIds": [
       "jia_she",
       "jia_zheng",
@@ -7671,7 +7647,9 @@
     "quotes": [],
     "description": "贾代化是宁国公贾演之子，承袭宁国府爵职，官至京营节度使、世袭一等神威将军。其子贾敬，孙贾珍。在原著中已故，作为宁国府背景出现。",
     "chapters": [],
-    "parentIds": [],
+    "parentIds": [
+      "jia_yan"
+    ],
     "childrenIds": [
       "jia_jing"
     ],
@@ -7716,6 +7694,670 @@
     "generation": 2,
     "isMainline": true,
     "outcome": "在故事开始前已故。",
+    "quoteSources": [],
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original"
+    ]
+  },
+  {
+    "id": "jia_yan",
+    "name": "贾演",
+    "pinyin": "Jiǎ Yǎn",
+    "alias": [
+      "宁国公"
+    ],
+    "gender": "男",
+    "family": "贾家",
+    "group": "贾家-先祖",
+    "identity": "宁国公，贾代化之父，宁国府始祖",
+    "importance": 3,
+    "personality": "开国勋臣，奠定宁国府基业",
+    "keyEvents": [
+      "随太祖起兵立功，受封宁国公",
+      "宁国府世系由贾演—贾代化—贾敬—贾珍一脉相传"
+    ],
+    "quotes": [],
+    "description": "贾演是宁国公，贾代化之父。贾府宁国府一支由他发端，与荣国公贾源共同构成贾家“宁荣二公”的基业。",
+    "chapters": [
+      {
+        "chapter": 2,
+        "title": "贾夫人仙逝扬州城 冷子兴演说荣国府",
+        "summary": "冷子兴向贾雨村演说贾府世系，追溯宁国公贾演、荣国公贾源分立的宁荣二府。",
+        "version": "original"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [
+      "jia_daihua"
+    ],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "前八十回记载有限，后事待补。",
+    "quoteSources": [],
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original",
+      "original"
+    ]
+  },
+  {
+    "id": "jia_yuan",
+    "name": "贾源",
+    "pinyin": "Jiǎ Yuán",
+    "alias": [
+      "荣国公"
+    ],
+    "gender": "男",
+    "family": "贾家",
+    "group": "贾家-先祖",
+    "identity": "荣国公，贾代善之父，荣国府始祖",
+    "importance": 3,
+    "personality": "开国勋臣，奠定荣国府基业",
+    "keyEvents": [
+      "随太祖起兵立功，受封荣国公",
+      "荣国府世系由贾源—贾代善—贾赦／贾政一脉相传"
+    ],
+    "quotes": [],
+    "description": "贾源是荣国公，贾代善之父。贾府荣国府一支由他发端，与宁国公贾演共同构成贾家“宁荣二公”的基业。",
+    "chapters": [
+      {
+        "chapter": 2,
+        "title": "贾夫人仙逝扬州城 冷子兴演说荣国府",
+        "summary": "冷子兴向贾雨村演说贾府世系，追溯宁国公贾演、荣国公贾源分立的宁荣二府。",
+        "version": "original"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [
+      "jia_daishan"
+    ],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "前八十回记载有限，后事待补。",
+    "quoteSources": [],
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original",
+      "original"
+    ]
+  },
+  {
+    "id": "zhen_baoyu",
+    "name": "甄宝玉",
+    "pinyin": "Zhēn Bǎoyù",
+    "alias": [
+      "甄家宝玉"
+    ],
+    "gender": "男",
+    "family": "其他",
+    "group": "其他重要人物",
+    "identity": "甄应嘉之子，与贾宝玉容貌性情相似的镜像人物",
+    "importance": 3,
+    "personality": "与贾宝玉相似，厌弃功名、亲近女儿，是“甄贾互照”的另一半",
+    "keyEvents": [
+      "甄家来京，与贾宝玉互证同类（第56回）",
+      "随父甄应嘉还朝（第114回，续书）",
+      "与贾宝玉梦中相会（第115回，续书）"
+    ],
+    "quotes": [],
+    "description": "甄宝玉是甄应嘉之子，与贾宝玉同名同貌、性情相似，构成《红楼梦》“甄贾互照”的镜像关系。前八十回主要通过甄家来京与贾府众人的转述出现，后四十回才正面展开。",
+    "chapters": [
+      {
+        "chapter": 56,
+        "title": "敏探春兴利除宿弊 识宝钗小惠全大体",
+        "summary": "江南甄家来京送礼，甄家也有一个宝玉，与贾宝玉形成镜像。",
+        "version": "original"
+      },
+      {
+        "chapter": 114,
+        "title": "王熙凤历幻返金陵 甄应嘉蒙恩还玉阙",
+        "summary": "甄应嘉蒙恩还朝，甄家人物再次进入贾府视野。",
+        "version": "continuation"
+      },
+      {
+        "chapter": 115,
+        "title": "惑偏私惜春矢素志 证同类宝玉失相知",
+        "summary": "甄宝玉与贾宝玉相会，证同类而失相知，甄贾互照主题收束。",
+        "version": "continuation"
+      }
+    ],
+    "parentIds": [
+      "zhen_yingjia"
+    ],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 3,
+    "isMainline": true,
+    "outcome": "续书中随父还朝，后事未详。",
+    "quoteSources": [],
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original",
+      "continuation",
+      "continuation"
+    ],
+    "sourceNote": "第56回为前八十回提及；第114—115回为后四十回续书。"
+  },
+  {
+    "id": "jia_cong",
+    "name": "贾琮",
+    "pinyin": "Jiǎ Cóng",
+    "alias": [],
+    "gender": "男",
+    "family": "贾家",
+    "group": "贾家-玉字辈",
+    "identity": "贾赦之子，贾琏之弟",
+    "importance": 1,
+    "personality": "贾赦庶子，出场不多",
+    "keyEvents": [
+      "到贾赦处问宝玉好",
+      "随族中参与除夕祭宗祠"
+    ],
+    "quotes": [],
+    "description": "贾琮是贾赦之子、贾琏之弟，前八十回只在荣国府日常与祭宗祠等场合零星出现。",
+    "chapters": [
+      {
+        "chapter": 24,
+        "title": "醉金刚轻财尚义侠 痴女儿遗帕惹相思",
+        "summary": "宝玉到贾赦处请安，贾琮出来问宝玉好。",
+        "version": "original"
+      },
+      {
+        "chapter": 53,
+        "title": "宁国府除夕祭宗祠 荣国府元宵开夜宴",
+        "summary": "宁国府除夕祭宗祠，贾琮随族中子弟参与。",
+        "version": "original"
+      }
+    ],
+    "parentIds": [
+      "jia_she"
+    ],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 3,
+    "isMainline": false,
+    "outcome": "前八十回仅零星出场，后事未详。",
+    "quoteSources": [],
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original",
+      "original"
+    ]
+  },
+  {
+    "id": "jin_rong",
+    "name": "金荣",
+    "pinyin": "Jīn Róng",
+    "alias": [],
+    "gender": "男",
+    "family": "其他",
+    "group": "其他人物",
+    "identity": "贾家家塾学生，金寡妇之子",
+    "importance": 1,
+    "personality": "好强争胜，学堂风波中与秦钟、香怜等起冲突",
+    "keyEvents": [
+      "在贾家家塾与秦钟、香怜等起冲突",
+      "学堂风波后被宝玉、茗烟等逼迫赔礼"
+    ],
+    "quotes": [],
+    "description": "金荣是金寡妇之子，在贾家家塾附读。第九回“起嫌疑顽童闹学堂”中，他因秦钟、香怜等事与宝玉一方冲突，是学堂风波的关键人物。",
+    "chapters": [
+      {
+        "chapter": 9,
+        "title": "恋风流情友入家塾 起嫌疑顽童闹学堂",
+        "summary": "金荣在贾家家塾与秦钟、香怜等起冲突，引发顽童闹学堂。",
+        "version": "original"
+      },
+      {
+        "chapter": 10,
+        "title": "金寡妇贪利权受辱 张太医论病细穷源",
+        "summary": "金寡妇为金荣受辱一事奔走，引出璜大奶奶理论。",
+        "version": "original"
+      }
+    ],
+    "parentIds": [
+      "jin_guafu"
+    ],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "学堂风波后仍在贾府家塾读书，后事未详。",
+    "quoteSources": [],
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original",
+      "original"
+    ]
+  },
+  {
+    "id": "li_shen",
+    "name": "李婶",
+    "pinyin": "Lǐ Shěn",
+    "alias": [
+      "李婶娘"
+    ],
+    "gender": "女",
+    "family": "其他",
+    "group": "其他重要人物",
+    "identity": "李纨的婶母，李纹、李绮之母",
+    "importance": 1,
+    "personality": "寡居持家，带女儿进京投亲",
+    "keyEvents": [
+      "带李纹、李绮进京投亲",
+      "随女儿入住大观园"
+    ],
+    "quotes": [],
+    "description": "李婶是李纨的婶母、李纹与李绮之母。她带两个女儿进京投亲，使李纹、李绮进入大观园诗社生活。",
+    "chapters": [
+      {
+        "chapter": 49,
+        "title": "琉璃世界白雪红梅 脂粉香娃割腥啖膻",
+        "summary": "李婶带李纹、李绮进京投亲，入住大观园。",
+        "version": "original"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [
+      "li_wen",
+      "li_qi"
+    ],
+    "spouseIds": [],
+    "generation": 2,
+    "isMainline": false,
+    "outcome": "前八十回随女儿在大观园往来，后事未详。",
+    "quoteSources": [],
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original",
+      "original"
+    ]
+  },
+  {
+    "id": "li_wen",
+    "name": "李纹",
+    "pinyin": "Lǐ Wén",
+    "alias": [],
+    "gender": "女",
+    "family": "其他",
+    "group": "其他重要人物",
+    "identity": "李婶之女，李纨堂妹，大观园诗社成员",
+    "importance": 1,
+    "personality": "温雅能诗，参与芦雪庵联诗与四美钓鱼",
+    "keyEvents": [
+      "随母进京，入住大观园",
+      "芦雪庵联诗",
+      "四美钓鱼"
+    ],
+    "quotes": [],
+    "description": "李纹是李婶之女、李纨堂妹。她随母进京后入住大观园，参与芦雪庵联诗；第81回“四美钓游鱼”中与探春、李绮、邢岫烟同钓。",
+    "chapters": [
+      {
+        "chapter": 49,
+        "title": "琉璃世界白雪红梅 脂粉香娃割腥啖膻",
+        "summary": "李纹随母进京，入住大观园，参与芦雪庵联诗。",
+        "version": "original"
+      },
+      {
+        "chapter": 81,
+        "title": "占旺相四美钓游鱼 奉严词两番入家塾",
+        "summary": "李纹与探春、李绮、邢岫烟在蓼溆钓鱼。",
+        "version": "continuation"
+      }
+    ],
+    "parentIds": [
+      "li_shen"
+    ],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 3,
+    "isMainline": false,
+    "outcome": "前八十回与第81回有诗社与钓鱼场景，后事未详。",
+    "quoteSources": [],
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "continuation"
+    ],
+    "sourceNote": "第81回为后四十回续书。"
+  },
+  {
+    "id": "li_qi",
+    "name": "李绮",
+    "pinyin": "Lǐ Qǐ",
+    "alias": [],
+    "gender": "女",
+    "family": "其他",
+    "group": "其他重要人物",
+    "identity": "李婶之女，李纨堂妹，大观园诗社成员",
+    "importance": 1,
+    "personality": "温雅能诗，参与芦雪庵联诗与四美钓鱼",
+    "keyEvents": [
+      "随母进京，入住大观园",
+      "芦雪庵联诗",
+      "四美钓鱼"
+    ],
+    "quotes": [],
+    "description": "李绮是李婶之女、李纨堂妹。她随母进京后入住大观园，参与芦雪庵联诗；第81回“四美钓游鱼”中与探春、李纹、邢岫烟同钓。",
+    "chapters": [
+      {
+        "chapter": 49,
+        "title": "琉璃世界白雪红梅 脂粉香娃割腥啖膻",
+        "summary": "李绮随母进京，入住大观园，参与芦雪庵联诗。",
+        "version": "original"
+      },
+      {
+        "chapter": 81,
+        "title": "占旺相四美钓游鱼 奉严词两番入家塾",
+        "summary": "李绮与探春、李纹、邢岫烟在蓼溆钓鱼。",
+        "version": "continuation"
+      }
+    ],
+    "parentIds": [
+      "li_shen"
+    ],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 3,
+    "isMainline": false,
+    "outcome": "前八十回与第81回有诗社与钓鱼场景，后事未详。",
+    "quoteSources": [],
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "continuation"
+    ],
+    "sourceNote": "第81回为后四十回续书。"
+  },
+  {
+    "id": "liu_saozi",
+    "name": "柳嫂子",
+    "pinyin": "Liǔ Sǎozi",
+    "alias": [
+      "柳家的"
+    ],
+    "gender": "女",
+    "family": "其他",
+    "group": "贾府-仆人管家",
+    "identity": "大观园厨房管事，五儿之母",
+    "importance": 1,
+    "personality": "精明护女，因厨房事务卷入园中纠纷",
+    "keyEvents": [
+      "掌管大观园厨房",
+      "因玫瑰露、茯苓霜风波受牵连"
+    ],
+    "quotes": [],
+    "description": "柳嫂子是大观园厨房管事、五儿之母。她因厨房分配与玫瑰露、茯苓霜等事卷入大观园纠纷，是园中仆妇生活的重要视角。",
+    "chapters": [
+      {
+        "chapter": 60,
+        "title": "茉莉粉替去蔷薇硝 玫瑰露引来茯苓霜",
+        "summary": "柳嫂子掌厨，玫瑰露、茯苓霜等物在园中引发风波。",
+        "version": "original"
+      },
+      {
+        "chapter": 61,
+        "title": "投鼠忌器宝玉瞒赃 判冤决狱平儿行权",
+        "summary": "柳嫂子与五儿被卷入茯苓霜冤案，平儿行权处置。",
+        "version": "original"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [
+      "wu_er"
+    ],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "前八十回仍在园中当差，后事未详。",
+    "quoteSources": [],
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original",
+      "original"
+    ]
+  },
+  {
+    "id": "bao_er",
+    "name": "鲍二",
+    "pinyin": "Bào Èr",
+    "alias": [],
+    "gender": "男",
+    "family": "其他",
+    "group": "贾府-仆人管家",
+    "identity": "贾琏身边仆人，鲍二家的之夫",
+    "importance": 1,
+    "personality": "贾府仆人，因妻子与贾琏私通而被卷入风波",
+    "keyEvents": [
+      "其妻与贾琏私通",
+      "凤姐生日风波中被牵连"
+    ],
+    "quotes": [],
+    "description": "鲍二是贾琏身边仆人、鲍二家的之夫。其妻与贾琏私通，凤姐生日撞破后酿成风波，鲍二也因此被牵连。",
+    "chapters": [
+      {
+        "chapter": 21,
+        "title": "贤袭人娇嗔箴宝玉 俏平儿软语救贾琏",
+        "summary": "鲍二家的与贾琏私通，平儿软语周旋。",
+        "version": "original"
+      },
+      {
+        "chapter": 44,
+        "title": "变生不测凤姐泼醋 喜出望外平儿理妆",
+        "summary": "凤姐生日撞破贾琏与鲍二家的私情，平儿理妆收场。",
+        "version": "original"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [
+      "bao_er_jias"
+    ],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "前八十回风波后仍在贾府当差，后事未详。",
+    "quoteSources": [],
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original",
+      "original"
+    ]
+  },
+  {
+    "id": "duo_hunchong",
+    "name": "多浑虫",
+    "pinyin": "Duō Húnchóng",
+    "alias": [],
+    "gender": "男",
+    "family": "其他",
+    "group": "贾府-仆人管家",
+    "identity": "多姑娘之夫，贾府仆人",
+    "importance": 1,
+    "personality": "懦弱糊涂，妻子多姑娘与贾琏有染",
+    "keyEvents": [
+      "其妻多姑娘与贾琏有染"
+    ],
+    "quotes": [],
+    "description": "多浑虫是多姑娘之夫、贾府仆人。其妻多姑娘与贾琏有染，成为贾琏荒唐生活的一条侧写。",
+    "chapters": [
+      {
+        "chapter": 21,
+        "title": "贤袭人娇嗔箴宝玉 俏平儿软语救贾琏",
+        "summary": "多姑娘与贾琏有染，多浑虫被蒙在鼓里。",
+        "version": "original"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [
+      "duo_guniang"
+    ],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "前八十回后事未详。",
+    "quoteSources": [],
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original"
+    ]
+  },
+  {
+    "id": "feng_shi",
+    "name": "封氏",
+    "pinyin": "Fēng Shì",
+    "alias": [
+      "封氏娘子"
+    ],
+    "gender": "女",
+    "family": "其他",
+    "group": "其他重要人物",
+    "identity": "甄士隐之妻，香菱（英莲）之母",
+    "importance": 2,
+    "personality": "温顺持家，遭逢家变",
+    "keyEvents": [
+      "元宵节丢失女儿英莲",
+      "甄家败落后随夫投靠岳丈"
+    ],
+    "quotes": [],
+    "description": "封氏是甄士隐之妻、英莲（香菱）之母。元宵节英莲被拐、甄家遭火灾后，她随夫投靠岳丈，是甄家由盛转衰的见证者。",
+    "chapters": [
+      {
+        "chapter": 1,
+        "title": "甄士隐梦幻识通灵 贾雨村风尘怀闺秀",
+        "summary": "元宵节英莲被拐，甄家随后遭火灾，封氏随夫投亲。",
+        "version": "original"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [
+      "xiang_ling"
+    ],
+    "spouseIds": [
+      "zhen_shiyin"
+    ],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "甄家败落后随夫投亲，后事未详。",
+    "quoteSources": [],
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original",
+      "original"
+    ]
+  },
+  {
+    "id": "huo_qi",
+    "name": "霍启",
+    "pinyin": "Huò Qǐ",
+    "alias": [],
+    "gender": "男",
+    "family": "其他",
+    "group": "其他人物",
+    "identity": "甄家仆人，元宵节丢失英莲者",
+    "importance": 1,
+    "personality": "甄家仆人，因疏忽酿成大错",
+    "keyEvents": [
+      "元宵节带英莲看灯",
+      "因小解离开导致英莲被拐"
+    ],
+    "quotes": [],
+    "description": "霍启是甄家仆人。元宵节他带英莲看灯，因小解离开片刻，英莲被人拐走，成为甄家败落的起点之一。",
+    "chapters": [
+      {
+        "chapter": 1,
+        "title": "甄士隐梦幻识通灵 贾雨村风尘怀闺秀",
+        "summary": "霍启带英莲看灯，因小解离开导致英莲被拐。",
+        "version": "original"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [],
+    "generation": 0,
+    "isMainline": false,
+    "outcome": "丢失英莲后逃离甄家，后事未详。",
+    "quoteSources": [],
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original",
+      "original"
+    ]
+  },
+  {
+    "id": "jia_huang",
+    "name": "贾璜",
+    "pinyin": "Jiǎ Huáng",
+    "alias": [],
+    "gender": "男",
+    "family": "贾家",
+    "group": "贾家宗族",
+    "identity": "贾家宗族子弟，璜大奶奶之夫",
+    "importance": 1,
+    "personality": "贾家旁支，家境平常",
+    "keyEvents": [
+      "其妻璜大奶奶为金荣学堂风波出面"
+    ],
+    "quotes": [],
+    "description": "贾璜是贾家宗族旁支、璜大奶奶之夫。其妻为金荣受辱一事到宁国府理论，牵出学堂风波后的家族人情。",
+    "chapters": [
+      {
+        "chapter": 10,
+        "title": "金寡妇贪利权受辱 张太医论病细穷源",
+        "summary": "璜大奶奶为金荣受辱一事到宁国府理论。",
+        "version": "original"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [
+      "huang_da_nainai"
+    ],
+    "generation": 3,
+    "isMainline": false,
+    "outcome": "前八十回后事未详。",
+    "quoteSources": [],
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original"
+    ]
+  },
+  {
+    "id": "huang_da_nainai",
+    "name": "璜大奶奶",
+    "pinyin": "Huáng Dà Nǎinai",
+    "alias": [],
+    "gender": "女",
+    "family": "贾家",
+    "group": "贾家宗族",
+    "identity": "贾璜之妻，金荣家长辈",
+    "importance": 1,
+    "personality": "护短要强，善于奔走人情",
+    "keyEvents": [
+      "为金荣受辱一事到宁国府理论"
+    ],
+    "quotes": [],
+    "description": "璜大奶奶是贾璜之妻、金荣家长辈。金荣在学堂受辱后，她到宁国府找尤氏、秦可卿理论，显出贾家旁支依附与护短的一面。",
+    "chapters": [
+      {
+        "chapter": 10,
+        "title": "金寡妇贪利权受辱 张太医论病细穷源",
+        "summary": "璜大奶奶为金荣受辱一事到宁国府理论。",
+        "version": "original"
+      }
+    ],
+    "parentIds": [],
+    "childrenIds": [],
+    "spouseIds": [
+      "jia_huang"
+    ],
+    "generation": 3,
+    "isMainline": false,
+    "outcome": "前八十回后事未详。",
     "quoteSources": [],
     "quotesPendingVerified": [],
     "keyEventVersions": [
