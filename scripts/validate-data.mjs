@@ -32,6 +32,9 @@ function validateSourceRef(ref, context, catalog, baseEditions, maxChapter) {
     fail(`${context} 引用了不存在的 sourceId “${ref.sourceId || ''}”`);
     return;
   }
+  if ((source.role || 'base') !== 'base') {
+    fail(`${context} 引用了非底本来源“${source.id}”（role=${source.role || '未声明'}）`);
+  }
   if (!baseEditions.has(ref.edition)) {
     fail(`${context} 的版本“${ref.edition || ''}”不在甲戌本／庚辰本底本范围内`);
   }
@@ -47,6 +50,45 @@ function validateSourceRef(ref, context, catalog, baseEditions, maxChapter) {
   // 来源目录可以声明自己实际收录了哪些回；引用未收录的回目等于凭空造来源。
   if (Array.isArray(source.coveredChapters) && !source.coveredChapters.includes(ref.chapter)) {
     fail(`${context} 引用了来源“${source.id}”未收录的第 ${ref.chapter} 回`);
+  }
+}
+
+/**
+ * 与展示层共用同一条“可称为经典语录”的判定：
+ * 必须是底本来源、版本一致、回目在来源覆盖范围内，且有定位。
+ */
+function isValidBaseRef(ref, catalog, baseEditions, maxChapter) {
+  if (!ref || typeof ref !== 'object') return false;
+  const source = catalog.get(ref.sourceId);
+  if (!source || (source.role || 'base') !== 'base') return false;
+  if (!baseEditions.has(ref.edition) || ref.edition !== source.edition) return false;
+  if (!Number.isInteger(ref.chapter) || ref.chapter < 1 || ref.chapter > maxChapter) return false;
+  if (!String(ref.locator || '').trim()) return false;
+  if (Array.isArray(source.coveredChapters) && !source.coveredChapters.includes(ref.chapter)) return false;
+  return true;
+}
+
+function validateComparisonRef(ref, context, catalog) {
+  if (!ref || typeof ref !== 'object') {
+    fail(`${context} 的来源不是对象`);
+    return;
+  }
+  const source = catalog.get(ref.sourceId);
+  if (!source) {
+    fail(`${context} 引用了不存在的对照来源 sourceId “${ref.sourceId || ''}”`);
+    return;
+  }
+  if ((source.role || 'base') !== 'comparison') {
+    fail(`${context} 引用的来源“${source.id}”不是 comparison 角色`);
+  }
+  if (ref.edition !== source.edition) {
+    fail(`${context} 的版本“${ref.edition || ''}”与对照目录“${source.id}”不一致`);
+  }
+  if (!Number.isInteger(ref.chapter) || ref.chapter < 1 || ref.chapter > 120) {
+    fail(`${context} 的回目必须为第 1–120 回之间的整数`);
+  }
+  if (!String(ref.locator || '').trim()) {
+    fail(`${context} 缺少对照定位 locator`);
   }
 }
 
@@ -97,8 +139,18 @@ if (characters && relationships && knowledge && provenance) {
   const catalog = new Map(catalogRecords.map((source) => [source.id, source]));
   findDuplicateIds(catalogRecords).forEach((id) => fail(`来源目录 ID 重复或为空：“${id || '(empty)'}”`));
   catalogRecords.forEach((source) => {
-    if (!baseEditions.has(source.edition)) {
-      fail(`来源目录“${source.id || ''}”不属于甲戌本／庚辰本底本`);
+    const role = source.role || 'base';
+    if (!['base', 'comparison', 'pending'].includes(role)) {
+      fail(`来源目录“${source.id || ''}”的 role“${role}”无效`);
+      return;
+    }
+    if (role === 'base') {
+      if (!baseEditions.has(source.edition)) {
+        fail(`底本来源目录“${source.id || ''}”不属于甲戌本／庚辰本底本`);
+      }
+      if (!Array.isArray(source.coveredChapters) || source.coveredChapters.length === 0) {
+        fail(`底本来源目录“${source.id || ''}”必须声明 coveredChapters`);
+      }
     }
   });
 
@@ -127,12 +179,37 @@ if (characters && relationships && knowledge && provenance) {
     (character.outcomeSources || []).forEach((ref, index) => {
       validateSourceRef(ref, `人物“${character.id}”的 outcomeSources[${index}]`, catalog, baseEditions, maxChapter);
     });
+    (character.quoteComparisons || []).forEach((item, index) => {
+      if (!String(item?.text || '').trim()) {
+        fail(`人物“${character.id}”的 quoteComparisons[${index}] 缺少 text`);
+      }
+      validateComparisonRef(item?.source, `人物“${character.id}”的 quoteComparisons[${index}].source`, catalog);
+    });
     if (character.quoteSources && character.quoteSources.length !== (character.quotes || []).length) {
       fail(`人物“${character.id}”的 quoteSources 必须与 quotes 一一对应`);
     }
     if (character.outcomeSources && !character.outcome) {
       fail(`人物“${character.id}”有 outcomeSources 但没有 outcome`);
     }
+    if (!Array.isArray(character.keyEventVersions)
+        || character.keyEventVersions.length !== (character.keyEvents || []).length) {
+      fail(`人物“${character.id}”的 keyEventVersions 必须与 keyEvents 一一对应`);
+    } else {
+      character.keyEventVersions.forEach((version, index) => {
+        if (!['original', 'continuation'].includes(version)) {
+          fail(`人物“${character.id}”的 keyEventVersions[${index}] 必须是 original 或 continuation`);
+        }
+      });
+    }
+    (character.chapters || []).forEach((chapter, index) => {
+      if (!['original', 'continuation'].includes(chapter.version)) {
+        fail(`人物“${character.id}”的 chapters[${index}] 缺少合法 version`);
+      } else if (Number(chapter.chapter) > 80 && chapter.version !== 'continuation') {
+        fail(`人物“${character.id}”的 chapters[${index}] 第 ${chapter.chapter} 回应标记 continuation`);
+      } else if (Number(chapter.chapter) <= 80 && chapter.version !== 'original') {
+        fail(`人物“${character.id}”的 chapters[${index}] 第 ${chapter.chapter} 回应标记 original`);
+      }
+    });
   });
 
   // 血缘/婚姻边的方向约定：长辈→晚辈、配偶之间按「男→女」、同辈按出生先后。
@@ -252,15 +329,44 @@ if (characters && relationships && knowledge && provenance) {
   const auditQueue = provenance.auditQueue || [];
   const quoteAudit = auditQueue.find((entry) => entry.id === 'character-quotes-without-source');
   const continuationAudit = auditQueue.find((entry) => entry.id === 'later-text-or-continuation-content');
-  // 待校引语现在存放在 quotesPendingVerified；quotes 只保留有 quoteSources 的已核条目。
-  const unverifiedQuoteRecords = characters.filter((character) =>
-    (character.quotesPendingVerified || []).length || ((character.quotes || []).length && !hasCompleteQuoteSources(character)));
+  // 待核引语分三处：quotesPendingVerified、quoteComparisons，以及历史数据中
+  // 仍混在 quotes 里的不合格 quoteSources。三者合起来才是真正的待核范围。
+  const unverifiedQuoteRecords = characters.filter((character) => {
+    const pending = (character.quotesPendingVerified || []).length;
+    const comparisons = (character.quoteComparisons || []).length;
+    const invalidQuotes = (character.quoteSources || []).some((ref) =>
+      !isValidBaseRef(ref, catalog, baseEditions, maxChapter));
+    return pending > 0 || comparisons > 0 || invalidQuotes || ((character.quotes || []).length && !hasCompleteQuoteSources(character));
+  });
+  const verifiedQuoteCharacters = characters.filter((character) =>
+    (character.quoteSources || []).length > 0
+      && character.quoteSources.every((ref) => isValidBaseRef(ref, catalog, baseEditions, maxChapter)));
+  const verifiedQuoteLines = verifiedQuoteCharacters.reduce(
+    (sum, character) => sum + character.quoteSources.length, 0);
+  const pendingQuoteLines = characters.reduce(
+    (sum, character) => sum + (character.quotesPendingVerified || []).length, 0);
+  const comparisonQuoteLines = characters.reduce(
+    (sum, character) => sum + (character.quoteComparisons || []).length, 0);
   const continuationCharacters = characters.filter(containsContinuationContent);
 
   if (!quoteAudit) fail('审计队列缺少 character-quotes-without-source 项');
   if (!continuationAudit) fail('审计队列缺少 later-text-or-continuation-content 项');
-  if (quoteAudit && quoteAudit.recordCount !== unverifiedQuoteRecords.length) {
-    warn(`待核引语记录数为 ${unverifiedQuoteRecords.length}，与审计队列的 ${quoteAudit.recordCount} 不一致`);
+  if (quoteAudit) {
+    if (quoteAudit.recordCount !== unverifiedQuoteRecords.length) {
+      fail(`待核引语记录数为 ${unverifiedQuoteRecords.length}，与审计队列的 ${quoteAudit.recordCount} 不一致`);
+    }
+    if (quoteAudit.verifiedCount !== verifiedQuoteCharacters.length) {
+      fail(`已核引语人物数为 ${verifiedQuoteCharacters.length}，与审计队列的 ${quoteAudit.verifiedCount} 不一致`);
+    }
+    if (quoteAudit.verifiedQuoteLines !== verifiedQuoteLines) {
+      fail(`已核引语条数为 ${verifiedQuoteLines}，与审计队列的 ${quoteAudit.verifiedQuoteLines} 不一致`);
+    }
+    if (quoteAudit.pendingQuoteLines !== pendingQuoteLines) {
+      fail(`待核引语条数为 ${pendingQuoteLines}，与审计队列的 ${quoteAudit.pendingQuoteLines} 不一致`);
+    }
+    if (quoteAudit.comparisonQuoteLines !== undefined && quoteAudit.comparisonQuoteLines !== comparisonQuoteLines) {
+      fail(`版本异文条数为 ${comparisonQuoteLines}，与审计队列的 ${quoteAudit.comparisonQuoteLines} 不一致`);
+    }
   }
   if (continuationAudit) {
     const queuedIds = new Set(continuationAudit.entityIds || []);

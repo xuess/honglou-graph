@@ -58,6 +58,7 @@ honglou-graph/
 ├── test-hlm.mjs          # 回归/数据完整性测试
 ├── test-scenarios.mjs    # 跨视图场景链路测试
 ├── test-ux.mjs           # 交互、无障碍与资源加载测试
+├── test-data-trust.mjs   # 引语/结局/续书边界与回目人物可信度测试
 └── audio/                # 朗读音频
 ```
 
@@ -89,10 +90,12 @@ npm run check:assets    # 校验资源版本号是否与内容一致
 npm run check:chapters  # 校验人物回目与 knowledge.json 的章回标题一致
 npm run check:audio     # 校验预生成语音是否存在、文案是否已过期
 npm run subset:fonts    # 数据或文案新增字符后重建 WOFF2 子集（需 fonttools + brotli）
-npm test                # 启动/复用本地服务器并跑三套浏览器回归
-npm run test:regression # 只跑数据与核心回归
+npm test                # 启动/复用本地服务器并跑全部数据与浏览器回归
+npm run test:data       # 只跑来源目录与数据结构校验
+npm run test:regression # 只跑核心回归
 npm run test:scenarios  # 只跑跨视图场景链路
 npm run test:ux         # 只跑交互、无障碍与资源加载
+npm run test:trust      # 只跑数据可信度（引语/结局/续书/回目人物）
 ```
 
 浏览器测试依赖 Playwright（`npm install` 后自动可用）。若当前检出版本没有 `node_modules`，可复用已有环境：

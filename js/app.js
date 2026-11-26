@@ -9,6 +9,9 @@ class HongLouMengApp {
     this.characters = [];
     this.relationships = [];
     this.knowledge = [];
+    this.provenance = null;
+    this._sourceCatalog = new Map();
+    this._baseEditions = new Set(['甲戌本', '庚辰本']);
     this.characterMap = new Map();
     this.currentCharacterId = null;
     this.currentTopic = null;
@@ -933,10 +936,11 @@ class HongLouMengApp {
     // 导致数据改了但界面还是旧的（本地调试时尤其难排查）。
     const version = document.querySelector('meta[name="hlm-asset-version"]')?.content || '';
     const dataUrl = (file) => (version ? `data/${file}?v=${version}` : `data/${file}`);
-    const [charRes, relRes, knowledgeRes] = await Promise.all([
+    const [charRes, relRes, knowledgeRes, provenanceRes] = await Promise.all([
       fetch(dataUrl('characters.json')),
       fetch(dataUrl('relationships.json')),
-      fetch(dataUrl('knowledge.json'))
+      fetch(dataUrl('knowledge.json')),
+      fetch(dataUrl('provenance.json'))
     ]);
 
     if (!charRes.ok || !relRes.ok) throw new Error('无法加载数据文件');
@@ -944,7 +948,10 @@ class HongLouMengApp {
     this.characters = await charRes.json();
     this.relationships = await relRes.json();
     this.knowledge = knowledgeRes.ok ? await knowledgeRes.json() : [];
-    this._augmentCharacterChaptersFromKnowledge();
+    this.provenance = provenanceRes.ok ? await provenanceRes.json() : null;
+    this._sourceCatalog = new Map((this.provenance?.sourceCatalog || []).map((source) => [source.id, source]));
+    this._baseEditions = new Set(this.provenance?.policy?.baseEditions || ['甲戌本', '庚辰本']);
+    this._normalizeCharacterChapters();
     this._buildTimelineChapterIndex();
     this.characters.forEach((character) => {
       this.characterMap.set(character.id, character);
@@ -960,63 +967,52 @@ class HongLouMengApp {
     });
   }
 
-  _augmentCharacterChaptersFromKnowledge() {
-    if (!Array.isArray(this.characters) || !Array.isArray(this.knowledge)) return;
+  /**
+   * 与 scripts/validate-data.mjs 共用同一条展示门槛：
+   * 只有底本来源、版本一致、回目在来源覆盖范围内且有定位，才算可展示事实。
+   */
+  _isVerifiedSource(source, { maxChapter = 80 } = {}) {
+    if (!source || typeof source !== 'object') return false;
+    const entry = this._sourceCatalog?.get(source.sourceId);
+    if (!entry || (entry.role || 'base') !== 'base') return false;
+    if (!this._baseEditions?.has(source.edition) || source.edition !== entry.edition) return false;
+    const chapter = Number(source.chapter);
+    if (!Number.isInteger(chapter) || chapter < 1 || chapter > maxChapter) return false;
+    if (Array.isArray(entry.coveredChapters) && !entry.coveredChapters.includes(chapter)) return false;
+    return Boolean(String(source.locator || '').trim());
+  }
 
-    const characterById = new Map(this.characters.map((c) => [c.id, c]));
-    const chapterMapByCharacter = new Map();
+  _hasVerifiedOutcomeSource(character) {
+    const sources = character?.outcomeSources || [];
+    return sources.length > 0 && sources.every((source) => this._isVerifiedSource(source));
+  }
 
-    const normalizeChapter = (value) => {
-      const chapter = Number.parseInt(value, 10);
-      if (!Number.isFinite(chapter) || chapter < 1 || chapter > 120) return null;
-      return chapter;
-    };
+  _getOutcomeDisplay(character) {
+    if (!character?.outcome) return null;
+    if (this._hasVerifiedOutcomeSource(character)) return { text: character.outcome, label: '' };
+    if (character.outcomeVersion?.continuation) return { text: character.outcome, label: '前八十回' };
+    if (/续书|后四十回|高鹗/.test(character.sourceNote || '')) return { text: character.outcome, label: '续书' };
+    if ((character.chapters || []).some((chapter) => chapter.version === 'continuation')
+        || (character.keyEventVersions || []).includes('continuation')) {
+      return { text: character.outcome, label: '续书' };
+    }
+    return { text: character.outcome, label: '待校' };
+  }
 
-    const toSummary = (item) => {
-      const raw = item?.analysis || item?.content || item?.title || '';
-      return String(raw).replace(/\s+/g, ' ').trim().slice(0, 90);
-    };
-
-    // Seed with existing chapter data first.
-    this.characters.forEach((character) => {
-      const chapterMap = new Map();
-      (character.chapters || []).forEach((entry) => {
-        const chapter = normalizeChapter(entry?.chapter);
-        if (!chapter) return;
-        chapterMap.set(chapter, {
-          chapter,
-          title: entry?.title || `第${chapter}回`,
-          summary: entry?.summary || ''
-        });
-      });
-      chapterMapByCharacter.set(character.id, chapterMap);
-    });
-
-    // Backfill from knowledge entries with explicit chapter + relatedCharacters.
-    this.knowledge.forEach((item) => {
-      const chapter = normalizeChapter(item?.chapter);
-      const related = Array.isArray(item?.relatedCharacters) ? item.relatedCharacters : [];
-      if (!chapter || !related.length) return;
-
-      related.forEach((charId) => {
-        if (!characterById.has(charId)) return;
-        const chapterMap = chapterMapByCharacter.get(charId) || new Map();
-        if (!chapterMap.has(chapter)) {
-          chapterMap.set(chapter, {
-            chapter,
-            title: item?.title || `第${chapter}回相关知识`,
-            summary: toSummary(item)
-          });
-        }
-        chapterMapByCharacter.set(charId, chapterMap);
-      });
-    });
-
-    // Write back sorted chapters.
-    this.characters.forEach((character) => {
-      const chapterMap = chapterMapByCharacter.get(character.id) || new Map();
-      character.chapters = [...chapterMap.values()].sort((a, b) => a.chapter - b.chapter);
-    });
+  /**
+   * 只为人物章节补齐版本字段，不再用知识条目反推出场回目。
+   * knowledge.relatedCharacters 表示“相关知识关联”，不是完整出场记录；
+   * 自动回填会把主题、人物专题和回目条目误当成出场，导致黛玉卡出现几十个
+   * “相关章节”，其中大量并非本回出场。出场数据应另建 appearances 索引。
+   */
+  _normalizeCharacterChapters() {
+    for (const character of this.characters) {
+      for (const entry of character.chapters || []) {
+        const chapter = Number.parseInt(entry?.chapter, 10);
+        if (!Number.isFinite(chapter) || chapter < 1 || chapter > 120) continue;
+        if (!entry.version) entry.version = chapter > 80 ? 'continuation' : 'original';
+      }
+    }
   }
 
   _initGraph() {
@@ -1047,6 +1043,7 @@ class HongLouMengApp {
       this.listView.setData(this.characters, this.relationships);
       this.listView.onCharacterClick = (character) => this._openCharacterPage(character.id);
       this.listView.onKnowledgeClick = (character) => this._openCharacterKnowledge(character);
+      this.listView.isVerifiedSource = (source) => this._isVerifiedSource(source);
       this._subscribeViewToFacetStore('list');
     }
 
@@ -3578,40 +3575,59 @@ _createFontAndThemeControls() {
 
   /**
    * 引语分档展示，对应 provenance.policy.displayRules：
-   * - 有 quoteSources 的才标“经典语录”，并附回目与版本；
-   * - 只有待校摘录的标“待校摘录”，明确告知尚未核对；
-   * - 两者都没有则不显示。
+   * - 通过底本来源校验的才标“经典语录”；
+   * - 程乙本等版本差异单独标“版本异文”，不混入经典语录；
+   * - 其余待核内容标“待校摘录”，明确说明不作为定本引用。
    */
   _renderQuotesSection(character) {
     const sources = character.quoteSources || [];
-    // quotes 与 quoteSources 按下标一一对应；没有对应来源的那条属待校，不能算经典语录。
     const allQuotes = character.quotes || [];
     const verified = [];
-    const unverified = [];
+    const pending = [...(character.quotesPendingVerified || [])];
     allQuotes.forEach((quote, index) => {
-      if (sources[index]) verified.push({ quote, source: sources[index] });
-      else unverified.push(quote);
+      const source = sources[index];
+      if (this._isVerifiedSource(source)) verified.push({ quote, source });
+      else {
+        pending.push({
+          text: quote,
+          sourceAudit: { status: 'source-mismatch', note: '来源版本或回目待复核，暂不作为经典语录' }
+        });
+      }
     });
-    unverified.push(...(character.quotesPendingVerified || []));
 
-    if (!verified.length && !unverified.length) return '';
+    const comparisons = character.quoteComparisons || [];
+    if (!verified.length && !comparisons.length && !pending.length) return '';
 
     // locator 本身已带「第N回」前缀，引用里只在缺失时补，避免「第27回 · 第27回…」。
-    const verifiedHtml = verified.slice(0, 2).map(({ quote, source }) => {
-      const rawLocator = String(source.locator || '').trim();
+    const formatSource = (source) => {
+      const rawLocator = String(source?.locator || '').trim();
       const locator = rawLocator.replace(/^第[0-9一二三四五六七八九十百]+回\s*/, '');
-      const parts = [this._escapeHtml(source.edition), `第${source.chapter}回`];
+      const parts = [this._escapeHtml(source?.edition || '来源待补'), `第${Number(source?.chapter) || '?'}回`];
       if (locator) parts.push(this._escapeHtml(locator));
-      return `<div class="card-quote">${this._escapeHtml(quote)}<span class="card-quote-source">${parts.join(' · ')}</span></div>`;
-    }).join('');
+      return parts.join(' · ');
+    };
 
-    const pendingHtml = unverified.length
-      ? `<div class="card-section-title card-section-title-sub">待校摘录</div>${unverified.slice(0, 2).map((item) => this._renderPendingQuote(item)).join('')}<div class="card-note-hint">已对照《红楼梦》前八十回全本逐字核对；未标「经典语录」者不作为定本引用。</div>`
-      : '';
+    const verifiedHtml = verified.slice(0, 2).map(({ quote, source }) =>
+      `<div class="card-quote">${this._escapeHtml(quote)}<span class="card-quote-source">${formatSource(source)}</span></div>`
+    ).join('');
 
-    return verified.length
-      ? `<div class="card-section"><div class="card-section-title">经典语录</div>${verifiedHtml}${pendingHtml}</div>`
-      : `<div class="card-section">${pendingHtml}</div>`;
+    const comparisonHtml = comparisons.slice(0, 2).map((item) =>
+      `<div class="card-quote card-quote-comparison">${this._escapeHtml(item.text || '')}<span class="card-quote-source">${formatSource(item.source)}${item.note ? ` · ${this._escapeHtml(item.note)}` : ''}</span></div>`
+    ).join('');
+
+    const pendingHtml = pending.slice(0, 2).map((item) => this._renderPendingQuote(item)).join('');
+
+    const sections = [];
+    if (verified.length) {
+      sections.push(`<div class="card-section"><div class="card-section-title">经典语录</div>${verifiedHtml}</div>`);
+    }
+    if (comparisons.length) {
+      sections.push(`<div class="card-section"><div class="card-section-title">版本异文<span class="card-section-count">程乙本对照</span></div>${comparisonHtml}<div class="card-note-hint">版本异文仅供对照，不作为底本定论；待甲戌／庚辰影印本校勘后再升级。</div></div>`);
+    }
+    if (pending.length) {
+      sections.push(`<div class="card-section"><div class="card-section-title">待校摘录</div>${pendingHtml}<div class="card-note-hint">以下引语尚未通过底本来源校验，不作为定本引用。</div></div>`);
+    }
+    return sections.join('');
   }
 
   /**
@@ -3631,6 +3647,9 @@ _createFontAndThemeControls() {
       if (status === 'variant-close-paraphrase' || status === 'variant-or-fragment') note = '与前80回原文重合，但非逐字原文（改写）';
       else if (status === 'not-in-source') note = '前80回全本逐字核对未见，非原著引语';
       else if (status === 'likely-verbatim') note = '疑似版本异文，待影印本校勘';
+      else if (status === 'needs-gengchen') note = '庚辰本来源与回目定位待补，暂不作为经典语录';
+      else if (status === 'source-missing') note = '缺少底本来源，暂不作为经典语录';
+      else if (status === 'source-mismatch') note = '来源版本或回目不一致，暂不作为经典语录';
     }
     return `<div class="card-quote card-quote-pending">${this._escapeHtml(text)}<span class="card-quote-source">${this._escapeHtml(note)}</span></div>`;
   }
@@ -3760,12 +3779,13 @@ _createFontAndThemeControls() {
       const chapterEntry = chapterEntryMap.get(ch);
       const chapterTitle = chapterEntry?.title || `第${ch}回`;
       const chapterSummary = chapterEntry?.summary || '';
+      const isContinuation = active && chapterEntry?.version === 'continuation';
       const tabIndex = ch === firstActiveChapter ? 0 : -1;
-      return `<button type="button" class="card-fate-cell ${active ? 'active' : 'inactive'}" data-chapter="${ch}" data-title="${this._escapeHtmlAttr(chapterTitle)}" data-summary="${this._escapeHtmlAttr(chapterSummary)}" style="${active ? `background:${familyColor}` : ''}" tabindex="${tabIndex}" aria-label="${active ? `第${ch}回：${this._escapeHtmlAttr(chapterTitle)}` : `第${ch}回暂无记录`}"${active ? '' : ' aria-disabled="true"'}></button>`;
+      return `<button type="button" class="card-fate-cell ${active ? 'active' : 'inactive'}${isContinuation ? ' is-continuation' : ''}" data-chapter="${ch}" data-title="${this._escapeHtmlAttr(chapterTitle)}" data-summary="${this._escapeHtmlAttr(chapterSummary)}" style="${active ? `background:${familyColor}` : ''}" tabindex="${tabIndex}" aria-label="${active ? `第${ch}回${isContinuation ? '（续书）' : ''}：${this._escapeHtmlAttr(chapterTitle)}` : `第${ch}回暂无记录`}"${active ? '' : ' aria-disabled="true"'}></button>`;
     }).join('');
     const fateSectionHtml = character.chapters?.length ? `
       <div class="card-section">
-        <div class="card-section-title">出场时间线（第1-120回）</div>
+        <div class="card-section-title">关键回目时间线（第1-120回）</div>
         <div class="card-fate-timeline-wrap">
           <div class="card-fate-timeline">${fateTimelineCells}</div>
           <div class="card-fate-marks"><span>第1回</span><span>第60回</span><span>第120回</span></div>
@@ -3807,10 +3827,10 @@ _createFontAndThemeControls() {
           ${character.sourceNote ? `<div class="card-section"><div class="card-section-title">版本说明</div><div class="card-source-note">${character.sourceNote}</div></div>` : ''}
           ${character.outcomeVersion ? `<div class="card-section"><div class="card-section-title">结局：两个版本</div><div class="card-source-note"><div class="card-version-row"><strong>前八十回</strong><span>${this._escapeHtml(character.outcomeVersion.original || '未注明')}</span></div><div class="card-version-row"><strong>后四十回（续书）</strong><span>${this._escapeHtml(character.outcomeVersion.continuation || '未注明')}</span></div></div></div>` : ''}
           ${character.personality ? `<div class="card-section"><div class="card-section-title">性格特征</div><div class="card-personality">${character.personality}</div></div>` : ''}
-          ${character.keyEvents?.length ? `<div class="card-section"><div class="card-section-title">关键事迹</div><ul class="card-events">${character.keyEvents.map((event) => `<li>${event}</li>`).join('')}</ul></div>` : ''}
-          ${character.chapters?.length ? `<div class="card-section"><div class="card-section-title">相关章节<span class="card-section-count">${character.chapters.length} 回</span></div><div class="card-chapters">${character.chapters.map((chapter) => `
-            <button type="button" class="card-chapter-item" data-chapter-jump="${Number(chapter.chapter)}" title="查看第${Number(chapter.chapter)}回" aria-label="查看第${Number(chapter.chapter)}回：${this._escapeHtmlAttr(chapter.title || '')}">
-              <div class="card-chapter-header"><span class="card-chapter-number">第${chapter.chapter}回</span><span class="card-chapter-title">${chapter.title}</span></div>
+          ${character.keyEvents?.length ? `<div class="card-section"><div class="card-section-title">关键事迹</div><ul class="card-events">${character.keyEvents.map((event, index) => `<li>${this._escapeHtml(event)}${character.keyEventVersions?.[index] === 'continuation' ? '<span class="key-event-version">续书</span>' : ''}</li>`).join('')}</ul></div>` : ''}
+          ${character.chapters?.length ? `<div class="card-section"><div class="card-section-title">相关章节<span class="card-section-count">${character.chapters.length} 回${character.chapters.some((chapter) => chapter.version === 'continuation') ? ` · 续书 ${character.chapters.filter((chapter) => chapter.version === 'continuation').length} 回` : ''}</span></div><div class="card-chapters">${character.chapters.map((chapter) => `
+            <button type="button" class="card-chapter-item${chapter.version === 'continuation' ? ' is-continuation' : ''}" data-chapter-jump="${Number(chapter.chapter)}" title="查看第${Number(chapter.chapter)}回${chapter.version === 'continuation' ? '（续书）' : ''}" aria-label="查看第${Number(chapter.chapter)}回${chapter.version === 'continuation' ? '（续书）' : ''}：${this._escapeHtmlAttr(chapter.title || '')}">
+              <div class="card-chapter-header"><span class="card-chapter-number">第${chapter.chapter}回</span><span class="card-chapter-title">${chapter.title}</span>${chapter.version === 'continuation' ? '<span class="card-chapter-version">续书</span>' : ''}</div>
               <div class="card-chapter-summary">${chapter.summary}</div>
             </button>`).join('')}</div></div>` : ''}
           ${this._renderQuotesSection(character)}
@@ -5043,12 +5063,13 @@ _createFontAndThemeControls() {
           </button>`).join('')
       : '<div class="exploration-empty">暂无关联知识条目。</div>';
 
+    const outcomeInfo = this._getOutcomeDisplay(character);
     const outcome = character.outcomeVersion
       ? `<div class="exploration-outcome">
           <div class="exploration-outcome-row"><strong>前八十回</strong><span>${this._escapeHtml(character.outcomeVersion.original || '未注明')}</span></div>
           <div class="exploration-outcome-row is-continuation"><strong>后四十回 · 续书</strong><span>${this._escapeHtml(character.outcomeVersion.continuation || '未注明')}</span></div>
         </div>`
-      : (character.outcome ? `<div class="exploration-outcome-single">${this._escapeHtml(character.outcome)}</div>` : '<div class="exploration-empty">结局仍待校。</div>');
+      : (outcomeInfo ? `<div class="exploration-outcome-single">${outcomeInfo.label ? `<span class="outcome-version-tag">${outcomeInfo.label}</span>` : ''}${this._escapeHtml(outcomeInfo.text)}</div>` : '<div class="exploration-empty">结局仍待校。</div>');
 
     return `
       <article class="exploration-person" aria-labelledby="exploration-title">
@@ -5075,7 +5096,7 @@ _createFontAndThemeControls() {
             <h3 class="exploration-subtitle">先认识她</h3>
             <p class="exploration-description">${this._escapeHtml(character.description || '暂无简介')}</p>
             ${character.personality ? `<div class="exploration-personality"><span>性格</span>${this._escapeHtml(character.personality)}</div>` : ''}
-            ${character.keyEvents?.length ? `<ol class="exploration-events">${character.keyEvents.slice(0, 3).map((event) => `<li>${this._escapeHtml(event)}</li>`).join('')}</ol>` : ''}
+            ${character.keyEvents?.length ? `<ol class="exploration-events">${character.keyEvents.slice(0, 3).map((event, index) => `<li>${this._escapeHtml(event)}${character.keyEventVersions?.[index] === 'continuation' ? '<span class="key-event-version">续书</span>' : ''}</li>`).join('')}</ol>` : ''}
 
             <h3 class="exploration-subtitle">看完这三条关系，就懂她的一半</h3>
             <div class="exploration-relation-list">${relationCards}</div>

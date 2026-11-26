@@ -897,18 +897,22 @@ class ChapterView {
 
     const characterEvidence = new Map();
     const parsed = this._parseChapterEntry(entry);
+    // 只有“本回场景/人物出场”这类知识能反推出场人物。
+    // 主题、人物专题、典故、器物、诗词、建筑等是跨回目关联，不能算作本回出场。
+    const inferenceKnowledge = relatedKnowledge.filter((item) =>
+      ['scene', 'entrance'].includes(item.type));
     const baseTexts = [
       entry.title || '',
       entry.content || '',
       ...(entry.tags || []),
-      ...relatedKnowledge.flatMap((item) => [item.title || '', ...(item.tags || []), ...(item.relatedEvents || [])])
+      ...inferenceKnowledge.flatMap((item) => [item.title || '', ...(item.tags || []), ...(item.relatedEvents || [])])
     ].join(' ');
 
     (entry.relatedCharacters || []).forEach((characterId) => {
       this._pushCharacterEvidence(characterEvidence, characterId, '回目直连', 3);
     });
 
-    relatedKnowledge.forEach((item) => {
+    inferenceKnowledge.forEach((item) => {
       (item.relatedCharacters || []).forEach((characterId) => {
         this._pushCharacterEvidence(characterEvidence, characterId, item.title || item.category || '同回知识', 2);
       });
@@ -918,7 +922,7 @@ class ChapterView {
 
     this.characters.forEach((character) => {
       const aliases = [character.name, ...(character.alias || [])].filter((term) => term && String(term).length >= 2);
-      const hitTerm = aliases.find((term) => baseTexts.includes(term));
+      const hitTerm = aliases.find((term) => this._textMentionsCharacter(baseTexts, term));
       if (hitTerm) this._pushCharacterEvidence(characterEvidence, character.id, `文本提及：${hitTerm}`, 1);
     });
 
@@ -942,6 +946,20 @@ class ChapterView {
       characters,
       characterCount: characters.length
     };
+  }
+
+  /**
+   * 中文没有天然词边界，直接用 includes 会把“通灵宝玉”误判成贾宝玉。
+   * 对这类高频复合词做一次出现次数排除；全名和独立别名仍照常匹配。
+   */
+  _textMentionsCharacter(text, term) {
+    if (!text.includes(term)) return false;
+    if (term === '宝玉') {
+      const allOccurrences = text.split('宝玉').length - 1;
+      const compoundOccurrences = text.split('通灵宝玉').length - 1;
+      if (allOccurrences <= compoundOccurrences) return false;
+    }
+    return true;
   }
 
   _pushCharacterEvidence(store, characterId, label, score = 1) {
@@ -1028,26 +1046,26 @@ class ChapterView {
       { pattern: /荣国府元宵开夜宴/, ids: ['jia_mu'] },
       { pattern: /承包制|大观园改革|开源节流/, ids: ['li_wan'] },
       { pattern: /薛家官司|人命案|放流刑/, ids: ['xue_yima'] },
-      { pattern: /妙玉抚琴|走火入魔|深秋感怀/, ids: ['lin_daiyu'] },
-      { pattern: /薛蝌岫烟婚事|失绵衣|贫女/, ids: ['xue_yima'] },
-      { pattern: /巧姐读列女传|慕贤良/, ids: ['wang_xifeng'] },
-      { pattern: /仆投贾家|甄府败落/, ids: ['jia_zheng', 'wang_furen'] },
+      { pattern: /妙玉抚琴|走火入魔|深秋感怀/, ids: ['miaoyu', 'lin_daiyu'] },
+      { pattern: /薛蝌岫烟婚事|失绵衣|贫女/, ids: ['xue_ke', 'xing_xiuyan'] },
+      { pattern: /巧姐读列女传|慕贤良/, ids: ['jia_qiaojie'] },
+      { pattern: /仆投贾家|甄府败落/, ids: ['jia_zheng', 'wang_furen', 'zhenjia_servant'] },
       { pattern: /海棠花开妖|花妖/, ids: ['wang_furen'] },
-      { pattern: /假玉混真|元妃薨逝/, ids: ['wang_furen'] },
+      { pattern: /假玉混真|元妃薨逝/, ids: ['jia_yuanchun', 'jia_baoyu'] },
       { pattern: /凤姐设调包计|机关泄露/, ids: ['jia_baoyu'] },
       { pattern: /邸报|官场风波/, ids: ['wang_furen', 'jia_mu'] },
       { pattern: /神签|不祥之兆/, ids: ['yuanyang'] },
       { pattern: /驱邪作法|病灾|符水驱妖/, ids: ['you_shi', 'jia_rong'] },
-      { pattern: /金桂之死|自焚身/, ids: ['xue_pan', 'bao_chan'] },
-      { pattern: /宁国府查封|锦衣卫/, ids: ['you_shi'] },
-      { pattern: /消祸|家族困境/, ids: ['jia_zheng'] },
+      { pattern: /金桂之死|自焚身/, ids: ['xia_jingui', 'xue_pan', 'bao_chan'] },
+      { pattern: /宁国府查封|锦衣卫/, ids: ['you_shi', 'jia_zhen'] },
+      { pattern: /消祸|家族困境/, ids: ['jia_mu', 'jia_zheng'] },
       { pattern: /潇湘馆鬼哭|死缠绵/, ids: ['lin_daiyu', 'jia_baoyu'] },
       { pattern: /候芳魂|错爱/, ids: ['xiren'] },
-      { pattern: /寿终|人心离散/, ids: ['jia_zheng'] },
-      { pattern: /家奴偷盗|欺天/, ids: ['jia_she'] },
+      { pattern: /寿终|人心离散/, ids: ['jia_mu'] },
+      { pattern: /家奴偷盗|欺天/, ids: ['jia_she', 'jia_lian'] },
       { pattern: /活冤孽|赴冥曹/, ids: ['wang_furen'] },
-      { pattern: /凤姐病死|历幻返金陵/, ids: ['jia_lian'] },
-      { pattern: /惜春出家|看破红尘/, ids: ['miaoyu'] },
+      { pattern: /凤姐病死|历幻返金陵/, ids: ['wang_xifeng', 'jia_lian'] },
+      { pattern: /惜春出家|看破红尘/, ids: ['jia_xichun'] },
       { pattern: /送灵|尽孝/, ids: ['jia_zheng', 'xiren'] },
       { pattern: /宝钗生日/, ids: ['xue_baochai'] },
       { pattern: /元妃省亲|元妃送谜/, ids: ['jia_yuanchun'] },

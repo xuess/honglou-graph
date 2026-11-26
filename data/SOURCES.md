@@ -15,7 +15,7 @@
 `data/provenance.json` 是机器可读的来源总表，包含：
 
 - `policy`：底本范围和前台展示规则；
-- `sourceCatalog`：可引用的版本载体；
+- `sourceCatalog`：可引用的版本载体，`role` 分为 `base`（甲戌/庚辰底本）、`comparison`（程乙本等版本对照）、`pending`（待补定位）；
 - `evidence`：已核实事实与其回目定位；
 - `auditQueue`：待核历史数据，不能视作已完成校勘。
 
@@ -33,11 +33,29 @@
     }
   ],
   "quoteSources": [],
-  "outcomeSources": []
+  "quoteComparisons": [],
+  "outcomeSources": [],
+  "outcomeSourceCandidates": [],
+  "keyEventVersions": []
 }
 ```
 
-`quoteSources` 与 `quotes` 按下标一一对应；`outcomeSources` 至少应有一条有效来源。来源只能引用 `sourceCatalog` 已登记的甲戌本或庚辰本，章节必须在第 1–80 回，且必须提供 `locator`。
+`quoteSources` 与 `quotes` 按下标一一对应，只能放通过底本规则校验的引语；`quoteComparisons` 放程乙本等版本对照，不进入“经典语录”。`outcomeSources` 至少应有一条有效来源；未通过校验的结局来源放 `outcomeSourceCandidates`，不能直接当事实展示。来源只能引用 `sourceCatalog` 中 `role: base` 的甲戌本或庚辰本，章节必须在第 1–80 回，且必须提供 `locator`。
+
+人物章节与关键事迹逐条带版本：
+
+```json
+{
+  "chapters": [
+    { "chapter": 3, "title": "……", "summary": "……", "version": "original" },
+    { "chapter": 97, "title": "……", "summary": "……", "version": "continuation" }
+  ],
+  "keyEvents": ["共读西厢", "焚稿断痴情"],
+  "keyEventVersions": ["original", "continuation"]
+}
+```
+
+`version` / `keyEventVersions` 只允许 `original`（前八十回）或 `continuation`（后四十回续书）。第 81 回及以后必须标 `continuation`。
 
 关系记录可选 `evidence` 数组，用于“关系考据”卡片。每条证据必须定位到回目级情节，不引用原文长句：
 
@@ -66,8 +84,10 @@
 
 ## 展示准则
 
-- 无完整 `quoteSources` 的 `quotes` 是待核摘录，前端不显示为“经典语录”。
-- 无 `outcomeSources` 的 `outcome` 是待核信息，人物名录不显示为“结局”。
+- 只有通过“底本来源 + 版本一致 + 回目覆盖 + locator”四项校验的 `quoteSources` 才能显示为“经典语录”。
+- `quoteComparisons` 单独显示为“版本异文”，不得混入“经典语录”。
+- 无有效 `outcomeSources` 的 `outcome` 是待核或续书信息，人物名录必须加“（待校）/（续书）”标签。
+- 第 81 回及以后的章节、关键事迹必须显示“续书”标签，不能和原著事实并列。
 - `sourceNote` 只可解释已登记的版本状态，不能替代逐条来源。
 
 ## 校验
@@ -78,4 +98,4 @@
 npm run validate:data
 ```
 
-该命令会阻断重复人物 ID、悬空关系／亲属／知识关联、无效关系类型、超出底本范围的来源和来源目录不一致等错误；关系 evidence 还会校验回目范围、前后八十回版本标注、scene/summary 必填与重复引用。历史待核数量会以警告显示，并与 `auditQueue` 对照，供后续校勘逐批清理。
+该命令会阻断重复人物 ID、悬空关系／亲属／知识关联、无效关系类型、超出底本范围的来源、来源目录角色与版本不一致、人物章节/关键事迹缺少版本、引语/对照来源混用等错误；关系 evidence 还会校验回目范围、前后八十回版本标注、scene/summary 必填与重复引用。审计队列的待核/已核数量会与数据实际统计对照，避免队列数字漂移。
