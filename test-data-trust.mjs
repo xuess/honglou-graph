@@ -374,7 +374,34 @@ await run('TC-58 事件/地点标签可检索', async () => {
   assert.ok(state.cards > 0, `事件/地点检索应有结果: ${state.status}`);
 });
 
-await run('TC-59 控制台无错误', async () => {
+// ============================================================
+// TC-60: 引语候选检索状态
+// ============================================================
+await run('TC-60 引语候选检索状态', async () => {
+  const summary = await page.evaluate(async () => {
+    const response = await fetch('data/quote-crosscheck.json');
+    const data = await response.json();
+    return {
+      sourceId: data.sourceId,
+      total: data.summary?.total,
+      matches: data.summary?.matches,
+      records: data.records?.length
+    };
+  });
+  assert.equal(summary.sourceId, 'liaoping-xinjiao');
+  assert.ok(summary.total >= 100, `候选引语总数异常: ${summary.total}`);
+  assert.ok(summary.matches > 0, `候选命中数为 0: ${JSON.stringify(summary)}`);
+  assert.equal(summary.records, summary.total);
+
+  await page.evaluate(() => app._openCharacter('jia_mu'));
+  await sleep(500);
+  const notes = await page.evaluate(() =>
+    [...document.querySelectorAll('#character-card-overlay .card-quote-pending')].map((element) => element.innerText));
+  assert.ok(notes.some((text) => /脂批本新校可检索到（第29回）/.test(text)),
+    `贾母候选引语应显示校勘线索: ${notes.join(' / ')}`);
+});
+
+await run('TC-61 控制台无错误', async () => {
   assert.equal(errors.length, 0, errors.join('\n'));
 });
 

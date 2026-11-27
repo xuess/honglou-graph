@@ -10,6 +10,7 @@
     "build:appearances": "node scripts/build-appearances.mjs",
     "build:taxonomy": "node scripts/build-taxonomy.mjs",
     "build:mentions": "python3 scripts/build-text-mentions.py",
+    "crosscheck:quotes": "python3 scripts/crosscheck-quotes.py",
     "stamp": "node scripts/stamp-assets.mjs",
     "check:assets": "node scripts/stamp-assets.mjs --check",
     "subset:fonts": "./.venv/bin/python scripts/subset-fonts.py",

@@ -168,3 +168,4 @@ scripts/*
 !scripts/build-appearances.mjs
 !scripts/build-taxonomy.mjs
 !scripts/build-text-mentions.py
+!scripts/crosscheck-quotes.py

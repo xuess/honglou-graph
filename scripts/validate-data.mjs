@@ -113,7 +113,7 @@ function containsContinuationContent(character) {
   return (character.chapters || []).some((chapter) => Number(chapter.chapter) > 80);
 }
 
-const [characters, relationships, knowledge, provenance, appearances, eventsData, placesData, textMentions] = await Promise.all([
+const [characters, relationships, knowledge, provenance, appearances, eventsData, placesData, textMentions, quoteCrosscheck] = await Promise.all([
   readJson(dataUrl('characters.json')),
   readJson(dataUrl('relationships.json')),
   readJson(dataUrl('knowledge.json')),
@@ -122,6 +122,7 @@ const [characters, relationships, knowledge, provenance, appearances, eventsData
   readJson(dataUrl('events.json')),
   readJson(dataUrl('places.json')),
   readJson(dataUrl('text-mentions.json')),
+  readJson(dataUrl('quote-crosscheck.json')),
 ]);
 
 if (characters && relationships && knowledge && provenance) {
@@ -270,6 +271,43 @@ if (characters && relationships && knowledge && provenance) {
       if (seenTextRecords.has(key)) fail(`${context} 与同一人物回目重复：${key}`);
       seenTextRecords.add(key);
     });
+  }
+
+  if (!quoteCrosscheck || !Array.isArray(quoteCrosscheck.records)) {
+    fail('data/quote-crosscheck.json 缺少 records 数组');
+  } else {
+    const source = catalog.get(quoteCrosscheck.sourceId);
+    if (!source || source.role !== 'comparison') {
+      fail(`引语候选来源“${quoteCrosscheck.sourceId || ''}”必须是 role=comparison`);
+    }
+    const seenQuotes = new Set();
+    quoteCrosscheck.records.forEach((record, index) => {
+      const context = `引语候选[${index}]`;
+      if (!characterIds.has(record.characterId)) {
+        fail(`${context} 引用了不存在的人物“${record.characterId || ''}”`);
+      }
+      if (!String(record.text || '').trim()) fail(`${context} 缺少 text`);
+      if (!['match', 'not-found'].includes(record.status)) {
+        fail(`${context} 的 status 必须为 match 或 not-found`);
+      }
+      (record.chapters || []).forEach((chapter) => {
+        if (!Number.isInteger(chapter) || chapter < 1 || chapter > 80) {
+          fail(`${context} 的 chapter 必须为第 1–80 回之间的整数`);
+        }
+      });
+      if (record.status === 'match' && !(record.chapters || []).length) {
+        fail(`${context} 标记 match 时必须至少有一个 chapter`);
+      }
+      const key = `${record.characterId}|${record.text}`;
+      if (seenQuotes.has(key)) fail(`${context} 与同一人物引语重复：${key}`);
+      seenQuotes.add(key);
+    });
+    if (quoteCrosscheck.summary?.total !== quoteCrosscheck.records.length) {
+      fail('引语候选 summary.total 与 records 数量不一致');
+    }
+    if (quoteCrosscheck.summary?.matches !== quoteCrosscheck.records.filter((item) => item.status === 'match').length) {
+      fail('引语候选 summary.matches 与记录不一致');
+    }
   }
 
   const knowledgeIds = new Set(knowledge.map((item) => item.id));
@@ -466,6 +504,10 @@ if (characters && relationships && knowledge && provenance) {
     }
     if (quoteAudit.comparisonQuoteLines !== undefined && quoteAudit.comparisonQuoteLines !== comparisonQuoteLines) {
       fail(`版本异文条数为 ${comparisonQuoteLines}，与审计队列的 ${quoteAudit.comparisonQuoteLines} 不一致`);
+    }
+    if (quoteAudit.crossCheckMatches !== undefined
+        && quoteAudit.crossCheckMatches !== (quoteCrosscheck?.summary?.matches ?? -1)) {
+      fail(`引语候选命中数为 ${quoteCrosscheck?.summary?.matches ?? -1}，与审计队列的 ${quoteAudit.crossCheckMatches} 不一致`);
     }
   }
   if (continuationAudit) {

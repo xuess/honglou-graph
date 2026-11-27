@@ -1,0 +1,1026 @@
+{
+  "schemaVersion": 1,
+  "sourceId": "liaoping-xinjiao",
+  "sourceNote": "现代新校本，候选检索用；命中仍需庚辰影印本复核。",
+  "summary": {
+    "total": 120,
+    "matches": 27,
+    "notFound": 93
+  },
+  "records": [
+    {
+      "characterId": "jin_guafu",
+      "quoteIndex": 0,
+      "text": "我家里艰难，把金荣送进义学，也是指望他读些书，日后好有个出身。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "zhang_taiyi",
+      "quoteIndex": 0,
+      "text": "先生的方子，只怕吃不得。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "bao_er_jias",
+      "quoteIndex": 0,
+      "text": "二爷待我极好的。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "duo_guniang",
+      "quoteIndex": 0,
+      "text": "只要二爷心里有我，什么都依你。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "zhang_daoshi",
+      "quoteIndex": 0,
+      "text": "前生注定，金玉良缘。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_mu",
+      "quoteIndex": 0,
+      "text": "我们这样人家，别的事自有人料理，我不过受用罢了。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_mu",
+      "quoteIndex": 1,
+      "text": "我这老冤家是那世里的孽障，偏生遇见了这么两个不省事的小冤家。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        29
+      ]
+    },
+    {
+      "characterId": "jia_mu",
+      "quoteIndex": 2,
+      "text": "当日我像凤哥儿这么大年纪，比她还来得呢。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_she",
+      "quoteIndex": 0,
+      "text": "凭他嫁到了谁家，也难出我贾家的门。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_she",
+      "quoteIndex": 1,
+      "text": "我说给老太太，鸳鸯她自愿的。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_zheng",
+      "quoteIndex": 0,
+      "text": "自祖宗以来，皆是宽柔以待下人。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        33
+      ]
+    },
+    {
+      "characterId": "jia_zheng",
+      "quoteIndex": 1,
+      "text": "不肖种种大承笞挞！",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_zheng",
+      "quoteIndex": 2,
+      "text": "该死的奴才！你在家不读书也就罢了，怎么又做出这些无法无天的事来！",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "xing_furen",
+      "quoteIndex": 0,
+      "text": "老爷说了，叫你过去呢。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "xing_furen",
+      "quoteIndex": 1,
+      "text": "我不过是个摆设罢了。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "wang_furen",
+      "quoteIndex": 0,
+      "text": "这样妖精似的东西，怎么留得！",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "wang_furen",
+      "quoteIndex": 1,
+      "text": "宝玉果然是有造化的。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        36
+      ]
+    },
+    {
+      "characterId": "jia_jing",
+      "quoteIndex": 0,
+      "text": "我只知道保养精神，长生不老，别的我一概不管。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_min",
+      "quoteIndex": 0,
+      "text": "只怕你令妹比这还要好些。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_baoyu",
+      "quoteIndex": 0,
+      "text": "任凭弱水三千，我只取一瓢饮。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_baoyu",
+      "quoteIndex": 1,
+      "text": "弱水三千，我只取一瓢饮。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_baoyu",
+      "quoteIndex": 2,
+      "text": "你放心，别说这样话。我便为这些人死了，也是情愿的！",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_zhen",
+      "quoteIndex": 0,
+      "text": "如今请了二婶子来帮忙料理，该怎么办就怎么办。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_lan",
+      "quoteIndex": 0,
+      "text": "这算什么？等我大了，做了官，替母亲争口气。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_yuanchun",
+      "quoteIndex": 0,
+      "text": "田舍之家，虽齑盐布帛，终能聚天伦之乐；今虽富贵已极，骨肉各方，然终无意趣。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_yuanchun",
+      "quoteIndex": 1,
+      "text": "当日既送我到那不得见人的去处……",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        18
+      ]
+    },
+    {
+      "characterId": "jia_yingchun",
+      "quoteIndex": 0,
+      "text": "凭他怎么糟蹋我，我也不说什么了。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_tanchun",
+      "quoteIndex": 0,
+      "text": "我但凡是个男人，可以出得去，我必早走了，立一番事业，那时自有我一番道理。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        55
+      ]
+    },
+    {
+      "characterId": "jia_tanchun",
+      "quoteIndex": 1,
+      "text": "百足之虫，死而不僵，必须先从家里自杀自灭起来，才能一败涂地。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        74
+      ]
+    },
+    {
+      "characterId": "jia_tanchun",
+      "quoteIndex": 2,
+      "text": "你们别忒欺负人，打量我是好惹的！",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_xichun",
+      "quoteIndex": 0,
+      "text": "我清清白白一个人，为什么叫你们带累坏了？",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_xichun",
+      "quoteIndex": 1,
+      "text": "不作狠心人，难得自了汉。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        74
+      ]
+    },
+    {
+      "characterId": "wang_xifeng",
+      "quoteIndex": 0,
+      "text": "我从来不信什么阴司地狱报应的，凭是什么事，我说要行就行。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "wang_xifeng",
+      "quoteIndex": 1,
+      "text": "拼著一身剐，敢把皇帝拉下马。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "li_wan",
+      "quoteIndex": 0,
+      "text": "你们只管你们的，我是不中用的人。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "qin_keqing",
+      "quoteIndex": 0,
+      "text": "趁今日富贵，将祖茔附近多置田庄房舍地亩，以备祭祀供给之费。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        13
+      ]
+    },
+    {
+      "characterId": "jia_qiaojie",
+      "quoteIndex": 0,
+      "text": "巧姐儿名字是刘姥姥起的，取个巧字儿，日后遇难呈祥，逢凶化吉。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "xue_baochai",
+      "quoteIndex": 0,
+      "text": "好风凭借力，送我上青云。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "xue_baochai",
+      "quoteIndex": 1,
+      "text": "珍重芳姿昼掩门，自携手瓮灌苔盆。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        37
+      ]
+    },
+    {
+      "characterId": "xue_baochai",
+      "quoteIndex": 2,
+      "text": "淡极始知花更艳，愁多焉得玉无痕。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        37
+      ]
+    },
+    {
+      "characterId": "lin_daiyu",
+      "quoteIndex": 0,
+      "text": "偷来梨蕊三分白，借得梅花一缕魂。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        37
+      ]
+    },
+    {
+      "characterId": "lin_daiyu",
+      "quoteIndex": 1,
+      "text": "孤标傲世偕谁隐，一样花开为底迟？",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        38
+      ]
+    },
+    {
+      "characterId": "xue_pan",
+      "quoteIndex": 0,
+      "text": "女儿悲，嫁了个男人是乌龟。女儿愁，绣房窜出个大马猴。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "xue_pan",
+      "quoteIndex": 1,
+      "text": "唐寅？不就是'庚黄'嘛！",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "xue_yima",
+      "quoteIndex": 0,
+      "text": "自古道，千里姻缘一线牵。管姻缘的有一位月老，预先注定的，暗里只用一根红丝把这两个人的脚绊住了。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "xue_baoqin",
+      "quoteIndex": 0,
+      "text": "昨夜朱楼梦，今宵水国吟。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        52
+      ]
+    },
+    {
+      "characterId": "xue_ke",
+      "quoteIndex": 0,
+      "text": "妹妹年纪尚小，还要仰仗贾府照应。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "xia_jingui",
+      "quoteIndex": 0,
+      "text": "我倒要看看，这家里倒底谁说了算！",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "xia_jingui",
+      "quoteIndex": 1,
+      "text": "嫁鸡随鸡，嫁狗随狗，嫁了个呆子，我就是呆子的老婆了不成？",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "xiang_ling",
+      "quoteIndex": 0,
+      "text": "大漠孤烟直，长河落日圆。想来烟如何直？日自然是圆的。这'直'字似无理，'圆'字似太俗。合上书一想，倒像是见了这景的。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "xiang_ling",
+      "quoteIndex": 1,
+      "text": "精华欲掩料应难，影自娟娟魄自寒。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        49
+      ]
+    },
+    {
+      "characterId": "shi_xiangyun",
+      "quoteIndex": 0,
+      "text": "是真名士自风流！你们都是假清高。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        49
+      ]
+    },
+    {
+      "characterId": "shi_xiangyun",
+      "quoteIndex": 1,
+      "text": "寒塘渡鹤影。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        76
+      ]
+    },
+    {
+      "characterId": "shi_xiangyun",
+      "quoteIndex": 2,
+      "text": "且住，且住，莫使春光别去！",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        70
+      ]
+    },
+    {
+      "characterId": "shi_ding",
+      "quoteIndex": 0,
+      "text": "史家如今虽不如从前，也不至于丢了祖宗的脸面。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "shi_nai",
+      "quoteIndex": 0,
+      "text": "我们史家与贾家是老亲，理当往来走动。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "wang_ziteng",
+      "quoteIndex": 0,
+      "text": "王家如今全仗着九省统制大人支撑门面。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "wang_ren",
+      "quoteIndex": 0,
+      "text": "凤丫头在贾府管家，手面大得很。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "qingwen",
+      "quoteIndex": 0,
+      "text": "撕的好，什么东西！我最爱撕这玩意儿。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "qingwen",
+      "quoteIndex": 1,
+      "text": "我虽生得比别人略好些，并没有私情密意勾引你怎样。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "qingwen",
+      "quoteIndex": 2,
+      "text": "早知如此，我当日也另有个道理。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        77
+      ]
+    },
+    {
+      "characterId": "pinger",
+      "quoteIndex": 0,
+      "text": "大事化为小事，小事化为没事，方是兴旺之家的做法。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "yuanyang",
+      "quoteIndex": 0,
+      "text": "别说大老爷要我做小老婆，就是太太这会子死了，他三媒六聘的娶我去做大老婆，我也不能去！",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "yuanyang",
+      "quoteIndex": 1,
+      "text": "大老爷如今为这件事叫我好几遭了。我是横了心的，当着众人在这里说明白。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "yuanyang",
+      "quoteIndex": 2,
+      "text": "纵到了那阴间地狱，我也跟着太那边去了。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "sheyue",
+      "quoteIndex": 0,
+      "text": "公然又是一个袭人。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        20
+      ]
+    },
+    {
+      "characterId": "yinger",
+      "quoteIndex": 0,
+      "text": "我们姑娘那金锁上的字，和你那玉上的字是一对儿。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jinchuan",
+      "quoteIndex": 0,
+      "text": "你忙什么！'金簪子掉在井里头，有你的只是有你的'。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        30
+      ]
+    },
+    {
+      "characterId": "jinchuan",
+      "quoteIndex": 1,
+      "text": "你去东小院子里拿环哥儿和彩云去。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "yuchuan",
+      "quoteIndex": 0,
+      "text": "姐姐死得冤枉，我替她报仇。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "siqi",
+      "quoteIndex": 0,
+      "text": "我已是不中用的人了。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "ruhua",
+      "quoteIndex": 0,
+      "text": "姑娘待我极好，我怎能辜负姑娘。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "shishu",
+      "quoteIndex": 0,
+      "text": "三姑娘最是明理公正的。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "cuilu",
+      "quoteIndex": 0,
+      "text": "姑娘，你说这荷花是阴还是阳？",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "xiaohong",
+      "quoteIndex": 0,
+      "text": "也不过三年五载，各人干各人的去了。那时谁还管谁呢？",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jiao_da",
+      "quoteIndex": 0,
+      "text": "我要往祠堂里哭太爷去！那里承望到如今生下这些畜生来！",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jiao_da",
+      "quoteIndex": 1,
+      "text": "红刀子进去白刀子出来。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        7
+      ]
+    },
+    {
+      "characterId": "lai_da",
+      "quoteIndex": 0,
+      "text": "奴才们都是仰仗主子的恩典过活。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "lin_zhixiao",
+      "quoteIndex": 0,
+      "text": "管家办事，不敢有丝毫懈怠。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "zhou_rui",
+      "quoteIndex": 0,
+      "text": "这是太太的意思，小的们哪敢不从。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "ming_yan",
+      "quoteIndex": 0,
+      "text": "我知道二爷想要什么，我去弄来便是。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "miaoyu",
+      "quoteIndex": 0,
+      "text": "古人自汉晋五代唐宋以来，皆无好诗，只有两句好：纵有千年铁门槛，终须一个土馒头。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "miaoyu",
+      "quoteIndex": 1,
+      "text": "槛外人妙玉恭肃遥叩芳辰。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        63
+      ]
+    },
+    {
+      "characterId": "miaoyu",
+      "quoteIndex": 2,
+      "text": "你这么个人，竟是大俗人，连水也尝不出来。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        41
+      ]
+    },
+    {
+      "characterId": "lai_tou_heshang",
+      "quoteIndex": 0,
+      "text": "好防佳节元宵后，便是烟消火灭时。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        1
+      ]
+    },
+    {
+      "characterId": "bo_zu_daoren",
+      "quoteIndex": 0,
+      "text": "世人都晓神仙好，只有娇妻忘不了。君生日日说恩情，君死又随人去了。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "ma_daopo",
+      "quoteIndex": 0,
+      "text": "只要舍得银子，没有不灵的。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "liu_laolao",
+      "quoteIndex": 0,
+      "text": "老刘老刘，食量大如牛，吃个老母猪不抬头。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_yucun",
+      "quoteIndex": 0,
+      "text": "玉在椟中求善价，钗于奁内待时飞。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "liu_xianglian",
+      "quoteIndex": 0,
+      "text": "大丈夫一言既出，驷马难追。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "liu_xianglian",
+      "quoteIndex": 1,
+      "text": "你们东府里除了那两个石头狮子干净，只怕连猫儿狗儿都不干净。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        66
+      ]
+    },
+    {
+      "characterId": "jiang_yuhan",
+      "quoteIndex": 0,
+      "text": "多承公子错爱，愧不敢当。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "you_erjie",
+      "quoteIndex": 0,
+      "text": "我如今是一心一意服侍你的，再不敢有二心了。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "you_erjie",
+      "quoteIndex": 1,
+      "text": "倒不如一死，倒还干净。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "qin_ye",
+      "quoteIndex": 0,
+      "text": "我这女儿，与贾府有些瓜葛。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "bei_jing_wang",
+      "quoteIndex": 0,
+      "text": "令郎真乃龙驹凤雏，非小王在贵人前唐突，将来'雏凤清于老凤声'，未可量也。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "zhao_yiniang",
+      "quoteIndex": 0,
+      "text": "正经叫你那宝贝去！叫他替你出气！",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_dairu",
+      "quoteIndex": 0,
+      "text": "那瑞大爷也该打，哄我说是婶子叫他去呢。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_yun",
+      "quoteIndex": 0,
+      "text": "舅舅说得有理，只是我也没办法。求舅舅借我些银子，改日加倍奉还。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_zhu",
+      "quoteIndex": 0,
+      "text": "这孩子读书很用心，日后必有出息。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "xing_xiuyan",
+      "quoteIndex": 0,
+      "text": "浓淡由他冰雪中。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        50
+      ]
+    },
+    {
+      "characterId": "sun_shaozu",
+      "quoteIndex": 0,
+      "text": "你老子使了我五千银子，把你准折卖给我的。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "sun_shaozu",
+      "quoteIndex": 1,
+      "text": "好不好，打一顿撵在下房里睡去。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "match",
+      "chapters": [
+        80
+      ]
+    },
+    {
+      "characterId": "zhui_er",
+      "quoteIndex": 0,
+      "text": "坠儿不敢，坠儿再也不敢了。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "si_er",
+      "quoteIndex": 0,
+      "text": "二爷待我极好的。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "he_popo",
+      "quoteIndex": 0,
+      "text": "这园子里的事，我都知道。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "bu_shiren",
+      "quoteIndex": 0,
+      "text": "我的儿，你舅母也没说什么，只是你姨娘说道：'你又没有事情，借了银子做什么？'",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "ni_er",
+      "quoteIndex": 0,
+      "text": "罢了，你也不用说了，银子我借给你！",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "wei_ruolan",
+      "quoteIndex": 0,
+      "text": "湘云是个豪爽人，我极敬重她。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "jia_hui",
+      "quoteIndex": 0,
+      "text": "林姑娘待我极好。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "lai_shangrong",
+      "quoteIndex": 0,
+      "text": "借主子的恩典，我也做了官了。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "hu_yongyi",
+      "quoteIndex": 0,
+      "text": "这药吃下去，保准见效。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "bao_chan",
+      "quoteIndex": 0,
+      "text": "奶奶要什么，我都依你。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "wu_er",
+      "quoteIndex": 0,
+      "text": "冤枉啊，那玫瑰露真不是我偷的。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "qiutong",
+      "quoteIndex": 0,
+      "text": "老爷赏我给二爷做妾，我好歹也是个主子。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "diguan",
+      "quoteIndex": 0,
+      "text": "藕官待我极好的。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "zhen_yingjia",
+      "quoteIndex": 0,
+      "text": "甄贾两家本是同宗。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "wu_jinxiao",
+      "quoteIndex": 0,
+      "text": "今年收成不好，请主子宽限几日。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "laiwang_furen",
+      "quoteIndex": 0,
+      "text": "太太放心，这事交给我办。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    },
+    {
+      "characterId": "zhenjia_servant",
+      "quoteIndex": 0,
+      "text": "老爷打发我来请安。",
+      "sourceId": "liaoping-xinjiao",
+      "status": "not-found",
+      "chapters": []
+    }
+  ]
+}
