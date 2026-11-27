@@ -3803,8 +3803,14 @@ _createFontAndThemeControls() {
       const isContinuation = active && (appearance?.version === 'continuation' || chapterEntry?.version === 'continuation');
       const roleLabel = appearance?.roles?.includes('key')
         ? '关键回目'
-        : appearance?.roles?.includes('entrance') ? '人物出场' : '名场面';
-      const roleClass = active ? (appearance?.roles?.includes('key') ? ' is-key' : ' is-scene') : '';
+        : appearance?.roles?.includes('entrance')
+          ? '人物出场'
+          : appearance?.roles?.includes('scene') ? '名场面' : '文本提及';
+      const roleClass = active
+        ? (appearance?.roles?.includes('key')
+          ? ' is-key'
+          : appearance?.roles?.includes('scene') ? ' is-scene' : ' is-text')
+        : '';
       const tabIndex = ch === firstActiveChapter ? 0 : -1;
       return `<button type="button" class="card-fate-cell ${active ? 'active' : 'inactive'}${roleClass}${isContinuation ? ' is-continuation' : ''}" data-chapter="${ch}" data-role="${active ? roleLabel : ''}" data-title="${this._escapeHtmlAttr(chapterTitle)}" data-summary="${this._escapeHtmlAttr(chapterSummary)}" style="${active ? `background:${familyColor}` : ''}" tabindex="${tabIndex}" aria-label="${active ? `第${ch}回（${roleLabel}${isContinuation ? '，续书' : ''}）：${this._escapeHtmlAttr(chapterTitle)}` : `第${ch}回暂无记录`}"${active ? '' : ' aria-disabled="true"'}></button>`;
     }).join('');
@@ -3814,6 +3820,7 @@ _createFontAndThemeControls() {
         <div class="card-fate-timeline-wrap">
           <div class="card-fate-timeline">${fateTimelineCells}</div>
           <div class="card-fate-marks"><span>第1回</span><span>第60回</span><span>第120回</span></div>
+          <div class="card-fate-legend" aria-hidden="true"><span class="is-key">关键回目</span><span class="is-scene">名场面</span><span class="is-text">文本提及</span></div>
           <div class="card-fate-detail" data-fate-detail>悬停高亮格子查看回目详情</div>
         </div>
       </div>` : '';

@@ -167,3 +167,4 @@ scripts/*
 !scripts/run-tests.mjs
 !scripts/build-appearances.mjs
 !scripts/build-taxonomy.mjs
+!scripts/build-text-mentions.py

@@ -285,9 +285,11 @@ await run('TC-54 出场索引与时间线', async () => {
       chaptersCovered: new Set(app.appearances.map((item) => item.chapter)).size
     };
   });
-  assert.ok(state.records >= 450, `出场索引过少: ${state.records}`);
+  assert.ok(state.records >= 1500, `出场索引过少: ${state.records}`);
   assert.ok(state.daiyuAppearances >= 10, `黛玉关联回目过少: ${state.daiyuAppearances}`);
-  assert.ok(state.daiyuRoles.includes('key') && state.daiyuRoles.includes('scene'), `角色类型缺失: ${state.daiyuRoles}`);
+  assert.ok(state.daiyuRoles.includes('key')
+    && state.daiyuRoles.includes('scene')
+    && state.daiyuRoles.includes('text'), `角色类型缺失: ${state.daiyuRoles}`);
   assert.ok(state.chapter44Characters.length >= 5, `第44回时间线人数异常: ${state.chapter44Characters.length}`);
   assert.ok(state.chaptersCovered >= 80, `覆盖回目过少: ${state.chaptersCovered}`);
 });

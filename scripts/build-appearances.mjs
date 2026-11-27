@@ -5,7 +5,7 @@
  * 只收“人物回目档案”和“名场面/人物出场”两类明确来源；
  * 不从主题、人物专题、典故、诗词、建筑等跨回目条目反推出场。
  */
-import { readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -70,9 +70,24 @@ for (const item of knowledge) {
   }
 }
 
+const textMentionsPath = resolve(root, 'data/text-mentions.json');
+if (existsSync(textMentionsPath)) {
+  const textMentions = JSON.parse(readFileSync(textMentionsPath, 'utf8'));
+  for (const mention of textMentions.records || []) {
+    const chapter = Number(mention.chapter);
+    if (!Number.isInteger(chapter) || chapter < 1 || chapter > 120) continue;
+    const record = ensureRecord(mention.characterId, chapter);
+    addRole(record, 'text');
+    if (!record.sources.includes('text-mentions')) record.sources.push('text-mentions');
+    if (!record.title) record.title = `第${chapter}回文本提及`;
+    if (!record.summary) record.summary = `会校本中提及 ${Number(mention.count) || 1} 次`;
+    if (chapter > 80) record.version = 'continuation';
+  }
+}
+
 const output = {
   schemaVersion: 1,
-  generatedFrom: 'characters.chapters + knowledge scene/entrance',
+  generatedFrom: 'characters.chapters + knowledge scene/entrance + text-mentions',
   records: [...records.values()].sort((a, b) =>
     a.characterId.localeCompare(b.characterId) || a.chapter - b.chapter)
 };
