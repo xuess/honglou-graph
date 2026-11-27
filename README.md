@@ -156,6 +156,7 @@ python3 -m venv .venv
   "quoteSources": [
     { "sourceId": "jiaxu-wikisource", "edition": "甲戌本", "chapter": 2, "locator": "第2回..." }
   ],
+  "quotesTranscriptionVerified": [],
   "quoteComparisons": [],
   "quotesPendingVerified": [],
   "outcomeSourceCandidates": [],
@@ -207,7 +208,7 @@ python3 -m venv .venv
 
 `data/text-mentions.json` 由 `scripts/build-text-mentions.py` 从维基文库《脂砚斋重评石头记》会校本提取，只记录“某回文本中出现某人物名/别名的次数”。该会校本是庚辰、己卯、甲戌合成，64/67/22 回配入其他脂本，**只作为文本提及参考，不作为经典语录或事实定本依据**。
 
-`data/quote-crosscheck.json` 用《红楼梦脂批本新校电子版》对 120 条待核引语做候选检索：当前命中 27 条。命中只表示“现代新校本可检索到”，仍然不是单一庚辰底本定论，前端会标注“脂批本新校可检索到（第X回），待庚辰影印本复核”。
+`data/quote-crosscheck.json` 用《红楼梦脂批本新校电子版》对 120 条待核引语做候选检索：当前命中 27 条。命中的 27 条进入 `quotesTranscriptionVerified`，前端显示为独立“转录本已核”档，标注“待庚辰影印本复核”；它们不计入“经典语录”。当前引语分层为：经典语录 17 条、转录本已核 27 条、版本异文 36 条、待校 93 条。
 
 ### 事件/地点索引 (events.json / places.json)
 

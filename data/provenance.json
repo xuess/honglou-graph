@@ -267,14 +267,15 @@
       "action": "待核引语分存 quotesPendingVerified（前80回未见或来源/定位待补）与 quoteComparisons（程乙本版本对照）。只有 10 人 17 条通过甲戌本目录校验；前端仅对通过校验者显示“经典语录”。",
       "verifiedCount": 10,
       "verifiedQuoteLines": 17,
-      "pendingQuoteLines": 120,
-      "note": "待核引语分三类：前80回逐字核对未见（quotesPendingVerified）、程乙本异文（quoteComparisons）、庚辰本来源/定位待补。仅 10 人 17 条通过甲戌本目录校验。",
+      "pendingQuoteLines": 93,
+      "note": "待核引语分三层：quotesPendingVerified（待校）、quotesTranscriptionVerified（脂批新校可检索，待影印本复核）、quoteComparisons（版本异文）。只有通过甲戌本目录校验的 10 人 17 条才显示为“经典语录”。",
       "comparisonQuoteLines": 36,
       "totalUnverifiedQuoteLines": 156,
       "crossCheckSource": "liaoping-xinjiao",
       "crossCheckMatches": 27,
       "crossCheckTotal": 120,
-      "crossCheckNote": "命中仅代表新校本可检索，仍待庚辰影印本复核，不升级为经典语录。"
+      "crossCheckNote": "命中仅代表新校本可检索，仍待庚辰影印本复核，不升级为经典语录。",
+      "transcriptionQuoteLines": 27
     },
     {
       "id": "later-text-or-continuation-content",

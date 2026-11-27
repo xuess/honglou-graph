@@ -190,6 +190,26 @@ if (characters && relationships && knowledge && provenance) {
       }
       validateComparisonRef(item?.source, `人物“${character.id}”的 quoteComparisons[${index}].source`, catalog);
     });
+    (character.quotesTranscriptionVerified || []).forEach((item, index) => {
+      const context = `人物“${character.id}”的 quotesTranscriptionVerified[${index}]`;
+      if (!String(item?.text || '').trim()) fail(`${context} 缺少 text`);
+      if (item?.sourceAudit?.status !== 'transcription-match') {
+        fail(`${context} 的 sourceAudit.status 必须为 transcription-match`);
+      }
+      if (item?.sourceAudit?.sourceId !== 'liaoping-xinjiao') {
+        fail(`${context} 的来源必须为 liaoping-xinjiao`);
+      }
+      const chapters = item?.sourceAudit?.crossCheck?.chapters;
+      if (!Array.isArray(chapters) || chapters.length === 0) {
+        fail(`${context} 必须记录命中回目`);
+      } else {
+        chapters.forEach((chapter) => {
+          if (!Number.isInteger(chapter) || chapter < 1 || chapter > 80) {
+            fail(`${context} 的命中回目必须为第 1–80 回之间的整数`);
+          }
+        });
+      }
+    });
     if (character.quoteSources && character.quoteSources.length !== (character.quotes || []).length) {
       fail(`人物“${character.id}”的 quoteSources 必须与 quotes 一一对应`);
     }
@@ -467,14 +487,16 @@ if (characters && relationships && knowledge && provenance) {
   const auditQueue = provenance.auditQueue || [];
   const quoteAudit = auditQueue.find((entry) => entry.id === 'character-quotes-without-source');
   const continuationAudit = auditQueue.find((entry) => entry.id === 'later-text-or-continuation-content');
-  // 待核引语分三处：quotesPendingVerified、quoteComparisons，以及历史数据中
-  // 仍混在 quotes 里的不合格 quoteSources。三者合起来才是真正的待核范围。
+  // 待核引语分四处：quotesPendingVerified、quotesTranscriptionVerified、
+  // quoteComparisons，以及历史数据中仍混在 quotes 里的不合格 quoteSources。
   const unverifiedQuoteRecords = characters.filter((character) => {
     const pending = (character.quotesPendingVerified || []).length;
     const comparisons = (character.quoteComparisons || []).length;
+    const transcriptions = (character.quotesTranscriptionVerified || []).length;
     const invalidQuotes = (character.quoteSources || []).some((ref) =>
       !isValidBaseRef(ref, catalog, baseEditions, maxChapter));
-    return pending > 0 || comparisons > 0 || invalidQuotes || ((character.quotes || []).length && !hasCompleteQuoteSources(character));
+    return pending > 0 || comparisons > 0 || transcriptions > 0 || invalidQuotes
+      || ((character.quotes || []).length && !hasCompleteQuoteSources(character));
   });
   const verifiedQuoteCharacters = characters.filter((character) =>
     (character.quoteSources || []).length > 0
@@ -485,6 +507,8 @@ if (characters && relationships && knowledge && provenance) {
     (sum, character) => sum + (character.quotesPendingVerified || []).length, 0);
   const comparisonQuoteLines = characters.reduce(
     (sum, character) => sum + (character.quoteComparisons || []).length, 0);
+  const transcriptionQuoteLines = characters.reduce(
+    (sum, character) => sum + (character.quotesTranscriptionVerified || []).length, 0);
   const continuationCharacters = characters.filter(containsContinuationContent);
 
   if (!quoteAudit) fail('审计队列缺少 character-quotes-without-source 项');
@@ -504,6 +528,10 @@ if (characters && relationships && knowledge && provenance) {
     }
     if (quoteAudit.comparisonQuoteLines !== undefined && quoteAudit.comparisonQuoteLines !== comparisonQuoteLines) {
       fail(`版本异文条数为 ${comparisonQuoteLines}，与审计队列的 ${quoteAudit.comparisonQuoteLines} 不一致`);
+    }
+    if (quoteAudit.transcriptionQuoteLines !== undefined
+        && quoteAudit.transcriptionQuoteLines !== transcriptionQuoteLines) {
+      fail(`转录本已核条数为 ${transcriptionQuoteLines}，与审计队列的 ${quoteAudit.transcriptionQuoteLines} 不一致`);
     }
     if (quoteAudit.crossCheckMatches !== undefined
         && quoteAudit.crossCheckMatches !== (quoteCrosscheck?.summary?.matches ?? -1)) {
