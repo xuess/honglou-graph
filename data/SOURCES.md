@@ -91,6 +91,15 @@
 - `roles` 可为 `key` / `scene` / `entrance`，`version` 区分前八十回与续书；
 - 时间线和章节人物视图应优先读这套索引，避免再用名字子串或主题条目猜人物。
 
+## 文本提及索引
+
+`data/text-mentions.json` 由 `npm run build:mentions` 从维基文库《脂砚斋重评石头记》会校本提取。
+
+- 来源 `wikisource-liaoping-synthesis` 的 `role` 为 `reference`；
+- 该文本由庚辰、己卯、甲戌合成，64、67、22 回以其他脂本配入；
+- 只记录人物名/别名在某回文本中出现的次数，用于“文本提及”层，不作为经典语录、结局或事实定本依据；
+- 同名/别名按最长匹配处理，并排除“通灵宝玉”“周瑞家的”等非人物或仆妇称谓。
+
 ## 事件/地点索引
 
 `data/events.json`、`data/places.json` 由 `npm run build:taxonomy` 从知识条目的 `relatedEvents` / `relatedPlaces` 生成。

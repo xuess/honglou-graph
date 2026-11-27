@@ -8542,6 +8542,42 @@ input[type="number"]:focus {
   opacity: 1;
 }
 
+/* 文本提及只作为“全书出现”的底层提示，不和关键回目/名场面抢视觉。 */
+.card-fate-cell.active.is-text {
+  opacity: 0.28;
+}
+
+.card-fate-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+  color: var(--color-ink-light);
+  font-size: 0.68rem;
+}
+
+.card-fate-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-fate-legend span::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+.card-fate-legend .is-scene::before {
+  opacity: 0.55;
+}
+
+.card-fate-legend .is-text::before {
+  opacity: 0.25;
+}
+
 /* 第81回以后：保留时间线位置，但用斜纹提示“续书”，避免和原著回目混读。 */
 .card-fate-cell.active.is-continuation {
   background-image: repeating-linear-gradient(

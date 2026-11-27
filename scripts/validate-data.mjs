@@ -113,7 +113,7 @@ function containsContinuationContent(character) {
   return (character.chapters || []).some((chapter) => Number(chapter.chapter) > 80);
 }
 
-const [characters, relationships, knowledge, provenance, appearances, eventsData, placesData] = await Promise.all([
+const [characters, relationships, knowledge, provenance, appearances, eventsData, placesData, textMentions] = await Promise.all([
   readJson(dataUrl('characters.json')),
   readJson(dataUrl('relationships.json')),
   readJson(dataUrl('knowledge.json')),
@@ -121,6 +121,7 @@ const [characters, relationships, knowledge, provenance, appearances, eventsData
   readJson(dataUrl('appearances.json')),
   readJson(dataUrl('events.json')),
   readJson(dataUrl('places.json')),
+  readJson(dataUrl('text-mentions.json')),
 ]);
 
 if (characters && relationships && knowledge && provenance) {
@@ -143,7 +144,7 @@ if (characters && relationships && knowledge && provenance) {
   findDuplicateIds(catalogRecords).forEach((id) => fail(`来源目录 ID 重复或为空：“${id || '(empty)'}”`));
   catalogRecords.forEach((source) => {
     const role = source.role || 'base';
-    if (!['base', 'comparison', 'pending'].includes(role)) {
+    if (!['base', 'comparison', 'pending', 'reference'].includes(role)) {
       fail(`来源目录“${source.id || ''}”的 role“${role}”无效`);
       return;
     }
@@ -220,7 +221,7 @@ if (characters && relationships && knowledge && provenance) {
     fail('data/appearances.json 缺少 records 数组');
   } else {
     const seenAppearanceKeys = new Set();
-    const allowedRoles = new Set(['key', 'scene', 'entrance']);
+    const allowedRoles = new Set(['key', 'scene', 'entrance', 'text']);
     appearanceRecords.forEach((record, index) => {
       const context = `出场索引[${index}]`;
       if (!characterIds.has(record.characterId)) {
@@ -231,7 +232,7 @@ if (characters && relationships && knowledge && provenance) {
       }
       if (!Array.isArray(record.roles) || !record.roles.length
           || record.roles.some((role) => !allowedRoles.has(role))) {
-        fail(`${context} 的 roles 必须是 key/scene/entrance 的非空子集`);
+        fail(`${context} 的 roles 必须是 key/scene/entrance/text 的非空子集`);
       }
       if (!['original', 'continuation'].includes(record.version)) {
         fail(`${context} 的 version 必须为 original 或 continuation`);
@@ -243,6 +244,31 @@ if (characters && relationships && knowledge && provenance) {
       const key = `${record.characterId}|${record.chapter}`;
       if (seenAppearanceKeys.has(key)) fail(`${context} 与同一人物回目重复：${key}`);
       seenAppearanceKeys.add(key);
+    });
+  }
+
+  if (!textMentions || !Array.isArray(textMentions.records)) {
+    fail('data/text-mentions.json 缺少 records 数组');
+  } else {
+    const source = catalog.get(textMentions.sourceId);
+    if (!source || source.role !== 'reference') {
+      fail(`文本提及来源“${textMentions.sourceId || ''}”必须是 role=reference`);
+    }
+    const seenTextRecords = new Set();
+    textMentions.records.forEach((record, index) => {
+      const context = `文本提及[${index}]`;
+      if (!characterIds.has(record.characterId)) {
+        fail(`${context} 引用了不存在的人物“${record.characterId || ''}”`);
+      }
+      if (!Number.isInteger(record.chapter) || record.chapter < 1 || record.chapter > 80) {
+        fail(`${context} 的 chapter 必须为第 1–80 回之间的整数`);
+      }
+      if (!Number.isInteger(record.count) || record.count < 1) {
+        fail(`${context} 的 count 必须为正整数`);
+      }
+      const key = `${record.characterId}|${record.chapter}`;
+      if (seenTextRecords.has(key)) fail(`${context} 与同一人物回目重复：${key}`);
+      seenTextRecords.add(key);
     });
   }
 

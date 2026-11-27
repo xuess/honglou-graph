@@ -6,7 +6,7 @@
 
 ### 主要特性
 
-- **丰富的人物数据**：收录 125 位人物、208 条关系、597 条知识条目（判词、诗词、回目、名场面、生僻字、器物、建筑等）
+- **丰富的人物数据**：收录 125 位人物、208 条关系、597 条知识条目（判词、诗词、回目、名场面、生僻字、器物、建筑等），并用会校本生成 1699 条人物文本提及索引
 - **多维度关系**：支持血缘、婚姻、主仆、情感、社交、敌对六类关系
 - **力导向图谱**：基于 D3.js 的交互式力导向图，支持拖拽、缩放、按章回时间轴回放
 - **人物信息卡片**：点击人物查看详细信息，包括别名、身份、性格、事迹、语录、命运线等
@@ -47,14 +47,16 @@ honglou-graph/
 │   ├── characters.json   # 人物数据
 │   ├── relationships.json # 关系数据
 │   ├── knowledge.json    # 知识条目
-│   ├── appearances.json  # 人物—回目出场/名场面索引
+│   ├── appearances.json  # 人物—回目出场/名场面/文本提及索引
+│   ├── text-mentions.json # 会校本人物文本提及计数
 │   ├── events.json       # 规范化事件索引
 │   ├── places.json       # 规范化地点索引
 │   └── provenance.json   # 来源与审计队列（校验脚本依赖）
 ├── scripts/
 │   ├── validate-data.mjs        # 数据校验
-│   ├── build-appearances.mjs    # 从人物回目与 scene/entrance 生成出场索引
+│   ├── build-appearances.mjs    # 从人物回目、scene/entrance 与文本提及生成出场索引
 │   ├── build-taxonomy.mjs       # 从 relatedEvents/relatedPlaces 生成事件地点索引
+│   ├── build-text-mentions.py   # 从维基文库脂评会校本提取人物文本提及
 │   ├── stamp-assets.mjs         # 资源版本号（内容哈希）
 │   ├── sync-chapter-titles.mjs  # 回目标题同步校验
 │   ├── check-audio.mjs          # 预生成语音与文案一致性校验
@@ -90,8 +92,9 @@ npx serve .
 
 ```bash
 npm run validate:data   # 校验人物/关系/知识/出场索引的结构与来源范围
-npm run build:appearances # 更新人物出场索引（人物章节 + 名场面/人物出场）
+npm run build:appearances # 更新人物出场索引（人物章节 + 名场面/人物出场 + 文本提及）
 npm run build:taxonomy    # 更新事件/地点索引与 knowledge 的 eventIds/placeIds
+npm run build:mentions    # 从维基文库脂评会校本提取人物文本提及（需 Python requests/bs4）
 npm run stamp           # 改动 js/css 后刷新 index.html 的资源版本号（内容哈希）
 npm run check:assets    # 校验资源版本号是否与内容一致
 npm run check:chapters  # 校验人物回目与 knowledge.json 的章回标题一致
@@ -197,7 +200,9 @@ python3 -m venv .venv
 }
 ```
 
-出场索引只从人物关键回目和 `scene`/`entrance` 知识生成，不从主题、人物专题、典故等跨回目内容反推。运行 `npm run build:appearances` 重建。
+出场索引只从人物关键回目、`scene`/`entrance` 知识和文本提及生成；主题、人物专题、典故等跨回目内容不直接反推出场。运行 `npm run build:appearances` 重建。
+
+`data/text-mentions.json` 由 `scripts/build-text-mentions.py` 从维基文库《脂砚斋重评石头记》会校本提取，只记录“某回文本中出现某人物名/别名的次数”。该会校本是庚辰、己卯、甲戌合成，64/67/22 回配入其他脂本，**只作为文本提及参考，不作为经典语录或事实定本依据**。
 
 ### 事件/地点索引 (events.json / places.json)
 
