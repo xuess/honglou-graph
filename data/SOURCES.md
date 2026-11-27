@@ -100,6 +100,15 @@
 - 只记录人物名/别名在某回文本中出现的次数，用于“文本提及”层，不作为经典语录、结局或事实定本依据；
 - 同名/别名按最长匹配处理，并排除“通灵宝玉”“周瑞家的”等非人物或仆妇称谓。
 
+## 引语候选校勘
+
+`data/quote-crosscheck.json` 由 `npm run crosscheck:quotes` 生成。
+
+- 使用《红楼梦脂批本新校电子版》（`liaoping-xinjiao`，role=comparison）做候选检索；
+- 该新校本是现代整理本，不是单一庚辰底本；
+- 命中只表示“新校本可检索到”，在 UI 中标注“待庚辰影印本复核”，不升级为“经典语录”；
+- `quotesPendingVerified[].sourceAudit.crossCheck` 保存命中回目，便于后续人工按影印本复核。
+
 ## 事件/地点索引
 
 `data/events.json`、`data/places.json` 由 `npm run build:taxonomy` 从知识条目的 `relatedEvents` / `relatedPlaces` 生成。

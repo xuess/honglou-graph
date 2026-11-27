@@ -3641,7 +3641,7 @@ _createFontAndThemeControls() {
       sections.push(`<div class="card-section"><div class="card-section-title">版本异文<span class="card-section-count">程乙本对照</span></div>${comparisonHtml}<div class="card-note-hint">版本异文仅供对照，不作为底本定论；待甲戌／庚辰影印本校勘后再升级。</div></div>`);
     }
     if (pending.length) {
-      sections.push(`<div class="card-section"><div class="card-section-title">待校摘录</div>${pendingHtml}<div class="card-note-hint">以下引语尚未通过底本来源校验，不作为定本引用。</div></div>`);
+      sections.push(`<div class="card-section"><div class="card-section-title">待校摘录</div>${pendingHtml}<div class="card-note-hint">以下引语尚未通过底本来源校验，不作为定本引用；标出“新校可检索”的条目仍待庚辰影印本复核。</div></div>`);
     }
     return sections.join('');
   }
@@ -3658,7 +3658,9 @@ _createFontAndThemeControls() {
     if (!text) return '';
     const audit = (item && item.sourceAudit) || null;
     let note = '尚未核对';
-    if (audit) {
+    if (audit?.crossCheck?.status === 'match' && audit.crossCheck.chapters?.length) {
+      note = `脂批本新校可检索到（第${audit.crossCheck.chapters[0]}回），待庚辰影印本复核`;
+    } else if (audit) {
       const status = audit.status;
       if (status === 'variant-close-paraphrase' || status === 'variant-or-fragment') note = '与前80回原文重合，但非逐字原文（改写）';
       else if (status === 'not-in-source') note = '前80回全本逐字核对未见，非原著引语';

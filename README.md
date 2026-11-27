@@ -49,6 +49,7 @@ honglou-graph/
 │   ├── knowledge.json    # 知识条目
 │   ├── appearances.json  # 人物—回目出场/名场面/文本提及索引
 │   ├── text-mentions.json # 会校本人物文本提及计数
+│   ├── quote-crosscheck.json # 待核引语在脂批新校本中的候选检索
 │   ├── events.json       # 规范化事件索引
 │   ├── places.json       # 规范化地点索引
 │   └── provenance.json   # 来源与审计队列（校验脚本依赖）
@@ -57,6 +58,7 @@ honglou-graph/
 │   ├── build-appearances.mjs    # 从人物回目、scene/entrance 与文本提及生成出场索引
 │   ├── build-taxonomy.mjs       # 从 relatedEvents/relatedPlaces 生成事件地点索引
 │   ├── build-text-mentions.py   # 从维基文库脂评会校本提取人物文本提及
+│   ├── crosscheck-quotes.py     # 用脂批新校本检索待核引语候选
 │   ├── stamp-assets.mjs         # 资源版本号（内容哈希）
 │   ├── sync-chapter-titles.mjs  # 回目标题同步校验
 │   ├── check-audio.mjs          # 预生成语音与文案一致性校验
@@ -95,6 +97,7 @@ npm run validate:data   # 校验人物/关系/知识/出场索引的结构与来
 npm run build:appearances # 更新人物出场索引（人物章节 + 名场面/人物出场 + 文本提及）
 npm run build:taxonomy    # 更新事件/地点索引与 knowledge 的 eventIds/placeIds
 npm run build:mentions    # 从维基文库脂评会校本提取人物文本提及（需 Python requests/bs4）
+npm run crosscheck:quotes # 用脂批新校本检索待核引语候选（需 Python requests/bs4/opencc）
 npm run stamp           # 改动 js/css 后刷新 index.html 的资源版本号（内容哈希）
 npm run check:assets    # 校验资源版本号是否与内容一致
 npm run check:chapters  # 校验人物回目与 knowledge.json 的章回标题一致
@@ -203,6 +206,8 @@ python3 -m venv .venv
 出场索引只从人物关键回目、`scene`/`entrance` 知识和文本提及生成；主题、人物专题、典故等跨回目内容不直接反推出场。运行 `npm run build:appearances` 重建。
 
 `data/text-mentions.json` 由 `scripts/build-text-mentions.py` 从维基文库《脂砚斋重评石头记》会校本提取，只记录“某回文本中出现某人物名/别名的次数”。该会校本是庚辰、己卯、甲戌合成，64/67/22 回配入其他脂本，**只作为文本提及参考，不作为经典语录或事实定本依据**。
+
+`data/quote-crosscheck.json` 用《红楼梦脂批本新校电子版》对 120 条待核引语做候选检索：当前命中 27 条。命中只表示“现代新校本可检索到”，仍然不是单一庚辰底本定论，前端会标注“脂批本新校可检索到（第X回），待庚辰影印本复核”。
 
 ### 事件/地点索引 (events.json / places.json)
 
