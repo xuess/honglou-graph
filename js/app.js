@@ -3612,7 +3612,8 @@ _createFontAndThemeControls() {
     });
 
     const comparisons = character.quoteComparisons || [];
-    if (!verified.length && !comparisons.length && !pending.length) return '';
+    const transcriptions = character.quotesTranscriptionVerified || [];
+    if (!verified.length && !comparisons.length && !transcriptions.length && !pending.length) return '';
 
     // locator 本身已带「第N回」前缀，引用里只在缺失时补，避免「第27回 · 第27回…」。
     const formatSource = (source) => {
@@ -3631,11 +3632,20 @@ _createFontAndThemeControls() {
       `<div class="card-quote card-quote-comparison">${this._escapeHtml(item.text || '')}<span class="card-quote-source">${formatSource(item.source)}${item.note ? ` · ${this._escapeHtml(item.note)}` : ''}</span></div>`
     ).join('');
 
+    const transcriptionHtml = transcriptions.slice(0, 2).map((item) => {
+      const chapter = item.sourceAudit?.crossCheck?.chapters?.[0];
+      const edition = item.sourceAudit?.edition || '脂批本新校';
+      return `<div class="card-quote card-quote-transcription">${this._escapeHtml(item.text || '')}<span class="card-quote-source">${this._escapeHtml(edition)}${chapter ? ` · 第${chapter}回` : ''} · 待庚辰影印本复核</span></div>`;
+    }).join('');
+
     const pendingHtml = pending.slice(0, 2).map((item) => this._renderPendingQuote(item)).join('');
 
     const sections = [];
     if (verified.length) {
       sections.push(`<div class="card-section"><div class="card-section-title">经典语录</div>${verifiedHtml}</div>`);
+    }
+    if (transcriptions.length) {
+      sections.push(`<div class="card-section"><div class="card-section-title">转录本已核<span class="card-section-count">脂批新校 · 待影印</span></div>${transcriptionHtml}<div class="card-note-hint">现代脂批新校本可检索到，不是庚辰影印本定论，暂不作为经典语录。</div></div>`);
     }
     if (comparisons.length) {
       sections.push(`<div class="card-section"><div class="card-section-title">版本异文<span class="card-section-count">程乙本对照</span></div>${comparisonHtml}<div class="card-note-hint">版本异文仅供对照，不作为底本定论；待甲戌／庚辰影印本校勘后再升级。</div></div>`);

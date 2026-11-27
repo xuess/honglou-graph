@@ -371,24 +371,6 @@
         }
       },
       {
-        "text": "我这老冤家是那世里的孽障，偏生遇见了这么两个不省事的小冤家。",
-        "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
-          "chapter": 29,
-          "locator": "第29回",
-          "crossCheck": {
-            "sourceId": "liaoping-xinjiao",
-            "status": "match",
-            "chapters": [
-              29
-            ]
-          }
-        }
-      },
-      {
         "text": "当日我像凤哥儿这么大年纪，比她还来得呢。",
         "sourceAudit": {
           "status": "needs-gengchen",
@@ -413,6 +395,26 @@
       "original",
       "original",
       "continuation"
+    ],
+    "quotesTranscriptionVerified": [
+      {
+        "text": "我这老冤家是那世里的孽障，偏生遇见了这么两个不省事的小冤家。",
+        "sourceAudit": {
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第29回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
+          "chapter": 29,
+          "locator": "第29回",
+          "crossCheck": {
+            "sourceId": "liaoping-xinjiao",
+            "status": "match",
+            "chapters": [
+              29
+            ]
+          }
+        }
+      }
     ]
   },
   {
@@ -594,24 +596,6 @@
     },
     "quotesPendingVerified": [
       {
-        "text": "自祖宗以来，皆是宽柔以待下人。",
-        "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
-          "chapter": 33,
-          "locator": "第33回",
-          "crossCheck": {
-            "sourceId": "liaoping-xinjiao",
-            "status": "match",
-            "chapters": [
-              33
-            ]
-          }
-        }
-      },
-      {
         "text": "不肖种种大承笞挞！",
         "sourceAudit": {
           "status": "needs-gengchen",
@@ -651,6 +635,26 @@
       "original",
       "original",
       "continuation"
+    ],
+    "quotesTranscriptionVerified": [
+      {
+        "text": "自祖宗以来，皆是宽柔以待下人。",
+        "sourceAudit": {
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第33回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
+          "chapter": 33,
+          "locator": "第33回",
+          "crossCheck": {
+            "sourceId": "liaoping-xinjiao",
+            "status": "match",
+            "chapters": [
+              33
+            ]
+          }
+        }
+      }
     ]
   },
   {
@@ -821,24 +825,6 @@
             "chapters": []
           }
         }
-      },
-      {
-        "text": "宝玉果然是有造化的。",
-        "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "wikisource-gengchen",
-          "edition": "庚辰本",
-          "chapter": 36,
-          "locator": "第36回",
-          "crossCheck": {
-            "sourceId": "liaoping-xinjiao",
-            "status": "match",
-            "chapters": [
-              36
-            ]
-          }
-        }
       }
     ],
     "quotes": [],
@@ -861,6 +847,26 @@
       "original",
       "original",
       "original"
+    ],
+    "quotesTranscriptionVerified": [
+      {
+        "text": "宝玉果然是有造化的。",
+        "sourceAudit": {
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第36回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
+          "chapter": 36,
+          "locator": "第36回",
+          "crossCheck": {
+            "sourceId": "liaoping-xinjiao",
+            "status": "match",
+            "chapters": [
+              36
+            ]
+          }
+        }
+      }
     ]
   },
   {
@@ -1650,14 +1656,24 @@
             "chapters": []
           }
         }
-      },
+      }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "continuation"
+    ],
+    "quotesTranscriptionVerified": [
       {
         "text": "当日既送我到那不得见人的去处……",
         "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第18回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
           "chapter": 18,
           "locator": "第18回",
           "crossCheck": {
@@ -1669,14 +1685,6 @@
           }
         }
       }
-    ],
-    "quotes": [],
-    "quoteSources": [],
-    "keyEventVersions": [
-      "original",
-      "original",
-      "original",
-      "continuation"
     ]
   },
   {
@@ -1837,42 +1845,6 @@
     },
     "quotesPendingVerified": [
       {
-        "text": "我但凡是个男人，可以出得去，我必早走了，立一番事业，那时自有我一番道理。",
-        "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
-          "chapter": 55,
-          "locator": "第55回",
-          "crossCheck": {
-            "sourceId": "liaoping-xinjiao",
-            "status": "match",
-            "chapters": [
-              55
-            ]
-          }
-        }
-      },
-      {
-        "text": "百足之虫，死而不僵，必须先从家里自杀自灭起来，才能一败涂地。",
-        "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
-          "chapter": 74,
-          "locator": "第74回",
-          "crossCheck": {
-            "sourceId": "liaoping-xinjiao",
-            "status": "match",
-            "chapters": [
-              74
-            ]
-          }
-        }
-      },
-      {
         "text": "你们别忒欺负人，打量我是好惹的！",
         "sourceAudit": {
           "status": "needs-gengchen",
@@ -1896,6 +1868,44 @@
       "original",
       "original",
       "original"
+    ],
+    "quotesTranscriptionVerified": [
+      {
+        "text": "我但凡是个男人，可以出得去，我必早走了，立一番事业，那时自有我一番道理。",
+        "sourceAudit": {
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第55回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
+          "chapter": 55,
+          "locator": "第55回",
+          "crossCheck": {
+            "sourceId": "liaoping-xinjiao",
+            "status": "match",
+            "chapters": [
+              55
+            ]
+          }
+        }
+      },
+      {
+        "text": "百足之虫，死而不僵，必须先从家里自杀自灭起来，才能一败涂地。",
+        "sourceAudit": {
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第74回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
+          "chapter": 74,
+          "locator": "第74回",
+          "crossCheck": {
+            "sourceId": "liaoping-xinjiao",
+            "status": "match",
+            "chapters": [
+              74
+            ]
+          }
+        }
+      }
     ]
   },
   {
@@ -1968,14 +1978,24 @@
             "chapters": []
           }
         }
-      },
+      }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "continuation"
+    ],
+    "quotesTranscriptionVerified": [
       {
         "text": "不作狠心人，难得自了汉。",
         "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第74回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
           "chapter": 74,
           "locator": "第74回",
           "crossCheck": {
@@ -1987,14 +2007,6 @@
           }
         }
       }
-    ],
-    "quotes": [],
-    "quoteSources": [],
-    "keyEventVersions": [
-      "original",
-      "original",
-      "original",
-      "continuation"
     ]
   },
   {
@@ -2380,26 +2392,7 @@
         "matchType": "verbatim"
       }
     ],
-    "quotesPendingVerified": [
-      {
-        "text": "趁今日富贵，将祖茔附近多置田庄房舍地亩，以备祭祀供给之费。",
-        "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
-          "chapter": 13,
-          "locator": "第13回",
-          "crossCheck": {
-            "sourceId": "liaoping-xinjiao",
-            "status": "match",
-            "chapters": [
-              13
-            ]
-          }
-        }
-      }
-    ],
+    "quotesPendingVerified": [],
     "outcomeSourceCandidates": [
       {
         "edition": "庚辰本",
@@ -2417,7 +2410,27 @@
     "natalFamily": "其他",
     "marriedFamily": "贾家",
     "natalGeneration": 3,
-    "marriedGeneration": 4
+    "marriedGeneration": 4,
+    "quotesTranscriptionVerified": [
+      {
+        "text": "趁今日富贵，将祖茔附近多置田庄房舍地亩，以备祭祀供给之费。",
+        "sourceAudit": {
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第13回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
+          "chapter": 13,
+          "locator": "第13回",
+          "crossCheck": {
+            "sourceId": "liaoping-xinjiao",
+            "status": "match",
+            "chapters": [
+              13
+            ]
+          }
+        }
+      }
+    ]
   },
   {
     "id": "jia_qiaojie",
@@ -2581,42 +2594,6 @@
             "chapters": []
           }
         }
-      },
-      {
-        "text": "珍重芳姿昼掩门，自携手瓮灌苔盆。",
-        "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
-          "chapter": 37,
-          "locator": "第37回 咏白海棠",
-          "crossCheck": {
-            "sourceId": "liaoping-xinjiao",
-            "status": "match",
-            "chapters": [
-              37
-            ]
-          }
-        }
-      },
-      {
-        "text": "淡极始知花更艳，愁多焉得玉无痕。",
-        "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
-          "chapter": 37,
-          "locator": "第37回 咏白海棠",
-          "crossCheck": {
-            "sourceId": "liaoping-xinjiao",
-            "status": "match",
-            "chapters": [
-              37
-            ]
-          }
-        }
       }
     ],
     "outcomeVersion": {
@@ -2632,6 +2609,44 @@
       "original",
       "continuation",
       "continuation"
+    ],
+    "quotesTranscriptionVerified": [
+      {
+        "text": "珍重芳姿昼掩门，自携手瓮灌苔盆。",
+        "sourceAudit": {
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第37回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
+          "chapter": 37,
+          "locator": "第37回 咏白海棠",
+          "crossCheck": {
+            "sourceId": "liaoping-xinjiao",
+            "status": "match",
+            "chapters": [
+              37
+            ]
+          }
+        }
+      },
+      {
+        "text": "淡极始知花更艳，愁多焉得玉无痕。",
+        "sourceAudit": {
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第37回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
+          "chapter": 37,
+          "locator": "第37回 咏白海棠",
+          "crossCheck": {
+            "sourceId": "liaoping-xinjiao",
+            "status": "match",
+            "chapters": [
+              37
+            ]
+          }
+        }
+      }
     ]
   },
   {
@@ -2736,14 +2751,28 @@
         "matchType": "prefix"
       }
     ],
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "outcomeVersion": {
+      "original": "寄居贾府的世外仙姝，结局未明（判词伏“玉带林中挂”）",
+      "continuation": "泪尽而亡，焚稿断痴情"
+    },
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original",
+      "original",
+      "continuation",
+      "continuation"
+    ],
+    "quotesTranscriptionVerified": [
       {
         "text": "偷来梨蕊三分白，借得梅花一缕魂。",
         "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第37回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
           "chapter": 37,
           "locator": "第37回 咏白海棠",
           "crossCheck": {
@@ -2758,10 +2787,10 @@
       {
         "text": "孤标傲世偕谁隐，一样花开为底迟？",
         "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第38回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
           "chapter": 38,
           "locator": "第38回 问菊",
           "crossCheck": {
@@ -2773,19 +2802,6 @@
           }
         }
       }
-    ],
-    "outcomeVersion": {
-      "original": "寄居贾府的世外仙姝，结局未明（判词伏“玉带林中挂”）",
-      "continuation": "泪尽而亡，焚稿断痴情"
-    },
-    "keyEventVersions": [
-      "original",
-      "original",
-      "original",
-      "original",
-      "original",
-      "continuation",
-      "continuation"
     ]
   },
   {
@@ -3094,14 +3110,22 @@
     "isMainline": false,
     "outcome": "前八十回已许配梅翰林之子，后事未明",
     "sourceNote": "前八十回只写其已许配梅翰林之子，未写成婚及婚后；梅家获罪、随夫流放等说法无前八十回依据。",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
+    ],
+    "quotesTranscriptionVerified": [
       {
         "text": "昨夜朱楼梦，今宵水国吟。",
         "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第52回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
           "chapter": 52,
           "locator": "第52回",
           "crossCheck": {
@@ -3113,13 +3137,6 @@
           }
         }
       }
-    ],
-    "quotes": [],
-    "quoteSources": [],
-    "keyEventVersions": [
-      "original",
-      "original",
-      "original"
     ]
   },
   {
@@ -3337,14 +3354,25 @@
             "chapters": []
           }
         }
-      },
+      }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original",
+      "continuation"
+    ],
+    "quotesTranscriptionVerified": [
       {
         "text": "精华欲掩料应难，影自娟娟魄自寒。",
         "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第49回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
           "chapter": 49,
           "locator": "第49回 第三稿",
           "crossCheck": {
@@ -3356,15 +3384,6 @@
           }
         }
       }
-    ],
-    "quotes": [],
-    "quoteSources": [],
-    "keyEventVersions": [
-      "original",
-      "original",
-      "original",
-      "original",
-      "continuation"
     ]
   },
   {
@@ -3429,62 +3448,7 @@
       "original": "前八十回未明写婚配；判词伏“白首双星”",
       "continuation": "后四十回亦未坐实；嫁卫若兰、守寡等说法多属探佚推测"
     },
-    "quotesPendingVerified": [
-      {
-        "text": "是真名士自风流！你们都是假清高。",
-        "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
-          "chapter": 49,
-          "locator": "第49回",
-          "crossCheck": {
-            "sourceId": "liaoping-xinjiao",
-            "status": "match",
-            "chapters": [
-              49
-            ]
-          }
-        }
-      },
-      {
-        "text": "寒塘渡鹤影。",
-        "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
-          "chapter": 76,
-          "locator": "第76回 凹晶馆联诗",
-          "crossCheck": {
-            "sourceId": "liaoping-xinjiao",
-            "status": "match",
-            "chapters": [
-              76
-            ]
-          }
-        }
-      },
-      {
-        "text": "且住，且住，莫使春光别去！",
-        "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "wikisource-gengchen",
-          "edition": "庚辰本",
-          "chapter": 70,
-          "locator": "第70回",
-          "crossCheck": {
-            "sourceId": "liaoping-xinjiao",
-            "status": "match",
-            "chapters": [
-              70
-            ]
-          }
-        }
-      }
-    ],
+    "quotesPendingVerified": [],
     "quotes": [],
     "quoteSources": [],
     "quoteComparisons": [
@@ -3505,6 +3469,62 @@
       "original",
       "original",
       "original"
+    ],
+    "quotesTranscriptionVerified": [
+      {
+        "text": "是真名士自风流！你们都是假清高。",
+        "sourceAudit": {
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第49回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
+          "chapter": 49,
+          "locator": "第49回",
+          "crossCheck": {
+            "sourceId": "liaoping-xinjiao",
+            "status": "match",
+            "chapters": [
+              49
+            ]
+          }
+        }
+      },
+      {
+        "text": "寒塘渡鹤影。",
+        "sourceAudit": {
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第76回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
+          "chapter": 76,
+          "locator": "第76回 凹晶馆联诗",
+          "crossCheck": {
+            "sourceId": "liaoping-xinjiao",
+            "status": "match",
+            "chapters": [
+              76
+            ]
+          }
+        }
+      },
+      {
+        "text": "且住，且住，莫使春光别去！",
+        "sourceAudit": {
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第70回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
+          "chapter": 70,
+          "locator": "第70回",
+          "crossCheck": {
+            "sourceId": "liaoping-xinjiao",
+            "status": "match",
+            "chapters": [
+              70
+            ]
+          }
+        }
+      }
     ]
   },
   {
@@ -3922,24 +3942,6 @@
             "chapters": []
           }
         }
-      },
-      {
-        "text": "早知如此，我当日也另有个道理。",
-        "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
-          "chapter": 77,
-          "locator": "第77回",
-          "crossCheck": {
-            "sourceId": "liaoping-xinjiao",
-            "status": "match",
-            "chapters": [
-              77
-            ]
-          }
-        }
       }
     ],
     "quotes": [],
@@ -3957,6 +3959,26 @@
       "original",
       "original",
       "original"
+    ],
+    "quotesTranscriptionVerified": [
+      {
+        "text": "早知如此，我当日也另有个道理。",
+        "sourceAudit": {
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第77回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
+          "chapter": 77,
+          "locator": "第77回",
+          "crossCheck": {
+            "sourceId": "liaoping-xinjiao",
+            "status": "match",
+            "chapters": [
+              77
+            ]
+          }
+        }
+      }
     ]
   },
   {
@@ -4298,14 +4320,22 @@
     "generation": 0,
     "isMainline": false,
     "outcome": "贾府败落后随宝玉流落，后嫁与他人，平稳度日。",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
+    ],
+    "quotesTranscriptionVerified": [
       {
         "text": "公然又是一个袭人。",
         "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "wikisource-gengchen",
-          "edition": "庚辰本",
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第20回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
           "chapter": 20,
           "locator": "第20回",
           "crossCheck": {
@@ -4317,13 +4347,6 @@
           }
         }
       }
-    ],
-    "quotes": [],
-    "quoteSources": [],
-    "keyEventVersions": [
-      "original",
-      "original",
-      "original"
     ]
   },
   {
@@ -4441,24 +4464,6 @@
     "outcome": "被王夫人撵出后投井自尽",
     "quotesPendingVerified": [
       {
-        "text": "你忙什么！'金簪子掉在井里头，有你的只是有你的'。",
-        "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
-          "chapter": 30,
-          "locator": "第30回",
-          "crossCheck": {
-            "sourceId": "liaoping-xinjiao",
-            "status": "match",
-            "chapters": [
-              30
-            ]
-          }
-        }
-      },
-      {
         "text": "你去东小院子里拿环哥儿和彩云去。",
         "sourceAudit": {
           "status": "needs-gengchen",
@@ -4489,6 +4494,26 @@
       "original",
       "original",
       "original"
+    ],
+    "quotesTranscriptionVerified": [
+      {
+        "text": "你忙什么！'金簪子掉在井里头，有你的只是有你的'。",
+        "sourceAudit": {
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第30回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
+          "chapter": 30,
+          "locator": "第30回",
+          "crossCheck": {
+            "sourceId": "liaoping-xinjiao",
+            "status": "match",
+            "chapters": [
+              30
+            ]
+          }
+        }
+      }
     ]
   },
   {
@@ -5139,14 +5164,20 @@
             "chapters": []
           }
         }
-      },
+      }
+    ],
+    "keyEventVersions": [
+      "original",
+      "original"
+    ],
+    "quotesTranscriptionVerified": [
       {
         "text": "红刀子进去白刀子出来。",
         "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第7回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
           "chapter": 7,
           "locator": "第7回",
           "crossCheck": {
@@ -5158,10 +5189,6 @@
           }
         }
       }
-    ],
-    "keyEventVersions": [
-      "original",
-      "original"
     ]
   },
   {
@@ -5459,14 +5486,24 @@
             "chapters": []
           }
         }
-      },
+      }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "continuation"
+    ],
+    "quotesTranscriptionVerified": [
       {
         "text": "槛外人妙玉恭肃遥叩芳辰。",
         "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第63回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
           "chapter": 63,
           "locator": "第63回",
           "crossCheck": {
@@ -5481,10 +5518,10 @@
       {
         "text": "你这么个人，竟是大俗人，连水也尝不出来。",
         "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第41回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
           "chapter": 41,
           "locator": "第41回",
           "crossCheck": {
@@ -5496,14 +5533,6 @@
           }
         }
       }
-    ],
-    "quotes": [],
-    "quoteSources": [],
-    "keyEventVersions": [
-      "original",
-      "original",
-      "original",
-      "continuation"
     ]
   },
   {
@@ -5558,14 +5587,21 @@
         "matchType": "verbatim"
       }
     ],
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original"
+    ],
+    "quotesTranscriptionVerified": [
       {
         "text": "好防佳节元宵后，便是烟消火灭时。",
         "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第1回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
           "chapter": 1,
           "locator": "第1回",
           "crossCheck": {
@@ -5577,12 +5613,6 @@
           }
         }
       }
-    ],
-    "keyEventVersions": [
-      "original",
-      "original",
-      "original",
-      "original"
     ]
   },
   {
@@ -6124,14 +6154,23 @@
             "chapters": []
           }
         }
-      },
+      }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original"
+    ],
+    "quotesTranscriptionVerified": [
       {
         "text": "你们东府里除了那两个石头狮子干净，只怕连猫儿狗儿都不干净。",
         "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第66回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
           "chapter": 66,
           "locator": "第66回",
           "crossCheck": {
@@ -6143,13 +6182,6 @@
           }
         }
       }
-    ],
-    "quotes": [],
-    "quoteSources": [],
-    "keyEventVersions": [
-      "original",
-      "original",
-      "original"
     ]
   },
   {
@@ -7082,14 +7114,23 @@
     "generation": 3,
     "isMainline": false,
     "outcome": "第57回与薛蝌定亲（前八十回）；成婚及以后情节无前八十回依据",
-    "quotesPendingVerified": [
+    "quotesPendingVerified": [],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "original",
+      "original"
+    ],
+    "quotesTranscriptionVerified": [
       {
         "text": "浓淡由他冰雪中。",
         "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第50回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
           "chapter": 50,
           "locator": "第50回",
           "crossCheck": {
@@ -7101,14 +7142,6 @@
           }
         }
       }
-    ],
-    "quotes": [],
-    "quoteSources": [],
-    "keyEventVersions": [
-      "original",
-      "original",
-      "original",
-      "original"
     ]
   },
   {
@@ -7232,14 +7265,23 @@
             "chapters": []
           }
         }
-      },
+      }
+    ],
+    "quotes": [],
+    "quoteSources": [],
+    "keyEventVersions": [
+      "original",
+      "original",
+      "continuation"
+    ],
+    "quotesTranscriptionVerified": [
       {
         "text": "好不好，打一顿撵在下房里睡去。",
         "sourceAudit": {
-          "status": "needs-gengchen",
-          "note": "庚辰本来源与回目定位待补，暂不作为经典语录",
-          "sourceId": "jiaxu-wikisource",
-          "edition": "庚辰本",
+          "status": "transcription-match",
+          "note": "脂批本新校可检索到（第80回），待庚辰影印本复核",
+          "sourceId": "liaoping-xinjiao",
+          "edition": "脂批本新校（参考庚辰本）",
           "chapter": 80,
           "locator": "第80回",
           "crossCheck": {
@@ -7251,13 +7293,6 @@
           }
         }
       }
-    ],
-    "quotes": [],
-    "quoteSources": [],
-    "keyEventVersions": [
-      "original",
-      "original",
-      "continuation"
     ]
   },
   {

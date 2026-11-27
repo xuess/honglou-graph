@@ -2815,6 +2815,18 @@ button.card-chapter-item:focus-visible {
   color: var(--color-ink-light);
 }
 
+/* 转录本已核：现代脂批新校本可检索，但仍待庚辰影印本复核。 */
+.card-quote-transcription {
+  border-style: dashed;
+  border-color: rgba(196,154,42,0.42);
+  background: rgba(196,154,42,0.08);
+}
+
+.card-quote-transcription .card-quote-source {
+  color: #8A6A1F;
+  opacity: 1;
+}
+
 /* 程乙本等版本异文：单独成组，避免和底本“经典语录”混在一起。 */
 .card-quote-comparison {
   border-style: dashed;

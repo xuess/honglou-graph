@@ -149,21 +149,26 @@ await run('TC-47 引语审计队列与数据统计一致', async () => {
       quotes: chars.reduce((sum, character) => sum + (character.quotes || []).length, 0),
       quoteCharacters: chars.filter((character) => (character.quotes || []).length).length,
       pending: chars.reduce((sum, character) => sum + (character.quotesPendingVerified || []).length, 0),
+      transcriptions: chars.reduce((sum, character) => sum + (character.quotesTranscriptionVerified || []).length, 0),
       comparisons: chars.reduce((sum, character) => sum + (character.quoteComparisons || []).length, 0),
       unverifiedCharacters: chars.filter((character) =>
-        (character.quotesPendingVerified || []).length || (character.quoteComparisons || []).length).length,
+        (character.quotesPendingVerified || []).length
+        || (character.quotesTranscriptionVerified || []).length
+        || (character.quoteComparisons || []).length).length,
       audit: quoteAudit
     };
   });
   assert.equal(audit.quotes, 17);
   assert.equal(audit.quoteCharacters, 10);
-  assert.equal(audit.pending, 120);
+  assert.equal(audit.pending, 93);
+  assert.equal(audit.transcriptions, 27);
   assert.equal(audit.comparisons, 36);
   assert.equal(audit.unverifiedCharacters, 106);
   assert.equal(audit.audit.recordCount, 106);
   assert.equal(audit.audit.verifiedCount, 10);
   assert.equal(audit.audit.verifiedQuoteLines, 17);
-  assert.equal(audit.audit.pendingQuoteLines, 120);
+  assert.equal(audit.audit.pendingQuoteLines, 93);
+  assert.equal(audit.audit.transcriptionQuoteLines, 27);
   assert.equal(audit.audit.comparisonQuoteLines, 36);
 });
 
@@ -395,10 +400,14 @@ await run('TC-60 引语候选检索状态', async () => {
 
   await page.evaluate(() => app._openCharacter('jia_mu'));
   await sleep(500);
-  const notes = await page.evaluate(() =>
-    [...document.querySelectorAll('#character-card-overlay .card-quote-pending')].map((element) => element.innerText));
-  assert.ok(notes.some((text) => /脂批本新校可检索到（第29回）/.test(text)),
-    `贾母候选引语应显示校勘线索: ${notes.join(' / ')}`);
+  const state = await page.evaluate(() => ({
+    titles: [...document.querySelectorAll('#character-card-overlay .card-section-title')].map((element) => element.innerText),
+    transcriptions: [...document.querySelectorAll('#character-card-overlay .card-quote-transcription')].map((element) => element.innerText)
+  }));
+  assert.ok(state.titles.some((title) => title.startsWith('转录本已核')),
+    `贾母应有“转录本已核”区块: ${state.titles.join(' / ')}`);
+  assert.ok(state.transcriptions.some((text) => /第29回/.test(text)),
+    `贾母候选引语应显示校勘线索: ${state.transcriptions.join(' / ')}`);
 });
 
 await run('TC-61 控制台无错误', async () => {
