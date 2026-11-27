@@ -91,6 +91,15 @@
 - `roles` 可为 `key` / `scene` / `entrance`，`version` 区分前八十回与续书；
 - 时间线和章节人物视图应优先读这套索引，避免再用名字子串或主题条目猜人物。
 
+## 事件/地点索引
+
+`data/events.json`、`data/places.json` 由 `npm run build:taxonomy` 从知识条目的 `relatedEvents` / `relatedPlaces` 生成。
+
+- 同一事件的不同写法（如“元妃省亲 / 元春省亲”）归并到同一 ID；
+- 每条知识写回 `eventIds` / `placeIds`，便于筛选与交叉引用；
+- 无法归并的自由文本使用稳定内容哈希 ID，不丢原有信息；
+- 知识卡上的事件/地点标签可直接点击检索。
+
 ## 展示准则
 
 - 只有通过“底本来源 + 版本一致 + 回目覆盖 + locator”四项校验的 `quoteSources` 才能显示为“经典语录”。

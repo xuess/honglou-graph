@@ -5342,10 +5342,18 @@ body.view-knowledge .main-container {
 
 .knowledge-tag {
   padding: 3px 8px;
+  border: 0;
   border-radius: 999px;
+  font-family: var(--font-body);
   font-size: 0.72rem;
   background: rgba(196,168,130,0.18);
   color: var(--color-ink-light);
+  cursor: pointer;
+}
+
+.knowledge-tag:hover {
+  background: rgba(139,37,0,0.12);
+  color: var(--color-primary);
 }
 
 .knowledge-card-expand {
@@ -6515,12 +6523,24 @@ body.panel-resizing * {
   min-width: 0;
 }
 
-.knowledge-card-related-events span {
+.knowledge-card-related-events span,
+.knowledge-event {
   font-size: 0.72rem;
   color: var(--color-ink-light);
   padding: 2px 8px;
+  border: 0;
   border-radius: 999px;
   background: rgba(196,168,130,0.12);
+}
+
+.knowledge-event {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+.knowledge-event:hover {
+  background: rgba(139,37,0,0.12);
+  color: var(--color-primary);
 }
 
 .knowledge-card-actions {

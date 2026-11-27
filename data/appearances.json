@@ -125,12 +125,27 @@
     },
     {
       "characterId": "bo_zu_daoren",
-      "chapter": 66,
+      "chapter": 25,
       "roles": [
-        "key"
+        "scene"
       ],
       "sources": [
-        "character-chapter"
+        "knowledge:scene"
+      ],
+      "title": "一僧一道持玉诵持",
+      "summary": "通灵宝玉的“灵”在危机中第一次正面显效，也加深了它的象征意味。",
+      "version": "original"
+    },
+    {
+      "characterId": "bo_zu_daoren",
+      "chapter": 66,
+      "roles": [
+        "key",
+        "scene"
+      ],
+      "sources": [
+        "character-chapter",
+        "knowledge:scene"
       ],
       "title": "情小妹耻情归地府 冷二郎一冷入空门",
       "summary": "尤三姐自刎后，柳湘莲悔恨交加，跛足道人点化他出家为道。",
@@ -442,6 +457,19 @@
       ],
       "title": "顽童闹学堂",
       "summary": "学堂风波把嫡庶、贫富和少年意气集中在一间书斋里。",
+      "version": "original"
+    },
+    {
+      "characterId": "jia_baoyu",
+      "chapter": 11,
+      "roles": [
+        "scene"
+      ],
+      "sources": [
+        "knowledge:scene"
+      ],
+      "title": "宁府寿宴与秦可卿病容",
+      "summary": "寿宴的热闹与病榻的阴影并置，为秦可卿之死和贾瑞之局同时埋线。",
       "version": "original"
     },
     {
@@ -1339,6 +1367,19 @@
     },
     {
       "characterId": "jia_mu",
+      "chapter": 11,
+      "roles": [
+        "scene"
+      ],
+      "sources": [
+        "knowledge:scene"
+      ],
+      "title": "宁府寿宴与秦可卿病容",
+      "summary": "寿宴的热闹与病榻的阴影并置，为秦可卿之死和贾瑞之局同时埋线。",
+      "version": "original"
+    },
+    {
+      "characterId": "jia_mu",
       "chapter": 18,
       "roles": [
         "scene"
@@ -2216,6 +2257,19 @@
     },
     {
       "characterId": "jia_zhen",
+      "chapter": 14,
+      "roles": [
+        "scene"
+      ],
+      "sources": [
+        "knowledge:scene"
+      ],
+      "title": "北静王路谒宝玉",
+      "summary": "王侯亲临路祭，写出贾府鼎盛时的人情与排场。",
+      "version": "original"
+    },
+    {
+      "characterId": "jia_zhen",
       "chapter": 53,
       "roles": [
         "scene"
@@ -2277,6 +2331,19 @@
       ],
       "title": "中秋夜宴，异兆悲音",
       "summary": "团圆宴席上的冷清与怪声，是贾府盛衰转折的听觉化写法。",
+      "version": "original"
+    },
+    {
+      "characterId": "jia_zheng",
+      "chapter": 14,
+      "roles": [
+        "scene"
+      ],
+      "sources": [
+        "knowledge:scene"
+      ],
+      "title": "北静王路谒宝玉",
+      "summary": "王侯亲临路祭，写出贾府鼎盛时的人情与排场。",
       "version": "original"
     },
     {
@@ -2607,10 +2674,12 @@
       "characterId": "lai_tou_heshang",
       "chapter": 25,
       "roles": [
-        "key"
+        "key",
+        "scene"
       ],
       "sources": [
-        "character-chapter"
+        "character-chapter",
+        "knowledge:scene"
       ],
       "title": "魇魔法姊弟逢五鬼 红楼梦通灵遇双真",
       "summary": "宝玉和凤姐被马道婆施魇魔法害得奄奄一息，癞头和尚前来持诵通灵宝玉救治。",
@@ -3354,6 +3423,19 @@
     },
     {
       "characterId": "liu_xianglian",
+      "chapter": 65,
+      "roles": [
+        "scene"
+      ],
+      "sources": [
+        "knowledge:scene"
+      ],
+      "title": "尤三姐思嫁柳湘莲",
+      "summary": "尤三姐把婚姻当成自主选择，这在贾府的女儿中极为罕见。",
+      "version": "original"
+    },
+    {
+      "characterId": "liu_xianglian",
       "chapter": 66,
       "roles": [
         "key",
@@ -3712,6 +3794,19 @@
     },
     {
       "characterId": "qin_keqing",
+      "chapter": 11,
+      "roles": [
+        "scene"
+      ],
+      "sources": [
+        "knowledge:scene"
+      ],
+      "title": "宁府寿宴与秦可卿病容",
+      "summary": "寿宴的热闹与病榻的阴影并置，为秦可卿之死和贾瑞之局同时埋线。",
+      "version": "original"
+    },
+    {
+      "characterId": "qin_keqing",
       "chapter": 13,
       "roles": [
         "key"
@@ -3775,6 +3870,19 @@
       ],
       "title": "贾元春才选凤藻宫 秦鲸卿夭逝黄泉路",
       "summary": "秦钟因伤风加上与智能的情事牵累，不久病重夭亡，宝玉悲恸不已。",
+      "version": "original"
+    },
+    {
+      "characterId": "qingwen",
+      "chapter": 30,
+      "roles": [
+        "scene"
+      ],
+      "sources": [
+        "knowledge:scene"
+      ],
+      "title": "宝玉误踢袭人",
+      "summary": "一脚踢出宝玉的公子脾气，也踢出袭人隐忍的处境。",
       "version": "original"
     },
     {
@@ -3926,6 +4034,19 @@
       ],
       "title": "王熙凤正言弹妒意 林黛玉俏语谑娇音",
       "summary": "麝月替宝玉篦头时与宝玉闲话家常，性情温和安分守己。",
+      "version": "original"
+    },
+    {
+      "characterId": "sheyue",
+      "chapter": 30,
+      "roles": [
+        "scene"
+      ],
+      "sources": [
+        "knowledge:scene"
+      ],
+      "title": "宝玉误踢袭人",
+      "summary": "一脚踢出宝玉的公子脾气，也踢出袭人隐忍的处境。",
       "version": "original"
     },
     {
@@ -4931,6 +5052,19 @@
     },
     {
       "characterId": "xiren",
+      "chapter": 30,
+      "roles": [
+        "scene"
+      ],
+      "sources": [
+        "knowledge:scene"
+      ],
+      "title": "宝玉误踢袭人",
+      "summary": "一脚踢出宝玉的公子脾气，也踢出袭人隐忍的处境。",
+      "version": "original"
+    },
+    {
+      "characterId": "xiren",
       "chapter": 32,
       "roles": [
         "scene"
@@ -5639,6 +5773,19 @@
     },
     {
       "characterId": "you_shi",
+      "chapter": 11,
+      "roles": [
+        "scene"
+      ],
+      "sources": [
+        "knowledge:scene"
+      ],
+      "title": "宁府寿宴与秦可卿病容",
+      "summary": "寿宴的热闹与病榻的阴影并置，为秦可卿之死和贾瑞之局同时埋线。",
+      "version": "original"
+    },
+    {
+      "characterId": "you_shi",
       "chapter": 13,
       "roles": [
         "key"
@@ -6024,6 +6171,19 @@
       ],
       "title": "送宫花贾琏戏熙凤 宴宁府宝玉会秦钟",
       "summary": "周瑞家的受薛姨妈之托为各房送宫花，借此串联出各房人物和关系。",
+      "version": "original"
+    },
+    {
+      "characterId": "zhui_er",
+      "chapter": 26,
+      "roles": [
+        "scene"
+      ],
+      "sources": [
+        "knowledge:scene"
+      ],
+      "title": "小红蜂腰桥传心事",
+      "summary": "小人物的爱情没有诗社的风雅，却有同样真切的心事。",
       "version": "original"
     },
     {

@@ -6,7 +6,7 @@
 
 ### 主要特性
 
-- **丰富的人物数据**：收录 125 位人物、208 条关系、570 条知识条目（判词、诗词、回目、名场面、生僻字、器物、建筑等）
+- **丰富的人物数据**：收录 125 位人物、208 条关系、597 条知识条目（判词、诗词、回目、名场面、生僻字、器物、建筑等）
 - **多维度关系**：支持血缘、婚姻、主仆、情感、社交、敌对六类关系
 - **力导向图谱**：基于 D3.js 的交互式力导向图，支持拖拽、缩放、按章回时间轴回放
 - **人物信息卡片**：点击人物查看详细信息，包括别名、身份、性格、事迹、语录、命运线等
@@ -48,10 +48,13 @@ honglou-graph/
 │   ├── relationships.json # 关系数据
 │   ├── knowledge.json    # 知识条目
 │   ├── appearances.json  # 人物—回目出场/名场面索引
+│   ├── events.json       # 规范化事件索引
+│   ├── places.json       # 规范化地点索引
 │   └── provenance.json   # 来源与审计队列（校验脚本依赖）
 ├── scripts/
 │   ├── validate-data.mjs        # 数据校验
 │   ├── build-appearances.mjs    # 从人物回目与 scene/entrance 生成出场索引
+│   ├── build-taxonomy.mjs       # 从 relatedEvents/relatedPlaces 生成事件地点索引
 │   ├── stamp-assets.mjs         # 资源版本号（内容哈希）
 │   ├── sync-chapter-titles.mjs  # 回目标题同步校验
 │   ├── check-audio.mjs          # 预生成语音与文案一致性校验
@@ -88,6 +91,7 @@ npx serve .
 ```bash
 npm run validate:data   # 校验人物/关系/知识/出场索引的结构与来源范围
 npm run build:appearances # 更新人物出场索引（人物章节 + 名场面/人物出场）
+npm run build:taxonomy    # 更新事件/地点索引与 knowledge 的 eventIds/placeIds
 npm run stamp           # 改动 js/css 后刷新 index.html 的资源版本号（内容哈希）
 npm run check:assets    # 校验资源版本号是否与内容一致
 npm run check:chapters  # 校验人物回目与 knowledge.json 的章回标题一致
@@ -194,6 +198,23 @@ python3 -m venv .venv
 ```
 
 出场索引只从人物关键回目和 `scene`/`entrance` 知识生成，不从主题、人物专题、典故等跨回目内容反推。运行 `npm run build:appearances` 重建。
+
+### 事件/地点索引 (events.json / places.json)
+
+`relatedEvents`、`relatedPlaces` 中的自由文本会归并为稳定 ID，并写回每条知识的 `eventIds` / `placeIds`：
+
+```json
+{
+  "id": "event_yuanfei_shengqin",
+  "title": "元妃省亲",
+  "aliases": ["元春省亲"],
+  "chapters": [18],
+  "knowledgeIds": ["scene_yuanfei_shengqin", "..."],
+  "characterIds": ["jia_yuanchun", "..."]
+}
+```
+
+运行 `npm run build:taxonomy` 重建；知识卡上的事件/地点标签可直接点击检索。
 
 ### 关系类型
 
