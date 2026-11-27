@@ -32,7 +32,7 @@ class AudioPreloadCache {
     this._currentAudio = null;
     this._manifestUrl = 'audio/audio-manifest.json';
     // 音频重新生成时递增，用来让浏览器/边缘缓存失效；不递增则复用缓存。
-    this._manifestVersion = '2026-11-04';
+    this._manifestVersion = '2026-11-27-1704';
     this._onEngineChange = null;   // 外部注册的回调
   }
 
@@ -284,7 +284,10 @@ class AudioPreloadCache {
 
     const audio = new Audio();
     audio.preload = 'metadata';
-    audio.src = engineEntry.file;
+    // 重新生成的音频文件名不变，带上生成时间让浏览器/边缘缓存失效。
+    audio.src = engineEntry.generatedAt
+      ? `${engineEntry.file}?v=${encodeURIComponent(engineEntry.generatedAt)}`
+      : engineEntry.file;
     this._audioCache.set(cacheKey, audio);
     return audio;
   }

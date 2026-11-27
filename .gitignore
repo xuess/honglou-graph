@@ -1,6 +1,9 @@
 # Python venv
 .venv/
 
+# macOS
+.DS_Store
+
 # Logs
 logs
 *.log
@@ -169,3 +172,5 @@ scripts/*
 !scripts/build-taxonomy.mjs
 !scripts/build-text-mentions.py
 !scripts/crosscheck-quotes.py
+!scripts/generate-mimo-v2.py
+!scripts/regenerate-mimo-all.sh

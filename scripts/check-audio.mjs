@@ -49,14 +49,6 @@ for (const item of knowledge) {
     continue;
   }
   const expected = speechHash(item.content);
-  if (entry.textHash !== expected) {
-    stale.push({
-      id: item.id,
-      title: item.title,
-      expected,
-      actual: entry.textHash || null
-    });
-  }
   for (const engine of engines) {
     const voice = entry[engine];
     const name = engine.replace('engine:', '');
@@ -66,6 +58,11 @@ for (const item of knowledge) {
     }
     if (!existsSync(resolve(root, voice.file))) {
       missingFiles.push({ id: item.id, engine: name, file: voice.file });
+    }
+    // 引擎条目自带 textHash 时以它为准，否则沿用条目顶层的（旧清单格式）。
+    const actual = voice.textHash || entry.textHash || null;
+    if (actual !== expected) {
+      stale.push({ id: item.id, title: item.title, engine: name, expected, actual });
     }
   }
 }
@@ -110,7 +107,7 @@ if (process.argv.includes('--json')) {
   }
   if (stale.length) {
     console.log('\n文案已改、音频未重生成:');
-    for (const x of stale) console.log(`  - ${x.id}  ${x.title || ''}`);
+    for (const x of stale) console.log(`  - ${x.id}  ${x.engine}  ${x.title || ''}`);
   }
   if (failed.length) {
     console.log('\n失败/待重生成的人声:');
