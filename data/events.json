@@ -1,0 +1,4799 @@
+{
+  "schemaVersion": 1,
+  "generatedFrom": "knowledge.relatedEvents",
+  "events": [
+    {
+      "id": "event_juhua_shishe",
+      "title": "菊花诗社",
+      "aliases": [
+        "菊花诗会",
+        "咏菊"
+      ],
+      "chapters": [
+        17,
+        38
+      ],
+      "knowledgeIds": [
+        "poem_juhua_shi_xiangyun",
+        "poem_juhua",
+        "food_crab_feast",
+        "poem_wenju",
+        "poem_jumeng",
+        "architecture_daoxiangcun",
+        "architecture_ouxiangxie",
+        "poem_yi_ju",
+        "poem_fang_ju",
+        "poem_zhong_ju",
+        "poem_dui_ju",
+        "poem_zan_ju",
+        "poem_ju_ying",
+        "poem_gong_ju",
+        "poem_can_ju",
+        "poem_baochai_juhua",
+        "poem_daiyu_juhua"
+      ],
+      "characterIds": [
+        "xue_baochai",
+        "lin_daiyu",
+        "shi_xiangyun",
+        "jia_tanchun",
+        "jia_baoyu",
+        "jia_lan",
+        "li_wan"
+      ]
+    },
+    {
+      "id": "event_yuanfei_shengqin",
+      "title": "元妃省亲",
+      "aliases": [
+        "元春省亲"
+      ],
+      "chapters": [
+        1,
+        2,
+        4,
+        5,
+        16,
+        17,
+        18
+      ],
+      "knowledgeIds": [
+        "prophecy_yuanchun",
+        "verse_yuanchun_daguanyuan",
+        "architecture_daguanyuan_layout",
+        "allusion_jiafu_paiming",
+        "verse_henwuchang",
+        "entrance_yuanchun",
+        "scene_yuanfei_shengqin",
+        "architecture_lixiangyuan",
+        "architecture_daguanyuan_gates",
+        "scene_yuanchun_shengqin",
+        "allusion_da_guan_yuan",
+        "theme_jiazu_shuailuo",
+        "character_study_yuanchun"
+      ],
+      "characterIds": [
+        "jia_yuanchun",
+        "jia_baoyu",
+        "jia_zheng",
+        "jia_yingchun",
+        "jia_xichun",
+        "jia_tanchun",
+        "jia_mu",
+        "wang_furen",
+        "lingguan",
+        "xue_baochai",
+        "fangguan",
+        "xue_yima",
+        "lin_daiyu",
+        "wang_xifeng"
+      ]
+    },
+    {
+      "id": "event_haitang_shishe",
+      "title": "海棠诗社",
+      "aliases": [
+        "海棠诗社成立",
+        "结海棠社"
+      ],
+      "chapters": [
+        17,
+        37,
+        38
+      ],
+      "knowledgeIds": [
+        "poem_haitang",
+        "space_haitang_shishe",
+        "food_crab_feast",
+        "poem_yong_bai_haitang_daiyu",
+        "poem_yong_bai_haitang_baochai",
+        "architecture_daoxiangcun",
+        "architecture_qiushuangzhai",
+        "poem_yong_bai_haitang_baoyu",
+        "poem_yong_bai_haitang_xiangyun_1",
+        "poem_yong_bai_haitang_xiangyun_2",
+        "poem_baoyu_niren",
+        "character_study_liwan"
+      ],
+      "characterIds": [
+        "jia_tanchun",
+        "shi_xiangyun",
+        "lin_daiyu",
+        "xue_baochai",
+        "jia_baoyu",
+        "jia_lan",
+        "li_wan",
+        "jia_zhu"
+      ]
+    },
+    {
+      "id": "event_taixu",
+      "title": "神游太虚幻境",
+      "aliases": [
+        "太虚幻境"
+      ],
+      "chapters": [
+        5
+      ],
+      "knowledgeIds": [
+        "prophecy_baochai_daiyu",
+        "verse_hongloumeng_yinsong",
+        "couplet_taixu",
+        "couplet_qinkeqing_room",
+        "theme_jinyu_mushi",
+        "verse_lezhongbei",
+        "verse_liuyuqing",
+        "scene_baoyu_mengyou_taixu",
+        "allusion_jin_ling_shi_er_chai",
+        "allusion_qian_hong_yi_ku",
+        "theme_nvxing_mingyun"
+      ],
+      "characterIds": [
+        "lin_daiyu",
+        "xue_baochai",
+        "jia_baoyu",
+        "qin_keqing",
+        "jia_mu",
+        "wang_furen",
+        "shi_xiangyun",
+        "jia_qiaojie",
+        "wang_xifeng",
+        "liu_laolao",
+        "jia_yuanchun"
+      ]
+    },
+    {
+      "id": "event_chaojian",
+      "title": "抄检大观园",
+      "aliases": [],
+      "chapters": [
+        1,
+        37,
+        56,
+        74,
+        78,
+        79
+      ],
+      "knowledgeIds": [
+        "scene_crisis_house",
+        "scene_tanchun_slap",
+        "scene_qingwen_death",
+        "architecture_qiushuangzhai",
+        "architecture_nuanxiangwu",
+        "theme_jiazu_shuailuo",
+        "character_study_tanchun",
+        "character_study_yingchun",
+        "character_study_xichun"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "shi_xiangyun",
+        "wang_furen",
+        "qingwen",
+        "jia_tanchun",
+        "jia_baoyu",
+        "you_shi",
+        "jia_xichun",
+        "jia_mu",
+        "zhao_yiniang",
+        "jia_zheng",
+        "li_wan",
+        "xue_baochai",
+        "pinger",
+        "jia_yingchun",
+        "jia_she",
+        "sun_shaozu",
+        "jia_zhen",
+        "miaoyu"
+      ]
+    },
+    {
+      "id": "event_shishe",
+      "title": "大观园诗社",
+      "aliases": [
+        "诗社"
+      ],
+      "chapters": [
+        51
+      ],
+      "knowledgeIds": [
+        "poem_huaigu_chibi",
+        "poem_huaigu_guangling",
+        "poem_huaigu_qingzhong",
+        "poem_huaigu_mawwei",
+        "poem_huaigu_huaiyin",
+        "poem_huaigu_guangchuan",
+        "poem_huaigu_pudong",
+        "poem_huaigu_meihua",
+        "poem_huaigu_zhongshan"
+      ],
+      "characterIds": [
+        "xue_baoqin",
+        "jia_baoyu",
+        "lin_daiyu",
+        "xue_baochai",
+        "shi_xiangyun",
+        "jia_tanchun",
+        "you_erjie"
+      ]
+    },
+    {
+      "id": "event_huaigu_shi",
+      "title": "怀古诗",
+      "aliases": [],
+      "chapters": [
+        51
+      ],
+      "knowledgeIds": [
+        "poem_huaigu_chibi",
+        "poem_huaigu_guangling",
+        "poem_huaigu_qingzhong",
+        "poem_huaigu_mawwei",
+        "poem_huaigu_huaiyin",
+        "poem_huaigu_guangchuan",
+        "poem_huaigu_pudong",
+        "poem_huaigu_meihua",
+        "poem_huaigu_zhongshan"
+      ],
+      "characterIds": [
+        "xue_baoqin",
+        "jia_baoyu",
+        "lin_daiyu",
+        "xue_baochai",
+        "shi_xiangyun",
+        "jia_tanchun",
+        "you_erjie"
+      ]
+    },
+    {
+      "id": "event_9f95fc09",
+      "title": "大观园题额",
+      "aliases": [],
+      "chapters": [
+        17
+      ],
+      "knowledgeIds": [
+        "architecture_daguanyuan_layout",
+        "couplet_daguanyuan_trial_inscription",
+        "scene_baoyu_tiyuan",
+        "architecture_hengwuyuan",
+        "architecture_daguanyuan_gates",
+        "architecture_qinfangting",
+        "architecture_qujingtongyou"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_yuanchun",
+        "jia_zheng",
+        "xue_baochai",
+        "xue_yima",
+        "lin_daiyu"
+      ]
+    },
+    {
+      "id": "event_yuanxiao_dengmi",
+      "title": "元宵制灯谜",
+      "aliases": [
+        "元宵家宴"
+      ],
+      "chapters": [
+        22
+      ],
+      "knowledgeIds": [
+        "riddle_yuanxiao_baoyu",
+        "riddle_tanchun_yuanxiao",
+        "customs_yuanxiao_feast",
+        "riddle_daiyu_yuanxiao",
+        "riddle_baochai_yuanxiao",
+        "riddle_yingchun_yuanxiao",
+        "riddle_xichun_yuanxiao"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_mu",
+        "jia_zheng",
+        "jia_tanchun",
+        "lin_daiyu",
+        "xue_baochai",
+        "jia_yingchun",
+        "jia_xichun"
+      ]
+    },
+    {
+      "id": "event_8dc52d6a",
+      "title": "柳絮词",
+      "aliases": [],
+      "chapters": [
+        70
+      ],
+      "knowledgeIds": [
+        "poem_liuxu",
+        "poem_liuxu_baochai",
+        "poem_liuxu_baoyu",
+        "poem_liuxu_xiangyun",
+        "poem_chuntian_liuxu",
+        "poem_baochai_liuxu"
+      ],
+      "characterIds": [
+        "shi_xiangyun",
+        "lin_daiyu",
+        "xue_baochai",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_ff2fe6e3",
+      "title": "秦可卿之死",
+      "aliases": [],
+      "chapters": [
+        5,
+        13
+      ],
+      "knowledgeIds": [
+        "prophecy_qinkeqing",
+        "customs_funeral_qin_keqing",
+        "verse_haoshizhong",
+        "ritual_mourning_system",
+        "character_study_qinkeqing"
+      ],
+      "characterIds": [
+        "jia_zhen",
+        "qin_keqing",
+        "wang_xifeng",
+        "jia_rong",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_6365da6b",
+      "title": "探春理家",
+      "aliases": [],
+      "chapters": [
+        37,
+        55,
+        56
+      ],
+      "knowledgeIds": [
+        "architecture_qiushuangzhai",
+        "scene_tanchun_zhangjia",
+        "custom_ji_du_shu",
+        "scene_ch056_tanchun",
+        "character_study_tanchun"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_tanchun",
+        "wang_xifeng",
+        "li_wan",
+        "jia_huan",
+        "zhao_yiniang",
+        "xue_baochai",
+        "pinger",
+        "jia_mu",
+        "jia_zheng"
+      ]
+    },
+    {
+      "id": "event_zhongqiu",
+      "title": "中秋夜宴",
+      "aliases": [
+        "中秋赏月",
+        "中秋吟诗"
+      ],
+      "chapters": [
+        75,
+        76
+      ],
+      "knowledgeIds": [
+        "architecture_tubishanzhuang",
+        "architecture_aojingpiguan",
+        "poem_jiuling_shangyou",
+        "poem_aozhan_lianshi",
+        "scene_ch075_zhongqiu"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_mu",
+        "lin_daiyu",
+        "shi_xiangyun",
+        "xue_baochai",
+        "jia_zheng",
+        "jia_she",
+        "you_shi",
+        "jia_zhen"
+      ]
+    },
+    {
+      "id": "event_baoyu_chujia",
+      "title": "宝玉出家",
+      "aliases": [
+        "悬崖撒手"
+      ],
+      "chapters": [
+        1,
+        5,
+        120
+      ],
+      "knowledgeIds": [
+        "verse_feiniaoge_toulin",
+        "philosophy_baoyu_chujia",
+        "scene_baoyu_chujia",
+        "character_baoyu_special"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_tanchun",
+        "liu_laolao",
+        "wang_xifeng",
+        "lin_daiyu",
+        "shi_xiangyun",
+        "jia_qiaojie",
+        "xue_baochai",
+        "jia_yuanchun",
+        "bo_zu_daoren",
+        "jia_zheng",
+        "lai_tou_heshang"
+      ]
+    },
+    {
+      "id": "event_daiyu_zhi_si",
+      "title": "黛玉之死",
+      "aliases": [],
+      "chapters": [
+        5,
+        97
+      ],
+      "knowledgeIds": [
+        "verse_zhongshenwu",
+        "verse_feiniaoge_toulin",
+        "verse_wangningmei",
+        "scene_daiyu_fengao"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu",
+        "xue_baochai",
+        "jia_tanchun",
+        "liu_laolao",
+        "wang_xifeng",
+        "shi_xiangyun",
+        "jia_qiaojie",
+        "jia_yuanchun",
+        "zijuan"
+      ]
+    },
+    {
+      "id": "event_077a59db",
+      "title": "凤姐弄权",
+      "aliases": [],
+      "chapters": [
+        5,
+        15
+      ],
+      "knowledgeIds": [
+        "prophecy_xifeng",
+        "verse_wangxifeng",
+        "scene_xifeng_nongquan",
+        "architecture_tiekansi"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_lian",
+        "jia_zhen",
+        "qin_keqing"
+      ]
+    },
+    {
+      "id": "event_fb1fed98",
+      "title": "共读西厢",
+      "aliases": [],
+      "chapters": [
+        17,
+        23
+      ],
+      "knowledgeIds": [
+        "scene_gongdu_xixiang",
+        "architecture_xiaoxiangguan",
+        "architecture_qinfangting",
+        "poem_chunxiao"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu",
+        "zijuan"
+      ]
+    },
+    {
+      "id": "event_ad5ff6f1",
+      "title": "林黛玉进贾府",
+      "aliases": [],
+      "chapters": [
+        3
+      ],
+      "knowledgeIds": [
+        "entrance_xifeng",
+        "entrance_daiyu",
+        "entrance_baoyu_first",
+        "entrance_baoyu_second"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_baoyu",
+        "lin_daiyu"
+      ]
+    },
+    {
+      "id": "event_ac5e0c64",
+      "title": "刘姥姥进大观园",
+      "aliases": [],
+      "chapters": [
+        39,
+        40,
+        41
+      ],
+      "knowledgeIds": [
+        "scene_liulaolao_jinda",
+        "diet_liulaolao_banquet",
+        "food_qiexiang",
+        "food_lu_tang"
+      ],
+      "characterIds": [
+        "liu_laolao",
+        "wang_xifeng",
+        "jia_mu",
+        "lin_daiyu",
+        "yuanyang",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_b266046a",
+      "title": "探春远嫁",
+      "aliases": [],
+      "chapters": [
+        2,
+        5,
+        22
+      ],
+      "knowledgeIds": [
+        "prophecy_tanchun",
+        "verse_fenshengli",
+        "riddle_tanchun_yuanxiao",
+        "allusion_jiafu_paiming"
+      ],
+      "characterIds": [
+        "jia_tanchun",
+        "jia_yingchun",
+        "jia_xichun",
+        "jia_yuanchun"
+      ]
+    },
+    {
+      "id": "event_2438e8ec",
+      "title": "惜春出家",
+      "aliases": [],
+      "chapters": [
+        2,
+        5,
+        74
+      ],
+      "knowledgeIds": [
+        "allusion_jiafu_paiming",
+        "verse_xuhuawu",
+        "architecture_nuanxiangwu",
+        "character_study_xichun"
+      ],
+      "characterIds": [
+        "jia_yingchun",
+        "jia_xichun",
+        "jia_tanchun",
+        "jia_yuanchun",
+        "you_shi",
+        "jia_zhen",
+        "miaoyu"
+      ]
+    },
+    {
+      "id": "event_a7244094",
+      "title": "宝玉挨打",
+      "aliases": [],
+      "chapters": [
+        33,
+        34
+      ],
+      "knowledgeIds": [
+        "poem_tipa_sanju",
+        "scene_baoyu_chujiabei",
+        "scene_ch033_jiamu"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu",
+        "jia_zheng",
+        "wang_furen",
+        "jia_mu",
+        "jia_huan",
+        "xiren"
+      ]
+    },
+    {
+      "id": "event_baoyu_chenghun",
+      "title": "宝玉成婚",
+      "aliases": [],
+      "chapters": [
+        4,
+        97
+      ],
+      "knowledgeIds": [
+        "scene_daiyu_fengao",
+        "custom_hun_yin",
+        "character_baochai_special"
+      ],
+      "characterIds": [
+        "lin_daiyu",
+        "jia_baoyu",
+        "zijuan",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_6e79b9e8",
+      "title": "黛玉进贾府",
+      "aliases": [],
+      "chapters": [
+        3
+      ],
+      "knowledgeIds": [
+        "couplet_rongxi_tang",
+        "architecture_rong_guo_fu",
+        "character_daiyu_special"
+      ],
+      "characterIds": [
+        "lin_daiyu",
+        "jia_zheng",
+        "jia_mu",
+        "wang_furen"
+      ]
+    },
+    {
+      "id": "event_1fe1367a",
+      "title": "黛玉葬花",
+      "aliases": [],
+      "chapters": [
+        17,
+        23,
+        27
+      ],
+      "knowledgeIds": [
+        "poem_zanghua",
+        "architecture_xiaoxiangguan",
+        "architecture_qinfangting"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu",
+        "zijuan"
+      ]
+    },
+    {
+      "id": "event_luxuean_lianju",
+      "title": "芦雪庵联句",
+      "aliases": [
+        "芦雪庵诗社"
+      ],
+      "chapters": [
+        49,
+        50
+      ],
+      "knowledgeIds": [
+        "poem_luxuean_lianju",
+        "scene_ch049_luxuean",
+        "character_study_xiangyun"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "li_wan",
+        "jia_tanchun",
+        "shi_xiangyun",
+        "xue_baoqin",
+        "lin_daiyu",
+        "jia_baoyu",
+        "xue_baochai",
+        "li_wen",
+        "li_qi",
+        "xing_xiuyan",
+        "jia_mu"
+      ]
+    },
+    {
+      "id": "event_6a1e0ffa",
+      "title": "判词",
+      "aliases": [],
+      "chapters": [
+        5
+      ],
+      "knowledgeIds": [
+        "scene_baoyu_mengyou_taixu",
+        "allusion_jin_ling_shi_er_chai",
+        "theme_nvxing_mingyun"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "qin_keqing",
+        "lin_daiyu",
+        "xue_baochai",
+        "jia_yuanchun"
+      ]
+    },
+    {
+      "id": "event_014b0c8b",
+      "title": "螃蟹宴",
+      "aliases": [],
+      "chapters": [
+        38
+      ],
+      "knowledgeIds": [
+        "poem_pangxie",
+        "food_crab_feast",
+        "architecture_ouxiangxie"
+      ],
+      "characterIds": [
+        "shi_xiangyun",
+        "lin_daiyu",
+        "xue_baochai",
+        "jia_baoyu",
+        "jia_tanchun"
+      ]
+    },
+    {
+      "id": "event_6bff0b64",
+      "title": "秦可卿出殡",
+      "aliases": [],
+      "chapters": [
+        14,
+        15
+      ],
+      "knowledgeIds": [
+        "architecture_mantouan",
+        "architecture_tiekansi",
+        "scene_ch014_beijingwang"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "qin_zhong",
+        "zhineng",
+        "jia_zhen",
+        "qin_keqing",
+        "bei_jing_wang",
+        "jia_baoyu",
+        "jia_zheng"
+      ]
+    },
+    {
+      "id": "event_9ce48c5e",
+      "title": "晴雯被逐",
+      "aliases": [],
+      "chapters": [
+        5,
+        74,
+        78
+      ],
+      "knowledgeIds": [
+        "scene_crisis_house",
+        "prophecy_qingwen",
+        "scene_qingwen_death"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "shi_xiangyun",
+        "wang_furen",
+        "qingwen",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_97abc9fa",
+      "title": "晴雯之死",
+      "aliases": [],
+      "chapters": [
+        5,
+        77,
+        78
+      ],
+      "knowledgeIds": [
+        "poem_furonglei",
+        "prophecy_qingwen",
+        "scene_ch077_qingwen"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu",
+        "qingwen",
+        "wang_furen",
+        "xiren",
+        "fangguan"
+      ]
+    },
+    {
+      "id": "event_60facc0c",
+      "title": "桃花社",
+      "aliases": [],
+      "chapters": [
+        70
+      ],
+      "knowledgeIds": [
+        "poem_liuxu_baochai",
+        "poem_liuxu_baoyu",
+        "poem_liuxu_xiangyun"
+      ],
+      "characterIds": [
+        "xue_baochai",
+        "lin_daiyu",
+        "jia_baoyu",
+        "shi_xiangyun"
+      ]
+    },
+    {
+      "id": "event_af065312",
+      "title": "迎春误嫁中山狼",
+      "aliases": [],
+      "chapters": [
+        2,
+        5
+      ],
+      "knowledgeIds": [
+        "prophecy_yingchun",
+        "allusion_jiafu_paiming",
+        "verse_xiyuanjia"
+      ],
+      "characterIds": [
+        "jia_yingchun",
+        "jia_xichun",
+        "jia_tanchun",
+        "jia_yuanchun",
+        "sun_shaozu"
+      ]
+    },
+    {
+      "id": "event_c554cb88",
+      "title": "咏白海棠",
+      "aliases": [],
+      "chapters": [
+        37
+      ],
+      "knowledgeIds": [
+        "poem_yong_bai_haitang_baoyu",
+        "poem_yong_bai_haitang_xiangyun_1",
+        "poem_yong_bai_haitang_xiangyun_2"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_tanchun",
+        "lin_daiyu",
+        "xue_baochai",
+        "shi_xiangyun"
+      ]
+    },
+    {
+      "id": "event_6138861d",
+      "title": "凹晶馆联诗",
+      "aliases": [],
+      "chapters": [
+        76
+      ],
+      "knowledgeIds": [
+        "poem_jiuling_shangyou",
+        "poem_aozhan_lianshi"
+      ],
+      "characterIds": [
+        "lin_daiyu",
+        "shi_xiangyun"
+      ]
+    },
+    {
+      "id": "event_3fead2a1",
+      "title": "凹晶溪馆联句",
+      "aliases": [],
+      "chapters": [
+        75,
+        76
+      ],
+      "knowledgeIds": [
+        "architecture_tubishanzhuang",
+        "architecture_aojingpiguan"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_mu",
+        "lin_daiyu",
+        "shi_xiangyun",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_fe2c2566",
+      "title": "宝玉祭金钏",
+      "aliases": [],
+      "chapters": [
+        43
+      ],
+      "knowledgeIds": [
+        "scene_ch043_jinchuan",
+        "scene_ch043_ji_jinchuan"
+      ],
+      "characterIds": [
+        "jia_mu",
+        "wang_xifeng",
+        "jia_baoyu",
+        "pinger",
+        "ming_yan",
+        "jinchuan"
+      ]
+    },
+    {
+      "id": "event_01ac36cb",
+      "title": "春燕受气",
+      "aliases": [],
+      "chapters": [
+        59
+      ],
+      "knowledgeIds": [
+        "scene_ch059_yinger",
+        "scene_ch059_chunyan"
+      ],
+      "characterIds": [
+        "yinger",
+        "chunyan",
+        "ouguan",
+        "jia_baoyu",
+        "xiren"
+      ]
+    },
+    {
+      "id": "event_dd45079b",
+      "title": "大观园建成",
+      "aliases": [],
+      "chapters": [
+        16,
+        18
+      ],
+      "knowledgeIds": [
+        "scene_yuanchun_shengqin",
+        "allusion_da_guan_yuan"
+      ],
+      "characterIds": [
+        "jia_yuanchun",
+        "jia_mu",
+        "jia_zheng",
+        "wang_furen",
+        "jia_baoyu",
+        "lin_daiyu",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_1e3afd19",
+      "title": "芳官出家",
+      "aliases": [],
+      "chapters": [
+        77
+      ],
+      "knowledgeIds": [
+        "scene_ch077_qingwen",
+        "scene_ch077_chujia"
+      ],
+      "characterIds": [
+        "qingwen",
+        "jia_baoyu",
+        "wang_furen",
+        "xiren",
+        "fangguan"
+      ]
+    },
+    {
+      "id": "event_288723af",
+      "title": "凤姐恃强",
+      "aliases": [],
+      "chapters": [
+        72
+      ],
+      "knowledgeIds": [
+        "scene_ch072_laiwang",
+        "scene_ch072_bing"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "laiwang_furen",
+        "jia_lian",
+        "lin_zhixiao",
+        "caiyun"
+      ]
+    },
+    {
+      "id": "event_abb2e0eb",
+      "title": "凤姐讯家童",
+      "aliases": [],
+      "chapters": [
+        67
+      ],
+      "knowledgeIds": [
+        "scene_ch067_daiyu",
+        "scene_ch067_xunjiatong"
+      ],
+      "characterIds": [
+        "lin_daiyu",
+        "jia_baoyu",
+        "wang_xifeng",
+        "pinger",
+        "jia_lian",
+        "you_erjie"
+      ]
+    },
+    {
+      "id": "event_ab613a87",
+      "title": "红楼梦十二支曲",
+      "aliases": [],
+      "chapters": [
+        5
+      ],
+      "knowledgeIds": [
+        "verse_lezhongbei",
+        "verse_liuyuqing"
+      ],
+      "characterIds": [
+        "shi_xiangyun",
+        "jia_qiaojie",
+        "wang_xifeng",
+        "liu_laolao"
+      ]
+    },
+    {
+      "id": "event_620ad4f0",
+      "title": "葫芦僧乱判葫芦案",
+      "aliases": [],
+      "chapters": [
+        4
+      ],
+      "knowledgeIds": [
+        "scene_huluan",
+        "allusion_huguanfu"
+      ],
+      "characterIds": [
+        "xue_pan",
+        "xiang_ling",
+        "jia_yucun",
+        "wang_xifeng",
+        "xue_baochai",
+        "jia_zheng"
+      ]
+    },
+    {
+      "id": "event_0b45ebee",
+      "title": "贾府抄家",
+      "aliases": [],
+      "chapters": [
+        5
+      ],
+      "knowledgeIds": [
+        "verse_wangxifeng",
+        "verse_feiniaoge_toulin"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_baoyu",
+        "jia_tanchun",
+        "liu_laolao",
+        "lin_daiyu",
+        "shi_xiangyun",
+        "jia_qiaojie",
+        "xue_baochai",
+        "jia_yuanchun"
+      ]
+    },
+    {
+      "id": "event_b14b6c1f",
+      "title": "贾瑞照风月宝鉴",
+      "aliases": [],
+      "chapters": [
+        12
+      ],
+      "knowledgeIds": [
+        "philosophy_fengyuebaojian",
+        "allusion_feng_yue_bao_jian"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "bo_zu_daoren",
+        "jia_rui",
+        "lai_tou_heshang"
+      ]
+    },
+    {
+      "id": "event_1c639842",
+      "title": "贾雨村判案",
+      "aliases": [],
+      "chapters": [
+        4
+      ],
+      "knowledgeIds": [
+        "theme_four_families",
+        "scene_huluan"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_mu",
+        "xue_baochai",
+        "jia_zheng",
+        "xue_pan",
+        "xiang_ling",
+        "jia_yucun"
+      ]
+    },
+    {
+      "id": "event_b4fec11c",
+      "title": "借剑杀人",
+      "aliases": [],
+      "chapters": [
+        69
+      ],
+      "knowledgeIds": [
+        "scene_ch069_youerjie",
+        "scene_ch069_qiutong"
+      ],
+      "characterIds": [
+        "you_erjie",
+        "wang_xifeng",
+        "jia_lian",
+        "qiutong",
+        "pinger"
+      ]
+    },
+    {
+      "id": "event_54ff798b",
+      "title": "金钏投井",
+      "aliases": [],
+      "chapters": [
+        32
+      ],
+      "knowledgeIds": [
+        "scene_ch032_jinchuan",
+        "scene_ch032_jinchuan_expel"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu",
+        "xiren",
+        "jinchuan",
+        "wang_furen"
+      ]
+    },
+    {
+      "id": "event_af13a25f",
+      "title": "金玉良缘",
+      "aliases": [],
+      "chapters": [
+        1,
+        8
+      ],
+      "knowledgeIds": [
+        "allusion_jin_yu_liang_yuan",
+        "theme_aiqing"
+      ],
+      "characterIds": [
+        "xue_baochai",
+        "jia_baoyu",
+        "wang_furen",
+        "lin_daiyu"
+      ]
+    },
+    {
+      "id": "event_9f062d3f",
+      "title": "来旺妇逼婚",
+      "aliases": [],
+      "chapters": [
+        72
+      ],
+      "knowledgeIds": [
+        "scene_ch072_laiwang",
+        "scene_ch072_bing"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "laiwang_furen",
+        "jia_lian",
+        "lin_zhixiao",
+        "caiyun"
+      ]
+    },
+    {
+      "id": "event_0fd00d34",
+      "title": "刘姥姥救巧姐",
+      "aliases": [],
+      "chapters": [
+        5
+      ],
+      "knowledgeIds": [
+        "prophecy_qiaojie",
+        "verse_liuyuqing"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "liu_laolao",
+        "jia_qiaojie"
+      ]
+    },
+    {
+      "id": "event_2aec6712",
+      "title": "刘姥姥取名",
+      "aliases": [],
+      "chapters": [
+        42
+      ],
+      "knowledgeIds": [
+        "character_study_qiaojie",
+        "scene_ch042_qiaojie"
+      ],
+      "characterIds": [
+        "jia_qiaojie",
+        "wang_xifeng",
+        "jia_lian",
+        "liu_laolao"
+      ]
+    },
+    {
+      "id": "event_8c5e85f2",
+      "title": "柳湘莲出家",
+      "aliases": [],
+      "chapters": [
+        66
+      ],
+      "knowledgeIds": [
+        "scene_ch066_yousanjie",
+        "scene_ch066_chujia"
+      ],
+      "characterIds": [
+        "you_sanjie",
+        "liu_xianglian",
+        "you_erjie",
+        "jia_lian",
+        "bo_zu_daoren"
+      ]
+    },
+    {
+      "id": "event_71fb34cc",
+      "title": "柳湘莲痛打薛蟠",
+      "aliases": [],
+      "chapters": [
+        47
+      ],
+      "knowledgeIds": [
+        "scene_ch047_liuxianglian",
+        "scene_ch047_xiangliant"
+      ],
+      "characterIds": [
+        "xue_pan",
+        "liu_xianglian",
+        "jia_baoyu",
+        "xue_yima",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_4444b8ef",
+      "title": "木石前盟",
+      "aliases": [],
+      "chapters": [
+        1
+      ],
+      "knowledgeIds": [
+        "philosophy_muzhishi",
+        "theme_aiqing"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_f37b4cd4",
+      "title": "平儿理妆",
+      "aliases": [],
+      "chapters": [
+        44
+      ],
+      "knowledgeIds": [
+        "scene_ch044_pinger",
+        "scene_ch044_pinger_dress"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_lian",
+        "pinger",
+        "bao_er_jias",
+        "bao_er",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_8933e96c",
+      "title": "清虚观打醮",
+      "aliases": [],
+      "chapters": [
+        29
+      ],
+      "knowledgeIds": [
+        "architecture_qingxuguan",
+        "scene_ch029_qingxu"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_mu",
+        "lin_daiyu",
+        "shi_xiangyun",
+        "xue_baochai",
+        "zhang_daoshi",
+        "wang_xifeng"
+      ]
+    },
+    {
+      "id": "event_d59d3bd5",
+      "title": "晴雯补裘",
+      "aliases": [],
+      "chapters": [
+        17,
+        52
+      ],
+      "knowledgeIds": [
+        "architecture_yihongyuan",
+        "costume_que_jin_diao"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "xiren",
+        "qingwen",
+        "sheyue",
+        "jia_mu"
+      ]
+    },
+    {
+      "id": "event_325a1fd8",
+      "title": "晴雯撕扇",
+      "aliases": [],
+      "chapters": [
+        31
+      ],
+      "knowledgeIds": [
+        "scene_qingwen_sibu",
+        "scene_qingwen_buque"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "qingwen",
+        "sheyue"
+      ]
+    },
+    {
+      "id": "event_7e27ae6a",
+      "title": "通灵宝玉救主",
+      "aliases": [],
+      "chapters": [
+        25
+      ],
+      "knowledgeIds": [
+        "scene_ch025_yamofa",
+        "scene_ch025_jiuzhu"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "wang_xifeng",
+        "zhao_yiniang",
+        "ma_daopo",
+        "jia_mu",
+        "wang_furen",
+        "lai_tou_heshang",
+        "bo_zu_daoren"
+      ]
+    },
+    {
+      "id": "event_c37864f3",
+      "title": "王道士胡诌",
+      "aliases": [],
+      "chapters": [
+        80
+      ],
+      "knowledgeIds": [
+        "scene_ch080_xiangling",
+        "scene_ch080_dufufang"
+      ],
+      "characterIds": [
+        "xiang_ling",
+        "xue_pan",
+        "xia_jingui",
+        "jia_baoyu",
+        "bao_chan"
+      ]
+    },
+    {
+      "id": "event_8af0eff9",
+      "title": "王熙凤之死",
+      "aliases": [],
+      "chapters": [
+        5
+      ],
+      "knowledgeIds": [
+        "prophecy_xifeng",
+        "verse_wangxifeng"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_lian"
+      ]
+    },
+    {
+      "id": "event_172f91a3",
+      "title": "衔玉而生",
+      "aliases": [],
+      "chapters": [
+        1
+      ],
+      "knowledgeIds": [
+        "allusion_tong_ling_bao_yu",
+        "character_baoyu_special"
+      ],
+      "characterIds": [
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_801240e5",
+      "title": "小红传心事",
+      "aliases": [],
+      "chapters": [
+        26
+      ],
+      "knowledgeIds": [
+        "scene_ch026_daiyu",
+        "scene_ch026_xiaohong"
+      ],
+      "characterIds": [
+        "lin_daiyu",
+        "jia_baoyu",
+        "zijuan",
+        "xiaohong",
+        "jia_yun",
+        "zhui_er"
+      ]
+    },
+    {
+      "id": "event_4e3308b2",
+      "title": "兴利除弊",
+      "aliases": [],
+      "chapters": [
+        56
+      ],
+      "knowledgeIds": [
+        "scene_ch056_tanchun",
+        "scene_ch056_chengbao"
+      ],
+      "characterIds": [
+        "jia_tanchun",
+        "li_wan",
+        "xue_baochai",
+        "pinger",
+        "jia_mu"
+      ]
+    },
+    {
+      "id": "event_256862e5",
+      "title": "迎春出嫁",
+      "aliases": [],
+      "chapters": [
+        73,
+        79
+      ],
+      "knowledgeIds": [
+        "architecture_zilingzhou",
+        "poem_zilingzhou"
+      ],
+      "characterIds": [
+        "siqi",
+        "jia_yingchun",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_3e6dc094",
+      "title": "迎春误嫁",
+      "aliases": [],
+      "chapters": [
+        79
+      ],
+      "knowledgeIds": [
+        "scene_ch079_yingchun",
+        "character_study_yingchun"
+      ],
+      "characterIds": [
+        "jia_yingchun",
+        "sun_shaozu",
+        "jia_she",
+        "jia_baoyu",
+        "xue_pan",
+        "xia_jingui"
+      ]
+    },
+    {
+      "id": "event_deb2fe3a",
+      "title": "勇晴雯病补雀金裘",
+      "aliases": [],
+      "chapters": [
+        31,
+        52
+      ],
+      "knowledgeIds": [
+        "scene_qingwen_sibu",
+        "objects_quejinqiu"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "qingwen",
+        "xiren"
+      ]
+    },
+    {
+      "id": "event_0077eedc",
+      "title": "尤三姐思嫁",
+      "aliases": [],
+      "chapters": [
+        65
+      ],
+      "knowledgeIds": [
+        "scene_ch065_youerjie",
+        "scene_ch065_yousanjie"
+      ],
+      "characterIds": [
+        "jia_lian",
+        "you_erjie",
+        "you_sanjie",
+        "jia_zhen",
+        "jia_rong",
+        "you_shi",
+        "liu_xianglian"
+      ]
+    },
+    {
+      "id": "event_c5d06dc9",
+      "title": "元春薨逝",
+      "aliases": [],
+      "chapters": [
+        5
+      ],
+      "knowledgeIds": [
+        "prophecy_yuanchun",
+        "verse_henwuchang"
+      ],
+      "characterIds": [
+        "jia_yuanchun"
+      ]
+    },
+    {
+      "id": "event_3475d00f",
+      "title": "元宵开夜宴",
+      "aliases": [],
+      "chapters": [
+        53
+      ],
+      "knowledgeIds": [
+        "scene_ch053_cizong",
+        "scene_ch053_yuanxiao"
+      ],
+      "characterIds": [
+        "jia_zhen",
+        "you_shi",
+        "jia_rong",
+        "jia_mu",
+        "jia_she",
+        "jia_zheng",
+        "jia_cong"
+      ]
+    },
+    {
+      "id": "event_b2a5535b",
+      "title": "宝钗借扇机带双敲",
+      "aliases": [],
+      "chapters": [
+        17
+      ],
+      "knowledgeIds": [
+        "architecture_hengwuyuan"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "xue_baochai",
+        "xue_yima"
+      ]
+    },
+    {
+      "id": "event_d26fa06d",
+      "title": "宝钗借扇双敲",
+      "aliases": [],
+      "chapters": [
+        30
+      ],
+      "knowledgeIds": [
+        "scene_ch030_lingguan"
+      ],
+      "characterIds": [
+        "xue_baochai",
+        "jia_baoyu",
+        "lin_daiyu",
+        "lingguan",
+        "jia_qiang"
+      ]
+    },
+    {
+      "id": "event_44ac7327",
+      "title": "宝钗金锁",
+      "aliases": [],
+      "chapters": [
+        5
+      ],
+      "knowledgeIds": [
+        "theme_jinyu_mushi"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_mu",
+        "lin_daiyu",
+        "xue_baochai",
+        "wang_furen"
+      ]
+    },
+    {
+      "id": "event_96660132",
+      "title": "宝钗进贾府",
+      "aliases": [],
+      "chapters": [
+        4
+      ],
+      "knowledgeIds": [
+        "character_baochai_special"
+      ],
+      "characterIds": [
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_fdf87dee",
+      "title": "宝钗扑蝶",
+      "aliases": [],
+      "chapters": [
+        17
+      ],
+      "knowledgeIds": [
+        "architecture_hengwuyuan"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "xue_baochai",
+        "xue_yima"
+      ]
+    },
+    {
+      "id": "event_ccff6ca6",
+      "title": "宝钗入住大观园",
+      "aliases": [],
+      "chapters": [
+        17
+      ],
+      "knowledgeIds": [
+        "architecture_hengwu_yuan"
+      ],
+      "characterIds": [
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_b4821a2f",
+      "title": "宝钗探病",
+      "aliases": [],
+      "chapters": [
+        45
+      ],
+      "knowledgeIds": [
+        "diet_medicinal_food_daiyu"
+      ],
+      "characterIds": [
+        "lin_daiyu",
+        "xue_baochai",
+        "zijuan"
+      ]
+    },
+    {
+      "id": "event_2ac7b30a",
+      "title": "宝黛初会",
+      "aliases": [],
+      "chapters": [
+        5
+      ],
+      "knowledgeIds": [
+        "verse_wangningmei"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu"
+      ]
+    },
+    {
+      "id": "event_92fa32a0",
+      "title": "宝黛初见",
+      "aliases": [],
+      "chapters": [
+        3
+      ],
+      "knowledgeIds": [
+        "scene_daiyu_jinfu"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_mu",
+        "jia_baoyu",
+        "lin_daiyu"
+      ]
+    },
+    {
+      "id": "event_b5336d5c",
+      "title": "宝琴立雪",
+      "aliases": [],
+      "chapters": [
+        49
+      ],
+      "knowledgeIds": [
+        "scene_ch049_luxuean"
+      ],
+      "characterIds": [
+        "xue_baoqin",
+        "shi_xiangyun",
+        "jia_baoyu",
+        "lin_daiyu",
+        "xue_baochai",
+        "li_wen",
+        "li_qi",
+        "xing_xiuyan"
+      ]
+    },
+    {
+      "id": "event_207e1b0c",
+      "title": "宝玉挨打后",
+      "aliases": [],
+      "chapters": [
+        35
+      ],
+      "knowledgeIds": [
+        "food_lian_ye_geng"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "wang_furen"
+      ]
+    },
+    {
+      "id": "event_e509f2c8",
+      "title": "宝玉唱红豆曲",
+      "aliases": [],
+      "chapters": [
+        28
+      ],
+      "knowledgeIds": [
+        "verse_hongdouqu"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_07b12bd8",
+      "title": "宝玉急痛迷心",
+      "aliases": [],
+      "chapters": [
+        57
+      ],
+      "knowledgeIds": [
+        "scene_ch057_zijuan"
+      ],
+      "characterIds": [
+        "zijuan",
+        "jia_baoyu",
+        "lin_daiyu",
+        "xue_yima",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_9a11a321",
+      "title": "宝玉瞒赃",
+      "aliases": [],
+      "chapters": [
+        61
+      ],
+      "knowledgeIds": [
+        "scene_ch061_pinger"
+      ],
+      "characterIds": [
+        "pinger",
+        "jia_baoyu",
+        "wu_er",
+        "liu_saozi",
+        "caiyun"
+      ]
+    },
+    {
+      "id": "event_7c7acf44",
+      "title": "宝玉品茶",
+      "aliases": [],
+      "chapters": [
+        8
+      ],
+      "knowledgeIds": [
+        "food_lv_tang"
+      ],
+      "characterIds": [
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_a55b9f42",
+      "title": "宝玉乞梅",
+      "aliases": [],
+      "chapters": [
+        41
+      ],
+      "knowledgeIds": [
+        "architecture_longcuian"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu",
+        "xue_baochai",
+        "miaoyu"
+      ]
+    },
+    {
+      "id": "event_6c1c6a80",
+      "title": "宝玉娶宝钗",
+      "aliases": [],
+      "chapters": [
+        5
+      ],
+      "knowledgeIds": [
+        "verse_zhongshenwu"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_9062832a",
+      "title": "宝玉入住大观园",
+      "aliases": [],
+      "chapters": [
+        17
+      ],
+      "knowledgeIds": [
+        "architecture_yihong_yuan"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "xiren",
+        "qingwen"
+      ]
+    },
+    {
+      "id": "event_d4c7bfc2",
+      "title": "宝玉生日",
+      "aliases": [],
+      "chapters": [
+        62
+      ],
+      "knowledgeIds": [
+        "scene_xiangyun_zuiwo"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "xue_baochai",
+        "lin_daiyu",
+        "shi_xiangyun"
+      ]
+    },
+    {
+      "id": "event_aa8ae53f",
+      "title": "宝玉失玉",
+      "aliases": [],
+      "chapters": [
+        8
+      ],
+      "knowledgeIds": [
+        "objects_jinsuo_tonglingbao"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_e505f6c7",
+      "title": "宝玉摔玉",
+      "aliases": [],
+      "chapters": [
+        5
+      ],
+      "knowledgeIds": [
+        "theme_jinyu_mushi"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_mu",
+        "lin_daiyu",
+        "xue_baochai",
+        "wang_furen"
+      ]
+    },
+    {
+      "id": "event_f2d3e6ba",
+      "title": "宝玉诉肺腑",
+      "aliases": [],
+      "chapters": [
+        32
+      ],
+      "knowledgeIds": [
+        "scene_ch032_jinchuan"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu",
+        "xiren",
+        "jinchuan",
+        "wang_furen"
+      ]
+    },
+    {
+      "id": "event_9c9b320e",
+      "title": "宝玉探宝钗",
+      "aliases": [],
+      "chapters": [
+        8
+      ],
+      "knowledgeIds": [
+        "entrance_baochai"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_5173084a",
+      "title": "宝玉探梨香院",
+      "aliases": [],
+      "chapters": [
+        4
+      ],
+      "knowledgeIds": [
+        "architecture_lixiangyuan"
+      ],
+      "characterIds": [
+        "lingguan",
+        "xue_baochai",
+        "fangguan",
+        "xue_yima"
+      ]
+    },
+    {
+      "id": "event_d56cdd23",
+      "title": "宝玉误踢袭人",
+      "aliases": [],
+      "chapters": [
+        30
+      ],
+      "knowledgeIds": [
+        "scene_ch030_ti_ren"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "xiren",
+        "qingwen",
+        "sheyue"
+      ]
+    },
+    {
+      "id": "event_ce16016b",
+      "title": "宝玉衔玉而生",
+      "aliases": [],
+      "chapters": [
+        1
+      ],
+      "knowledgeIds": [
+        "allusion_tongling_baoyu"
+      ],
+      "characterIds": [
+        "bo_zu_daoren",
+        "jia_baoyu",
+        "xue_baochai",
+        "lai_tou_heshang"
+      ]
+    },
+    {
+      "id": "event_81d82bea",
+      "title": "宝玉续《庄子》",
+      "aliases": [],
+      "chapters": [
+        21
+      ],
+      "knowledgeIds": [
+        "philosophy_zhuangzi"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu"
+      ]
+    },
+    {
+      "id": "event_12ccc3ea",
+      "title": "宝玉寻庙",
+      "aliases": [],
+      "chapters": [
+        39
+      ],
+      "knowledgeIds": [
+        "scene_ch039_liulaolao"
+      ],
+      "characterIds": [
+        "liu_laolao",
+        "jia_mu",
+        "jia_baoyu",
+        "ming_yan",
+        "xue_baochai",
+        "lin_daiyu"
+      ]
+    },
+    {
+      "id": "event_38294c9b",
+      "title": "宝玉厌学",
+      "aliases": [],
+      "chapters": [
+        9
+      ],
+      "knowledgeIds": [
+        "custom_ke_ju"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_zheng"
+      ]
+    },
+    {
+      "id": "event_d28464ae",
+      "title": "宝玉赠汗巾",
+      "aliases": [],
+      "chapters": [
+        28
+      ],
+      "knowledgeIds": [
+        "costume_jia_lian_shan_po"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jiang_yuhan",
+        "xiren"
+      ]
+    },
+    {
+      "id": "event_483ce9e2",
+      "title": "宝玉赠帕",
+      "aliases": [],
+      "chapters": [
+        34
+      ],
+      "knowledgeIds": [
+        "poem_tipa_sanju"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu"
+      ]
+    },
+    {
+      "id": "event_f17cabf7",
+      "title": "宝玉作芙蓉诔",
+      "aliases": [],
+      "chapters": [
+        78
+      ],
+      "knowledgeIds": [
+        "poem_furonglei"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu",
+        "qingwen"
+      ]
+    },
+    {
+      "id": "event_798bdb5b",
+      "title": "北静王路祭",
+      "aliases": [],
+      "chapters": [
+        14
+      ],
+      "knowledgeIds": [
+        "scene_ch014_beijingwang"
+      ],
+      "characterIds": [
+        "bei_jing_wang",
+        "jia_baoyu",
+        "jia_zheng",
+        "jia_zhen"
+      ]
+    },
+    {
+      "id": "event_1cc130a8",
+      "title": "逼死尤二姐",
+      "aliases": [],
+      "chapters": [
+        68
+      ],
+      "knowledgeIds": [
+        "character_study_xifeng"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_lian",
+        "jia_mu",
+        "wang_furen",
+        "pinger"
+      ]
+    },
+    {
+      "id": "event_95ce18b3",
+      "title": "初试云雨",
+      "aliases": [],
+      "chapters": [
+        5
+      ],
+      "knowledgeIds": [
+        "prophecy_xiren"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "xiren",
+        "jiang_yuhan"
+      ]
+    },
+    {
+      "id": "event_1d08fc72",
+      "title": "除夕祭宗祠",
+      "aliases": [],
+      "chapters": [
+        53
+      ],
+      "knowledgeIds": [
+        "scene_ch053_cizong"
+      ],
+      "characterIds": [
+        "jia_zhen",
+        "you_shi",
+        "jia_rong",
+        "jia_mu",
+        "jia_she",
+        "jia_zheng",
+        "jia_cong"
+      ]
+    },
+    {
+      "id": "event_03f6d67b",
+      "title": "大观园改革",
+      "aliases": [],
+      "chapters": [
+        55
+      ],
+      "knowledgeIds": [
+        "scene_tanchun_zhangjia"
+      ],
+      "characterIds": [
+        "jia_tanchun",
+        "wang_xifeng",
+        "li_wan"
+      ]
+    },
+    {
+      "id": "event_812a00bf",
+      "title": "大观园题联",
+      "aliases": [],
+      "chapters": [
+        75
+      ],
+      "knowledgeIds": [
+        "architecture_tubishanzhuang"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_mu",
+        "lin_daiyu",
+        "shi_xiangyun",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_85ba5df5",
+      "title": "黛玉初进贾府",
+      "aliases": [],
+      "chapters": [
+        3
+      ],
+      "knowledgeIds": [
+        "scene_daiyu_jinfu"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_mu",
+        "jia_baoyu",
+        "lin_daiyu"
+      ]
+    },
+    {
+      "id": "event_daiyu_fengao",
+      "title": "黛玉焚稿",
+      "aliases": [
+        "焚稿断痴情"
+      ],
+      "chapters": [
+        3
+      ],
+      "knowledgeIds": [
+        "character_daiyu_special"
+      ],
+      "characterIds": [
+        "lin_daiyu"
+      ]
+    },
+    {
+      "id": "event_ac9cbbde",
+      "title": "黛玉风雨夜作诗",
+      "aliases": [],
+      "chapters": [
+        45
+      ],
+      "knowledgeIds": [
+        "poem_qiuchuang_fengyuxi"
+      ],
+      "characterIds": [
+        "lin_daiyu"
+      ]
+    },
+    {
+      "id": "event_3a24e921",
+      "title": "黛玉还泪",
+      "aliases": [],
+      "chapters": [
+        1
+      ],
+      "knowledgeIds": [
+        "philosophy_muzhishi"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu"
+      ]
+    },
+    {
+      "id": "event_b1ed1296",
+      "title": "黛玉寄居贾府",
+      "aliases": [],
+      "chapters": [
+        14
+      ],
+      "knowledgeIds": [
+        "scene_ch014_linruhai"
+      ],
+      "characterIds": [
+        "lin_ruhai",
+        "lin_daiyu",
+        "jia_lian",
+        "wang_xifeng",
+        "bei_jing_wang",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_9d73b281",
+      "title": "黛玉入住大观园",
+      "aliases": [],
+      "chapters": [
+        17
+      ],
+      "knowledgeIds": [
+        "architecture_xiaoxiang_guan"
+      ],
+      "characterIds": [
+        "lin_daiyu",
+        "zijuan"
+      ]
+    },
+    {
+      "id": "event_30e471ac",
+      "title": "黛玉思乡",
+      "aliases": [],
+      "chapters": [
+        67
+      ],
+      "knowledgeIds": [
+        "scene_ch067_daiyu"
+      ],
+      "characterIds": [
+        "lin_daiyu",
+        "jia_baoyu",
+        "wang_xifeng",
+        "pinger",
+        "jia_lian",
+        "you_erjie"
+      ]
+    },
+    {
+      "id": "event_bf932fd8",
+      "title": "黛玉谑湘云",
+      "aliases": [],
+      "chapters": [
+        20
+      ],
+      "knowledgeIds": [
+        "scene_ch020_xiangyun"
+      ],
+      "characterIds": [
+        "shi_xiangyun",
+        "lin_daiyu",
+        "jia_baoyu",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_cde9792d",
+      "title": "黛玉养病",
+      "aliases": [],
+      "chapters": [
+        45
+      ],
+      "knowledgeIds": [
+        "diet_medicinal_food_daiyu"
+      ],
+      "characterIds": [
+        "lin_daiyu",
+        "xue_baochai",
+        "zijuan"
+      ]
+    },
+    {
+      "id": "event_2bb38abb",
+      "title": "黛玉作五美吟",
+      "aliases": [],
+      "chapters": [
+        64
+      ],
+      "knowledgeIds": [
+        "poem_wuguni"
+      ],
+      "characterIds": [
+        "lin_daiyu"
+      ]
+    },
+    {
+      "id": "event_e2d25893",
+      "title": "稻香村",
+      "aliases": [],
+      "chapters": [
+        37
+      ],
+      "knowledgeIds": [
+        "character_study_liwan"
+      ],
+      "characterIds": [
+        "li_wan",
+        "jia_zhu",
+        "jia_lan",
+        "jia_tanchun",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_2fef417d",
+      "title": "滴翠亭",
+      "aliases": [],
+      "chapters": [
+        27
+      ],
+      "knowledgeIds": [
+        "scene_baodie_pu"
+      ],
+      "characterIds": [
+        "xue_baochai",
+        "xiaohong",
+        "zhui_er",
+        "lin_daiyu"
+      ]
+    },
+    {
+      "id": "event_83c2e7da",
+      "title": "点化甄士隐",
+      "aliases": [],
+      "chapters": [
+        1
+      ],
+      "knowledgeIds": [
+        "philosophy_yisengyidao"
+      ],
+      "characterIds": [
+        "bo_zu_daoren",
+        "jia_baoyu",
+        "wang_xifeng",
+        "liu_xianglian",
+        "jia_rui",
+        "lai_tou_heshang",
+        "zhen_shiyin"
+      ]
+    },
+    {
+      "id": "event_22e18fbd",
+      "title": "妒妇方",
+      "aliases": [],
+      "chapters": [
+        80
+      ],
+      "knowledgeIds": [
+        "scene_ch080_dufufang"
+      ],
+      "characterIds": [
+        "xiang_ling",
+        "xue_pan",
+        "xia_jingui",
+        "jia_baoyu",
+        "bao_chan"
+      ]
+    },
+    {
+      "id": "event_3fbeac2f",
+      "title": "多姑娘与贾琏",
+      "aliases": [],
+      "chapters": [
+        21
+      ],
+      "knowledgeIds": [
+        "scene_ch021_pinger"
+      ],
+      "characterIds": [
+        "pinger",
+        "jia_lian",
+        "wang_xifeng",
+        "duo_guniang",
+        "duo_hunchong"
+      ]
+    },
+    {
+      "id": "event_53c51481",
+      "title": "芳官被逐",
+      "aliases": [],
+      "chapters": [
+        74
+      ],
+      "knowledgeIds": [
+        "scene_crisis_house"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "shi_xiangyun",
+        "wang_furen",
+        "qingwen"
+      ]
+    },
+    {
+      "id": "event_481a6e4d",
+      "title": "冯紫英家宴",
+      "aliases": [],
+      "chapters": [
+        28
+      ],
+      "knowledgeIds": [
+        "verse_hongdouqu"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_f3f544a5",
+      "title": "凤姐大闹宁国府",
+      "aliases": [],
+      "chapters": [
+        68
+      ],
+      "knowledgeIds": [
+        "scene_xifeng_ningguo"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_lian",
+        "you_erjie",
+        "jia_zhen"
+      ]
+    },
+    {
+      "id": "event_f560e244",
+      "title": "凤姐毒设相思局",
+      "aliases": [],
+      "chapters": [
+        11
+      ],
+      "knowledgeIds": [
+        "scene_ch011_jiarui"
+      ],
+      "characterIds": [
+        "jia_rui",
+        "wang_xifeng",
+        "pinger",
+        "jia_lian"
+      ]
+    },
+    {
+      "id": "event_17b7f7a4",
+      "title": "凤姐接济刘姥姥",
+      "aliases": [],
+      "chapters": [
+        6
+      ],
+      "knowledgeIds": [
+        "scene_ch006_liulaolao"
+      ],
+      "characterIds": [
+        "liu_laolao",
+        "wang_xifeng",
+        "zhou_rui",
+        "pinger"
+      ]
+    },
+    {
+      "id": "event_f8bccbc9",
+      "title": "凤姐弄权铁槛寺",
+      "aliases": [],
+      "chapters": [
+        15
+      ],
+      "knowledgeIds": [
+        "architecture_mantouan"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "qin_zhong",
+        "zhineng"
+      ]
+    },
+    {
+      "id": "event_035780f5",
+      "title": "凤姐泼醋",
+      "aliases": [],
+      "chapters": [
+        44
+      ],
+      "knowledgeIds": [
+        "scene_ch044_pinger"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_lian",
+        "pinger",
+        "bao_er_jias",
+        "bao_er",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_db51906e",
+      "title": "凤姐协理宁国府",
+      "aliases": [],
+      "chapters": [
+        13
+      ],
+      "knowledgeIds": [
+        "ritual_mourning_system"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_baoyu",
+        "jia_zhen",
+        "qin_keqing"
+      ]
+    },
+    {
+      "id": "event_951068ca",
+      "title": "凤姐折磨尤二姐",
+      "aliases": [],
+      "chapters": [
+        68
+      ],
+      "knowledgeIds": [
+        "scene_ch068_youerjie"
+      ],
+      "characterIds": [
+        "you_erjie",
+        "wang_xifeng",
+        "jia_lian",
+        "you_shi",
+        "jia_rong"
+      ]
+    },
+    {
+      "id": "event_95affa9e",
+      "title": "芙蓉女儿诔",
+      "aliases": [],
+      "chapters": [
+        78
+      ],
+      "knowledgeIds": [
+        "scene_qingwen_death"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "qingwen"
+      ]
+    },
+    {
+      "id": "event_88c53811",
+      "title": "茯苓霜",
+      "aliases": [],
+      "chapters": [
+        61
+      ],
+      "knowledgeIds": [
+        "scene_ch061_panyuan"
+      ],
+      "characterIds": [
+        "pinger",
+        "wu_er",
+        "liu_saozi",
+        "jia_baoyu",
+        "caiyun"
+      ]
+    },
+    {
+      "id": "event_24a190e8",
+      "title": "还泪之说",
+      "aliases": [],
+      "chapters": [
+        1
+      ],
+      "knowledgeIds": [
+        "allusion_mu_shi_qian_meng"
+      ],
+      "characterIds": [
+        "lin_daiyu",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_51255e84",
+      "title": "护官符",
+      "aliases": [],
+      "chapters": [
+        4
+      ],
+      "knowledgeIds": [
+        "allusion_jia_fu_si_da_jia"
+      ],
+      "characterIds": [
+        "jia_mu",
+        "shi_xiangyun",
+        "wang_xifeng",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_adedee31",
+      "title": "即景联句",
+      "aliases": [],
+      "chapters": [
+        50
+      ],
+      "knowledgeIds": [
+        "poem_luxuean_lianju"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "li_wan",
+        "jia_tanchun",
+        "shi_xiangyun",
+        "xue_baoqin",
+        "lin_daiyu",
+        "jia_baoyu",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_64138576",
+      "title": "贾府被抄",
+      "aliases": [],
+      "chapters": [
+        1
+      ],
+      "knowledgeIds": [
+        "theme_jiazu_shuailuo"
+      ],
+      "characterIds": [
+        "jia_mu",
+        "wang_xifeng",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_c0ef9a12",
+      "title": "贾敬之死",
+      "aliases": [],
+      "chapters": [
+        63
+      ],
+      "knowledgeIds": [
+        "architecture_tianqimiao"
+      ],
+      "characterIds": [
+        "jia_zhen",
+        "jia_rong",
+        "jia_jing"
+      ]
+    },
+    {
+      "id": "event_910fa5dd",
+      "title": "贾母八旬大寿",
+      "aliases": [],
+      "chapters": [
+        71
+      ],
+      "knowledgeIds": [
+        "scene_ch071_yuanyang"
+      ],
+      "characterIds": [
+        "yuanyang",
+        "siqi",
+        "jia_mu",
+        "wang_xifeng",
+        "xing_furen",
+        "pinger"
+      ]
+    },
+    {
+      "id": "event_36fe375d",
+      "title": "贾母护孙",
+      "aliases": [],
+      "chapters": [
+        33
+      ],
+      "knowledgeIds": [
+        "scene_ch033_jiamu"
+      ],
+      "characterIds": [
+        "jia_zheng",
+        "jia_baoyu",
+        "wang_furen",
+        "jia_mu",
+        "jia_huan",
+        "xiren"
+      ]
+    },
+    {
+      "id": "event_45386219",
+      "title": "贾母寿宴",
+      "aliases": [],
+      "chapters": [
+        71
+      ],
+      "knowledgeIds": [
+        "scene_ch071_xianxi"
+      ],
+      "characterIds": [
+        "xing_furen",
+        "wang_xifeng",
+        "jia_mu",
+        "yuanyang"
+      ]
+    },
+    {
+      "id": "event_d1909966",
+      "title": "贾瑞起淫心",
+      "aliases": [],
+      "chapters": [
+        11
+      ],
+      "knowledgeIds": [
+        "scene_ch011_jiarui"
+      ],
+      "characterIds": [
+        "jia_rui",
+        "wang_xifeng",
+        "pinger",
+        "jia_lian"
+      ]
+    },
+    {
+      "id": "event_00fe970a",
+      "title": "贾雨村吟诗",
+      "aliases": [],
+      "chapters": [
+        1
+      ],
+      "knowledgeIds": [
+        "poem_jia_yucun_zhongqiu"
+      ],
+      "characterIds": [
+        "jia_yucun"
+      ]
+    },
+    {
+      "id": "event_eefc8ba8",
+      "title": "贾芸谋差",
+      "aliases": [],
+      "chapters": [
+        24
+      ],
+      "knowledgeIds": [
+        "scene_ch024_xiaohong"
+      ],
+      "characterIds": [
+        "jia_yun",
+        "xiaohong",
+        "ni_er",
+        "wang_xifeng",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_8d644c26",
+      "title": "贾政命题姽婳词",
+      "aliases": [],
+      "chapters": [
+        78
+      ],
+      "knowledgeIds": [
+        "poem_guihuaci"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_lan",
+        "jia_huan"
+      ]
+    },
+    {
+      "id": "event_4f05f3e2",
+      "title": "假凤虚凰",
+      "aliases": [],
+      "chapters": [
+        58
+      ],
+      "knowledgeIds": [
+        "scene_ch058_ouguan"
+      ],
+      "characterIds": [
+        "ouguan",
+        "diguan",
+        "fangguan",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_231b3571",
+      "title": "剪发明志",
+      "aliases": [],
+      "chapters": [
+        46
+      ],
+      "knowledgeIds": [
+        "scene_ch046_yuanyang"
+      ],
+      "characterIds": [
+        "yuanyang",
+        "jia_she",
+        "xing_furen",
+        "wang_xifeng",
+        "jia_mu"
+      ]
+    },
+    {
+      "id": "event_3729fb35",
+      "title": "建造大观园",
+      "aliases": [],
+      "chapters": [
+        18
+      ],
+      "knowledgeIds": [
+        "scene_yuanfei_shengqin"
+      ],
+      "characterIds": [
+        "jia_mu",
+        "wang_furen",
+        "jia_zheng",
+        "jia_yuanchun"
+      ]
+    },
+    {
+      "id": "event_b7436f72",
+      "title": "蒋玉菡",
+      "aliases": [],
+      "chapters": [
+        33
+      ],
+      "knowledgeIds": [
+        "scene_baoyu_chujiabei"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_zheng",
+        "wang_furen",
+        "jia_mu"
+      ]
+    },
+    {
+      "id": "event_2c7d2439",
+      "title": "金钏",
+      "aliases": [],
+      "chapters": [
+        33
+      ],
+      "knowledgeIds": [
+        "scene_baoyu_chujiabei"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_zheng",
+        "wang_furen",
+        "jia_mu"
+      ]
+    },
+    {
+      "id": "event_fbe9fa8b",
+      "title": "金寡妇理论",
+      "aliases": [],
+      "chapters": [
+        10
+      ],
+      "knowledgeIds": [
+        "scene_ch010_zhangtaiyi"
+      ],
+      "characterIds": [
+        "jin_guafu",
+        "huang_da_nainai",
+        "jia_zhen",
+        "qin_keqing",
+        "zhang_taiyi",
+        "jin_rong"
+      ]
+    },
+    {
+      "id": "event_892421bb",
+      "title": "金荣受辱",
+      "aliases": [],
+      "chapters": [
+        9
+      ],
+      "knowledgeIds": [
+        "scene_ch009_xuetang"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "qin_zhong",
+        "jin_rong",
+        "ming_yan",
+        "jia_rui",
+        "jia_qiang",
+        "jia_dairu"
+      ]
+    },
+    {
+      "id": "event_d262c1c7",
+      "title": "金锁配宝玉",
+      "aliases": [],
+      "chapters": [
+        8
+      ],
+      "knowledgeIds": [
+        "objects_jinsuo_tonglingbao"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_e771bf96",
+      "title": "九龙佩",
+      "aliases": [],
+      "chapters": [
+        64
+      ],
+      "knowledgeIds": [
+        "scene_ch064_wumeiyin"
+      ],
+      "characterIds": [
+        "lin_daiyu",
+        "jia_baoyu",
+        "you_erjie",
+        "you_sanjie",
+        "jia_lian",
+        "jia_rong"
+      ]
+    },
+    {
+      "id": "event_1ff07350",
+      "title": "救治宝玉凤姐",
+      "aliases": [],
+      "chapters": [
+        1
+      ],
+      "knowledgeIds": [
+        "philosophy_yisengyidao"
+      ],
+      "characterIds": [
+        "bo_zu_daoren",
+        "jia_baoyu",
+        "wang_xifeng",
+        "liu_xianglian",
+        "jia_rui",
+        "lai_tou_heshang",
+        "zhen_shiyin"
+      ]
+    },
+    {
+      "id": "event_70760b51",
+      "title": "抗婚",
+      "aliases": [],
+      "chapters": [
+        46
+      ],
+      "knowledgeIds": [
+        "scene_ch046_jianfa"
+      ],
+      "characterIds": [
+        "yuanyang",
+        "jia_mu",
+        "jia_she",
+        "xing_furen"
+      ]
+    },
+    {
+      "id": "event_5243b5aa",
+      "title": "烤鹿肉",
+      "aliases": [],
+      "chapters": [
+        50
+      ],
+      "knowledgeIds": [
+        "poem_luxuean_lianju"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "li_wan",
+        "jia_tanchun",
+        "shi_xiangyun",
+        "xue_baoqin",
+        "lin_daiyu",
+        "jia_baoyu",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_8dc3e49f",
+      "title": "苦吟成诗",
+      "aliases": [],
+      "chapters": [
+        48
+      ],
+      "knowledgeIds": [
+        "scene_ch048_xiangling"
+      ],
+      "characterIds": [
+        "xiang_ling",
+        "lin_daiyu",
+        "xue_baochai",
+        "jia_tanchun"
+      ]
+    },
+    {
+      "id": "event_7b6ecd72",
+      "title": "兰言解疑癖",
+      "aliases": [],
+      "chapters": [
+        42
+      ],
+      "knowledgeIds": [
+        "scene_ch042_lanyan"
+      ],
+      "characterIds": [
+        "xue_baochai",
+        "lin_daiyu",
+        "jia_qiaojie",
+        "wang_xifeng",
+        "liu_laolao"
+      ]
+    },
+    {
+      "id": "event_69adf8ee",
+      "title": "冷月葬花魂",
+      "aliases": [],
+      "chapters": [
+        76
+      ],
+      "knowledgeIds": [
+        "architecture_aojingpiguan"
+      ],
+      "characterIds": [
+        "lin_daiyu",
+        "shi_xiangyun"
+      ]
+    },
+    {
+      "id": "event_9423df3d",
+      "title": "李纨入住大观园",
+      "aliases": [],
+      "chapters": [
+        17
+      ],
+      "knowledgeIds": [
+        "architecture_dao_xiang_cun"
+      ],
+      "characterIds": [
+        "li_wan",
+        "jia_lan"
+      ]
+    },
+    {
+      "id": "event_299103eb",
+      "title": "良宵花解语",
+      "aliases": [],
+      "chapters": [
+        19
+      ],
+      "knowledgeIds": [
+        "scene_ch019_xiren"
+      ],
+      "characterIds": [
+        "xiren",
+        "jia_baoyu",
+        "wang_furen"
+      ]
+    },
+    {
+      "id": "event_15a8e2ca",
+      "title": "两宴大观园",
+      "aliases": [],
+      "chapters": [
+        40
+      ],
+      "knowledgeIds": [
+        "scene_ch040_yapaiming"
+      ],
+      "characterIds": [
+        "jia_mu",
+        "liu_laolao",
+        "wang_xifeng",
+        "yuanyang",
+        "lin_daiyu",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_fe92b4f8",
+      "title": "林如海病逝",
+      "aliases": [],
+      "chapters": [
+        14
+      ],
+      "knowledgeIds": [
+        "scene_ch014_linruhai"
+      ],
+      "characterIds": [
+        "lin_ruhai",
+        "lin_daiyu",
+        "jia_lian",
+        "wang_xifeng",
+        "bei_jing_wang",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_86e16497",
+      "title": "龄官画蔷",
+      "aliases": [],
+      "chapters": [
+        30
+      ],
+      "knowledgeIds": [
+        "scene_ch030_lingguan"
+      ],
+      "characterIds": [
+        "xue_baochai",
+        "jia_baoyu",
+        "lin_daiyu",
+        "lingguan",
+        "jia_qiang"
+      ]
+    },
+    {
+      "id": "event_f6e5a66b",
+      "title": "龄官拒唱",
+      "aliases": [],
+      "chapters": [
+        36
+      ],
+      "knowledgeIds": [
+        "scene_ch036_qingwu"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lingguan",
+        "jia_qiang",
+        "xue_baochai",
+        "xiren"
+      ]
+    },
+    {
+      "id": "event_65447fca",
+      "title": "刘姥姥取名巧姐",
+      "aliases": [],
+      "chapters": [
+        42
+      ],
+      "knowledgeIds": [
+        "scene_ch042_lanyan"
+      ],
+      "characterIds": [
+        "xue_baochai",
+        "lin_daiyu",
+        "jia_qiaojie",
+        "wang_xifeng",
+        "liu_laolao"
+      ]
+    },
+    {
+      "id": "event_a9e12876",
+      "title": "刘姥姥信口开河",
+      "aliases": [],
+      "chapters": [
+        39
+      ],
+      "knowledgeIds": [
+        "scene_ch039_liulaolao"
+      ],
+      "characterIds": [
+        "liu_laolao",
+        "jia_mu",
+        "jia_baoyu",
+        "ming_yan",
+        "xue_baochai",
+        "lin_daiyu"
+      ]
+    },
+    {
+      "id": "event_414ddced",
+      "title": "刘姥姥一进荣国府",
+      "aliases": [],
+      "chapters": [
+        6
+      ],
+      "knowledgeIds": [
+        "scene_ch006_liulaolao"
+      ],
+      "characterIds": [
+        "liu_laolao",
+        "wang_xifeng",
+        "zhou_rui",
+        "pinger"
+      ]
+    },
+    {
+      "id": "event_3c1cfcd7",
+      "title": "栊翠庵品茶",
+      "aliases": [],
+      "chapters": [
+        41
+      ],
+      "knowledgeIds": [
+        "character_study_miaoyu"
+      ],
+      "characterIds": [
+        "miaoyu",
+        "jia_baoyu",
+        "lin_daiyu",
+        "xue_baochai",
+        "xing_xiuyan"
+      ]
+    },
+    {
+      "id": "event_81039d58",
+      "title": "玫瑰露风波",
+      "aliases": [],
+      "chapters": [
+        60
+      ],
+      "knowledgeIds": [
+        "scene_ch060_meigui"
+      ],
+      "characterIds": [
+        "fangguan",
+        "liu_saozi",
+        "wu_er",
+        "zhao_yiniang",
+        "caiyun"
+      ]
+    },
+    {
+      "id": "event_9bd64471",
+      "title": "妙玉被掳",
+      "aliases": [],
+      "chapters": [
+        5
+      ],
+      "knowledgeIds": [
+        "verse_shinanrong"
+      ],
+      "characterIds": [
+        "miaoyu"
+      ]
+    },
+    {
+      "id": "event_aac8471c",
+      "title": "妙玉品茶",
+      "aliases": [],
+      "chapters": [
+        41
+      ],
+      "knowledgeIds": [
+        "architecture_longcuian"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu",
+        "xue_baochai",
+        "miaoyu"
+      ]
+    },
+    {
+      "id": "event_93a1008a",
+      "title": "妙玉入住大观园",
+      "aliases": [],
+      "chapters": [
+        17
+      ],
+      "knowledgeIds": [
+        "architecture_mi_yu_an"
+      ],
+      "characterIds": [
+        "miaoyu"
+      ]
+    },
+    {
+      "id": "event_080988a7",
+      "title": "妙玉修行",
+      "aliases": [],
+      "chapters": [
+        5
+      ],
+      "knowledgeIds": [
+        "verse_shinanrong"
+      ],
+      "characterIds": [
+        "miaoyu"
+      ]
+    },
+    {
+      "id": "event_99130842",
+      "title": "倪二借钱",
+      "aliases": [],
+      "chapters": [
+        24
+      ],
+      "knowledgeIds": [
+        "scene_ch024_nier"
+      ],
+      "characterIds": [
+        "ni_er",
+        "jia_yun",
+        "xiaohong"
+      ]
+    },
+    {
+      "id": "event_f35675d7",
+      "title": "宁府寿宴",
+      "aliases": [],
+      "chapters": [
+        11
+      ],
+      "knowledgeIds": [
+        "scene_ch011_shouyan"
+      ],
+      "characterIds": [
+        "jia_mu",
+        "wang_xifeng",
+        "qin_keqing",
+        "you_shi",
+        "jia_rui",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_209aefd1",
+      "title": "宁国府办丧",
+      "aliases": [],
+      "chapters": [
+        13
+      ],
+      "knowledgeIds": [
+        "customs_funeral_qin_keqing"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_zhen",
+        "qin_keqing",
+        "jia_rong"
+      ]
+    },
+    {
+      "id": "event_255fe933",
+      "title": "弄权铁槛寺",
+      "aliases": [],
+      "chapters": [
+        68
+      ],
+      "knowledgeIds": [
+        "character_study_xifeng"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_lian",
+        "jia_mu",
+        "wang_furen",
+        "pinger"
+      ]
+    },
+    {
+      "id": "event_69873bc0",
+      "title": "女娲补天",
+      "aliases": [],
+      "chapters": [
+        1
+      ],
+      "knowledgeIds": [
+        "allusion_tongling_baoyu"
+      ],
+      "characterIds": [
+        "bo_zu_daoren",
+        "jia_baoyu",
+        "xue_baochai",
+        "lai_tou_heshang"
+      ]
+    },
+    {
+      "id": "event_6e28ec3b",
+      "title": "藕官烧纸",
+      "aliases": [],
+      "chapters": [
+        58
+      ],
+      "knowledgeIds": [
+        "scene_ch058_ouguan"
+      ],
+      "characterIds": [
+        "ouguan",
+        "diguan",
+        "fangguan",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_6d6cd35c",
+      "title": "平儿救贾琏",
+      "aliases": [],
+      "chapters": [
+        21
+      ],
+      "knowledgeIds": [
+        "scene_ch021_pinger"
+      ],
+      "characterIds": [
+        "pinger",
+        "jia_lian",
+        "wang_xifeng",
+        "duo_guniang",
+        "duo_hunchong"
+      ]
+    },
+    {
+      "id": "event_c561affd",
+      "title": "平儿判冤",
+      "aliases": [],
+      "chapters": [
+        61
+      ],
+      "knowledgeIds": [
+        "scene_ch061_panyuan"
+      ],
+      "characterIds": [
+        "pinger",
+        "wu_er",
+        "liu_saozi",
+        "jia_baoyu",
+        "caiyun"
+      ]
+    },
+    {
+      "id": "event_c9e58f83",
+      "title": "平儿行权",
+      "aliases": [],
+      "chapters": [
+        61
+      ],
+      "knowledgeIds": [
+        "scene_ch061_pinger"
+      ],
+      "characterIds": [
+        "pinger",
+        "jia_baoyu",
+        "wu_er",
+        "liu_saozi",
+        "caiyun"
+      ]
+    },
+    {
+      "id": "event_d998d259",
+      "title": "蔷薇硝",
+      "aliases": [],
+      "chapters": [
+        60
+      ],
+      "knowledgeIds": [
+        "scene_ch060_meigui"
+      ],
+      "characterIds": [
+        "fangguan",
+        "liu_saozi",
+        "wu_er",
+        "zhao_yiniang",
+        "caiyun"
+      ]
+    },
+    {
+      "id": "event_9db779d3",
+      "title": "蔷薇硝风波",
+      "aliases": [],
+      "chapters": [
+        60
+      ],
+      "knowledgeIds": [
+        "scene_ch060_qiangweixiao"
+      ],
+      "characterIds": [
+        "fangguan",
+        "zhao_yiniang",
+        "caiyun",
+        "liu_saozi",
+        "wu_er"
+      ]
+    },
+    {
+      "id": "event_7dd010fb",
+      "title": "巧姐",
+      "aliases": [],
+      "chapters": [
+        42
+      ],
+      "knowledgeIds": [
+        "scene_ch042_qiaojie"
+      ],
+      "characterIds": [
+        "liu_laolao",
+        "wang_xifeng",
+        "jia_qiaojie"
+      ]
+    },
+    {
+      "id": "event_94548e44",
+      "title": "巧姐被卖获救",
+      "aliases": [],
+      "chapters": [
+        42
+      ],
+      "knowledgeIds": [
+        "character_study_qiaojie"
+      ],
+      "characterIds": [
+        "jia_qiaojie",
+        "wang_xifeng",
+        "jia_lian",
+        "liu_laolao"
+      ]
+    },
+    {
+      "id": "event_8fe15830",
+      "title": "秦可卿病重",
+      "aliases": [],
+      "chapters": [
+        11
+      ],
+      "knowledgeIds": [
+        "scene_ch011_shouyan"
+      ],
+      "characterIds": [
+        "jia_mu",
+        "wang_xifeng",
+        "qin_keqing",
+        "you_shi",
+        "jia_rui",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_ecdf8a55",
+      "title": "秦可卿丧礼",
+      "aliases": [],
+      "chapters": [
+        3
+      ],
+      "knowledgeIds": [
+        "architecture_ning_guo_fu"
+      ],
+      "characterIds": [
+        "jia_zhen",
+        "jia_rong",
+        "qin_keqing"
+      ]
+    },
+    {
+      "id": "event_310c3d63",
+      "title": "情悟梨香院",
+      "aliases": [],
+      "chapters": [
+        36
+      ],
+      "knowledgeIds": [
+        "scene_ch036_qingwu"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lingguan",
+        "jia_qiang",
+        "xue_baochai",
+        "xiren"
+      ]
+    },
+    {
+      "id": "event_cf51fd10",
+      "title": "秋窗风雨夕",
+      "aliases": [],
+      "chapters": [
+        45
+      ],
+      "knowledgeIds": [
+        "scene_daiyu_changxiaoxiang"
+      ],
+      "characterIds": [
+        "lin_daiyu"
+      ]
+    },
+    {
+      "id": "event_a71ff130",
+      "title": "秋桐为妾",
+      "aliases": [],
+      "chapters": [
+        69
+      ],
+      "knowledgeIds": [
+        "scene_ch069_qiutong"
+      ],
+      "characterIds": [
+        "you_erjie",
+        "wang_xifeng",
+        "qiutong",
+        "jia_lian",
+        "pinger"
+      ]
+    },
+    {
+      "id": "event_d9c5fdd3",
+      "title": "十二支曲",
+      "aliases": [],
+      "chapters": [
+        5
+      ],
+      "knowledgeIds": [
+        "scene_baoyu_mengyou_taixu"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "qin_keqing"
+      ]
+    },
+    {
+      "id": "event_1a9d8824",
+      "title": "史湘云进贾府",
+      "aliases": [],
+      "chapters": [
+        20
+      ],
+      "knowledgeIds": [
+        "entrance_xiangyun"
+      ],
+      "characterIds": [
+        "shi_xiangyun"
+      ]
+    },
+    {
+      "id": "event_938b5fd3",
+      "title": "水仙庵",
+      "aliases": [],
+      "chapters": [
+        43
+      ],
+      "knowledgeIds": [
+        "scene_ch043_ji_jinchuan"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "ming_yan",
+        "jinchuan",
+        "wang_xifeng"
+      ]
+    },
+    {
+      "id": "event_f5db7079",
+      "title": "司棋被逐",
+      "aliases": [],
+      "chapters": [
+        73
+      ],
+      "knowledgeIds": [
+        "architecture_zilingzhou"
+      ],
+      "characterIds": [
+        "siqi",
+        "jia_yingchun"
+      ]
+    },
+    {
+      "id": "event_4ea5b6b5",
+      "title": "探春承包",
+      "aliases": [],
+      "chapters": [
+        56
+      ],
+      "knowledgeIds": [
+        "scene_ch056_chengbao"
+      ],
+      "characterIds": [
+        "jia_tanchun",
+        "li_wan",
+        "xue_baochai",
+        "pinger"
+      ]
+    },
+    {
+      "id": "event_238e2ee2",
+      "title": "探春入住大观园",
+      "aliases": [],
+      "chapters": [
+        17
+      ],
+      "knowledgeIds": [
+        "architecture_qiu_shuang_zhai"
+      ],
+      "characterIds": [
+        "jia_tanchun"
+      ]
+    },
+    {
+      "id": "event_e70b8ae3",
+      "title": "偷娶事发",
+      "aliases": [],
+      "chapters": [
+        67
+      ],
+      "knowledgeIds": [
+        "scene_ch067_xunjiatong"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "pinger",
+        "jia_lian"
+      ]
+    },
+    {
+      "id": "event_14045997",
+      "title": "偷娶尤二姐",
+      "aliases": [],
+      "chapters": [
+        65
+      ],
+      "knowledgeIds": [
+        "scene_ch065_youerjie"
+      ],
+      "characterIds": [
+        "jia_lian",
+        "you_erjie",
+        "you_sanjie",
+        "jia_zhen",
+        "jia_rong",
+        "you_shi"
+      ]
+    },
+    {
+      "id": "event_a609ea7c",
+      "title": "托梦凤姐",
+      "aliases": [],
+      "chapters": [
+        13
+      ],
+      "knowledgeIds": [
+        "character_study_qinkeqing"
+      ],
+      "characterIds": [
+        "qin_keqing",
+        "jia_rong",
+        "jia_zhen",
+        "wang_xifeng"
+      ]
+    },
+    {
+      "id": "event_e1460394",
+      "title": "顽童闹学堂",
+      "aliases": [],
+      "chapters": [
+        9
+      ],
+      "knowledgeIds": [
+        "scene_ch009_xuetang"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "qin_zhong",
+        "jin_rong",
+        "ming_yan",
+        "jia_rui",
+        "jia_qiang",
+        "jia_dairu"
+      ]
+    },
+    {
+      "id": "event_13c004ab",
+      "title": "王夫人撵金钏",
+      "aliases": [],
+      "chapters": [
+        32
+      ],
+      "knowledgeIds": [
+        "scene_ch032_jinchuan_expel"
+      ],
+      "characterIds": [
+        "wang_furen",
+        "jinchuan",
+        "jia_baoyu",
+        "xiren"
+      ]
+    },
+    {
+      "id": "event_dcf62af6",
+      "title": "五美吟",
+      "aliases": [],
+      "chapters": [
+        64
+      ],
+      "knowledgeIds": [
+        "scene_ch064_wumeiyin"
+      ],
+      "characterIds": [
+        "lin_daiyu",
+        "jia_baoyu",
+        "you_erjie",
+        "you_sanjie",
+        "jia_lian",
+        "jia_rong"
+      ]
+    },
+    {
+      "id": "event_b0c1c088",
+      "title": "惜春入住大观园",
+      "aliases": [],
+      "chapters": [
+        17
+      ],
+      "knowledgeIds": [
+        "architecture_nuan_xiang_wu"
+      ],
+      "characterIds": [
+        "jia_xichun"
+      ]
+    },
+    {
+      "id": "event_fa3a0177",
+      "title": "袭人嫁蒋玉菡",
+      "aliases": [],
+      "chapters": [
+        5
+      ],
+      "knowledgeIds": [
+        "prophecy_xiren"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "xiren",
+        "jiang_yuhan"
+      ]
+    },
+    {
+      "id": "event_92df97b4",
+      "title": "袭人试云雨",
+      "aliases": [],
+      "chapters": [
+        17
+      ],
+      "knowledgeIds": [
+        "architecture_yihongyuan"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "xiren",
+        "qingwen",
+        "sheyue"
+      ]
+    },
+    {
+      "id": "event_468e84ef",
+      "title": "袭人箴宝玉",
+      "aliases": [],
+      "chapters": [
+        19
+      ],
+      "knowledgeIds": [
+        "scene_ch019_xiren"
+      ],
+      "characterIds": [
+        "xiren",
+        "jia_baoyu",
+        "wang_furen"
+      ]
+    },
+    {
+      "id": "event_4ecaf43c",
+      "title": "香菱梦中得诗",
+      "aliases": [],
+      "chapters": [
+        48
+      ],
+      "knowledgeIds": [
+        "scene_ch048_mengshi"
+      ],
+      "characterIds": [
+        "xiang_ling",
+        "lin_daiyu",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_9b73ba6b",
+      "title": "香菱受辱",
+      "aliases": [],
+      "chapters": [
+        80
+      ],
+      "knowledgeIds": [
+        "scene_ch080_xiangling"
+      ],
+      "characterIds": [
+        "xiang_ling",
+        "xue_pan",
+        "xia_jingui",
+        "jia_baoyu",
+        "bao_chan"
+      ]
+    },
+    {
+      "id": "event_3380d2c7",
+      "title": "香菱学诗",
+      "aliases": [],
+      "chapters": [
+        48
+      ],
+      "knowledgeIds": [
+        "scene_ch048_xiangling"
+      ],
+      "characterIds": [
+        "xiang_ling",
+        "lin_daiyu",
+        "xue_baochai",
+        "jia_tanchun"
+      ]
+    },
+    {
+      "id": "event_2e55f19f",
+      "title": "湘云来荣府",
+      "aliases": [],
+      "chapters": [
+        20
+      ],
+      "knowledgeIds": [
+        "scene_ch020_xiangyun"
+      ],
+      "characterIds": [
+        "shi_xiangyun",
+        "lin_daiyu",
+        "jia_baoyu",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_a1cccc84",
+      "title": "湘云拾麒麟",
+      "aliases": [],
+      "chapters": [
+        31
+      ],
+      "knowledgeIds": [
+        "costume_jin_su_xiang_nang"
+      ],
+      "characterIds": [
+        "shi_xiangyun",
+        "wei_ruolan"
+      ]
+    },
+    {
+      "id": "event_0f2b5a5d",
+      "title": "湘云醉酒",
+      "aliases": [],
+      "chapters": [
+        62
+      ],
+      "knowledgeIds": [
+        "scene_xiangyun_zuiwo"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "xue_baochai",
+        "lin_daiyu",
+        "shi_xiangyun"
+      ]
+    },
+    {
+      "id": "event_7b9fda97",
+      "title": "湘云醉卧",
+      "aliases": [],
+      "chapters": [
+        38
+      ],
+      "knowledgeIds": [
+        "architecture_ouxiangxie"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "shi_xiangyun"
+      ]
+    },
+    {
+      "id": "event_68cdb3e5",
+      "title": "潇湘馆春困",
+      "aliases": [],
+      "chapters": [
+        26
+      ],
+      "knowledgeIds": [
+        "scene_ch026_daiyu"
+      ],
+      "characterIds": [
+        "lin_daiyu",
+        "jia_baoyu",
+        "zijuan",
+        "xiaohong",
+        "jia_yun"
+      ]
+    },
+    {
+      "id": "event_7231e352",
+      "title": "小红传帕",
+      "aliases": [],
+      "chapters": [
+        27
+      ],
+      "knowledgeIds": [
+        "scene_baodie_pu"
+      ],
+      "characterIds": [
+        "xue_baochai",
+        "xiaohong",
+        "zhui_er",
+        "lin_daiyu"
+      ]
+    },
+    {
+      "id": "event_8cc032ae",
+      "title": "小红遗帕",
+      "aliases": [],
+      "chapters": [
+        24
+      ],
+      "knowledgeIds": [
+        "scene_ch024_xiaohong"
+      ],
+      "characterIds": [
+        "jia_yun",
+        "xiaohong",
+        "ni_er",
+        "wang_xifeng",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_58e6a7d8",
+      "title": "协理宁国府",
+      "aliases": [],
+      "chapters": [
+        68
+      ],
+      "knowledgeIds": [
+        "character_study_xifeng"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_lian",
+        "jia_mu",
+        "wang_furen",
+        "pinger"
+      ]
+    },
+    {
+      "id": "event_7b101512",
+      "title": "邢夫人嫌隙",
+      "aliases": [],
+      "chapters": [
+        71
+      ],
+      "knowledgeIds": [
+        "scene_ch071_xianxi"
+      ],
+      "characterIds": [
+        "xing_furen",
+        "wang_xifeng",
+        "jia_mu",
+        "yuanyang"
+      ]
+    },
+    {
+      "id": "event_1760f122",
+      "title": "薛蟠娶夏金桂",
+      "aliases": [],
+      "chapters": [
+        79
+      ],
+      "knowledgeIds": [
+        "scene_ch079_yingchun"
+      ],
+      "characterIds": [
+        "jia_yingchun",
+        "sun_shaozu",
+        "jia_she",
+        "jia_baoyu",
+        "xue_pan",
+        "xia_jingui"
+      ]
+    },
+    {
+      "id": "event_7a69b80a",
+      "title": "薛蟠受辱",
+      "aliases": [],
+      "chapters": [
+        47
+      ],
+      "knowledgeIds": [
+        "scene_ch047_liuxianglian"
+      ],
+      "characterIds": [
+        "xue_pan",
+        "liu_xianglian",
+        "jia_baoyu",
+        "xue_yima",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_a5bb3824",
+      "title": "薛姨妈慰黛玉",
+      "aliases": [],
+      "chapters": [
+        57
+      ],
+      "knowledgeIds": [
+        "scene_ch057_weian"
+      ],
+      "characterIds": [
+        "xue_yima",
+        "lin_daiyu",
+        "zijuan",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_d135a388",
+      "title": "牙牌令",
+      "aliases": [],
+      "chapters": [
+        40
+      ],
+      "knowledgeIds": [
+        "scene_ch040_yapaiming"
+      ],
+      "characterIds": [
+        "jia_mu",
+        "liu_laolao",
+        "wang_xifeng",
+        "yuanyang",
+        "lin_daiyu",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_83cbd23d",
+      "title": "魇魔法",
+      "aliases": [],
+      "chapters": [
+        25
+      ],
+      "knowledgeIds": [
+        "scene_ch025_yamofa"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "wang_xifeng",
+        "zhao_yiniang",
+        "ma_daopo",
+        "jia_mu",
+        "wang_furen"
+      ]
+    },
+    {
+      "id": "event_e8e00883",
+      "title": "一僧一道",
+      "aliases": [],
+      "chapters": [
+        25
+      ],
+      "knowledgeIds": [
+        "scene_ch025_jiuzhu"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "wang_xifeng",
+        "lai_tou_heshang",
+        "bo_zu_daoren",
+        "ma_daopo",
+        "zhao_yiniang"
+      ]
+    },
+    {
+      "id": "event_1889ed38",
+      "title": "遗帕传情",
+      "aliases": [],
+      "chapters": [
+        26
+      ],
+      "knowledgeIds": [
+        "scene_ch026_xiaohong"
+      ],
+      "characterIds": [
+        "xiaohong",
+        "jia_yun",
+        "zhui_er",
+        "zijuan"
+      ]
+    },
+    {
+      "id": "event_93d87f41",
+      "title": "异兆悲音",
+      "aliases": [],
+      "chapters": [
+        75
+      ],
+      "knowledgeIds": [
+        "scene_ch075_zhongqiu"
+      ],
+      "characterIds": [
+        "jia_mu",
+        "jia_zheng",
+        "jia_she",
+        "you_shi",
+        "jia_zhen",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_95f6a9b1",
+      "title": "莺儿编柳",
+      "aliases": [],
+      "chapters": [
+        59
+      ],
+      "knowledgeIds": [
+        "scene_ch059_yinger"
+      ],
+      "characterIds": [
+        "yinger",
+        "chunyan",
+        "ouguan",
+        "jia_baoyu",
+        "xiren"
+      ]
+    },
+    {
+      "id": "event_17a7648b",
+      "title": "莺儿结络",
+      "aliases": [],
+      "chapters": [
+        35
+      ],
+      "knowledgeIds": [
+        "scene_ch035_yuchuan"
+      ],
+      "characterIds": [
+        "yuchuan",
+        "jia_baoyu",
+        "yinger",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_c57159d3",
+      "title": "迎春入住大观园",
+      "aliases": [],
+      "chapters": [
+        17
+      ],
+      "knowledgeIds": [
+        "architecture_lv_yun_xuan"
+      ],
+      "characterIds": [
+        "jia_yingchun"
+      ]
+    },
+    {
+      "id": "event_bd4e4270",
+      "title": "优伶被撵",
+      "aliases": [],
+      "chapters": [
+        77
+      ],
+      "knowledgeIds": [
+        "scene_ch077_chujia"
+      ],
+      "characterIds": [
+        "fangguan",
+        "qingwen",
+        "wang_furen",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_86f45be6",
+      "title": "尤二姐吞金",
+      "aliases": [],
+      "chapters": [
+        69
+      ],
+      "knowledgeIds": [
+        "scene_ch069_youerjie"
+      ],
+      "characterIds": [
+        "you_erjie",
+        "wang_xifeng",
+        "jia_lian",
+        "qiutong",
+        "pinger"
+      ]
+    },
+    {
+      "id": "event_7d583890",
+      "title": "尤二姐之死",
+      "aliases": [],
+      "chapters": [
+        68
+      ],
+      "knowledgeIds": [
+        "scene_xifeng_ningguo"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_lian",
+        "you_erjie",
+        "jia_zhen"
+      ]
+    },
+    {
+      "id": "event_7abd8da6",
+      "title": "尤三姐自刎",
+      "aliases": [],
+      "chapters": [
+        66
+      ],
+      "knowledgeIds": [
+        "scene_ch066_yousanjie"
+      ],
+      "characterIds": [
+        "you_sanjie",
+        "liu_xianglian",
+        "you_erjie",
+        "jia_lian"
+      ]
+    },
+    {
+      "id": "event_e2ddd440",
+      "title": "玉钏尝羹",
+      "aliases": [],
+      "chapters": [
+        35
+      ],
+      "knowledgeIds": [
+        "scene_ch035_yuchuan"
+      ],
+      "characterIds": [
+        "yuchuan",
+        "jia_baoyu",
+        "yinger",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_2b36fb4a",
+      "title": "鸳鸯剪发",
+      "aliases": [],
+      "chapters": [
+        46
+      ],
+      "knowledgeIds": [
+        "scene_ch046_jianfa"
+      ],
+      "characterIds": [
+        "yuanyang",
+        "jia_mu",
+        "jia_she",
+        "xing_furen"
+      ]
+    },
+    {
+      "id": "event_c30ced58",
+      "title": "鸳鸯抗婚",
+      "aliases": [],
+      "chapters": [
+        46
+      ],
+      "knowledgeIds": [
+        "scene_ch046_yuanyang"
+      ],
+      "characterIds": [
+        "yuanyang",
+        "jia_she",
+        "xing_furen",
+        "wang_xifeng",
+        "jia_mu"
+      ]
+    },
+    {
+      "id": "event_de266a60",
+      "title": "鸳鸯撞破私情",
+      "aliases": [],
+      "chapters": [
+        71
+      ],
+      "knowledgeIds": [
+        "scene_ch071_yuanyang"
+      ],
+      "characterIds": [
+        "yuanyang",
+        "siqi",
+        "jia_mu",
+        "wang_xifeng",
+        "xing_furen",
+        "pinger"
+      ]
+    },
+    {
+      "id": "event_2823ffad",
+      "title": "园中纠纷",
+      "aliases": [],
+      "chapters": [
+        59
+      ],
+      "knowledgeIds": [
+        "scene_ch059_chunyan"
+      ],
+      "characterIds": [
+        "chunyan",
+        "yinger",
+        "ouguan",
+        "xiren"
+      ]
+    },
+    {
+      "id": "event_280fb3cb",
+      "title": "攒金庆寿",
+      "aliases": [],
+      "chapters": [
+        43
+      ],
+      "knowledgeIds": [
+        "scene_ch043_jinchuan"
+      ],
+      "characterIds": [
+        "jia_mu",
+        "wang_xifeng",
+        "jia_baoyu",
+        "pinger",
+        "ming_yan",
+        "jinchuan"
+      ]
+    },
+    {
+      "id": "event_381a9810",
+      "title": "葬花吟",
+      "aliases": [],
+      "chapters": [
+        27
+      ],
+      "knowledgeIds": [
+        "scene_daiyu_zanghua"
+      ],
+      "characterIds": [
+        "lin_daiyu",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "event_f509ffb8",
+      "title": "赠风月宝鉴",
+      "aliases": [],
+      "chapters": [
+        1
+      ],
+      "knowledgeIds": [
+        "philosophy_yisengyidao"
+      ],
+      "characterIds": [
+        "bo_zu_daoren",
+        "jia_baoyu",
+        "wang_xifeng",
+        "liu_xianglian",
+        "jia_rui",
+        "lai_tou_heshang",
+        "zhen_shiyin"
+      ]
+    },
+    {
+      "id": "event_dfce9dcb",
+      "title": "张道士提亲",
+      "aliases": [],
+      "chapters": [
+        29
+      ],
+      "knowledgeIds": [
+        "scene_ch029_qingxu"
+      ],
+      "characterIds": [
+        "jia_mu",
+        "jia_baoyu",
+        "lin_daiyu",
+        "zhang_daoshi",
+        "wang_xifeng"
+      ]
+    },
+    {
+      "id": "event_3742ca5f",
+      "title": "张太医诊病",
+      "aliases": [],
+      "chapters": [
+        10
+      ],
+      "knowledgeIds": [
+        "scene_ch010_zhangtaiyi"
+      ],
+      "characterIds": [
+        "jin_guafu",
+        "huang_da_nainai",
+        "jia_zhen",
+        "qin_keqing",
+        "zhang_taiyi",
+        "jin_rong"
+      ]
+    },
+    {
+      "id": "event_d03bfdf4",
+      "title": "赵姨娘大闹",
+      "aliases": [],
+      "chapters": [
+        60
+      ],
+      "knowledgeIds": [
+        "scene_ch060_qiangweixiao"
+      ],
+      "characterIds": [
+        "fangguan",
+        "zhao_yiniang",
+        "caiyun",
+        "liu_saozi",
+        "wu_er"
+      ]
+    },
+    {
+      "id": "event_e4dc5bb7",
+      "title": "甄士隐听道人唱《好了歌》",
+      "aliases": [],
+      "chapters": [
+        1
+      ],
+      "knowledgeIds": [
+        "philosophy_haoliaoge"
+      ],
+      "characterIds": [
+        "zhen_shiyin"
+      ]
+    },
+    {
+      "id": "event_d1aa11cf",
+      "title": "甄士隐悟道",
+      "aliases": [],
+      "chapters": [
+        1
+      ],
+      "knowledgeIds": [
+        "allusion_hao_le_ge"
+      ],
+      "characterIds": [
+        "zhen_shiyin",
+        "bo_zu_daoren"
+      ]
+    },
+    {
+      "id": "event_0e361643",
+      "title": "甄士隐注解好了歌",
+      "aliases": [],
+      "chapters": [
+        1
+      ],
+      "knowledgeIds": [
+        "poem_zhen_shiyin_haole"
+      ],
+      "characterIds": [
+        "zhen_shiyin"
+      ]
+    },
+    {
+      "id": "event_d1eff532",
+      "title": "甄士隐资助贾雨村",
+      "aliases": [],
+      "chapters": [
+        1
+      ],
+      "knowledgeIds": [
+        "poem_jiayucun_zhongqiu"
+      ],
+      "characterIds": [
+        "jia_yucun",
+        "zhen_shiyin"
+      ]
+    },
+    {
+      "id": "event_d4a676c5",
+      "title": "周瑞家的送宫花",
+      "aliases": [],
+      "chapters": [
+        7
+      ],
+      "knowledgeIds": [
+        "allusion_cold_incense_pills"
+      ],
+      "characterIds": [
+        "xue_baochai",
+        "xue_yima"
+      ]
+    },
+    {
+      "id": "event_3eaa9f92",
+      "title": "赚入大观园",
+      "aliases": [],
+      "chapters": [
+        68
+      ],
+      "knowledgeIds": [
+        "scene_ch068_youerjie"
+      ],
+      "characterIds": [
+        "you_erjie",
+        "wang_xifeng",
+        "jia_lian",
+        "you_shi",
+        "jia_rong"
+      ]
+    },
+    {
+      "id": "event_de47386c",
+      "title": "紫鹃试玉",
+      "aliases": [],
+      "chapters": [
+        57
+      ],
+      "knowledgeIds": [
+        "scene_ch057_zijuan"
+      ],
+      "characterIds": [
+        "zijuan",
+        "jia_baoyu",
+        "lin_daiyu",
+        "xue_yima",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "event_8ff1cf69",
+      "title": "紫菱洲荒凉",
+      "aliases": [],
+      "chapters": [
+        79
+      ],
+      "knowledgeIds": [
+        "poem_zilingzhou"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_yingchun"
+      ]
+    },
+    {
+      "id": "event_e12fb644",
+      "title": "醉眠芍药裀",
+      "aliases": [],
+      "chapters": [
+        49
+      ],
+      "knowledgeIds": [
+        "character_study_xiangyun"
+      ],
+      "characterIds": [
+        "shi_xiangyun",
+        "jia_mu",
+        "jia_baoyu",
+        "lin_daiyu",
+        "xue_baochai"
+      ]
+    }
+  ]
+}

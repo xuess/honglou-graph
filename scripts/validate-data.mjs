@@ -113,12 +113,14 @@ function containsContinuationContent(character) {
   return (character.chapters || []).some((chapter) => Number(chapter.chapter) > 80);
 }
 
-const [characters, relationships, knowledge, provenance, appearances] = await Promise.all([
+const [characters, relationships, knowledge, provenance, appearances, eventsData, placesData] = await Promise.all([
   readJson(dataUrl('characters.json')),
   readJson(dataUrl('relationships.json')),
   readJson(dataUrl('knowledge.json')),
   readJson(dataUrl('provenance.json')),
   readJson(dataUrl('appearances.json')),
+  readJson(dataUrl('events.json')),
+  readJson(dataUrl('places.json')),
 ]);
 
 if (characters && relationships && knowledge && provenance) {
@@ -243,6 +245,46 @@ if (characters && relationships && knowledge && provenance) {
       seenAppearanceKeys.add(key);
     });
   }
+
+  const knowledgeIds = new Set(knowledge.map((item) => item.id));
+  const eventRecords = eventsData?.events;
+  const placeRecords = placesData?.places;
+  for (const [label, records, prefix] of [
+    ['事件索引', eventRecords, 'events'],
+    ['地点索引', placeRecords, 'places']
+  ]) {
+    if (!Array.isArray(records)) {
+      fail(`data/${prefix}.json 缺少 ${prefix} 数组`);
+      continue;
+    }
+    const seenIds = new Set();
+    records.forEach((record, index) => {
+      const context = `${label}[${index}]`;
+      if (!record.id || seenIds.has(record.id)) fail(`${context} 的 id 为空或重复：“${record.id || ''}”`);
+      seenIds.add(record.id);
+      (record.knowledgeIds || []).forEach((id) => {
+        if (!knowledgeIds.has(id)) fail(`${context} 引用了不存在的知识条目“${id}”`);
+      });
+      (record.characterIds || []).forEach((id) => {
+        if (!characterIds.has(id)) fail(`${context} 引用了不存在的人物“${id}”`);
+      });
+      (record.chapters || []).forEach((chapter) => {
+        if (!Number.isInteger(chapter) || chapter < 1 || chapter > 120) {
+          fail(`${context} 的 chapter 必须为第 1–120 回之间的整数`);
+        }
+      });
+    });
+  }
+  const eventIds = new Set((eventRecords || []).map((item) => item.id));
+  const placeIds = new Set((placeRecords || []).map((item) => item.id));
+  knowledge.forEach((item, index) => {
+    (item.eventIds || []).forEach((id) => {
+      if (!eventIds.has(id)) fail(`知识条目“${item.id || index}”引用了不存在的事件“${id}”`);
+    });
+    (item.placeIds || []).forEach((id) => {
+      if (!placeIds.has(id)) fail(`知识条目“${item.id || index}”引用了不存在的地点“${id}”`);
+    });
+  });
 
   // 血缘/婚姻边的方向约定：长辈→晚辈、配偶之间按「男→女」、同辈按出生先后。
   // 这条不变量以前没有人检查，导致出现「史湘云→史鼐/叔侄」这种长辈在后端的反向边。

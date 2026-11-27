@@ -1,0 +1,827 @@
+{
+  "schemaVersion": 1,
+  "generatedFrom": "knowledge.relatedPlaces",
+  "places": [
+    {
+      "id": "place_daguanyuan",
+      "title": "大观园",
+      "aliases": [],
+      "chapters": [
+        5,
+        17,
+        22,
+        23,
+        37,
+        38,
+        40,
+        41,
+        50,
+        62,
+        73,
+        74,
+        75,
+        76,
+        78
+      ],
+      "knowledgeIds": [
+        "riddle_tanchun_yuanxiao",
+        "architecture_daguanyuan_layout",
+        "couplet_daguanyuan_trial_inscription",
+        "diet_liulaolao_banquet",
+        "space_haitang_shishe",
+        "poem_juhua_shi_xiangyun",
+        "scene_baoyu_tiyuan",
+        "garden_longcuian",
+        "garden_nuanxiangwu",
+        "garden_zilingzhou",
+        "plant_shaoyao",
+        "rock_jiashan",
+        "garden_residents",
+        "landscape_tubitang",
+        "riddle_daiyu_yuanxiao",
+        "scene_tanchun_slap",
+        "scene_qingwen_death",
+        "theme_jinyu_mushi",
+        "food_crab_feast",
+        "architecture_hengwuyuan",
+        "architecture_daoxiangcun",
+        "architecture_longcuian",
+        "architecture_qiushuangzhai",
+        "architecture_nuanxiangwu",
+        "architecture_zilingzhou",
+        "architecture_ouxiangxie",
+        "architecture_qujingtongyou",
+        "architecture_tubishanzhuang",
+        "architecture_aojingpiguan"
+      ],
+      "characterIds": [
+        "jia_tanchun",
+        "jia_baoyu",
+        "jia_yuanchun",
+        "jia_zheng",
+        "wang_xifeng",
+        "jia_mu",
+        "liu_laolao",
+        "yuanyang",
+        "shi_xiangyun",
+        "lin_daiyu",
+        "xue_baochai",
+        "miaoyu",
+        "jia_xichun",
+        "jia_yingchun",
+        "li_wan",
+        "qingwen",
+        "wang_furen",
+        "xue_yima",
+        "jia_lan",
+        "you_shi",
+        "siqi"
+      ]
+    },
+    {
+      "id": "place_rongguofu",
+      "title": "荣国府",
+      "aliases": [],
+      "chapters": [
+        3,
+        4,
+        8,
+        22
+      ],
+      "knowledgeIds": [
+        "riddle_yuanxiao_baoyu",
+        "customs_yuanxiao_feast",
+        "objects_jinsuo_tonglingbao",
+        "riddle_baochai_yuanxiao",
+        "riddle_yingchun_yuanxiao",
+        "riddle_xichun_yuanxiao",
+        "couplet_rongxi_tang",
+        "architecture_lixiangyuan"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_mu",
+        "jia_zheng",
+        "jia_tanchun",
+        "xue_baochai",
+        "jia_yingchun",
+        "jia_xichun",
+        "lin_daiyu",
+        "lingguan",
+        "fangguan",
+        "xue_yima"
+      ]
+    },
+    {
+      "id": "place_ouxiangxie",
+      "title": "藕香榭",
+      "aliases": [],
+      "chapters": [
+        23,
+        37,
+        38,
+        40
+      ],
+      "knowledgeIds": [
+        "diet_liulaolao_banquet",
+        "space_haitang_shishe",
+        "poem_juhua_shi_xiangyun",
+        "garden_residents",
+        "plant_ouhua",
+        "food_crab_feast",
+        "architecture_ouxiangxie"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_mu",
+        "liu_laolao",
+        "yuanyang",
+        "shi_xiangyun",
+        "lin_daiyu",
+        "xue_baochai",
+        "jia_tanchun",
+        "jia_baoyu",
+        "jia_xichun",
+        "li_wan",
+        "jia_yingchun",
+        "miaoyu"
+      ]
+    },
+    {
+      "id": "place_xiaoxiangguan",
+      "title": "潇湘馆",
+      "aliases": [],
+      "chapters": [
+        17,
+        23,
+        45
+      ],
+      "knowledgeIds": [
+        "architecture_daguanyuan_layout",
+        "architecture_xiaoxiangguan",
+        "diet_medicinal_food_daiyu",
+        "scene_baoyu_tiyuan",
+        "plant_zhu",
+        "garden_residents",
+        "couplet_xiaoxiangguan"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_yuanchun",
+        "jia_zheng",
+        "lin_daiyu",
+        "zijuan",
+        "xue_baochai",
+        "jia_xichun",
+        "jia_tanchun",
+        "li_wan",
+        "jia_yingchun",
+        "shi_xiangyun",
+        "miaoyu"
+      ]
+    },
+    {
+      "id": "place_yihongyuan",
+      "title": "怡红院",
+      "aliases": [],
+      "chapters": [
+        17,
+        23,
+        52
+      ],
+      "knowledgeIds": [
+        "architecture_daguanyuan_layout",
+        "architecture_yihongyuan",
+        "objects_quejinqiu",
+        "scene_baoyu_tiyuan",
+        "plant_haitang",
+        "garden_residents"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_yuanchun",
+        "jia_zheng",
+        "xiren",
+        "qingwen",
+        "sheyue",
+        "jia_xichun",
+        "jia_tanchun",
+        "li_wan",
+        "lin_daiyu",
+        "jia_yingchun",
+        "shi_xiangyun",
+        "xue_baochai",
+        "miaoyu"
+      ]
+    },
+    {
+      "id": "place_longcui-an",
+      "title": "栊翠庵",
+      "aliases": [],
+      "chapters": [
+        17,
+        23,
+        41,
+        50
+      ],
+      "knowledgeIds": [
+        "architecture_daguanyuan_layout",
+        "garden_longcuian",
+        "garden_residents",
+        "plant_meihua",
+        "architecture_longcuian"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_yuanchun",
+        "jia_zheng",
+        "miaoyu",
+        "jia_xichun",
+        "jia_tanchun",
+        "li_wan",
+        "lin_daiyu",
+        "jia_yingchun",
+        "shi_xiangyun",
+        "xue_baochai",
+        "jia_mu"
+      ]
+    },
+    {
+      "id": "place_qiushuangzhai",
+      "title": "秋爽斋",
+      "aliases": [],
+      "chapters": [
+        17,
+        23,
+        37,
+        74
+      ],
+      "knowledgeIds": [
+        "architecture_daguanyuan_layout",
+        "space_haitang_shishe",
+        "garden_residents",
+        "scene_tanchun_slap",
+        "architecture_qiushuangzhai"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_yuanchun",
+        "jia_zheng",
+        "shi_xiangyun",
+        "lin_daiyu",
+        "xue_baochai",
+        "jia_tanchun",
+        "jia_xichun",
+        "li_wan",
+        "jia_yingchun",
+        "miaoyu",
+        "wang_xifeng"
+      ]
+    },
+    {
+      "id": "place_hengwuyuan",
+      "title": "蘅芜苑",
+      "aliases": [],
+      "chapters": [
+        17,
+        23
+      ],
+      "knowledgeIds": [
+        "architecture_daguanyuan_layout",
+        "garden_residents",
+        "couplet_hengwuyuan",
+        "architecture_hengwuyuan"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_yuanchun",
+        "jia_zheng",
+        "jia_xichun",
+        "jia_tanchun",
+        "li_wan",
+        "lin_daiyu",
+        "jia_yingchun",
+        "shi_xiangyun",
+        "xue_baochai",
+        "miaoyu",
+        "xue_yima"
+      ]
+    },
+    {
+      "id": "place_d2c9cb47",
+      "title": "沁芳桥",
+      "aliases": [],
+      "chapters": [
+        17,
+        23
+      ],
+      "knowledgeIds": [
+        "architecture_daguanyuan_layout",
+        "architecture_xiaoxiangguan",
+        "scene_baoyu_tiyuan",
+        "architecture_qinfangting"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_yuanchun",
+        "jia_zheng",
+        "lin_daiyu",
+        "zijuan"
+      ]
+    },
+    {
+      "id": "place_7492aefe",
+      "title": "铁槛寺",
+      "aliases": [],
+      "chapters": [
+        13,
+        15
+      ],
+      "knowledgeIds": [
+        "customs_funeral_qin_keqing",
+        "ritual_mourning_system",
+        "architecture_mantouan",
+        "architecture_tiekansi"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_zhen",
+        "qin_keqing",
+        "jia_rong",
+        "jia_baoyu",
+        "qin_zhong",
+        "zhineng"
+      ]
+    },
+    {
+      "id": "place_aojing",
+      "title": "凹晶馆",
+      "aliases": [
+        "凹晶溪馆"
+      ],
+      "chapters": [
+        75,
+        76
+      ],
+      "knowledgeIds": [
+        "landscape_tubitang",
+        "architecture_tubishanzhuang",
+        "architecture_aojingpiguan"
+      ],
+      "characterIds": [
+        "jia_mu",
+        "lin_daiyu",
+        "shi_xiangyun",
+        "jia_baoyu",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "place_daoxiangcun",
+      "title": "稻香村",
+      "aliases": [],
+      "chapters": [
+        17,
+        23
+      ],
+      "knowledgeIds": [
+        "architecture_daguanyuan_layout",
+        "garden_residents",
+        "architecture_daoxiangcun"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_yuanchun",
+        "jia_zheng",
+        "jia_xichun",
+        "jia_tanchun",
+        "li_wan",
+        "lin_daiyu",
+        "jia_yingchun",
+        "shi_xiangyun",
+        "xue_baochai",
+        "miaoyu",
+        "jia_lan"
+      ]
+    },
+    {
+      "id": "place_lixiangyuan",
+      "title": "梨香院",
+      "aliases": [],
+      "chapters": [
+        4,
+        7,
+        8
+      ],
+      "knowledgeIds": [
+        "objects_jinsuo_tonglingbao",
+        "allusion_cold_incense_pills",
+        "architecture_lixiangyuan"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "xue_baochai",
+        "xue_yima",
+        "lingguan",
+        "fangguan"
+      ]
+    },
+    {
+      "id": "place_ningguofu",
+      "title": "宁国府",
+      "aliases": [],
+      "chapters": [
+        5,
+        13
+      ],
+      "knowledgeIds": [
+        "customs_funeral_qin_keqing",
+        "couplet_qinkeqing_room",
+        "ritual_mourning_system"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_zhen",
+        "qin_keqing",
+        "jia_rong",
+        "jia_baoyu"
+      ]
+    },
+    {
+      "id": "place_6b429916",
+      "title": "暖香坞",
+      "aliases": [],
+      "chapters": [
+        23,
+        50,
+        74
+      ],
+      "knowledgeIds": [
+        "garden_nuanxiangwu",
+        "garden_residents",
+        "architecture_nuanxiangwu"
+      ],
+      "characterIds": [
+        "jia_xichun",
+        "jia_baoyu",
+        "jia_tanchun",
+        "li_wan",
+        "lin_daiyu",
+        "jia_yingchun",
+        "shi_xiangyun",
+        "xue_baochai",
+        "miaoyu",
+        "you_shi"
+      ]
+    },
+    {
+      "id": "place_tubi",
+      "title": "凸碧山庄",
+      "aliases": [
+        "凸碧堂"
+      ],
+      "chapters": [
+        75,
+        76
+      ],
+      "knowledgeIds": [
+        "landscape_tubitang",
+        "architecture_tubishanzhuang",
+        "architecture_aojingpiguan"
+      ],
+      "characterIds": [
+        "jia_mu",
+        "lin_daiyu",
+        "shi_xiangyun",
+        "jia_baoyu",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "place_zipengzhou",
+      "title": "紫菱洲",
+      "aliases": [],
+      "chapters": [
+        23,
+        73
+      ],
+      "knowledgeIds": [
+        "garden_zilingzhou",
+        "garden_residents",
+        "architecture_zilingzhou"
+      ],
+      "characterIds": [
+        "jia_yingchun",
+        "jia_baoyu",
+        "jia_xichun",
+        "jia_tanchun",
+        "li_wan",
+        "lin_daiyu",
+        "shi_xiangyun",
+        "xue_baochai",
+        "miaoyu",
+        "siqi"
+      ]
+    },
+    {
+      "id": "place_jiamu_shangfang",
+      "title": "贾母上房",
+      "aliases": [
+        "上房"
+      ],
+      "chapters": [
+        22
+      ],
+      "knowledgeIds": [
+        "riddle_yuanxiao_baoyu",
+        "customs_yuanxiao_feast"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_mu",
+        "jia_zheng",
+        "jia_tanchun"
+      ]
+    },
+    {
+      "id": "place_3b41330c",
+      "title": "馒头庵",
+      "aliases": [],
+      "chapters": [
+        15
+      ],
+      "knowledgeIds": [
+        "architecture_mantouan",
+        "architecture_tiekansi"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "qin_zhong",
+        "zhineng",
+        "jia_zhen",
+        "qin_keqing"
+      ]
+    },
+    {
+      "id": "place_be5ea375",
+      "title": "沁芳亭",
+      "aliases": [],
+      "chapters": [
+        17
+      ],
+      "knowledgeIds": [
+        "couplet_daguanyuan_trial_inscription",
+        "architecture_qinfangting"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_zheng",
+        "lin_daiyu"
+      ]
+    },
+    {
+      "id": "place_e5c4ad97",
+      "title": "曲径通幽处",
+      "aliases": [],
+      "chapters": [
+        17
+      ],
+      "knowledgeIds": [
+        "couplet_daguanyuan_trial_inscription",
+        "architecture_qujingtongyou"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_zheng"
+      ]
+    },
+    {
+      "id": "place_46aa5e6d",
+      "title": "太虚幻境",
+      "aliases": [],
+      "chapters": [
+        1,
+        5
+      ],
+      "knowledgeIds": [
+        "philosophy_zhen_jia",
+        "theme_jinyu_mushi"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_yucun",
+        "zhen_shiyin",
+        "jia_mu",
+        "lin_daiyu",
+        "xue_baochai",
+        "wang_furen"
+      ]
+    },
+    {
+      "id": "place_9bb7c2c1",
+      "title": "大观园正门",
+      "aliases": [],
+      "chapters": [
+        17
+      ],
+      "knowledgeIds": [
+        "architecture_daguanyuan_gates"
+      ],
+      "characterIds": [
+        "jia_zheng",
+        "jia_yuanchun"
+      ]
+    },
+    {
+      "id": "place_af2e9d25",
+      "title": "金陵",
+      "aliases": [],
+      "chapters": [
+        4
+      ],
+      "knowledgeIds": [
+        "theme_four_families"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "jia_mu",
+        "xue_baochai",
+        "jia_zheng"
+      ]
+    },
+    {
+      "id": "place_53f510bd",
+      "title": "芦雪庵",
+      "aliases": [],
+      "chapters": [
+        49
+      ],
+      "knowledgeIds": [
+        "food_luwei"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "shi_xiangyun"
+      ]
+    },
+    {
+      "id": "place_a042084f",
+      "title": "沁芳溪",
+      "aliases": [],
+      "chapters": [
+        17
+      ],
+      "knowledgeIds": [
+        "architecture_qinfangting"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu"
+      ]
+    },
+    {
+      "id": "place_092ad04f",
+      "title": "清虚观",
+      "aliases": [],
+      "chapters": [
+        29
+      ],
+      "knowledgeIds": [
+        "architecture_qingxuguan"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_mu",
+        "lin_daiyu",
+        "shi_xiangyun",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "place_57907b65",
+      "title": "荣禧堂",
+      "aliases": [],
+      "chapters": [
+        3
+      ],
+      "knowledgeIds": [
+        "couplet_rongxi_tang"
+      ],
+      "characterIds": [
+        "lin_daiyu",
+        "jia_zheng"
+      ]
+    },
+    {
+      "id": "place_3a94d856",
+      "title": "山脊",
+      "aliases": [],
+      "chapters": [
+        75
+      ],
+      "knowledgeIds": [
+        "architecture_tubishanzhuang"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "jia_mu",
+        "lin_daiyu",
+        "shi_xiangyun",
+        "xue_baochai"
+      ]
+    },
+    {
+      "id": "place_b5e3b5dd",
+      "title": "省亲别墅",
+      "aliases": [],
+      "chapters": [
+        17
+      ],
+      "knowledgeIds": [
+        "architecture_daguanyuan_gates"
+      ],
+      "characterIds": [
+        "jia_zheng",
+        "jia_yuanchun"
+      ]
+    },
+    {
+      "id": "place_bae5fcda",
+      "title": "水月庵",
+      "aliases": [],
+      "chapters": [
+        15
+      ],
+      "knowledgeIds": [
+        "architecture_mantouan"
+      ],
+      "characterIds": [
+        "wang_xifeng",
+        "qin_zhong",
+        "zhineng"
+      ]
+    },
+    {
+      "id": "place_c6273c04",
+      "title": "桃花林",
+      "aliases": [],
+      "chapters": [
+        23
+      ],
+      "knowledgeIds": [
+        "architecture_xiaoxiangguan"
+      ],
+      "characterIds": [
+        "jia_baoyu",
+        "lin_daiyu",
+        "zijuan"
+      ]
+    },
+    {
+      "id": "place_a4858379",
+      "title": "天齐庙",
+      "aliases": [],
+      "chapters": [
+        63
+      ],
+      "knowledgeIds": [
+        "architecture_tianqimiao"
+      ],
+      "characterIds": [
+        "jia_zhen",
+        "jia_rong",
+        "jia_jing"
+      ]
+    },
+    {
+      "id": "place_5b72d313",
+      "title": "溪水",
+      "aliases": [],
+      "chapters": [
+        76
+      ],
+      "knowledgeIds": [
+        "architecture_aojingpiguan"
+      ],
+      "characterIds": [
+        "lin_daiyu",
+        "shi_xiangyun"
+      ]
+    },
+    {
+      "id": "place_4e2a775e",
+      "title": "玉石牌坊",
+      "aliases": [],
+      "chapters": [
+        17
+      ],
+      "knowledgeIds": [
+        "architecture_daguanyuan_gates"
+      ],
+      "characterIds": [
+        "jia_zheng",
+        "jia_yuanchun"
+      ]
+    }
+  ]
+}

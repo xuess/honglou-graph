@@ -394,6 +394,23 @@ class KnowledgeView {
     this._updateBackToTopVisibility();
   }
 
+  _applyChipSearch(value) {
+    const query = String(value || '').trim();
+    if (!query) return;
+    this.searchQuery = query;
+    this.activeCategory = 'all';
+    this.activeSubcategory = 'all';
+    this.chapterFilter = 'all';
+    this.sortBy = 'relevance';
+    const input = this.container.querySelector('.knowledge-search-input');
+    if (input) input.value = query;
+    this._syncFilterControls();
+    this._invalidateFilterCache();
+    this._updateContent();
+    this._scrollToTop();
+    this._emitFacetChange();
+  }
+
   _syncFilterControls() {
     const searchInput = this.container.querySelector('.knowledge-search-input');
     if (searchInput && searchInput.value !== this.searchQuery) searchInput.value = this.searchQuery;
@@ -747,7 +764,7 @@ class KnowledgeView {
           <div class="knowledge-info-row">
             <span class="knowledge-info-label">相关空间</span>
             <div class="knowledge-card-tags">
-              ${item.relatedPlaces.map((place) => `<span class="knowledge-tag place">${this._highlightText(place)}</span>`).join('')}
+              ${item.relatedPlaces.map((place) => `<button type="button" class="knowledge-tag place" data-place="${this._escapeHtmlAttr(place)}">${this._highlightText(place)}</button>`).join('')}
             </div>
           </div>
         ` : ''}
@@ -771,7 +788,7 @@ class KnowledgeView {
         ` : ''}
 
         <div class="knowledge-card-footer">
-          <div class="knowledge-card-related-events">${(item.relatedEvents || []).slice(0, 3).map((event) => `<span>${this._highlightText(event)}</span>`).join('')}</div>
+          <div class="knowledge-card-related-events">${(item.relatedEvents || []).slice(0, 3).map((event) => `<button type="button" class="knowledge-event" data-event="${this._escapeHtmlAttr(event)}">${this._highlightText(event)}</button>`).join('')}</div>
           <div class="knowledge-card-actions">
             ${item.chapter ? `<button type="button" class="knowledge-chapter-jump" data-chapter-jump="${item.chapter}" title="回到第${item.chapter}回原文与同回人物">第${item.chapter}回 →</button>` : ''}
             ${this._canSpeak(displayContent) ? `<button class="knowledge-speak-btn" data-speak-id="${this._escapeHtmlAttr(item.id)}" data-speak-text="${this._escapeHtmlAttr(displayContent)}" title="朗读此内容">🔊 朗读</button>` : ''}
@@ -860,6 +877,18 @@ class KnowledgeView {
         this._invalidateFilterCache();
         this._updateContent();
         this._scrollToTop();
+        return;
+      }
+
+      // 事件/地点标签：把规范化后的文本送回知识检索，作为轻量交叉索引。
+      const eventChip = event.target.closest('[data-event]');
+      if (eventChip) {
+        this._applyChipSearch(eventChip.dataset.event || '');
+        return;
+      }
+      const placeChip = event.target.closest('[data-place]');
+      if (placeChip) {
+        this._applyChipSearch(placeChip.dataset.place || '');
         return;
       }
 

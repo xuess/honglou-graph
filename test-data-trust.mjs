@@ -285,7 +285,7 @@ await run('TC-54 出场索引与时间线', async () => {
       chaptersCovered: new Set(app.appearances.map((item) => item.chapter)).size
     };
   });
-  assert.ok(state.records >= 400, `出场索引过少: ${state.records}`);
+  assert.ok(state.records >= 450, `出场索引过少: ${state.records}`);
   assert.ok(state.daiyuAppearances >= 10, `黛玉关联回目过少: ${state.daiyuAppearances}`);
   assert.ok(state.daiyuRoles.includes('key') && state.daiyuRoles.includes('scene'), `角色类型缺失: ${state.daiyuRoles}`);
   assert.ok(state.chapter44Characters.length >= 5, `第44回时间线人数异常: ${state.chapter44Characters.length}`);
@@ -304,21 +304,26 @@ await run('TC-55 章节知识补全与人物专题', async () => {
       if (item.chapter) counts[item.chapter] = (counts[item.chapter] || 0) + 1;
     }
     const emptyChapters = [];
+    const thinChapters = [];
     for (let chapter = 1; chapter <= 80; chapter += 1) {
-      if (!counts[chapter]) emptyChapters.push(chapter);
+      const count = counts[chapter] || 0;
+      if (!count) emptyChapters.push(chapter);
+      if (count < 2) thinChapters.push(chapter);
     }
     const chapter44 = app.chapterView.chapterProfileMap.get(44);
     return {
       emptyChapters,
+      thinChapters,
       chapter44Knowledge: chapter44?.relatedKnowledge?.map((item) => item.title) || [],
       studies: app.knowledge.filter((item) => item.type === 'character_study').length,
       total: app.knowledge.length
     };
   });
   assert.deepEqual(state.emptyChapters, [], `仍有空白章回: ${state.emptyChapters.join('、')}`);
+  assert.deepEqual(state.thinChapters, [], `仍有少于 2 条读者知识的章回: ${state.thinChapters.join('、')}`);
   assert.ok(state.chapter44Knowledge.some((title) => /凤姐泼醋/.test(title)), `第44回缺少名场面: ${state.chapter44Knowledge.join('、')}`);
   assert.ok(state.studies >= 16, `人物专题不足: ${state.studies}`);
-  assert.ok(state.total >= 570, `知识条目总数异常: ${state.total}`);
+  assert.ok(state.total >= 597, `知识条目总数异常: ${state.total}`);
 });
 
 // ============================================================
@@ -338,7 +343,36 @@ await run('TC-56 人物专题可检索', async () => {
   assert.equal(result.hasXifeng, true, '缺少王熙凤人物专题');
 });
 
-await run('TC-57 控制台无错误', async () => {
+// ============================================================
+// TC-58: 事件/地点标签可检索
+// ============================================================
+await run('TC-58 事件/地点标签可检索', async () => {
+  await page.click('[data-view="knowledge"]');
+  await sleep(900);
+  const target = await page.evaluate(() => {
+    const card = [...document.querySelectorAll('.knowledge-card')]
+      .find((element) => element.querySelector('[data-event], [data-place]'));
+    if (!card) return null;
+    card.querySelector('.knowledge-card-header')?.click();
+    return { id: card.dataset.id };
+  });
+  assert.ok(target, '应找到带事件/地点标签的知识卡');
+  await sleep(700);
+  const chip = await page.$('.knowledge-card [data-event], .knowledge-card [data-place]');
+  assert.ok(chip, '事件/地点标签应可见');
+  const value = await chip.evaluate((element) => element.dataset.event || element.dataset.place);
+  await chip.click();
+  await sleep(800);
+  const state = await page.evaluate(() => ({
+    input: document.querySelector('.knowledge-search-input')?.value || '',
+    cards: document.querySelectorAll('.knowledge-card').length,
+    status: document.querySelector('.knowledge-results-subtitle')?.innerText || ''
+  }));
+  assert.equal(state.input, value, `搜索框应变为“${value}”`);
+  assert.ok(state.cards > 0, `事件/地点检索应有结果: ${state.status}`);
+});
+
+await run('TC-59 控制台无错误', async () => {
   assert.equal(errors.length, 0, errors.join('\n'));
 });
 
